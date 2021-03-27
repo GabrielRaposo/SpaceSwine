@@ -1106,6 +1106,7 @@ GameObject:
   - component: {fileID: 975378140}
   - component: {fileID: 975378141}
   - component: {fileID: 975378142}
+  - component: {fileID: 975378144}
   - component: {fileID: 975378138}
   - component: {fileID: 975378139}
   m_Layer: 0
@@ -1211,8 +1212,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  offset: {x: 0, y: -0.19}
-  radius: 0.2
+  offset: {x: 0, y: -0.25}
+  radius: 0.15
 --- !u!114 &975378143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1225,6 +1226,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb8d36c2734f6d4fb60ca9f956bcd96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &975378144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975378136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7412204e4529d43baad861ee2a5156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  leftOffset: {x: -0.2, y: 0}
+  rightOffset: {x: 0.2, y: 0}
+  radius: 0.15
 --- !u!1 &1064405064
 GameObject:
   m_ObjectHideFlags: 0

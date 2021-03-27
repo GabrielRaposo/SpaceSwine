@@ -4,7 +4,6 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(GravityInteraction))]
-[RequireComponent(typeof(CheckGround))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlatformerCharacter : SidewaysCharacter
 {
@@ -12,22 +11,25 @@ public class PlatformerCharacter : SidewaysCharacter
 
     [Header("Values")]
     [SerializeField] float speed;
+    [SerializeField] float acceleration;
     [SerializeField] float jumpForce;
 
     [Header("References")]
     [SerializeField] SpriteRenderer directionArrow;
 
-    float horizontalMovement;
-    float verticalVelocity;
+    float targetHorizontal;
+    float targetVertical;
 
     GravityInteraction gravityInteraction;
     CheckGround checkGround;
+    CheckWall checkWall;
     Rigidbody2D rb;
 
     void Awake()
     {
         gravityInteraction = GetComponent<GravityInteraction>();
         checkGround = GetComponent<CheckGround>();
+        checkWall = GetComponent<CheckWall>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -46,7 +48,13 @@ public class PlatformerCharacter : SidewaysCharacter
     {
         if (horizontalInput != 0)
             SetFacingRight (horizontalInput > 0);
-        horizontalMovement = horizontalInput * speed;
+
+        targetHorizontal = horizontalInput * speed;
+
+        if (checkWall && checkWall.MovingTowardsWall(targetHorizontal))
+        {
+            targetHorizontal = 0;
+        }
     }
 
     public void JumpInput()
@@ -54,7 +62,7 @@ public class PlatformerCharacter : SidewaysCharacter
         if (!checkGround.OnGround)
             return;
 
-        verticalVelocity = jumpForce;
+        targetVertical = jumpForce;
     }
 
     private void FixedUpdate() 
@@ -62,7 +70,8 @@ public class PlatformerCharacter : SidewaysCharacter
         if (!checkGround.OnGround)
             UseCustomGravity();
 
-        rb.velocity = (horizontalMovement * transform.right) + (verticalVelocity * transform.up);
+        //rb.velocity = (horizontalMovement * transform.right) + (verticalVelocity * transform.up);
+        rb.velocity = RaposUtil.AllignVectorWithTransform(transform, new Vector2 (targetHorizontal, targetVertical));
     }
 
     private void UseCustomGravity()
@@ -71,7 +80,7 @@ public class PlatformerCharacter : SidewaysCharacter
         if (!gravity.valid)
             return;
 
-        verticalVelocity += Physics2D.gravity.y * gravity.area.intensity * gravity.multiplier * Time.fixedDeltaTime;
-        verticalVelocity = Mathf.Clamp( verticalVelocity, - MAX_GRAVITY, MAX_GRAVITY );
+        targetVertical += Physics2D.gravity.y * gravity.area.intensity * gravity.multiplier * Time.fixedDeltaTime;
+        targetVertical = Mathf.Clamp( targetVertical, - MAX_GRAVITY, MAX_GRAVITY );
      }
 }
