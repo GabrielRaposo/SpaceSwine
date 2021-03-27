@@ -9,6 +9,7 @@ public class CheckGround : MonoBehaviour
     [SerializeField] float radius; 
     
     bool onGround;
+    PlanetPlatform planetPlatform;
 
     Color debugCollisionColor = Color.blue;
 
@@ -17,9 +18,41 @@ public class CheckGround : MonoBehaviour
         get { return onGround; }
     }
 
+    public PlanetPlatform OnPlatform
+    {
+        get { return planetPlatform; }
+    }
+
     void Update()
     {  
-        onGround = Physics2D.OverlapCircle (transform.position + (transform.up * offset.y), radius, groundLayer);
+        List<Collider2D> results = new List<Collider2D>();
+
+        ContactFilter2D contactFilter2D = new ContactFilter2D();
+        contactFilter2D.SetLayerMask(groundLayer);
+        if (Physics2D.OverlapCircle (transform.position + (transform.up * offset.y), radius, contactFilter2D, results) > 0)
+        {
+            onGround = true;
+            SetPlatform( results );
+        }
+        else
+        {
+            onGround = false;
+            planetPlatform = null;
+        }
+    }
+
+    private void SetPlatform (List<Collider2D> results)
+    {
+        foreach (Collider2D coll in results)
+        {
+            PlanetPlatform pp = coll.GetComponent<PlanetPlatform>();
+            if (pp) 
+            {
+                planetPlatform = pp;
+                return;
+            }
+        }
+        planetPlatform = null;
     }
 
     void OnDrawGizmos()

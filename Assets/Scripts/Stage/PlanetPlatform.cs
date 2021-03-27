@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanetBlock : MonoBehaviour
+public class PlanetPlatform : MonoBehaviour
 {
-    // Start is called before the first frame update
+    Planet parentPlanet;    
+
     void Start()
     {
-        
+        parentPlanet = GetComponent<Planet>();
+        if (parentPlanet)
+            Debug.Log(parentPlanet.name);
     }
 
     // Update is called once per frame
