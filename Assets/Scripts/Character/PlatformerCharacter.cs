@@ -17,8 +17,8 @@ public class PlatformerCharacter : SidewaysCharacter
     [Header("References")]
     [SerializeField] SpriteRenderer directionArrow;
 
-    float targetHorizontal;
-    float targetVertical;
+    float horizontalSpeed;
+    float verticalSpeed;
 
     GravityInteraction gravityInteraction;
     CheckGround checkGround;
@@ -49,11 +49,22 @@ public class PlatformerCharacter : SidewaysCharacter
         if (horizontalInput != 0)
             SetFacingRight (horizontalInput > 0);
 
-        targetHorizontal = horizontalInput * speed;
+        float targetSpeed = horizontalInput * speed;
+        int direction = 0;
+        if (horizontalSpeed != targetSpeed)
+            direction = horizontalSpeed > targetSpeed ? -1 : 1;
 
-        if (checkWall && checkWall.MovingTowardsWall(targetHorizontal))
+        horizontalSpeed += acceleration * direction * Time.deltaTime;
+
+        if (Mathf.Abs(horizontalSpeed - targetSpeed) < .2f)
+            horizontalSpeed = targetSpeed;
+
+        if (Mathf.Abs(horizontalSpeed) > speed)
+            horizontalSpeed = direction * speed;
+
+        if (checkWall && checkWall.MovingTowardsWall(horizontalSpeed))
         {
-            targetHorizontal = 0;
+            horizontalSpeed = 0;
         }
     }
 
@@ -62,7 +73,7 @@ public class PlatformerCharacter : SidewaysCharacter
         if (!checkGround.OnGround)
             return;
 
-        targetVertical = jumpForce;
+        verticalSpeed = jumpForce;
     }
 
     private void FixedUpdate() 
@@ -71,7 +82,7 @@ public class PlatformerCharacter : SidewaysCharacter
             UseCustomGravity();
 
         //rb.velocity = (horizontalMovement * transform.right) + (verticalVelocity * transform.up);
-        rb.velocity = RaposUtil.AllignVectorWithTransform(transform, new Vector2 (targetHorizontal, targetVertical));
+        rb.velocity = RaposUtil.AllignVectorWithTransform(transform, new Vector2 (horizontalSpeed, verticalSpeed));
     }
 
     private void UseCustomGravity()
@@ -80,7 +91,7 @@ public class PlatformerCharacter : SidewaysCharacter
         if (!gravity.valid)
             return;
 
-        targetVertical += Physics2D.gravity.y * gravity.area.intensity * gravity.multiplier * Time.fixedDeltaTime;
-        targetVertical = Mathf.Clamp( targetVertical, - MAX_GRAVITY, MAX_GRAVITY );
+        verticalSpeed += Physics2D.gravity.y * gravity.area.intensity * gravity.multiplier * Time.fixedDeltaTime;
+        verticalSpeed = Mathf.Clamp( verticalSpeed, - MAX_GRAVITY, MAX_GRAVITY );
      }
 }
