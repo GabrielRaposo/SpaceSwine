@@ -17,6 +17,8 @@ public class PlatformerCharacter : SidewaysCharacter
     [Header("References")]
     [SerializeField] SpriteRenderer directionArrow;
 
+    bool onGround;
+
     float horizontalSpeed;
     float verticalSpeed;
 
@@ -78,8 +80,13 @@ public class PlatformerCharacter : SidewaysCharacter
 
     private void FixedUpdate() 
     {
-        if (!checkGround.OnGround)
-            UseCustomGravity();
+        //if (!onGround)
+        UseCustomGravity();
+
+        if (onGround && !checkGround.OnGround && verticalSpeed <= 0)
+            verticalSpeed = 0;
+
+        onGround = checkGround.OnGround;
 
         //rb.velocity = (horizontalMovement * transform.right) + (verticalVelocity * transform.up);
         rb.velocity = RaposUtil.AllignVectorWithTransform(transform, new Vector2 (horizontalSpeed, verticalSpeed));
