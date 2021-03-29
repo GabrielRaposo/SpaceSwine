@@ -7,8 +7,10 @@ public class GravityInteraction : MonoBehaviour
 {
     [SerializeField] float defaultMultiplier = 1.0f;
     [SerializeField] float lowGravityMultiplier = .8f; 
+    [SerializeField] float angleAdjustment;
 
     bool jumpHeld;
+    bool lockIntoAngle;
 
     GravityArea gravityArea;
     PlanetPlatform platform;
@@ -27,17 +29,43 @@ public class GravityInteraction : MonoBehaviour
         if (checkGround)
             platform = checkGround.OnPlatform;
 
-        float angle = 0;
-
         UpdateParent ();
 
+        float angle = 0;
         if (!platform)
             angle = AlignWithPlanet();
         else
             angle = AlignWithPlatform();
 
-        transform.eulerAngles = Vector3.forward * angle;
-        rb.SetRotation(angle);
+        float interpolatedAngle = angle;
+        if (!lockIntoAngle)
+        {
+            if (transform.eulerAngles.z == angle)
+                return;
+
+            int direction = GetRotationDirection(transform.eulerAngles.z, angle);
+            interpolatedAngle = transform.eulerAngles.z + (angleAdjustment * direction * Time.fixedDeltaTime);
+
+            if (Mathf.Abs(interpolatedAngle - angle) < 1f)
+                interpolatedAngle = angle;
+        }
+
+        transform.eulerAngles = Vector3.forward * interpolatedAngle;
+        rb.SetRotation(interpolatedAngle);
+    }
+
+    private int GetRotationDirection(float from, float to)
+    {
+        //Debug.Log("AngleDifference: " + AngleDifference(from, to));
+
+        double diff = AngleDifference(from, to);
+        return (diff > 0) ? 1 : -1;
+    }
+
+    public static double AngleDifference (double angle1, double angle2)
+    {
+        double diff = ( angle2 - angle1 + 180 ) % 360 - 180;
+        return diff < -180 ? diff + 360 : diff;
     }
 
     private void UpdateParent ()
@@ -84,6 +112,11 @@ public class GravityInteraction : MonoBehaviour
     public void SetJumpHeld(bool value)
     {
         jumpHeld = value;
+    }
+
+    public void SetLockIntoAngle(bool value)
+    {
+        lockIntoAngle = value;
     }
 
 }

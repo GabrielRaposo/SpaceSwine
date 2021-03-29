@@ -102,6 +102,8 @@ public class PlatformerCharacter : SidewaysCharacter
             if (Mathf.Abs(projection.y) <= .001f)
                 verticalSpeed = 0;
         }
+
+        gravityInteraction.SetLockIntoAngle(onGround); //Alterar se o jogo começar a usar fall throughs
     }
 
     private void LedgeLogic()
