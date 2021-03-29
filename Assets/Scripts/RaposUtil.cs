@@ -20,6 +20,12 @@ public class RaposUtil
 
         return new Vector2(cos * tx - sin * ty, sin * tx + cos * ty);
     }
+
+    public static double AngleDifference (double angle1, double angle2)
+    {
+        double diff = ( angle2 - angle1 + 180 ) % 360 - 180;
+        return diff < -180 ? diff + 360 : diff;
+    }
 }
 
 public static class Vector2Extension

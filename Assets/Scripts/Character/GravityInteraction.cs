@@ -43,7 +43,7 @@ public class GravityInteraction : MonoBehaviour
             if (transform.eulerAngles.z == angle)
                 return;
 
-            int direction = GetRotationDirection(transform.eulerAngles.z, angle);
+            int direction = RaposUtil.AngleDifference(transform.eulerAngles.z, angle) > 0 ? 1 : -1;
             interpolatedAngle = transform.eulerAngles.z + (angleAdjustment * direction * Time.fixedDeltaTime);
 
             if (Mathf.Abs(interpolatedAngle - angle) < 1f)
@@ -52,20 +52,6 @@ public class GravityInteraction : MonoBehaviour
 
         transform.eulerAngles = Vector3.forward * interpolatedAngle;
         rb.SetRotation(interpolatedAngle);
-    }
-
-    private int GetRotationDirection(float from, float to)
-    {
-        //Debug.Log("AngleDifference: " + AngleDifference(from, to));
-
-        double diff = AngleDifference(from, to);
-        return (diff > 0) ? 1 : -1;
-    }
-
-    public static double AngleDifference (double angle1, double angle2)
-    {
-        double diff = ( angle2 - angle1 + 180 ) % 360 - 180;
-        return diff < -180 ? diff + 360 : diff;
     }
 
     private void UpdateParent ()
