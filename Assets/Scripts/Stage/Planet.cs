@@ -11,21 +11,18 @@ public class Planet : MonoBehaviour
 
     [Header("References")]
     [SerializeField] CircleCollider2D mainCollider;
-    [SerializeField] SpriteRenderer visualComponent;
+    [SerializeField] SpriteRenderer outlineVisualComponent;
+    [SerializeField] SpriteRenderer insideVisualComponent;
     [SerializeField] CircleCollider2D gravityArea;
-
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-        
-    }
 
     private void OnValidate() 
     {
         UpdateAttributes();
+    }
+
+    public (float planetRadius, float gravityRadius) GetAttributes()
+    {
+        return (planetRadius, gravityRadius);
     }
 
     private void UpdateAttributes()
@@ -33,8 +30,11 @@ public class Planet : MonoBehaviour
         if (mainCollider)
             mainCollider.radius = planetRadius;
 
-        if (visualComponent)
-            visualComponent.transform.localScale = Vector3.one * planetRadius * 2f;
+        if (outlineVisualComponent)
+            outlineVisualComponent.transform.localScale = Vector3.one * planetRadius * 2f;
+
+        if (insideVisualComponent)
+            insideVisualComponent.transform.localScale = outlineVisualComponent.transform.localScale - (Vector3.one * .04f);
 
         if (gravityArea && gravityRadius > 0f)
             gravityArea.radius = planetRadius + gravityRadius;
@@ -48,4 +48,5 @@ public class Planet : MonoBehaviour
         Gizmos.color = new Color(1,1,1,.25f);
         Gizmos.DrawWireSphere(transform.position, planetRadius + gravityRadius);
     }
+
 }

@@ -13,7 +13,6 @@ public class CheckWall : MonoBehaviour
     
     bool onLeftWall;
     bool onRightWall;
-    PlanetPlatform planetPlatform;
 
     Color debugCollisionColor = Color.red;
 

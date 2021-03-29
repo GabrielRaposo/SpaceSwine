@@ -6,7 +6,7 @@ public class CheckGround : MonoBehaviour
 {
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Vector2 offset; 
-    [SerializeField] float radius; 
+    [SerializeField] Vector2 size; 
     
     bool onGround;
     PlanetPlatform planetPlatform;
@@ -29,7 +29,8 @@ public class CheckGround : MonoBehaviour
 
         ContactFilter2D contactFilter2D = new ContactFilter2D();
         contactFilter2D.SetLayerMask(groundLayer);
-        if (Physics2D.OverlapCircle (transform.position + (transform.up * offset.y), radius, contactFilter2D, results) > 0)
+        float angle = Vector2.SignedAngle(Vector2.up, transform.up);
+        if (Physics2D.OverlapBox(transform.position + (transform.up * offset.y), size, angle, contactFilter2D, results) > 0)
         {
             onGround = true;
             SetPlatform( results );
@@ -58,6 +59,6 @@ public class CheckGround : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = debugCollisionColor;
-        Gizmos.DrawWireSphere(transform.position + (transform.up * offset.y), radius);
+        Gizmos.DrawWireCube(transform.position + (transform.up * offset.y), size);
     }
 }

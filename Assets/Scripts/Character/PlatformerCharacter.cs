@@ -4,6 +4,9 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(GravityInteraction))]
+[RequireComponent(typeof(CheckGround))]
+[RequireComponent(typeof(CheckLedge))]
+[RequireComponent(typeof(CheckWall))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlatformerCharacter : SidewaysCharacter
 {
@@ -24,6 +27,7 @@ public class PlatformerCharacter : SidewaysCharacter
 
     GravityInteraction gravityInteraction;
     CheckGround checkGround;
+    CheckLedge checkLedge;
     CheckWall checkWall;
     Rigidbody2D rb;
 
@@ -31,6 +35,7 @@ public class PlatformerCharacter : SidewaysCharacter
     {
         gravityInteraction = GetComponent<GravityInteraction>();
         checkGround = GetComponent<CheckGround>();
+        checkLedge = GetComponent<CheckLedge>();
         checkWall = GetComponent<CheckWall>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -80,16 +85,40 @@ public class PlatformerCharacter : SidewaysCharacter
 
     private void FixedUpdate() 
     {
-        //if (!onGround)
+        OnGroundLogic();
+        LedgeLogic();
         UseCustomGravity();
 
-        if (onGround && !checkGround.OnGround && verticalSpeed <= 0)
-            verticalSpeed = 0;
+        rb.velocity = RaposUtil.AlignWithTransform(transform, new Vector2 (horizontalSpeed, verticalSpeed));
+    }
 
+    private void OnGroundLogic()
+    {
         onGround = checkGround.OnGround;
 
-        //rb.velocity = (horizontalMovement * transform.right) + (verticalVelocity * transform.up);
-        rb.velocity = RaposUtil.AllignVectorWithTransform(transform, new Vector2 (horizontalSpeed, verticalSpeed));
+        if (onGround && verticalSpeed < 0)
+        {
+            Vector3 projection = Vector3.Project(rb.velocity, transform.up);
+            if (Mathf.Abs(projection.y) <= .001f)
+                verticalSpeed = 0;
+        }
+    }
+
+    private void LedgeLogic()
+    {
+        if (onGround)
+            return;
+            
+        (bool isValid, bool left, bool right) ledge = checkLedge.OnLedge;
+        if (!ledge.isValid)
+            return;
+
+        float pushForce = 2f;
+        if (horizontalSpeed <= 0 && ledge.left)
+            horizontalSpeed = -pushForce;
+
+        if (horizontalSpeed >= 0 && ledge.right)
+            horizontalSpeed = pushForce;
     }
 
     private void UseCustomGravity()

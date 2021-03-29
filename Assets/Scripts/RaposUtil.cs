@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RaposUtil
 {
-    public static Vector2 AllignVectorWithTransform (Transform t, Vector2 v)
+    public static Vector2 AlignWithTransform (Transform t, Vector2 v)
     {
         return (t.right * v.x) + (t.up * v.y);
     }
