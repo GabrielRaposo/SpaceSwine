@@ -23,8 +23,8 @@ public class CheckWall : MonoBehaviour
 
     void Update()
     {  
-        onLeftWall  = Physics2D.OverlapCircle (transform.position + (transform.right * leftOffset.x), radius, wallLayer);
-        onRightWall = Physics2D.OverlapCircle (transform.position + (transform.right * rightOffset.x), radius, wallLayer);
+        onLeftWall  = Physics2D.OverlapCircle (transform.position + (Vector3) RaposUtil.AlignWithTransform(transform, leftOffset),  radius, wallLayer);
+        onRightWall = Physics2D.OverlapCircle (transform.position + (Vector3) RaposUtil.AlignWithTransform(transform, rightOffset), radius, wallLayer);
     }
 
     public bool MovingTowardsWall (float direction)
@@ -41,8 +41,8 @@ public class CheckWall : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = debugCollisionColor;
-        Gizmos.DrawWireSphere(transform.position + (transform.right * leftOffset.x), radius);
-        Gizmos.DrawWireSphere(transform.position + (transform.right * rightOffset.x), radius);
+        Gizmos.DrawWireSphere(transform.position + (Vector3) RaposUtil.AlignWithTransform(transform, leftOffset) , radius);
+        Gizmos.DrawWireSphere(transform.position + (Vector3) RaposUtil.AlignWithTransform(transform, rightOffset), radius);
     }
 }
 
