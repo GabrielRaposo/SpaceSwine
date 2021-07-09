@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+[RequireComponent(typeof(SpaceJumper))]
 [RequireComponent(typeof(GravityInteraction))]
 [RequireComponent(typeof(CheckGround))]
 [RequireComponent(typeof(CheckLedge))]
@@ -25,6 +25,9 @@ public class PlatformerCharacter : SidewaysCharacter
     float horizontalSpeed;
     float verticalSpeed;
 
+    Transform customGravityCenter;
+
+    SpaceJumper spaceJumper;
     GravityInteraction gravityInteraction;
     CheckGround checkGround;
     CheckLedge checkLedge;
@@ -33,6 +36,7 @@ public class PlatformerCharacter : SidewaysCharacter
 
     void Awake()
     {
+        spaceJumper = GetComponent<SpaceJumper>();
         gravityInteraction = GetComponent<GravityInteraction>();
         checkGround = GetComponent<CheckGround>();
         checkLedge = GetComponent<CheckLedge>();
@@ -55,6 +59,9 @@ public class PlatformerCharacter : SidewaysCharacter
     {
         if (horizontalInput != 0)
             SetFacingRight (horizontalInput > 0);
+
+        if (gravityInteraction && !gravityInteraction.GetGravityArea().Item1)
+            return;
 
         float targetSpeed = horizontalInput * speed;
         int direction = 0;
@@ -89,6 +96,10 @@ public class PlatformerCharacter : SidewaysCharacter
         LedgeLogic();
         UseCustomGravity();
 
+        if (AllignFallDirectionWithGravity())
+            return;
+
+        //Debug.Log("Default method");
         rb.velocity = RaposUtil.AlignWithTransform(transform, new Vector2 (horizontalSpeed, verticalSpeed));
     }
 
@@ -125,11 +136,27 @@ public class PlatformerCharacter : SidewaysCharacter
 
     private void UseCustomGravity()
     {
-        (bool valid, GravityArea area, float multiplier) gravity = gravityInteraction.GetGravityArea();
+        (bool valid, GravityArea area, float multiplier, bool onPlatform) gravity = gravityInteraction.GetGravityArea();
         if (!gravity.valid)
             return;
 
         verticalSpeed += Physics2D.gravity.y * gravity.area.intensity * gravity.multiplier * Time.fixedDeltaTime;
         verticalSpeed = Mathf.Clamp( verticalSpeed, - MAX_GRAVITY, MAX_GRAVITY );
-     }
+    }
+
+    private bool AllignFallDirectionWithGravity()
+    {
+        (bool valid, GravityArea area, float multiplier, bool onPlatform) gravity = gravityInteraction.GetGravityArea();
+        if (!gravity.valid || gravity.onPlatform)
+            return false;
+
+        Vector2 direction = (gravity.area.Center - transform.position).normalized;
+        float angle = Vector2.SignedAngle(Vector2.down, direction);
+        Debug.DrawLine(gravity.area.Center, (Vector2)gravity.area.Center + RaposUtil.RotateVector(Vector2.up, angle), Color.yellow, 1f);
+
+        rb.velocity = RaposUtil.RotateVector(new Vector2 (horizontalSpeed, verticalSpeed), angle);
+        //Debug.Log("Custom Method");
+
+        return true;
+    }
 }

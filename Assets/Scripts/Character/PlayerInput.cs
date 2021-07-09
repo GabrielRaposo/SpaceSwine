@@ -4,15 +4,20 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlatformerCharacter))]
 [RequireComponent(typeof(GravityInteraction))]
+[RequireComponent(typeof(SpaceJumper))]
 public class PlayerInput : MonoBehaviour
 {
+    [SerializeField] GameplayState gameplayState;
+
     PlatformerCharacter platformerCharacter;
     GravityInteraction gravityInteraction;
+    SpaceJumper spaceJumper;
 
     void Start()
     {
         platformerCharacter = GetComponent<PlatformerCharacter>();
         gravityInteraction = GetComponent<GravityInteraction>();
+        spaceJumper = GetComponent<SpaceJumper>();
     }
 
     void Update()
@@ -20,8 +25,14 @@ public class PlayerInput : MonoBehaviour
         platformerCharacter.HorizontalInput(Input.GetAxis("Horizontal"));
 
         if (Input.GetButtonDown("Jump"))
-            platformerCharacter.JumpInput();
+        {
+            if (gameplayState == GameplayState.Exploration)
+                platformerCharacter.JumpInput();
+            else
+                spaceJumper.JumpInput();
 
-        gravityInteraction.SetJumpHeld(Input.GetButton("Jump"));
+        }
+
+        gravityInteraction.SetJumpHeld(Input.GetButton("Jump"));           
     }
 }

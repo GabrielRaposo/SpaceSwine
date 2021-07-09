@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class GravityInteraction : MonoBehaviour
@@ -18,10 +19,22 @@ public class GravityInteraction : MonoBehaviour
     CheckGround checkGround;
     Rigidbody2D rb;
 
+    public UnityAction<Transform> OnChangeGravityAnchor; 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();   
         checkGround = GetComponent<CheckGround>();
+    }
+
+    private void Update() 
+    {
+        CameraFocusController cameraFocusController = CameraFocusController.Instance;
+
+        if (Input.GetKeyDown(KeyCode.O))
+            cameraFocusController.SetPlayerFocus();
+        if (Input.GetKeyDown(KeyCode.P) && gravityArea)
+            cameraFocusController.SetPlanetFocus(gravityArea.transform);
     }
 
     private void FixedUpdate() 
@@ -33,9 +46,16 @@ public class GravityInteraction : MonoBehaviour
 
         float angle = 0;
         if (!platform)
+        {
+            if (!gravityArea)
+                return;
+
             angle = AlignWithPlanet();
+        }
         else
+        {
             angle = AlignWithPlatform();
+        }
 
         float interpolatedAngle = angle;
         if (!lockIntoAngle)
@@ -58,12 +78,20 @@ public class GravityInteraction : MonoBehaviour
     {
         if (platform)
         {
-            transform.SetParent(platform.transform);
+            if (transform.parent == platform)
+                return;
+
+            transform.SetParent (platform.transform);
+            //OnChangeGravityAnchor?.Invoke(platform.transform);
         }
         else
         {
-            transform.SetParent(null);
+            if (transform.parent == null)
+                return;
+
+            transform.SetParent (null);
             transform.localScale = Vector3.one;
+            //OnChangeGravityAnchor?.Invoke(null);
         }
     }
 
@@ -88,11 +116,25 @@ public class GravityInteraction : MonoBehaviour
             return;
 
         this.gravityArea = gravityArea;
+        OnChangeGravityAnchor?.Invoke(gravityArea.transform);
     }
 
-    public (bool, GravityArea, float multiplier) GetGravityArea()
+    private void OnTriggerExit2D(Collider2D collision) 
     {
-        return (gravityArea != null, gravityArea, jumpHeld ? lowGravityMultiplier : defaultMultiplier); 
+        if (!this.gravityArea)
+            return;
+
+        GravityArea gravityArea = collision.GetComponent<GravityArea>();
+        if (this.gravityArea == gravityArea)
+        {
+            this.gravityArea = null;
+            OnChangeGravityAnchor?.Invoke(null);
+        }
+    }
+
+    public (bool, GravityArea, float multiplier, bool onPlatform) GetGravityArea()
+    {
+        return (gravityArea != null, gravityArea, jumpHeld ? lowGravityMultiplier : defaultMultiplier, platform); 
     }
 
     public void SetJumpHeld(bool value)
