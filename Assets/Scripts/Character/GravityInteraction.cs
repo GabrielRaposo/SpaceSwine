@@ -95,7 +95,7 @@ public class GravityInteraction : MonoBehaviour
         }
     }
 
-    private float AlignWithPlanet()
+    public float AlignWithPlanet()
     {
         if (!gravityArea)
             return 0;
@@ -146,5 +146,4 @@ public class GravityInteraction : MonoBehaviour
     {
         lockIntoAngle = value;
     }
-
 }

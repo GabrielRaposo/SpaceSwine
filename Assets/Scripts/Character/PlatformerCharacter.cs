@@ -47,6 +47,15 @@ public class PlatformerCharacter : SidewaysCharacter
     private void Start() 
     {
         SetFacingRight(true);
+
+        gravityInteraction.OnChangeGravityAnchor += (t) => 
+        {   
+            if (t == null)
+                return;
+
+            verticalSpeed = horizontalSpeed = 0;
+            transform.eulerAngles = Vector3.forward * gravityInteraction.AlignWithPlanet();
+        };
     }
 
     protected override void SetFacingRight(bool value) 
