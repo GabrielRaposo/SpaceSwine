@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PlayerGameplayState : MonoBehaviour
+public class LocalGameplayState : MonoBehaviour
 {
     public GameplayState state;
 }

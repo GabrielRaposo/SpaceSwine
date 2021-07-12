@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerGameplayState))]
+[RequireComponent(typeof(LocalGameplayState))]
 [RequireComponent(typeof(GravityInteraction))]
 [RequireComponent(typeof(CheckGround))]
 [RequireComponent(typeof(CheckLedge))]
@@ -18,14 +18,15 @@ public class PlatformerCharacter : SidewaysCharacter
     [SerializeField] float jumpForce;
 
     [Header("References")]
-    [SerializeField] SpriteRenderer directionArrow;
+    [SerializeField] Transform visualAnchor;
+    //[SerializeField] SpriteRenderer directionArrow;
 
     bool onGround;
 
     float horizontalSpeed;
     float verticalSpeed;
 
-    PlayerGameplayState gameplayState;
+    LocalGameplayState gameplayState;
     GravityInteraction gravityInteraction;
     CheckGround checkGround;
     CheckLedge checkLedge;
@@ -34,7 +35,7 @@ public class PlatformerCharacter : SidewaysCharacter
 
     void Awake()
     {
-        gameplayState = GetComponent<PlayerGameplayState>();
+        gameplayState = GetComponent<LocalGameplayState>();
         gravityInteraction = GetComponent<GravityInteraction>();
         checkGround = GetComponent<CheckGround>();
         checkLedge = GetComponent<CheckLedge>();
@@ -63,7 +64,8 @@ public class PlatformerCharacter : SidewaysCharacter
     protected override void SetFacingRight(bool value) 
     {
         base.SetFacingRight(value);
-        directionArrow.flipY = !value;
+        visualAnchor.localEulerAngles = new Vector3(visualAnchor.localEulerAngles.x, value ? 0 : 180, visualAnchor.localEulerAngles.z);
+        //directionArrow.flipY = !value;
     }
 
     public void HorizontalInput(float horizontalInput)

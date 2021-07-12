@@ -48,7 +48,6 @@ public class SpaceJumper : MonoBehaviour
         platformerCharacter.enabled = !value;
         gravityInteraction.enabled = !value;
         onLaunch = value;
-        //Debug.Log( "onLaunch: " + onLaunch );
     }
 
     private void OnCollisionEnter2D(Collision2D collision) 
@@ -68,6 +67,7 @@ public class SpaceJumper : MonoBehaviour
         {
             return;
         }
+        // ---
 
         Planet planet = collision.gameObject.GetComponent<Planet>();
         if (!planet)
@@ -87,6 +87,8 @@ public class SpaceJumper : MonoBehaviour
 
         SetLaunchState(false);
     }
+
+    //public void 
 
     private void OnDrawGizmos() 
     {
