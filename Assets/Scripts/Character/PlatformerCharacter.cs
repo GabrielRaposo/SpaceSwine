@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SpaceJumper))]
+[RequireComponent(typeof(PlayerGameplayState))]
 [RequireComponent(typeof(GravityInteraction))]
 [RequireComponent(typeof(CheckGround))]
 [RequireComponent(typeof(CheckLedge))]
@@ -25,9 +25,7 @@ public class PlatformerCharacter : SidewaysCharacter
     float horizontalSpeed;
     float verticalSpeed;
 
-    Transform customGravityCenter;
-
-    SpaceJumper spaceJumper;
+    PlayerGameplayState gameplayState;
     GravityInteraction gravityInteraction;
     CheckGround checkGround;
     CheckLedge checkLedge;
@@ -36,11 +34,12 @@ public class PlatformerCharacter : SidewaysCharacter
 
     void Awake()
     {
-        spaceJumper = GetComponent<SpaceJumper>();
+        gameplayState = GetComponent<PlayerGameplayState>();
         gravityInteraction = GetComponent<GravityInteraction>();
         checkGround = GetComponent<CheckGround>();
         checkLedge = GetComponent<CheckLedge>();
         checkWall = GetComponent<CheckWall>();
+
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -50,6 +49,9 @@ public class PlatformerCharacter : SidewaysCharacter
 
         gravityInteraction.OnChangeGravityAnchor += (t) => 
         {   
+            if (gameplayState.state == GameplayState.Danger) 
+                return;
+
             if (t == null)
                 return;
 
@@ -108,7 +110,7 @@ public class PlatformerCharacter : SidewaysCharacter
         if (AllignFallDirectionWithGravity())
             return;
 
-        //Debug.Log("Default method");
+        // Default method;
         rb.velocity = RaposUtil.AlignWithTransform(transform, new Vector2 (horizontalSpeed, verticalSpeed));
     }
 
@@ -164,7 +166,6 @@ public class PlatformerCharacter : SidewaysCharacter
         Debug.DrawLine(gravity.area.Center, (Vector2)gravity.area.Center + RaposUtil.RotateVector(Vector2.up, angle), Color.yellow, 1f);
 
         rb.velocity = RaposUtil.RotateVector(new Vector2 (horizontalSpeed, verticalSpeed), angle);
-        //Debug.Log("Custom Method");
 
         return true;
     }
