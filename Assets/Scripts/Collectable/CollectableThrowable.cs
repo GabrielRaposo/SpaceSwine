@@ -8,4 +8,16 @@ public class CollectableThrowable : Collectable
     {
         interactor.LaunchInput();
     }
+
+    public override void TriggerEvent(Collider2D collision) 
+    {
+        base.TriggerEvent(collision);
+
+        Star star = collision.GetComponent<Star>();
+        if (star)
+        {
+            star.Collect(this);
+            return;
+        }
+    }
 }

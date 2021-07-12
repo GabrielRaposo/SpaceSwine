@@ -45,7 +45,7 @@ public class Planet : MonoBehaviour
         if (gravityRadius <= 0)
             return;
 
-        Gizmos.color = new Color(1,1,1,.25f);
+        Gizmos.color = new Color(1, 1, 1, .25f);
         Gizmos.DrawWireSphere(transform.position, planetRadius + gravityRadius);
     }
 

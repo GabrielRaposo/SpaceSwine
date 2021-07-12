@@ -81,7 +81,11 @@ public class CollectableInteraction : MonoBehaviour
             rb.velocity = direction * launchSpeed;
         }
 
-        // reativar collider com timer
+        Collider2D coll = current.GetComponent<Collider2D>();
+        if (coll)
+        {
+            coll.enabled = true;
+        }
 
         current.transform.SetParent(null);
         current = null;

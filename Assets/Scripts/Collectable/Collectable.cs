@@ -4,14 +4,28 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {   
+    GameObject previousHolder;
+
     public virtual void Interact (CollectableInteraction interactor) { }
-    
+
     private void OnTriggerEnter2D (Collider2D collision) 
     {
-        CollectableInteraction interaction = collision.GetComponent<CollectableInteraction>();
-        if (!interaction)
-            return;
-
-        interaction.SetCurrentCollectable (this);
+        TriggerEvent (collision);
     }
+    
+    public virtual void TriggerEvent(Collider2D collision)
+    {
+        CollectableInteraction interaction = collision.GetComponent<CollectableInteraction>();
+        if (interaction)
+        {
+            if (collision.gameObject == previousHolder)
+                return;
+
+            previousHolder = collision.gameObject; 
+
+            interaction.SetCurrentCollectable (this);
+            return;
+        }
+    }
+
 }
