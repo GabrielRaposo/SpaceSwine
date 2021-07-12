@@ -29,7 +29,7 @@ public class PlayerInput : MonoBehaviour
     void Update()
     {
         platformerCharacter.HorizontalInput(Input.GetAxis("Horizontal"));
-        spaceJumper.AxisInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+        collectableInteraction.AxisInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
 
         //if (Input.GetButtonDown("Jump"))
         //{
@@ -43,12 +43,12 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             platformerCharacter.JumpInput();
-        } else
-        if (Input.GetButtonDown("Launch"))
+        } 
+        else if (Input.GetButtonDown("Launch"))
         {
             spaceJumper.JumpInput();
-        } else 
-        if (Input.GetButtonDown("Jump"))
+        } 
+        else if (Input.GetButtonDown("Throw"))
         {
             collectableInteraction.InteractInput();
         }

@@ -3,11 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CheckGround))]
+[RequireComponent(typeof(SpaceJumper))]
 public class CollectableInteraction : MonoBehaviour
 {
+    [SerializeField] float launchSpeed;
     [SerializeField] Transform holdAnchor;
 
+    Vector2 axisInput;
     Collectable current;
+
+    CheckGround checkGround;
+    SpaceJumper spaceJumper;
+
+    private void Start() 
+    {
+        checkGround = GetComponent<CheckGround>();
+        spaceJumper = GetComponent<SpaceJumper>();
+    }
+
+    public void AxisInput(Vector2 axisInput)
+    {
+        this.axisInput = axisInput;
+    }
 
     public void InteractInput()
     {
@@ -31,5 +48,42 @@ public class CollectableInteraction : MonoBehaviour
         collectable.transform.SetParent(t);
 
         current = collectable;
+    }
+
+    public void LaunchInput()
+    {
+        if (!current)
+            return;
+
+        if (checkGround.OnGround)
+        {
+            Vector2 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
+            LaunchCurrentIntoDirection(direction.normalized);
+        }
+        else
+        {
+            Vector2 direction = axisInput;
+            if (axisInput == Vector2.zero)
+                direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
+
+            LaunchCurrentIntoDirection(direction.normalized);
+            spaceJumper.LaunchIntoDirection(-direction.normalized);
+        }
+    }
+
+    private void LaunchCurrentIntoDirection(Vector2 direction)
+    {
+        current.transform.position = transform.position;
+
+        Rigidbody2D rb = current.GetComponent<Rigidbody2D>();
+        if (rb)
+        {
+            rb.velocity = direction * launchSpeed;
+        }
+
+        // reativar collider com timer
+
+        current.transform.SetParent(null);
+        current = null;
     }
 }

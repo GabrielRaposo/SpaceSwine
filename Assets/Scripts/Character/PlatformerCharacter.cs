@@ -165,7 +165,7 @@ public class PlatformerCharacter : SidewaysCharacter
 
         Vector2 direction = (gravity.area.Center - transform.position).normalized;
         float angle = Vector2.SignedAngle(Vector2.down, direction);
-        Debug.DrawLine(gravity.area.Center, (Vector2)gravity.area.Center + RaposUtil.RotateVector(Vector2.up, angle), Color.yellow, 1f);
+        //Debug.DrawLine(gravity.area.Center, (Vector2)gravity.area.Center + RaposUtil.RotateVector(Vector2.up, angle), Color.yellow, 1f);
 
         rb.velocity = RaposUtil.RotateVector(new Vector2 (horizontalSpeed, verticalSpeed), angle);
 

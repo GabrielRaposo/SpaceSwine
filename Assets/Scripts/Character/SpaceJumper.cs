@@ -11,7 +11,6 @@ public class SpaceJumper : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
 
     bool onLaunch;
-    Vector2 axisInput;
 
     PlatformerCharacter platformerCharacter;
     GravityInteraction gravityInteraction;
@@ -38,11 +37,6 @@ public class SpaceJumper : MonoBehaviour
         rb.velocity = direction * speed;
     }
 
-    public void AxisInput(Vector2 input)
-    {
-        axisInput = input;
-    }
-
     private void SetLaunchState (bool value)
     {
         platformerCharacter.enabled = !value;
@@ -58,7 +52,6 @@ public class SpaceJumper : MonoBehaviour
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
             return;
 
-        // Raycast
         Vector3 topPosition = RaposUtil.RotateVector( Vector2.up * .25f, transform.eulerAngles.z );
         List <Collider2D> results = new List<Collider2D>();
         ContactFilter2D contactFilter2D = new ContactFilter2D();
@@ -67,7 +60,6 @@ public class SpaceJumper : MonoBehaviour
         {
             return;
         }
-        // ---
 
         Planet planet = collision.gameObject.GetComponent<Planet>();
         if (!planet)
@@ -88,7 +80,13 @@ public class SpaceJumper : MonoBehaviour
         SetLaunchState(false);
     }
 
-    //public void 
+    public void LaunchIntoDirection (Vector2 direction)
+    {
+        SetLaunchState(true);
+
+        transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
+        rb.velocity = direction * speed;
+    } 
 
     private void OnDrawGizmos() 
     {

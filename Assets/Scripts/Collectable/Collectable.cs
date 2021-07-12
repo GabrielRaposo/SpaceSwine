@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {   
-    public virtual void Interact (MonoBehaviour monoBehaviour) { }
+    public virtual void Interact (CollectableInteraction interactor) { }
     
     private void OnTriggerEnter2D (Collider2D collision) 
     {

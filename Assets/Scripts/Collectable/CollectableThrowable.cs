@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class CollectableThrowable : Collectable
 {
-    public override void Interact (MonoBehaviour monoBehaviour) 
+    public override void Interact (CollectableInteraction interactor) 
     {
-        // Launch on the ground
-        // 
-
-        //SpaceJumper spaceJumper = monoBehaviour.GetComponent<SpaceJumper>();
-        //if (!spaceJumper)
-        //    return;
+        interactor.LaunchInput();
     }
 }
