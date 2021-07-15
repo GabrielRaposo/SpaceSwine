@@ -5,12 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameObject playerObject;
+
     void Start()
     {
-        
+        if (playerObject)
+        {
+            Health health = playerObject.GetComponent<Health>();    
+            if (health)
+                health.OnDeathEvent += ResetScene;
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))

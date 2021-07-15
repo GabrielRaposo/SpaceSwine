@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(LocalGameplayState))]
-[RequireComponent(typeof(GravityInteraction))]
-[RequireComponent(typeof(CheckGround))]
-[RequireComponent(typeof(CheckLedge))]
-[RequireComponent(typeof(CheckWall))]
-[RequireComponent(typeof(Rigidbody2D))]
+
 public class PlatformerCharacter : SidewaysCharacter
 {
     const float MAX_GRAVITY = 9.8f;

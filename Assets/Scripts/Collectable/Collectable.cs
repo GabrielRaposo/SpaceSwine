@@ -21,11 +21,12 @@ public class Collectable : MonoBehaviour
             if (collision.gameObject == previousHolder)
                 return;
 
-            previousHolder = collision.gameObject; 
+            if (interaction.SetCurrentCollectable (this))
+            {
+                previousHolder = collision.gameObject; 
+            }
 
-            interaction.SetCurrentCollectable (this);
             return;
         }
     }
-
 }

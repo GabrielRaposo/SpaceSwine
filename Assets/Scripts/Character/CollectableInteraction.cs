@@ -34,8 +34,11 @@ public class CollectableInteraction : MonoBehaviour
         current.Interact(this);
     }
 
-    public void SetCurrentCollectable (Collectable collectable)
+    public bool SetCurrentCollectable (Collectable collectable)
     {
+        if (current)
+            return false;
+
         Transform t = holdAnchor;
         if (!holdAnchor)
             t = transform;        
@@ -48,6 +51,7 @@ public class CollectableInteraction : MonoBehaviour
         collectable.transform.SetParent(t);
 
         current = collectable;
+        return true;
     }
 
     public void LaunchInput()
