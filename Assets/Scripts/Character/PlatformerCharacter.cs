@@ -22,6 +22,7 @@ public class PlatformerCharacter : SidewaysCharacter
     float verticalSpeed;
 
     LocalGameplayState gameplayState;
+    SpaceJumper spaceJumper;
     GravityInteraction gravityInteraction;
     CheckGround checkGround;
     CheckLedge checkLedge;
@@ -31,6 +32,7 @@ public class PlatformerCharacter : SidewaysCharacter
     void Awake()
     {
         gameplayState = GetComponent<LocalGameplayState>();
+        spaceJumper = GetComponent<SpaceJumper>();
         gravityInteraction = GetComponent<GravityInteraction>();
         checkGround = GetComponent<CheckGround>();
         checkLedge = GetComponent<CheckLedge>();
@@ -45,7 +47,9 @@ public class PlatformerCharacter : SidewaysCharacter
 
         gravityInteraction.OnChangeGravityAnchor += (t) => 
         {   
-            if (gameplayState.state == GameplayState.Danger) 
+            //if (gameplayState.state == GameplayState.Danger) 
+            //    return;
+            if (spaceJumper && spaceJumper.OnLaunch())
                 return;
 
             if (t == null)

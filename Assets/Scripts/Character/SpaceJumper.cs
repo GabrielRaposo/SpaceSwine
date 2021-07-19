@@ -88,6 +88,11 @@ public class SpaceJumper : MonoBehaviour
         rb.velocity = direction * speed;
     } 
 
+    public bool OnLaunch()
+    {
+        return onLaunch;
+    }
+
     private void OnDrawGizmos() 
     {
         if (!onLaunch)
