@@ -21,7 +21,6 @@ public class PlatformerCharacter : SidewaysCharacter
     float horizontalSpeed;
     float verticalSpeed;
 
-    LocalGameplayState gameplayState;
     SpaceJumper spaceJumper;
     GravityInteraction gravityInteraction;
     CheckGround checkGround;
@@ -31,7 +30,6 @@ public class PlatformerCharacter : SidewaysCharacter
 
     void Awake()
     {
-        gameplayState = GetComponent<LocalGameplayState>();
         spaceJumper = GetComponent<SpaceJumper>();
         gravityInteraction = GetComponent<GravityInteraction>();
         checkGround = GetComponent<CheckGround>();
