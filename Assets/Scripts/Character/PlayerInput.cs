@@ -39,14 +39,14 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            platformerCharacter.JumpInput();
+            if (!playerInteractor.Interact())
+            {
+                platformerCharacter.JumpInput();
+            }
         } 
         else if (Input.GetButtonDown("Launch"))
         {
-            if (!playerInteractor.Interact())
-            {
-                spaceJumper.JumpInput();
-            }
+            spaceJumper.JumpInput();
         } 
         else if (Input.GetButtonDown("Throw"))
         {

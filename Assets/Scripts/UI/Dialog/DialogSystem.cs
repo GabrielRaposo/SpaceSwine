@@ -34,7 +34,7 @@ public class DialogSystem : MonoBehaviour
             dialogBox.SetDialog( speakerName, dialog[i] );
 
             yield return new WaitForEndOfFrame();
-            yield return new WaitUntil( () => Input.GetKeyDown(KeyCode.Space) );
+            yield return new WaitUntil( () => Input.GetButtonDown("Jump") );
             yield return new WaitForEndOfFrame();
         }
 
