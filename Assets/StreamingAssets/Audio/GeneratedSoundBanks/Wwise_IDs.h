@@ -11,6 +11,24 @@
 
 namespace AK
 {
+    namespace EVENTS
+    {
+        static const AkUniqueID CENARIO_TRANSICAO = 3223415371U;
+        static const AkUniqueID CENARIO_VITORIA = 3655190725U;
+        static const AkUniqueID GAMEPLAY_BUYK_ANDA = 2274976510U;
+        static const AkUniqueID GAMEPLAY_BUYK_MORRE = 2418446987U;
+        static const AkUniqueID GAMEPLAY_BUYK_PEGA_CRISTAL = 1046688U;
+        static const AkUniqueID GAMEPLAY_BUYK_PEGA_ITEM = 2017389967U;
+        static const AkUniqueID GAMEPLAY_BUYK_POUSA_CURTO = 3679214058U;
+        static const AkUniqueID GAMEPLAY_BUYK_POUSA_LONGO = 1717148742U;
+        static const AkUniqueID GAMEPLAY_BUYK_PULA_CURTO = 3434033334U;
+        static const AkUniqueID GAMEPLAY_BUYK_PULA_LONGO = 2563466850U;
+        static const AkUniqueID GAMEPLAY_BUYK_TACA_ITEM = 3851873763U;
+        static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
+        static const AkUniqueID UI_MENU_CLIQUE = 937451947U;
+        static const AkUniqueID UI_MENU_HOVER = 2163476404U;
+    } // namespace EVENTS
+
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID VOLUME_MASTER = 3695994288U;
