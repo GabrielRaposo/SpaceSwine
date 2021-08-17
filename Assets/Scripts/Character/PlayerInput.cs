@@ -31,6 +31,9 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
+        if (DialogSystem.OnDialog)
+            return;
+
         platformerCharacter.HorizontalInput(Input.GetAxis("Horizontal"));
         collectableInteraction.AxisInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
 

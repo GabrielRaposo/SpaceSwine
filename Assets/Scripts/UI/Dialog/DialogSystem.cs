@@ -32,7 +32,9 @@ public class DialogSystem : MonoBehaviour
         for (int i = 0; i < dialog.Count; i++)
         {
             dialogBox.SetDialog( speakerName, dialog[i] );
-            yield return new WaitUntil( () => Input.GetKeyDown(KeyCode.C) );
+
+            yield return new WaitForEndOfFrame();
+            yield return new WaitUntil( () => Input.GetKeyDown(KeyCode.Space) );
             yield return new WaitForEndOfFrame();
         }
 

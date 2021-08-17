@@ -41,7 +41,6 @@ public class PlayerInteractor : MonoBehaviour
             return false;
 
         interactableList[0].Interaction(this);
-        // Change player states
 
         return true;
     }

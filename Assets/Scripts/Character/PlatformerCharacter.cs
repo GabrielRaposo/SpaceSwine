@@ -168,4 +168,11 @@ public class PlatformerCharacter : SidewaysCharacter
 
         return true;
     }
+
+    public void KillInputs()
+    {
+        rb.velocity = Vector2.zero;
+
+        horizontalSpeed = verticalSpeed = 0;
+    }
 }

@@ -6,17 +6,21 @@ public class InteractableNPC : Interactable
 {
     [SerializeField] NPCData data;
 
-    public override void Interaction(PlayerInteractor interactor) 
+    public override void Interaction (PlayerInteractor interactor) 
     {
         base.Interaction(interactor);
 
         if (data)
         {
             DialogSystem dialogSystem = DialogSystem.Instance;
-            if (dialogSystem)
-                dialogSystem.SetDialog(data.npcName, data.dialog);
+            dialogSystem?.SetDialog(data.npcName, data.dialog);
+
+            if (interactor)
+            {
+                PlatformerCharacter platformerCharacter = interactor.GetComponent<PlatformerCharacter>();
+                platformerCharacter?.KillInputs();
+            }
         }
-        else gameObject.SetActive(false);
     }
 
     protected override void HighlightState(bool value) 
@@ -24,6 +28,6 @@ public class InteractableNPC : Interactable
         base.HighlightState(value);
 
         SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.color = value ? Color.red : Color.white;
+        spriteRenderer.color = value ? Color.blue : Color.white;
     }
 }
