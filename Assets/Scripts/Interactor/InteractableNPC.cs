@@ -12,7 +12,9 @@ public class InteractableNPC : Interactable
 
         if (data)
         {
-
+            DialogSystem dialogSystem = DialogSystem.Instance;
+            if (dialogSystem)
+                dialogSystem.SetDialog(data.npcName, data.dialog);
         }
         else gameObject.SetActive(false);
     }
