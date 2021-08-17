@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class InteractableNPC : Interactable
 {
+    [SerializeField] NPCData data;
+
     public override void Interaction(PlayerInteractor interactor) 
     {
         base.Interaction(interactor);
 
-        gameObject.SetActive(false);
+        if (data)
+        {
+
+        }
+        else gameObject.SetActive(false);
     }
 
     protected override void HighlightState(bool value) 

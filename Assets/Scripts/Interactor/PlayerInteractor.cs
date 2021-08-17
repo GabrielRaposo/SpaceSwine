@@ -14,25 +14,25 @@ public class PlayerInteractor : MonoBehaviour
         checkGround = GetComponent<CheckGround>();
     }    
 
-    public void AddInteractable(Interactable npc)
+    public void AddInteractable(Interactable interactable)
     {
-        if (interactableList.Contains(npc))
+        if (interactableList.Contains(interactable))
             return;
 
-        interactableList.Add(npc);
+        interactableList.Add (interactable);
     }
 
-    public void RemoveInteractable(Interactable npc)
+    public void RemoveInteractable(Interactable interactable)
     {
-        if (!interactableList.Contains(npc))
+        if (!interactableList.Contains(interactable))
             return;
 
-        interactableList.Remove(npc);
+        interactableList.Remove (interactable);
     }
 
     public bool Interact()
     {
-        // Check if player is idle
+        // Check if player is idle / not stunned / not in cutscene
 
         if (!checkGround.OnGround)
             return false;
@@ -41,6 +41,7 @@ public class PlayerInteractor : MonoBehaviour
             return false;
 
         interactableList[0].Interaction(this);
+        // Change player states
 
         return true;
     }
