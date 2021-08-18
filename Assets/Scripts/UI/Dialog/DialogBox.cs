@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using RedBlueGames.Tools.TextTyper;
 using TMPro;
@@ -13,15 +14,23 @@ public class DialogBox : MonoBehaviour
     [Header("References")]
     [SerializeField] TextMeshProUGUI nameDisplay;
     [SerializeField] TextTyper dialogTyper;
+    [SerializeField] Image skipArrow;
 
     bool showing;
     CanvasGroup canvasGroup;
 
+    int delayFrames;
     int dialogIndex;
     string speakerName;
     List <string> dialogs;
 
     Sequence sequence;
+
+    private void Start() 
+    {
+        canvasGroup = GetComponent<CanvasGroup>(); 
+        canvasGroup.alpha = 0;
+    }
 
     public void SetDialogData(string speakerName, List<string> dialogs)
     {
@@ -32,12 +41,21 @@ public class DialogBox : MonoBehaviour
         SetDialog(speakerName, dialogs[dialogIndex]);
 
         DialogSystem.OnDialog = true;
+        delayFrames = 15;
     }
 
     private void Update() 
     {
+        skipArrow.enabled = DialogSystem.OnDialog && !dialogTyper.IsTyping;
+
         if (!DialogSystem.OnDialog)
             return;
+
+        if (delayFrames > 0)
+        {
+            delayFrames--;
+            return;
+        }
 
         if (Input.GetButtonDown("Jump"))
             ForwardInput();

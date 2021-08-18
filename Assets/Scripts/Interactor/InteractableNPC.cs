@@ -5,6 +5,7 @@ using UnityEngine;
 public class InteractableNPC : Interactable
 {
     [SerializeField] NPCData data;
+    [SerializeField] SpriteSwapper ballonSpriteSwapper;
 
     public override void Interaction (PlayerInteractor interactor) 
     {
@@ -27,7 +28,10 @@ public class InteractableNPC : Interactable
     {
         base.HighlightState(value);
 
-        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.color = value ? Color.blue : Color.white;
+        //SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        //spriteRenderer.color = value ? Color.blue : Color.white;
+
+        if (ballonSpriteSwapper)
+            ballonSpriteSwapper.SetSpriteState ( value ? 1 : 0 );
     }
 }
