@@ -12,8 +12,6 @@ public class DialogSystem : MonoBehaviour
     void Awake()
     {
         Instance = this;
-
-        dialogBox?.gameObject.SetActive(false);
     }
 
     public void SetDialog (string speakerName, List<string> dialog)
@@ -21,24 +19,11 @@ public class DialogSystem : MonoBehaviour
         if (!dialogBox)
             return;
 
-        StopAllCoroutines();
-        StartCoroutine( DialogLoop( speakerName, dialog) );
+        dialogBox.SetDialogData(speakerName, dialog);
     }
 
-    IEnumerator DialogLoop(string speakerName, List<string> dialog)
+    private void OnDisable() 
     {
-        OnDialog = true;
-
-        for (int i = 0; i < dialog.Count; i++)
-        {
-            dialogBox.SetDialog( speakerName, dialog[i] );
-
-            yield return new WaitForEndOfFrame();
-            yield return new WaitUntil( () => Input.GetButtonDown("Jump") );
-            yield return new WaitForEndOfFrame();
-        }
-
-        dialogBox.EndDialog();
-        OnDialog = false;
+        OnDialog = false;    
     }
 }

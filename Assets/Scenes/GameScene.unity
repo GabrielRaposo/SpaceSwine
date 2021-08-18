@@ -4088,8 +4088,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1647737979}
+  m_Children: []
   m_Father: {fileID: 2134494519}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5880,6 +5879,7 @@ GameObject:
   - component: {fileID: 1647737979}
   - component: {fileID: 1647737981}
   - component: {fileID: 1647737980}
+  - component: {fileID: 1647737982}
   m_Layer: 0
   m_Name: Dialog Text (TMP)
   m_TagString: Untagged
@@ -5894,12 +5894,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647737978}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 984030709}
-  m_RootOrder: 0
+  m_Father: {fileID: 2134494519}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6005,6 +6005,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647737978}
   m_CullTransparentMesh: 0
+--- !u!114 &1647737982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647737978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40868536fcc3c2c458788a1cd1298e8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeLibrary: {fileID: 11400000, guid: 9a6156b25fcccac4e97ef1c8d23def06, type: 2}
+  curveLibrary: {fileID: 11400000, guid: 1807857dbc33603469f5046b18ae0aae, type: 2}
+  useUnscaledTime: 1
+  printCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  characterPrinted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1657272055
 GameObject:
   m_ObjectHideFlags: 0
@@ -7069,7 +7090,7 @@ RectTransform:
   - {fileID: 575831645}
   - {fileID: 1612350667}
   m_Father: {fileID: 2134494519}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7148,6 +7169,7 @@ RectTransform:
   m_Children:
   - {fileID: 1211511342}
   - {fileID: 984030709}
+  - {fileID: 1647737979}
   - {fileID: 2091400618}
   m_Father: {fileID: 454015596}
   m_RootOrder: 0
@@ -7234,7 +7256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionDuration: 0.15
   nameDisplay: {fileID: 1612350668}
-  dialogDisplay: {fileID: 1647737980}
+  dialogTyper: {fileID: 1647737982}
 --- !u!1001 &349535263349247106
 PrefabInstance:
   m_ObjectHideFlags: 0

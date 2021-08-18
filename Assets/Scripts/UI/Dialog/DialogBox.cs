@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using RedBlueGames.Tools.TextTyper;
 using TMPro;
 
 [RequireComponent(typeof(CanvasGroup))]
@@ -11,19 +12,61 @@ public class DialogBox : MonoBehaviour
 
     [Header("References")]
     [SerializeField] TextMeshProUGUI nameDisplay;
-    [SerializeField] TextMeshProUGUI dialogDisplay;
+    [SerializeField] TextTyper dialogTyper;
 
     bool showing;
     CanvasGroup canvasGroup;
 
+    int dialogIndex;
+    string speakerName;
+    List <string> dialogs;
+
     Sequence sequence;
+
+    public void SetDialogData(string speakerName, List<string> dialogs)
+    {
+        this.speakerName = speakerName;
+        this.dialogs = dialogs;
+
+        dialogIndex = 0;
+        SetDialog(speakerName, dialogs[dialogIndex]);
+
+        DialogSystem.OnDialog = true;
+    }
+
+    private void Update() 
+    {
+        if (!DialogSystem.OnDialog)
+            return;
+
+        if (Input.GetButtonDown("Jump"))
+            ForwardInput();
+    }
+
+    private void ForwardInput()
+    {
+        if (dialogTyper.IsTyping)
+        {
+            dialogTyper.Skip();
+        } 
+        else
+        {
+            if (++dialogIndex < dialogs.Count)
+            {
+                SetDialog( speakerName, dialogs[dialogIndex] );
+            }
+            else
+            {
+                EndDialog();
+                DialogSystem.OnDialog = false;
+            }
+        }
+    }
 
     public void SetDialog (string name, string dialog)
     {
         if (!showing)
         {
-            gameObject.SetActive(true);
-
             transform.localScale = new Vector3 (1, 0);
             canvasGroup = GetComponent<CanvasGroup>();
             canvasGroup.alpha = 0;
@@ -39,8 +82,8 @@ public class DialogBox : MonoBehaviour
         if (nameDisplay)
             nameDisplay.text = name;
 
-        if (dialogDisplay)
-            dialogDisplay.text = dialog;
+        if (dialogTyper)
+            dialogTyper.TypeText (dialog);
     }
 
     public void EndDialog()
@@ -48,8 +91,8 @@ public class DialogBox : MonoBehaviour
         if (nameDisplay)
             nameDisplay.text = string.Empty;
 
-        if (dialogDisplay)
-            dialogDisplay.text = string.Empty;
+        if (dialogTyper)
+            dialogTyper.TypeText (string.Empty);
         
         transform.localScale = new Vector3 (1, 1);
         canvasGroup = GetComponent<CanvasGroup>();
