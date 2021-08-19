@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(GravityInteraction))]
 [RequireComponent(typeof(SpaceJumper))]
 [RequireComponent(typeof(CollectableInteraction))]
+[RequireComponent(typeof(PlayerInteractor))]
 public class PlayerInput : MonoBehaviour
 {
     //[SerializeField] GameplayState gameplayState;
@@ -14,31 +15,33 @@ public class PlayerInput : MonoBehaviour
     LocalGameplayState gameplayState;
     PlatformerCharacter platformerCharacter;
     GravityInteraction gravityInteraction;
-    CollectableInteraction collectableInteraction;
     SpaceJumper spaceJumper;
+    CollectableInteraction collectableInteraction;
+    PlayerInteractor playerInteractor;
 
     void Start()
     {
         gameplayState = GetComponent<LocalGameplayState>();
         platformerCharacter = GetComponent<PlatformerCharacter>();
         gravityInteraction = GetComponent<GravityInteraction>();
-        collectableInteraction = GetComponent<CollectableInteraction>();
         spaceJumper = GetComponent<SpaceJumper>();
+        collectableInteraction = GetComponent<CollectableInteraction>();
+        playerInteractor = GetComponent<PlayerInteractor>();
     }
 
     void Update()
     {
+        if (DialogueSystem.OnDialogue)
+            return;
+
+        if (Input.GetButtonDown("Interact"))
+        {
+            if (playerInteractor.Interact())
+                return;
+        }
+
         platformerCharacter.HorizontalInput(Input.GetAxis("Horizontal"));
         collectableInteraction.AxisInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
-
-        //if (Input.GetButtonDown("Jump"))
-        //{
-        //    if (gameplayState.state == GameplayState.Exploration)
-        //        platformerCharacter.JumpInput();
-        //    else
-        //        spaceJumper.JumpInput();
-
-        //}
 
         if (Input.GetButtonDown("Jump"))
         {
