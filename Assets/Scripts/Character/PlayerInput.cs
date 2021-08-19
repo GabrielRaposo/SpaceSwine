@@ -34,28 +34,28 @@ public class PlayerInput : MonoBehaviour
         if (DialogueSystem.OnDialogue)
             return;
 
-        if (Input.GetButtonDown("Interact"))
-        {
-            if (playerInteractor.Interact())
-                return;
-        }
+        //if (Input.GetButtonDown("Interact"))
+        //{
+        //    if (playerInteractor.Interact())
+        //        return;
+        //}
 
-        platformerCharacter.HorizontalInput(Input.GetAxis("Horizontal"));
-        collectableInteraction.AxisInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+        //platformerCharacter.HorizontalInput(Input.GetAxis("Horizontal"));
+        //collectableInteraction.AxisInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            platformerCharacter.JumpInput();
-        } 
-        else if (Input.GetButtonDown("Launch"))
-        {
-            spaceJumper.JumpInput();
-        } 
-        else if (Input.GetButtonDown("Throw"))
-        {
-            collectableInteraction.InteractInput();
-        }
+        //if (Input.GetButtonDown("Jump"))
+        //{
+        //    platformerCharacter.JumpInput();
+        //} 
+        //else if (Input.GetButtonDown("Launch"))
+        //{
+        //    spaceJumper.JumpInput();
+        //} 
+        //else if (Input.GetButtonDown("Throw"))
+        //{
+        //    collectableInteraction.InteractInput();
+        //}
 
-        gravityInteraction.SetJumpHeld(Input.GetButton("Jump"));           
+        //gravityInteraction.SetJumpHeld(Input.GetButton("Jump"));           
     }
 }

@@ -31,10 +31,10 @@ public class GravityInteraction : MonoBehaviour
     {
         CameraFocusController cameraFocusController = CameraFocusController.Instance;
 
-        if (Input.GetKeyDown(KeyCode.O))
-            cameraFocusController.SetPlayerFocus();
-        if (Input.GetKeyDown(KeyCode.P) && gravityArea)
-            cameraFocusController.SetPlanetFocus(gravityArea.transform);
+        //if (Input.GetKeyDown(KeyCode.O))
+        //    cameraFocusController.SetPlayerFocus();
+        //if (Input.GetKeyDown(KeyCode.P) && gravityArea)
+        //    cameraFocusController.SetPlanetFocus(gravityArea.transform);
     }
 
     private void FixedUpdate() 

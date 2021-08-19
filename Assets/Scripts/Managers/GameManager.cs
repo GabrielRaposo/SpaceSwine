@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            ResetScene();
+        //if (Input.GetKeyDown(KeyCode.R))
+        //    ResetScene();
     }
 
     public void ResetScene()

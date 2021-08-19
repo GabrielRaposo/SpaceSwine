@@ -20,7 +20,7 @@ public class DialogueBox : MonoBehaviour
     CanvasGroup canvasGroup;
 
     int delayFrames;
-    int dialogIndex;
+    int dialogueIndex;
 
     Interactable interactable;
     DialogueAnimation dialogueAnimation;
@@ -43,8 +43,8 @@ public class DialogueBox : MonoBehaviour
 
         SetDialogueEvents();
 
-        dialogIndex = 0;
-        ShowText(speakerName, dialogs[dialogIndex]);
+        dialogueIndex = 0;
+        ShowText(speakerName, dialogs[dialogueIndex]);
         interactable?.IconState(false);
 
         DialogueSystem.OnDialogue = true;
@@ -78,8 +78,8 @@ public class DialogueBox : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Interact"))
-            ForwardInput();
+        //if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Interact"))
+        //    ForwardInput();
     }
 
     private void ForwardInput()
@@ -90,9 +90,9 @@ public class DialogueBox : MonoBehaviour
         } 
         else
         {
-            if (++dialogIndex < dialogs.Count)
+            if (++dialogueIndex < dialogs.Count)
             {
-                ShowText( speakerName, dialogs[dialogIndex] );
+                ShowText( speakerName, dialogs[dialogueIndex] );
             }
             else
             {
