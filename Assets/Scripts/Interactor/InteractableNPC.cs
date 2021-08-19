@@ -13,8 +13,8 @@ public class InteractableNPC : Interactable
 
         if (data)
         {
-            DialogSystem dialogSystem = DialogSystem.Instance;
-            dialogSystem?.SetDialog(data.npcName, data.dialog);
+            DialogueSystem dialogSystem = DialogueSystem.Instance;
+            dialogSystem?.SetDialogue(this, data.npcName, data.dialog);
 
             if (interactor)
             {
@@ -24,14 +24,15 @@ public class InteractableNPC : Interactable
         }
     }
 
-    protected override void HighlightState(bool value) 
+    protected override void HighlightState (bool value) 
     {
-        base.HighlightState(value);
-
-        //SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        //spriteRenderer.color = value ? Color.blue : Color.white;
-
         if (ballonSpriteSwapper)
             ballonSpriteSwapper.SetSpriteState ( value ? 1 : 0 );
+    }
+
+    public override void IconState (bool value) 
+    {
+        if (ballonSpriteSwapper)
+            ballonSpriteSwapper.SetVisibility(value);
     }
 }

@@ -7,7 +7,7 @@ using RedBlueGames.Tools.TextTyper;
 using TMPro;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class DialogBox : MonoBehaviour
+public class DialogueBox : MonoBehaviour
 {
     [SerializeField] float transitionDuration;
 
@@ -21,6 +21,9 @@ public class DialogBox : MonoBehaviour
 
     int delayFrames;
     int dialogIndex;
+
+    Interactable interactable;
+    DialogueAnimation dialogueAnimation;
     string speakerName;
     List <string> dialogs;
 
@@ -32,23 +35,41 @@ public class DialogBox : MonoBehaviour
         canvasGroup.alpha = 0;
     }
 
-    public void SetDialogData(string speakerName, List<string> dialogs)
+    public void SetDialogueData(Interactable interactable, string speakerName, List<string> dialogs)
     {
+        this.interactable = interactable;
         this.speakerName = speakerName;
         this.dialogs = dialogs;
 
-        dialogIndex = 0;
-        SetDialog(speakerName, dialogs[dialogIndex]);
+        SetDialogueEvents();
 
-        DialogSystem.OnDialog = true;
+        dialogIndex = 0;
+        ShowText(speakerName, dialogs[dialogIndex]);
+        interactable?.IconState(false);
+
+        DialogueSystem.OnDialogue = true;
         delayFrames = 15;
+
+    }
+
+    private void SetDialogueEvents()
+    {
+        dialogueAnimation = interactable.GetComponent<DialogueAnimation>();
+        if (!dialogueAnimation)
+            return;
+        
+        dialogTyper.CharacterPrinted.RemoveAllListeners();
+        dialogTyper.CharacterPrinted.AddListener (dialogueAnimation.ReceiveString);
+
+        //dialogTyper.PrintCompleted.RemoveAllListeners();
+        //dialogTyper.PrintCompleted.AddListener (dialogueAnimation.ResetState);
     }
 
     private void Update() 
     {
-        skipArrow.enabled = DialogSystem.OnDialog && !dialogTyper.IsTyping;
+        skipArrow.enabled = DialogueSystem.OnDialogue && !dialogTyper.IsTyping;
 
-        if (!DialogSystem.OnDialog)
+        if (!DialogueSystem.OnDialogue)
             return;
 
         if (delayFrames > 0)
@@ -57,7 +78,7 @@ public class DialogBox : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Interact"))
             ForwardInput();
     }
 
@@ -71,17 +92,17 @@ public class DialogBox : MonoBehaviour
         {
             if (++dialogIndex < dialogs.Count)
             {
-                SetDialog( speakerName, dialogs[dialogIndex] );
+                ShowText( speakerName, dialogs[dialogIndex] );
             }
             else
             {
-                EndDialog();
-                DialogSystem.OnDialog = false;
+                EndDialogue();
+                DialogueSystem.OnDialogue = false;
             }
         }
     }
 
-    public void SetDialog (string name, string dialog)
+    public void ShowText (string name, string dialog)
     {
         if (!showing)
         {
@@ -104,7 +125,7 @@ public class DialogBox : MonoBehaviour
             dialogTyper.TypeText (dialog);
     }
 
-    public void EndDialog()
+    public void EndDialogue()
     {
         if (nameDisplay)
             nameDisplay.text = string.Empty;
@@ -121,6 +142,8 @@ public class DialogBox : MonoBehaviour
 
         sequence.Append( transform.DOScaleY ( 0f, transitionDuration ) );
         sequence.Join ( canvasGroup.DOFade ( 0f, transitionDuration ) );
+
+        interactable?.IconState(true);
 
         showing = false;
     }

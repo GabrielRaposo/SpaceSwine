@@ -31,18 +31,21 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        if (DialogSystem.OnDialog)
+        if (DialogueSystem.OnDialogue)
             return;
+
+        if (Input.GetButtonDown("Interact"))
+        {
+            if (playerInteractor.Interact())
+                return;
+        }
 
         platformerCharacter.HorizontalInput(Input.GetAxis("Horizontal"));
         collectableInteraction.AxisInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
 
         if (Input.GetButtonDown("Jump"))
         {
-            if (!playerInteractor.Interact())
-            {
-                platformerCharacter.JumpInput();
-            }
+            platformerCharacter.JumpInput();
         } 
         else if (Input.GetButtonDown("Launch"))
         {

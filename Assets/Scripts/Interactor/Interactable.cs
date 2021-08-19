@@ -5,6 +5,8 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public virtual void Interaction (PlayerInteractor interactor) { }
+    
+    public virtual void IconState(bool value) { }
 
     protected virtual void HighlightState(bool value) { }
 

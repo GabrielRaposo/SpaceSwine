@@ -22,4 +22,9 @@ public class SpriteSwapper : MonoBehaviour
 
         spriteRenderer.sprite = sprites[state % sprites.Count];
     }
+
+    public void SetVisibility (bool value)
+    {
+        spriteRenderer.enabled = value;
+    }
 }
