@@ -61,8 +61,16 @@ public class PlatformerCharacter : SidewaysCharacter
     protected override void SetFacingRight(bool value) 
     {
         base.SetFacingRight(value);
-        visualAnchor.localEulerAngles = new Vector3(visualAnchor.localEulerAngles.x, value ? 0 : 180, visualAnchor.localEulerAngles.z);
+        visualAnchor.localEulerAngles = new Vector3 (visualAnchor.localEulerAngles.x, value ? 0 : 180, visualAnchor.localEulerAngles.z);
         //directionArrow.flipY = !value;
+    }
+
+    public void LookAtTarget(Transform target)
+    {
+        Vector3 anchoredPos = transform.position - target.position;
+        Vector3 angledPos = RaposUtil.RotateVector(anchoredPos, -transform.eulerAngles.z);
+
+        SetFacingRight(angledPos.x < 0);
     }
 
     public void HorizontalInput(float horizontalInput)

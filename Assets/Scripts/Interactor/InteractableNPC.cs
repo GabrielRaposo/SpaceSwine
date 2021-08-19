@@ -20,6 +20,7 @@ public class InteractableNPC : Interactable
             {
                 PlatformerCharacter platformerCharacter = interactor.GetComponent<PlatformerCharacter>();
                 platformerCharacter?.KillInputs();
+                platformerCharacter?.LookAtTarget(transform);
             }
         }
     }
