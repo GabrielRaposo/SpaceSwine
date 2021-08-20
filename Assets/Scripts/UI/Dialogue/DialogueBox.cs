@@ -105,9 +105,6 @@ public class DialogueBox : MonoBehaviour
 
         if (delayFrames > 0)
             delayFrames--;
-
-        //if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Interact"))
-        //    ForwardInput();
     }
 
     private void ForwardInput()
