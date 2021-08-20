@@ -19,6 +19,8 @@ public class AudioVolumeController : MonoBehaviour
     [Space(10)]
 
     [Header("Test")]
+    [SerializeField] InputAction muteInput;
+
     [SerializeField] AK.Wwise.Event musicTestEvent;
     [SerializeField] InputAction testInput1;
 
@@ -28,16 +30,23 @@ public class AudioVolumeController : MonoBehaviour
 
     void OnEnable()
     {
+        muteInput.performed += (ctx) => 
+        {
+            if (masterParameter == null)
+                return;
+
+            masterParameter.SetGlobalValue( masterParameter.GetGlobalValue() > 0 ? 0 : 100 );
+        };
+        muteInput.Enable();
+
         testInput1.performed += (ctx) => 
         {
-            Debug.Log("Play Music");
             musicTestEvent?.Post(gameObject);
         };
         testInput1.Enable();
 
         testInput2.performed += (ctx) => 
         {
-            Debug.Log("Play SFX");
             sfxTestEvent?.Post(gameObject);
         };
         testInput2.Enable();
@@ -89,6 +98,7 @@ public class AudioVolumeController : MonoBehaviour
 
     private void OnDisable() 
     {
+        muteInput.Disable();
         testInput1.Disable();
         testInput2.Disable();
     }

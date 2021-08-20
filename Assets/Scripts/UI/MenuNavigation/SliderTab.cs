@@ -15,6 +15,6 @@ public class SliderTab : MonoBehaviour
     public void ChangeValue (float value)
     {
         int direction = value > 0 ? 1 : -1;
-        slider.value += direction * .1f;
+        slider.value += direction * 10f;
     }
 }
