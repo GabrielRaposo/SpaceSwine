@@ -21,7 +21,6 @@ public class PlatformerCharacter : SidewaysCharacter
     float horizontalSpeed;
     float verticalSpeed;
 
-    LocalGameplayState gameplayState;
     SpaceJumper spaceJumper;
     GravityInteraction gravityInteraction;
     CheckGround checkGround;
@@ -31,7 +30,6 @@ public class PlatformerCharacter : SidewaysCharacter
 
     void Awake()
     {
-        gameplayState = GetComponent<LocalGameplayState>();
         spaceJumper = GetComponent<SpaceJumper>();
         gravityInteraction = GetComponent<GravityInteraction>();
         checkGround = GetComponent<CheckGround>();
@@ -63,8 +61,16 @@ public class PlatformerCharacter : SidewaysCharacter
     protected override void SetFacingRight(bool value) 
     {
         base.SetFacingRight(value);
-        visualAnchor.localEulerAngles = new Vector3(visualAnchor.localEulerAngles.x, value ? 0 : 180, visualAnchor.localEulerAngles.z);
+        visualAnchor.localEulerAngles = new Vector3 (visualAnchor.localEulerAngles.x, value ? 0 : 180, visualAnchor.localEulerAngles.z);
         //directionArrow.flipY = !value;
+    }
+
+    public void LookAtTarget(Transform target)
+    {
+        Vector3 anchoredPos = transform.position - target.position;
+        Vector3 angledPos = RaposUtil.RotateVector(anchoredPos, -transform.eulerAngles.z);
+
+        SetFacingRight(angledPos.x < 0);
     }
 
     public void HorizontalInput(float horizontalInput)
@@ -169,5 +175,12 @@ public class PlatformerCharacter : SidewaysCharacter
         rb.velocity = RaposUtil.RotateVector(new Vector2 (horizontalSpeed, verticalSpeed), angle);
 
         return true;
+    }
+
+    public void KillInputs()
+    {
+        rb.velocity = Vector2.zero;
+
+        horizontalSpeed = verticalSpeed = 0;
     }
 }

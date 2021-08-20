@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RaposUtil
 {
@@ -25,6 +26,17 @@ public class RaposUtil
     {
         double diff = ( angle2 - angle1 + 180 ) % 360 - 180;
         return diff < -180 ? diff + 360 : diff;
+    }
+
+    public static IEnumerator Wait (int frames, UnityAction action)
+    {
+        if (frames > 0)
+        {
+            for (int i = 0; i < frames; i++)
+                yield return new WaitForEndOfFrame();
+        }
+
+        action?.Invoke();
     }
 }
 
