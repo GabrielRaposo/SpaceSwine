@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using DG.Tweening;
 using RedBlueGames.Tools.TextTyper;
 using TMPro;
@@ -27,7 +28,40 @@ public class DialogueBox : MonoBehaviour
     string speakerName;
     List <string> dialogs;
 
+    PlayerInputActions playerInputActions;
     Sequence sequence;
+
+    private void Awake() 
+    {
+        playerInputActions = new PlayerInputActions();    
+    }
+
+    private void OnEnable() 
+    {
+        playerInputActions.Player.Interact.performed += (ctx) => 
+        {
+            if (!DialogueSystem.OnDialogue)
+                return;
+
+            if (delayFrames > 0)
+                return;
+            
+            ForwardInput();
+        };  
+        playerInputActions.Player.Interact.Enable();
+
+        playerInputActions.Player.Jump.performed += (ctx) => 
+        {
+            if (!DialogueSystem.OnDialogue)
+                return;
+
+            if (delayFrames > 0)
+                return;
+            
+            ForwardInput();
+        };  
+        playerInputActions.Player.Jump.Enable();
+    }
 
     private void Start() 
     {
@@ -69,14 +103,8 @@ public class DialogueBox : MonoBehaviour
     {
         skipArrow.enabled = DialogueSystem.OnDialogue && !dialogTyper.IsTyping;
 
-        if (!DialogueSystem.OnDialogue)
-            return;
-
         if (delayFrames > 0)
-        {
             delayFrames--;
-            return;
-        }
 
         //if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Interact"))
         //    ForwardInput();
@@ -151,5 +179,8 @@ public class DialogueBox : MonoBehaviour
     private void OnDisable() 
     {
         showing = false;    
+
+        playerInputActions.Player.Interact.Disable();
+        playerInputActions.Player.Jump.Disable();
     }
 }

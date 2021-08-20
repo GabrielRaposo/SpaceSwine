@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class GravityInteraction : MonoBehaviour
@@ -9,6 +10,11 @@ public class GravityInteraction : MonoBehaviour
     [SerializeField] float defaultMultiplier = 1.0f;
     [SerializeField] float lowGravityMultiplier = .8f; 
     [SerializeField] float angleAdjustment;
+
+    [Space(5)]
+
+    [SerializeField] InputAction playerFocusInput;
+    [SerializeField] InputAction planetFocusInput;
 
     bool jumpHeld;
     bool lockIntoAngle;
@@ -19,12 +25,29 @@ public class GravityInteraction : MonoBehaviour
     CheckGround checkGround;
     Rigidbody2D rb;
 
-    public UnityAction<Transform> OnChangeGravityAnchor; 
+    public UnityAction<Transform> OnChangeGravityAnchor;
+    private void OnEnable() 
+    {
+        playerFocusInput.Enable();
+        planetFocusInput.Enable();
+    }
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();   
         checkGround = GetComponent<CheckGround>();
+
+        CameraFocusController cameraFocusController = CameraFocusController.Instance;
+
+        playerFocusInput.performed += (ctx) => 
+        {
+            cameraFocusController.SetPlayerFocus();
+        };
+
+        planetFocusInput.performed += (ctx) => 
+        { 
+            if (gravityArea) cameraFocusController.SetPlanetFocus(gravityArea.transform);
+        };
     }
 
     private void Update() 
@@ -145,5 +168,11 @@ public class GravityInteraction : MonoBehaviour
     public void SetLockIntoAngle(bool value)
     {
         lockIntoAngle = value;
+    }
+
+    private void OnDisable() 
+    {
+        playerFocusInput.Disable();
+        planetFocusInput.Disable();
     }
 }
