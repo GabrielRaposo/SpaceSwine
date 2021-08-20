@@ -11,9 +11,46 @@
 
 namespace AK
 {
+    namespace EVENTS
+    {
+        static const AkUniqueID CENARIO_TRANSICAO = 3223415371U;
+        static const AkUniqueID CENARIO_VITORIA = 3655190725U;
+        static const AkUniqueID GAMEPLAY_BUYK_ANDA = 2274976510U;
+        static const AkUniqueID GAMEPLAY_BUYK_MORRE = 2418446987U;
+        static const AkUniqueID GAMEPLAY_BUYK_PEGA_CRISTAL = 1046688U;
+        static const AkUniqueID GAMEPLAY_BUYK_PEGA_ITEM = 2017389967U;
+        static const AkUniqueID GAMEPLAY_BUYK_POUSA_CURTO = 3679214058U;
+        static const AkUniqueID GAMEPLAY_BUYK_POUSA_LONGO = 1717148742U;
+        static const AkUniqueID GAMEPLAY_BUYK_PULA_CURTO = 3434033334U;
+        static const AkUniqueID GAMEPLAY_BUYK_PULA_LONGO = 2563466850U;
+        static const AkUniqueID GAMEPLAY_BUYK_TACA_ITEM = 3851873763U;
+        static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
+        static const AkUniqueID UI_MENU_CLIQUE = 937451947U;
+        static const AkUniqueID UI_MENU_HOVER = 2163476404U;
+    } // namespace EVENTS
+
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID VOLUME_MASTER = 3695994288U;
+        static const AkUniqueID VOLUME_MUSIC = 3891337659U;
+        static const AkUniqueID VOLUME_MUSIC_PLACEHOLDER = 3955696405U;
+        static const AkUniqueID VOLUME_SFX = 3673881719U;
+        static const AkUniqueID VOLUME_SFX_PLACEHOLDER = 1440840569U;
+    } // namespace GAME_PARAMETERS
+
+    namespace BANKS
+    {
+        static const AkUniqueID INIT = 1355168291U;
+        static const AkUniqueID GENERAL = 133642231U;
+    } // namespace BANKS
+
     namespace BUSSES
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
+        static const AkUniqueID MUSIC = 3991942870U;
+        static const AkUniqueID MUSIC_PLACEHOLDER = 2342674260U;
+        static const AkUniqueID SFX = 393239870U;
+        static const AkUniqueID SFX_PLACEHOLDER = 891914060U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES

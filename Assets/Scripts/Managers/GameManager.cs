@@ -9,12 +9,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playerObject;
     [SerializeField] InputAction resetInputAction;
 
+    PauseSystem pauseSystem;
     PlayerInputActions playerInputActions;
 
     private void OnEnable() 
     {
         playerInputActions = new PlayerInputActions();
-        playerInputActions.UI.Start.performed += (ctx) => Debug.Log("Start Input");
+        playerInputActions.UI.Start.performed += (ctx) => 
+        {
+            pauseSystem?.TogglePauseState();
+        };
         playerInputActions.UI.Start.Enable();
         
         resetInputAction.Enable();
@@ -22,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        pauseSystem = PauseSystem.Instance; 
+
         if (playerObject)
         {
             Health health = playerObject.GetComponent<Health>();    
@@ -32,9 +38,15 @@ public class GameManager : MonoBehaviour
         resetInputAction.performed += (ctx) => ResetScene();
     }
 
-    public void ResetScene()
+    public static void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public static void QuitGame()
+    {
+        Debug.Log("Quit game");
+        Application.Quit();
     }
 
     private void OnDisable() 

@@ -38,29 +38,22 @@ public class DialogueBox : MonoBehaviour
 
     private void OnEnable() 
     {
-        playerInputActions.Player.Interact.performed += (ctx) => 
-        {
-            if (!DialogueSystem.OnDialogue)
-                return;
-
-            if (delayFrames > 0)
-                return;
-            
-            ForwardInput();
-        };  
+        playerInputActions.Player.Interact.performed += TestForwardInput;
         playerInputActions.Player.Interact.Enable();
 
-        playerInputActions.Player.Jump.performed += (ctx) => 
-        {
-            if (!DialogueSystem.OnDialogue)
-                return;
-
-            if (delayFrames > 0)
-                return;
-            
-            ForwardInput();
-        };  
+        playerInputActions.Player.Jump.performed += TestForwardInput;
         playerInputActions.Player.Jump.Enable();
+    }
+
+    private void TestForwardInput(InputAction.CallbackContext ctx)
+    {
+        if (!DialogueSystem.OnDialogue || Time.timeScale < 1)
+            return;
+
+        if (delayFrames > 0)
+            return;
+            
+        ForwardInput();
     }
 
     private void Start() 
@@ -105,9 +98,6 @@ public class DialogueBox : MonoBehaviour
 
         if (delayFrames > 0)
             delayFrames--;
-
-        //if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Interact"))
-        //    ForwardInput();
     }
 
     private void ForwardInput()

@@ -57,7 +57,7 @@ public class PlayerInput : MonoBehaviour
 
     private void DoJump(InputAction.CallbackContext ctx)
     {
-        if (DialogueSystem.OnDialogue)
+        if (IsInputBlocked())
             return;
 
         platformerCharacter.JumpInput();
@@ -65,7 +65,7 @@ public class PlayerInput : MonoBehaviour
 
     private void DoThrow(InputAction.CallbackContext ctx)
     {
-        if (DialogueSystem.OnDialogue)
+        if (IsInputBlocked())
             return;
 
         collectableInteraction.InteractInput();
@@ -73,7 +73,7 @@ public class PlayerInput : MonoBehaviour
 
     private void DoInteract(InputAction.CallbackContext ctx)
     {
-        if (DialogueSystem.OnDialogue)
+        if (IsInputBlocked())
             return;
 
         playerInteractor.Interact();
@@ -81,10 +81,21 @@ public class PlayerInput : MonoBehaviour
 
     private void DoLaunch(InputAction.CallbackContext ctx)
     {
-        if (DialogueSystem.OnDialogue)
+        if (IsInputBlocked())
             return;
 
         spaceJumper.JumpInput();
+    }
+
+    private bool IsInputBlocked()
+    {
+        if (Time.timeScale < 1)
+            return true;
+
+        if (DialogueSystem.OnDialogue)
+            return true;
+
+        return false;
     }
 
     void Update()
