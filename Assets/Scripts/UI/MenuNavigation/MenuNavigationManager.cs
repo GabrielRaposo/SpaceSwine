@@ -8,7 +8,7 @@ public class MenuNavigationManager : MonoBehaviour
     List<NavigationTab> tabs;
     int current;
 
-    bool active;
+    [HideInInspector] public bool OnFocus;
     
     PlayerInputActions playerInputActions;
 
@@ -18,6 +18,9 @@ public class MenuNavigationManager : MonoBehaviour
     
         playerInputActions.UI.Navigation.performed += (ctx) => 
         { 
+            if(!OnFocus)
+                return;
+
             Vector2 navigationInput = ctx.ReadValue<Vector2>();
 
             if (navigationInput.y == 0)
@@ -31,7 +34,10 @@ public class MenuNavigationManager : MonoBehaviour
         playerInputActions.UI.Navigation.Enable();
 
         playerInputActions.UI.Confirm.performed += (ctx) => 
-        { 
+        {               
+            if(!OnFocus)
+                return;
+
             tabs[current].Submit();
         };
         playerInputActions.UI.Confirm.Enable();
@@ -75,5 +81,6 @@ public class MenuNavigationManager : MonoBehaviour
     private void OnDisable() 
     {
         playerInputActions.UI.Navigation.Disable();
+        playerInputActions.UI.Confirm.Disable();
     }
 }

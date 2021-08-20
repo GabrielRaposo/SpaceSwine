@@ -529,6 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef8711c5511c414387b4b9adbd97fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnFocus: 0
 --- !u!1 &117071415
 GameObject:
   m_ObjectHideFlags: 0
@@ -5881,7 +5882,19 @@ MonoBehaviour:
   tabDeselectedColor: {r: 1, g: 1, b: 1, a: 0}
   OnSubmitEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2138805498}
+        m_TargetAssemblyTypeName: PauseSystem, Assembly-CSharp
+        m_MethodName: SetPauseState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1253868743
 GameObject:
   m_ObjectHideFlags: 0
@@ -7237,7 +7250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeLibrary: {fileID: 11400000, guid: 9a6156b25fcccac4e97ef1c8d23def06, type: 2}
   curveLibrary: {fileID: 11400000, guid: 1807857dbc33603469f5046b18ae0aae, type: 2}
-  useUnscaledTime: 1
+  useUnscaledTime: 0
   printCompleted:
     m_PersistentCalls:
       m_Calls: []
@@ -8100,7 +8113,19 @@ MonoBehaviour:
   tabDeselectedColor: {r: 1, g: 1, b: 1, a: 0}
   OnSubmitEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2138805498}
+        m_TargetAssemblyTypeName: PauseSystem, Assembly-CSharp
+        m_MethodName: ResetScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1838350491
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9024,6 +9049,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2138805493}
+  - component: {fileID: 2138805498}
   - component: {fileID: 2138805496}
   - component: {fileID: 2138805495}
   - component: {fileID: 2138805494}
@@ -9128,6 +9154,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &2138805498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138805492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b455d085bec5f0a43b9a46d73f1dfdda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionDuration: 0.2
+  menuNavigationManager: {fileID: 81542280}
 --- !u!1001 &349535263349247106
 PrefabInstance:
   m_ObjectHideFlags: 0
