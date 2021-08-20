@@ -23,13 +23,20 @@ public class MenuNavigationManager : MonoBehaviour
 
             Vector2 navigationInput = ctx.ReadValue<Vector2>();
 
-            if (navigationInput.y == 0)
-                return;
-
-            if (navigationInput.y > .5f)
-                MoveCursor(-1);
-            else if (navigationInput.y < .5f)
-                MoveCursor(1);
+            if (navigationInput.y != 0)
+            {
+                if (navigationInput.y > .5f)
+                    MoveCursor(-1);
+                else if (navigationInput.y < .5f)
+                    MoveCursor(1);
+            }
+            
+            if (navigationInput.x != 0)
+            {
+                SliderTab sliderTab = tabs[current].GetComponent<SliderTab>();
+                if (sliderTab)
+                    sliderTab.ChangeValue (navigationInput.x);
+            }
         };
         playerInputActions.UI.Navigation.Enable();
 
