@@ -33,9 +33,8 @@ namespace AK
     {
         static const AkUniqueID VOLUME_MASTER = 3695994288U;
         static const AkUniqueID VOLUME_MUSIC = 3891337659U;
-        static const AkUniqueID VOLUME_MUSIC_PLACEHOLDER = 3955696405U;
+        static const AkUniqueID VOLUME_PLACEHOLDERS = 4083254980U;
         static const AkUniqueID VOLUME_SFX = 3673881719U;
-        static const AkUniqueID VOLUME_SFX_PLACEHOLDER = 1440840569U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS
