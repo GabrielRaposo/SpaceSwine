@@ -58,7 +58,12 @@ public class PauseSystem : MonoBehaviour
 
     public void ResetScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.ResetScene();
+    }
+
+    public void QuitGame()
+    {
+        GameManager.QuitGame();
     }
 
     private void OnDisable() 

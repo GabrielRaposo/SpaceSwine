@@ -38,9 +38,15 @@ public class GameManager : MonoBehaviour
         resetInputAction.performed += (ctx) => ResetScene();
     }
 
-    public void ResetScene()
+    public static void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public static void QuitGame()
+    {
+        Debug.Log("Quit game");
+        Application.Quit();
     }
 
     private void OnDisable() 
