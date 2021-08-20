@@ -9,8 +9,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject playerObject;
     [SerializeField] InputAction resetInputAction;
 
+    PlayerInputActions playerInputActions;
+
     private void OnEnable() 
     {
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.UI.Start.performed += (ctx) => Debug.Log("Start Input");
+        playerInputActions.UI.Start.Enable();
+        
         resetInputAction.Enable();
     }
 
@@ -33,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable() 
     {
+        playerInputActions.UI.Start.Disable();
         resetInputAction.Disable();    
     }
 }
