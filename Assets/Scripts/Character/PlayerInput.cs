@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(LocalGameplayState))]
 [RequireComponent(typeof(PlatformerCharacter))]
@@ -12,6 +13,10 @@ public class PlayerInput : MonoBehaviour
 {
     //[SerializeField] GameplayState gameplayState;
 
+    PlayerInputActions playerInputActions;
+    InputAction movement;
+    InputAction jump;
+
     LocalGameplayState gameplayState;
     PlatformerCharacter platformerCharacter;
     GravityInteraction gravityInteraction;
@@ -19,7 +24,7 @@ public class PlayerInput : MonoBehaviour
     CollectableInteraction collectableInteraction;
     PlayerInteractor playerInteractor;
 
-    void Start()
+    private void Awake() 
     {
         gameplayState = GetComponent<LocalGameplayState>();
         platformerCharacter = GetComponent<PlatformerCharacter>();
@@ -27,35 +32,110 @@ public class PlayerInput : MonoBehaviour
         spaceJumper = GetComponent<SpaceJumper>();
         collectableInteraction = GetComponent<CollectableInteraction>();
         playerInteractor = GetComponent<PlayerInteractor>();
+       
+        playerInputActions = new PlayerInputActions();    
     }
 
-    void Update()
+    private void OnEnable() 
+    {
+        movement = playerInputActions.Player.Movement;
+        movement.Enable();
+
+        jump = playerInputActions.Player.Jump;
+        jump.performed += DoJump;
+        jump.Enable();
+
+        playerInputActions.Player.Throw.performed += DoThrow;
+        playerInputActions.Player.Throw.Enable();
+
+        playerInputActions.Player.Interact.performed += DoInteract;
+        playerInputActions.Player.Interact.Enable();
+
+        playerInputActions.Player.Launch.performed += DoLaunch;
+        playerInputActions.Player.Launch.Enable();
+    }
+
+    private void DoJump(InputAction.CallbackContext ctx)
     {
         if (DialogueSystem.OnDialogue)
             return;
 
-        if (Input.GetButtonDown("Interact"))
-        {
-            if (playerInteractor.Interact())
-                return;
-        }
+        platformerCharacter.JumpInput();
+    }
 
-        platformerCharacter.HorizontalInput(Input.GetAxis("Horizontal"));
-        collectableInteraction.AxisInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+    private void DoThrow(InputAction.CallbackContext ctx)
+    {
+        if (DialogueSystem.OnDialogue)
+            return;
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            platformerCharacter.JumpInput();
-        } 
-        else if (Input.GetButtonDown("Launch"))
-        {
-            spaceJumper.JumpInput();
-        } 
-        else if (Input.GetButtonDown("Throw"))
-        {
-            collectableInteraction.InteractInput();
-        }
+        collectableInteraction.InteractInput();
+    }
 
-        gravityInteraction.SetJumpHeld(Input.GetButton("Jump"));           
+    private void DoInteract(InputAction.CallbackContext ctx)
+    {
+        if (DialogueSystem.OnDialogue)
+            return;
+
+        playerInteractor.Interact();
+    }
+
+    private void DoLaunch(InputAction.CallbackContext ctx)
+    {
+        if (DialogueSystem.OnDialogue)
+            return;
+
+        spaceJumper.JumpInput();
+    }
+
+    void Update()
+    {
+        //if (DialogueSystem.OnDialogue)
+        //    return;
+
+        //if (Input.GetButtonDown("Interact"))
+        //{
+        //    if (playerInteractor.Interact())
+        //        return;
+        //}
+
+        //platformerCharacter.HorizontalInput(Input.GetAxis("Horizontal"));
+        //collectableInteraction.AxisInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+
+        //if (Input.GetButtonDown("Jump"))
+        //{
+        //    platformerCharacter.JumpInput();
+        //} 
+        //else if (Input.GetButtonDown("Launch"))
+        //{
+        //    spaceJumper.JumpInput();
+        //} 
+        //else if (Input.GetButtonDown("Throw"))
+        //{
+        //    collectableInteraction.InteractInput();
+        //}
+
+        //gravityInteraction.SetJumpHeld(Input.GetButton("Jump"));           
+    }
+
+    private void FixedUpdate() 
+    {
+        if (DialogueSystem.OnDialogue)
+            return;
+
+        Vector2 movementInput = movement.ReadValue<Vector2>();
+        platformerCharacter.HorizontalInput(movementInput.x);
+        collectableInteraction.AxisInput(movementInput);
+
+        gravityInteraction.SetJumpHeld(jump.ReadValue<float>() > .5f);
+    }
+
+    private void OnDisable() 
+    {
+        movement.Disable();
+        jump.Disable();
+
+        playerInputActions.Player.Throw.Disable();
+        playerInputActions.Player.Interact.Disable();
+        playerInputActions.Player.Launch.Disable();
     }
 }

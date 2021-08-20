@@ -1,11 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject playerObject;
+    [SerializeField] InputAction resetInputAction;
+
+    PlayerInputActions playerInputActions;
+
+    private void OnEnable() 
+    {
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.UI.Start.performed += (ctx) => Debug.Log("Start Input");
+        playerInputActions.UI.Start.Enable();
+        
+        resetInputAction.Enable();
+    }
 
     void Start()
     {
@@ -15,16 +28,18 @@ public class GameManager : MonoBehaviour
             if (health)
                 health.OnDeathEvent += ResetScene;
         }
-    }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-            ResetScene();
+        resetInputAction.performed += (ctx) => ResetScene();
     }
 
     public void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void OnDisable() 
+    {
+        playerInputActions.UI.Start.Disable();
+        resetInputAction.Disable();    
     }
 }

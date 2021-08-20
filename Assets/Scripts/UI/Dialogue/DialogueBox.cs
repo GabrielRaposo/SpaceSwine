@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using DG.Tweening;
 using RedBlueGames.Tools.TextTyper;
 using TMPro;
@@ -20,14 +21,47 @@ public class DialogueBox : MonoBehaviour
     CanvasGroup canvasGroup;
 
     int delayFrames;
-    int dialogIndex;
+    int dialogueIndex;
 
     Interactable interactable;
     DialogueAnimation dialogueAnimation;
     string speakerName;
     List <string> dialogs;
 
+    PlayerInputActions playerInputActions;
     Sequence sequence;
+
+    private void Awake() 
+    {
+        playerInputActions = new PlayerInputActions();    
+    }
+
+    private void OnEnable() 
+    {
+        playerInputActions.Player.Interact.performed += (ctx) => 
+        {
+            if (!DialogueSystem.OnDialogue)
+                return;
+
+            if (delayFrames > 0)
+                return;
+            
+            ForwardInput();
+        };  
+        playerInputActions.Player.Interact.Enable();
+
+        playerInputActions.Player.Jump.performed += (ctx) => 
+        {
+            if (!DialogueSystem.OnDialogue)
+                return;
+
+            if (delayFrames > 0)
+                return;
+            
+            ForwardInput();
+        };  
+        playerInputActions.Player.Jump.Enable();
+    }
 
     private void Start() 
     {
@@ -43,8 +77,8 @@ public class DialogueBox : MonoBehaviour
 
         SetDialogueEvents();
 
-        dialogIndex = 0;
-        ShowText(speakerName, dialogs[dialogIndex]);
+        dialogueIndex = 0;
+        ShowText(speakerName, dialogs[dialogueIndex]);
         interactable?.IconState(false);
 
         DialogueSystem.OnDialogue = true;
@@ -69,17 +103,11 @@ public class DialogueBox : MonoBehaviour
     {
         skipArrow.enabled = DialogueSystem.OnDialogue && !dialogTyper.IsTyping;
 
-        if (!DialogueSystem.OnDialogue)
-            return;
-
         if (delayFrames > 0)
-        {
             delayFrames--;
-            return;
-        }
 
-        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Interact"))
-            ForwardInput();
+        //if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Interact"))
+        //    ForwardInput();
     }
 
     private void ForwardInput()
@@ -90,9 +118,9 @@ public class DialogueBox : MonoBehaviour
         } 
         else
         {
-            if (++dialogIndex < dialogs.Count)
+            if (++dialogueIndex < dialogs.Count)
             {
-                ShowText( speakerName, dialogs[dialogIndex] );
+                ShowText( speakerName, dialogs[dialogueIndex] );
             }
             else
             {
@@ -151,5 +179,8 @@ public class DialogueBox : MonoBehaviour
     private void OnDisable() 
     {
         showing = false;    
+
+        playerInputActions.Player.Interact.Disable();
+        playerInputActions.Player.Jump.Disable();
     }
 }

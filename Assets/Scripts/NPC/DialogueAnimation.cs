@@ -24,12 +24,27 @@ public class DialogueAnimation : MonoBehaviour
         if (moving || !visualComponent)
             return;
 
-        if (s.Contains("."))
+        if (HasSymbols(s))
             return;
         
         moving = true;
         visualComponent.DOPunchScale(Vector3.one * resizeRatio, duration)
             .OnComplete(() => moving = false);
+    }
+
+    private bool HasSymbols(string s)
+    {
+        if (s.Length < 1)
+            return true;
+
+        char[] charDivision = s.ToCharArray();
+        foreach(char c in charDivision)
+        {
+            if (c == '.' || c == ',' || c == '!' || c == '?' || c == ':' || c == ' ')
+                return true;
+        }
+
+        return false;
     }
 
     public void ResetState()
