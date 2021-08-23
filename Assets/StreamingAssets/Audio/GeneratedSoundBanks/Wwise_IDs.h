@@ -25,6 +25,7 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_PULA_LONGO = 2563466850U;
         static const AkUniqueID GAMEPLAY_BUYK_TACA_ITEM = 3851873763U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
+        static const AkUniqueID GAMEPLAY_NPC_FALA_ROBOZINHO = 1847119179U;
         static const AkUniqueID UI_MENU_CLIQUE = 937451947U;
         static const AkUniqueID UI_MENU_HOVER = 2163476404U;
     } // namespace EVENTS

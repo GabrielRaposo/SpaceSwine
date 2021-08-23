@@ -198,6 +198,25 @@
 					</ChildrenList>
 				</Folder>
 				<Folder Name="System" ID="{CEE7E884-1059-4A36-841B-7DC8BBB2584A}" ShortID="590989639"/>
+				<Folder Name="NPCs" ID="{2F3DB8ED-FF30-4BE6-86AA-D328DC9E5520}" ShortID="565071774">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="21"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="gameplay_npc_fala_robozinho" ID="{1A21F0D5-79CB-4399-A565-CD3F5AA11535}">
+							<ChildrenList>
+								<Action Name="" ID="{D31C4E39-772D-4BD3-BBD4-0A13897D0405}" ShortID="67232300">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="gameplay_npc_fala_robozinho" ID="{866F4CA1-9F1C-4033-880C-08CA79C68FEB}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
