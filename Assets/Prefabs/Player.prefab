@@ -23,8 +23,9 @@ GameObject:
   - component: {fileID: 5639081803221880845}
   - component: {fileID: 5639081803221880886}
   - component: {fileID: 5639081803221880844}
+  - component: {fileID: 975378138}
   m_Layer: 0
-  m_Name: Kyub (Player)
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bd0b84d6c83bf49902b31f1f86440c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
+  state: 0
 --- !u!114 &5639081803221880840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +102,38 @@ MonoBehaviour:
   defaultMultiplier: 1.2
   lowGravityMultiplier: 0.8
   angleAdjustment: 50
+  playerFocusInput:
+    m_Name: Player Focus Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a222afa8-2012-4cb4-8c5c-e15c8733527e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ff933475-c962-4bfd-b37d-fb43a2d80d9a
+      m_Path: <Keyboard>/o
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Player Focus Input
+      m_Flags: 0
+  planetFocusInput:
+    m_Name: Planet Focus Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1fd156c1-bbeb-451c-9ef4-bfd25daf42cc
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: f3fa1ce3-ecc6-41dd-a7cd-075c7c9df7c4
+      m_Path: <Keyboard>/p
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Planet Focus Input
+      m_Flags: 0
 --- !u!114 &5639081803221880884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,8 +179,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
-  offset: {x: 0, y: -0.23}
-  size: {x: 0.42, y: 0.15}
+  offset: {x: 0, y: -0.405}
+  size: {x: 0.375, y: 0.15}
 --- !u!114 &5639081803221880885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,8 +196,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
-  leftOffset: {x: 0.22, y: -0.25}
-  rightOffset: {x: -0.22, y: -0.25}
+  leftOffset: {x: 0.2, y: -0.425}
+  rightOffset: {x: -0.2, y: -0.425}
   radius: 0.05
 --- !u!114 &5639081803221880887
 MonoBehaviour:
@@ -181,8 +214,8 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 512
-  leftOffset: {x: -0.17, y: -0.1}
-  rightOffset: {x: 0.17, y: -0.1}
+  leftOffset: {x: -0.15, y: -0.275}
+  rightOffset: {x: 0.15, y: -0.275}
   radius: 0.15
 --- !u!114 &5639081803221880881
 MonoBehaviour:
@@ -249,7 +282,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
+  m_Size: {x: 0.35, y: 0.75}
   m_EdgeRadius: 0.05
 --- !u!50 &5639081803221880844
 Rigidbody2D:
@@ -272,6 +305,25 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!95 &975378138
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5639081803221880847}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c4df5d04c8b56974bae60345b032bb26, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5639081803377138992
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5639081803377139007
 Transform:
   m_ObjectHideFlags: 0
@@ -410,7 +462,7 @@ Transform:
   m_GameObject: {fileID: 5639081803719366905}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children:
   - {fileID: 5639081803377139007}
   - {fileID: 5639081803509183843}
@@ -457,8 +509,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ec52874214b84594e85bcc01901b0240, type: 3}
-  m_Color: {r: 0.6313726, g: 0.1137255, b: 0.43921572, a: 1}
+  m_Sprite: {fileID: 3025885828789033177, guid: b6503d39dcbe94a47b570177b83cb59f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
