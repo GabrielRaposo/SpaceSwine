@@ -14,7 +14,6 @@ public class PlatformerCharacter : SidewaysCharacter
 
     [Header("References")]
     [SerializeField] Transform visualAnchor;
-    //[SerializeField] SpriteRenderer directionArrow;
 
     bool onGround;
 
@@ -26,6 +25,7 @@ public class PlatformerCharacter : SidewaysCharacter
     CheckGround checkGround;
     CheckLedge checkLedge;
     CheckWall checkWall;
+    PlayerAnimations playerAnimations;
     Rigidbody2D rb;
 
     void Awake()
@@ -35,6 +35,7 @@ public class PlatformerCharacter : SidewaysCharacter
         checkGround = GetComponent<CheckGround>();
         checkLedge = GetComponent<CheckLedge>();
         checkWall = GetComponent<CheckWall>();
+        playerAnimations = GetComponent<PlayerAnimations>();
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -45,8 +46,6 @@ public class PlatformerCharacter : SidewaysCharacter
 
         gravityInteraction.OnChangeGravityAnchor += (t) => 
         {   
-            //if (gameplayState.state == GameplayState.Danger) 
-            //    return;
             if (spaceJumper && spaceJumper.OnLaunch())
                 return;
 
@@ -75,6 +74,8 @@ public class PlatformerCharacter : SidewaysCharacter
 
     public void HorizontalInput(float horizontalInput)
     {
+        playerAnimations.horizontalInput = horizontalInput;
+
         if (horizontalInput != 0)
             SetFacingRight (horizontalInput > 0);
 
@@ -170,7 +171,6 @@ public class PlatformerCharacter : SidewaysCharacter
 
         Vector2 direction = (gravity.area.Center - transform.position).normalized;
         float angle = Vector2.SignedAngle(Vector2.down, direction);
-        //Debug.DrawLine(gravity.area.Center, (Vector2)gravity.area.Center + RaposUtil.RotateVector(Vector2.up, angle), Color.yellow, 1f);
 
         rb.velocity = RaposUtil.RotateVector(new Vector2 (horizontalSpeed, verticalSpeed), angle);
 
