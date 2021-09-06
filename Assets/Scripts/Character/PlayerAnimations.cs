@@ -9,6 +9,7 @@ public class PlayerAnimations : MonoBehaviour
     string currentState;
 
     [HideInInspector] public bool holding;
+    [HideInInspector] public bool onGround;
     [HideInInspector] public float horizontalInput;
 
     void Start()
@@ -29,6 +30,13 @@ public class PlayerAnimations : MonoBehaviour
         {
             ChangeAnimationState(!holding ? AnimationState.WALK : AnimationState.WALK_HOLD);
         }
+    }
+
+    public void SetLaunchedState()
+    {
+        // Criar bool de launched, criar função de Land, animação de Land talvez
+        ChangeAnimationState(!holding ? AnimationState.LAUNCH : AnimationState.LAUNCH_HOLD)
+
     }
 
     public void ChangeAnimationState (string newState)
