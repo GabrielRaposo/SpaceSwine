@@ -182,5 +182,6 @@ public class PlatformerCharacter : SidewaysCharacter
         rb.velocity = Vector2.zero;
 
         horizontalSpeed = verticalSpeed = 0;
+        playerAnimations.horizontalInput = 0;
     }
 }
