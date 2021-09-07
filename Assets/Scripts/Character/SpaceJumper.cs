@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlatformerCharacter))]
 [RequireComponent(typeof(GravityInteraction))]
 [RequireComponent(typeof(CheckGround))]
+[RequireComponent(typeof(PlayerAnimations))]
 public class SpaceJumper : MonoBehaviour
 {
     [SerializeField] float speed;
@@ -15,6 +16,7 @@ public class SpaceJumper : MonoBehaviour
     PlatformerCharacter platformerCharacter;
     GravityInteraction gravityInteraction;
     CheckGround checkGround;
+    PlayerAnimations playerAnimations;
     Rigidbody2D rb;
 
     void Start()
@@ -22,6 +24,7 @@ public class SpaceJumper : MonoBehaviour
         platformerCharacter = GetComponent<PlatformerCharacter>();
         gravityInteraction = GetComponent<GravityInteraction>();
         checkGround = GetComponent<CheckGround>();
+        playerAnimations = GetComponent<PlayerAnimations>();
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -39,6 +42,9 @@ public class SpaceJumper : MonoBehaviour
 
     private void SetLaunchState (bool value)
     {
+        if (value) playerAnimations.SetLaunchedState();
+        else       playerAnimations.SetLandedState();
+
         platformerCharacter.enabled = !value;
         gravityInteraction.enabled = !value;
         onLaunch = value;

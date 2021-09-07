@@ -57,6 +57,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Help"",
+                    ""type"": ""Button"",
+                    ""id"": ""e0e0c788-5462-4cd6-bcd1-e54b57e44ed0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -183,6 +191,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a9064d84-9232-4a69-8494-02e7528ff5d1"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""d4fc3370-c0ab-4107-aa20-445f487f0a45"",
                     ""path"": ""<Keyboard>/z"",
                     ""interactions"": """",
@@ -299,6 +318,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea6eb29a-8848-476b-9915-a11d8f42ad4c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Help"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -586,6 +616,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_Throw = m_Player.FindAction("Throw", throwIfNotFound: true);
         m_Player_Launch = m_Player.FindAction("Launch", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_Help = m_Player.FindAction("Help", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigation = m_UI.FindAction("Navigation", throwIfNotFound: true);
@@ -646,6 +677,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Throw;
     private readonly InputAction m_Player_Launch;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_Help;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -655,6 +687,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Throw => m_Wrapper.m_Player_Throw;
         public InputAction @Launch => m_Wrapper.m_Player_Launch;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @Help => m_Wrapper.m_Player_Help;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -679,6 +712,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Help.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHelp;
+                @Help.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHelp;
+                @Help.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHelp;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -698,6 +734,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Help.started += instance.OnHelp;
+                @Help.performed += instance.OnHelp;
+                @Help.canceled += instance.OnHelp;
             }
         }
     }
@@ -784,6 +823,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnThrow(InputAction.CallbackContext context);
         void OnLaunch(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnHelp(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

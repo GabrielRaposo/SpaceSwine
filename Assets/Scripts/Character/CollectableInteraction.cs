@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(CheckGround))]
 [RequireComponent(typeof(SpaceJumper))]
+[RequireComponent(typeof(PlayerAnimations))]
 public class CollectableInteraction : MonoBehaviour
 {
     [SerializeField] float launchSpeed;
@@ -14,11 +15,13 @@ public class CollectableInteraction : MonoBehaviour
 
     CheckGround checkGround;
     SpaceJumper spaceJumper;
+    PlayerAnimations playerAnimations;
 
     private void Start() 
     {
         checkGround = GetComponent<CheckGround>();
         spaceJumper = GetComponent<SpaceJumper>();
+        playerAnimations = GetComponent<PlayerAnimations>();
     }
 
     public void AxisInput(Vector2 axisInput)
@@ -38,6 +41,8 @@ public class CollectableInteraction : MonoBehaviour
     {
         if (current)
             return false;
+
+        playerAnimations.holding = true;
 
         Transform t = holdAnchor;
         if (!holdAnchor)
@@ -77,6 +82,8 @@ public class CollectableInteraction : MonoBehaviour
 
     private void LaunchCurrentIntoDirection(Vector2 direction)
     {
+        playerAnimations.holding = false;
+
         current.transform.position = transform.position;
 
         Rigidbody2D rb = current.GetComponent<Rigidbody2D>();
