@@ -9,8 +9,11 @@ public class PlayerAnimations : MonoBehaviour
     string currentState;
 
     [HideInInspector] public bool holding;
-    [HideInInspector] public bool onGround;
     [HideInInspector] public float horizontalInput;
+
+    enum State  { Landed, Flying }
+    State state;
+
 
     void Start()
     {
@@ -22,21 +25,35 @@ public class PlayerAnimations : MonoBehaviour
         if (Time.timeScale < 1)
             return;
 
-        if (horizontalInput == 0)
+        switch (state)
         {
-            ChangeAnimationState(!holding ? AnimationState.IDLE : AnimationState.IDLE_HOLD);
-        }
-        else
-        {
-            ChangeAnimationState(!holding ? AnimationState.WALK : AnimationState.WALK_HOLD);
+            case State.Landed:
+                if (horizontalInput == 0)
+                {
+                    ChangeAnimationState(!holding ? AnimationState.IDLE : AnimationState.IDLE_HOLD );
+                }
+                else
+                {
+                    ChangeAnimationState(!holding ? AnimationState.WALK : AnimationState.WALK_HOLD );
+                }            
+                break;
+
+
+            case State.Flying:
+                ChangeAnimationState( !holding ? AnimationState.LAUNCH : AnimationState.LAUNCH_HOLD );
+                break;
         }
     }
 
     public void SetLaunchedState()
     {
-        // Criar bool de launched, criar função de Land, animação de Land talvez
-        ChangeAnimationState(!holding ? AnimationState.LAUNCH : AnimationState.LAUNCH_HOLD)
+        ChangeAnimationState( !holding ? AnimationState.LAUNCH : AnimationState.LAUNCH_HOLD );
+        state = State.Flying;
+    }
 
+    public void SetLandedState()
+    {
+        state = State.Landed;
     }
 
     public void ChangeAnimationState (string newState)
@@ -60,14 +77,14 @@ public class AnimationState
     public static string IDLE = "Player-Idle";
     public static string WALK = "Player-Walk";
 
+    public static string LAUNCH = "Player-Launch";
         public static string JUMP = "Player-Jump";
-        public static string LAUNCH = "Player-Launch";
         public static string FALL = "Player-Fall";
 
     public static string IDLE_HOLD = "Player-Idle-Hold";
     public static string WALK_HOLD = "Player-Walk-Hold";
 
+    public static string LAUNCH_HOLD = "Player-Launch-Hold";
         public static string JUMP_HOLD = "Player-Jump-Hold";
-        public static string LAUNCH_HOLD = "Player-Launch-Hold";
         public static string FALL_HOLD = "Player-Fall-Hold";
 }

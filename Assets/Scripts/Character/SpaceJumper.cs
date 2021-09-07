@@ -42,7 +42,9 @@ public class SpaceJumper : MonoBehaviour
 
     private void SetLaunchState (bool value)
     {
-        playerAnimations.SetLaunchedState();
+        if (value) playerAnimations.SetLaunchedState();
+        else       playerAnimations.SetLandedState();
+
         platformerCharacter.enabled = !value;
         gravityInteraction.enabled = !value;
         onLaunch = value;
