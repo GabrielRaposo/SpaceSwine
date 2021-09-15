@@ -217,6 +217,7 @@
 								<Property Name="TrimBegin" Type="Real64" Value="0.331259743264135"/>
 								<Property Name="TrimEnd" Type="Real64" Value="0.58418242480546"/>
 							</PropertyList>
+							<ReferenceList/>
 							<Language>SFX</Language>
 							<AudioFile>Astropig oinc fofo_slice 2.wav</AudioFile>
 							<MediaIDList>
@@ -226,7 +227,7 @@
 					</ChildrenList>
 					<ObjectLists/>
 					<ActiveSourceList>
-						<ActiveSource Name="Garage Foley - 9" ID="{2E6A6ED5-61D4-4027-87A6-391511CDFBC0}" Platform="Linked"/>
+						<ActiveSource Name="Astropig oinc fofo_slice 2" ID="{ACBD32DE-B737-4D29-B213-A5AE11BA4F3C}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 				<Folder Name="Buyk" ID="{0302E065-0CBB-4435-850B-72C779BA81E5}" ShortID="207578904">
@@ -784,6 +785,81 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="Astropig Abajour" ID="{50BD785B-3BC0-49C8-A14F-AC90416624A5}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="NPCs" ID="{1C2DFAF7-CE64-45E0-96AD-BD305A649458}" ShortID="175657450">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="21"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Sound Name="gameplay_npc_fala_robozinho" ID="{866F4CA1-9F1C-4033-880C-08CA79C68FEB}" ShortID="787281877">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<RTPCList>
+										<RTPC Name="" ID="{1356B257-1845-4931-9E98-2E6BB8BEE52E}" ShortID="1000292600">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<Custom>
+														<ModulatorLfo Name="Modulator LFO (Custom)" ID="{1C4EF189-69DB-4AE1-A15C-28F71D2C845F}" ShortID="944494892">
+															<PropertyList>
+																<Property Name="LfoWaveform" Type="int32" Value="5"/>
+															</PropertyList>
+														</ModulatorLfo>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{A2B0ED80-D09C-4CEF-9BF5-378F5FF3CE40}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-100</YPos>
+														<Flags>21</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>100</YPos>
+														<Flags>53</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Astropig oinc fofo_slice 2" ID="{720EE181-7126-4DC8-827F-0267AE502D64}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.227908350399876"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.200114649131597"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.331259743264135"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.58418242480546"/>
+									</PropertyList>
+									<ReferenceList/>
+									<Language>SFX</Language>
+									<AudioFile>Astropig oinc fofo_slice 2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="363192587"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Astropig oinc fofo_slice 2" ID="{720EE181-7126-4DC8-827F-0267AE502D64}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
