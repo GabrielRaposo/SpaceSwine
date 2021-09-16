@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class MenuNavigationManager : MonoBehaviour
 {
+    [SerializeField] bool startOnFocus;
+
     List<NavigationTab> tabs;
     int current;
 
@@ -62,6 +64,9 @@ public class MenuNavigationManager : MonoBehaviour
 
         current = 0;
         SelectCurrent();
+
+        if (startOnFocus)
+            OnFocus = true;
     }
 
     private void SelectCurrent()
