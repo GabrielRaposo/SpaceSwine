@@ -29,9 +29,6 @@ public class SplashScreenManager : MonoBehaviour
 
         if(fadeImage)
         {
-            //fadeImage.color = new Color(1, 1, 1, 1);
-            //Color targetColor = fadeImage.color;
-            //targetColor.a = 0;
             fadeImage.DOFade(0, fadeDuration);
         }
 
@@ -41,10 +38,7 @@ public class SplashScreenManager : MonoBehaviour
 
     private void EndReached(VideoPlayer vp)
     {
-        //seizureWarningCanvas.Setup();
-
-        //transitionCanvas.LoadNextScene();
-        SceneTransition.LoadScene(1);
+        SceneTransition.LoadScene( (int) BuildIndex.Title );
     }
 
 }
