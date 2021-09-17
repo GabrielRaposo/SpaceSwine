@@ -94,7 +94,7 @@ public class SceneTransition : MonoBehaviour
 
 public enum BuildIndex
 {
-    // splash screen = 0
-    Title = 0,
-    TestStage = 1
+    Splash = 0,
+    Title = 1,
+    TestStage = 2
 }

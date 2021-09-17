@@ -38,6 +38,16 @@ public class RaposUtil
 
         action?.Invoke();
     }
+
+    public static IEnumerator WaitSeconds (float duration, UnityAction action)
+    {
+        if (duration > 0)
+        {
+            yield return new WaitForSeconds(duration);
+        }
+
+        action?.Invoke();
+    }
 }
 
 public static class Vector2Extension
