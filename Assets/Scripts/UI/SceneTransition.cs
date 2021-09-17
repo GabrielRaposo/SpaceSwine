@@ -12,6 +12,7 @@ public class SceneTransition : MonoBehaviour
 
     Sequence mainSequence;
     
+    public static bool OnTransition;
     static SceneTransition Instance;
 
     private void Awake()
@@ -45,12 +46,12 @@ public class SceneTransition : MonoBehaviour
 
     private void LocalLoadScene(int index)
     {
-        Debug.Log("Local Load Scene");
         StartCoroutine( TransitionCoroutine(index) );
     }
 
     private IEnumerator TransitionCoroutine(int index)
     {
+        OnTransition = true;
         bool done = false;
 
         if (!fillImage)
@@ -87,7 +88,7 @@ public class SceneTransition : MonoBehaviour
         
         yield return new WaitUntil( () => done );
 
-        Debug.Log ("Transition ended");
+        OnTransition = false;
     }
 }
 

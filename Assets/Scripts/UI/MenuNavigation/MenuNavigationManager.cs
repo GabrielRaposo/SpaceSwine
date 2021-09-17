@@ -20,7 +20,7 @@ public class MenuNavigationManager : MonoBehaviour
     
         playerInputActions.UI.Navigation.performed += (ctx) => 
         { 
-            if(!OnFocus)
+            if(!OnFocus || SceneTransition.OnTransition)
                 return;
 
             Vector2 navigationInput = ctx.ReadValue<Vector2>();
@@ -44,7 +44,7 @@ public class MenuNavigationManager : MonoBehaviour
 
         playerInputActions.UI.Confirm.performed += (ctx) => 
         {               
-            if(!OnFocus)
+            if(!OnFocus || SceneTransition.OnTransition)
                 return;
 
             tabs[current].Submit();
