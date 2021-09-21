@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class MenuNavigationManager : MonoBehaviour
 {
+    [SerializeField] bool startOnFocus;
+
     List<NavigationTab> tabs;
     int current;
 
@@ -18,7 +20,7 @@ public class MenuNavigationManager : MonoBehaviour
     
         playerInputActions.UI.Navigation.performed += (ctx) => 
         { 
-            if(!OnFocus)
+            if(!OnFocus || SceneTransition.OnTransition)
                 return;
 
             Vector2 navigationInput = ctx.ReadValue<Vector2>();
@@ -42,7 +44,7 @@ public class MenuNavigationManager : MonoBehaviour
 
         playerInputActions.UI.Confirm.performed += (ctx) => 
         {               
-            if(!OnFocus)
+            if(!OnFocus || SceneTransition.OnTransition)
                 return;
 
             tabs[current].Submit();
@@ -62,6 +64,9 @@ public class MenuNavigationManager : MonoBehaviour
 
         current = 0;
         SelectCurrent();
+
+        if (startOnFocus)
+            OnFocus = true;
     }
 
     private void SelectCurrent()
