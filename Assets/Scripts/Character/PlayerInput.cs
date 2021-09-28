@@ -11,8 +11,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInteractor))]
 public class PlayerInput : MonoBehaviour
 {
-    //[SerializeField] GameplayState gameplayState;
-
     PlayerInputActions playerInputActions;
     InputAction movement;
     InputAction jump;
@@ -41,9 +39,7 @@ public class PlayerInput : MonoBehaviour
         movement = playerInputActions.Player.Movement;
         movement.Enable();
 
-        jump = playerInputActions.Player.Jump;
-        jump.performed += DoJump;
-        jump.Enable();
+        SetJumpAction();
 
         playerInputActions.Player.Throw.performed += DoThrow;
         playerInputActions.Player.Throw.Enable();
@@ -51,8 +47,23 @@ public class PlayerInput : MonoBehaviour
         playerInputActions.Player.Interact.performed += DoInteract;
         playerInputActions.Player.Interact.Enable();
 
-        playerInputActions.Player.Launch.performed += DoLaunch;
-        playerInputActions.Player.Launch.Enable();
+        //playerInputActions.Player.Launch.performed += DoLaunch;
+        //playerInputActions.Player.Launch.Enable();
+
+    }
+
+    public void SetJumpAction()
+    {
+        jump = playerInputActions.Player.Jump;
+        jump.performed -= DoJump;
+        jump.performed -= DoLaunch;
+
+        if (gameplayState.state == GameplayState.Exploration)
+            jump.performed += DoJump;
+        else
+            jump.performed += DoLaunch;
+        
+        jump.Enable();
     }
 
     private void DoJump(InputAction.CallbackContext ctx)
@@ -137,7 +148,8 @@ public class PlayerInput : MonoBehaviour
         platformerCharacter.HorizontalInput(movementInput.x);
         collectableInteraction.AxisInput(movementInput);
 
-        gravityInteraction.SetJumpHeld(jump.ReadValue<float>() > .5f);
+        if (gameplayState.state == GameplayState.Exploration)
+            gravityInteraction.SetJumpHeld(jump.ReadValue<float>() > .5f);
     }
 
     private void OnDisable() 
