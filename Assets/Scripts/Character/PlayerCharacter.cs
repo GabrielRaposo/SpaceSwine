@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Classe responsável por conversar com interações externas com controladores e managers
 [RequireComponent(typeof(CollectableInteraction))]
+[RequireComponent(typeof(SpaceJumper))]
+// Classe responsável por conversar com interações externas com controladores e managers
 public class PlayerCharacter : MonoBehaviour
 {
     // Adicionar componentes resetáveis
     CollectableInteraction collectableInteraction;
+    SpaceJumper spaceJumper;
 
     public static PlayerCharacter Instance;
 
@@ -26,11 +28,13 @@ public class PlayerCharacter : MonoBehaviour
     private void Start() 
     {
         collectableInteraction = GetComponent<CollectableInteraction>();
+        spaceJumper = GetComponent<SpaceJumper>();
     }
 
     public void ResetStates()
     {
         collectableInteraction?.ResetStates();
+        spaceJumper?.ResetStates();
     }
 
     public void SpawnAt (Vector2 position, float rotation = 0)
