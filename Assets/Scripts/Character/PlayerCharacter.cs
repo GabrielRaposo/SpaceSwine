@@ -45,5 +45,7 @@ public class PlayerCharacter : MonoBehaviour
 
         transform.position = position;
         transform.eulerAngles = rotation * Vector3.forward;
+
+        gameObject.SetActive(true);
     }
 }

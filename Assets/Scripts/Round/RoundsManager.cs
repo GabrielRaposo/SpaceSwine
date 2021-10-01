@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 
 public class RoundsManager : MonoBehaviour
 {
-    [SerializeField] InputAction testInputAction;
+    [SerializeField] InputAction previousInputAction;
     [SerializeField] InputAction resetInputAction;
+    [SerializeField] InputAction nextInputAction;
 
     int currentIndex;
     List<Round> rounds;
@@ -51,26 +52,36 @@ public class RoundsManager : MonoBehaviour
 
         ActivateCurrentIndex();
 
-        testInputAction.performed += ctx => 
+        previousInputAction.performed += ctx => 
+        {
+            PreviousRoundLogic();
+        };
+        previousInputAction.Enable();
+
+        resetInputAction.performed += ctx => 
+        {
+            RoundTransition.Call(ActivateCurrentIndex);
+        };
+        resetInputAction.Enable();
+
+        nextInputAction.performed += ctx => 
         {
             if (currentIndex < rounds.Count)
                 rounds[currentIndex].RoundCleared();
         };
-        testInputAction.Enable();
+        nextInputAction.Enable();
 
-        resetInputAction.performed += ctx => 
-        {
-            ActivateCurrentIndex();
-        };
-        resetInputAction.Enable();
+        Health health = player.GetComponent<Health>();
+        if (health)
+            health.OnDeathEvent += () => RoundTransition.Call(ActivateCurrentIndex);
     }
 
-    public void NextRoundLogic()
+    public void PreviousRoundLogic()
     {
-        currentIndex++;
-        if (currentIndex < rounds.Count)
+        if (currentIndex > 0)
         {
-            /* Chama transição de round, ao final chama -> */ ActivateCurrentIndex();
+            currentIndex--;
+            RoundTransition.Call(ActivateCurrentIndex);
         }
     }
 
@@ -79,5 +90,15 @@ public class RoundsManager : MonoBehaviour
         currentIndex %= rounds.Count;
         for (int i = 0; i < rounds.Count; i++)
             rounds[i].SetActivation( i == currentIndex );        
+    }
+
+    public void NextRoundLogic()
+    {
+        currentIndex++;
+        if (currentIndex < rounds.Count)
+        {
+            // ActivateCurrentIndex();
+            RoundTransition.Call(ActivateCurrentIndex);
+        }
     }
 }

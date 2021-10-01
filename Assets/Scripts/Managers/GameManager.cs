@@ -28,12 +28,12 @@ public class GameManager : MonoBehaviour
     {
         pauseSystem = PauseSystem.Instance; 
 
-        if (playerObject)
-        {
-            Health health = playerObject.GetComponent<Health>();    
-            if (health)
-                health.OnDeathEvent += ResetScene;
-        }
+        //if (playerObject)
+        //{
+        //    Health health = playerObject.GetComponent<Health>();    
+        //    if (health)
+        //        health.OnDeathEvent += ResetScene;
+        //}
 
         resetInputAction.performed += (ctx) => ResetScene();
     }
