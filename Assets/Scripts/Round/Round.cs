@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Round : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Round : MonoBehaviour
 
     RoundsManager manager;
     PlayerCharacter player;
+
+    public UnityAction OnReset;
 
     public void SetReferences (RoundsManager manager, PlayerCharacter player)
     {
@@ -28,7 +31,8 @@ public class Round : MonoBehaviour
         player?.SpawnAt(startingPoint, startingRotation);
 
         // reposiciona e respawna objetos
-        // resetta 
+        // resetta
+        OnReset?.Invoke();
     }
 
     public void RoundCleared()
@@ -43,6 +47,5 @@ public class Round : MonoBehaviour
         Gizmos.DrawWireSphere(startingPoint, .2f);
         Vector2 rotatedVector = RaposUtil.RotateVector(Vector2.down * .3f, startingRotation);
         Gizmos.DrawWireCube(startingPoint + rotatedVector, Vector3.one * .25f);
-        //Gizmos.DrawLine(startingPoint, startingPoint + rotatedVector);
     }
 }

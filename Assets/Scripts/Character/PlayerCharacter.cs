@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Classe responsável por conversar com interações externas com controladores e managers
+[RequireComponent(typeof(CollectableInteraction))]
 public class PlayerCharacter : MonoBehaviour
 {
+    // Adicionar componentes resetáveis
+    CollectableInteraction collectableInteraction;
+
     public static PlayerCharacter Instance;
 
     private void Awake() 
@@ -19,9 +23,14 @@ public class PlayerCharacter : MonoBehaviour
         Instance = this;
     }
 
+    private void Start() 
+    {
+        collectableInteraction = GetComponent<CollectableInteraction>();
+    }
+
     public void ResetStates()
     {
-
+        collectableInteraction?.ResetStates();
     }
 
     public void SpawnAt (Vector2 position, float rotation = 0)

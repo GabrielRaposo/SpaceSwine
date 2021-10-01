@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class RoundsManager : MonoBehaviour
 {
     [SerializeField] InputAction testInputAction;
+    [SerializeField] InputAction resetInputAction;
 
     int currentIndex;
     List<Round> rounds;
@@ -56,13 +57,12 @@ public class RoundsManager : MonoBehaviour
                 rounds[currentIndex].RoundCleared();
         };
         testInputAction.Enable();
-    }
 
-    private void ActivateCurrentIndex()
-    {
-        currentIndex %= rounds.Count;
-        for (int i = 0; i < rounds.Count; i++)
-            rounds[i].SetActivation( i == currentIndex );        
+        resetInputAction.performed += ctx => 
+        {
+            ActivateCurrentIndex();
+        };
+        resetInputAction.Enable();
     }
 
     public void NextRoundLogic()
@@ -72,5 +72,12 @@ public class RoundsManager : MonoBehaviour
         {
             /* Chama transição de round, ao final chama -> */ ActivateCurrentIndex();
         }
+    }
+
+    private void ActivateCurrentIndex()
+    {
+        currentIndex %= rounds.Count;
+        for (int i = 0; i < rounds.Count; i++)
+            rounds[i].SetActivation( i == currentIndex );        
     }
 }
