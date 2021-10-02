@@ -17,6 +17,7 @@ public class Collectable : MonoBehaviour
 
     public virtual void OnResetFunction()
     {
+        gameObject.SetActive(true);
         previousHolder = null;    
     }
 
