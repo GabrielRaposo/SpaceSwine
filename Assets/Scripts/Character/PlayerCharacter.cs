@@ -45,10 +45,12 @@ public class PlayerCharacter : MonoBehaviour
     {
         ResetStates();
 
-        //Spawn state
-
         transform.position = position;
         transform.eulerAngles = rotation * Vector3.forward;
+
+        gameObject.SetActive(false);
+        
+        // Enter Spawn state
 
         gameObject.SetActive(true);
     }
