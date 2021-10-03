@@ -9,12 +9,14 @@ public class RoundsManager : MonoBehaviour
     [SerializeField] InputAction resetInputAction;
     [SerializeField] InputAction nextInputAction;
 
+    [Header("Temp")]
+    [SerializeField] RoundSessionData testSessionData;
+
     int currentIndex;
     List<Round> rounds;
     PlayerCharacter player;
 
-    public static bool CustomIniciation = false;
-    // public static RoundSessionData roundSessionData;
+    public static RoundSessionData SessionData;
 
     private void Start() 
     {
@@ -43,10 +45,15 @@ public class RoundsManager : MonoBehaviour
             return;
         }
 
-        // Encontra o Index inicial
-        if (CustomIniciation)
+        if (testSessionData != null && SessionData == null)
         {
-            
+            SessionData = testSessionData;
+        }
+
+        // Encontra o Index inicial
+        if (SessionData != null)
+        {
+            currentIndex = SessionData.startingIndex;
         }
         else currentIndex = 0;
 
@@ -95,10 +102,21 @@ public class RoundsManager : MonoBehaviour
     public void NextRoundLogic()
     {
         currentIndex++;
-        if (currentIndex < rounds.Count)
+
+        int lastRound = rounds.Count;
+        if (SessionData != null)
         {
-            // ActivateCurrentIndex();
+            lastRound = SessionData.lastIndex;
+        }
+
+        if (currentIndex - 1 < lastRound)
+        {
             RoundTransition.Call(ActivateCurrentIndex);
+        } 
+        else
+        {
+            SessionData = null;
+            SceneTransition.LoadScene( (int) BuildIndex.Title );
         }
     }
 }

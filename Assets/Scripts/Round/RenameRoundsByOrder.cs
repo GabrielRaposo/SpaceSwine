@@ -8,7 +8,7 @@ public class RenameRoundsByOrder : MonoBehaviour
 
     public void UpdateNames()
     {
-        int index = 1;
+        int index = 0;
         for (int i = 0; i < transform.childCount; i++)
         {
             string stageIndex = string.Empty;
