@@ -115,8 +115,8 @@ public class RoundsManager : MonoBehaviour
         } 
         else
         {
+            SceneTransition.LoadScene( (int) SessionData.outroScene );
             SessionData = null;
-            SceneTransition.LoadScene( (int) BuildIndex.Title );
         }
     }
 }

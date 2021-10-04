@@ -96,5 +96,6 @@ public enum BuildIndex
 {
     Splash = 0,
     Title = 1,
-    TestStage = 2
+    TestExplorationStage = 2,
+    TestDangerStage = 3
 }
