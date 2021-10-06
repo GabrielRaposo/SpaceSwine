@@ -5,12 +5,11 @@ using Cinemachine;
 
 public class CameraFocusController : MonoBehaviour
 {
+    [SerializeField] CinemachineVirtualCamera staticCamera;
     [SerializeField] CinemachineVirtualCamera planetFocusCamera;
     [SerializeField] CinemachineVirtualCamera playerFocusCamera;
-    [Space]
-    [SerializeField] Transform startingFocus;
 
-    public enum Focus { Player, Planet }
+    public enum Focus { Static, Player, Planet }
     Focus currentFocus;
 
     public static CameraFocusController Instance;
@@ -18,9 +17,15 @@ public class CameraFocusController : MonoBehaviour
     private void Awake() 
     {
         Instance = this;
+    }
 
-        if (startingFocus)
-            SetPlanetFocus (startingFocus);
+    public void SetStaticFocus()
+    {
+        staticCamera.Priority = 1;
+        planetFocusCamera.Priority = 0;
+        playerFocusCamera.Priority = 0;
+
+        currentFocus = Focus.Static;
     }
 
     public void SetPlanetFocus (Transform target, float size = -1)
@@ -29,19 +34,31 @@ public class CameraFocusController : MonoBehaviour
         if (size > 0)
             planetFocusCamera.m_Lens.OrthographicSize = size;
         
+        staticCamera.Priority = 0;
         planetFocusCamera.Priority = 1;
         playerFocusCamera.Priority = 0;
 
         currentFocus = Focus.Planet;
-        //Debug.Log("Planet Focus");
     }
 
     public void SetPlayerFocus()
     {
+        staticCamera.Priority = 0;
         planetFocusCamera.Priority = 0;
         playerFocusCamera.Priority = 1;    
 
         currentFocus = Focus.Player;
-        //Debug.Log("Player Focus");
+    }
+
+    public void SetInstantPlayerFocus()
+    {
+        playerFocusCamera.transform.position =
+            new Vector3(
+                playerFocusCamera.Follow.transform.position.x,
+                playerFocusCamera.Follow.transform.position.y,
+                staticCamera.transform.position.z
+            );
+
+        SetPlayerFocus();
     }
 }

@@ -28,14 +28,34 @@ public class GameManager : MonoBehaviour
     {
         pauseSystem = PauseSystem.Instance; 
 
-        if (playerObject)
-        {
-            Health health = playerObject.GetComponent<Health>();    
-            if (health)
-                health.OnDeathEvent += ResetScene;
-        }
+        //if (playerObject)
+        //{
+        //    Health health = playerObject.GetComponent<Health>();    
+        //    if (health)
+        //        health.OnDeathEvent += ResetScene;
+        //}
 
         resetInputAction.performed += (ctx) => ResetScene();
+
+        SetupPlayer(); // Deve ocorrer no Start()
+    }
+
+    private void SetupPlayer()
+    {
+        if (!playerObject)
+            return;
+
+        LocalGameplayState playerState = playerObject.GetComponent<LocalGameplayState>();
+        if (!playerState || playerState.state != GameplayState.Exploration)
+            return;
+
+        SpawnManager spawnManager = SpawnManager.Instance;
+        if (!spawnManager)
+            return;
+
+        Vector3 spawnPosition = spawnManager.GetSpawnPoint();
+        playerObject.transform.position = spawnPosition;
+        Debug.Log("set spawnPosition: " + spawnPosition);
     }
 
     public static void ResetScene()
