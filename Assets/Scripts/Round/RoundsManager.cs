@@ -85,7 +85,9 @@ public class RoundsManager : MonoBehaviour
 
     public void PreviousRoundLogic()
     {
-        if (currentIndex > 0)
+        int first = SessionData ? SessionData.startingIndex : 0;
+
+        if (currentIndex > first)
         {
             currentIndex--;
             RoundTransition.Call(ActivateCurrentIndex);
@@ -115,6 +117,7 @@ public class RoundsManager : MonoBehaviour
         } 
         else
         {
+            SessionData.OnSessionCompleted();
             SceneTransition.LoadScene( (int) SessionData.outroScene );
             SessionData = null;
         }

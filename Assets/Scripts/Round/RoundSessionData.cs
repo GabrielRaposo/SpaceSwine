@@ -9,5 +9,6 @@ public class RoundSessionData : ScriptableObject
     public int startingIndex;
     public int lastIndex;
     public BuildIndex outroScene;
+    public int spawnIndex;
     public UnityAction OnSessionCompleted;
 }

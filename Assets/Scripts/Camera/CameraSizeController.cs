@@ -33,26 +33,12 @@ public class CameraSizeController : MonoBehaviour
         }
     }
 
-    //public static float GetSize()
-    //{
-    //    if (Instance)
-    //        return Instance.size;
-
-    //    return -1;
-    //}
-
-    //public static void SetSize(float size)
-    //{
-    //    if (Instance)
-    //        Instance.SetSizeLocal(size);
-    //}
-
     private void SetSizeLocal (float size)
     {
         if (vcams.Count < 1)
             return;
 
-        foreach(CinemachineVirtualCamera vcam in vcams)
+        foreach (CinemachineVirtualCamera vcam in vcams)
         {
             vcam.m_Lens.OrthographicSize = size;
         }
