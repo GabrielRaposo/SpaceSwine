@@ -52,12 +52,15 @@ public class CameraFocusController : MonoBehaviour
 
     public void SetInstantPlayerFocus()
     {
-        playerFocusCamera.transform.position =
-            new Vector3(
-                playerFocusCamera.Follow.transform.position.x,
-                playerFocusCamera.Follow.transform.position.y,
-                staticCamera.transform.position.z
-            );
+        if(playerFocusCamera.Follow)
+        {
+            playerFocusCamera.transform.position =
+                new Vector3(
+                    playerFocusCamera.Follow.transform.position.x,
+                    playerFocusCamera.Follow.transform.position.y,
+                    staticCamera.transform.position.z
+                );
+        }
 
         SetPlayerFocus();
     }
