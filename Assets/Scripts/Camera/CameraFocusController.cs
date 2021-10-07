@@ -52,7 +52,7 @@ public class CameraFocusController : MonoBehaviour
 
     public void SetInstantPlayerFocus()
     {
-        if(playerFocusCamera.Follow)
+        if (playerFocusCamera.Follow)
         {
             playerFocusCamera.transform.position =
                 new Vector3(
