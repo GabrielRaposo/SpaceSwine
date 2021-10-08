@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Jumper
 {
@@ -40,6 +40,18 @@ namespace Jumper
             landedOn = null;
         }
 
+        public float HighestYPosition()
+        {
+            float y = transform.position.y;
+
+            if (landedOn)
+            {
+                y = landedOn.transform.position.y;
+            }
+
+            return y;
+        }
+
         private void OnTriggerEnter2D (Collider2D collision) 
         {
             if (landedOn == null && (previous == null || previous != landedOn))
@@ -55,16 +67,12 @@ namespace Jumper
             }
         }
 
-        public float HighestYPosition()
+        private void OnTriggerExit2D(Collider2D collision) 
         {
-            float y = transform.position.y;
+            if (!collision.CompareTag("GameplayArea"))
+                return;
 
-            if (landedOn)
-            {
-                y = landedOn.transform.position.y;
-            }
-
-            return y;
+            SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
         }
 
         private void OnDisable() 
