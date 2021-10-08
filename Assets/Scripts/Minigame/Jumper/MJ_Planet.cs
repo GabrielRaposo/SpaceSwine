@@ -29,9 +29,21 @@ namespace Jumper
         public void Attach (Transform current)
         {
             current.SetParent(rotationAnchor);
-            current.position = rotationAnchor.position + Vector3.up * .95f;
+            
+            Vector3 direction = (current.position - transform.position).normalized;
+            current.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
+            current.position = rotationAnchor.position + (direction * .95f);
 
             this.current = current;
+        }
+
+        public void Dettach (Transform current)
+        {
+            if (this.current != current)
+                return;
+            
+            current.SetParent(null);
+            current = null;
         }
 
         private void FixedUpdate() 
