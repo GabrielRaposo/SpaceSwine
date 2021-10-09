@@ -44,10 +44,8 @@ namespace Jumper
         {
             float y = transform.position.y;
 
-            if (landedOn)
-            {
+            if (landedOn && landedOn.transform.position.y > y)
                 y = landedOn.transform.position.y;
-            }
 
             return y;
         }
