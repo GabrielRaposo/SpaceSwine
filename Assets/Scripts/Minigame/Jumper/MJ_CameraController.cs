@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Jumper 
 {
@@ -23,15 +24,16 @@ namespace Jumper
         void Update()
         {
             float targetY = player.HighestYPosition();
-            if (targetY > transform.position.y - SCREEN_OFFSET )
-            {
+
+            //if (targetY > transform.position.y - SCREEN_OFFSET )
+            //{
                 transform.position = new Vector3
                 (
                     transform.position.x, 
                     Mathf.Lerp(transform.position.y, targetY + SCREEN_OFFSET, lerpRatio),
                     transform.position.z
                 );
-            }
+            //}
         }
     }
 

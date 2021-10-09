@@ -6,7 +6,7 @@ namespace Jumper
 {
     public class MJ_Planet : MonoBehaviour
     {
-        const float DIFF_MODIFIER = 1.2f;
+        const float DIFF_MODIFIER = 2.0f;
 
         [SerializeField] Transform rotationAnchor;
         [SerializeField] float rotationSpeed;

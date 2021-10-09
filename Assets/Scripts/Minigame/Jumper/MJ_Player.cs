@@ -9,6 +9,8 @@ namespace Jumper
     {
         [SerializeField] float jumpForce;
 
+        bool outsideScreen;
+
         Rigidbody2D rb;
         PlayerInputActions playerInputActions;
         MJ_Planet landedOn;
@@ -25,6 +27,15 @@ namespace Jumper
                 JumpOff();
             };
             playerInputActions.Minigame.Action.Enable();
+        }
+
+        private void Update() 
+        {
+            if (outsideScreen && !landedOn)
+            {
+                Die();
+                return;
+            }    
         }
 
         private void JumpOff()
@@ -52,25 +63,42 @@ namespace Jumper
 
         private void OnTriggerEnter2D (Collider2D collision) 
         {
-            if (landedOn == null && (previous == null || previous != landedOn))
+            if (collision.CompareTag("GameplayArea"))
             {
-                rb.velocity = Vector2.zero;
+                outsideScreen = false;
+            }
 
-                MJ_Planet planet = collision.GetComponent<MJ_Planet>();
-                if (!planet)
-                    return;
+            MJ_Planet planet = collision.GetComponent<MJ_Planet>();
+            if (planet)
+            {
+                if (landedOn == null && (previous == null || previous != planet))
+                {
+                    rb.velocity = Vector2.zero;
 
-                planet.Attach (transform);
-                landedOn = planet;
+                    planet.Attach (transform);
+                    landedOn = planet;
+                }
+            }
+
+            MJ_Hazard hazard = collision.GetComponent<MJ_Hazard>();
+            if (hazard)
+            {
+                Die();
             }
         }
 
         private void OnTriggerExit2D(Collider2D collision) 
         {
-            if (!collision.CompareTag("GameplayArea"))
-                return;
+            if (collision.CompareTag("GameplayArea"))
+            {
+                outsideScreen = true;
+            }
+        }
 
+        private void Die()
+        {
             SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
+            gameObject.SetActive(false);
         }
 
         private void OnDisable() 

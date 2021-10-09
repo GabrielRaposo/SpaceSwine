@@ -6,6 +6,20 @@ namespace Jumper
 {
     public class MJ_BlockGroup : MonoBehaviour
     {
+        private void Awake() 
+        {
+            ShuffleChildren();    
+        }
+
+        private void ShuffleChildren()
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                int childIndex = Random.Range(i, transform.childCount);
+                transform.GetChild(childIndex).SetAsFirstSibling();
+            }
+        }
+
         public MJ_LevelBlock GetRandomBlock ()
         {
             if (transform.childCount < 1)
