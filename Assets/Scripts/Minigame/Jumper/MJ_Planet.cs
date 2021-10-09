@@ -6,6 +6,8 @@ namespace Jumper
 {
     public class MJ_Planet : MonoBehaviour
     {
+        const float DIFF_MODIFIER = 1.2f;
+
         [SerializeField] Transform rotationAnchor;
         [SerializeField] float rotationSpeed;
 
@@ -48,8 +50,19 @@ namespace Jumper
 
         private void FixedUpdate() 
         {
-            transform.Rotate(Vector3.forward * rotationSpeed * Time.fixedDeltaTime);
+            transform.Rotate(Vector3.forward * rotationSpeed * DIFF_MODIFIER * Time.fixedDeltaTime);
             //rotationAnchor.Rotate(Vector3.forward * rotationSpeed * Time.fixedDeltaTime);
+        }
+
+        private void OnDrawGizmos() 
+        {
+            if (rotationSpeed == 0)
+                return;
+
+            Vector2 upPosition = transform.position + Vector3.up * .75f;
+            Vector2 offset = Vector2.left * 1f * (rotationSpeed > 0 ? 1 : -1);
+            Gizmos.DrawLine( upPosition, upPosition + offset );
+            Gizmos.DrawWireSphere (upPosition + offset, .1f );
         }
     }
 }
