@@ -10,6 +10,10 @@ namespace Jumper
         [SerializeField] Vector2 vanishPoint;
         [Space(5)]
         [SerializeField] float cycleDuration;
+        [SerializeField] GameObject hazardPrefab;
+
+        GameObject leftHazard;
+        GameObject rightHazard;
 
         void OnEnable()
         {
@@ -40,7 +44,22 @@ namespace Jumper
                 );
             }
 
-            // To-Do: posiciona hazards invisíveis offscreen
+            PlaceHazards();
+        }
+
+        private void PlaceHazards()
+        {
+            if (!hazardPrefab)
+                return;
+
+            if (leftHazard == null)
+                leftHazard = Instantiate( hazardPrefab, transform.parent );
+                
+            if (rightHazard == null)
+                rightHazard = Instantiate( hazardPrefab, transform.parent );
+
+            leftHazard.transform.position  = transform.position + (Vector3) spawnPoint;
+            rightHazard.transform.position = transform.position + (Vector3) vanishPoint;
         }
 
         private void OnDrawGizmos() 

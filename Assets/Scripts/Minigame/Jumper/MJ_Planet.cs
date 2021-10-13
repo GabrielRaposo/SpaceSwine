@@ -6,12 +6,22 @@ namespace Jumper
 {
     public class MJ_Planet : MonoBehaviour
     {
-        const float DIFF_MODIFIER = 2.0f;
-
         [SerializeField] Transform rotationAnchor;
         [SerializeField] float rotationSpeed;
 
         Transform current;
+
+        static float DifficultyRatio = 1.5f;
+
+        public static void ResetDifficulty()
+        {
+            DifficultyRatio = 1.5f;
+        }
+
+        public static void AddDifficulty()
+        {
+            DifficultyRatio += .125f;
+        }
 
         private void Start() 
         {
@@ -50,7 +60,7 @@ namespace Jumper
 
         private void FixedUpdate() 
         {
-            transform.Rotate(Vector3.forward * rotationSpeed * DIFF_MODIFIER * Time.fixedDeltaTime);
+            transform.Rotate(Vector3.forward * rotationSpeed * DifficultyRatio * Time.fixedDeltaTime);
             //rotationAnchor.Rotate(Vector3.forward * rotationSpeed * Time.fixedDeltaTime);
         }
 

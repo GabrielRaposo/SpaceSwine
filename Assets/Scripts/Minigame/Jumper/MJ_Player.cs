@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Jumper
 {
@@ -9,6 +8,14 @@ namespace Jumper
     {
         [SerializeField] float jumpForce;
 
+        [Header("References")]
+        [SerializeField] GameObject destroyAnimation;
+        [SerializeField] MJ_GameManager gameManager;
+        [SerializeField] ParticleSystem trailEffect;
+        [SerializeField] ParticleSystem launchEffect;
+        [SerializeField] ParticleSystem landingEffect;
+
+        int difficultyIndex;
         bool outsideScreen;
 
         Rigidbody2D rb;
@@ -29,8 +36,20 @@ namespace Jumper
             playerInputActions.Minigame.Action.Enable();
         }
 
+        private void Start() 
+        {
+            difficultyIndex = 1;
+            MJ_Planet.ResetDifficulty();    
+        }
+
         private void Update() 
         {
+            if (HighestYPosition() > 25 * difficultyIndex)
+            {
+                MJ_Planet.AddDifficulty();
+                difficultyIndex++;
+            }
+
             if (outsideScreen && !landedOn)
             {
                 Die();
@@ -42,6 +61,15 @@ namespace Jumper
         {
             if (landedOn == null)
                 return;
+
+            if (launchEffect)
+            {
+                float angle = Vector2.SignedAngle(Vector2.up, transform.up);
+                ParticleSystem.MainModule mainModule = launchEffect.main;
+                mainModule.startRotation = angle * Mathf.Deg2Rad * -1f;
+                launchEffect.Play();
+            }
+            trailEffect?.Play();
 
             rb.velocity = transform.up * jumpForce * Time.fixedDeltaTime;
 
@@ -73,6 +101,10 @@ namespace Jumper
             {
                 if (landedOn == null && (previous == null || previous != planet))
                 {
+                    trailEffect?.Pause();
+
+                    StartCoroutine ( RaposUtil.Wait(1, () => landingEffect?.Play() ) );
+
                     rb.velocity = Vector2.zero;
 
                     planet.Attach (transform);
@@ -80,8 +112,8 @@ namespace Jumper
                 }
             }
 
-            MJ_Hazard hazard = collision.GetComponent<MJ_Hazard>();
-            if (hazard)
+            //MJ_Hazard hazard = collision.GetComponent<MJ_Hazard>();
+            if (collision.CompareTag("Hazard"))
             {
                 Die();
             }
@@ -97,8 +129,19 @@ namespace Jumper
 
         private void Die()
         {
-            SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
+            if (destroyAnimation)
+            {
+                destroyAnimation.transform.SetParent(null);
+                destroyAnimation.transform.eulerAngles = Vector3.zero;
+                destroyAnimation.SetActive(true);
+            }
+            
             gameObject.SetActive(false);
+            
+            if (gameManager)
+            {
+                gameManager.ResetScene (.5f);
+            }
         }
 
         private void OnDisable() 

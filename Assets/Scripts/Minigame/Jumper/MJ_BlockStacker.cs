@@ -43,6 +43,7 @@ namespace Jumper
                 0,
                 fitPosition - block.lowerBorder
             );
+            block.gameObject.SetActive(false);
             block.gameObject.SetActive(true);
             block.transform.SetParent(activeGroup);
             block.player = player;
