@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Jumper
 {
@@ -17,11 +18,14 @@ namespace Jumper
 
         int difficultyIndex;
         bool outsideScreen;
+        bool hasMoved;
 
         Rigidbody2D rb;
         PlayerInputActions playerInputActions;
         MJ_Planet landedOn;
         MJ_Planet previous;
+
+        public UnityAction OnFirstMove;
 
         void OnEnable()
         {
@@ -61,6 +65,12 @@ namespace Jumper
         {
             if (landedOn == null)
                 return;
+
+            if (!hasMoved)
+            {
+                OnFirstMove?.Invoke();
+                hasMoved = true;
+            }
 
             if (launchEffect)
             {
@@ -103,7 +113,8 @@ namespace Jumper
                 {
                     trailEffect?.Pause();
 
-                    StartCoroutine ( RaposUtil.Wait(1, () => landingEffect?.Play() ) );
+                    if (hasMoved)
+                        StartCoroutine ( RaposUtil.Wait(1, () => landingEffect?.Play() ) );
 
                     rb.velocity = Vector2.zero;
 

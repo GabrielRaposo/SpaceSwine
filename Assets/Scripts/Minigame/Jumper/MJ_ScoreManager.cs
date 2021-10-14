@@ -9,7 +9,6 @@ namespace Jumper
     {
         const int HEIGHT_OFFSET = 25;
 
-        [SerializeField] string baseText;
         [SerializeField] TextMeshProUGUI display;
         [SerializeField] MJ_Player player;
         [SerializeField] MJ_ScoreLine scoreLine;
@@ -17,7 +16,9 @@ namespace Jumper
 
         int displayedHeight;
         int score;
+        static string BaseText = " m";
         static int PlayerBestScore;
+        static bool HasNewBestScore;
 
         void Start()
         {
@@ -25,10 +26,10 @@ namespace Jumper
             UpdateScore();
 
             displayedHeight = HEIGHT_OFFSET;
-            heightLine.SetValue(displayedHeight, displayedHeight.ToString() + baseText);
+            heightLine.SetValue(displayedHeight, displayedHeight.ToString() + BaseText);
 
             if (PlayerBestScore > 0)           
-                scoreLine.SetValue(PlayerBestScore, PlayerBestScore.ToString() + baseText);
+                scoreLine.SetValue(PlayerBestScore, PlayerBestScore.ToString() + BaseText);
         }
 
         private void Update() 
@@ -38,14 +39,17 @@ namespace Jumper
             if (playerHighest > displayedHeight + (HEIGHT_OFFSET/2) )
             {
                 displayedHeight += HEIGHT_OFFSET;
-                heightLine.SetValue(displayedHeight, displayedHeight.ToString() + baseText);
+                heightLine.SetValue(displayedHeight, displayedHeight.ToString() + BaseText);
             }
 
             if (playerHighest > score)
                 score = playerHighest;
 
             if (score > PlayerBestScore)
+            {
+                HasNewBestScore = true;
                 PlayerBestScore = score;
+            }
 
             UpdateScore();
         }
@@ -55,7 +59,23 @@ namespace Jumper
             if (!display)
                 return;
 
-            display.text =  score.ToString() + baseText;
+            display.text =  score.ToString() + BaseText;
+        }
+
+        public static (int, string) PlayerBest()
+        {
+            return (PlayerBestScore, PlayerBestScore.ToString() + BaseText);
+        }
+
+        public static bool UseHasScoreTrigger()
+        {
+            if (HasNewBestScore)
+            {
+                HasNewBestScore = false;
+                return true;
+            }
+
+            return false;
         }
     }
 
