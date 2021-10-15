@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Minigame_GGSConsoleCanvas : MonoBehaviour
+namespace Minigame
 {
-    static Minigame_GGSConsoleCanvas Instance;
-
-    private void Awake() 
+    public class Minigame_GGSConsoleCanvas : MonoBehaviour
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        static Minigame_GGSConsoleCanvas Instance;
 
-        Instance = this;
-        DontDestroyOnLoad (gameObject);
+        private void Awake() 
+        {
+            return;
+
+            //if (Instance != null)
+            //{
+            //    Destroy(gameObject);
+            //    return;
+            //}
+
+            //Instance = this;
+            //DontDestroyOnLoad (gameObject);
+        }
     }
+
 }

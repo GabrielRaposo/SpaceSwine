@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Minigame;
 
 [RequireComponent(typeof(LocalGameplayState))]
 [RequireComponent(typeof(PlatformerCharacter))]
@@ -46,10 +47,6 @@ public class PlayerInput : MonoBehaviour
 
         playerInputActions.Player.Interact.performed += DoInteract;
         playerInputActions.Player.Interact.Enable();
-
-        //playerInputActions.Player.Launch.performed += DoLaunch;
-        //playerInputActions.Player.Launch.Enable();
-
     }
 
     public void SetJumpAction()
@@ -106,6 +103,9 @@ public class PlayerInput : MonoBehaviour
         if (DialogueSystem.OnDialogue)
             return true;
 
+        if (GGSConsole.TurnedOn)
+            return true;
+
         return false;
     }
 
@@ -142,6 +142,9 @@ public class PlayerInput : MonoBehaviour
     private void FixedUpdate() 
     {
         if (DialogueSystem.OnDialogue)
+            return;
+
+        if (GGSConsole.TurnedOn)
             return;
 
         Vector2 movementInput = movement.ReadValue<Vector2>();

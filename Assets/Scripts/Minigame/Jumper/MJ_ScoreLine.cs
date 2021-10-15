@@ -14,7 +14,7 @@ namespace Jumper
             if (display)
                 display.text = text;
 
-            transform.position = new Vector2 (0, value);
+            transform.position = new Vector2 (transform.position.x, value);
         }
 
     }

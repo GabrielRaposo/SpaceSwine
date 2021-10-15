@@ -28,7 +28,7 @@ namespace Jumper
                 player.OnFirstMove += HideMenus;
 
             mainDisplay.text = string.Empty;
-            mainDisplay.text += "-" + "EASY" + "-" + "\n";
+            mainDisplay.text += "-" + "HARD" + "-" + "\n";
             string bestScore = MJ_ScoreManager.PlayerBest().Item1 <= 0 ? 
                 "---" : 
                 MJ_ScoreManager.PlayerBest().Item2;
@@ -50,7 +50,7 @@ namespace Jumper
                     newRecordDisplay.color = blinkingColors[i];
 
                     mainDisplay.text = string.Empty;
-                    mainDisplay.text += "- " + "EASY" + " -" + "\n";
+                    mainDisplay.text += "- " + "HARD" + " -" + "\n";
 
                     string bestScore = MJ_ScoreManager.PlayerBest().Item1 <= 0 ? 
                         "---" : 

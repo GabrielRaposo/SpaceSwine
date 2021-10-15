@@ -40,7 +40,7 @@ namespace Jumper
 
             block.transform.position = new Vector2
             (
-                0,
+                transform.position.x,
                 fitPosition - block.lowerBorder
             );
             block.gameObject.SetActive(false);

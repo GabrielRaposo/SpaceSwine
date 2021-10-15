@@ -8,15 +8,23 @@ namespace Jumper
 {
     public class MJ_GameManager : MonoBehaviour
     {
-        void Start()
+        GGSConsole ggsConsole;
+        public static MJ_GameManager Instance;
+
+        private void Awake() 
         {
-        
+            Instance = this;    
+        }
+
+        public void ConnectToConsole (GGSConsole ggsConsole)
+        {
+            this.ggsConsole = ggsConsole;
         }
 
         public void ResetScene (float delay = 0) 
         {
             if (delay <= 0)
-                Minigame_Transition.Call(() => SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex ));
+                Minigame_Transition.Call(ResetCall);
             else
             {
                 StartCoroutine
@@ -24,10 +32,18 @@ namespace Jumper
                     RaposUtil.WaitSeconds
                     (
                         delay, () => 
-                        Minigame_Transition.Call(() => SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex ))
+                        Minigame_Transition.Call(ResetCall)
                     )
                 );
             }
+        }
+
+        public void ResetCall ()
+        {
+            if (ggsConsole)
+                ggsConsole.ReloadMinigame();
+            else
+                SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
         }
     }
 }

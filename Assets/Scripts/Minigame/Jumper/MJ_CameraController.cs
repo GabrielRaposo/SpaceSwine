@@ -12,6 +12,13 @@ namespace Jumper
         [SerializeField] float lerpRatio;
         [SerializeField] MJ_Player player;
 
+        public static MJ_CameraController Instance;
+
+        private void Awake() 
+        {
+            Instance = this;
+        }
+
         void Start()
         {
             if (!player)
@@ -34,6 +41,15 @@ namespace Jumper
                     transform.position.z
                 );
             //}
+        }
+
+        public void SetRenderTexture (RenderTexture renderTexture)
+        {
+            Camera camera = GetComponent<Camera>();
+            if (!camera)
+                return;
+
+            camera.targetTexture = renderTexture;
         }
     }
 

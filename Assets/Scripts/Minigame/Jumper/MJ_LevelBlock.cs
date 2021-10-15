@@ -17,7 +17,7 @@ namespace Jumper
             if (!player)
                 return;
 
-            if (FitPosition + 5 < player.transform.position.y)
+            if (FitPosition + 9 < player.transform.position.y)
             {
                 gameObject.SetActive(false);
                 

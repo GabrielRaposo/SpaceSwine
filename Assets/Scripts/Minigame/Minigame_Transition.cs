@@ -29,6 +29,12 @@ namespace Minigame
             }
 
             Instance = this;
+
+            if (OnTransition)
+            {
+                mainAnchor.anchoredPosition = new Vector2( mainAnchor.anchoredPosition.x, midY);
+                StartCoroutine(TransitionSecondHalfCoroutine());
+            }
         }
 
         public static void Call(UnityAction action)
@@ -45,7 +51,7 @@ namespace Minigame
 
         private void LocalCall(UnityAction action)
         {
-            StartCoroutine( TransitionCoroutine(action) );
+            StartCoroutine( TransitionFirstHalfCoroutine(action) );
         }
 
         private IEnumerator TransitionCoroutine(UnityAction action)
@@ -73,6 +79,50 @@ namespace Minigame
             // Chamada de action 
             action?.Invoke();
             yield return new WaitForEndOfFrame();
+
+            // Some com transição
+            mainSequence = DOTween.Sequence();
+            mainSequence.Append( mainAnchor.DOAnchorPosY(botY, duration).SetEase(Ease.Linear) );
+            mainSequence.OnComplete( () => done = true );
+            mainSequence.SetUpdate(isIndependentUpdate: true);
+
+            yield return new WaitUntil( () => done );
+
+            OnTransition = false;
+        }
+
+        private IEnumerator TransitionFirstHalfCoroutine(UnityAction action)
+        {
+            OnTransition = true;
+            bool done = false;
+
+            if (!mainAnchor)
+                yield break;
+
+            if (mainSequence != null)
+                mainSequence.Kill();
+
+            mainAnchor.anchoredPosition = new Vector2 (mainAnchor.anchoredPosition.x, topY);
+
+            // Mostra transição
+            mainSequence = DOTween.Sequence();
+            mainSequence.Append( mainAnchor.DOAnchorPosY(midY, duration).SetEase(Ease.Linear) );
+            mainSequence.OnComplete( () => done = true );
+            mainSequence.SetUpdate(isIndependentUpdate: true);
+
+            yield return new WaitUntil( () => done );
+            done = false;
+
+            // Chamada de action 
+            action?.Invoke();
+            //yield return new WaitForEndOfFrame();
+        }
+
+        private IEnumerator TransitionSecondHalfCoroutine ()
+        {
+            yield return new WaitForEndOfFrame();
+
+            bool done = false;
 
             // Some com transição
             mainSequence = DOTween.Sequence();
