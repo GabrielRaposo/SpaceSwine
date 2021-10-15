@@ -57,3 +57,47 @@ public static class Vector2Extension
         return new Vector2 (x, v.y);        
     }
 }
+
+public static class RectTransformExtensions
+ {
+    public static void MoveX (this RectTransform rt, float x)
+    {
+        rt.offsetMin = new Vector2(x, rt.offsetMin.y);
+        rt.offsetMax = new Vector2(x, rt.offsetMax.y);
+    }
+
+    public static void MoveY (this RectTransform rt, float y)
+    {
+        rt.offsetMin = new Vector2(rt.offsetMin.x, y);
+        rt.offsetMax = new Vector2(rt.offsetMax.x, y);
+    }
+
+    public static void Move (this RectTransform rt, float x, float y)
+    {
+        rt.offsetMin = new Vector2(x, rt.offsetMin.y);
+        rt.offsetMax = new Vector2(x, rt.offsetMax.y);
+
+        rt.offsetMin = new Vector2(rt.offsetMin.x, y);
+        rt.offsetMax = new Vector2(rt.offsetMax.x, y);
+    }
+
+    public static void SetLeft(this RectTransform rt, float left)
+    {
+        rt.offsetMin = new Vector2(left, rt.offsetMin.y);
+    }
+ 
+    public static void SetRight(this RectTransform rt, float right)
+    {
+        rt.offsetMax = new Vector2(-right, rt.offsetMax.y);
+    }
+ 
+    public static void SetTop(this RectTransform rt, float top)
+    {
+        rt.offsetMax = new Vector2(rt.offsetMax.x, -top);
+    }
+ 
+    public static void SetBottom(this RectTransform rt, float bottom)
+    {
+        rt.offsetMin = new Vector2(rt.offsetMin.x, bottom);
+    }
+ }

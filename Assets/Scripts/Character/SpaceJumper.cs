@@ -99,6 +99,13 @@ public class SpaceJumper : MonoBehaviour
         return onLaunch;
     }
 
+    public void ResetStates()
+    {
+        onLaunch = false;
+        rb.velocity = Vector2.zero;
+        SetLaunchState(false);
+    }
+
     private void OnDrawGizmos() 
     {
         if (!onLaunch)

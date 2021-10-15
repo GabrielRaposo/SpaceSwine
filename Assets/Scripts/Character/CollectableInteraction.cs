@@ -52,8 +52,11 @@ public class CollectableInteraction : MonoBehaviour
         if (collider2D)
             collider2D.enabled = false;
 
+        HierarchyController hierarchyController = collectable.GetComponent<HierarchyController>();
+        if (hierarchyController) 
+            hierarchyController.SetParent(t);
+        
         collectable.transform.position = t.position;
-        collectable.transform.SetParent(t);
 
         current = collectable;
         return true;
@@ -88,17 +91,35 @@ public class CollectableInteraction : MonoBehaviour
 
         Rigidbody2D rb = current.GetComponent<Rigidbody2D>();
         if (rb)
-        {
             rb.velocity = direction * launchSpeed;
-        }
 
         Collider2D coll = current.GetComponent<Collider2D>();
         if (coll)
-        {
             coll.enabled = true;
+
+        HierarchyController hierarchyController = current.GetComponent<HierarchyController>();
+        if (hierarchyController) 
+            hierarchyController.SetParent(null);
+
+        current = null;
+    }
+
+    public void ResetStates()
+    {
+        if (current != null)
+        {
+            Rigidbody2D rb = current.GetComponent<Rigidbody2D>();
+            if (rb)
+                rb.velocity = Vector2.zero;
+
+            HierarchyController hierarchyController = current.GetComponent<HierarchyController>();
+            if (hierarchyController) 
+                hierarchyController.SetOriginalState();
+
+            current = null;
         }
 
-        current.transform.SetParent(null);
-        current = null;
+        // current = null;
+        playerAnimations.holding = false;
     }
 }

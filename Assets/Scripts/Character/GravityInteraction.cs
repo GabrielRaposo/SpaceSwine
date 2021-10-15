@@ -48,6 +48,22 @@ public class GravityInteraction : MonoBehaviour
         { 
             if (gravityArea) cameraFocusController.SetPlanetFocus(gravityArea.transform);
         };
+
+        LocalGameplayState localGameplayState = GetComponent<LocalGameplayState>();
+        if (localGameplayState)
+        {
+            switch (localGameplayState.state) 
+            {
+                case GameplayState.Exploration:
+                    cameraFocusController.SetInstantPlayerFocus();
+                    break;
+
+                //case GameplayState.Danger:
+                //    if (gravityArea) cameraFocusController.SetPlanetFocus(gravityArea.transform);
+                //    break;
+            }
+
+        }
     }
 
     private void Update() 

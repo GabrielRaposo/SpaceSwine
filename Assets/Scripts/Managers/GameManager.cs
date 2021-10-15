@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Minigame;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,15 +12,26 @@ public class GameManager : MonoBehaviour
 
     PauseSystem pauseSystem;
     PlayerInputActions playerInputActions;
+    GGSConsole ggsConsole;
 
     private void OnEnable() 
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.UI.Start.performed += (ctx) => 
         {
+            if (GGSConsole.TurnedOn)
+                return;
+
             pauseSystem?.TogglePauseState();
         };
         playerInputActions.UI.Start.Enable();
+
+        playerInputActions.UI.Minigame.performed += (ctx) => 
+        {
+            if (ggsConsole)
+                ggsConsole.ToggleConsoleState();
+        };
+        playerInputActions.UI.Minigame.Enable();
         
         resetInputAction.Enable();
     }
@@ -27,15 +39,29 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         pauseSystem = PauseSystem.Instance; 
-
-        if (playerObject)
-        {
-            Health health = playerObject.GetComponent<Health>();    
-            if (health)
-                health.OnDeathEvent += ResetScene;
-        }
+        ggsConsole = GGSConsole.Instance;
 
         resetInputAction.performed += (ctx) => ResetScene();
+
+        SetupPlayer(); // Deve ocorrer no Start()
+    }
+
+    private void SetupPlayer()
+    {
+        if (!playerObject)
+            return;
+
+        LocalGameplayState playerState = playerObject.GetComponent<LocalGameplayState>();
+        if (!playerState || playerState.state != GameplayState.Exploration)
+            return;
+
+        SpawnManager spawnManager = SpawnManager.Instance;
+        if (!spawnManager)
+            return;
+
+        Vector3 spawnPosition = spawnManager.GetSpawnPoint();
+        playerObject.transform.position = spawnPosition;
+        Debug.Log("set spawnPosition: " + spawnPosition);
     }
 
     public static void ResetScene()
@@ -53,6 +79,7 @@ public class GameManager : MonoBehaviour
     private void OnDisable() 
     {
         playerInputActions.UI.Start.Disable();
+        playerInputActions.UI.Minigame.Disable();
         resetInputAction.Disable();    
     }
 }

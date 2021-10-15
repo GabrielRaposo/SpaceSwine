@@ -12,7 +12,7 @@ public class TitleScreenFunctions : MonoBehaviour
     public void PlayInput()
     {
         Debug.Log("Play");
-        SceneTransition.LoadScene((int) BuildIndex.TestStage);
+        SceneTransition.LoadScene((int) BuildIndex.TestExplorationStage);
     }
 
     public void OptionsInput()

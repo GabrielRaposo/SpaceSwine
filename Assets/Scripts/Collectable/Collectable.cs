@@ -6,6 +6,21 @@ public class Collectable : MonoBehaviour
 {   
     GameObject previousHolder;
 
+    private void Start() 
+    {
+        Round round = GetComponentInParent<Round>();
+        if (round)
+        {
+            round.OnReset += OnResetFunction;
+        }
+    }
+
+    public virtual void OnResetFunction()
+    {
+        gameObject.SetActive(true);
+        previousHolder = null;    
+    }
+
     public virtual void Interact (CollectableInteraction interactor) { }
 
     private void OnTriggerEnter2D (Collider2D collision) 
