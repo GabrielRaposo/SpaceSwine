@@ -12,9 +12,12 @@ namespace Minigame
     [RequireComponent(typeof(CanvasGroup))]
     public class GGSConsole : MonoBehaviour
     {
+        const int HIDDEN_Y = -1000;
+    
         [SerializeField] float duration;
         [SerializeField] RenderTexture minigameRenderTexture;
         [SerializeField] GGSSplashScreen splashScreen;
+        [SerializeField] RectTransform consoleAnchor;
 
         CanvasGroup canvasGroup;
         AsyncOperation asyncMinigameLoad;
@@ -42,7 +45,17 @@ namespace Minigame
         public void TurnConsoleOn()
         {
             TurnedOn = true;
-            canvasGroup.DOFade(1, duration);
+            canvasGroup.alpha = 1;
+
+            consoleAnchor.DOKill();
+            consoleAnchor.MoveY(HIDDEN_Y);
+            DOVirtual.Float(HIDDEN_Y, 0, duration, 
+                (y) => 
+                {
+                    consoleAnchor.MoveY(y);    
+                }
+            ).SetEase(Ease.OutCirc);
+
             splashScreen.Call
             (
                 () => SetupMinigame (GGSMinigame.Jumper)
@@ -52,7 +65,17 @@ namespace Minigame
         public void TurnConsoleOff()
         {
             TurnedOn = false;
-            canvasGroup.DOFade(0, duration);
+            splashScreen.SetVisibility(true);
+            
+            consoleAnchor.DOKill();
+            consoleAnchor.MoveY(0);
+            DOVirtual.Float(0, HIDDEN_Y, duration / 2f, 
+                (y) => 
+                {
+                    consoleAnchor.MoveY(y);    
+                }
+            ).SetEase(Ease.InCirc);
+
             UnloadMinigame();
         }
 

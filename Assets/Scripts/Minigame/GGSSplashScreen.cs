@@ -35,11 +35,20 @@ namespace Minigame
 
             //logo animation
             logo.enabled = true;
-
-            yield return new WaitForSecondsRealtime(logoDuration);
+            yield return new WaitForSecondsRealtime((logoDuration * 2) / 3);
+            logo.enabled = false;
+            yield return new WaitForSecondsRealtime((logoDuration * 1) / 3);
 
             AfterSplash?.Invoke();
-            canvasGroup.alpha = 0;
+
+            yield return new WaitForSecondsRealtime(1f);
+            SetVisibility(false);
         }
+
+        public void SetVisibility(bool value)
+        {
+            canvasGroup.alpha = value? 1 : 0;
+        }
+
     }
 }
