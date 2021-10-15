@@ -40,9 +40,9 @@ public class AstroPigLocalizationFile : ScriptableObject
         return s;
     }
 
-    public string GetAchievementText(string id)
+    public string GetAchievementName(string id)
     {
-        if (!achievementDictionary.TryGetValue(id, out LanguageToString languageToString))
+        if (!achievementDictionary.TryGetValue(id+"_TITLE", out LanguageToString languageToString))
         {
             return $"Achievement name not found {id}";
         }
@@ -52,5 +52,25 @@ public class AstroPigLocalizationFile : ScriptableObject
             return $"Achievement name not found {id}";
         }
         return s;
+    }
+    
+    public string GetAchievementDescription(string id)
+    {
+        if (!achievementDictionary.TryGetValue(id+"_DESC", out LanguageToString languageToString))
+        {
+            return $"Achievement description not found {id}";
+        }
+
+        if (!languageToString.TryGetValue(LocalizationManager.CurrentLanguage, out string s))
+        {
+            return $"Achievement description not found {id}";
+        }
+        return s;
+    }
+
+    public string GetMusicText(string localizationCode)
+    {
+        return "";
+        //throw new System.NotImplementedException();
     }
 }

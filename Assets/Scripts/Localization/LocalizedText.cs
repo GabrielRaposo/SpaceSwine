@@ -9,24 +9,25 @@ public enum LocalizedTextTypes
 {
     UI,
     Story,
-    Achievement
+    Achievement,
+    Music
 }
 
 public class LocalizedText : MonoBehaviour
 {
-    [SerializeField]private string localizationCode;
-    [SerializeField] [TextArea(1,3)]private string fallbackText;
+    public string localizationCode;
+    [TextArea(1,3)]public string fallbackText;
 
-    public bool useUniversalFont;
+    //public bool useUniversalFont;
 
-    static string japaneseFontAdress = "Fonts/JP-Pomeranian-Regular SDF";
-    static TMP_FontAsset japaneseFont;
+    // static string japaneseFontAdress = "Fonts/JP-Pomeranian-Regular SDF";
+    // static TMP_FontAsset japaneseFont;
 
-    static string standardFontAdress = "Fonts/BaksoSapi SDF";
-    static TMP_FontAsset standardFont;
+    // static string standardFontAdress = "Fonts/BaksoSapi SDF";
+    // static TMP_FontAsset standardFont;
 
-    private string universalFontAdress = "Fonts/NotoSansMonoCJKjp_Universal";
-    static TMP_FontAsset universalFont;
+    // private string universalFontAdress = "Fonts/NotoSansMonoCJKjp_Universal";
+    // static TMP_FontAsset universalFont;
 
     public string textStyle;
     
@@ -36,6 +37,9 @@ public class LocalizedText : MonoBehaviour
     //[SerializeField] public TextMeshProUGUI textMesh;
     [SerializeField] public TMP_Text textMesh;
 
+    
+    //EDITOR
+    public bool editor_manualCode;
 
     private void OnEnable()
     {
@@ -43,14 +47,14 @@ public class LocalizedText : MonoBehaviour
         
         if(textMesh == null) return;
         
-        if (standardFont == null)
-            standardFont = Resources.Load<TMP_FontAsset>(standardFontAdress);
+        // if (standardFont == null)
+        //     standardFont = Resources.Load<TMP_FontAsset>(standardFontAdress);
         
-        if (japaneseFont == null)
-            japaneseFont = Resources.Load<TMP_FontAsset>(japaneseFontAdress);
-
-        if (universalFont == null)
-            universalFont = Resources.Load<TMP_FontAsset>(universalFontAdress);
+        // if (japaneseFont == null)
+        //     japaneseFont = Resources.Load<TMP_FontAsset>(japaneseFontAdress);
+        //
+        // if (universalFont == null)
+        //     universalFont = Resources.Load<TMP_FontAsset>(universalFontAdress);
 
         LocalizationManager.AddToList(this);
         
@@ -81,7 +85,10 @@ public class LocalizedText : MonoBehaviour
                 textMesh.text = story.text;
                 break;
             case LocalizedTextTypes.Achievement:
-                textMesh.text = file.GetAchievementText(localizationCode);
+                textMesh.text = file.GetAchievementName(localizationCode);
+                break;
+            case LocalizedTextTypes.Music:
+                textMesh.text = file.GetMusicText(localizationCode);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -90,14 +97,14 @@ public class LocalizedText : MonoBehaviour
         if (!string.IsNullOrEmpty(textStyle))
             textMesh.text = textStyle.Replace("{s}", textMesh.text);
 
-        if (useUniversalFont)
-            textMesh.font = universalFont;
+        // if (useUniversalFont)
+        //     textMesh.font = universalFont;
         else
         {
             // if (LocalizationManager.CurrentLanguage == GameLocalizationCode.JP)
             //     textMesh.font = japaneseFont;
             // else
-                textMesh.font = standardFont;    
+            //    textMesh.font = standardFont;    
         }
     }
 
