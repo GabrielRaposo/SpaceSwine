@@ -1,6 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{AFB70356-1A2D-44D5-AAAB-E96A04F5D2FA}" SchemaVersion="103">
 	<Events>
-		<WorkUnit Name="Default Work Unit" ID="{AFB70356-1A2D-44D5-AAAB-E96A04F5D2FA}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{AFB70356-1A2D-44D5-AAAB-E96A04F5D2FA}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="Buyk" ID="{C8A35FB3-B305-4CDF-B1C4-2F619DCA851D}" ShortID="19637672">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="23"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="gameplay_buyk_morre" ID="{2605692F-4329-4489-B777-C15DBA005D14}">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="26"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Action Name="" ID="{2F6F5573-2628-40ED-8E01-D9D79001C61D}" ShortID="184960320">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="gameplay_buyk_morre" ID="{8FCEA67A-6AA6-4FF9-9CCA-EC996E1CE4B4}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Folder Name="Movimentação" ID="{80CA9076-7C18-461E-8AF5-4A0AE8D48E56}" ShortID="1044328959">
+							<ChildrenList>
+								<Event Name="gameplay_buyk_pousa_longo" ID="{C66958A3-63B0-4AD7-B338-548F0D884990}">
+									<ChildrenList>
+										<Action Name="" ID="{FAF46ABD-6E42-4B78-AAA3-42CBB2464BE1}" ShortID="869925249">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_pousa_longo" ID="{9DD7C3B7-D4A8-4D0F-A5B7-DBA2A301EA65}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="gameplay_buyk_pousa_curto" ID="{7244AA81-B4AF-43B7-A87F-DD6074B88E53}">
+									<ChildrenList>
+										<Action Name="" ID="{C41AE82D-DC91-4BCC-B3C5-210695DE796A}" ShortID="47776067">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_pousa_curto" ID="{BC59F2BB-D01F-4230-A0EB-86051AB7E7EC}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="gameplay_buyk_pula_longo" ID="{0DD26EFB-9D14-4DF2-B14B-150BF1FF368D}">
+									<ChildrenList>
+										<Action Name="" ID="{1E141977-BF5B-44F9-A83F-356D1EEF7ED5}" ShortID="258732926">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_pula_longo" ID="{29F608C4-F015-460F-A26E-A208B47BF76A}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="gameplay_buyk_pula_curto" ID="{43F38818-35D2-4323-93F0-378065A64E62}">
+									<ChildrenList>
+										<Action Name="" ID="{E10D064C-84C4-431A-BDB5-8F28C03C26B5}" ShortID="9112231">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_pula_curto" ID="{3D7AEB49-B1A8-458F-854A-5CCA2B522092}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="gameplay_buyk_anda" ID="{A92D71AC-987B-43BA-895A-345CFC7675C5}">
+									<ChildrenList>
+										<Action Name="" ID="{2060AC51-C717-4C0D-85BE-9FBD35F9EF39}" ShortID="831851826">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_anda" ID="{BAFB638D-3882-4FF0-893E-CB335C527AF6}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Item" ID="{351DA1BD-620F-422A-B291-D9B5CE59BF99}" ShortID="11443496">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="17"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Event Name="gameplay_buyk_pega_item" ID="{A6A132D4-30F5-4772-9192-7C6182FBC01C}">
+									<ChildrenList>
+										<Action Name="" ID="{371381EB-0BE5-41DF-BA8D-4917E1D7E156}" ShortID="463334469">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_pega_item" ID="{4F22D2C7-E44D-44FC-960A-A0DC463DABD9}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="gameplay_buyk_taca_item" ID="{F16D6C71-60EE-4AC8-A127-A5E749709A3A}">
+									<ChildrenList>
+										<Action Name="" ID="{63111C13-2696-400E-A1EA-F0C2008D3514}" ShortID="185655310">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_taca_item" ID="{66895EE5-EBB8-4279-9B48-606E99EE09FA}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="gameplay_buyk_pega_cristal" ID="{E8B17642-A7C3-4C7E-B185-0578F101A733}">
+									<ChildrenList>
+										<Action Name="" ID="{F9505510-ECDC-4EE5-A3E1-BCD2C20ADB34}" ShortID="769787149">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_pega_cristal" ID="{C2875326-F527-46FD-B68C-5AA2430E94F6}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Level" ID="{0837BF11-1908-4626-AC0F-EB03A6DCF19F}" ShortID="939438226">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="11"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="cenario_vitoria" ID="{891427EC-B0C6-4D4F-B7D0-3EC5DA598940}">
+							<ChildrenList>
+								<Action Name="" ID="{1FCB4DE6-161E-4EFD-9B09-B1E23077D3DF}" ShortID="29237178">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cenario_vitoria" ID="{335A7AC9-177A-4107-A34D-B5BDE8C4B81F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="cenario_transicao" ID="{4DEEDC57-F0F8-400C-8A73-08B407B6F52E}">
+							<ChildrenList>
+								<Action Name="" ID="{5CF62D9B-E6D5-42F1-933A-8B8F2DE3D291}" ShortID="578056635">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cenario_transicao" ID="{4663DAA0-A62F-4A12-B221-F981A36BE77A}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="gameplay_item_gol" ID="{714DFEDD-0770-47BB-808D-09C2F07EB550}">
+							<ChildrenList>
+								<Action Name="" ID="{385A444C-541D-420D-9453-DEA33E01321A}" ShortID="69432669">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="gameplay_item_gol" ID="{5CA4FC9D-55CE-4717-B2FC-673556BAA15D}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="UI" ID="{A605F833-337F-4E50-B645-2CF63495EEFF}" ShortID="785344164">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="3"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="ui_menu_clique" ID="{2E0EE592-A469-404E-AFD1-0EFF1E074C32}">
+							<ChildrenList>
+								<Action Name="" ID="{A86E7762-1FF3-4164-B076-DAAC1B7406E0}" ShortID="438595369">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_menu_clique" ID="{0DB6E663-7188-44A9-A552-09292BC5B924}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ui_menu_hover" ID="{F21AEC7E-8CF0-4FEC-B8B7-1161EEC73F10}">
+							<ChildrenList>
+								<Action Name="" ID="{07DF8DFC-4BF7-4A55-88D9-D92A076BA2B8}" ShortID="375170348">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_menu_hover" ID="{B80B98C8-E0E3-4E2B-B4E3-5DF96B0EA552}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="System" ID="{CEE7E884-1059-4A36-841B-7DC8BBB2584A}" ShortID="590989639"/>
+				<Folder Name="NPCs" ID="{2F3DB8ED-FF30-4BE6-86AA-D328DC9E5520}" ShortID="565071774">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="21"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="gameplay_npc_fala_robozinho" ID="{1A21F0D5-79CB-4399-A565-CD3F5AA11535}">
+							<ChildrenList>
+								<Action Name="" ID="{D31C4E39-772D-4BD3-BBD4-0A13897D0405}" ShortID="67232300">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="gameplay_npc_fala_robozinho" ID="{866F4CA1-9F1C-4033-880C-08CA79C68FEB}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
 	</Events>
 </WwiseDocument>

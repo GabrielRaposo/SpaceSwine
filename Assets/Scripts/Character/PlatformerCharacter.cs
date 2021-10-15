@@ -14,29 +14,28 @@ public class PlatformerCharacter : SidewaysCharacter
 
     [Header("References")]
     [SerializeField] Transform visualAnchor;
-    //[SerializeField] SpriteRenderer directionArrow;
 
     bool onGround;
 
     float horizontalSpeed;
     float verticalSpeed;
 
-    LocalGameplayState gameplayState;
     SpaceJumper spaceJumper;
     GravityInteraction gravityInteraction;
     CheckGround checkGround;
     CheckLedge checkLedge;
     CheckWall checkWall;
+    PlayerAnimations playerAnimations;
     Rigidbody2D rb;
 
     void Awake()
     {
-        gameplayState = GetComponent<LocalGameplayState>();
         spaceJumper = GetComponent<SpaceJumper>();
         gravityInteraction = GetComponent<GravityInteraction>();
         checkGround = GetComponent<CheckGround>();
         checkLedge = GetComponent<CheckLedge>();
         checkWall = GetComponent<CheckWall>();
+        playerAnimations = GetComponent<PlayerAnimations>();
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -47,8 +46,6 @@ public class PlatformerCharacter : SidewaysCharacter
 
         gravityInteraction.OnChangeGravityAnchor += (t) => 
         {   
-            //if (gameplayState.state == GameplayState.Danger) 
-            //    return;
             if (spaceJumper && spaceJumper.OnLaunch())
                 return;
 
@@ -63,12 +60,22 @@ public class PlatformerCharacter : SidewaysCharacter
     protected override void SetFacingRight(bool value) 
     {
         base.SetFacingRight(value);
-        visualAnchor.localEulerAngles = new Vector3(visualAnchor.localEulerAngles.x, value ? 0 : 180, visualAnchor.localEulerAngles.z);
+        visualAnchor.localEulerAngles = new Vector3 (visualAnchor.localEulerAngles.x, value ? 0 : 180, visualAnchor.localEulerAngles.z);
         //directionArrow.flipY = !value;
+    }
+
+    public void LookAtTarget(Transform target)
+    {
+        Vector3 anchoredPos = transform.position - target.position;
+        Vector3 angledPos = RaposUtil.RotateVector(anchoredPos, -transform.eulerAngles.z);
+
+        SetFacingRight(angledPos.x < 0);
     }
 
     public void HorizontalInput(float horizontalInput)
     {
+        playerAnimations.horizontalInput = horizontalInput;
+
         if (horizontalInput != 0)
             SetFacingRight (horizontalInput > 0);
 
@@ -164,10 +171,17 @@ public class PlatformerCharacter : SidewaysCharacter
 
         Vector2 direction = (gravity.area.Center - transform.position).normalized;
         float angle = Vector2.SignedAngle(Vector2.down, direction);
-        //Debug.DrawLine(gravity.area.Center, (Vector2)gravity.area.Center + RaposUtil.RotateVector(Vector2.up, angle), Color.yellow, 1f);
 
         rb.velocity = RaposUtil.RotateVector(new Vector2 (horizontalSpeed, verticalSpeed), angle);
 
         return true;
+    }
+
+    public void KillInputs()
+    {
+        rb.velocity = Vector2.zero;
+
+        horizontalSpeed = verticalSpeed = 0;
+        playerAnimations.horizontalInput = 0;
     }
 }
