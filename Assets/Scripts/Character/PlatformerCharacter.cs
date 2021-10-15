@@ -14,6 +14,8 @@ public class PlatformerCharacter : SidewaysCharacter
 
     [Header("References")]
     [SerializeField] Transform visualAnchor;
+    [SerializeField] AK.Wwise.Event shortHopAKEvent;
+    [SerializeField] AK.Wwise.Event shortLandingAKEvent;
 
     bool onGround;
 
@@ -107,6 +109,9 @@ public class PlatformerCharacter : SidewaysCharacter
             return;
 
         verticalSpeed = jumpForce;
+        shortHopAKEvent?.Post(gameObject);
+
+        playerAnimations.SetLaunchedState();
     }
 
     private void FixedUpdate() 
@@ -124,7 +129,14 @@ public class PlatformerCharacter : SidewaysCharacter
 
     private void OnGroundLogic()
     {
+        bool previousState = onGround;
         onGround = checkGround.OnGround;
+        
+        if (!previousState && onGround)
+        {
+            shortLandingAKEvent?.Post(gameObject);
+            playerAnimations.SetLandedState();
+        }
 
         if (onGround && verticalSpeed < 0)
         {
