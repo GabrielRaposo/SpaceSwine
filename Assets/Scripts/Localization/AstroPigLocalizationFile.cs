@@ -10,6 +10,7 @@ public class AstroPigLocalizationFile : ScriptableObject
     public CodeToDictionary storyDictionary;
     public CodeToDictionary uiDictionary;
     public CodeToDictionary achievementDictionary;
+    public CodeToDictionary musicDictionary;
 
     public (bool, string) GetStoryText(string code)
     {

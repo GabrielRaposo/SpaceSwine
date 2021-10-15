@@ -94,9 +94,9 @@ public class LocalizedText : MonoBehaviour
             textMesh.font = universalFont;
         else
         {
-            if (LocalizationManager.CurrentLanguage == GameLocalizationCode.JP)
-                textMesh.font = japaneseFont;
-            else
+            // if (LocalizationManager.CurrentLanguage == GameLocalizationCode.JP)
+            //     textMesh.font = japaneseFont;
+            // else
                 textMesh.font = standardFont;    
         }
     }
