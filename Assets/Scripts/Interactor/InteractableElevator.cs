@@ -20,11 +20,14 @@ public class InteractableElevator : Interactable
     [SerializeField] Color fadeOutBaseColor;
     [SerializeField] Color fadeOutBurstColor;
     [SerializeField] SpriteRenderer fadeOutLights;
+    [SerializeField] GameObject inputHelper;
 
     bool active;
 
     private void Start() 
     {
+        inputHelper?.SetActive(false);
+
         SetupColliderPosition();
         SetActivation(startActive);
 
@@ -100,6 +103,8 @@ public class InteractableElevator : Interactable
 
     private void LaunchParticlesRoutine()
     {
+        inputHelper?.SetActive(false);
+
         if (launchParticleSystem)
         {
             float angle = Vector2.SignedAngle(Vector2.up, transform.up);
@@ -125,6 +130,7 @@ public class InteractableElevator : Interactable
 
     protected override void HighlightState (bool value) 
     {
+        inputHelper?.SetActive(value);
     }
 
     public override void IconState (bool value) 
