@@ -34,7 +34,7 @@ public class PlayerAnimations : MonoBehaviour
             case State.Landed:
                 if (!landedOnGround)
                 {
-                    ChangeAnimationState(!holding ? AnimationState.FALL : AnimationState.FALL);
+                    ChangeAnimationState(!holding ? AnimationState.FALL : AnimationState.FALL_HOLD );
                 } 
                 else if (horizontalInput == 0)
                 {
