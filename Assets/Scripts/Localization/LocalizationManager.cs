@@ -6,7 +6,7 @@ using GoogleSheetsToUnity;
 using UnityEditor;
 using UnityEngine.UI;
 
-public enum GameLocalizationCode{EN, BR, JP, DE}; //Na mesma ordem da planilha
+public enum GameLocalizationCode{EN, BR}; //Na mesma ordem da planilha
 
 public static class LocalizationManager
 {
@@ -42,9 +42,10 @@ public static class LocalizationManager
 
     private static List<LocalizedText> activeTexts;
     
-    private static string sheetId = "";
+    private static string sheetId = "1QHeZTAjHJxGhne9n63u-3B0Hmj0otwlVK8CM4czC2f8";
     private static string uiSheetName = "UI";
-    private static string achievementSheetName = "Achievements"; 
+    private static string achievementSheetName = "Achievements";
+    private static string musicSheetName = "Music";
 
     private static string localizationDataAddress = "Localization/LocalizationFile";
     
@@ -70,9 +71,7 @@ public static class LocalizationManager
             
             return localizationFile;
         }
-    } 
-    
-
+    }
     public static void CallUpdate()
     {
         file = GetLocalizationFile;
@@ -80,36 +79,36 @@ public static class LocalizationManager
 
         GSTU_Search sheet;
         
-        int storySheetsCount = 9;
+        int zoneCount = 3;
         
-        for (int i = 0; i < storySheetsCount; i++)
+        for (int i = 0; i < zoneCount; i++)
         {
-            sheet = new GSTU_Search(sheetId, "Story"+i);
+            sheet = new GSTU_Search(sheetId, "Zona"+(i+1));
             SpreadsheetManager.Read(sheet, UpdateStoryDictionary);    
         }
-        
-        sheet = new GSTU_Search(sheetId, "SkillBooksStory");
-        SpreadsheetManager.Read(sheet, UpdateStoryDictionary);
 
         sheet = new GSTU_Search(sheetId, uiSheetName);
         SpreadsheetManager.Read(sheet, UpdateUIDictionary);
 
         sheet = new GSTU_Search(sheetId, achievementSheetName);
         SpreadsheetManager.Read(sheet, UpdateAchievementDictionary);
-        
+
+        sheet = new GSTU_Search(sheetId, musicSheetName);
+        SpreadsheetManager.Read(sheet, UpdateMusicDictionary);
+
     }
     
     private static void UpdateStoryDictionary(GstuSpreadSheet ss)
     {
+        Debug.Log("<color=#2277ff><b>UpdateStoryDictionary()</b></color>");
         var lines = ss.rows.primaryDictionary;
         
         var languageCodeList = Enum.GetValues(typeof(GameLocalizationCode)) as GameLocalizationCode[];
-        
-        Debug.Log($"lines count:{lines.Count}");
-        
-        for (int i = 2; i < lines.Count; i++)
+
+        for (int i = 2; i < lines.Count+1; i++)
         {
             var line = lines[i];
+            Debug.Log($"<b>Line {i}</b>: {line[0].value}");
 
             string code = line[0].value;
 
@@ -132,6 +131,7 @@ public static class LocalizationManager
     
     private static void UpdateUIDictionary(GstuSpreadSheet ss)
     {
+        Debug.Log("<color=#2277ff><b>UpdateUIDictionary()</b></color>");
         var lines = ss.rows.primaryDictionary;
         
         var languageCodeList = Enum.GetValues(typeof(GameLocalizationCode)) as GameLocalizationCode[];
@@ -140,9 +140,10 @@ public static class LocalizationManager
         file.uiDictionary = new CodeToDictionary();
 
         
-        for (int i = 1; i < lines.Count; i++)
+        for (int i = 2; i < lines.Count+1; i++)
         {
             var line = lines[i];
+            Debug.Log($"<b>Line {i}</b>: {line[0].value}");
 
             string code = line[0].value;
 
@@ -165,6 +166,7 @@ public static class LocalizationManager
 
     private static void UpdateAchievementDictionary(GstuSpreadSheet ss)
     {
+        Debug.Log("<color=#2277ff><b>UpdateAchievementDictionary()</b></color>");
         var lines = ss.rows.primaryDictionary;
         
         var languageCodeList = Enum.GetValues(typeof(GameLocalizationCode)) as GameLocalizationCode[];
@@ -173,9 +175,10 @@ public static class LocalizationManager
         file.achievementDictionary = new CodeToDictionary();
 
         
-        for (int i = 1; i < lines.Count; i++)
+        for (int i = 2; i < lines.Count+1; i++)
         {
             var line = lines[i];
+            Debug.Log($"<b>Line {i}</b>: {line[0].value}");
 
             string code = line[0].value;
 
@@ -190,6 +193,39 @@ public static class LocalizationManager
             }
             
             file.achievementDictionary.Add(code, languageToStringDictionary);
+        }
+        
+        Debug.Log("Finished loading from GoogleSheets");
+    }
+    
+    private static void UpdateMusicDictionary(GstuSpreadSheet ss)
+    {
+        Debug.Log("<color=#2277ff><b>UpdateAchievementDictionary()</b></color>");
+        var lines = ss.rows.primaryDictionary;
+        
+        var languageCodeList = Enum.GetValues(typeof(GameLocalizationCode)) as GameLocalizationCode[];
+
+        var file = GetLocalizationFile;
+        file.musicDictionary = new CodeToDictionary();
+
+        for (int i = 2; i < lines.Count+1; i++)
+        {
+            var line = lines[i];
+            Debug.Log($"<b>Line {i}</b>: {line[0].value}");
+
+            string code = line[0].value;
+
+            LanguageToString languageToStringDictionary = new LanguageToString();
+
+            for (int j = 0; j < languageCodeList.Length; j++)
+            {
+                int columnNumber = j + 1;
+
+                GameLocalizationCode glc = languageCodeList[j];
+                languageToStringDictionary.Add(glc, line[columnNumber].value);
+            }
+            
+            file.musicDictionary.Add(code, languageToStringDictionary);
         }
         
         Debug.Log("Finished loading from GoogleSheets");
