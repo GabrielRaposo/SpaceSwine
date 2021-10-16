@@ -17,7 +17,7 @@ public class SpriteSwapper : MonoBehaviour
 
     public void SetSpriteState (int state)
     {
-        if (sprites == null || sprites.Count < 1)
+        if (sprites == null || sprites.Count < 1 || !spriteRenderer)
             return;
 
         spriteRenderer.sprite = sprites[state % sprites.Count];

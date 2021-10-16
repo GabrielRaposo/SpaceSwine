@@ -132,9 +132,10 @@ public class PlatformerCharacter : SidewaysCharacter
         bool previousState = onGround;
         onGround = checkGround.OnGround;
         
-        if (!previousState && onGround && verticalSpeed <= .1f)
+        if (onGround && verticalSpeed <= .1f)
         {
-            shortLandingAKEvent?.Post(gameObject);
+            if (!previousState)
+                shortLandingAKEvent?.Post(gameObject);
             playerAnimations.SetLandedState();
         }
 
