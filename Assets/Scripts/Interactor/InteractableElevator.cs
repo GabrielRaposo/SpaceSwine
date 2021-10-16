@@ -16,6 +16,7 @@ public class InteractableElevator : Interactable
     [SerializeField] GameObject lightsObject;
     [SerializeField] ParticleSystem wavesParticleSystem;
     [SerializeField] ParticleSystem launchParticleSystem;
+    [SerializeField] List<ParticleSystem> subParticles;
     [SerializeField] Color fadeOutBaseColor;
     [SerializeField] Color fadeOutBurstColor;
     [SerializeField] SpriteRenderer fadeOutLights;
@@ -27,8 +28,8 @@ public class InteractableElevator : Interactable
         SetupColliderPosition();
         SetActivation(startActive);
 
-        testInput.performed += (c) => { SetActivation(!active); };
-        testInput.Enable();
+        //testInput.performed += (c) => { SetActivation(!active); };
+        //testInput.Enable();
     }
 
     public void SetActivation (bool value)
@@ -37,6 +38,10 @@ public class InteractableElevator : Interactable
         lightsObject?.SetActive(value);
         if (wavesParticleSystem)
         {
+            float angle = Vector2.SignedAngle(Vector2.up, transform.up);
+            ParticleSystem.MainModule mainModule = wavesParticleSystem.main;
+            mainModule.startRotation = angle * Mathf.Deg2Rad * -1f;
+
             if (value)
                 wavesParticleSystem.Play();
             else
@@ -95,7 +100,20 @@ public class InteractableElevator : Interactable
 
     private void LaunchParticlesRoutine()
     {
-        launchParticleSystem?.Play();
+        if (launchParticleSystem)
+        {
+            float angle = Vector2.SignedAngle(Vector2.up, transform.up);
+            ParticleSystem.MainModule mainModule = launchParticleSystem.main;
+            mainModule.startRotation = angle * Mathf.Deg2Rad * -1f;   
+            
+            foreach (ParticleSystem s in subParticles)
+            {
+                mainModule = s.main;
+                mainModule.startRotation = angle * Mathf.Deg2Rad * -1f; 
+            }
+
+            launchParticleSystem?.Play();
+        }
         wavesParticleSystem?.Stop();
         StartCoroutine( RaposUtil.WaitSeconds(2f, () => wavesParticleSystem?.Play() ) );
         if (fadeOutLights)
