@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimations : MonoBehaviour
 {
+    [SerializeField] AK.Wwise.Event walkAKEvent;
+
     Animator animator;
     string currentState;
 
@@ -30,10 +32,15 @@ public class PlayerAnimations : MonoBehaviour
             case State.Landed:
                 if (horizontalInput == 0)
                 {
+                    walkAKEvent?.Stop(gameObject);
                     ChangeAnimationState(!holding ? AnimationState.IDLE : AnimationState.IDLE_HOLD );
                 }
                 else
                 {
+                    if (!walkAKEvent.IsPlaying(gameObject))
+                    {
+                        walkAKEvent?.Post(gameObject);
+                    }
                     ChangeAnimationState(!holding ? AnimationState.WALK : AnimationState.WALK_HOLD );
                 }            
                 break;

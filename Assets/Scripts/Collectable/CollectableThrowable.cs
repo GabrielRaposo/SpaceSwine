@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CollectableThrowable : Collectable
 {
+    [SerializeField] AK.Wwise.Event OnThrowAKEvent;
+
     public override void OnResetFunction() 
     {
         base.OnResetFunction();
@@ -15,7 +17,10 @@ public class CollectableThrowable : Collectable
 
     public override void Interact (CollectableInteraction interactor) 
     {
-        interactor.LaunchInput();
+        if (interactor.LaunchInput())
+        {
+            OnThrowAKEvent?.Post(gameObject);
+        }
     }
 
     public override void TriggerEvent(Collider2D collision) 

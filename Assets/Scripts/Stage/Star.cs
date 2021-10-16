@@ -15,6 +15,7 @@ public class Star : MonoBehaviour
     [SerializeField] CircleCollider2D mainCollider;
     [SerializeField] SpriteRenderer outlineVisualComponent;
     [SerializeField] SpriteRenderer insideVisualComponent;
+    [SerializeField] AK.Wwise.Event collectAKEvent;
 
     private int Health 
     {
@@ -78,6 +79,7 @@ public class Star : MonoBehaviour
         TakeHealth();
 
         collectable.gameObject.SetActive(false);
+        collectAKEvent?.Post(gameObject);
     }
 
     public void TakeHealth()
