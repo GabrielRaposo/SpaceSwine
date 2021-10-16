@@ -10,10 +10,12 @@ public class PlayerAnimations : MonoBehaviour
     Animator animator;
     string currentState;
 
+    [HideInInspector] public bool landedOnGround;
     [HideInInspector] public bool holding;
     [HideInInspector] public float horizontalInput;
+    [HideInInspector] public float verticalSpeed;
 
-    enum State  { Landed, Flying }
+    enum State  { Landed, Jumping, Flying }
     State state;
 
 
@@ -30,7 +32,11 @@ public class PlayerAnimations : MonoBehaviour
         switch (state)
         {
             case State.Landed:
-                if (horizontalInput == 0)
+                if (!landedOnGround)
+                {
+                    ChangeAnimationState(!holding ? AnimationState.FALL : AnimationState.FALL_HOLD );
+                } 
+                else if (horizontalInput == 0)
                 {
                     walkAKEvent?.Stop(gameObject);
                     ChangeAnimationState(!holding ? AnimationState.IDLE : AnimationState.IDLE_HOLD );
@@ -45,6 +51,16 @@ public class PlayerAnimations : MonoBehaviour
                 }            
                 break;
 
+            case State.Jumping:
+                if (verticalSpeed > 0)
+                {
+                    ChangeAnimationState(!holding ? AnimationState.JUMP : AnimationState.JUMP_HOLD );
+                }
+                else
+                {
+                    ChangeAnimationState(!holding ? AnimationState.FALL : AnimationState.FALL_HOLD );
+                }
+                break;
 
             case State.Flying:
                 ChangeAnimationState( !holding ? AnimationState.LAUNCH : AnimationState.LAUNCH_HOLD );
@@ -52,15 +68,21 @@ public class PlayerAnimations : MonoBehaviour
         }
     }
 
+    public void SetLandedState()
+    {
+        state = State.Landed;
+    }
+
+    public void SetJumpingState()
+    {
+        ChangeAnimationState( !holding ? AnimationState.JUMP : AnimationState.JUMP_HOLD );
+        state = State.Jumping;
+    }
+
     public void SetLaunchedState()
     {
         ChangeAnimationState( !holding ? AnimationState.LAUNCH : AnimationState.LAUNCH_HOLD );
         state = State.Flying;
-    }
-
-    public void SetLandedState()
-    {
-        state = State.Landed;
     }
 
     public void ChangeAnimationState (string newState)
@@ -71,7 +93,7 @@ public class PlayerAnimations : MonoBehaviour
 
         if (!animator)
         {
-            Debug.Log("Player - Animator Fail");
+            Debug.Log("No animator found. ");
             return;
         }
 
@@ -85,13 +107,13 @@ public class AnimationState
     public static string WALK = "Player-Walk";
 
     public static string LAUNCH = "Player-Launch";
-        public static string JUMP = "Player-Jump";
-        public static string FALL = "Player-Fall";
+    public static string JUMP = "Player-Jump";
+    public static string FALL = "Player-Fall";
 
     public static string IDLE_HOLD = "Player-Idle-Hold";
     public static string WALK_HOLD = "Player-Walk-Hold";
 
     public static string LAUNCH_HOLD = "Player-Launch-Hold";
-        public static string JUMP_HOLD = "Player-Jump-Hold";
-        public static string FALL_HOLD = "Player-Fall-Hold";
+    public static string JUMP_HOLD = "Player-Jump-Hold";
+    public static string FALL_HOLD = "Player-Fall-Hold";
 }
