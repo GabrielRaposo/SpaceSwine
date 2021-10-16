@@ -1,10 +1,13 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using UnityEditor;
 using UnityEngine;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
+using GoogleSheetsToUnity.Legacy;
+
 #if GSTU_Legacy
-GoogleSheetsToUnity.Legacy
+//GoogleSheetsToUnity.Legacy;
 #endif
 
 namespace GoogleSheetsToUnity.Editor
