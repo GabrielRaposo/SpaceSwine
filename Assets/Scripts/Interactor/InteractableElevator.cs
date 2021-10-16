@@ -31,4 +31,9 @@ public class InteractableElevator : Interactable
         //if (ballonSpriteSwapper)
         //    ballonSpriteSwapper.SetVisibility(value);
     }
+
+    private void OnDrawGizmos() 
+    {
+            
+    }
 }
