@@ -52,4 +52,9 @@ public class PlanetBlock : MonoBehaviour
         groundCollider.size = new Vector2(size.x, .02f);
         groundVisual.localScale = groundCollider.size;
     }
+
+    public float GetSize()
+    {
+        return size.y;
+    }
 }
