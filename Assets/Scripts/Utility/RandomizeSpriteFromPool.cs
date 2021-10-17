@@ -12,6 +12,8 @@ public class RandomizeSpriteFromPool : MonoBehaviour
 
     void OnValidate()
     {
+        return;
+
         if (hasBeenSetup)
             return;
 
