@@ -26,6 +26,15 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_TACA_ITEM = 3851873763U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
         static const AkUniqueID GAMEPLAY_NPC_FALA_ROBOZINHO = 1847119179U;
+        static const AkUniqueID GGS_NAVE_MORRE = 592843473U;
+        static const AkUniqueID GGS_NAVE_POUSA = 3402632736U;
+        static const AkUniqueID GGS_NAVE_PULA = 1092440616U;
+        static const AkUniqueID GGS_NAVE_VOA = 1915172630U;
+        static const AkUniqueID GGS_UI_CLIQUE = 1368754271U;
+        static const AkUniqueID GGS_UI_DESLIGA = 3509273191U;
+        static const AkUniqueID GGS_UI_LIGA = 4113901743U;
+        static const AkUniqueID GGS_UI_RECORDE = 1292442974U;
+        static const AkUniqueID PLAYLIST = 3605772915U;
         static const AkUniqueID UI_MENU_CLIQUE = 937451947U;
         static const AkUniqueID UI_MENU_HOVER = 2163476404U;
     } // namespace EVENTS

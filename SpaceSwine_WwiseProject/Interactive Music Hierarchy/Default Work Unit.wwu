@@ -1,6 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}" SchemaVersion="103">
 	<InteractiveMusic>
-		<WorkUnit Name="Default Work Unit" ID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}" PersistMode="Standalone">
+			<ChildrenList>
+				<MusicPlaylistContainer Name="Playlist" ID="{8096622C-20A3-4E44-853C-0941DF73CDF7}" ShortID="585426761">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<MusicSegment Name="Lofi 02" ID="{38E0B675-99EC-44F0-8905-62AD0D5A43D1}" ShortID="361962826">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="125118.624235385"/>
+								<Property Name="OverrideClockSettings" Type="bool" Value="True"/>
+								<Property Name="Tempo" Type="Real64" Value="64"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="Lofi 02_v1" ID="{60E0C6EF-E124-43B3-A7BC-8FDB3733E6AE}" ShortID="230099028">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Lofi 02_v1" ID="{17855BFD-90D9-4C7A-BF06-52A6F49BC596}">
+											<Language>SFX</Language>
+											<AudioFile>Lofi 02_v1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="145051031"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{302EB08A-1F16-4444-BD0E-2BD70936FAB1}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{3EE822A0-4DF7-4AA4-8EF7-7831D071ED18}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="Lofi 02_v1" ID="{3F3D9B96-500D-4A6B-8E9C-22874E8AF428}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="124753.492063492"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																				<Property Name="PlayAt" Type="Real64" Value="365.132171893148"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="Lofi 02_v1" ID="{17855BFD-90D9-4C7A-BF06-52A6F49BC596}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{E20E76CA-5922-4606-BA65-7FCC3A57A79D}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{481983C6-C446-41BD-85C8-C903C358A153}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="124753.492063492"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
+					</ChildrenList>
+					<TransitionList>
+						<MusicTransition Name="Root" ID="{69538029-904A-45C4-9EF3-847F31BF0532}">
+							<PropertyList>
+								<Property Name="IsFolder" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<MusicTransition Name="Transition" ID="{C7248874-A475-4C20-A66D-DF32D8DBC863}">
+									<TransitionInfo/>
+								</MusicTransition>
+							</ChildrenList>
+							<TransitionInfo/>
+						</MusicTransition>
+					</TransitionList>
+					<ObjectLists/>
+					<Playlist>
+						<MusicPlaylistItem Name="" ID="{C792CF49-7BEE-4497-938F-3BED4BCEE7CF}" ShortID="155350981">
+							<PropertyList>
+								<Property Name="LoopCount" Type="int16" Value="0"/>
+							</PropertyList>
+							<ChildrenList>
+								<MusicPlaylistItem Name="" ID="{964561BD-3046-48FF-91F0-8051535B4AE1}" ShortID="662574443">
+									<PropertyList>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="Lofi 02" ID="{38E0B675-99EC-44F0-8905-62AD0D5A43D1}"/>
+								</MusicPlaylistItem>
+							</ChildrenList>
+						</MusicPlaylistItem>
+					</Playlist>
+				</MusicPlaylistContainer>
+			</ChildrenList>
+		</WorkUnit>
 	</InteractiveMusic>
 </WwiseDocument>
