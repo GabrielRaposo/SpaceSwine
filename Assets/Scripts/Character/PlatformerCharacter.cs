@@ -14,6 +14,8 @@ public class PlatformerCharacter : SidewaysCharacter
 
     [Header("References")]
     [SerializeField] Transform visualAnchor;
+    [SerializeField] AK.Wwise.Event shortHopAKEvent;
+    [SerializeField] AK.Wwise.Event shortLandingAKEvent;
 
     bool onGround;
 
@@ -107,6 +109,9 @@ public class PlatformerCharacter : SidewaysCharacter
             return;
 
         verticalSpeed = jumpForce;
+        shortHopAKEvent?.Post(gameObject);
+
+        playerAnimations.SetJumpingState();
     }
 
     private void FixedUpdate() 
@@ -124,7 +129,17 @@ public class PlatformerCharacter : SidewaysCharacter
 
     private void OnGroundLogic()
     {
+        bool previousState = onGround;
         onGround = checkGround.OnGround;
+        
+        if (onGround && verticalSpeed <= .1f)
+        {
+            if (!previousState)
+                shortLandingAKEvent?.Post(gameObject);
+            playerAnimations.SetLandedState();
+        }
+
+        playerAnimations.landedOnGround = (onGround && verticalSpeed <= .1f);
 
         if (onGround && verticalSpeed < 0)
         {
@@ -161,6 +176,8 @@ public class PlatformerCharacter : SidewaysCharacter
 
         verticalSpeed += Physics2D.gravity.y * gravity.area.intensity * gravity.multiplier * Time.fixedDeltaTime;
         verticalSpeed = Mathf.Clamp( verticalSpeed, - MAX_GRAVITY, MAX_GRAVITY );
+
+        playerAnimations.verticalSpeed = verticalSpeed;
     }
 
     private bool AllignFallDirectionWithGravity()

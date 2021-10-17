@@ -11,6 +11,9 @@ public class SpaceJumper : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] LayerMask groundLayer;
 
+    [SerializeField] AK.Wwise.Event longJumpAKEvent;
+    [SerializeField] AK.Wwise.Event longLandAKEvent;
+
     bool onLaunch;
 
     PlatformerCharacter platformerCharacter;
@@ -42,8 +45,15 @@ public class SpaceJumper : MonoBehaviour
 
     private void SetLaunchState (bool value)
     {
-        if (value) playerAnimations.SetLaunchedState();
-        else       playerAnimations.SetLandedState();
+        if (value) 
+        {
+            longJumpAKEvent?.Post(gameObject);
+            playerAnimations.SetLaunchedState();
+        }
+        else       
+        {
+            playerAnimations.SetLandedState();
+        }
 
         platformerCharacter.enabled = !value;
         gravityInteraction.enabled = !value;
@@ -82,6 +92,8 @@ public class SpaceJumper : MonoBehaviour
 
         Vector2 direction = (transform.position - planet.transform.position).normalized;
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
+
+        longLandAKEvent?.Post(gameObject);
 
         SetLaunchState(false);
     }

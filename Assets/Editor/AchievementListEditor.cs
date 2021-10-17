@@ -43,7 +43,7 @@ public class AchievementListEditor : Editor
             for (int i = 0; i < initListcount; i++)
             {
                 var a = new Achievement();
-                a.id = "$" + i;
+                a.id = $"ACV_{(i+1).ToString("000")}";
                 obj.Achievements.Add(a);
             }
         }
@@ -76,15 +76,15 @@ public class AchievementListEditor : Editor
             
             EditorGUILayout.BeginHorizontal();//B
 
-            a.id = EditorGUILayout.TextField("", a.id, GUILayout.MaxWidth(30));
-            EditorGUILayout.LabelField(localizationFile.GetAchievementText(a.id), EditorStyles.boldLabel);
+            a.id = EditorGUILayout.TextField("", a.id, GUILayout.MaxWidth(62));
+            EditorGUILayout.LabelField(localizationFile.GetAchievementName(a.id), EditorStyles.boldLabel);
             
             if (GUILayout.Button("X", EditorStyles.miniButton, GUILayout.MaxWidth(30f)))
                 achievementToRemove = i;
             
             EditorGUILayout.EndHorizontal(); //B0
             
-            EditorGUILayout.LabelField(localizationFile.GetAchievementText(a.id+"d"));
+            EditorGUILayout.LabelField(localizationFile.GetAchievementDescription(a.id));
             
             EditorGUILayout.EndVertical();//TEXT0
             
@@ -154,7 +154,7 @@ public class AchievementListEditor : Editor
 
         if (GUILayout.Button("Add"))
         {
-            var newAchievement = new Achievement {id = "$" + (obj.Achievements.Count)};
+            var newAchievement = new Achievement {id = $"ACV_{(obj.Achievements.Count+1).ToString("000")}"};
             obj.Achievements.Add(newAchievement);
         }
         
