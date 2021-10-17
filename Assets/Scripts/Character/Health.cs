@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [SerializeField] int startingValue;
+    [SerializeField] AK.Wwise.Event deathAKEvent;
 
     int value;
 
@@ -41,6 +42,7 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
+        deathAKEvent?.Post(gameObject);
         gameObject.SetActive(false);
         OnDeathEvent?.Invoke();
     }

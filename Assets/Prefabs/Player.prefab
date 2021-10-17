@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 5639081803221880886}
   - component: {fileID: 5639081803221880844}
   - component: {fileID: 975378138}
-  - component: {fileID: 5936083506572016694}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -102,6 +101,14 @@ MonoBehaviour:
   acceleration: 18
   jumpForce: 4.5
   visualAnchor: {fileID: 5639081803719366904}
+  shortHopAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c57ef1412e35b8d49858450481a9c245, type: 2}
+  shortLandingAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1ba88f76309f50146a55b2f7189efac6, type: 2}
 --- !u!114 &5639081803221880842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +172,14 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1536
+  longJumpAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 360dd39e790c0204aa3d5d49889130b7, type: 2}
+  longLandAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2cbedc510493738408183c101f632c2d, type: 2}
 --- !u!114 &5639081803221880882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +260,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingValue: 1
+  deathAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 7585b879f3e7d30428e39599702e967c, type: 2}
 --- !u!114 &1254165773586094445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,8 +288,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90dac8654a082cc45b8cb34d473f379e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 574c82b4ae73c064a9def70fea7ad1cf, type: 2}
+  landedOnGround: 0
   holding: 0
   horizontalInput: 0
+  verticalSpeed: 0
 --- !u!70 &5639081803221880845
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -303,10 +328,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.515625, y: 0.71875}
+    newSize: {x: 0.515625, y: 0.71875}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -353,57 +378,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!212 &5936083506572016694
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5639081803221880847}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.484375, y: 0.703125}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &5639081803377138992
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +615,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3025885828789033177, guid: b6503d39dcbe94a47b570177b83cb59f, type: 3}
+  m_Sprite: {fileID: -172775995945652576, guid: d0170e04463f74c4ba2abc0e4aa2946f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -62,10 +62,10 @@ public class CollectableInteraction : MonoBehaviour
         return true;
     }
 
-    public void LaunchInput()
+    public bool LaunchInput()
     {
         if (!current)
-            return;
+            return false;
 
         if (checkGround.OnGround)
         {
@@ -81,6 +81,8 @@ public class CollectableInteraction : MonoBehaviour
             LaunchCurrentIntoDirection(direction.normalized);
             spaceJumper.LaunchIntoDirection(-direction.normalized);
         }
+
+        return true;
     }
 
     private void LaunchCurrentIntoDirection(Vector2 direction)

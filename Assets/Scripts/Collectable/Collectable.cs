@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {   
+    [Header("Wwise Events")]
+    [SerializeField] AK.Wwise.Event OnCollectAKEvent;
+
     GameObject previousHolder;
 
     private void Start() 
@@ -38,6 +41,8 @@ public class Collectable : MonoBehaviour
 
             if (interaction.SetCurrentCollectable (this))
             {
+                OnCollectAKEvent?.Post(gameObject);
+
                 previousHolder = collision.gameObject; 
             }
 
