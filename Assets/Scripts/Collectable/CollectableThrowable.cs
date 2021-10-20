@@ -33,5 +33,12 @@ public class CollectableThrowable : Collectable
             star.Collect(this);
             return;
         }
+
+        Lock l = collision.GetComponent<Lock>();
+        if (l)
+        {
+            l.Collect(this);
+            return;
+        }
     }
 }

@@ -6,10 +6,16 @@ using TMPro;
 public class Star : MonoBehaviour
 {
     [Header("Values")]
-    [SerializeField] int health;
+    [SerializeField] int originalInternalHealth;
+    [SerializeField]private int internalHealth;
+    [SerializeField]private int health;
+    
     [SerializeField] float starRadius = 1f;
 
-    [Header("References")]
+    
+
+    [Header("References")] 
+    [SerializeField] GameObject lockReference;
     [SerializeField] RoundPortal portal;
     [SerializeField] TextMeshPro healthPreview;
     [SerializeField] CircleCollider2D mainCollider;
@@ -17,31 +23,41 @@ public class Star : MonoBehaviour
     [SerializeField] SpriteRenderer insideVisualComponent;
     [SerializeField] AK.Wwise.Event collectAKEvent;
 
-    private int Health 
+    [Space]
+    
+    [SerializeField]private List<Lock> externalLocks; 
+
+    private List<Lock> internalLocks;
+
+    private int Health
     {
         get
         {
             return health;
         }
 
-        set 
+        set
         {
             health = value;
             if (healthPreview)
                 healthPreview.text = health.ToString();
         }
     }
+    
     Round round;
-    int originalHealth;
+    
 
     private void OnValidate() 
     {
         UpdateAttributes();
     }
 
-    private void Start() 
+    private void Start()
     {
-        originalHealth = Health;
+        health = internalHealth + externalLocks.Count;
+
+        SetLocks();
+        
         ResetStates();
 
         round = GetComponentInParent<Round>();    
@@ -49,10 +65,37 @@ public class Star : MonoBehaviour
             round.OnReset += ResetStates;
     }
 
+    private void SetLocks()
+    {
+        internalLocks = new List<Lock>();
+        
+        for (int i = 0; i < originalInternalHealth; i++)
+        {
+            var go = Instantiate(lockReference, transform);
+            float angle = 360f * i/ originalInternalHealth;
+            go.transform.position = transform.position + Mathg.AngleToDirection(angle) * starRadius * 0.65f;
+            Lock l = go.GetComponent<Lock>();
+            l.Init(this, true);
+            internalLocks.Add(l);
+        }
+
+        for (int i = 0; i < externalLocks.Count; i++)
+        {
+            externalLocks[i].Init(this, false);
+        }
+    }
+
     private void ResetStates()
     {
         gameObject.SetActive(true);
-        Health = originalHealth;
+        internalHealth = originalInternalHealth;
+        Health = originalInternalHealth+externalLocks.Count;
+
+        for (int i = 0; i < internalLocks.Count; i++)
+            internalLocks[i].Reset();
+
+        for (int j = 0; j < externalLocks.Count; j++)
+            externalLocks[j].Reset();
 
         if (portal) 
         {
@@ -76,8 +119,11 @@ public class Star : MonoBehaviour
 
     public void Collect (Collectable collectable)
     {
+        Debug.Log("Collect");
+        internalLocks[internalHealth-1].Unlock();
+        internalHealth--;
         TakeHealth();
-
+        
         collectable.gameObject.SetActive(false);
         collectAKEvent?.Post(gameObject);
     }
