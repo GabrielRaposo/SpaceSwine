@@ -55,8 +55,8 @@ public class TerminalRotateAction : MonoBehaviour, ITerminalEvent
             PlayerInput playerInput = player.GetComponent<PlayerInput>();
             if (playerInput) playerInput.enabled = false;
 
-            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
-            if (rb) rb.velocity = Vector2.zero;
+            PlatformerCharacter platformer = player.GetComponent<PlatformerCharacter>();
+            if (platformer) platformer.KillInputs();
         }
     }
 
