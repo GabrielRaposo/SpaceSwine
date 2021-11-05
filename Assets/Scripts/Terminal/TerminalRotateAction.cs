@@ -9,9 +9,15 @@ public class TerminalRotateAction : MonoBehaviour, ITerminalEvent
     [SerializeField] float duration;
 
     int index;
+    Sequence sequence;
+    List<Interactable> interactableChildren; 
 
     void Start()
     {
+        interactableChildren = new List<Interactable>();
+        GetComponentsInChildren<Interactable>(interactableChildren);
+        Debug.Log("interactableChildren.Count: "  + interactableChildren.Count);
+
         if (targetAngles.Count < 1)
         {
             enabled = false;
@@ -22,10 +28,50 @@ public class TerminalRotateAction : MonoBehaviour, ITerminalEvent
         transform.eulerAngles = Vector3.forward * targetAngles[index];
     }
 
-    public void Activate (InteractableTerminal terminal)
+    public void Activate (InteractableTerminal terminal, PlayerInteractor player)
     {
         index = (index + 1) % targetAngles.Count;
-        transform.DORotate(targetAngles[index] * Vector3.forward, duration, RotateMode.FastBeyond360);
-        // libera inputs após rotação
+
+        if (sequence != null)
+            sequence.Kill();
+
+        BeforeSequence(player);
+
+        sequence = DOTween.Sequence();
+        sequence.Append( transform.DORotate(targetAngles[index] * Vector3.forward, duration, RotateMode.FastBeyond360) );
+        sequence.OnComplete(() => AfterSequence(player));
+    }
+
+    private void BeforeSequence(PlayerInteractor player)
+    {
+        if (interactableChildren != null && interactableChildren.Count > 0)
+        {
+            foreach (Interactable i in interactableChildren)
+                i.SetInteraction(false);
+        }
+
+        if (player)
+        {
+            PlayerInput playerInput = player.GetComponent<PlayerInput>();
+            if (playerInput) playerInput.enabled = false;
+
+            Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+            if (rb) rb.velocity = Vector2.zero;
+        }
+    }
+
+    private void AfterSequence(PlayerInteractor player)
+    {
+        if (interactableChildren != null && interactableChildren.Count > 0)
+        {
+            foreach (Interactable i in interactableChildren)
+                i.SetInteraction(true);
+        }
+
+        if (player)
+        {
+            PlayerInput playerInput = player.GetComponent<PlayerInput>();
+            if (playerInput) playerInput.enabled = true;
+        }
     }
 }

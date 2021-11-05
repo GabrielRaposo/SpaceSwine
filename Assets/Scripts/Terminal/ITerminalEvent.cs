@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ITerminalEvent
 {
-    void Activate (InteractableTerminal terminal);
+    void Activate (InteractableTerminal terminal, PlayerInteractor interactor);
 }

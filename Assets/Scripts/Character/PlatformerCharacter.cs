@@ -201,4 +201,9 @@ public class PlatformerCharacter : SidewaysCharacter
         horizontalSpeed = verticalSpeed = 0;
         playerAnimations.horizontalInput = 0;
     }
+
+    public Vector2 LocalSpeed()
+    {
+        return new Vector2(horizontalSpeed, verticalSpeed);
+    }
 }
