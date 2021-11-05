@@ -60,7 +60,15 @@ public class InteractableElevator : Interactable
         active = value;
     }
 
-    #if UNITY_EDITOR
+    public override void SetInteraction(bool value) 
+    {
+        base.SetInteraction(value);
+
+        Debug.Log("elevator interaction");
+        SetActivation(value);
+    }
+
+#if UNITY_EDITOR
     private void Update() 
     {
         if (Application.isPlaying)
@@ -69,6 +77,14 @@ public class InteractableElevator : Interactable
         SetupColliderPosition();
     }
     #endif
+
+    private void LateUpdate() 
+    {
+        if (!Application.isPlaying)
+            return;
+
+        UpdateParticlesAngle();    
+    }
 
     private void SetupColliderPosition()
     {
@@ -97,7 +113,7 @@ public class InteractableElevator : Interactable
                 return;
 
             LaunchParticlesRoutine();
-            spaceJumper.LaunchIntoDirection(transform.up);
+            spaceJumper.LaunchIntoDirection(transform.up, multiplier: 2.0f);
         }        
     }
 
@@ -107,16 +123,7 @@ public class InteractableElevator : Interactable
 
         if (launchParticleSystem)
         {
-            float angle = Vector2.SignedAngle(Vector2.up, transform.up);
-            ParticleSystem.MainModule mainModule = launchParticleSystem.main;
-            mainModule.startRotation = angle * Mathf.Deg2Rad * -1f;   
-            
-            foreach (ParticleSystem s in subParticles)
-            {
-                mainModule = s.main;
-                mainModule.startRotation = angle * Mathf.Deg2Rad * -1f; 
-            }
-
+            UpdateParticlesAngle();
             launchParticleSystem?.Play();
         }
         wavesParticleSystem?.Stop();
@@ -125,6 +132,19 @@ public class InteractableElevator : Interactable
         {
             fadeOutLights.color = fadeOutBurstColor;
             fadeOutLights.DOColor(fadeOutBaseColor, .5f);
+        }
+    }
+
+    private void UpdateParticlesAngle()
+    {
+        float angle = Vector2.SignedAngle(Vector2.up, transform.up);
+        ParticleSystem.MainModule mainModule = launchParticleSystem.main;
+        mainModule.startRotation = angle * Mathf.Deg2Rad * -1f;       
+
+        foreach (ParticleSystem s in subParticles)
+        {
+            mainModule = s.main;
+            mainModule.startRotation = angle * Mathf.Deg2Rad * -1f; 
         }
     }
 
