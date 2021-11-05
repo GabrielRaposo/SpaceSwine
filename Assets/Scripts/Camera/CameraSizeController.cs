@@ -6,6 +6,7 @@ using Cinemachine;
 public class CameraSizeController : MonoBehaviour
 {
     [SerializeField] List<CinemachineVirtualCamera> vcams;
+    [SerializeField] Transform screenSpaceCollider;
 
     float size = -1f;
     
@@ -44,6 +45,11 @@ public class CameraSizeController : MonoBehaviour
         }
 
         this.size = size; 
+
+        if (screenSpaceCollider)
+        {
+            screenSpaceCollider.localScale = Vector3.one * size;
+        }
     }
 
 }

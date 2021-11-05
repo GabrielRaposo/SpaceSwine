@@ -30,7 +30,6 @@ public class CustomCameraSize : MonoBehaviour
 
         CameraSizeController.Size = CAMERA_SIZE;
         onCustomCamera = false;
-        Debug.Log("Restore camera");
     }
 
     public void ForceCustomCamera()
