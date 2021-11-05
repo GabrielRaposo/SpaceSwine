@@ -20,6 +20,11 @@ public class RoundsManager : MonoBehaviour
 
     private void Start() 
     {
+        // Define câmera de fases de perigo
+        CameraFocusController cameraFocusController = CameraFocusController.Instance;
+        if (cameraFocusController)
+            cameraFocusController.SetStaticFocus();
+        
         // Encontra a instância do player
         player = PlayerCharacter.Instance;
         if (!player)
@@ -117,8 +122,12 @@ public class RoundsManager : MonoBehaviour
         } 
         else
         {
-            SessionData.OnSessionCompleted();
-            SceneTransition.LoadScene( (int) SessionData.outroScene );
+            if (SessionData != null)
+            {
+                SessionData.OnSessionCompleted();
+                SceneTransition.LoadScene( (int) SessionData.outroScene );
+            }
+
             SessionData = null;
         }
     }
