@@ -31,6 +31,7 @@ public class Health : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
+        Debug.Log("<color=#dd0000><b>Take damage</b></color>");
         value -= damage;
 
         if (value < 0)

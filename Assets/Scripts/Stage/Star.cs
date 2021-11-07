@@ -7,8 +7,8 @@ public class Star : MonoBehaviour
 {
     [Header("Values")]
     [SerializeField] int originalInternalHealth;
-    [SerializeField]private int internalHealth;
-    [SerializeField]private int health;
+    private int internalHealth;
+    private int health;
     
     [SerializeField] float starRadius = 1f;
 
@@ -54,7 +54,8 @@ public class Star : MonoBehaviour
 
     private void Start()
     {
-        health = internalHealth + externalLocks.Count;
+        internalHealth = originalInternalHealth;
+        health = originalInternalHealth + externalLocks.Count;
 
         SetLocks();
         
@@ -63,6 +64,9 @@ public class Star : MonoBehaviour
         round = GetComponentInParent<Round>();    
         if (round)
             round.OnReset += ResetStates;
+        
+        if(health == 0)
+            SpawnPortal();
     }
 
     private void SetLocks()

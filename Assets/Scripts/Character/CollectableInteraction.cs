@@ -62,7 +62,7 @@ public class CollectableInteraction : MonoBehaviour
         return true;
     }
 
-    public bool LaunchInput()
+    public bool LaunchInput(bool releaseInteractable = true)
     {
         if (!current)
             return false;
@@ -70,7 +70,8 @@ public class CollectableInteraction : MonoBehaviour
         if (checkGround.OnGround)
         {
             Vector2 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
-            LaunchCurrentIntoDirection(direction.normalized);
+            if(releaseInteractable)
+                LaunchCurrentIntoDirection(direction.normalized);
         }
         else
         {
@@ -78,7 +79,9 @@ public class CollectableInteraction : MonoBehaviour
             if (axisInput == Vector2.zero)
                 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
 
-            LaunchCurrentIntoDirection(direction.normalized);
+            if(releaseInteractable)
+                LaunchCurrentIntoDirection(direction.normalized);
+            
             spaceJumper.LaunchIntoDirection(-direction.normalized);
         }
 

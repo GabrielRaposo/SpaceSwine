@@ -14,19 +14,19 @@ public class Lock : MonoBehaviour
         star = s;
 
         isInternalLock = isInternal;
-        
-        if (isInternal)
-        {
-            col.enabled = false;
-        }
+
+        col.enabled = !isInternal;
     }
 
     public void Collect(Collectable collectable)
     {
         Unlock();
-        star.TakeHealth();
+        
+        if(star)
+            star.TakeHealth();
         
         collectable.gameObject.SetActive(false);
+        col.enabled = false;
         //collectAKEvent?.Post(gameObject);
     }
     
