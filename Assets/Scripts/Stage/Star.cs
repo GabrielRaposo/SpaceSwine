@@ -57,7 +57,7 @@ public class Star : MonoBehaviour
         // Health = originalInternalHealth + externalLocks.Count;
         Health = externalLocks.Count;
 
-        //SetLocks();
+        SetLocks();
         
         ResetStates();
 
@@ -67,25 +67,25 @@ public class Star : MonoBehaviour
     }
 
 
-    // private void SetLocks()
-    // {
-    //     internalLocks = new List<Lock>();
-    //     
-    //     for (int i = 0; i < originalInternalHealth; i++)
-    //     {
-    //         var go = Instantiate(lockReference, transform);
-    //         float angle = 360f * i/ originalInternalHealth;
-    //         go.transform.position = transform.position + Mathg.AngleToDirection(angle) * starRadius * 0.65f;
-    //         Lock l = go.GetComponent<Lock>();
-    //         l.Init(this, true);
-    //         internalLocks.Add(l);
-    //     }
-    //
-    //     for (int i = 0; i < externalLocks.Count; i++)
-    //     {
-    //         externalLocks[i].Init(this, false);
-    //     }
-    // }
+    private void SetLocks()
+    {
+        // internalLocks = new List<Lock>();
+        //
+        // for (int i = 0; i < originalInternalHealth; i++)
+        // {
+        //     var go = Instantiate(lockReference, transform);
+        //     float angle = 360f * i/ originalInternalHealth;
+        //     go.transform.position = transform.position + Mathg.AngleToDirection(angle) * starRadius * 0.65f;
+        //     Lock l = go.GetComponent<Lock>();
+        //     l.Init(this, true);
+        //     internalLocks.Add(l);
+        // }
+    
+        for (int i = 0; i < externalLocks.Count; i++)
+        {
+            externalLocks[i].Init(this, false);
+        }
+    }
 
     private void ResetStates()
     {

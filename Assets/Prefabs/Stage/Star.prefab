@@ -52,9 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4962b1af597a1144eb7c852303ae924a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
   starRadius: 0.94
-  lockReference: {fileID: 349535262006152145, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
   portal: {fileID: 7820829913833309424}
   healthPreview: {fileID: 8328218817550034404}
   mainCollider: {fileID: 349535262006152148}
@@ -64,6 +62,7 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: a3358582bea5cfc47b4698b71092c1f9, type: 2}
+  externalLocks: []
 --- !u!58 &349535262006152148
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -611,6 +610,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 349535262006152150}
     m_Modifications:
+    - target: {fileID: 4014736132512609068, guid: d0185ed2c21ee2b46b3af5572939b867, type: 3}
+      propertyPath: m_Radius
+      value: 1.16
+      objectReference: {fileID: 0}
     - target: {fileID: 4191124047750866999, guid: d0185ed2c21ee2b46b3af5572939b867, type: 3}
       propertyPath: m_Name
       value: RoundPortal

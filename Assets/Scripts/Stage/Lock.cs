@@ -33,6 +33,7 @@ public class Lock : MonoBehaviour
     public void Reset()
     {
         visualComponent.SetActive(true);
+        col.enabled = true;
     }
     
     public void Unlock()
