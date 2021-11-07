@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -6,16 +7,14 @@ using TMPro;
 public class Star : MonoBehaviour
 {
     [Header("Values")]
-    [SerializeField] int originalInternalHealth;
-    private int internalHealth;
+    //[SerializeField] int originalInternalHealth;
+    //private int internalHealth;
     private int health;
     
     [SerializeField] float starRadius = 1f;
 
-    
-
     [Header("References")] 
-    [SerializeField] GameObject lockReference;
+    //[SerializeField] GameObject lockReference;
     [SerializeField] RoundPortal portal;
     [SerializeField] TextMeshPro healthPreview;
     [SerializeField] CircleCollider2D mainCollider;
@@ -27,7 +26,7 @@ public class Star : MonoBehaviour
     
     [SerializeField]private List<Lock> externalLocks; 
 
-    private List<Lock> internalLocks;
+    //private List<Lock> internalLocks;
 
     private int Health
     {
@@ -54,49 +53,48 @@ public class Star : MonoBehaviour
 
     private void Start()
     {
-        internalHealth = originalInternalHealth;
-        health = originalInternalHealth + externalLocks.Count;
+        // internalHealth = originalInternalHealth;
+        // Health = originalInternalHealth + externalLocks.Count;
+        Health = externalLocks.Count;
 
-        SetLocks();
+        //SetLocks();
         
         ResetStates();
 
         round = GetComponentInParent<Round>();    
         if (round)
             round.OnReset += ResetStates;
-        
-        if(health == 0)
-            SpawnPortal();
     }
 
-    private void SetLocks()
-    {
-        internalLocks = new List<Lock>();
-        
-        for (int i = 0; i < originalInternalHealth; i++)
-        {
-            var go = Instantiate(lockReference, transform);
-            float angle = 360f * i/ originalInternalHealth;
-            go.transform.position = transform.position + Mathg.AngleToDirection(angle) * starRadius * 0.65f;
-            Lock l = go.GetComponent<Lock>();
-            l.Init(this, true);
-            internalLocks.Add(l);
-        }
 
-        for (int i = 0; i < externalLocks.Count; i++)
-        {
-            externalLocks[i].Init(this, false);
-        }
-    }
+    // private void SetLocks()
+    // {
+    //     internalLocks = new List<Lock>();
+    //     
+    //     for (int i = 0; i < originalInternalHealth; i++)
+    //     {
+    //         var go = Instantiate(lockReference, transform);
+    //         float angle = 360f * i/ originalInternalHealth;
+    //         go.transform.position = transform.position + Mathg.AngleToDirection(angle) * starRadius * 0.65f;
+    //         Lock l = go.GetComponent<Lock>();
+    //         l.Init(this, true);
+    //         internalLocks.Add(l);
+    //     }
+    //
+    //     for (int i = 0; i < externalLocks.Count; i++)
+    //     {
+    //         externalLocks[i].Init(this, false);
+    //     }
+    // }
 
     private void ResetStates()
     {
         gameObject.SetActive(true);
-        internalHealth = originalInternalHealth;
-        Health = originalInternalHealth+externalLocks.Count;
+        // internalHealth = originalInternalHealth;
+        // Health = originalInternalHealth+externalLocks.Count;
 
-        for (int i = 0; i < internalLocks.Count; i++)
-            internalLocks[i].Reset();
+        // for (int i = 0; i < internalLocks.Count; i++)
+        //     internalLocks[i].Reset();
 
         for (int j = 0; j < externalLocks.Count; j++)
             externalLocks[j].Reset();
@@ -107,6 +105,11 @@ public class Star : MonoBehaviour
             portal.transform.position = transform.position;
             portal.gameObject.SetActive(false);
         }
+        
+        Health = externalLocks.Count;
+        if (Health < 1)
+            SpawnPortal();
+
     }
 
     private void UpdateAttributes()
@@ -123,13 +126,13 @@ public class Star : MonoBehaviour
 
     public void Collect (Collectable collectable)
     {
-        Debug.Log("Collect");
-        internalLocks[internalHealth-1].Unlock();
-        internalHealth--;
-        TakeHealth();
-        
-        collectable.gameObject.SetActive(false);
-        collectAKEvent?.Post(gameObject);
+        // Debug.Log("Collect");
+        // internalLocks[internalHealth-1].Unlock();
+        // internalHealth--;
+        // TakeHealth();
+        //
+        // collectable.gameObject.SetActive(false);
+        // collectAKEvent?.Post(gameObject);
     }
 
     public void TakeHealth()

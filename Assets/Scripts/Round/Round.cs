@@ -32,6 +32,13 @@ public class Round : MonoBehaviour
 
         // reposiciona e respawna objetos
         // resetta
+        //OnReset?.Invoke();
+        StartCoroutine(OnResetRoutine());
+    }
+
+    public IEnumerator OnResetRoutine()
+    {
+        yield return new WaitForEndOfFrame();
         OnReset?.Invoke();
     }
 

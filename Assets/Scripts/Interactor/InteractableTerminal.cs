@@ -17,7 +17,7 @@ public class InteractableTerminal : Interactable
         if (terminalEventObject == null)
             terminalEvent = GetComponentInParent<ITerminalEvent>();
         else
-            terminalEventObject.GetComponent<ITerminalEvent>();
+            terminalEvent = terminalEventObject.GetComponent<ITerminalEvent>();
         
         CapsuleCollider2D capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         PlanetBlock planetBlock = GetComponent<PlanetBlock>();
