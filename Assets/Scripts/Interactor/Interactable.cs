@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    protected bool interactable = true;
+
     public virtual void Interaction (PlayerInteractor interactor) { }
     
+    public virtual void SetInteraction (bool value) 
+    {
+        interactable = value;
+    }
+
     public virtual void IconState(bool value) { }
 
     protected virtual void HighlightState(bool value) { }

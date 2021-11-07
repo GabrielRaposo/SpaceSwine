@@ -5,13 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(PlatformerCharacter))]
 [RequireComponent(typeof(CollectableInteraction))]
 [RequireComponent(typeof(SpaceJumper))]
+[RequireComponent(typeof(Health))]
 // Classe responsável por conversar com interações externas com controladores e managers
 public class PlayerCharacter : MonoBehaviour
 {
-    // Adicionar componentes resetáveis
+    LocalGameplayState gameplayState;
     PlatformerCharacter platformerCharacter;
     CollectableInteraction collectableInteraction;
     SpaceJumper spaceJumper;
+    Health health;
 
     public static PlayerCharacter Instance;
 
@@ -29,9 +31,11 @@ public class PlayerCharacter : MonoBehaviour
 
     private void Start() 
     {
+        gameplayState = GetComponent<LocalGameplayState>();
         platformerCharacter = GetComponent<PlatformerCharacter>();
         collectableInteraction = GetComponent<CollectableInteraction>();
         spaceJumper = GetComponent<SpaceJumper>();
+        health = GetComponent<Health>();
     }
 
     public void ResetStates()
@@ -53,5 +57,16 @@ public class PlayerCharacter : MonoBehaviour
         // Enter Spawn state
 
         gameObject.SetActive(true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) 
+    {
+        if (!gameplayState || gameplayState.state != GameplayState.Danger)
+            return;
+
+        if (!collision.CompareTag("GameplayArea"))
+            return;
+
+        health.Die();
     }
 }

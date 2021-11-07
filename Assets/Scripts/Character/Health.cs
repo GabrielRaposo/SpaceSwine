@@ -40,7 +40,7 @@ public class Health : MonoBehaviour
             Die();
     }
 
-    private void Die()
+    public void Die()
     {
         deathAKEvent?.Post(gameObject);
         gameObject.SetActive(false);

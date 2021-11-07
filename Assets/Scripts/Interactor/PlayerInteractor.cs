@@ -4,15 +4,18 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CheckGround))]
+[RequireComponent(typeof(PlatformerCharacter))]
 public class PlayerInteractor : MonoBehaviour
 {
+    PlatformerCharacter platformerCharacter;
     CheckGround checkGround;   
     List <Interactable> interactableList = new List<Interactable>();
 
     private void Start()
     {
+        platformerCharacter = GetComponent<PlatformerCharacter>();
         checkGround = GetComponent<CheckGround>();
-    }    
+    }
 
     public void AddInteractable(Interactable interactable)
     {
@@ -33,8 +36,10 @@ public class PlayerInteractor : MonoBehaviour
     public bool Interact()
     {
         // Check if player is idle / not stunned / not in cutscene
-
-        if (!checkGround.OnGround)
+        if (platformerCharacter.LocalSpeed().y > .5f)
+            return false;
+        
+        if (!checkGround.OnGround) 
             return false;
 
         if (interactableList.Count < 1)

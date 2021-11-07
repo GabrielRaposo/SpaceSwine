@@ -21,6 +21,8 @@ public class CameraFocusController : MonoBehaviour
 
     public void SetStaticFocus()
     {
+        //staticCamera.ForceCameraPosition(Vector3.zero, Quaternion.identity);
+
         staticCamera.Priority = 1;
         planetFocusCamera.Priority = 0;
         playerFocusCamera.Priority = 0;
