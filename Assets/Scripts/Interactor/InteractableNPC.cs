@@ -14,7 +14,10 @@ public class InteractableNPC : Interactable
         if (data)
         {
             DialogueSystem dialogSystem = DialogueSystem.Instance;
-            dialogSystem?.SetDialogue(this, data.npcName, data.dialog);
+
+            DialogueGroup dialogueGroup = data[0];
+
+            dialogSystem?.SetDialogue(this, data.npcName, dialogueGroup.tags);
 
             if (interactor)
             {
