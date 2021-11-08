@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Lock : MonoBehaviour
 {
-    public bool isInternalLock;
+    //public bool isInternalLock;
     private Star star;
     [SerializeField] private GameObject visualComponent;
     [SerializeField] private Collider2D col;
@@ -13,7 +13,7 @@ public class Lock : MonoBehaviour
     {
         star = s;
 
-        isInternalLock = isInternal;
+        //isInternalLock = isInternal;
 
         col.enabled = !isInternal;
     }
