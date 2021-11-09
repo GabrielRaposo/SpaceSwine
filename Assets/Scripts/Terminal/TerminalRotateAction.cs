@@ -16,7 +16,6 @@ public class TerminalRotateAction : MonoBehaviour, ITerminalEvent
     {
         interactableChildren = new List<Interactable>();
         GetComponentsInChildren<Interactable>(interactableChildren);
-        Debug.Log("interactableChildren.Count: "  + interactableChildren.Count);
 
         if (targetAngles.Count < 1)
         {

@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InteractableNPC : Interactable
 {
     [SerializeField] NPCData data;
     [SerializeField] SpriteSwapper ballonSpriteSwapper;
+
+    public UnityAction <int, NPCData> OnPreviousIndexReached;
 
     public override void Interaction (PlayerInteractor interactor) 
     {
@@ -14,8 +17,7 @@ public class InteractableNPC : Interactable
         if (data)
         {
             DialogueSystem dialogSystem = DialogueSystem.Instance;
-
-            DialogueGroup dialogueGroup = data[0];
+            DialogueGroup dialogueGroup = data.GetAtIndex();
 
             dialogSystem?.SetDialogue(this, data.npcName, dialogueGroup.tags);
 
@@ -25,7 +27,20 @@ public class InteractableNPC : Interactable
                 platformerCharacter?.KillInputs();
                 platformerCharacter?.LookAtTarget(transform);
             }
+
+            DialogueIndexLogic();
         }
+    }
+
+    private void DialogueIndexLogic() 
+    {   
+        if (!data)
+            return;
+
+        int previousIndex = data.Index;
+        data.MoveIndex(1);
+
+        OnPreviousIndexReached?.Invoke(previousIndex, data);
     }
 
     protected override void HighlightState (bool value) 

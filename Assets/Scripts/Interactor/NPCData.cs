@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NPC Data", menuName = "ScriptableObjects/NPC Data")]
-public class NPCData : ScriptableObject
+public class NPCData : ScriptableObject, ISerializationCallbackReceiver
 {
     public string npcName;
+    public int startingIndex = 0;
     public List<DialogueGroup> dialogueGroups;
+    
+    int accessIndex;
+
     // After Talk Event
 
     public DialogueGroup this[int i]
@@ -18,6 +22,48 @@ public class NPCData : ScriptableObject
 
             return dialogueGroups[i % dialogueGroups.Count]; 
         }
+    }
+
+    public int Index
+    {
+        get 
+        {
+            return accessIndex;
+        }
+    }
+
+    public DialogueGroup GetAtIndex()
+    {
+        Debug.Log("get at index: " + accessIndex);
+        return this[accessIndex];
+    }
+
+    public void MoveIndex (int value)
+    {
+        accessIndex += value;
+        if (accessIndex < 0)
+            accessIndex = dialogueGroups.Count - 1;
+        accessIndex %= dialogueGroups.Count;
+
+        Debug.Log("accessIndex: " + accessIndex);
+    }
+
+    public void SetIndex (int value)
+    {
+        if (dialogueGroups.Count < 1)
+            return;
+
+        accessIndex = value % dialogueGroups.Count;
+    }
+
+    public void OnAfterDeserialize()
+    {
+        accessIndex = startingIndex;
+    }
+
+    public void OnBeforeSerialize()
+    {
+
     }
 }
 

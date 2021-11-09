@@ -26,7 +26,7 @@ public class DialogueBox : MonoBehaviour
     Interactable interactable;
     DialogueAnimation dialogueAnimation;
     string speakerName;
-    List <string> dialogs;
+    List <string> dialogues;
 
     PlayerInputActions playerInputActions;
     Sequence sequence;
@@ -62,16 +62,16 @@ public class DialogueBox : MonoBehaviour
         canvasGroup.alpha = 0;
     }
 
-    public void SetDialogueData(Interactable interactable, string speakerName, List<string> dialogs)
+    public void SetDialogueData(Interactable interactable, string speakerName, List<string> dialogues)
     {
         this.interactable = interactable;
         this.speakerName = speakerName;
-        this.dialogs = dialogs;
+        this.dialogues = dialogues;
 
         SetDialogueEvents();
 
         dialogueIndex = 0;
-        ShowText(speakerName, dialogs[dialogueIndex]);
+        ShowText(speakerName, dialogues[dialogueIndex]);
         interactable?.IconState(false);
 
         DialogueSystem.OnDialogue = true;
@@ -108,9 +108,9 @@ public class DialogueBox : MonoBehaviour
         } 
         else
         {
-            if (++dialogueIndex < dialogs.Count)
+            if (++dialogueIndex < dialogues.Count)
             {
-                ShowText( speakerName, dialogs[dialogueIndex] );
+                ShowText( speakerName, dialogues[dialogueIndex] );
             }
             else
             {
