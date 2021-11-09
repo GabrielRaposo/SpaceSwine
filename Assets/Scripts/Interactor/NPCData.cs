@@ -44,8 +44,6 @@ public class NPCData : ScriptableObject, ISerializationCallbackReceiver
         if (accessIndex < 0)
             accessIndex = dialogueGroups.Count - 1;
         accessIndex %= dialogueGroups.Count;
-
-        Debug.Log("accessIndex: " + accessIndex);
     }
 
     public void SetIndex (int value)

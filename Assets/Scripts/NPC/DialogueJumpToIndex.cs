@@ -13,7 +13,10 @@ public class DialogueJumpToIndex : MonoBehaviour
         InteractableNPC npc = GetComponent<InteractableNPC>();
         npc.OnPreviousIndexReached += (i, data) => 
         {
-            
+            if (i == currentIndex)
+            {
+                data.SetIndex(jumpToTndex);
+            }
         };
     }
 }
