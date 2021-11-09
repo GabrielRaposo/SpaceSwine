@@ -14,10 +14,12 @@ public class DialogueBox : MonoBehaviour
 
     [Header("References")]
     [SerializeField] TextMeshProUGUI nameDisplay;
+    [SerializeField] TextMeshProUGUI textDisplay;
     [SerializeField] TextTyper dialogTyper;
     [SerializeField] Image skipArrow;
 
     bool showing;
+    bool autoSkip;
     CanvasGroup canvasGroup;
 
     int delayFrames;
@@ -62,11 +64,24 @@ public class DialogueBox : MonoBehaviour
         canvasGroup.alpha = 0;
     }
 
-    public void SetDialogueData(Interactable interactable, string speakerName, List<string> dialogues)
+    public void SetDialogueData(Interactable interactable, string speakerName, List<string> dialogues, DialogueBoxStyle customDialogueStyle)
     {
         this.interactable = interactable;
         this.speakerName = speakerName;
         this.dialogues = dialogues;
+
+        autoSkip = false;
+
+        DialogueBoxStyleController dialogueBoxStyleController = GetComponent<DialogueBoxStyleController>();
+        if (customDialogueStyle != null)
+        {
+            autoSkip = customDialogueStyle.instantText;
+            dialogueBoxStyleController?.SetStyle(customDialogueStyle);
+        }
+        else
+        {
+            dialogueBoxStyleController?.SetMainStyle();
+        }
 
         SetDialogueEvents();
 
@@ -115,7 +130,10 @@ public class DialogueBox : MonoBehaviour
             else
             {
                 EndDialogue();
-                DialogueSystem.OnDialogue = false;
+                StartCoroutine
+                (
+                    RaposUtil.Wait(3, () =>  DialogueSystem.OnDialogue = false)
+                );
             }
         }
     }
@@ -140,7 +158,12 @@ public class DialogueBox : MonoBehaviour
             nameDisplay.text = name;
 
         if (dialogTyper)
+        {
             dialogTyper.TypeText (dialog);
+
+            if (autoSkip)
+                dialogTyper.Skip();
+        }
     }
 
     public void EndDialogue()

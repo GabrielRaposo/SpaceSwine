@@ -14,7 +14,7 @@ public class DialogueSystem : MonoBehaviour
         Instance = this;
     }
 
-    public void SetDialogue (Interactable interactable, string speakerName, List<string> dialogueTags)
+    public void SetDialogue (Interactable interactable, string speakerName, List<string> dialogueTags, DialogueBoxStyle customDialogueStyle)
     {
         if (!dialogBox)
             return;
@@ -34,7 +34,7 @@ public class DialogueSystem : MonoBehaviour
             }
         }
 
-        dialogBox.SetDialogueData(interactable, speakerName, translatedDialogues);
+        dialogBox.SetDialogueData(interactable, speakerName, translatedDialogues, customDialogueStyle);
     }
 
     private void OnDisable() 

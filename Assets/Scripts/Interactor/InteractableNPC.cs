@@ -7,6 +7,7 @@ public class InteractableNPC : Interactable
 {
     [SerializeField] NPCData data;
     [SerializeField] SpriteSwapper ballonSpriteSwapper;
+    [SerializeField] DialogueBoxStyle customDialogueStyle;
 
     public UnityAction <int, NPCData> OnPreviousIndexReached;
 
@@ -19,7 +20,7 @@ public class InteractableNPC : Interactable
             DialogueSystem dialogSystem = DialogueSystem.Instance;
             DialogueGroup dialogueGroup = data.GetAtIndex();
 
-            dialogSystem?.SetDialogue(this, data.npcName, dialogueGroup.tags);
+            dialogSystem?.SetDialogue(this, data.npcName, dialogueGroup.tags, customDialogueStyle);
 
             if (interactor)
             {
