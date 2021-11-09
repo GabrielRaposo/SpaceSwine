@@ -70,25 +70,20 @@ public class LocalizedText : MonoBehaviour
     {
         if(textMesh == null) return;
 
-        var file = LocalizationManager.LocalizationFile;
-
-        if (file == null)
-            Debug.Log("CANNOT FIND LOCALIZATION FILE");
-
         switch (textType)
         {
             case LocalizedTextTypes.UI:
-                textMesh.text = file.GetUiText(localizationCode, fallbackText);
+                textMesh.text = LocalizationManager.GetUiText(localizationCode, fallbackText);
                 break;
             case LocalizedTextTypes.Story:
-                (bool valid, string text) story = file.GetStoryText(localizationCode);
+                (bool valid, string text) story = LocalizationManager.GetStoryText(localizationCode);
                 textMesh.text = story.text;
                 break;
             case LocalizedTextTypes.Achievement:
-                textMesh.text = file.GetAchievementName(localizationCode);
+                textMesh.text = LocalizationManager.GetAchievementName(localizationCode);
                 break;
             case LocalizedTextTypes.Music:
-                textMesh.text = file.GetMusicText(localizationCode);
+                textMesh.text = LocalizationManager.GetMusicText(localizationCode);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
