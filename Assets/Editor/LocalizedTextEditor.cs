@@ -9,11 +9,9 @@ using UnityEditor;
 public class LocalizedTextEditor : Editor
 {
     private bool baseToggle;
-    private AstroPigLocalizationFile localization;
     
     public override void OnInspectorGUI()
     {
-        localization = LocalizationManager.LocalizationFile;
         
         // baseToggle = GUILayout.Toggle(baseToggle, "", EditorStyles.foldoutPreDrop);
         // if(baseToggle)
@@ -50,7 +48,7 @@ public class LocalizedTextEditor : Editor
         {
             localizedText.localizationCode = GUILayout.TextArea(localizedText.localizationCode,GUILayout.ExpandWidth(true));
         }
-        else if(localization!= null)
+        else
         {
             List<string> displayList = new List<string>();
             List<string> codeList = new List<string>();
@@ -59,44 +57,51 @@ public class LocalizedTextEditor : Editor
             switch (localizedText.textType)
             {
                 case LocalizedTextTypes.UI:
-                    keys = localization.uiDictionary.Keys;
+                    keys = LocalizationManager.LocalizationFile(LocalizedTextTypes.UI).dic.Keys;
 
                     foreach (string key in keys)
                     {
-                        displayList.Add($"{key} - {localization.GetUiText(key, "[not found]")}");
+                        string preview = LocalizationManager.GetUiText(key, "[not found]");
+                        if (preview.Length > 20)
+                        {
+                            preview = preview.Remove(19, preview.Length - 20);
+                            preview += "...";
+                        }
+                        
+                        displayList.Add($"{key} - {preview}");
                         codeList.Add(key);
                     }
                         
                     
                     break;
                 case LocalizedTextTypes.Story:
-                    keys = localization.storyDictionary.Keys;
+                    keys = LocalizationManager.LocalizationFile(LocalizedTextTypes.Story).dic.Keys;
 
                     foreach (string key in keys)
                     {
-                        displayList.Add($"{key} - {localization.GetStoryText(key)}");
+                        displayList.Add($"{key} - {LocalizationManager.GetStoryText(key)}");
                         codeList.Add(key);
                     }
                         
                     
                     break;
                 case LocalizedTextTypes.Achievement:
-                    keys = localization.achievementDictionary.Keys;
+                    keys = LocalizationManager.LocalizationFile(LocalizedTextTypes.Achievement).dic.Keys;
 
                     foreach (string key in keys)
                     {
-                        displayList.Add($"{key} - {localization.GetAchievementName(key)}");
+                        displayList.Add($"{key} - {LocalizationManager.GetAchievementName(key)}");
                         codeList.Add(key);
                     }
                         
                     
                     break;
                 case LocalizedTextTypes.Music:
-                    keys = localization.musicDictionary.Keys;
+                    keys = LocalizationManager.LocalizationFile(LocalizedTextTypes.Music).dic.Keys;
 
                     foreach (string key in keys)
                     {
-                        displayList.Add($"{key} - {localization.GetMusicText(key)}");
+                        displayList.Add($"{key} - {LocalizationManager.GetMusicText(key)}");
                         codeList.Add(key);
                     }
                         
