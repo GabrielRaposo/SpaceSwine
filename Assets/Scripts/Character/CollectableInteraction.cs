@@ -62,7 +62,7 @@ public class CollectableInteraction : MonoBehaviour
         return true;
     }
 
-    public bool LaunchInput(bool releaseInteractable = true)
+    public bool LaunchInput()
     {
         if (!current)
             return false;
@@ -70,8 +70,7 @@ public class CollectableInteraction : MonoBehaviour
         if (checkGround.OnGround)
         {
             Vector2 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
-            if(releaseInteractable)
-                LaunchCurrentIntoDirection(direction.normalized);
+            LaunchCurrentIntoDirection(direction.normalized);
         }
         else
         {
@@ -79,13 +78,49 @@ public class CollectableInteraction : MonoBehaviour
             if (axisInput == Vector2.zero)
                 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
 
-            if(releaseInteractable)
-                LaunchCurrentIntoDirection(direction.normalized);
+            LaunchCurrentIntoDirection(direction.normalized);
             
             spaceJumper.LaunchIntoDirection(-direction.normalized);
         }
 
         return true;
+    }
+
+    public bool JetpackLaunch()
+    {
+        if (!current)
+            return false;
+
+        if (checkGround.OnGround)
+        {
+            Vector2 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
+        }
+        else
+        {
+            Vector2 direction = axisInput;
+            if (axisInput == Vector2.zero)
+                direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
+
+            spaceJumper.LaunchIntoDirection(-direction.normalized);
+        }
+
+        return true;
+    }
+
+    public Collectable CollectWhileHolding()
+    {
+        if (current == null) return null;
+        
+        Collectable c = current;
+        RemoveCollectable();
+        return c;
+    }
+
+    public void RemoveCollectable()
+    {
+        current.transform.position = transform.position;
+        playerAnimations.holding = false;
+        current = null;
     }
 
     private void LaunchCurrentIntoDirection(Vector2 direction)

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CollectableJetpack : Collectable
@@ -7,25 +8,50 @@ public class CollectableJetpack : Collectable
     [SerializeField] AK.Wwise.Event OnThrowAKEvent;
 
     [SerializeField] private int initialCharges;
+    [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private TextMeshProUGUI text;
+    
     private int curentCharges;
+
+    public int CurentCharges
+    {
+        get => curentCharges;
+        set
+        {
+            curentCharges = value;
+            text.text = curentCharges.ToString();
+        }
+    }
 
     public override void OnResetFunction() 
     {
         base.OnResetFunction();
 
-        curentCharges = initialCharges;
+        CurentCharges = initialCharges;
 
         Collider2D collider2D = GetComponent<Collider2D>();
         if (collider2D)
             collider2D.enabled = true;
     }
 
-    public override void Interact (CollectableInteraction interactor) 
+    public override void Interact (CollectableInteraction interactor)
     {
-        if (interactor.LaunchInput(false))
+        CurentCharges--;
+        Debug.Log($"Interact {CurentCharges}");
+        if (interactor.JetpackLaunch())
         {
             OnThrowAKEvent?.Post(gameObject);
         }
+
+        if (CurentCharges < 1)
+        {
+            particleSystem.transform.parent = null;
+            
+            particleSystem.Play();
+            interactor.RemoveCollectable();
+            Destroy(gameObject);
+        }
+        
     }
 
     public override void TriggerEvent(Collider2D collision) 
