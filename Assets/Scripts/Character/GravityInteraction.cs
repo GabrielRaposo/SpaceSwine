@@ -168,7 +168,7 @@ public class GravityInteraction : MonoBehaviour
         {
             this.gravityArea = null;
             OnChangeGravityAnchor?.Invoke(null);
-        }
+        } 
     }
 
     public (bool, GravityArea, float multiplier, bool onPlatform) GetGravityArea()
