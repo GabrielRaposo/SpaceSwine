@@ -320,7 +320,7 @@ public static class LocalizationManager
     
     public static (bool, string) GetStoryText(string code)
     {
-        if (!storyFile.dic.TryGetValue(code, out LanguageToString languageToString))
+        if (!GetLocalizationFile(LocalizedTextTypes.Story).dic.TryGetValue(code, out LanguageToString languageToString))
             return (false, $"[Story code not found: {code}]");
 
         if(!languageToString.TryGetValue(LocalizationManager.CurrentLanguage, out string s))
@@ -331,7 +331,7 @@ public static class LocalizationManager
 
     public static string GetUiText(string code, string fallback)
     {
-        if (!uiFile.dic.TryGetValue(code, out LanguageToString languageToString))
+        if (!GetLocalizationFile(LocalizedTextTypes.UI).dic.TryGetValue(code, out LanguageToString languageToString))
         {
             //Debug.Log($"UI fallback {code}");
             return fallback;
@@ -348,7 +348,7 @@ public static class LocalizationManager
 
     public static string GetAchievementName(string id)
     {
-        if (!achievementsFile.dic.TryGetValue(id+"_TITLE", out LanguageToString languageToString))
+        if (!GetLocalizationFile(LocalizedTextTypes.Achievement).dic.TryGetValue(id+"_TITLE", out LanguageToString languageToString))
         {
             return $"Achievement name not found {id}";
         }
@@ -362,7 +362,7 @@ public static class LocalizationManager
     
     public static string GetAchievementDescription(string id)
     {
-        if (!achievementsFile.dic.TryGetValue(id+"_DESC", out LanguageToString languageToString))
+        if (!GetLocalizationFile(LocalizedTextTypes.Achievement).dic.TryGetValue(id+"_DESC", out LanguageToString languageToString))
         {
             return $"Achievement description not found {id}";
         }
@@ -376,6 +376,7 @@ public static class LocalizationManager
 
     public static string GetMusicText(string localizationCode)
     {
+        //GetLocalizationFile(LocalizedTextTypes.Music)
         return "";
         //throw new System.NotImplementedException();
     }

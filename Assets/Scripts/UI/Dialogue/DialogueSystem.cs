@@ -14,12 +14,26 @@ public class DialogueSystem : MonoBehaviour
         Instance = this;
     }
 
-    public void SetDialogue (Interactable interactable, string speakerName, List<string> dialog)
+    public void SetDialogue (Interactable interactable, string speakerName, List<string> dialogueTags, DialogueBoxStyle customDialogueStyle)
     {
         if (!dialogBox)
             return;
+        
+        List<string> translatedDialogues = new List<string>();
+        if (dialogueTags != null)
+        {
+            foreach (string tag in dialogueTags)
+            {
+                (bool valid, string text) localizedData = LocalizationManager.GetStoryText(tag);
+                
+                if (!localizedData.valid)
+                    continue;
 
-        dialogBox.SetDialogueData(interactable, speakerName, dialog);
+                translatedDialogues.Add(localizedData.text);
+            }
+        }
+
+        dialogBox.SetDialogueData(interactable, speakerName, translatedDialogues, customDialogueStyle);
     }
 
     private void OnDisable() 

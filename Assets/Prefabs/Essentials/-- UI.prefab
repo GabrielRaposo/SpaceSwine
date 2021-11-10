@@ -4026,7 +4026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9208051683771624471
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4161,6 +4161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9208051683814595722}
   - component: {fileID: 9208051683814595713}
+  - component: {fileID: 6185478568162290432}
   - component: {fileID: 9208051683814595719}
   - component: {fileID: 9208051683814595716}
   - component: {fileID: 9208051683814595717}
@@ -4210,8 +4211,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionDuration: 0.15
   nameDisplay: {fileID: 9208051683561018737}
+  textDisplay: {fileID: 9208051683596922305}
   dialogTyper: {fileID: 9208051683596922307}
   skipArrow: {fileID: 9208051683554275772}
+--- !u!114 &6185478568162290432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9208051683814595723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2656dce35fc166f4ca5d6791093eb295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainStyle: {fileID: 11400000, guid: 9e31de7e557d9234ca6eefd9e0a89a5e, type: 2}
+  patternImage: {fileID: 9208051683966002066}
+  bgImage: {fileID: 9208051683814595716}
+  borderImage: {fileID: 9208051682664647755}
+  textDisplay: {fileID: 9208051683596922305}
+  nameBoxObject: {fileID: 9208051683771624468}
 --- !u!222 &9208051683814595719
 CanvasRenderer:
   m_ObjectHideFlags: 0
