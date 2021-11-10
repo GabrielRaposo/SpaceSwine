@@ -69,7 +69,7 @@ public class PlatformerCharacter : SidewaysCharacter
     public void LookAtTarget(Transform target)
     {
         Vector3 anchoredPos = transform.position - target.position;
-        Vector3 angledPos = RaposUtil.RotateVector(anchoredPos, -transform.eulerAngles.z);
+        Vector3 angledPos = RaposUtil.RotateVector(anchoredPos, - transform.eulerAngles.z);
 
         SetFacingRight(angledPos.x < 0);
     }
