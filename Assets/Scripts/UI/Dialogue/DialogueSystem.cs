@@ -20,12 +20,11 @@ public class DialogueSystem : MonoBehaviour
             return;
         
         List<string> translatedDialogues = new List<string>();
-        var localizationFile = LocalizationManager.LocalizationFile;
-        if (localizationFile != null && dialogueTags != null)
+        if (dialogueTags != null)
         {
             foreach (string tag in dialogueTags)
             {
-                (bool valid, string text) localizedData = localizationFile.GetStoryText(tag);
+                (bool valid, string text) localizedData = LocalizationManager.GetStoryText(tag);
                 
                 if (!localizedData.valid)
                     continue;
