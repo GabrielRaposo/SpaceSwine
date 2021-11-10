@@ -19,6 +19,8 @@ namespace Minigame
         [SerializeField] GGSSplashScreen splashScreen;
         [SerializeField] RectTransform consoleAnchor;
 
+        bool loadedAndActive;
+
         CanvasGroup canvasGroup;
         AsyncOperation asyncMinigameLoad;
         GGSMinigame pluggedCard;
@@ -37,9 +39,16 @@ namespace Minigame
         public void ToggleConsoleState()
         {
             if (TurnedOn)
-                TurnConsoleOff();
+            {
+                if (loadedAndActive)
+                {
+                    TurnConsoleOff();
+                }
+            }
             else
+            {
                 TurnConsoleOn();
+            }
         }
 
         public void TurnConsoleOn()
@@ -117,6 +126,8 @@ namespace Minigame
             MJ_GameManager gameManager = MJ_GameManager.Instance;
             if (gameManager)
                 gameManager.ConnectToConsole(this);
+
+            loadedAndActive = true;
         }
 
         private void UnloadMinigame()
@@ -126,6 +137,8 @@ namespace Minigame
 
             BuildIndex buildIndex = GetCardIndex();
             SceneManager.UnloadSceneAsync((int) buildIndex);
+            
+            loadedAndActive = false;
         }
 
         public void ReloadMinigame()
