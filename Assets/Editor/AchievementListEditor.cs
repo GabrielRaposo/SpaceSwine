@@ -49,8 +49,6 @@ public class AchievementListEditor : Editor
         }
         EditorGUILayout.EndHorizontal(); //A0
 
-        var localizationFile = LocalizationManager.LocalizationFile;
-        
         float iconSize = 55f;
 
         for (int i = 0; i < obj.Achievements.Count; i++)
@@ -77,14 +75,14 @@ public class AchievementListEditor : Editor
             EditorGUILayout.BeginHorizontal();//B
 
             a.id = EditorGUILayout.TextField("", a.id, GUILayout.MaxWidth(62));
-            EditorGUILayout.LabelField(localizationFile.GetAchievementName(a.id), EditorStyles.boldLabel);
+            EditorGUILayout.LabelField(LocalizationManager.GetAchievementName(a.id), EditorStyles.boldLabel);
             
             if (GUILayout.Button("X", EditorStyles.miniButton, GUILayout.MaxWidth(30f)))
                 achievementToRemove = i;
             
             EditorGUILayout.EndHorizontal(); //B0
             
-            EditorGUILayout.LabelField(localizationFile.GetAchievementDescription(a.id));
+            EditorGUILayout.LabelField(LocalizationManager.GetAchievementDescription(a.id));
             
             EditorGUILayout.EndVertical();//TEXT0
             

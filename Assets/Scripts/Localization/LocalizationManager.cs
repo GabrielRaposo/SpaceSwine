@@ -47,55 +47,117 @@ public static class LocalizationManager
     private static string achievementSheetName = "Achievements";
     private static string musicSheetName = "Music";
 
-    private static string localizationDataAddress = "Localization/LocalizationFile";
-    
     static char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
-    private static AstroPigLocalizationFile file;
+    private static AstroPigLocalizationFile storyFile;
+    private static AstroPigLocalizationFile uiFile;
+    private static AstroPigLocalizationFile musicFile;
+    private static AstroPigLocalizationFile achievementsFile;
     
-    private static AstroPigLocalizationFile GetLocalizationFile => Resources.Load<AstroPigLocalizationFile>(localizationDataAddress);
-
-    private static AstroPigLocalizationFile localizationFile;
-    public static AstroPigLocalizationFile LocalizationFile
+    //private static AstroPigLocalizationFile localizationFile;
+    
+    private static AstroPigLocalizationFile GetLocalizationFile(LocalizedTextTypes textType)
     {
-        get
+        string localizationDataAddress = "Localization/LocalizationFile";
+
+        switch (textType)
         {
-            if (localizationFile != null) return localizationFile;
-
-            localizationFile = GetLocalizationFile;
-
-            if (localizationFile == null)
-            {
-                Debug.Log("LOCALIZATION FILE NOT FOUND ON MANAGER");
-            }
-            
-            return localizationFile;
+            case LocalizedTextTypes.UI:
+                if (uiFile != null) return uiFile;
+                localizationDataAddress += "_UI";
+                break;
+            case LocalizedTextTypes.Story:
+                if (storyFile != null) return storyFile;
+                localizationDataAddress += "_Story";
+                break;
+            case LocalizedTextTypes.Achievement:
+                if (achievementsFile != null) return achievementsFile;
+                localizationDataAddress += "_Achievement";
+                break;
+            case LocalizedTextTypes.Music:
+                if (musicFile != null) return musicFile;
+                localizationDataAddress += "_Music";
+                break;
         }
+        
+        var file = Resources.Load<AstroPigLocalizationFile>(localizationDataAddress);
+
+        if (file == null)
+        {
+            Debug.Log($"File not found:{localizationDataAddress}");
+            return null;
+        }
+        
+        switch (textType)
+        {
+            case LocalizedTextTypes.UI:
+                uiFile = file;
+                return uiFile;
+                
+            case LocalizedTextTypes.Story:
+                storyFile = file;
+                return storyFile;
+            
+            case LocalizedTextTypes.Achievement:
+                achievementsFile = file;
+                return achievementsFile;
+            
+            case LocalizedTextTypes.Music:
+                musicFile = file;
+                return musicFile;
+        }
+
+        return null;
+
     }
-    public static void CallUpdate()
+
+    public static AstroPigLocalizationFile LocalizationFile(LocalizedTextTypes textType)
     {
-        file = GetLocalizationFile;
-        file.storyDictionary = new CodeToDictionary();
+        var file = GetLocalizationFile(textType);
+
+        return file;
+    }
+    
+    public static void CallUpdate(LocalizedTextTypes textType)
+    {
+        storyFile = GetLocalizationFile(LocalizedTextTypes.Story);
+        storyFile.dic = new CodeToDictionary();
 
         GSTU_Search sheet;
         
         int zoneCount = 3;
-        
-        for (int i = 0; i < zoneCount; i++)
+
+        switch (textType)
         {
-            sheet = new GSTU_Search(sheetId, "Zona"+(i+1));
-            SpreadsheetManager.Read(sheet, UpdateStoryDictionary);    
+            case LocalizedTextTypes.Story:
+                
+                for (int i = 0; i < zoneCount; i++)
+                {
+                    sheet = new GSTU_Search(sheetId, "Zona"+(i+1));
+                    SpreadsheetManager.Read(sheet, UpdateStoryDictionary);    
+                }
+                break;
+            
+            case LocalizedTextTypes.UI:
+                
+                sheet = new GSTU_Search(sheetId, uiSheetName);
+                SpreadsheetManager.Read(sheet, UpdateUIDictionary);
+                
+                break;
+            
+            case LocalizedTextTypes.Achievement:
+                
+                sheet = new GSTU_Search(sheetId, achievementSheetName);
+                SpreadsheetManager.Read(sheet, UpdateAchievementDictionary);
+                
+                break;
+            case LocalizedTextTypes.Music:
+                
+                sheet = new GSTU_Search(sheetId, musicSheetName);
+                SpreadsheetManager.Read(sheet, UpdateMusicDictionary);
+                
+                break;
         }
-
-        sheet = new GSTU_Search(sheetId, uiSheetName);
-        SpreadsheetManager.Read(sheet, UpdateUIDictionary);
-
-        sheet = new GSTU_Search(sheetId, achievementSheetName);
-        SpreadsheetManager.Read(sheet, UpdateAchievementDictionary);
-
-        sheet = new GSTU_Search(sheetId, musicSheetName);
-        SpreadsheetManager.Read(sheet, UpdateMusicDictionary);
-
     }
     
     private static void UpdateStoryDictionary(GstuSpreadSheet ss)
@@ -122,7 +184,7 @@ public static class LocalizationManager
                 languageToStringDictionary.Add(glc, line[columnNumber].value);
             }
             
-            file.storyDictionary.Add(code, languageToStringDictionary);
+            storyFile.dic.Add(code, languageToStringDictionary);
         }
         
         Debug.Log("Finished loading from GoogleSheets");
@@ -136,8 +198,8 @@ public static class LocalizationManager
         
         var languageCodeList = Enum.GetValues(typeof(GameLocalizationCode)) as GameLocalizationCode[];
 
-        var file = GetLocalizationFile;
-        file.uiDictionary = new CodeToDictionary();
+        uiFile = GetLocalizationFile(LocalizedTextTypes.UI);
+        uiFile.dic = new CodeToDictionary();
 
         
         for (int i = 2; i < lines.Count+1; i++)
@@ -157,7 +219,7 @@ public static class LocalizationManager
                 languageToStringDictionary.Add(glc, line[columnNumber].value);
             }
             
-            file.uiDictionary.Add(code, languageToStringDictionary);
+            uiFile.dic.Add(code, languageToStringDictionary);
         }
         
         Debug.Log("Finished loading from GoogleSheets");
@@ -171,8 +233,8 @@ public static class LocalizationManager
         
         var languageCodeList = Enum.GetValues(typeof(GameLocalizationCode)) as GameLocalizationCode[];
 
-        var file = GetLocalizationFile;
-        file.achievementDictionary = new CodeToDictionary();
+        var file = GetLocalizationFile(LocalizedTextTypes.Achievement);
+        file.dic = new CodeToDictionary();
 
         
         for (int i = 2; i < lines.Count+1; i++)
@@ -192,7 +254,7 @@ public static class LocalizationManager
                 languageToStringDictionary.Add(glc, line[columnNumber].value);
             }
             
-            file.achievementDictionary.Add(code, languageToStringDictionary);
+            file.dic.Add(code, languageToStringDictionary);
         }
         
         Debug.Log("Finished loading from GoogleSheets");
@@ -205,8 +267,8 @@ public static class LocalizationManager
         
         var languageCodeList = Enum.GetValues(typeof(GameLocalizationCode)) as GameLocalizationCode[];
 
-        var file = GetLocalizationFile;
-        file.musicDictionary = new CodeToDictionary();
+        var file = GetLocalizationFile(LocalizedTextTypes.Music);
+        file.dic = new CodeToDictionary();
 
         for (int i = 2; i < lines.Count+1; i++)
         {
@@ -225,7 +287,7 @@ public static class LocalizationManager
                 languageToStringDictionary.Add(glc, line[columnNumber].value);
             }
             
-            file.musicDictionary.Add(code, languageToStringDictionary);
+            file.dic.Add(code, languageToStringDictionary);
         }
         
         Debug.Log("Finished loading from GoogleSheets");
@@ -252,6 +314,70 @@ public static class LocalizationManager
 
         foreach (LocalizedText text in activeTexts)
             text.SetText();
+    }
+    
+    /////////
+    
+    public static (bool, string) GetStoryText(string code)
+    {
+        if (!storyFile.dic.TryGetValue(code, out LanguageToString languageToString))
+            return (false, $"[Story code not found: {code}]");
+
+        if(!languageToString.TryGetValue(LocalizationManager.CurrentLanguage, out string s))
+            return (false, "language not found");
+
+        return (true, s);
+    }
+
+    public static string GetUiText(string code, string fallback)
+    {
+        if (!uiFile.dic.TryGetValue(code, out LanguageToString languageToString))
+        {
+            //Debug.Log($"UI fallback {code}");
+            return fallback;
+        }
+
+        if (!languageToString.TryGetValue(LocalizationManager.CurrentLanguage, out string s))
+        {
+            Debug.Log($"UI fallback {code}");
+            return fallback;
+        }
+
+        return s;
+    }
+
+    public static string GetAchievementName(string id)
+    {
+        if (!achievementsFile.dic.TryGetValue(id+"_TITLE", out LanguageToString languageToString))
+        {
+            return $"Achievement name not found {id}";
+        }
+
+        if (!languageToString.TryGetValue(LocalizationManager.CurrentLanguage, out string s))
+        {
+            return $"Achievement name not found {id}";
+        }
+        return s;
+    }
+    
+    public static string GetAchievementDescription(string id)
+    {
+        if (!achievementsFile.dic.TryGetValue(id+"_DESC", out LanguageToString languageToString))
+        {
+            return $"Achievement description not found {id}";
+        }
+
+        if (!languageToString.TryGetValue(LocalizationManager.CurrentLanguage, out string s))
+        {
+            return $"Achievement description not found {id}";
+        }
+        return s;
+    }
+
+    public static string GetMusicText(string localizationCode)
+    {
+        return "";
+        //throw new System.NotImplementedException();
     }
 
 }
