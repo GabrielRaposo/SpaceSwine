@@ -22,6 +22,6 @@ public class PersistentGroup : MonoBehaviour
 
     private void Start() 
     {
-        bgmAKEvent?.Post(gameObject);    
+        //bgmAKEvent?.Post(gameObject);    
     }
 }

@@ -10,6 +10,7 @@ public class CheckGround : MonoBehaviour
     
     bool onGround;
     PlanetPlatform planetPlatform;
+    Planet planet;
 
     Color debugCollisionColor = Color.blue;
 
@@ -23,6 +24,11 @@ public class CheckGround : MonoBehaviour
         get { return planetPlatform; }
     }
 
+    public Planet OnPlanet
+    {
+        get { return planet; }
+    }
+
     void Update()
     {  
         List<Collider2D> results = new List<Collider2D>();
@@ -34,11 +40,13 @@ public class CheckGround : MonoBehaviour
         {
             onGround = true;
             SetPlatform( results );
+            SetPlanet( results );
         }
         else
         {
             onGround = false;
             planetPlatform = null;
+            planet = null;
         }
     }
 
@@ -54,6 +62,20 @@ public class CheckGround : MonoBehaviour
             }
         }
         planetPlatform = null;
+    }
+
+    private void SetPlanet (List<Collider2D> results)
+    {
+        foreach (Collider2D coll in results)
+        {
+            Planet p = coll.GetComponent<Planet>();
+            if (p) 
+            {
+                planet = p;
+                return;
+            }
+        }
+        planet = null;
     }
 
     void OnDrawGizmos()

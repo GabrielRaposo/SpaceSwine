@@ -21,6 +21,7 @@ public class GravityInteraction : MonoBehaviour
 
     GravityArea gravityArea;
     PlanetPlatform platform;
+    Planet planet;
 
     CheckGround checkGround;
     Rigidbody2D rb;
@@ -79,21 +80,37 @@ public class GravityInteraction : MonoBehaviour
     private void FixedUpdate() 
     {
         if (checkGround)
+        {
             platform = checkGround.OnPlatform;
+            planet = checkGround.OnPlanet;
+        }
 
         UpdateParent ();
 
         float angle = 0;
-        if (!platform)
-        {
-            if (!gravityArea)
-                return;
+        //if (!platform)
+        //{
+        //    if (!gravityArea)
+        //        return;
 
-            angle = AlignWithPlanet();
-        }
-        else
+        //    angle = AlignWithPlanet();
+        //}
+        //else
+        //{
+        //    angle = AlignWithPlatform();
+        //}
+
+        if (platform)
         {
             angle = AlignWithPlatform();
+        } 
+        else if (planet)
+        {
+            angle = AlignWithPlanet();
+        }
+        else if (gravityArea)
+        {
+            angle = AlignWithPlanet();
         }
 
         float interpolatedAngle = angle;
@@ -122,6 +139,14 @@ public class GravityInteraction : MonoBehaviour
 
             transform.SetParent (platform.transform);
             //OnChangeGravityAnchor?.Invoke(platform.transform);
+        }
+        else if (planet)
+        {
+            if (transform.parent == planet)
+                return;
+
+            transform.SetParent (planet.transform);
+            //OnChangeGravityAnchor?.Invoke(planet.transform);
         }
         else
         {
@@ -168,7 +193,7 @@ public class GravityInteraction : MonoBehaviour
         {
             this.gravityArea = null;
             OnChangeGravityAnchor?.Invoke(null);
-        }
+        } 
     }
 
     public (bool, GravityArea, float multiplier, bool onPlatform) GetGravityArea()
@@ -188,6 +213,10 @@ public class GravityInteraction : MonoBehaviour
 
     private void OnDisable() 
     {
+        platform = null;
+        planet = null;
+        UpdateParent();
+
         playerFocusInput.Disable();
         planetFocusInput.Disable();
     }
