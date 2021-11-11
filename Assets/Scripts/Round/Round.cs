@@ -28,7 +28,14 @@ public class Round : MonoBehaviour
 
     public void SetupRound()
     {
-        player?.SpawnAt(startingPoint, startingRotation);
+        if (player)
+        {
+            //player.gameObject.SetActive(false);
+                
+            player.SpawnAt(startingPoint, startingRotation);
+            player.transform.SetParent(transform);
+            player.gameObject.SetActive(true);
+        }
 
         // reposiciona e respawna objetos
         // resetta

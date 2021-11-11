@@ -27,8 +27,12 @@ public class GravityInteraction : MonoBehaviour
     Rigidbody2D rb;
 
     public UnityAction<Transform> OnChangeGravityAnchor;
+
     private void OnEnable() 
     {
+        planet = null;
+        platform = null;
+
         playerFocusInput.Enable();
         planetFocusInput.Enable();
     }
@@ -74,7 +78,7 @@ public class GravityInteraction : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.O))
         //    cameraFocusController.SetPlayerFocus();
         //if (Input.GetKeyDown(KeyCode.P) && gravityArea)
-        //    cameraFocusController.SetPlanetFocus(gravityArea.transform);
+        //    cameraFocusController.SetPlanetFocus(gravityArea.transform); 
     }
 
     private void FixedUpdate() 
@@ -134,7 +138,7 @@ public class GravityInteraction : MonoBehaviour
     {
         if (platform)
         {
-            if (transform.parent == platform)
+            if (transform.parent == platform.transform)
                 return;
 
             transform.SetParent (platform.transform);
@@ -142,10 +146,11 @@ public class GravityInteraction : MonoBehaviour
         }
         else if (planet)
         {
-            if (transform.parent == planet)
+            if (transform.parent == planet.transform)
                 return;
 
             transform.SetParent (planet.transform);
+            Debug.Log("Set Parent: " + planet.name);
             //OnChangeGravityAnchor?.Invoke(planet.transform);
         }
         else
@@ -211,12 +216,18 @@ public class GravityInteraction : MonoBehaviour
         lockIntoAngle = value;
     }
 
-    private void OnDisable() 
+    public void DettachFromSurfaces()
     {
         platform = null;
         planet = null;
         UpdateParent();
+    }
 
+    private void OnDisable() 
+    {
+        platform = null;
+        planet = null;
+        
         playerFocusInput.Disable();
         planetFocusInput.Disable();
     }
