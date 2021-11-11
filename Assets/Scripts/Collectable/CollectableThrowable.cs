@@ -27,18 +27,26 @@ public class CollectableThrowable : Collectable
     {
         base.TriggerEvent(collision);
 
-        Door door = collision.GetComponent<Door>();
-        if (door)
-        {
-            door.Collect(this);
-            return;
-        }
+        // Door door = collision.GetComponent<Door>();
+        // if (door)
+        // {
+        //     door.Collect(this);
+        //     return;
+        // }
 
         Lock l = collision.GetComponent<Lock>();
         if (l)
         {
             l.Collect(this);
             return;
+        }
+
+        Hitbox hb = collision.GetComponent<Hitbox>();
+        if (hb)
+        {
+            if (hb.damage > 0)
+                gameObject.SetActive(false);
+    
         }
     }
 }

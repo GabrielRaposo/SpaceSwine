@@ -19,6 +19,5 @@ public class RoundPortal : MonoBehaviour
             return;
 
         OnContact?.Invoke();
-        Debug.Log("Collide");
     }
 }

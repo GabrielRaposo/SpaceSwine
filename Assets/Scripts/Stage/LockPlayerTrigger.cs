@@ -10,8 +10,6 @@ public class LockPlayerTrigger : MonoBehaviour
     {
         if(!other.gameObject.CompareTag("Player")) return;
         
-        Debug.Log("<b>LockPlayerTrigger</b>");
-        
         var collectableInteraction = other.gameObject.GetComponent<CollectableInteraction>();
         var collectable = collectableInteraction.CollectWhileHolding();
         
