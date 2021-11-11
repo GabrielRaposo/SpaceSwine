@@ -58,7 +58,7 @@ public class CollectableJetpack : Collectable
     {
          base.TriggerEvent(collision);
         //
-        // Star star = collision.GetComponent<Star>();
+        // Door star = collision.GetComponent<Door>();
         // if (star)
         // {
         //     star.Collect(this);

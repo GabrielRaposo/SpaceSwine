@@ -5,13 +5,13 @@ using UnityEngine;
 public class Lock : MonoBehaviour
 {
     //public bool isInternalLock;
-    private Star star;
+    private Door _door;
     [SerializeField] private GameObject visualComponent;
     [SerializeField] private Collider2D col;
 
-    public void Init(Star s, bool isInternal)
+    public void Init(Door s, bool isInternal)
     {
-        star = s;
+        _door = s;
 
         //isInternalLock = isInternal;
 
@@ -22,8 +22,8 @@ public class Lock : MonoBehaviour
     {
         Unlock();
         
-        if(star)
-            star.TakeHealth();
+        if(_door)
+            _door.TakeHealth();
         
         collectable.gameObject.SetActive(false);
         col.enabled = false;

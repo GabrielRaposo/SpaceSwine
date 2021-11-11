@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Star : MonoBehaviour
+public class Door : MonoBehaviour
 {
     [Header("Values")]
     //[SerializeField] int originalInternalHealth;
@@ -18,8 +18,7 @@ public class Star : MonoBehaviour
     [SerializeField] RoundPortal portal;
     [SerializeField] TextMeshPro healthPreview;
     [SerializeField] CircleCollider2D mainCollider;
-    [SerializeField] SpriteRenderer outlineVisualComponent;
-    [SerializeField] SpriteRenderer insideVisualComponent;
+    [SerializeField] Animator animator;
     [SerializeField] AK.Wwise.Event collectAKEvent;
 
     [Space]
@@ -48,7 +47,7 @@ public class Star : MonoBehaviour
 
     private void OnValidate() 
     {
-        UpdateAttributes();
+        //UpdateAttributes();
     }
 
     private void Start()
@@ -112,17 +111,17 @@ public class Star : MonoBehaviour
 
     }
 
-    private void UpdateAttributes()
-    {
-        if (mainCollider)
-            mainCollider.radius = starRadius;
-
-        if (outlineVisualComponent)
-            outlineVisualComponent.transform.localScale = Vector3.one * starRadius * 2f;
-
-        if (insideVisualComponent)
-            insideVisualComponent.transform.localScale = outlineVisualComponent.transform.localScale - (Vector3.one * .04f);
-    }
+    // private void UpdateAttributes()
+    // {
+    //     if (mainCollider)
+    //         mainCollider.radius = starRadius;
+    //
+    //     if (outlineVisualComponent)
+    //         outlineVisualComponent.transform.localScale = Vector3.one * starRadius * 2f;
+    //
+    //     if (insideVisualComponent)
+    //         insideVisualComponent.transform.localScale = outlineVisualComponent.transform.localScale - (Vector3.one * .04f);
+    // }
 
     public void Collect (Collectable collectable)
     {
@@ -159,6 +158,8 @@ public class Star : MonoBehaviour
             }
         );
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        
+        animator.SetBool("Open", true);
     }
 }

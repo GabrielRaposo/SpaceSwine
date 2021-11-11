@@ -27,10 +27,10 @@ public class CollectableThrowable : Collectable
     {
         base.TriggerEvent(collision);
 
-        Star star = collision.GetComponent<Star>();
-        if (star)
+        Door door = collision.GetComponent<Door>();
+        if (door)
         {
-            star.Collect(this);
+            door.Collect(this);
             return;
         }
 
