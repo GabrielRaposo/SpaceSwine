@@ -49,6 +49,7 @@ public class SpaceJumper : MonoBehaviour
         {
             longJumpAKEvent?.Post(gameObject);
             playerAnimations.SetLaunchedState();
+            gravityInteraction.DettachFromSurfaces();
         }
         else       
         {

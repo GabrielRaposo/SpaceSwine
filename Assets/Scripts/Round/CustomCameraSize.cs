@@ -20,7 +20,7 @@ public class CustomCameraSize : MonoBehaviour
         CameraSizeController.Size = customSize;
         onCustomCamera = true;
 
-        Debug.Log("Set custom size: " + customSize);
+        //Debug.Log("Set custom size: " + customSize);
     }
 
     private void OnDisable() 
