@@ -78,6 +78,12 @@ public class CheckGround : MonoBehaviour
         planet = null;
     }
 
+    private void OnDisable() 
+    {
+        planetPlatform = null;
+        planet = null;
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.color = debugCollisionColor;
