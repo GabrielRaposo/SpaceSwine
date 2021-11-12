@@ -34,7 +34,9 @@ public class MoveToTarget : MonoBehaviour
         if (t > duration)
             t = duration;
 
-        transform.position = Vector2.Lerp(startingPosition, target.position, t / duration);
+        float a = t * curve.Evaluate(t / duration);
+
+        transform.position = Vector2.Lerp(startingPosition, target.position, a / duration);
 
         if (t == duration)
         {
