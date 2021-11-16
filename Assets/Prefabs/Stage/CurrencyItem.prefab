@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 2091767381782208750}
   - component: {fileID: 2091767381782208748}
   - component: {fileID: 2091767381782208751}
+  - component: {fileID: 3939530887518837815}
   - component: {fileID: 2091767381782208745}
   m_Layer: 0
   m_Name: CurrencyItem
@@ -129,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
+  customPlanetHeight: 0
 --- !u!114 &2091767381782208751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5bb2ce4a68dd884f85fa87c3e21763a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.2
+  duration: 0.1
   curve:
     serializedVersion: 2
     m_Curve:
@@ -167,6 +169,18 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   turnOffOnReach: 1
+--- !u!114 &3939530887518837815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091767381782208744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46f91b312b4dfb4ba4bb2e2eedf9b5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &2091767381782208745
 CircleCollider2D:
   m_ObjectHideFlags: 0
