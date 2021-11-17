@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ public class Lock : MonoBehaviour
     [SerializeField] private GameObject visualComponent;
     [SerializeField] private Collider2D col;
 
+    private Round _round;
+
     public void Init(Door s, bool isInternal)
     {
         _door = s;
@@ -18,7 +21,14 @@ public class Lock : MonoBehaviour
         col.enabled = !isInternal;
     }
 
-    public void Collect(Collectable collectable)
+    private void Start()
+    {
+        _round = GetComponentInParent<Round>();
+
+        _round.OnReset += Reset;
+    }
+
+    public virtual void Collect(Collectable collectable)
     {
         Unlock();
         
@@ -32,6 +42,7 @@ public class Lock : MonoBehaviour
     
     public void Reset()
     {
+        Debug.Log("Reset Lock");
         visualComponent.SetActive(true);
         col.enabled = true;
     }

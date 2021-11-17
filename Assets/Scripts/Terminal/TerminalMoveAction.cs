@@ -10,7 +10,8 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
 
     int index;
     Sequence sequence;
-    List<Interactable> interactableChildren; 
+    List<Interactable> interactableChildren;
+    Round _round;
 
     void Start()
     {
@@ -27,6 +28,9 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
         index = 0;
         //transform.eulerAngles = Vector3.forward * targetAngles[index];
         transform.position = targetPositions[index];
+
+        _round = GetComponentInParent<Round>();
+        _round.OnReset += OnReset;
     }
 
     public void Activate (InteractableTerminal terminal, PlayerInteractor player)
@@ -75,5 +79,11 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
             PlayerInput playerInput = player.GetComponent<PlayerInput>();
             if (playerInput) playerInput.enabled = true;
         }
+    }
+
+    private void OnReset()
+    {
+        index = 0;
+        transform.position = targetPositions[0];
     }
 }
