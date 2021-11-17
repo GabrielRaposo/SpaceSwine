@@ -33,7 +33,9 @@ public class CurrencyItem : MonoBehaviour
 
     private void OnCollect()
     {
-        // aumenta no contador estático
+        int worldId = 1;
+        PlayerWallet.ChangeValue(value, worldId);
+
         gameObject.SetActive(false);
     }
 }
