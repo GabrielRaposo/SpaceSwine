@@ -87,6 +87,6 @@ public class CheckGround : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = debugCollisionColor;
-        Gizmos.DrawWireCube(transform.position + (transform.up * offset.y), size);
+        Gizmos.DrawWireCube (transform.position + (transform.up * offset.y), size);
     }
 }
