@@ -18,7 +18,43 @@ public class NPCSpawner : MonoBehaviour
 
     void Start()
     {
-        
+        ActivationLogic();
+    }
+
+    private void ActivationLogic()
+    {
+        foreach (NPCRule rule in rules)
+        {
+            if (currentActive != null)
+            {
+                rule.instance.SetActive(false);
+                continue;
+            }
+
+            bool valid = true;
+            for (int i = 0; i < rule.criteria.Length && i < storyEvents.Count; i++)
+            {
+                if (rule.criteria[i] != storyEvents[i].state)
+                    valid = false;
+            }
+
+            if (!valid)
+            {
+                rule.instance.SetActive(false);
+                continue;
+            }
+
+            currentActive = rule.instance;
+        }
+
+        if (currentActive == null)
+        {
+            // activate default
+        }
+        else 
+        {
+            currentActive.SetActive(true);
+        }
     }
 
     private void OnValidate() 
