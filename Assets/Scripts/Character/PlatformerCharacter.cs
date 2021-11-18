@@ -187,6 +187,9 @@ public class PlatformerCharacter : SidewaysCharacter
             return false;
 
         Vector2 direction = (gravity.area.Center - transform.position).normalized;
+        if (gravity.area.linear)
+            direction = - gravity.area.transform.up;
+
         float angle = Vector2.SignedAngle(Vector2.down, direction);
 
         rb.velocity = RaposUtil.RotateVector(new Vector2 (horizontalSpeed, verticalSpeed), angle);
