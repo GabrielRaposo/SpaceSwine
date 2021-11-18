@@ -15,7 +15,7 @@ public class PlanetBlock : MonoBehaviour
     [SerializeField] BoxCollider2D groundCollider;
     [SerializeField] Transform groundVisual;
 
-    Planet planet;
+    GravitationalPlanet planet;
 
     void Start()
     {
@@ -34,7 +34,7 @@ public class PlanetBlock : MonoBehaviour
 
     private void Setup()
     {
-        planet = GetComponentInParent<Planet>();
+        planet = GetComponentInParent<GravitationalPlanet>();
         if (!planet) 
             return;
 

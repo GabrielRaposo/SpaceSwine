@@ -21,7 +21,7 @@ public class GravityInteraction : MonoBehaviour
 
     GravityArea gravityArea;
     PlanetPlatform platform;
-    Planet planet;
+    GravitationalBody planet;
 
     CheckGround checkGround;
     Rigidbody2D rb;

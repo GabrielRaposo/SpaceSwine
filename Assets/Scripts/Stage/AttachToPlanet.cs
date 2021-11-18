@@ -8,7 +8,7 @@ public class AttachToPlanet : MonoBehaviour
     [SerializeField] float angle;
     
     bool attached;
-    Planet planet;
+    GravitationalPlanet planet;
 
     void Start()
     {
@@ -27,7 +27,7 @@ public class AttachToPlanet : MonoBehaviour
 
     private void Attach()
     {
-        planet = GetComponentInParent<Planet>();
+        planet = GetComponentInParent<GravitationalPlanet>();
         if (!planet) 
         {
             attached = false;

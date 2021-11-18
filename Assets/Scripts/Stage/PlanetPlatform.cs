@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlanetPlatform : MonoBehaviour
 {
-    Planet parentPlanet;    
+    GravitationalPlanet parentPlanet;    
 
     void Start()
     {
-        parentPlanet = GetComponent<Planet>();
+        parentPlanet = GetComponent<GravitationalPlanet>();
         if (parentPlanet)
             Debug.Log(parentPlanet.name);
     }

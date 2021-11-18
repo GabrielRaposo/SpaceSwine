@@ -8,7 +8,7 @@ public class AnchorToPlanetWithRaycast : MonoBehaviour
     [SerializeField] float angle;
     [SerializeField] float offsetHeight;
 
-    Planet currentPlanet;
+    GravitationalPlanet currentPlanet;
     bool attached;
 
     void Start()
@@ -34,14 +34,14 @@ public class AnchorToPlanetWithRaycast : MonoBehaviour
         if (currentPlanet != null)
             return;
 
-        (bool found, Planet planet) raycastCheck = CheckForPlanet();
+        (bool found, GravitationalPlanet planet) raycastCheck = CheckForPlanet();
         if (!raycastCheck.found)
             return;
 
         Attach();
     }
 
-    private (bool, Planet) CheckForPlanet()
+    private (bool, GravitationalPlanet) CheckForPlanet()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, .1f, 1 << LayerMask.NameToLayer("Gravity"));
         if (colliders.Length < 1)
@@ -53,7 +53,7 @@ public class AnchorToPlanetWithRaycast : MonoBehaviour
             if (gravityArea == null)
                 continue;
                 
-            currentPlanet = gravityArea.GetComponentInParent<Planet>();
+            currentPlanet = gravityArea.GetComponentInParent<GravitationalPlanet>();
             if (currentPlanet == null)
                 continue;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
-public class Planet : MonoBehaviour
+public class GravitationalPlanet : GravitationalBody
 {
     [Header("Values")]
     [SerializeField] float planetRadius = 1f;
