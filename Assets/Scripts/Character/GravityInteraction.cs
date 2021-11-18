@@ -60,7 +60,8 @@ public class GravityInteraction : MonoBehaviour
             switch (localGameplayState.state) 
             {
                 case GameplayState.Exploration:
-                    cameraFocusController.SetInstantPlayerFocus();
+                    if (cameraFocusController)
+                        cameraFocusController.SetInstantPlayerFocus();
                     break;
 
                 //case GameplayState.Danger:
