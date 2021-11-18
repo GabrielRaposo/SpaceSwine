@@ -91,7 +91,7 @@ public class AnchorToPlanetWithRaycast : MonoBehaviour
             localAngle = angle;
         }
         
-        Debug.Log("Set pos");
+        //Debug.Log("Set pos");
         transform.position = (Vector3)(direction * (radius.planet + offsetHeight)) + currentPlanet.transform.position;
         transform.localEulerAngles = Vector3.forward * localAngle;
 
