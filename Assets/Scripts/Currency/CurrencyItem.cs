@@ -11,6 +11,9 @@ public class CurrencyItem : MonoBehaviour
     MoveToTarget moveToTarget;
     Vector2 startingPosition;
 
+    int worldId;
+    int roundId;
+
     void Awake()
     {
         startingPosition = transform.position;
@@ -20,8 +23,13 @@ public class CurrencyItem : MonoBehaviour
 
     private void Start() 
     {
-        int worldId = 1;
-        int roundId = 0;
+        worldId = 1;
+        roundId = 0;
+
+        Round round = GetComponentInParent<Round>();
+        if (round)
+            roundId = round.transform.GetSiblingIndex();
+
         if (CurrencyInstanceList.CheckCollection( worldId, new Vector3(startingPosition.x, startingPosition.y, roundId) ))
             gameObject.SetActive(false);
     }
@@ -44,8 +52,6 @@ public class CurrencyItem : MonoBehaviour
 
     private void OnCollect()
     {
-        int worldId = 1;
-        int roundId = 0;
         PlayerWallet.ChangeValue(value, worldId);
         CurrencyInstanceList.CountAsCollected( worldId, new Vector3(startingPosition.x, startingPosition.y, roundId) );
 
