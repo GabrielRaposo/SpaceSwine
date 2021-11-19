@@ -21,7 +21,7 @@ public class GravityInteraction : MonoBehaviour
 
     GravityArea gravityArea;
     PlanetPlatform platform;
-    Planet planet;
+    GravitationalBody planet;
 
     CheckGround checkGround;
     Rigidbody2D rb;
@@ -60,7 +60,8 @@ public class GravityInteraction : MonoBehaviour
             switch (localGameplayState.state) 
             {
                 case GameplayState.Exploration:
-                    cameraFocusController.SetInstantPlayerFocus();
+                    if (cameraFocusController)
+                        cameraFocusController.SetInstantPlayerFocus();
                     break;
 
                 //case GameplayState.Danger:
@@ -92,17 +93,6 @@ public class GravityInteraction : MonoBehaviour
         UpdateParent ();
 
         float angle = 0;
-        //if (!platform)
-        //{
-        //    if (!gravityArea)
-        //        return;
-
-        //    angle = AlignWithPlanet();
-        //}
-        //else
-        //{
-        //    angle = AlignWithPlatform();
-        //}
 
         if (platform)
         {
@@ -150,7 +140,7 @@ public class GravityInteraction : MonoBehaviour
                 return;
 
             transform.SetParent (planet.transform);
-            Debug.Log("Set Parent: " + planet.name);
+            //Debug.Log("Set Parent: " + planet.name);
             //OnChangeGravityAnchor?.Invoke(planet.transform);
         }
         else
@@ -168,6 +158,9 @@ public class GravityInteraction : MonoBehaviour
     {
         if (!gravityArea)
             return 0;
+
+        if (gravityArea.linear)
+            return Vector2.SignedAngle(Vector2.up, gravityArea.transform.up); 
 
         Vector2 direction = (transform.position - gravityArea.Center).normalized;
         return Vector2.SignedAngle(Vector2.up, direction);

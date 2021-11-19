@@ -64,7 +64,7 @@ public class InteractableElevator : Interactable
     {
         base.SetInteraction(value);
 
-        Debug.Log("elevator interaction");
+        //Debug.Log("elevator interaction");
         SetActivation(value);
     }
 
