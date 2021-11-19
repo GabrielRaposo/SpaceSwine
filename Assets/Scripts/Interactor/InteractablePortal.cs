@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class InteractablePortal : Interactable
 {
+    [SerializeField] BuildIndex targetIndex;
     [SerializeField] RoundSessionData data;
     //[SerializeField] SpriteSwapper ballonSpriteSwapper;
 
@@ -32,7 +33,7 @@ public class InteractablePortal : Interactable
             };
             RoundsManager.SessionData = data;
             
-            SceneTransition.LoadScene( (int) BuildIndex.TestDangerStage );
+            SceneTransition.LoadScene( (int) targetIndex /*(int) BuildIndex.TestDangerStage*/ );
         }
     }
 
