@@ -9,10 +9,21 @@ public class CurrencyItem : MonoBehaviour
     bool collected;
 
     MoveToTarget moveToTarget;
+    Vector2 startingPosition;
 
     void Awake()
     {
+        startingPosition = transform.position;
+
         moveToTarget = GetComponent<MoveToTarget>();
+    }
+
+    private void Start() 
+    {
+        int worldId = 1;
+        int roundId = 0;
+        if (CurrencyInstanceList.CheckCollection( worldId, new Vector3(startingPosition.x, startingPosition.y, roundId) ))
+            gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D (Collider2D collision) 
@@ -34,7 +45,9 @@ public class CurrencyItem : MonoBehaviour
     private void OnCollect()
     {
         int worldId = 1;
+        int roundId = 0;
         PlayerWallet.ChangeValue(value, worldId);
+        CurrencyInstanceList.CountAsCollected( worldId, new Vector3(startingPosition.x, startingPosition.y, roundId) );
 
         gameObject.SetActive(false);
     }
