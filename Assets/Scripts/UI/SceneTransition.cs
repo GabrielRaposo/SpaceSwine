@@ -97,7 +97,13 @@ public enum BuildIndex
     Splash = 0,
     Title = 1,
     Ship = 2,
-    TestExplorationStage = 3,
-    TestDangerStage = 4,
-    MinigameJumper = 5
+    World1Exploration = 3,
+    World1Danger = 4,
+    World2Exploration = 5,
+    World2Danger = 6,
+    World3Exploration = 7,
+    World3Danger = 8,
+    MinigameJumper = 9,
+    TestExplorationStage = 10,
+    TestDangerStage = 11
 }
