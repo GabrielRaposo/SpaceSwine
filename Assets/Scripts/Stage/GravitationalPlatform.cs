@@ -13,6 +13,8 @@ public class GravitationalPlatform : GravitationalBody
     [SerializeField] SpriteRenderer outlineVisualComponent;
     [SerializeField] SpriteRenderer insideVisualComponent;
     [SerializeField] BoxCollider2D gravityArea;
+    [SerializeField] GameObject leftWall;
+    [SerializeField] GameObject rightWall;
 
     private void OnValidate() 
     {
@@ -40,14 +42,32 @@ public class GravitationalPlatform : GravitationalBody
             gravityArea.size = new Vector2( platformSize.x, gravityHeight );
             gravityArea.offset = Vector2.up * gravityHeight * .5f;
         }
+
+        if (leftWall)
+        {
+            leftWall.transform.localPosition = new Vector2 ((platformSize.x * -.5f) - .4f, .5f * gravityHeight);
+            leftWall.transform.localScale = new Vector2(.25f, gravityHeight);
+        }
+
+        if (rightWall)
+        {
+            rightWall.transform.localPosition = new Vector2 ((platformSize.x * .5f) + .4f, .5f * gravityHeight);
+            rightWall.transform.localScale = new Vector2(.25f, gravityHeight);
+        }
     }
 
-    //private void OnDrawGizmos() 
-    //{
-    //    if (gravityRadius <= 0)
-    //        return;
+    private void OnDrawGizmosSelected() 
+    {
+        if (gravityHeight <= 0)
+            return;
 
-    //    Gizmos.color = new Color(1, 1, 1, .25f);
-    //    Gizmos.DrawWireSphere(transform.position, planetRadius + gravityRadius);
-    //}
+        //Gizmos.color = new Color(1, 1, 1, .25f);
+        Gizmos.color = Color.yellow;
+        Vector3 upperOffset = (transform.up * gravityHeight * 3);
+        Vector3 leftOffset = transform.position + (transform.right * platformSize.x * .5f * -1f);
+        Vector3 rightOffset = transform.position + (transform.right * platformSize.x * .5f *  1f);
+
+        Gizmos.DrawLine( leftOffset,  leftOffset  + upperOffset );
+        Gizmos.DrawLine( rightOffset, rightOffset + upperOffset );
+    }
 }

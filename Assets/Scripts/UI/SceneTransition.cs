@@ -96,7 +96,8 @@ public enum BuildIndex
 {
     Splash = 0,
     Title = 1,
-    TestExplorationStage = 2,
-    TestDangerStage = 3,
-    MinigameJumper = 4
+    Ship = 2,
+    TestExplorationStage = 3,
+    TestDangerStage = 4,
+    MinigameJumper = 5
 }
