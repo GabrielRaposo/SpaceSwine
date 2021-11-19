@@ -28,7 +28,7 @@ public class CurrencyItem : MonoBehaviour
 
         Round round = GetComponentInParent<Round>();
         if (round)
-            roundId = round.transform.GetSiblingIndex();
+            roundId = round.transform.GetSiblingIndex() + 1;
 
         if (CurrencyInstanceList.CheckCollection( worldId, new Vector3(startingPosition.x, startingPosition.y, roundId) ))
             gameObject.SetActive(false);

@@ -5,6 +5,8 @@ using UnityEngine;
 public class CurrencyInstanceList : MonoBehaviour
 {
     static HashSet<Vector3> world1HashSet = new HashSet<Vector3>();
+    static HashSet<Vector3> world2HashSet = new HashSet<Vector3>();
+    static HashSet<Vector3> world3HashSet = new HashSet<Vector3>();
 
     private static HashSet<Vector3> GetWorldById (int worldId) 
     { 
