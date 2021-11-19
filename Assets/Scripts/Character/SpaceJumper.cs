@@ -78,13 +78,13 @@ public class SpaceJumper : MonoBehaviour
             return;
         }
 
-        GravitationalPlanet planet = collision.gameObject.GetComponent<GravitationalPlanet>();
+        GravitationalBody planet = collision.gameObject.GetComponent<GravitationalBody>();
         if (!planet)
         {
             PlanetBlock planetBlock = collision.gameObject.GetComponent<PlanetBlock>();
             if (planetBlock)
             {
-                planet = collision.gameObject.GetComponentInParent<GravitationalPlanet>();
+                planet = collision.gameObject.GetComponentInParent<GravitationalBody>();
                 if (!planet)
                     return;
             }
