@@ -10,7 +10,7 @@ public class SaveManager : MonoBehaviour
 {
     private static SaveFile currentSave;
 
-    readonly static string path = Application.persistentDataPath + "/sbm_new_save.save";
+    readonly static string path = Application.persistentDataPath + "/astropig_new_save.save";
 
     private static int safety;
     static SaveManager()

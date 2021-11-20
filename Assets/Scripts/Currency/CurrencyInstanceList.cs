@@ -15,6 +15,12 @@ public class CurrencyInstanceList : MonoBehaviour
             default:
             case 1:
                 return world1HashSet;
+
+            case 2:
+                return world2HashSet;
+
+            case 3:
+                return world3HashSet;
         }
     }
 

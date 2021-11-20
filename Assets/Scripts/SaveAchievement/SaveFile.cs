@@ -6,7 +6,17 @@ using UnityEngine;
 [Serializable]
 public class SaveFile
 {
-    public int version = 2;
+    public int version = 1;
+
+    public float world1Currency;
+    public float world2Currency;
+    public float world3Currency;
+    public float digitalCurrency;
+
+    public HashSet<Vector3> world1HashSet = new HashSet<Vector3>();
+    public HashSet<Vector3> world2HashSet = new HashSet<Vector3>();
+    public HashSet<Vector3> world3HashSet = new HashSet<Vector3>();
+
     public List<AchievementLog> achievementLog;
     private float playtime;
 
