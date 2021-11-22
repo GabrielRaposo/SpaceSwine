@@ -255,6 +255,7 @@ public class Achievement
     }
 }
 
+[System.Serializable]
 public class AchievementLog
 {
     private Achievement achievement;

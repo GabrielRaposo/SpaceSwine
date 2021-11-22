@@ -30,6 +30,12 @@ public class CurrencyItem : MonoBehaviour
         if (round)
             roundId = round.transform.GetSiblingIndex() + 1;
 
+        //StartCoroutine( RaposUtil.Wait(30, DespawnLogic) );
+        DespawnLogic();
+    }
+
+    private void DespawnLogic()
+    {
         if (CurrencyInstanceList.CheckCollection( worldId, new Vector3(startingPosition.x, startingPosition.y, roundId) ))
             gameObject.SetActive(false);
     }

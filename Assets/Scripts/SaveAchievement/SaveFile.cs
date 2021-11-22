@@ -8,20 +8,27 @@ public class SaveFile
 {
     public int version = 1;
 
+    public float digitalCurrency;
     public float world1Currency;
     public float world2Currency;
     public float world3Currency;
-    public float digitalCurrency;
 
-    public HashSet<Vector3> world1HashSet = new HashSet<Vector3>();
-    public HashSet<Vector3> world2HashSet = new HashSet<Vector3>();
-    public HashSet<Vector3> world3HashSet = new HashSet<Vector3>();
+    //public CurrencyItemIndexer world1CurrencyIndexer;
+    //public CurrencyItemIndexer world2CurrencyIndexer;
+    //public CurrencyItemIndexer world3CurrencyIndexer;
+
+    // ship customization data
+    // ship bought items
 
     public List<AchievementLog> achievementLog;
     private float playtime;
 
     public SaveFile ()
     {
+        //world1CurrencyIndexer = new CurrencyItemIndexer();
+        //world2CurrencyIndexer = new CurrencyItemIndexer();
+        //world3CurrencyIndexer = new CurrencyItemIndexer();
+
         var achievementList = AchievementsManager.GetNewAchievementList();
 
         achievementLog = new List<AchievementLog>();
@@ -64,5 +71,13 @@ public class SaveFile
     }
 }
 
+[Serializable]
+public class CurrencyItemIndexer 
+{
+    public CurrencyItemIndexer()
+    {
+        list = new List<Vector3>();
+    }
 
-
+    public List<Vector3> list;
+}
