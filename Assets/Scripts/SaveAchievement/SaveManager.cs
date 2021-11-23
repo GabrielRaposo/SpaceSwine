@@ -163,10 +163,10 @@ public class SaveManager : MonoBehaviour
             default:
             case 1:
                 return currentSave.world1CurrencyIndexer;
-            //case 2:
-                //    return currentSave.world2CurrencyIndexer;
-            //case 3:
-                //    return currentSave.world3CurrencyIndexer;
+            case 2:
+                return currentSave.world2CurrencyIndexer;
+            case 3:
+                return currentSave.world3CurrencyIndexer;
         }
     }
 
