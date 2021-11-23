@@ -13,9 +13,9 @@ public class SaveFile
     public float world2Currency;
     public float world3Currency;
 
-    [SerializeField] public List<ItemIndexer> world1CurrencyIndexer;
-    //public CurrencyItemIndexer world2CurrencyIndexer;
-    //public CurrencyItemIndexer world3CurrencyIndexer;
+    public List<ItemIndexer> world1CurrencyIndexer;
+    public List<ItemIndexer> world2CurrencyIndexer;
+    public List<ItemIndexer> world3CurrencyIndexer;
 
     // ship customization data
     // ship bought items
@@ -26,8 +26,8 @@ public class SaveFile
     public SaveFile ()
     {
         world1CurrencyIndexer = new List<ItemIndexer>();
-        //world2CurrencyIndexer = new CurrencyItemIndexer();
-        //world3CurrencyIndexer = new CurrencyItemIndexer();
+        world2CurrencyIndexer = new List<ItemIndexer>();
+        world3CurrencyIndexer = new List<ItemIndexer>();
 
         var achievementList = AchievementsManager.GetNewAchievementList();
 
@@ -72,23 +72,26 @@ public class SaveFile
 }
 
 [System.Serializable]
-public class CurrencyItemIndexer 
-{
-    public CurrencyItemIndexer()
-    {
-        //list = new List<Vector3>();
-    }
-
-    //[SerializeField] public List<Vector3> list;
-}
-
-[System.Serializable]
 public class ItemIndexer
 {
-    public ItemIndexer(float x, float y, float id)
+    public ItemIndexer (float x, float y, float id)
     {
-        v = new Vector3(x, y , id);
+        this.x = x;
+        this.y = y;
+        this.id = id;
     }
 
-    public Vector3 v;
+    public override string ToString()
+    {
+        return $"x: {x}, y: {y}, id: {id}";
+    }
+
+    public bool CompareTo(ItemIndexer item)
+    {
+        return (x == item.x) && (y == item.y) && (id == item.id);
+    }
+
+    [SerializeField] public float x;
+    [SerializeField] public float y;
+    [SerializeField] public float id;
 }

@@ -16,7 +16,7 @@ public class PlayerWallet : MonoBehaviour
     public static void LoadSaveData()
     {
         //SetValue(SaveManager.GetCurrency(0), 0);
-        //SetValue(SaveManager.GetCurrency(1), 1);
+        SetValue(SaveManager.GetCurrency(1), 1);
         //SetValue(SaveManager.GetCurrency(2), 2);
         //SetValue(SaveManager.GetCurrency(3), 3);
     }

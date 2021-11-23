@@ -130,7 +130,9 @@ public class SaveManager : MonoBehaviour
 
         // Save currency
         currentSave.world1Currency = PlayerWallet.GetValueBy(1);
-        //currentSave.world1CurrencyIndexer = CurrencyInstanceList.GetWorldById(1);
+
+        List<ItemIndexer> world1 = CurrencyInstanceList.GetWorldById(1);
+        currentSave.world1CurrencyIndexer = world1;
 
         // Save events
         // Save ship states
@@ -138,38 +140,33 @@ public class SaveManager : MonoBehaviour
         Save();
     }
 
-    //public static float GetCurrency(int id)
-    //{
-    //    switch(id)
-    //    {
-    //        default:
-    //        case 0:
-    //            return currentSave.digitalCurrency;
+    public static float GetCurrency(int id) 
+    {
+        switch (id) {
+            default:
+            case 0:
+                return currentSave.digitalCurrency;
 
-    //        case 1:
-    //            return currentSave.world1Currency;
-    //        case 2:
-    //            return currentSave.world2Currency;
-    //        case 3:
-    //            return currentSave.world3Currency;
-    //    }
-    //}
+            case 1:
+                return currentSave.world1Currency;
+            case 2:
+                return currentSave.world2Currency;
+            case 3:
+                return currentSave.world3Currency;
+        }
+    }
 
     public static List<ItemIndexer> GetWorldHashSet(int id)
     {
-        currentSave = Load();
-
         switch(id)
         {
             default:
-                return new List<ItemIndexer>();
-
-            //case 1:
-            //    return currentSave.world1CurrencyIndexer;
+            case 1:
+                return currentSave.world1CurrencyIndexer;
             //case 2:
-            //    return currentSave.world2CurrencyIndexer;
+                //    return currentSave.world2CurrencyIndexer;
             //case 3:
-            //    return currentSave.world3CurrencyIndexer;
+                //    return currentSave.world3CurrencyIndexer;
         }
     }
 

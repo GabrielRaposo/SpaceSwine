@@ -53,9 +53,9 @@ public class GameManager : MonoBehaviour
 
     private void LoadSave() 
     {
-        SaveManager.Load();
-        //PlayerWallet.LoadSaveData();
-        //CurrencyInstanceList.LoadSaveData();
+        //SaveManager.Load();
+        PlayerWallet.LoadSaveData();
+        CurrencyInstanceList.Init();
     }
 
     private void SetupPlayer()
