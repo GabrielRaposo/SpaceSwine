@@ -36,7 +36,7 @@ public class CurrencyItem : MonoBehaviour
 
     private void DespawnLogic()
     {
-        if (CurrencyInstanceList.CheckCollection( worldId, new Vector3(startingPosition.x, startingPosition.y, roundId) ))
+        if (CurrencyInstanceList.CheckCollection( worldId, new ItemIndexer(startingPosition.x, startingPosition.y, roundId) ))
             gameObject.SetActive(false);
     }
 
@@ -59,7 +59,7 @@ public class CurrencyItem : MonoBehaviour
     private void OnCollect()
     {
         PlayerWallet.ChangeValue(value, worldId);
-        CurrencyInstanceList.CountAsCollected( worldId, new Vector3(startingPosition.x, startingPosition.y, roundId) );
+        CurrencyInstanceList.CountAsCollected( worldId, new ItemIndexer(startingPosition.x, startingPosition.y, roundId) );
 
         gameObject.SetActive(false);
     }

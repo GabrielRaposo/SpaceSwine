@@ -155,16 +155,14 @@ public class SaveManager : MonoBehaviour
     //    }
     //}
 
-    public static CurrencyItemIndexer GetWorldHashSet(int id)
+    public static List<ItemIndexer> GetWorldHashSet(int id)
     {
-        return new CurrencyItemIndexer();
-
-        //currentSave = Load();
+        currentSave = Load();
 
         switch(id)
         {
             default:
-                return new CurrencyItemIndexer();
+                return new List<ItemIndexer>();
 
             //case 1:
             //    return currentSave.world1CurrencyIndexer;

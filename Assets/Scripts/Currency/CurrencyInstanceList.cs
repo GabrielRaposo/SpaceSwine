@@ -8,9 +8,9 @@ public class CurrencyInstanceList : MonoBehaviour
     //static HashSet<Vector3> world2HashSet = new HashSet<Vector3>();
     //static HashSet<Vector3> world3HashSet = new HashSet<Vector3>();
 
-    static CurrencyItemIndexer world1HashSet = new CurrencyItemIndexer();
-    static CurrencyItemIndexer world2HashSet = new CurrencyItemIndexer();
-    static CurrencyItemIndexer world3HashSet = new CurrencyItemIndexer();
+    static List<ItemIndexer> world1HashSet = new List<ItemIndexer>();
+    static List<ItemIndexer> world2HashSet = new List<ItemIndexer>();
+    static List<ItemIndexer> world3HashSet = new List<ItemIndexer>();
 
     public static void LoadSaveData()
     {
@@ -19,7 +19,7 @@ public class CurrencyInstanceList : MonoBehaviour
         SetWorldById(SaveManager.GetWorldHashSet(3), 3);
     }
 
-    public static void SetWorldById (CurrencyItemIndexer worldHashSet, int worldId) 
+    public static void SetWorldById (List<ItemIndexer> worldHashSet, int worldId) 
     { 
         switch (worldId)
         {
@@ -38,7 +38,7 @@ public class CurrencyInstanceList : MonoBehaviour
         }
     }
 
-    public static CurrencyItemIndexer GetWorldById (int worldId) 
+    public static List<ItemIndexer> GetWorldById (int worldId) 
     { 
         switch (worldId)
         {
@@ -54,40 +54,37 @@ public class CurrencyInstanceList : MonoBehaviour
         }
     }
 
-    //public static CurrencyItemIndexer GetWorldFromSave (int worldId) 
-    //{ 
-    //    switch (worldId)
-    //    {
-    //        default:
-    //        case 1:
-    //            world1HashSet = SaveManager.GetWorldHashSet(1);
-    //            return world1HashSet;
-
-    //        case 2:
-    //            world2HashSet = SaveManager.GetWorldHashSet(2);
-    //            return world2HashSet;
-
-    //        case 3:
-    //            world3HashSet = SaveManager.GetWorldHashSet(3);
-    //            return world3HashSet;
-    //    }
-    //}
-
-    public static void CountAsCollected (int worldId, Vector3 objectId)
+    public static List<ItemIndexer> GetWorldFromSave(int worldId) 
     {
-        CurrencyItemIndexer worldList = GetWorldById(worldId);
-        //worldList.list.Add(objectId);
+        switch (worldId) {
+            default:
+            case 1:
+                world1HashSet = SaveManager.GetWorldHashSet(1);
+                return world1HashSet;
+
+            case 2:
+                world2HashSet = SaveManager.GetWorldHashSet(2);
+                return world2HashSet;
+
+            case 3:
+                world3HashSet = SaveManager.GetWorldHashSet(3);
+                return world3HashSet;
+        }
     }
 
-    public static bool CheckCollection (int worldId, Vector3 objectId)
+    public static void CountAsCollected (int worldId, ItemIndexer objectId)
     {
+        List<ItemIndexer> worldList = GetWorldById(worldId);
+        worldList.Add(objectId);
+    }
+
+    public static bool CheckCollection (int worldId, ItemIndexer objectId)
+    {
+        List<ItemIndexer> worldList = GetWorldFromSave(worldId);
+
+        if (worldList.Contains(objectId))
+            return true;
+
         return false;
-
-        //CurrencyItemIndexer worldList = GetWorldFromSave(worldId);
-
-        //if (worldList.list.Contains(objectId))
-        //    return true;
-
-        //return false;
     }
 }

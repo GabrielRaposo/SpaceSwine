@@ -85,9 +85,9 @@ public class CurrencyItemIndexer
 [System.Serializable]
 public class ItemIndexer
 {
-    public ItemIndexer()
+    public ItemIndexer(float x, float y, float id)
     {
-        v = new Vector3();
+        v = new Vector3(x, y , id);
     }
 
     public Vector3 v;
