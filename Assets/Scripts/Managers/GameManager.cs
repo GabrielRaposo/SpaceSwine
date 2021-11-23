@@ -51,10 +51,11 @@ public class GameManager : MonoBehaviour
         SetupPlayer(); // Deve ocorrer no Start()
     }
 
-    private void LoadSave()
+    private void LoadSave() 
     {
-        PlayerWallet.LoadSaveData();
-        CurrencyInstanceList.LoadSaveData();
+        SaveManager.Load();
+        //PlayerWallet.LoadSaveData();
+        //CurrencyInstanceList.LoadSaveData();
     }
 
     private void SetupPlayer()

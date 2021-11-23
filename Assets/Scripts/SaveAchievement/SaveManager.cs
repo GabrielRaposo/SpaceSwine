@@ -138,26 +138,28 @@ public class SaveManager : MonoBehaviour
         Save();
     }
 
-    public static float GetCurrency(int id)
-    {
-        switch(id)
-        {
-            default:
-            case 0:
-                return currentSave.digitalCurrency;
+    //public static float GetCurrency(int id)
+    //{
+    //    switch(id)
+    //    {
+    //        default:
+    //        case 0:
+    //            return currentSave.digitalCurrency;
 
-            case 1:
-                return currentSave.world1Currency;
-            case 2:
-                return currentSave.world2Currency;
-            case 3:
-                return currentSave.world3Currency;
-        }
-    }
+    //        case 1:
+    //            return currentSave.world1Currency;
+    //        case 2:
+    //            return currentSave.world2Currency;
+    //        case 3:
+    //            return currentSave.world3Currency;
+    //    }
+    //}
 
     public static CurrencyItemIndexer GetWorldHashSet(int id)
     {
-        currentSave = Load();
+        return new CurrencyItemIndexer();
+
+        //currentSave = Load();
 
         switch(id)
         {

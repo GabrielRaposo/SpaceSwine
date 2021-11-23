@@ -54,38 +54,40 @@ public class CurrencyInstanceList : MonoBehaviour
         }
     }
 
-    public static CurrencyItemIndexer GetWorldFromSave (int worldId) 
-    { 
-        switch (worldId)
-        {
-            default:
-            case 1:
-                world1HashSet = SaveManager.GetWorldHashSet(1);
-                return world1HashSet;
+    //public static CurrencyItemIndexer GetWorldFromSave (int worldId) 
+    //{ 
+    //    switch (worldId)
+    //    {
+    //        default:
+    //        case 1:
+    //            world1HashSet = SaveManager.GetWorldHashSet(1);
+    //            return world1HashSet;
 
-            case 2:
-                world2HashSet = SaveManager.GetWorldHashSet(2);
-                return world2HashSet;
+    //        case 2:
+    //            world2HashSet = SaveManager.GetWorldHashSet(2);
+    //            return world2HashSet;
 
-            case 3:
-                world3HashSet = SaveManager.GetWorldHashSet(3);
-                return world3HashSet;
-        }
-    }
+    //        case 3:
+    //            world3HashSet = SaveManager.GetWorldHashSet(3);
+    //            return world3HashSet;
+    //    }
+    //}
 
     public static void CountAsCollected (int worldId, Vector3 objectId)
     {
         CurrencyItemIndexer worldList = GetWorldById(worldId);
-        worldList.list.Add(objectId);
+        //worldList.list.Add(objectId);
     }
 
     public static bool CheckCollection (int worldId, Vector3 objectId)
     {
-        CurrencyItemIndexer worldList = GetWorldFromSave(worldId);
-
-        if (worldList.list.Contains(objectId))
-            return true;
-
         return false;
+
+        //CurrencyItemIndexer worldList = GetWorldFromSave(worldId);
+
+        //if (worldList.list.Contains(objectId))
+        //    return true;
+
+        //return false;
     }
 }

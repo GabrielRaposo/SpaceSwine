@@ -13,7 +13,7 @@ public class SaveFile
     public float world2Currency;
     public float world3Currency;
 
-    //public CurrencyItemIndexer world1CurrencyIndexer;
+    [SerializeField] public List<ItemIndexer> world1CurrencyIndexer;
     //public CurrencyItemIndexer world2CurrencyIndexer;
     //public CurrencyItemIndexer world3CurrencyIndexer;
 
@@ -25,7 +25,7 @@ public class SaveFile
 
     public SaveFile ()
     {
-        //world1CurrencyIndexer = new CurrencyItemIndexer();
+        world1CurrencyIndexer = new List<ItemIndexer>();
         //world2CurrencyIndexer = new CurrencyItemIndexer();
         //world3CurrencyIndexer = new CurrencyItemIndexer();
 
@@ -71,13 +71,24 @@ public class SaveFile
     }
 }
 
-[Serializable]
+[System.Serializable]
 public class CurrencyItemIndexer 
 {
     public CurrencyItemIndexer()
     {
-        list = new List<Vector3>();
+        //list = new List<Vector3>();
     }
 
-    public List<Vector3> list;
+    //[SerializeField] public List<Vector3> list;
+}
+
+[System.Serializable]
+public class ItemIndexer
+{
+    public ItemIndexer()
+    {
+        v = new Vector3();
+    }
+
+    public Vector3 v;
 }
