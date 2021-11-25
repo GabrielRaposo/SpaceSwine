@@ -135,6 +135,8 @@ public class SaveManager : MonoBehaviour
         currentSave.world1CurrencyIndexer = world1;
 
         // Save events
+        StoryEventSaveConverter.FromAssetsToSave();
+
         // Save ship states
 
         Save();

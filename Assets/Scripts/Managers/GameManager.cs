@@ -50,12 +50,12 @@ public class GameManager : MonoBehaviour
 
         SetupPlayer(); // Deve ocorrer no Start()
 
-        StoryEventSaveConverter.FromSaveToAssets();
     }
 
     private void LoadSave() 
     {
         //SaveManager.Load();
+        StoryEventSaveConverter.FromSaveToAssets();
         PlayerWallet.LoadSaveData();
         CurrencyInstanceList.Init();
     }
