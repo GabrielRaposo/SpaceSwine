@@ -6,4 +6,9 @@ using UnityEngine;
 public class StoryEventScriptableObject : ScriptableObject
 {
     public bool state;
+
+    public void SetState(bool value)
+    {
+        state = value;
+    }
 }

@@ -183,8 +183,10 @@ public class SaveManager : MonoBehaviour
         Save();
     }
 
-    public static void SetStoryEvent(StoryEventData storyEventData)
+    public static void SaveStoryEvent(StoryEventScriptableObject storyEvent)
     {
+        StoryEventData storyEventData = new StoryEventData( storyEvent.state, storyEvent.name );
+
         StoryEventData data = currentSave.storyEventsStates.Find((p) => p.name == storyEventData.name);
         if (data == null)
         {
@@ -192,10 +194,12 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            currentSave.storyEventsStates.Find(d => d.name == data.name).state = data.state; 
+            int index = currentSave.storyEventsStates.FindIndex(d => d.name == data.name);
+            currentSave.storyEventsStates[index].state = data.state; 
         }
         
-        Save();
+        StoryEventSaveConverter.FromAssetsToSave();
+        //Save();
     }
 
     public static float GetPlaytime()
