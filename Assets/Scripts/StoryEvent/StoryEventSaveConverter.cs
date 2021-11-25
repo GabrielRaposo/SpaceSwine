@@ -35,7 +35,6 @@ public class StoryEventSaveConverter : MonoBehaviour
     public static StoryEventScriptableObject[] GetStoryEventsFromResources()
     {
         StoryEventScriptableObject[] storyEvents = Resources.FindObjectsOfTypeAll<StoryEventScriptableObject>();     
-
         //Debug.Log("storyEvents.Length: " + storyEvents.Length);
 
         return storyEvents;
@@ -74,6 +73,6 @@ public class StoryEventSaveConverter : MonoBehaviour
             dataList.Add( new StoryEventData( storyEvents[i].state, storyEvents[i].name ) );
         }
 
-        SaveManager.SetStoryEvents(dataList);
+        SaveManager.SetAllStoryEvents(dataList);
     }
 }

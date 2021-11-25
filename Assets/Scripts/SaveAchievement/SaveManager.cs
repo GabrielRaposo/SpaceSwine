@@ -177,9 +177,24 @@ public class SaveManager : MonoBehaviour
         return currentSave.storyEventsStates;
     }
 
-    public static void SetStoryEvents(List<StoryEventData> storyEventDatas)
+    public static void SetAllStoryEvents(List<StoryEventData> storyEventDatas)
     {
         currentSave.storyEventsStates = storyEventDatas;
+        Save();
+    }
+
+    public static void SetStoryEvent(StoryEventData storyEventData)
+    {
+        StoryEventData data = currentSave.storyEventsStates.Find((p) => p.name == storyEventData.name);
+        if (data == null)
+        {
+            currentSave.storyEventsStates.Add(data = new StoryEventData(storyEventData.state, storyEventData.name));
+        }
+        else
+        {
+            currentSave.storyEventsStates.Find(d => d.name == data.name).state = data.state; 
+        }
+        
         Save();
     }
 
