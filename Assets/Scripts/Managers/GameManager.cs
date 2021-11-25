@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject playerObject;
     [SerializeField] InputAction resetInputAction;
+    [SerializeField] InputAction saveInputAction;
+    [SerializeField] InputAction resetSaveInputAction;
 
     PauseSystem pauseSystem;
     PlayerInputActions playerInputActions;
@@ -34,16 +36,25 @@ public class GameManager : MonoBehaviour
         playerInputActions.UI.Minigame.Enable();
         
         resetInputAction.Enable();
+        saveInputAction.Enable();
+        resetSaveInputAction.Enable();
     }
 
     void Start()
     {
+        #if UNITY_EDITOR
+        CustomEditorInicialization.Initialize();
+        #endif
+
         pauseSystem = PauseSystem.Instance; 
         ggsConsole = GGSConsole.Instance;
 
         resetInputAction.performed += (ctx) => ResetScene();
+        saveInputAction.performed += (ctx) => SaveManager.SaveAllData();
+        resetSaveInputAction.performed += (ctx) => SaveManager.ResetSave();
 
         SetupPlayer(); // Deve ocorrer no Start()
+
     }
 
     private void SetupPlayer()
@@ -81,5 +92,7 @@ public class GameManager : MonoBehaviour
         playerInputActions.UI.Start.Disable();
         playerInputActions.UI.Minigame.Disable();
         resetInputAction.Disable();    
+        saveInputAction.Disable();
+        resetSaveInputAction.Disable();
     }
 }

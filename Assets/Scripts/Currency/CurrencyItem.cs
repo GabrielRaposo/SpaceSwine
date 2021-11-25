@@ -9,10 +9,35 @@ public class CurrencyItem : MonoBehaviour
     bool collected;
 
     MoveToTarget moveToTarget;
+    Vector2 startingPosition;
+
+    int worldId;
+    int roundId;
 
     void Awake()
     {
+        startingPosition = transform.position;
+
         moveToTarget = GetComponent<MoveToTarget>();
+    }
+
+    private void Start() 
+    {
+        worldId = 1;
+        roundId = 0;
+
+        Round round = GetComponentInParent<Round>();
+        if (round)
+            roundId = round.transform.GetSiblingIndex() + 1;
+
+        //StartCoroutine( RaposUtil.Wait(30, DespawnLogic) );
+        DespawnLogic();
+    }
+
+    private void DespawnLogic()
+    {
+        if (CurrencyInstanceList.CheckCollection( worldId, new ItemIndexer(startingPosition.x, startingPosition.y, roundId) ))
+            gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D (Collider2D collision) 
@@ -33,8 +58,8 @@ public class CurrencyItem : MonoBehaviour
 
     private void OnCollect()
     {
-        int worldId = 1;
         PlayerWallet.ChangeValue(value, worldId);
+        CurrencyInstanceList.CountAsCollected( worldId, new ItemIndexer(startingPosition.x, startingPosition.y, roundId) );
 
         gameObject.SetActive(false);
     }

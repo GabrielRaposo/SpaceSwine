@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 using RedBlueGames.Tools.TextTyper;
@@ -29,6 +30,7 @@ public class DialogueBox : MonoBehaviour
     DialogueAnimation dialogueAnimation;
     string speakerName;
     List <string> dialogues;
+    UnityAction OnDialogueEnd;
 
     PlayerInputActions playerInputActions;
     Sequence sequence;
@@ -64,11 +66,19 @@ public class DialogueBox : MonoBehaviour
         canvasGroup.alpha = 0;
     }
 
-    public void SetDialogueData(Interactable interactable, string speakerName, List<string> dialogues, DialogueBoxStyle customDialogueStyle)
+    public void SetDialogueData 
+    (
+        Interactable interactable, 
+        string speakerName, 
+        List<string> dialogues, 
+        UnityAction OnDialogueEnd,
+        DialogueBoxStyle customDialogueStyle
+    )
     {
         this.interactable = interactable;
         this.speakerName = speakerName;
         this.dialogues = dialogues;
+        this.OnDialogueEnd = OnDialogueEnd;
 
         autoSkip = false;
 
@@ -168,6 +178,8 @@ public class DialogueBox : MonoBehaviour
 
     public void EndDialogue()
     {
+        OnDialogueEnd?.Invoke();
+
         if (nameDisplay)
             nameDisplay.text = string.Empty;
 
