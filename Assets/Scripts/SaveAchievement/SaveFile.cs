@@ -17,6 +17,8 @@ public class SaveFile
     public List<ItemIndexer> world2CurrencyIndexer;
     public List<ItemIndexer> world3CurrencyIndexer;
 
+    public List<StoryEventData> storyEventsStates;
+
     // ship customization data
     // ship bought items
 
@@ -28,6 +30,8 @@ public class SaveFile
         world1CurrencyIndexer = new List<ItemIndexer>();
         world2CurrencyIndexer = new List<ItemIndexer>();
         world3CurrencyIndexer = new List<ItemIndexer>();
+
+        storyEventsStates = new List<StoryEventData>();
 
         var achievementList = AchievementsManager.GetNewAchievementList();
 
@@ -94,4 +98,17 @@ public class ItemIndexer
     [SerializeField] public float x;
     [SerializeField] public float y;
     [SerializeField] public float id;
+}
+
+[System.Serializable]
+public class StoryEventData
+{
+    public StoryEventData(bool state, string name)
+    {
+        this.state = state;
+        this.name = name;
+    }
+
+    [SerializeField] public bool state;
+    [SerializeField] public string name;
 }

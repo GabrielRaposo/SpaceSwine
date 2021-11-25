@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
         saveInputAction.performed += (ctx) => SaveManager.SaveAllData();
 
         SetupPlayer(); // Deve ocorrer no Start()
+
+        StoryEventSaveConverter.FromSaveToAssets();
     }
 
     private void LoadSave() 

@@ -170,6 +170,17 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    public static List<StoryEventData> GetStoryEvents()
+    {
+        return currentSave.storyEventsStates;
+    }
+
+    public static void SetStoryEvents(List<StoryEventData> storyEventDatas)
+    {
+        currentSave.storyEventsStates = storyEventDatas;
+        Save();
+    }
+
     public static float GetPlaytime()
     {
         return currentSave.GetPlaytime();
