@@ -9,12 +9,16 @@ public class InteractableTerminal : Interactable
     [SerializeField] GameObject lightComponent;
     [SerializeField] GameObject inputIcon;
 
+    public GameObject terminalEventObject;
     ITerminalEvent terminalEvent;
 
     private void Start()
     {
-        terminalEvent = GetComponentInParent<ITerminalEvent>();
-
+        if (terminalEventObject == null)
+            terminalEvent = GetComponentInParent<ITerminalEvent>();
+        else
+            terminalEvent = terminalEventObject.GetComponent<ITerminalEvent>();
+        
         CapsuleCollider2D capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         PlanetBlock planetBlock = GetComponent<PlanetBlock>();
 

@@ -38,6 +38,14 @@ public static class LocalizationManager
         }
     }
 
+    public static AstroPigLocalizationFile StoryFile => GetLocalizationFile(LocalizedTextTypes.Story);
+
+    public static AstroPigLocalizationFile UiFile => GetLocalizationFile(LocalizedTextTypes.UI);
+
+    public static AstroPigLocalizationFile MusicFile => GetLocalizationFile(LocalizedTextTypes.Music);
+
+    public static AstroPigLocalizationFile AchievementsFile => GetLocalizationFile(LocalizedTextTypes.Achievement);
+
     private static GameLocalizationCode currentLanguage;
 
     private static List<LocalizedText> activeTexts;

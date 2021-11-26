@@ -79,10 +79,48 @@ public class CollectableInteraction : MonoBehaviour
                 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
 
             LaunchCurrentIntoDirection(direction.normalized);
+            
             spaceJumper.LaunchIntoDirection(-direction.normalized);
         }
 
         return true;
+    }
+
+    public bool JetpackLaunch()
+    {
+        if (!current)
+            return false;
+
+        if (checkGround.OnGround)
+        {
+            Vector2 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
+        }
+        else
+        {
+            Vector2 direction = axisInput;
+            if (axisInput == Vector2.zero)
+                direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
+
+            spaceJumper.LaunchIntoDirection(-direction.normalized);
+        }
+
+        return true;
+    }
+
+    public Collectable CollectWhileHolding()
+    {
+        if (current == null) return null;
+        
+        Collectable c = current;
+        RemoveCollectable();
+        return c;
+    }
+
+    public void RemoveCollectable()
+    {
+        current.transform.position = transform.position;
+        playerAnimations.holding = false;
+        current = null;
     }
 
     private void LaunchCurrentIntoDirection(Vector2 direction)

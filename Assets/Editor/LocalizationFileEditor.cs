@@ -16,15 +16,28 @@ public class LocalizationEditor : EditorWindow
     private void OnGUI()
     {
         if (GUILayout.Button("UI"))
+        {
             LocalizationManager.CallUpdate(LocalizedTextTypes.UI);
+            EditorUtility.SetDirty(LocalizationManager.UiFile);
+        }
 
         if (GUILayout.Button("Story"))
+        {
             LocalizationManager.CallUpdate(LocalizedTextTypes.Story);
-        
-        if(GUILayout.Button("Achievements"))
+            EditorUtility.SetDirty(LocalizationManager.StoryFile);
+        }
+
+        if (GUILayout.Button("Achievements"))
+        {
             LocalizationManager.CallUpdate(LocalizedTextTypes.Achievement);
-        
-        if(GUILayout.Button("Music"))
-            LocalizationManager.CallUpdate(LocalizedTextTypes.Music);
+            EditorUtility.SetDirty(LocalizationManager.AchievementsFile);
+        }
+
+        if (GUILayout.Button("Music"))
+        {
+            LocalizationManager.CallUpdate(LocalizedTextTypes.Music);   
+            EditorUtility.SetDirty(LocalizationManager.MusicFile);
+        }
+            
     }
 }
