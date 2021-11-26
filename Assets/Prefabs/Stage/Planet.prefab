@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 2888290608896806820}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.26, y: 3.26, z: 3.26}
+  m_LocalScale: {x: 3.7489998, y: 3.7489998, z: 3.7489998}
   m_Children: []
   m_Father: {fileID: 2888290609810881193}
   m_RootOrder: 1
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 76fe127494e035d41b97b70073c6ef84, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -277,6 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetRadius: 1.65
   gravityRadius: 1
+  useCustomRadiusSize: 1
   mainCollider: {fileID: 2888290609810881195}
   outlineVisualComponent: {fileID: 2888290609148894899}
   insideVisualComponent: {fileID: 2888290608896806819}
@@ -393,6 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intensity: 1
+  linear: 0
 --- !u!58 &2888290610804836964
 CircleCollider2D:
   m_ObjectHideFlags: 0
