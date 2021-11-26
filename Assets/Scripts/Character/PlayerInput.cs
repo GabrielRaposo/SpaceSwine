@@ -31,12 +31,12 @@ public class PlayerInput : MonoBehaviour
         spaceJumper = GetComponent<SpaceJumper>();
         collectableInteraction = GetComponent<CollectableInteraction>();
         playerInteractor = GetComponent<PlayerInteractor>();
-       
-        playerInputActions = new PlayerInputActions();    
     }
 
     private void OnEnable() 
     {
+        playerInputActions = new PlayerInputActions();  
+        
         movement = playerInputActions.Player.Movement;
         movement.Enable();
 

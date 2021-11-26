@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogueSystem : MonoBehaviour
 {
@@ -14,7 +15,14 @@ public class DialogueSystem : MonoBehaviour
         Instance = this;
     }
 
-    public void SetDialogue (Interactable interactable, string speakerName, List<string> dialogueTags, DialogueBoxStyle customDialogueStyle)
+    public void SetDialogue 
+    (
+        Interactable interactable, 
+        string speakerName, 
+        List<string> dialogueTags, 
+        UnityAction OnDialogueEnd,
+        DialogueBoxStyle customDialogueStyle
+    )
     {
         if (!dialogBox)
             return;
@@ -33,7 +41,7 @@ public class DialogueSystem : MonoBehaviour
             }
         }
 
-        dialogBox.SetDialogueData(interactable, speakerName, translatedDialogues, customDialogueStyle);
+        dialogBox.SetDialogueData(interactable, speakerName, translatedDialogues, OnDialogueEnd, customDialogueStyle);
     }
 
     private void OnDisable() 

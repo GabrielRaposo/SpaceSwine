@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "NPC Data", menuName = "ScriptableObjects/NPC Data")]
 public class NPCData : ScriptableObject, ISerializationCallbackReceiver
@@ -8,10 +9,9 @@ public class NPCData : ScriptableObject, ISerializationCallbackReceiver
     public string npcName;
     public int startingIndex = 0;
     public List<DialogueGroup> dialogueGroups;
-    
-    int accessIndex;
+    public UnityAction OnDialogueEnd;
 
-    // After Talk Event
+    int accessIndex;
 
     public DialogueGroup this[int i]
     {

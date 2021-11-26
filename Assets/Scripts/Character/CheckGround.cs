@@ -10,7 +10,7 @@ public class CheckGround : MonoBehaviour
     
     bool onGround;
     PlanetPlatform planetPlatform;
-    Planet planet;
+    GravitationalBody planet;
 
     Color debugCollisionColor = Color.blue;
 
@@ -24,7 +24,7 @@ public class CheckGround : MonoBehaviour
         get { return planetPlatform; }
     }
 
-    public Planet OnPlanet
+    public GravitationalBody OnPlanet
     {
         get { return planet; }
     }
@@ -68,10 +68,10 @@ public class CheckGround : MonoBehaviour
     {
         foreach (Collider2D coll in results)
         {
-            Planet p = coll.GetComponent<Planet>();
-            if (p) 
+            GravitationalBody b = coll.GetComponent<GravitationalBody>();
+            if (b) 
             {
-                planet = p;
+                planet = b;
                 return;
             }
         }
@@ -87,6 +87,6 @@ public class CheckGround : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = debugCollisionColor;
-        Gizmos.DrawWireCube(transform.position + (transform.up * offset.y), size);
+        Gizmos.DrawWireCube (transform.position + (transform.up * offset.y), size);
     }
 }
