@@ -57,4 +57,12 @@ public class InteractableNPC : Interactable
         if (ballonSpriteSwapper)
             ballonSpriteSwapper.SetVisibility(value);
     }
+
+    public int GetDialogueIndex()
+    {
+        if (data)
+            return data.Index;
+
+        return -1;
+    }
 }
