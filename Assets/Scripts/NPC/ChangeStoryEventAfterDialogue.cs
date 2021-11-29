@@ -17,7 +17,7 @@ public class ChangeStoryEventAfterDialogue : MonoBehaviour
         InteractableNPC interactableNPC = GetComponent<InteractableNPC>();
         interactableNPC.OnDialogueEnd += () => 
         {
-            Debug.Log("interactableNPC.GetDialogueIndex(): " + interactableNPC.GetDialogueIndex());
+            //Debug.Log("interactableNPC.GetDialogueIndex(): " + interactableNPC.GetDialogueIndex());
 
             if (dialogueGroupIndex > -1 && dialogueGroupIndex != interactableNPC.GetDialogueIndex())
             {
