@@ -30,6 +30,8 @@ public class SaveManager : MonoBehaviour
 
     public static SaveFile Load()
     {
+        SaveIcon.Show();
+
         safety++;
         if (safety > 50)
         {
@@ -105,6 +107,8 @@ public class SaveManager : MonoBehaviour
 
     public static void Save() 
     {
+        SaveIcon.Show();
+
         FileStream file;
 
         if (File.Exists(path))
@@ -116,6 +120,7 @@ public class SaveManager : MonoBehaviour
 
         bf.Serialize(file, currentSave);
         file.Close();
+
     }
 
     public static void ResetSave()

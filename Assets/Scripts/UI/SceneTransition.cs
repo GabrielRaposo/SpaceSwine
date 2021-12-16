@@ -28,6 +28,8 @@ public class SceneTransition : MonoBehaviour
 
     public static void LoadScene(int index)
     {
+        SaveManager.Save();
+
         if (Instance)
         {
             Instance.LocalLoadScene(index);

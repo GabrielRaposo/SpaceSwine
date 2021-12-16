@@ -80,6 +80,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("set spawnPosition: " + spawnPosition);
     }
 
+    public static void GoToScene (BuildIndex buildIndex)
+    {
+        SceneTransition.LoadScene((int) buildIndex);
+    }
+
     public static void ResetScene()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
