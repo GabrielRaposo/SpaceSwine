@@ -8,11 +8,12 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
+    public static bool Initiated;
+
     private static SaveFile currentSave;
-
     readonly static string path = Application.persistentDataPath + "/astropig_new_save.save";
-
     private static int safety;
+
     static SaveManager()
     {
         Debug.Log("Save Manager Initiated!");
@@ -23,6 +24,7 @@ public class SaveManager : MonoBehaviour
 
         safety = 0;
 
+        Initiated = true;
         //Debug.Log (currentSave.PrintStoredData());
     }
 
