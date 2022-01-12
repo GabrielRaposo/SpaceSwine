@@ -11,8 +11,6 @@ public class LinearSequenceTollEditor : Editor
     {
         LinearSequenceTool obj = (LinearSequenceTool)target;
 
-        if (obj.objects == null) obj.objects = new List<ObjectPoint>();
-
         foreach (var o in obj.turningPoints)
         {
             EditorGUI.BeginChangeCheck();

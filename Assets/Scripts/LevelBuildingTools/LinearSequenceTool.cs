@@ -6,22 +6,14 @@ using UnityEngine;
 
 public class LinearSequenceTool : MonoBehaviour
 {
-    public List<ObjectPoint> objects;
     public List<TurningPoint> turningPoints;
 
     public void OnValidate()
     {
-        if (objects == null) objects = new List<ObjectPoint>();
-        foreach (ObjectPoint objectPoint in objects)
-        {
-            if(objectPoint.obj)
-                objectPoint.obj.transform.position = objectPoint.position;
-        }
     }
 
     private void OnDrawGizmos()
     {
-        
 
         for (int i = 0; i < turningPoints.Count-1; i++)
         {

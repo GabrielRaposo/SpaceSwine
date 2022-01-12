@@ -34,6 +34,12 @@ public class CollectableThrowable : Collectable
         //     return;
         // }
 
+        LockGravityField lgf = collision.GetComponent<LockGravityField>();
+        if (lgf)
+        {
+            lgf.GetCollectalbe(this);
+        }
+        
         Lock l = collision.GetComponent<Lock>();
         if (l)
         {
