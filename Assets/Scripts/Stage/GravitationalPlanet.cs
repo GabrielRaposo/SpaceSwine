@@ -5,9 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class GravitationalPlanet : GravitationalBody
 {
+
     [Header("Values")]
     [SerializeField] float planetRadius = 1f;
     [SerializeField] float gravityRadius = 1f;
+    [SerializeField] bool useCustomRadiusSize;
 
     [Header("References")]
     [SerializeField] CircleCollider2D mainCollider;
@@ -34,7 +36,14 @@ public class GravitationalPlanet : GravitationalBody
             outlineVisualComponent.transform.localScale = Vector3.one * planetRadius * 2f;
 
         if (insideVisualComponent)
+        {
             insideVisualComponent.transform.localScale = outlineVisualComponent.transform.localScale - (Vector3.one * .04f);
+            if (useCustomRadiusSize)
+            {
+                insideVisualComponent.transform.localScale *= 1.15f;
+            }
+
+        }
 
         if (gravityArea && gravityRadius > 0f)
             gravityArea.radius = planetRadius + gravityRadius;
