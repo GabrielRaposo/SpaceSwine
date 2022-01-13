@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -52,6 +53,11 @@ public class CollectableJetpack : Collectable
             Destroy(gameObject);
         }
         
+    }
+
+    private void Update()
+    {
+        text.transform.rotation = Quaternion.identity;
     }
 
     public override void TriggerEvent(Collider2D collision) 

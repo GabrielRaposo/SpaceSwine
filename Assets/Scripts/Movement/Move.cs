@@ -14,8 +14,9 @@ public class Move : MonoBehaviour
 
     private float distance;
     private Vector3 normalizedDirection;
-    
-    //TODO Reset position on level reset
+
+    private Round _round;
+    private Vector3 startPosition;
     
     void Start()
     {
@@ -25,9 +26,20 @@ public class Move : MonoBehaviour
         if (duration == 0)
             duration = float.MinValue;
         
-        distance = ( targetPosition - transform.position).magnitude;
-        normalizedDirection = (targetPosition - transform.position).normalized;
+        distance = ( targetPosition - transform.localPosition).magnitude;
+        normalizedDirection = (targetPosition - transform.localPosition).normalized;
 
+        startPosition = transform.localPosition;
+
+        _round = GetComponentInParent<Round>();
+
+        _round.OnReset += Reset;
+    }
+
+    private void Reset()
+    {
+        transform.localPosition = startPosition;
+        count = 0f;
     }
 
     private void FixedUpdate() 

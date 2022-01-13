@@ -96,7 +96,7 @@ public class Door : MonoBehaviour
         //     internalLocks[i].Reset();
 
         for (int j = 0; j < externalLocks.Count; j++)
-            externalLocks[j].Reset();
+            externalLocks[j].OnReset();
 
         if (portal) 
         {

@@ -29,6 +29,7 @@ public class LinearRuler : MonoBehaviour
         
         for (int i = 0; i < objects.Count; i++)
         {
+            if(objects[i] == null) continue;
             objects[i].transform.position = startPos + directionVec * part * i;
             finalPos = objects[i].transform.position;
         }

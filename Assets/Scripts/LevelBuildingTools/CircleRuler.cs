@@ -24,12 +24,28 @@ public class CircleRuler : MonoBehaviour
         {
             float angle = offsetRotation + part * i;
             var vec = Mathg.AngleToDirection(angle);
+            
+            if (!objects[i]) continue;
             objects[i].transform.position = transform.position + vec * radius;
 
             if (rotateRadial)
                 objects[i].transform.eulerAngles = new Vector3(0f, 0f, angle-90f);
 
         }
+    }
+
+    public void GetAllChildren()
+    {
+        objects = new List<Transform>();
+
+        for (int i = 0; i < transform.childCount; i++)
+            objects.Add(transform.GetChild(i));
+        OnValidate();
+    }
+
+    public void CopyLastChild()
+    {
+        
     }
 
     void Update()

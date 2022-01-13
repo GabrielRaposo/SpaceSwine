@@ -5,15 +5,23 @@ using UnityEngine;
 
 public class TerminalLock : Lock
 {
-    public GameObject terminalEventObject;
-    ITerminalEvent terminalEvent;
+    public List<GameObject> terminalEventObjects;
+    private List<ITerminalEvent> terminalEvent;
 
-    private void Start()
+    protected override void Start()
     {
-        if (terminalEventObject == null)
-            terminalEvent = GetComponentInParent<ITerminalEvent>();
-        else
-            terminalEvent = terminalEventObject.GetComponent<ITerminalEvent>();
+        base.Start();
+        
+        terminalEvent = new List<ITerminalEvent>();
+
+        for (int i = 0; i < terminalEventObjects.Count; i++)
+        {
+            var te = terminalEventObjects[i].GetComponent<ITerminalEvent>();
+            
+            if(te!=null)
+                terminalEvent.Add(te);
+        }
+            
     }
 
     public override void Collect(Collectable collectable)
@@ -21,8 +29,10 @@ public class TerminalLock : Lock
         base.Collect(collectable);
         
         if(terminalEvent == null) return;
-        
-        terminalEvent.Activate(null, null);
-        
+
+        for (int i = 0; i < terminalEvent.Count; i++)
+        {
+            terminalEvent[i].Activate(null,null);
+        }
     }
 }
