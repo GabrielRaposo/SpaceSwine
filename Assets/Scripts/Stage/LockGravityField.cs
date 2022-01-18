@@ -7,12 +7,16 @@ public class LockGravityField : MonoBehaviour
 {
     private Collectable capturedCollectable;
     public float pullSpeed;
+    public float rotationSpeed;
     
     private Round _round;
 
-    public void GetCollectalbe(Collectable collectable)
+    public void GetCollectable(CollectableThrowable collectable)
     {
         capturedCollectable = collectable;
+        
+        collectable.SetIndestructible(true);
+        collectable.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
     
     private void Start()
@@ -32,12 +36,20 @@ public class LockGravityField : MonoBehaviour
     {
         if(!capturedCollectable) return;
 
-        var colectablePos = capturedCollectable.transform.position;
+        var colectableTransform = capturedCollectable.transform;
+        var colectablePos = colectableTransform.position;
         var direction = transform.position - colectablePos;
         
         direction = direction.normalized;
         
         colectablePos = colectablePos + direction*pullSpeed;
-        capturedCollectable.transform.position = colectablePos;
+        colectableTransform.position = colectablePos;
+        
+        colectableTransform.RotateAround(transform.position, new Vector3(0,0,1f), rotationSpeed);
+    }
+
+    private void LateUpdate()
+    {
+        
     }
 }

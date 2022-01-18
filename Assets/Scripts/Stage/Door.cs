@@ -60,9 +60,19 @@ public class Door : MonoBehaviour
         
         ResetStates();
 
-        round = GetComponentInParent<Round>();    
+        round = GetComponentInParent<Round>();
+
         if (round)
+        {
             round.OnReset += ResetStates;
+            round.OnPassRound += () =>
+            {
+                gameObject.SetActive(false);
+                if(portal)
+                    portal.gameObject.SetActive(false);
+            };
+        }
+            
     }
 
 

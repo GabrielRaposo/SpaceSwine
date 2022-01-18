@@ -6,10 +6,14 @@ public class CollectableThrowable : Collectable
 {
     [SerializeField] AK.Wwise.Event OnThrowAKEvent;
 
+    private bool indestructible;
+
     public override void OnResetFunction() 
     {
         base.OnResetFunction();
 
+        indestructible = false;
+        
         Collider2D collider2D = GetComponent<Collider2D>();
         if (collider2D)
             collider2D.enabled = true;
@@ -21,6 +25,11 @@ public class CollectableThrowable : Collectable
         {
             OnThrowAKEvent?.Post(gameObject);
         }
+    }
+
+    public void SetIndestructible(bool value)
+    {
+        indestructible = value;
     }
 
     public override void TriggerEvent(Collider2D collision) 
@@ -37,7 +46,7 @@ public class CollectableThrowable : Collectable
         LockGravityField lgf = collision.GetComponent<LockGravityField>();
         if (lgf)
         {
-            lgf.GetCollectalbe(this);
+            lgf.GetCollectable(this);
         }
         
         Lock l = collision.GetComponent<Lock>();
@@ -50,9 +59,11 @@ public class CollectableThrowable : Collectable
         Hitbox hb = collision.GetComponent<Hitbox>();
         if (hb)
         {
+            if(indestructible)
+                return;
+            
             if (hb.damage > 0)
                 gameObject.SetActive(false);
-    
         }
     }
 }
