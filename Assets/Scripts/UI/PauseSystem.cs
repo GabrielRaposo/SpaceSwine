@@ -63,7 +63,7 @@ public class PauseSystem : MonoBehaviour
 
     public void QuitGame()
     {
-        GameManager.QuitGame();
+        GameManager.GoToScene(BuildIndex.Title);
     }
 
     private void OnDisable() 
