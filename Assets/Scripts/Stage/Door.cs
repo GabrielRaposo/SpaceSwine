@@ -67,7 +67,8 @@ public class Door : MonoBehaviour
             round.OnReset += ResetStates;
             round.OnPassRound += () =>
             {
-                gameObject.SetActive(false);
+                if(gameObject)
+                    gameObject.SetActive(false);
                 if(portal)
                     portal.gameObject.SetActive(false);
             };
