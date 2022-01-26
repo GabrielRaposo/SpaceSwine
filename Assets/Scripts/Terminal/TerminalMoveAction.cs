@@ -8,6 +8,11 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
     [SerializeField] List <Vector2> targetPositions;
     [SerializeField] float duration;
 
+    //TEMP
+    //Solução temporária para os filhos do objeto que se move não resetando corretamente
+    [SerializeField] private bool keepTrackOfChildren;
+    private List<Vector3> childrenPos;
+
     int index;
     Sequence sequence;
     List<Interactable> interactableChildren;
@@ -29,6 +34,13 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
         //transform.eulerAngles = Vector3.forward * targetAngles[index];
         transform.position = targetPositions[index];
 
+        if (keepTrackOfChildren)
+        {
+            childrenPos = new List<Vector3>();
+            for (int i = 0; i < transform.childCount; i++)
+                childrenPos.Add(transform.GetChild(i).localPosition);
+        }
+        
         _round = GetComponentInParent<Round>();
         _round.OnReset += OnReset;
     }
@@ -85,5 +97,14 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
     {
         index = 0;
         transform.position = targetPositions[0];
+
+        if (keepTrackOfChildren)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).localPosition = childrenPos[i];
+            }
+        }
+        
     }
 }

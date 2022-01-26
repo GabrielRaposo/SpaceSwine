@@ -21,7 +21,7 @@ public class Collectable : MonoBehaviour
     public virtual void OnResetFunction()
     {
         gameObject.SetActive(true);
-        previousHolder = null;    
+        previousHolder = null;
     }
 
     public virtual void Interact (CollectableInteraction interactor) { }
