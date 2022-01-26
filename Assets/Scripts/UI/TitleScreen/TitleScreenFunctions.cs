@@ -6,13 +6,15 @@ public class TitleScreenFunctions : MonoBehaviour
 {
     void Start()
     {
-        
+        if (!SaveManager.Initiated)
+            SaveManager.Load();
     }
 
     public void PlayInput()
     {
         Debug.Log("Play");
-        SceneTransition.LoadScene((int) BuildIndex.TestExplorationStage);
+
+        SceneTransition.LoadScene((int) BuildIndex.World1Exploration);
     }
 
     public void OptionsInput()
