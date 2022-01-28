@@ -360,7 +360,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Minigame"",
+                    ""name"": ""Other"",
                     ""type"": ""Button"",
                     ""id"": ""6601af00-3eb9-4505-ab30-3faeb81b8ae1"",
                     ""expectedControlType"": ""Button"",
@@ -596,7 +596,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
-                    ""action"": ""Minigame"",
+                    ""action"": ""Other"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -607,7 +607,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Minigame"",
+                    ""action"": ""Other"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -883,7 +883,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_UI_Confirm = m_UI.FindAction("Confirm", throwIfNotFound: true);
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Start = m_UI.FindAction("Start", throwIfNotFound: true);
-        m_UI_Minigame = m_UI.FindAction("Minigame", throwIfNotFound: true);
+        m_UI_Other = m_UI.FindAction("Other", throwIfNotFound: true);
         // Minigame
         m_Minigame = asset.FindActionMap("Minigame", throwIfNotFound: true);
         m_Minigame_Movement = m_Minigame.FindAction("Movement", throwIfNotFound: true);
@@ -1015,7 +1015,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_Confirm;
     private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Start;
-    private readonly InputAction m_UI_Minigame;
+    private readonly InputAction m_UI_Other;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1024,7 +1024,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Confirm => m_Wrapper.m_UI_Confirm;
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputAction @Start => m_Wrapper.m_UI_Start;
-        public InputAction @Minigame => m_Wrapper.m_UI_Minigame;
+        public InputAction @Other => m_Wrapper.m_UI_Other;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1046,9 +1046,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Start.started -= m_Wrapper.m_UIActionsCallbackInterface.OnStart;
                 @Start.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnStart;
                 @Start.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnStart;
-                @Minigame.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMinigame;
-                @Minigame.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMinigame;
-                @Minigame.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMinigame;
+                @Other.started -= m_Wrapper.m_UIActionsCallbackInterface.OnOther;
+                @Other.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnOther;
+                @Other.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnOther;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1065,9 +1065,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Start.started += instance.OnStart;
                 @Start.performed += instance.OnStart;
                 @Start.canceled += instance.OnStart;
-                @Minigame.started += instance.OnMinigame;
-                @Minigame.performed += instance.OnMinigame;
-                @Minigame.canceled += instance.OnMinigame;
+                @Other.started += instance.OnOther;
+                @Other.performed += instance.OnOther;
+                @Other.canceled += instance.OnOther;
             }
         }
     }
@@ -1154,7 +1154,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnConfirm(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
-        void OnMinigame(InputAction.CallbackContext context);
+        void OnOther(InputAction.CallbackContext context);
     }
     public interface IMinigameActions
     {

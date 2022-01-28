@@ -28,12 +28,12 @@ public class GameManager : MonoBehaviour
         };
         playerInputActions.UI.Start.Enable();
 
-        playerInputActions.UI.Minigame.performed += (ctx) => 
-        {
-            if (ggsConsole)
-                ggsConsole.ToggleConsoleState();
-        };
-        playerInputActions.UI.Minigame.Enable();
+        //playerInputActions.UI.Other.performed += (ctx) => 
+        //{
+        //    if (ggsConsole)
+        //        ggsConsole.ToggleConsoleState();
+        //};
+        //playerInputActions.UI.Other.Enable();
         
         resetInputAction.Enable();
         saveInputAction.Enable();
@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
     private void OnDisable() 
     {
         playerInputActions.UI.Start.Disable();
-        playerInputActions.UI.Minigame.Disable();
+        //playerInputActions.UI.Other.Disable();
         resetInputAction.Disable();    
         saveInputAction.Disable();
         resetSaveInputAction.Disable();

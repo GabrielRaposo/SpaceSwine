@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using Jumper;
@@ -24,6 +23,7 @@ namespace Minigame
         CanvasGroup canvasGroup;
         AsyncOperation asyncMinigameLoad;
         GGSMinigame pluggedCard;
+        PlayerInputActions playerInputActions;
 
         public static bool TurnedOn { get; private set; }
         public static GGSConsole Instance;
@@ -34,6 +34,19 @@ namespace Minigame
 
             canvasGroup = GetComponent<CanvasGroup>();
             canvasGroup.alpha = 0;
+        }
+
+        private void OnEnable() 
+        {
+            playerInputActions = new PlayerInputActions();
+
+            playerInputActions.UI.Other.performed += (ctx) =>
+            {
+                if (!TurnedOn)
+                    return;
+                ToggleConsoleState();
+            };
+            playerInputActions.UI.Other.Enable();
         }
 
         public void ToggleConsoleState()
@@ -147,6 +160,11 @@ namespace Minigame
 
             BuildIndex buildIndex = GetCardIndex();
             StartCoroutine(AsyncLoadRoutine((int) buildIndex) );
+        }
+
+        private void OnDisable() 
+        {
+            playerInputActions.UI.Other.Disable();
         }
     }
 }
