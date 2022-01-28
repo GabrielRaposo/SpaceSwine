@@ -13,6 +13,8 @@ public class Round : MonoBehaviour
 
     public UnityAction OnReset;
 
+    public UnityAction OnPassRound;
+
     public void SetReferences (RoundsManager manager, PlayerCharacter player)
     {
         this.manager = manager;
@@ -51,6 +53,10 @@ public class Round : MonoBehaviour
 
     public void RoundCleared()
     {
+        Debug.Log("RoundCleared()");
+        
+        OnPassRound?.Invoke();
+        
         if (manager)
             manager.NextRoundLogic();
     }

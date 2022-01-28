@@ -8,6 +8,7 @@ public class Lock : MonoBehaviour
     //public bool isInternalLock;
     private Door _door;
     [SerializeField] private GameObject visualComponent;
+    [SerializeField] private GameObject particles;
     [SerializeField] private Collider2D col;
 
     private Round _round;
@@ -21,11 +22,11 @@ public class Lock : MonoBehaviour
         col.enabled = !isInternal;
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         _round = GetComponentInParent<Round>();
 
-        _round.OnReset += Reset;
+        _round.OnReset += OnReset;
     }
 
     public virtual void Collect(Collectable collectable)
@@ -40,16 +41,25 @@ public class Lock : MonoBehaviour
         //collectAKEvent?.Post(gameObject);
     }
     
-    public void Reset()
+    public void OnReset()
     {
         Debug.Log("Reset Lock");
-        visualComponent.SetActive(true);
+        
+        if(visualComponent)
+            visualComponent.SetActive(true);
+        
         col.enabled = true;
+        
+        if(particles)
+            particles.SetActive(true);
     }
     
     public void Unlock()
     {
         visualComponent.SetActive(false);
+        
+        if(particles)
+            particles.SetActive(false);
     }
     
 }
