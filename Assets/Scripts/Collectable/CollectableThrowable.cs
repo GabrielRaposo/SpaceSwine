@@ -10,6 +10,8 @@ public class CollectableThrowable : Collectable
 
     public override void OnResetFunction() 
     {
+        Debug.Log($"<color=#22ee33>Collectable Reset</color>: {gameObject.name}");
+        
         base.OnResetFunction();
 
         indestructible = false;

@@ -100,12 +100,7 @@ public class Door : MonoBehaviour
     private void ResetStates()
     {
         gameObject.SetActive(true);
-        // internalHealth = originalInternalHealth;
-        // Health = originalInternalHealth+externalLocks.Count;
-
-        // for (int i = 0; i < internalLocks.Count; i++)
-        //     internalLocks[i].Reset();
-
+        
         for (int j = 0; j < externalLocks.Count; j++)
             externalLocks[j].OnReset();
 
