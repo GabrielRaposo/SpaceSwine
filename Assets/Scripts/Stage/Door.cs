@@ -153,7 +153,6 @@ public class Door : MonoBehaviour
         if (!portal || !round)
             return;
 
-        portal.transform.SetParent(null);
         portal.transform.position = transform.position;
         portal.Setup
         (
