@@ -111,6 +111,8 @@ public class Door : MonoBehaviour
             portal.gameObject.SetActive(false);
         }
         
+        animator.SetBool("Open", false);
+        
         Health = externalLocks.Count;
         if (Health < 1)
             SpawnPortal();
@@ -162,8 +164,6 @@ public class Door : MonoBehaviour
                 portal.transform.SetParent(transform);
             }
         );
-
-        //gameObject.SetActive(false);
         
         animator.SetBool("Open", true);
     }
