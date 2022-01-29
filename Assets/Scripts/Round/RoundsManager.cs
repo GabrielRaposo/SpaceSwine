@@ -140,4 +140,11 @@ public class RoundsManager : MonoBehaviour
             SessionData = null;
         }
     }
+
+    private void OnDisable()
+    {
+        previousInputAction.Disable();
+        resetInputAction.Disable();
+        nextInputAction.Disable();
+    }
 }
