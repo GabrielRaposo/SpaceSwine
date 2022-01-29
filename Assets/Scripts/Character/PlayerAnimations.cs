@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimations : MonoBehaviour
 {
-    [SerializeField] AK.Wwise.Event walkAKEvent;
-
     Animator animator;
     string currentState;
 
@@ -38,15 +36,15 @@ public class PlayerAnimations : MonoBehaviour
                 } 
                 else if (horizontalInput == 0)
                 {
-                    walkAKEvent?.Stop(gameObject);
+                    //walkAKEvent?.Stop(gameObject);
                     ChangeAnimationState(!holding ? AnimationState.IDLE : AnimationState.IDLE_HOLD );
                 }
                 else
                 {
-                    if (!walkAKEvent.IsPlaying(gameObject))
-                    {
-                        walkAKEvent?.Post(gameObject);
-                    }
+                    //if (!walkAKEvent.IsPlaying(gameObject))
+                    //{
+                    //    walkAKEvent?.Post(gameObject);
+                    //}
                     ChangeAnimationState(!holding ? AnimationState.WALK : AnimationState.WALK_HOLD );
                 }            
                 break;
