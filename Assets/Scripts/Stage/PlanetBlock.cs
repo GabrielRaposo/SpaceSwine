@@ -67,7 +67,7 @@ public class PlanetBlock : MonoBehaviour
             wallVisual.drawMode = SpriteDrawMode.Tiled;
             wallVisual.transform.localPosition = - positionOffset;
             wallVisual.transform.localScale = Vector2.one;
-            wallVisual.size = new Vector2(1.25f, (size + colliderOffset).y);
+            wallVisual.size = new Vector2(1.25f, size.y);
 
             groundCollider.transform.localPosition = Vector2.up * (((size + colliderOffset).y / 2) - .01f);
             groundCollider.transform.localPosition += (Vector3) positionOffset;
