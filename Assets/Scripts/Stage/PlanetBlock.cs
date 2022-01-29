@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlanetBlock : MonoBehaviour
 {
     [SerializeField] Vector2 size;
+    [SerializeField] Vector2 colliderOffset;
+    [SerializeField] bool useSpriteSize;
 
     [Header("Wall")]
     [SerializeField] BoxCollider2D wallCollider;
-    [SerializeField] Transform wallVisual;
+    [SerializeField] SpriteRenderer wallVisual;
 
     [Header("Ground")]
     [SerializeField] BoxCollider2D groundCollider;
@@ -43,14 +45,35 @@ public class PlanetBlock : MonoBehaviour
 
         transform.localPosition = Vector2.up * radius.planet;
 
-        wallCollider.transform.localPosition = positionOffset;
-        wallCollider.size = size;
-        wallVisual.localScale = size;
+        if (!useSpriteSize) 
+        { 
+            wallCollider.transform.localPosition = positionOffset;
+            wallCollider.size = size + colliderOffset;
 
-        groundCollider.transform.localPosition = Vector2.up * ((size.y / 2) - .01f);
-        groundCollider.transform.localPosition += (Vector3) positionOffset;
-        groundCollider.size = new Vector2(size.x, .02f);
-        groundVisual.localScale = groundCollider.size;
+            wallVisual.drawMode = SpriteDrawMode.Simple;
+            wallVisual.transform.localScale = size;
+
+            groundCollider.transform.localPosition = Vector2.up * (((size + colliderOffset).y / 2) - .01f);
+            groundCollider.transform.localPosition += (Vector3) positionOffset;
+            groundCollider.size = new Vector2(size.x + colliderOffset.x, .02f);
+            groundVisual.localScale = groundCollider.size;
+        }
+        else
+        {
+            positionOffset += Vector2.up * (colliderOffset.y / 2);
+            wallCollider.transform.localPosition = positionOffset;
+            wallCollider.size = size + colliderOffset;
+
+            wallVisual.drawMode = SpriteDrawMode.Tiled;
+            wallVisual.transform.localPosition = - positionOffset;
+            wallVisual.transform.localScale = Vector2.one;
+            wallVisual.size = new Vector2(1.25f, (size + colliderOffset).y);
+
+            groundCollider.transform.localPosition = Vector2.up * (((size + colliderOffset).y / 2) - .01f);
+            groundCollider.transform.localPosition += (Vector3) positionOffset;
+            groundCollider.size = new Vector2(size.x + colliderOffset.x, .02f);
+            groundVisual.localScale = groundCollider.size;
+        }
     }
 
     public float GetSize()
