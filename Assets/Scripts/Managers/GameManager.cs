@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
         resetSaveInputAction.performed += (ctx) => SaveManager.ResetSave();
 
         SetupPlayer(); // Deve ocorrer no Start()
-
     }
 
     private void SetupPlayer()
