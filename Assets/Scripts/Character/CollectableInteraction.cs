@@ -138,8 +138,9 @@ public class CollectableInteraction : MonoBehaviour
             coll.enabled = true;
 
         HierarchyController hierarchyController = current.GetComponent<HierarchyController>();
-        if (hierarchyController) 
-            hierarchyController.SetParent(null);
+        if (hierarchyController)
+            hierarchyController.SetParentToRound();
+            //hierarchyController.SetParent(null);
 
         current = null;
     }
