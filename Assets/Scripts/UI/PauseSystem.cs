@@ -56,6 +56,14 @@ public class PauseSystem : MonoBehaviour
             .SetUpdate(isIndependentUpdate: true);
     }
 
+    public void GoToShip()
+    {
+        //SetPauseState(false);
+        OnPause = false;
+        GameManager.GoToScene(BuildIndex.Ship);
+        // Chamar transição do player
+    }
+
     public void ResetScene()
     {
         GameManager.ResetScene();
