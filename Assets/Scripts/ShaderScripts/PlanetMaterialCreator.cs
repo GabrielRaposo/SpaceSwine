@@ -85,7 +85,7 @@ public class PlanetMaterialCreator : MonoBehaviour
         TweakVectorValue(mat, "_NoiseOffset2", v => new Vector3(Random.Range(0f,999f),Random.Range(0f,160f),Random.Range(0f,160f)));
         TweakVectorValue(mat, "_NoiseOffset3", v => new Vector3(Random.Range(0f,999f),Random.Range(0f,160f),Random.Range(0f,160f)));
         
-        TweakColorValue(mat, "_BaseColor", c=>HSVTweak(c, 0f,0.038f,0f));
+        TweakColorValue(mat, "_BaseColor", c=>HSVTweak(c, 0f,0.045f,0f));
         
     }
 
