@@ -35,23 +35,24 @@ public class PlanetMaterialCreator : MonoBehaviour
             
     }
 
-    private void SetPixelSize()
+    public void SetPixelSize()
     {
-        Debug.Log($"SetPixelSize()");
-
         if (planet == null)
-        {
-            Debug.Log("NULL PLANET");
             return;
-        }
 
         if (currentMaterial == null)
-        {
-            Debug.Log("NULL MATERIAL");
             return;
-        }
-        Debug.Log($"PixelSize: {115f*planet.GetAttributes().planetRadius}");
+        
         currentMaterial.SetFloat("_PixelSize", 115f*planet.GetAttributes().planetRadius);
+        
+        if(planet.GetAttributes().planetRadius > 1.4f)
+            currentMaterial.SetFloat("_OutlineSize", 0.785f);
+        else if(planet.GetAttributes().planetRadius < 0.6f)
+            currentMaterial.SetFloat("_OutlineSize", 0.85f);
+        else
+            currentMaterial.SetFloat("_OutlineSize", 0.8f);
+        
+        
     }
 
     public void ClarMaterial()
@@ -84,6 +85,8 @@ public class PlanetMaterialCreator : MonoBehaviour
         TweakVectorValue(mat, "_NoiseOffset2", v => new Vector3(Random.Range(0f,999f),Random.Range(0f,160f),Random.Range(0f,160f)));
         TweakVectorValue(mat, "_NoiseOffset3", v => new Vector3(Random.Range(0f,999f),Random.Range(0f,160f),Random.Range(0f,160f)));
         
+        TweakColorValue(mat, "_BaseColor", c=>HSVTweak(c, 0f,0.038f,0f));
+        
     }
 
     private void TweakFloatValue(Material mat, string valueName, Func<float,float> action)
@@ -94,6 +97,26 @@ public class PlanetMaterialCreator : MonoBehaviour
     private void TweakVectorValue(Material mat, string valueName, Func<Vector4, Vector4> action)
     {
         mat.SetVector(valueName, action(mat.GetVector(valueName)));
+    }
+
+    private void TweakColorValue(Material mat, string valueName, Func<Color, Color> action)
+    {
+        mat.SetColor(valueName, action(mat.GetColor(valueName)));
+    }
+
+    private Color HSVTweak(Color c, float vTweak, float hTweak, float sTweak)
+    {
+        float v;
+        float h;
+        float s;
+        
+        Color.RGBToHSV(c, out h, out s, out v);
+
+        v *= Random.Range(1f - vTweak, 1f + vTweak);
+        h *= Random.Range(1f - hTweak, 1f + hTweak);
+        s *= Random.Range(1f - sTweak, 1f + sTweak);
+
+        return Color.HSVToRGB(h, s, v);
     }
     
 }
