@@ -18,11 +18,17 @@ Event	ID	Name			Wwise Object Path	Notes
 	3434033334	gameplay_buyk_pula_curto			\Default Work Unit\Buyk\Movimentação\gameplay_buyk_pula_curto	
 	3509273191	ggs_ui_desliga			\Default Work Unit\Minigame GGS\ggs_ui_desliga	
 	3605340086	gameplay_item_gol			\Default Work Unit\Level\gameplay_item_gol	
-	3605772915	Playlist			\Default Work Unit\Música\Playlist	
 	3655190725	cenario_vitoria			\Default Work Unit\Level\cenario_vitoria	
 	3679214058	gameplay_buyk_pousa_curto			\Default Work Unit\Buyk\Movimentação\gameplay_buyk_pousa_curto	
 	3851873763	gameplay_buyk_taca_item			\Default Work Unit\Buyk\Item\gameplay_buyk_taca_item	
 	4113901743	ggs_ui_liga			\Default Work Unit\Minigame GGS\ggs_ui_liga	
+
+Switch Group	ID	Name			Wwise Object Path	Notes
+	800629662	Estado_Gameplay			\Default Work Unit\Estado_Gameplay	
+
+Switch	ID	Name	Switch Group			Notes
+	1593912969	Perigo	Estado_Gameplay			
+	3028394597	Exploracao	Estado_Gameplay			
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	3673881719	volume_sfx			\Default Work Unit\Volume Bus\volume_sfx	
@@ -41,16 +47,17 @@ Audio Bus	ID	Name			Wwise Object Path	Notes
 	3991942870	Music			\Default Work Unit\Master Audio Bus\Music	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	145051031	Lofi 02_v1	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\Lofi 02_v1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Playlist\Lofi 02\Lofi 02_v1		22006580
 	208277150	gameplay_buyk_anda_wave_03	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\gameplay_buyk_anda_wave_59065867.wem		\Actor-Mixer Hierarchy\Default Work Unit\Buyk\Movimentação\gameplay_buyk_anda\gameplay_buyk_anda_w\gameplay_buyk_anda_wave_03		4118
 	218252749	gameplay_buyk_anda_noise_01	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\gameplay_buyk_anda_noise_903C544D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Buyk\Movimentação\gameplay_buyk_anda\gameplay_buyk_anda_n\gameplay_buyk_anda_noise_01		2432
 	246220524	cenario_vitoria	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\Garage Foley - 10_F73A66E4.wem		\Actor-Mixer Hierarchy\Default Work Unit\Level\cenario_vitoria		159064
 	300575779	gameplay_buyk_morre	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\Astropig Pular_52C5C28D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Buyk\gameplay_buyk_morre		88120
 	363192587	Caixa de Placeholders	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\Astropig oinc fofo_slice 2_DDB0E549.wem		\Actor-Mixer Hierarchy\Default Work Unit\Caixa de Placeholders		44676
+	382363077	Lofi 02_perigo_v1	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\Lofi 02_perigo_v1_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Música\Estado Gameplay\Lofi 02_perigo_v1\Lofi 02_perigo_v1		22006580
 	499073416	gameplay_buyk_pousa_longo	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\gameplay_buyk_pula_pousa_56697F4D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Buyk\Movimentação\pulo e pouso\gameplay_buyk_pousa_longo		53470
 	514590912	gameplay_buyk_anda_noise_02	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\gameplay_buyk_anda_noise_862729A0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Buyk\Movimentação\gameplay_buyk_anda\gameplay_buyk_anda_n\gameplay_buyk_anda_noise_02		2520
 	589730432	gameplay_item_gol	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\Garage Foley - 5_81EBCAB1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Level\gameplay_item_gol		93352
 	628454795	ui_menu_clique	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\Astropig Abajour_2F8894DA.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\ui_menu_clique		71584
+	659983745	Lofi 02_v2	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\Lofi 02_v2_D79FB2B7.wem		\Interactive Music Hierarchy\Default Work Unit\Música\Estado Gameplay\Lofi 02_v2\Lofi 02_v2		22006580
 	667430613	gameplay_buyk_anda_wave_01	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\gameplay_buyk_anda_wave_E875A89B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Buyk\Movimentação\gameplay_buyk_anda\gameplay_buyk_anda_w\gameplay_buyk_anda_wave_01		4594
 	697005381	gameplay_buyk_pega_cristal	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\Garage Foley - 2_457615C0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Buyk\Item\gameplay_buyk_pega_cristal		187312
 	716726218	gameplay_buyk_taca_item	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Windows\SFX\Garage Foley - 9_04F940AE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Buyk\Item\gameplay_buyk_taca_item		131868

@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="133642231" Language="SFX" Hash="4114941279">
+		<SoundBank Id="133642231" Language="SFX" Hash="2989603723">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -37,15 +37,10 @@
 				<Event Id="3509273191" Name="ggs_ui_desliga" ObjectPath="\Events\Default Work Unit\Minigame GGS\ggs_ui_desliga" DurationType="OneShot" DurationMin="0.528477" DurationMax="0.528477"/>
 				<Event Id="4113901743" Name="ggs_ui_liga" ObjectPath="\Events\Default Work Unit\Minigame GGS\ggs_ui_liga" DurationType="OneShot" DurationMin="0.528477" DurationMax="0.528477"/>
 				<Event Id="1292442974" Name="ggs_ui_recorde" ObjectPath="\Events\Default Work Unit\Minigame GGS\ggs_ui_recorde" DurationType="OneShot" DurationMin="0.528477" DurationMax="0.528477"/>
-				<Event Id="3605772915" Name="Playlist" ObjectPath="\Events\Default Work Unit\Música\Playlist" DurationType="Infinite"/>
 				<Event Id="937451947" Name="ui_menu_clique" ObjectPath="\Events\Default Work Unit\UI\ui_menu_clique" DurationType="OneShot" DurationMin="0.405438" DurationMax="0.405438"/>
 				<Event Id="2163476404" Name="ui_menu_hover" ObjectPath="\Events\Default Work Unit\UI\ui_menu_hover" DurationType="OneShot" DurationMin="0.252923" DurationMax="0.252923"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="145051031" Language="SFX">
-					<ShortName>Lofi 02_v1.wav</ShortName>
-					<Path>SFX\Lofi 02_v1_D79FB2B7.wem</Path>
-				</File>
 				<File Id="208277150" Language="SFX">
 					<ShortName>gameplay_buyk_anda_wave.wav</ShortName>
 					<Path>SFX\gameplay_buyk_anda_wave_59065867.wem</Path>
@@ -66,6 +61,10 @@
 					<ShortName>Astropig oinc fofo_slice 2.wav</ShortName>
 					<Path>SFX\Astropig oinc fofo_slice 2_DDB0E549.wem</Path>
 				</File>
+				<File Id="382363077" Language="SFX">
+					<ShortName>Lofi 02_perigo_v1.wav</ShortName>
+					<Path>SFX\Lofi 02_perigo_v1_D79FB2B7.wem</Path>
+				</File>
 				<File Id="499073416" Language="SFX">
 					<ShortName>gameplay_buyk_pula_pousa.wav</ShortName>
 					<Path>SFX\gameplay_buyk_pula_pousa_56697F4D.wem</Path>
@@ -81,6 +80,10 @@
 				<File Id="628454795" Language="SFX">
 					<ShortName>Astropig Abajour.wav</ShortName>
 					<Path>SFX\Astropig Abajour_2F8894DA.wem</Path>
+				</File>
+				<File Id="659983745" Language="SFX">
+					<ShortName>Lofi 02_v2.wav</ShortName>
+					<Path>SFX\Lofi 02_v2_D79FB2B7.wem</Path>
 				</File>
 				<File Id="667430613" Language="SFX">
 					<ShortName>gameplay_buyk_anda_wave.wav</ShortName>
@@ -145,8 +148,16 @@
 				<GameParameter Id="3891337659" Name="volume_music" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_music"/>
 				<GameParameter Id="4083254980" Name="volume_placeholders" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_placeholders"/>
 			</GameParameters>
+			<SwitchGroups>
+				<SwitchGroup Id="800629662" Name="Estado_Gameplay" ObjectPath="\Switches\Default Work Unit\Estado_Gameplay">
+					<Switches>
+						<Switch Id="3028394597" Name="Exploracao" ObjectPath="\Switches\Default Work Unit\Estado_Gameplay\Exploracao"/>
+						<Switch Id="1593912969" Name="Perigo" ObjectPath="\Switches\Default Work Unit\Estado_Gameplay\Perigo"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2871125085">
+		<SoundBank Id="1355168291" Language="SFX" Hash="2950445757">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
