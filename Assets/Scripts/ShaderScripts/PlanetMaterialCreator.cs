@@ -9,9 +9,12 @@ public class PlanetMaterialCreator : MonoBehaviour
     public Material baseMaterial;
     public Material currentMaterial;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] public GravitationalPlanet planet;
 
     private void OnValidate()
     {
+        SetPixelSize();
+        
         if(gameObject.scene.name == "") return;
         if(gameObject.scene.name == gameObject.name) return;
     
@@ -25,9 +28,30 @@ public class PlanetMaterialCreator : MonoBehaviour
             
             if(_spriteRenderer == null) return;
 
+            SetPixelSize();
+            
             _spriteRenderer.material = currentMaterial;
         }
             
+    }
+
+    private void SetPixelSize()
+    {
+        Debug.Log($"SetPixelSize()");
+
+        if (planet == null)
+        {
+            Debug.Log("NULL PLANET");
+            return;
+        }
+
+        if (currentMaterial == null)
+        {
+            Debug.Log("NULL MATERIAL");
+            return;
+        }
+        Debug.Log($"PixelSize: {115f*planet.GetAttributes().planetRadius}");
+        currentMaterial.SetFloat("_PixelSize", 115f*planet.GetAttributes().planetRadius);
     }
 
     public void ClarMaterial()

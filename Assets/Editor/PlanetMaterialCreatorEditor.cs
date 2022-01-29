@@ -13,6 +13,8 @@ public class PlanetMaterialCreatorEditor : Editor
         
         //base.OnInspectorGUI();
 
+        obj.planet = (GravitationalPlanet)EditorGUILayout.ObjectField("Planet", obj.planet, typeof(GravitationalPlanet));
+        
         GUILayout.BeginHorizontal();
         
         obj.baseMaterial = (Material)EditorGUILayout.ObjectField("Base Material", obj.baseMaterial, typeof(Material));
