@@ -55,7 +55,13 @@ public class CollectableThrowable : Collectable
         if (hb)
         {
             if (hb.damage > 0)
+            {
+                Debug.Log($"{gameObject.name} <color=#dd0000><b>Take damage</b></color>");
+                //Debug.Break();
+                //return;
                 gameObject.SetActive(false);
+            }
+                
         }
     }
 }
