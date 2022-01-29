@@ -38,22 +38,6 @@ namespace AK
         static const AkUniqueID UI_MENU_HOVER = 2163476404U;
     } // namespace EVENTS
 
-    namespace STATES
-    {
-        namespace ESTADO_GAMEPLAY
-        {
-            static const AkUniqueID GROUP = 800629662U;
-
-            namespace STATE
-            {
-                static const AkUniqueID EXPLORACAO = 3028394597U;
-                static const AkUniqueID NONE = 748895195U;
-                static const AkUniqueID PERIGO = 1593912969U;
-            } // namespace STATE
-        } // namespace ESTADO_GAMEPLAY
-
-    } // namespace STATES
-
     namespace SWITCHES
     {
         namespace ESTADO_GAMEPLAY
