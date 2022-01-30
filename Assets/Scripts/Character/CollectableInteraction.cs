@@ -57,6 +57,8 @@ public class CollectableInteraction : MonoBehaviour
             hierarchyController.SetParent(t);
         
         collectable.transform.position = t.position;
+        
+        collectable.transform.localRotation = Quaternion.identity;
 
         current = collectable;
         return true;
