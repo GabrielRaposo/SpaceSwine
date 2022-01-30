@@ -10,7 +10,7 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
 
     //TEMP
     //Solução temporária para os filhos do objeto que se move não resetando corretamente
-    [SerializeField] private bool keepTrackOfChildren;
+    private bool keepTrackOfChildren;
     private List<Vector3> childrenPos;
 
     int index;
@@ -34,6 +34,9 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
         //transform.eulerAngles = Vector3.forward * targetAngles[index];
         transform.position = targetPositions[index];
 
+        if (transform.childCount > 0)
+            keepTrackOfChildren = true;
+        
         if (keepTrackOfChildren)
         {
             childrenPos = new List<Vector3>();

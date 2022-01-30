@@ -34,36 +34,34 @@ public class CollectableThrowable : Collectable
 
     public override void TriggerEvent(Collider2D collision) 
     {
-        base.TriggerEvent(collision);
-
-        // Door door = collision.GetComponent<Door>();
-        // if (door)
-        // {
-        //     door.Collect(this);
-        //     return;
-        // }
-
-        LockGravityField lgf = collision.GetComponent<LockGravityField>();
-        if (lgf)
-        {
-            lgf.GetCollectable(this);
-        }
-        
         Lock l = collision.GetComponent<Lock>();
         if (l)
         {
             l.Collect(this);
             return;
         }
+        
+        if(indestructible) return;
+        
+        base.TriggerEvent(collision);
+
+        LockGravityField lgf = collision.GetComponent<LockGravityField>();
+        if (lgf)
+        {
+            lgf.GetCollectable(this);
+        }
 
         Hitbox hb = collision.GetComponent<Hitbox>();
         if (hb)
         {
-            if(indestructible)
-                return;
-            
             if (hb.damage > 0)
+            {
+                Debug.Log($"{gameObject.name} <color=#dd0000><b>Take damage</b></color>");
+                //Debug.Break();
+                //return;
                 gameObject.SetActive(false);
+            }
+                
         }
     }
 }
