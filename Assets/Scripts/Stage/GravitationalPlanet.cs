@@ -17,8 +17,16 @@ public class GravitationalPlanet : GravitationalBody
     [SerializeField] SpriteRenderer insideVisualComponent;
     [SerializeField] CircleCollider2D gravityArea;
 
-    private void OnValidate() 
+    private PlanetMaterialCreator materialCreator;
+    
+    private void OnValidate()
     {
+        if (materialCreator == null)
+            materialCreator = GetComponent<PlanetMaterialCreator>();
+        
+        if(materialCreator)
+            materialCreator.SetPixelSize();
+        
         UpdateAttributes();
     }
 

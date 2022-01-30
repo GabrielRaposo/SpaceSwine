@@ -133,15 +133,16 @@ public static class LocalizationManager
 
         GSTU_Search sheet;
         
-        int zoneCount = 4;
+        int zoneCount = 3;
 
         switch (textType)
         {
             case LocalizedTextTypes.Story:
                 
-                for (int i = 0; i < zoneCount; i++)
+                for (int i = -1; i < zoneCount; i++)
                 {
-                    sheet = new GSTU_Search(sheetId, "Zona"+(i));
+                    Debug.Log("Zona"+(i+1));
+                    sheet = new GSTU_Search(sheetId, "Zona"+(i+1));
                     SpreadsheetManager.Read(sheet, UpdateStoryDictionary);    
                 }
                 break;
