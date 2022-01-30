@@ -139,8 +139,9 @@ public static class LocalizationManager
         {
             case LocalizedTextTypes.Story:
                 
-                for (int i = 0; i < zoneCount; i++)
+                for (int i = -1; i < zoneCount; i++)
                 {
+                    Debug.Log("Zona"+(i+1));
                     sheet = new GSTU_Search(sheetId, "Zona"+(i+1));
                     SpreadsheetManager.Read(sheet, UpdateStoryDictionary);    
                 }
