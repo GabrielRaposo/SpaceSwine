@@ -15,6 +15,7 @@ namespace AK
     {
         static const AkUniqueID CENARIO_TRANSICAO = 3223415371U;
         static const AkUniqueID CENARIO_VITORIA = 3655190725U;
+        static const AkUniqueID ESTADO_GAMEPLAY = 800629662U;
         static const AkUniqueID GAMEPLAY_BUYK_ANDA = 2274976510U;
         static const AkUniqueID GAMEPLAY_BUYK_MORRE = 2418446987U;
         static const AkUniqueID GAMEPLAY_BUYK_PEGA_CRISTAL = 1046688U;
