@@ -15,9 +15,9 @@ public class SoundtrackManager : MonoBehaviour
     [SerializeField] AK.Wwise.RTPC musicParameter;
     [SerializeField] AK.Wwise.RTPC sfxParameter;
     
-    [Header("Switches")]
-    [SerializeField] AK.Wwise.Switch explorationSwitch;
-    [SerializeField] AK.Wwise.Switch dangerSwitch;
+    
+    public LocalGameplayState localGameplayState;
+    //[SerializeField] AK.Wwise.Switch dangerSwitch;
 
     static AK.Wwise.Event soundtrackEvent;
 
@@ -53,6 +53,8 @@ public class SoundtrackManager : MonoBehaviour
         //Debug.Log("masterParameter.GetGlobalValue(): " + masterParameter.GetGlobalValue());
         //Debug.Log("musicParameter.GetGlobalValue(): " + musicParameter.GetGlobalValue());
         //Debug.Log("sfxParameter.GetGlobalValue(): " + sfxParameter.GetGlobalValue());
+        
+        //gameStateSwitch.SetValue(localGameplayState.gameObject);
 
         PlayMusic();
     }
