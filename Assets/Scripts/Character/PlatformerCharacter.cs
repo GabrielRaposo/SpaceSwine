@@ -14,6 +14,7 @@ public class PlatformerCharacter : SidewaysCharacter
 
     [Header("References")]
     [SerializeField] Transform visualAnchor;
+    [SerializeField] AK.Wwise.Event walkAKEvent;
     [SerializeField] AK.Wwise.Event shortHopAKEvent;
     [SerializeField] AK.Wwise.Event shortLandingAKEvent;
 
@@ -208,5 +209,10 @@ public class PlatformerCharacter : SidewaysCharacter
     public Vector2 LocalSpeed()
     {
         return new Vector2(horizontalSpeed, verticalSpeed);
+    }
+
+    public void PlayStepSound()
+    {
+        walkAKEvent?.Post(gameObject);
     }
 }

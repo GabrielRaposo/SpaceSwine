@@ -168,7 +168,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 5603b7af2d1ad544aaabe96a04f5d2fa
     GuidInternal: 
-    m_lastTime: -8585581862592584500
+    m_lastTime: -8585580566971907295
     List:
     - name: Buyk
       guid: b35fa3c805b3df4cb1c42f619dca851d
@@ -227,6 +227,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0.900988
       minDuration: 0.900988
+    - name: Estado_Gameplay
+      guid: b9bf74f91f5f274eb45b7450dfe4a397
+      id: 800629662
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 5603b7af2d1ad544aaabe96a04f5d2fa
+      - ElementName: "M\xFAsica"
+        ObjectType: 4
+        guid: 6b4161b18f3cb240951b9ce5f66a24ce
+      - ElementName: Estado_Gameplay
+        ObjectType: 3
+        guid: b9bf74f91f5f274eb45b7450dfe4a397
+      Path: "Events\\Default Work Unit\\M\xFAsica\\Estado_Gameplay"
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: gameplay_buyk_anda
       guid: ac712da97b98ba43895a345cfc7675c5
       id: 2274976510
@@ -248,8 +268,8 @@ MonoBehaviour:
         guid: ac712da97b98ba43895a345cfc7675c5
       Path: "Events\\Default Work Unit\\Buyk\\Movimenta\xE7\xE3o\\gameplay_buyk_anda"
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.062379
+      minDuration: 0.045968
     - name: gameplay_buyk_morre
       guid: 2f69052629438944b777c15dba005d14
       id: 2418446987
@@ -739,26 +759,6 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
-    - name: Playlist
-      guid: b9bf74f91f5f274eb45b7450dfe4a397
-      id: 3605772915
-      PathAndIcons:
-      - ElementName: Events
-        ObjectType: 5
-        guid: 00000000000000000000000000000000
-      - ElementName: Default Work Unit
-        ObjectType: 12
-        guid: 5603b7af2d1ad544aaabe96a04f5d2fa
-      - ElementName: "M\xFAsica"
-        ObjectType: 4
-        guid: 6b4161b18f3cb240951b9ce5f66a24ce
-      - ElementName: Playlist
-        ObjectType: 3
-        guid: b9bf74f91f5f274eb45b7450dfe4a397
-      Path: "Events\\Default Work Unit\\M\xFAsica\\Playlist"
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
     - name: System
       guid: 84e8e7ce5910364a841b7dc8bbb2584a
       id: 3859886410
@@ -955,8 +955,58 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: fabb6b97bb19d7419b4ca690d11de2d7
     GuidInternal: 
-    m_lastTime: -8585621155159736406
-    List: []
+    m_lastTime: -8585580566956767318
+    List:
+    - name: Estado_Gameplay
+      guid: 6ec6c089723684468b001f50d12d77af
+      id: 800629662
+      PathAndIcons:
+      - ElementName: Switches
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: fabb6b97bb19d7419b4ca690d11de2d7
+      - ElementName: Estado_Gameplay
+        ObjectType: 11
+        guid: 6ec6c089723684468b001f50d12d77af
+      Path: Switches\Default Work Unit\Estado_Gameplay
+      values:
+      - name: Exploracao
+        guid: f092c7d26ba0f04a95e21d8ded3de758
+        id: 3028394597
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: fabb6b97bb19d7419b4ca690d11de2d7
+        - ElementName: Estado_Gameplay
+          ObjectType: 11
+          guid: 6ec6c089723684468b001f50d12d77af
+        - ElementName: Exploracao
+          ObjectType: 10
+          guid: f092c7d26ba0f04a95e21d8ded3de758
+      - name: Perigo
+        guid: 91fd0d26ba9a8a40b7e72188ba02c364
+        id: 1593912969
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: fabb6b97bb19d7419b4ca690d11de2d7
+        - ElementName: Estado_Gameplay
+          ObjectType: 11
+          guid: 6ec6c089723684468b001f50d12d77af
+        - ElementName: Perigo
+          ObjectType: 10
+          guid: 91fd0d26ba9a8a40b7e72188ba02c364
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     PathAndIcons:
@@ -971,7 +1021,7 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8585724639866315471
     List: []
-  ExpandedFileSystemItemIds: 02000000030000000400000005000000080000000b0000000c00000014000000160000001f00000022000000
+  ExpandedFileSystemItemIds: 010000000200000003000000050000000600000007000000080000000a0000000b0000000c00000019000000200000002500000026000000270000002a000000
   ExpandedWaapiItemIds: 
   AutoSyncSelection: 0
   autoPopulateEnabled: 1

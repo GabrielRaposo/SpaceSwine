@@ -8,6 +8,8 @@ public class HierarchyController : MonoBehaviour
     Quaternion originalRotation;
     Transform originalParent;
 
+    Transform roundTransform;
+    
     void Awake()
     {
         originalPosition = transform.position;
@@ -16,12 +18,23 @@ public class HierarchyController : MonoBehaviour
 
         Round round = GetComponentInParent<Round>();
         if (round)
+        {
             round.OnReset += SetOriginalState;
+            roundTransform = round.transform;
+        }
     }
 
     public void SetParent(Transform t)
     {
         transform.parent = t;
+    }
+
+    public void SetParentToRound()
+    {
+        if (roundTransform)
+            transform.parent = roundTransform;
+        else
+            transform.parent = null;
     }
 
     public void SetOriginalState()
