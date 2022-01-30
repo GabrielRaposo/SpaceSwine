@@ -159,9 +159,9 @@ public class InteractableElevator : Interactable
         //    ballonSpriteSwapper.SetVisibility(value);
     }
 
-    private void OnDrawGizmos() 
+    private void OnDrawGizmosSelected() 
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(  transform.position, transform.position + (transform.up * 10) );
+        Gizmos.DrawLine(  transform.position, transform.position + (transform.up * 25) );
     }
 }

@@ -190,7 +190,7 @@ public class SaveManager : MonoBehaviour
         Save();
     }
 
-    public static void SaveStoryEvent(StoryEventScriptableObject storyEvent)
+    public static void SaveStoryEvent (StoryEventScriptableObject storyEvent)
     {
         return;
 
