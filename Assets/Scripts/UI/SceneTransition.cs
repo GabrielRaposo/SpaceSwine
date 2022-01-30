@@ -106,6 +106,7 @@ public enum BuildIndex
     World3Exploration = 7,
     World3Danger = 8,
     MinigameJumper = 9,
-    TestExplorationStage = 10,
-    TestDangerStage = 11
+    World0Exploration = 10,
+    TestExplorationStage = 11,
+    TestDangerStage = 12
 }
