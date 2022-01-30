@@ -15,6 +15,7 @@ namespace AK
     {
         static const AkUniqueID CENARIO_TRANSICAO = 3223415371U;
         static const AkUniqueID CENARIO_VITORIA = 3655190725U;
+        static const AkUniqueID ESTADO_GAMEPLAY = 800629662U;
         static const AkUniqueID GAMEPLAY_BUYK_ANDA = 2274976510U;
         static const AkUniqueID GAMEPLAY_BUYK_MORRE = 2418446987U;
         static const AkUniqueID GAMEPLAY_BUYK_PEGA_CRISTAL = 1046688U;
@@ -34,10 +35,24 @@ namespace AK
         static const AkUniqueID GGS_UI_DESLIGA = 3509273191U;
         static const AkUniqueID GGS_UI_LIGA = 4113901743U;
         static const AkUniqueID GGS_UI_RECORDE = 1292442974U;
-        static const AkUniqueID PLAYLIST = 3605772915U;
         static const AkUniqueID UI_MENU_CLIQUE = 937451947U;
         static const AkUniqueID UI_MENU_HOVER = 2163476404U;
     } // namespace EVENTS
+
+    namespace SWITCHES
+    {
+        namespace ESTADO_GAMEPLAY
+        {
+            static const AkUniqueID GROUP = 800629662U;
+
+            namespace SWITCH
+            {
+                static const AkUniqueID EXPLORACAO = 3028394597U;
+                static const AkUniqueID PERIGO = 1593912969U;
+            } // namespace SWITCH
+        } // namespace ESTADO_GAMEPLAY
+
+    } // namespace SWITCHES
 
     namespace GAME_PARAMETERS
     {

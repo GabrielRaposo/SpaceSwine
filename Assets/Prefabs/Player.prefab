@@ -61,6 +61,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  explorationState:
+    idInternal: 0
+    valueGuidInternal: 
+    groupIdInternal: 0
+    groupGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: baf61879293b3a84aab4bdb4301df4d8, type: 2}
+  dangerState:
+    idInternal: 0
+    valueGuidInternal: 
+    groupIdInternal: 0
+    groupGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 7bfa225da1b3ec440b6d30a00dd3159f, type: 2}
+  soundtrackManager: {fileID: 0}
 --- !u!114 &5639081803221880840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +114,10 @@ MonoBehaviour:
   acceleration: 18
   jumpForce: 4.5
   visualAnchor: {fileID: 5639081803719366904}
+  walkAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 574c82b4ae73c064a9def70fea7ad1cf, type: 2}
   shortHopAKEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -288,10 +305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90dac8654a082cc45b8cb34d473f379e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkAKEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 574c82b4ae73c064a9def70fea7ad1cf, type: 2}
   landedOnGround: 0
   holding: 0
   horizontalInput: 0
