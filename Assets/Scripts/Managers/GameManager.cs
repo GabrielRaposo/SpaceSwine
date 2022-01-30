@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         pauseSystem = PauseSystem.Instance; 
         ggsConsole = GGSConsole.Instance;
 
-        resetInputAction.performed += (ctx) => ResetScene();
+        //resetInputAction.performed += (ctx) => ResetScene();
         saveInputAction.performed += (ctx) => SaveManager.SaveAllData();
         resetSaveInputAction.performed += (ctx) => SaveManager.ResetSave();
 

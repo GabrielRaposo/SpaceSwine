@@ -15,8 +15,11 @@ public class PlanetMaterialCreator : MonoBehaviour
     {
         SetPixelSize();
         
-        if(gameObject.scene.name == "") return;
-        if(gameObject.scene.name == gameObject.name) return;
+        if(gameObject.scene.name == "" || gameObject.scene.name == gameObject.name)
+        {
+            _spriteRenderer.material = baseMaterial;
+            return;
+        }
     
         if (currentMaterial == null)
         {
