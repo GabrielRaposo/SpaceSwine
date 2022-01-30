@@ -35,6 +35,7 @@ namespace AK
         static const AkUniqueID GGS_UI_DESLIGA = 3509273191U;
         static const AkUniqueID GGS_UI_LIGA = 4113901743U;
         static const AkUniqueID GGS_UI_RECORDE = 1292442974U;
+        static const AkUniqueID GGS_UI_RECORDE_FANFARRA = 1270516008U;
         static const AkUniqueID UI_MENU_CLIQUE = 937451947U;
         static const AkUniqueID UI_MENU_HOVER = 2163476404U;
     } // namespace EVENTS
