@@ -73,7 +73,7 @@ public class SpaceJumper : MonoBehaviour
         List <Collider2D> results = new List<Collider2D>();
         ContactFilter2D contactFilter2D = new ContactFilter2D();
         contactFilter2D.SetLayerMask(groundLayer);
-        if (Physics2D.OverlapBox(transform.position + topPosition, Vector2.one * .4f, transform.eulerAngles.z, contactFilter2D, results) < 1)
+        if (Physics2D.OverlapBox(transform.position + topPosition, Vector2.one * .8f, transform.eulerAngles.z, contactFilter2D, results) < 1)
         {
             return;
         }
