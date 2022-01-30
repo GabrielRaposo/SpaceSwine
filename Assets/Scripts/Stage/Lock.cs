@@ -23,6 +23,11 @@ public class Lock : MonoBehaviour
         col.enabled = !isInternal;
     }
 
+    private void Update()
+    {
+        visualComponent.transform.rotation = Quaternion.identity;
+    }
+
     protected virtual void Start()
     {
         _round = GetComponentInParent<Round>();

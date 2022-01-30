@@ -32,7 +32,7 @@ public class LockGravityField : MonoBehaviour
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(!capturedCollectable) return;
 
