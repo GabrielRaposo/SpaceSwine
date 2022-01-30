@@ -9,13 +9,20 @@ public class CollectableThrowable : Collectable
     [SerializeField] SpriteRenderer visualComponent;
     [SerializeField] GameObject destroyParticles;
 
+    private IEnumerator rotationRoutine;
+
     private bool indestructible;
 
+    
+    
     public override void OnResetFunction() 
     {
         base.OnResetFunction();
 
         indestructible = false;
+        
+        if(rotationRoutine!=null)
+            StopCoroutine(rotationRoutine);
         
         Collider2D collider2D = GetComponent<Collider2D>();
         if (collider2D)
@@ -27,7 +34,20 @@ public class CollectableThrowable : Collectable
         if (interactor.LaunchInput())
         {
             OnThrowAKEvent?.Post(gameObject);
+            rotationRoutine = RotateCoroutine();
+            StartCoroutine(rotationRoutine);
         }
+    }
+
+    private IEnumerator RotateCoroutine()
+    {
+        while (true)
+        {
+            visualComponent.transform.Rotate(Vector3.forward, 7.5f);
+            yield return null;
+        }
+
+        yield return null;
     }
 
     public void SetIndestructible(bool value)
