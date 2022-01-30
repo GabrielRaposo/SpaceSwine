@@ -7,6 +7,7 @@ public class PlanetBlock : MonoBehaviour
 {
     [SerializeField] Vector2 size;
     [SerializeField] Vector2 colliderOffset;
+    [SerializeField] float radiusOffset;
     [SerializeField] bool useSpriteSize;
 
     [Header("Wall")]
@@ -43,7 +44,7 @@ public class PlanetBlock : MonoBehaviour
         (float planet, float gravity) radius = planet.GetAttributes();
         Vector2 positionOffset = Vector2.up * ((size.y / 2) - .5f);
 
-        transform.localPosition = Vector2.up * radius.planet;
+        transform.localPosition = Vector2.up * (radius.planet + radiusOffset);
 
         if (!useSpriteSize) 
         { 

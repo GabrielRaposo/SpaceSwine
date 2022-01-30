@@ -190,8 +190,10 @@ public class SaveManager : MonoBehaviour
         Save();
     }
 
-    public static void SaveStoryEvent(StoryEventScriptableObject storyEvent)
+    public static void SaveStoryEvent (StoryEventScriptableObject storyEvent)
     {
+        return;
+
         StoryEventData storyEventData = new StoryEventData( storyEvent.state, storyEvent.name );
 
         StoryEventData data = currentSave.storyEventsStates.Find((p) => p.name == storyEventData.name);

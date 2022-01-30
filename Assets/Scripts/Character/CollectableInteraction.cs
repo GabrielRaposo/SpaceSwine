@@ -9,6 +9,7 @@ public class CollectableInteraction : MonoBehaviour
 {
     [SerializeField] float launchSpeed;
     [SerializeField] Transform holdAnchor;
+    [SerializeField] PlayerDirectionDisplay directionDisplay; 
 
     Vector2 axisInput;
     Collectable current;
@@ -24,9 +25,12 @@ public class CollectableInteraction : MonoBehaviour
         playerAnimations = GetComponent<PlayerAnimations>();
     }
 
-    public void AxisInput(Vector2 axisInput)
+    public void AxisInput (Vector2 axisInput)
     {
         this.axisInput = axisInput;
+
+        if (directionDisplay)
+            directionDisplay.UpdateDirection( !checkGround.OnGround, axisInput );
     }
 
     public void InteractInput()
