@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class CollectableThrowable : Collectable
 {
     [SerializeField] AK.Wwise.Event OnThrowAKEvent;
+    [SerializeField] SpriteRenderer visualComponent;
+    [SerializeField] GameObject destroyParticles;
 
     private bool indestructible;
 
@@ -57,11 +60,16 @@ public class CollectableThrowable : Collectable
             if (hb.damage > 0)
             {
                 Debug.Log($"{gameObject.name} <color=#dd0000><b>Take damage</b></color>");
-                //Debug.Break();
-                //return;
-                gameObject.SetActive(false);
+                DestroyKey();
             }
                 
         }
+    }
+
+    private void DestroyKey()
+    {
+        gameObject.SetActive(false);
+        Instantiate(destroyParticles, transform.position, quaternion.identity);
+
     }
 }
