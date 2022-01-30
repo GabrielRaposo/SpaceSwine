@@ -14,6 +14,10 @@ public class SoundtrackManager : MonoBehaviour
     [SerializeField] AK.Wwise.RTPC masterParameter;
     [SerializeField] AK.Wwise.RTPC musicParameter;
     [SerializeField] AK.Wwise.RTPC sfxParameter;
+    
+    [Header("Switches")]
+    [SerializeField] AK.Wwise.Switch explorationSwitch;
+    [SerializeField] AK.Wwise.Switch dangerSwitch;
 
     static AK.Wwise.Event soundtrackEvent;
 
