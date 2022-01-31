@@ -27,7 +27,8 @@ public class CollectableInteraction : MonoBehaviour
 
     public void AxisInput (Vector2 axisInput)
     {
-        this.axisInput = axisInput;
+        if (axisInput != Vector2.zero)
+            this.axisInput = axisInput;
 
         if (directionDisplay)
             directionDisplay.UpdateDirection( !checkGround.OnGround, axisInput );
