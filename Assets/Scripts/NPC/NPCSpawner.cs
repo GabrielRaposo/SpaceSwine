@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NPCSpawner : MonoBehaviour
 {
+    [SerializeField] bool activateInRuntime;
+
     [System.Serializable]
     public struct NPCRule
     {
@@ -16,8 +18,38 @@ public class NPCSpawner : MonoBehaviour
 
     GameObject currentActive;
 
+    private void OnEnable() 
+    {
+        if (!activateInRuntime)
+            return;
+                    
+        foreach (StoryEventScriptableObject se in storyEvents)
+        {
+            //Debug.Log("Add Events: " + name);
+            se.OnStateChange += ReactivationLogic;
+        }
+    }
+
+    private void OnDisable() 
+    {
+        if (!activateInRuntime)
+            return;
+                    
+        foreach (StoryEventScriptableObject se in storyEvents)
+        {
+            //Debug.Log("Take Events: " + name);
+            se.OnStateChange -= ReactivationLogic;
+        }
+    }
+
     void Start()
     {
+        ActivationLogic();
+    }
+
+    private void ReactivationLogic(bool b)
+    {
+        currentActive = null;
         ActivationLogic();
     }
 

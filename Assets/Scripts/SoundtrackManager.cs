@@ -16,13 +16,14 @@ public class SoundtrackManager : MonoBehaviour
     [SerializeField] AK.Wwise.RTPC sfxParameter;
     
     
-    public LocalGameplayState localGameplayState;
+    //public LocalGameplayState localGameplayState;
     //[SerializeField] AK.Wwise.Switch dangerSwitch;
 
     static AK.Wwise.Event soundtrackEvent;
 
     public static SoundtrackManager Instance;
     static bool paused;
+    public static bool IsPlaying;
 
     GameplayState gameplayState;
 
@@ -59,7 +60,7 @@ public class SoundtrackManager : MonoBehaviour
         PlayMusic();
     }
 
-    #if UNITY_EDITOR
+    //#if UNITY_EDITOR
     private void Update() 
     {
         //if (Input.GetKeyDown(KeyCode.Q))
@@ -77,12 +78,26 @@ public class SoundtrackManager : MonoBehaviour
         //    Debug.Log("Player prefs deleted");
         //    PlayerPrefs.DeleteAll();
         //}
-    }
-    #endif
 
-    public void PlayMusic()
+        //if (!isPlaying)
+        //    return;
+
+        //if (soundtrackEvent == null)
+        //    return;
+
+        //Debug.Log("soundtrackEvent.IsPlaying: " + soundtrackEvent.IsPlaying(gameObject));
+        //if (!soundtrackEvent.IsPlaying(gameObject))
+        //{
+        //    soundtrackEvent.Post(gameObject);
+        //    Debug.Log("bbb");
+        //}
+
+    }
+    //#endif
+
+    public void PlayMusic(bool skipPlay = false)
     {
-        if (!play)
+        if (!play && !skipPlay)
             return;
 
         Stop();
@@ -91,12 +106,38 @@ public class SoundtrackManager : MonoBehaviour
 
         if (soundtrackEvent != null)
             soundtrackEvent.Post(gameObject);
+
+        IsPlaying = true;
+
+        StopAllCoroutines();
+        StartCoroutine( HardLoopRoutine() );
+    }
+
+    IEnumerator HardLoopRoutine()
+    {
+        while (true)
+        {
+            float t = (2.0f) * 60f;
+            t += 4.753f + 1f;
+            yield return new WaitForSecondsRealtime(t);
+
+            Stop();
+
+            soundtrackEvent = stagePlaylist;
+
+            if (soundtrackEvent != null)
+                soundtrackEvent.Post(gameObject);
+
+            IsPlaying = true;
+        }
     }
 
     public void Stop()
     {
         if (soundtrackEvent != null)
             soundtrackEvent.Stop(gameObject);
+
+        IsPlaying = false;
     }
 
     public void FadeOutMusic (float duration)

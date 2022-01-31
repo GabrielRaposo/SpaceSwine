@@ -83,7 +83,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288310758993607060}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -154,7 +154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288310759311889902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 288310760722086264}
@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e2c0b6968eaa0244a397c9cd7c5c712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoActivate: 1
   active: 1
   terminalAnimator: {fileID: 5027695664020685631}
   lightComponent: {fileID: 5027695663933285078}
@@ -191,8 +192,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 246ad04f9dd42a2458da9321fdcb6805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 0.75, y: 0.6}
+  size: {x: 0.75, y: 0.5}
   colliderOffset: {x: 0, y: 0}
+  radiusOffset: 0
   useSpriteSize: 0
   wallCollider: {fileID: 288310760722086267}
   wallVisual: {fileID: 288310760052301018}
@@ -252,7 +254,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288310759555855050}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -322,7 +324,7 @@ Transform:
   m_GameObject: {fileID: 288310760052301016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.6, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.5, z: 0}
   m_Children: []
   m_Father: {fileID: 288310760722086264}
   m_RootOrder: 0
@@ -404,7 +406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288310760251782056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.09000003, z: 0}
+  m_LocalPosition: {x: 0, y: -0.010000005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 288310758993607063}
@@ -420,7 +422,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288310760251782056}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83478333180bde94b83ee79a62bee74d, type: 3}
   m_Name: 
@@ -432,7 +434,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288310760251782056}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: f7523783b967b4042aa0e904d5269b9e, type: 2}
   m_IsTrigger: 0
@@ -467,7 +469,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &288310760722086264
 Transform:
   m_ObjectHideFlags: 0
@@ -476,7 +478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288310760722086265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.19999999, z: 0}
+  m_LocalPosition: {x: -0, y: -0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 288310760052301019}
@@ -507,7 +509,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.6}
+  m_Size: {x: 0.75, y: 0.5}
   m_EdgeRadius: 0
 --- !u!1 &1250498330889441449
 GameObject:
@@ -581,7 +583,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5027695663933285078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.18, y: 1.07, z: 0}
+  m_LocalPosition: {x: 0.03, y: 0.835, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 5027695665044829123}
@@ -731,7 +733,7 @@ SpriteRenderer:
   m_SortingLayerID: -1442008919
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2287351869307185751, guid: ccb8447df0da4b0418022b9a0367d6a0, type: 3}
+  m_Sprite: {fileID: 2056855508070329162, guid: 359836b533c4e03499d9b916e2b34209, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

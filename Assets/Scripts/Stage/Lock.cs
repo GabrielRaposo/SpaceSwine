@@ -11,6 +11,7 @@ public class Lock : MonoBehaviour
     [SerializeField] private GameObject particles;
     [SerializeField] private Collider2D col;
     [SerializeField] private LockGravityField lockGravityField;
+    [SerializeField] private AK.Wwise.Event collectAKEvent;
 
     private Round _round;
 
@@ -45,7 +46,7 @@ public class Lock : MonoBehaviour
         collectable.gameObject.SetActive(false);
         col.enabled = false;
         lockGravityField.gameObject.SetActive(false);
-        //collectAKEvent?.Post(gameObject);
+        collectAKEvent?.Post(gameObject);
     }
     
     public void OnReset()

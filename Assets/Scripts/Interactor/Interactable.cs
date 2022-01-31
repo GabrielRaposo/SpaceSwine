@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    [HideInInspector] public bool autoActivate = true;
+
     protected bool interactable = true;
 
     public virtual void Interaction (PlayerInteractor interactor) { }
