@@ -116,8 +116,8 @@ public class SoundtrackManager : MonoBehaviour
     IEnumerator HardLoopRoutine()
     {
         float t = (2.0f) * 60f;
-        t += (4.753f);
-        yield return new WaitForSecondsRealtime(t - 1f);
+        t += 4.753f;
+        yield return new WaitForSecondsRealtime(t);
 
         //Stop();
 
