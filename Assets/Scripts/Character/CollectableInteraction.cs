@@ -27,11 +27,11 @@ public class CollectableInteraction : MonoBehaviour
 
     public void AxisInput (Vector2 axisInput)
     {
-        if (axisInput != Vector2.zero)
-            this.axisInput = axisInput;
+        //if (axisInput != Vector2.zero)
+        this.axisInput = axisInput;
 
         if (directionDisplay)
-            directionDisplay.UpdateDirection( !checkGround.OnGround, axisInput );
+            directionDisplay.UpdateDirection( !checkGround.OnGround, this.axisInput );
     }
 
     public void InteractInput()
@@ -82,8 +82,9 @@ public class CollectableInteraction : MonoBehaviour
         else
         {
             Vector2 direction = axisInput;
+
             if (axisInput == Vector2.zero)
-                direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
+                direction = RaposUtil.RotateVector(Vector2.up, directionDisplay.transform.eulerAngles.z);
 
             LaunchCurrentIntoDirection(direction.normalized);
             
