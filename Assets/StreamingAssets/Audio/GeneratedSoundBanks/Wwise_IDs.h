@@ -18,7 +18,7 @@ namespace AK
         static const AkUniqueID ESTADO_GAMEPLAY = 800629662U;
         static const AkUniqueID GAMEPLAY_BUYK_ANDA = 2274976510U;
         static const AkUniqueID GAMEPLAY_BUYK_MORRE = 2418446987U;
-        static const AkUniqueID GAMEPLAY_BUYK_PEGA_CRISTAL = 1046688U;
+        static const AkUniqueID GAMEPLAY_BUYK_PEGA_CHAVE = 625695075U;
         static const AkUniqueID GAMEPLAY_BUYK_PEGA_ITEM = 2017389967U;
         static const AkUniqueID GAMEPLAY_BUYK_POUSA_CURTO = 3679214058U;
         static const AkUniqueID GAMEPLAY_BUYK_POUSA_LONGO = 1717148742U;
