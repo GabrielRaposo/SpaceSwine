@@ -29,7 +29,7 @@ public class InteractableElevator : Interactable
         inputHelper?.SetActive(false);
 
         SetupColliderPosition();
-        SetActivation(startActive);
+        //SetActivation(startActive);
 
         //testInput.performed += (c) => { SetActivation(!active); };
         //testInput.Enable();
