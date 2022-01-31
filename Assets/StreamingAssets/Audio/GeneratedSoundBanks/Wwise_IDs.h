@@ -18,7 +18,7 @@ namespace AK
         static const AkUniqueID ESTADO_GAMEPLAY = 800629662U;
         static const AkUniqueID GAMEPLAY_BUYK_ANDA = 2274976510U;
         static const AkUniqueID GAMEPLAY_BUYK_MORRE = 2418446987U;
-        static const AkUniqueID GAMEPLAY_BUYK_PEGA_CRISTAL = 1046688U;
+        static const AkUniqueID GAMEPLAY_BUYK_PEGA_CHAVE = 625695075U;
         static const AkUniqueID GAMEPLAY_BUYK_PEGA_ITEM = 2017389967U;
         static const AkUniqueID GAMEPLAY_BUYK_POUSA_CURTO = 3679214058U;
         static const AkUniqueID GAMEPLAY_BUYK_POUSA_LONGO = 1717148742U;
@@ -35,6 +35,7 @@ namespace AK
         static const AkUniqueID GGS_UI_DESLIGA = 3509273191U;
         static const AkUniqueID GGS_UI_LIGA = 4113901743U;
         static const AkUniqueID GGS_UI_RECORDE = 1292442974U;
+        static const AkUniqueID GGS_UI_RECORDE_FANFARRA = 1270516008U;
         static const AkUniqueID UI_MENU_CLIQUE = 937451947U;
         static const AkUniqueID UI_MENU_HOVER = 2163476404U;
     } // namespace EVENTS
