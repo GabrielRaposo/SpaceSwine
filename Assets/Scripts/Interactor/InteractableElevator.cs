@@ -153,7 +153,7 @@ public class InteractableElevator : Interactable
 
     protected override void HighlightState (bool value) 
     {
-        inputHelper?.SetActive(value);
+        inputHelper?.SetActive(value && interactable);
     }
 
     public override void IconState (bool value) 
