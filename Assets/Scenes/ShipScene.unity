@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6384f2ccadbc924f9523f000fa46fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoActivate: 1
   targetIndex: 3
   data: {fileID: 11400000, guid: 3b6f9e3194de30a4aaf2df0905260b12, type: 2}
 --- !u!4 &387293407
@@ -1278,6 +1279,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1180665170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1180665171}
+  - component: {fileID: 1180665172}
+  m_Layer: 0
+  m_Name: Temp // Spawn Point Changer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1180665171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180665170}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1180665172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180665170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7931a802b82415b4b8bd123eadbe73f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
 --- !u!1 &1420526076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,6 +2004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40714ff351716994a9a97b46f8c1dc20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoActivate: 1
 --- !u!4 &2137639283
 Transform:
   m_ObjectHideFlags: 0
