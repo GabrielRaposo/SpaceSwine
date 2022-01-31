@@ -12,6 +12,9 @@ public class PauseSystem : MonoBehaviour
     [Header("References")]
     [SerializeField] MenuNavigationManager menuNavigationManager; 
 
+    [SerializeField] GameObject shipButton;
+    [SerializeField] StoryEventScriptableObject shipButtonEventTrigger;
+
     CanvasGroup canvasGroup;
 
     public static bool OnPause {get; private set;}
@@ -30,6 +33,11 @@ public class PauseSystem : MonoBehaviour
 
         if (menuNavigationManager)
             menuNavigationManager.OnFocus = false;
+
+        if (shipButton && shipButtonEventTrigger)
+        {
+            shipButton.SetActive(shipButtonEventTrigger.state);
+        }
 
         OnPause = false; 
     }
@@ -50,6 +58,11 @@ public class PauseSystem : MonoBehaviour
         
         if (menuNavigationManager)
             menuNavigationManager.OnFocus = value;
+
+        if (shipButton && shipButtonEventTrigger)
+        {
+            shipButton.SetActive(shipButtonEventTrigger.state);
+        }
         
         canvasGroup.DOKill();
         canvasGroup.DOFade(value ? 1 : 0, transitionDuration)
