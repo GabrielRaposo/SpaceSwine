@@ -115,18 +115,21 @@ public class SoundtrackManager : MonoBehaviour
 
     IEnumerator HardLoopRoutine()
     {
-        float t = (2.0f) * 60f;
-        t += 4.753f + 1f;
-        yield return new WaitForSecondsRealtime(t);
+        while (true)
+        {
+            float t = (2.0f) * 60f;
+            t += 4.753f + 1f;
+            yield return new WaitForSecondsRealtime(t);
 
-        Stop();
+            Stop();
 
-        soundtrackEvent = stagePlaylist;
+            soundtrackEvent = stagePlaylist;
 
-        if (soundtrackEvent != null)
-            soundtrackEvent.Post(gameObject);
+            if (soundtrackEvent != null)
+                soundtrackEvent.Post(gameObject);
 
-        IsPlaying = true;
+            IsPlaying = true;
+        }
     }
 
     public void Stop()
