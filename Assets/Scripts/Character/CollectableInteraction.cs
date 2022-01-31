@@ -10,6 +10,7 @@ public class CollectableInteraction : MonoBehaviour
     [SerializeField] float launchSpeed;
     [SerializeField] Transform holdAnchor;
     [SerializeField] PlayerDirectionDisplay directionDisplay; 
+    [SerializeField] Transform arrowSprite;
 
     Vector2 axisInput;
     Collectable current;
@@ -81,10 +82,15 @@ public class CollectableInteraction : MonoBehaviour
         }
         else
         {
-            Vector2 direction = axisInput;
+            //Vector2 direction = axisInput;
 
-            if (axisInput == Vector2.zero)
-                direction = RaposUtil.RotateVector(Vector2.up, directionDisplay.transform.eulerAngles.z);
+            //Debug.Log("directionDisplay.transform.eulerAngles.z: " + directionDisplay.transform.eulerAngles.z);
+            //Vector2 direction = RaposUtil.RotateVector(Vector2.up, directionDisplay.transform.eulerAngles.z);
+
+            //if (axisInput == Vector2.zero)
+            //    direction = RaposUtil.RotateVector(Vector2.up, directionDisplay.transform.eulerAngles.z);
+
+            Vector2 direction = (arrowSprite.transform.position - transform.position).normalized;
 
             LaunchCurrentIntoDirection(direction.normalized);
             
