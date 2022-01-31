@@ -22,6 +22,7 @@ public class SetTerminalActivationOnStoryEvent : MonoBehaviour
         if (!interactable)
             return;
 
+        interactable.autoActivate = false;
         interactable.SetInteraction(state);
     }
 

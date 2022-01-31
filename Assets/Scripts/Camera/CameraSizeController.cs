@@ -50,6 +50,8 @@ public class CameraSizeController : MonoBehaviour
         {
             screenSpaceCollider.localScale = Vector3.one * size;
         }
+        
+        Debug.Log("Size: " + size);
     }
 
 }
