@@ -32,6 +32,7 @@ public class CameraFocusController : MonoBehaviour
 
     public void SetPlanetFocus (Transform target, float size = -1)
     {
+        //Debug.Log("SetPlanetFocus");
         planetFocusCamera.Follow = target;
         if (size > 0)
             planetFocusCamera.m_Lens.OrthographicSize = size;
