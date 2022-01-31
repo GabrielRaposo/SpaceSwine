@@ -22,14 +22,17 @@ public class InteractableElevator : Interactable
     [SerializeField] SpriteRenderer fadeOutLights;
     [SerializeField] GameObject inputHelper;
 
-    bool active;
+    bool active;   
 
     private void Start() 
     {
         inputHelper?.SetActive(false);
 
         SetupColliderPosition();
-        //SetActivation(startActive);
+        if (autoActivate)
+        {
+            SetActivation(startActive);
+        }
 
         //testInput.performed += (c) => { SetActivation(!active); };
         //testInput.Enable();
