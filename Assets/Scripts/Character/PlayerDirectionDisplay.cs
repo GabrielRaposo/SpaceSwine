@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerDirectionDisplay : MonoBehaviour
 {
+    public Vector2 direction;
+
     private void Start() 
     {
         LocalGameplayState localGameplayState = GetComponentInParent<LocalGameplayState>();    
@@ -30,5 +32,6 @@ public class PlayerDirectionDisplay : MonoBehaviour
             return;
 
         transform.eulerAngles = Vector2.SignedAngle(Vector2.up, direction) * Vector3.forward;
+        this.direction = direction;
     }
 }
