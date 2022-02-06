@@ -18,6 +18,10 @@ public class PlatformerCharacter : SidewaysCharacter
     [SerializeField] AK.Wwise.Event shortHopAKEvent;
     [SerializeField] AK.Wwise.Event shortLandingAKEvent;
 
+    [Header("Snap To Platform Values")]
+    [SerializeField] Vector2 snapCheckPoint;
+    [SerializeField] Vector2 snapCheckDirection;
+
     bool onGround;
 
     float horizontalSpeed;
@@ -214,5 +218,18 @@ public class PlatformerCharacter : SidewaysCharacter
     public void PlayStepSound()
     {
         walkAKEvent?.Post(gameObject);
+    }
+
+    private void OnDrawGizmosSelected() 
+    {
+        if (horizontalSpeed == 0)
+            return;
+
+        Vector2 anchoredPos = (Vector2) transform.position + RaposUtil.AlignWithTransform(transform, snapCheckPoint); 
+        Vector2 anchoredDirection = RaposUtil.AlignWithTransform(transform, 
+            new Vector2(snapCheckDirection.x * (horizontalSpeed > 0 ? 1 : -1), snapCheckDirection.y ));
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(anchoredPos, anchoredPos + anchoredDirection);
     }
 }
