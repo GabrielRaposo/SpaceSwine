@@ -121,6 +121,8 @@ public class PlatformerCharacter : SidewaysCharacter
 
     private void FixedUpdate() 
     {
+        SnapToPlatform();
+
         OnGroundLogic();
         LedgeLogic();
         UseCustomGravity();
@@ -220,16 +222,32 @@ public class PlatformerCharacter : SidewaysCharacter
         walkAKEvent?.Post(gameObject);
     }
 
-    private void OnDrawGizmosSelected() 
+    private void SnapToPlatform() 
     {
-        if (horizontalSpeed == 0)
+        if (checkGround.OnGround)
+            return;
+
+        if (horizontalSpeed == 0 || verticalSpeed > 0)
             return;
 
         Vector2 anchoredPos = (Vector2) transform.position + RaposUtil.AlignWithTransform(transform, snapCheckPoint); 
         Vector2 anchoredDirection = RaposUtil.AlignWithTransform(transform, 
             new Vector2(snapCheckDirection.x * (horizontalSpeed > 0 ? 1 : -1), snapCheckDirection.y ));
 
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(anchoredPos, anchoredPos + anchoredDirection);
+        Debug.DrawLine(anchoredPos, anchoredPos + anchoredDirection, Color.green);
+
     }
+
+    //private void OnDrawGizmosSelected() 
+    //{
+    //    if (horizontalSpeed == 0)
+    //        return;
+
+    //    Vector2 anchoredPos = (Vector2) transform.position + RaposUtil.AlignWithTransform(transform, snapCheckPoint); 
+    //    Vector2 anchoredDirection = RaposUtil.AlignWithTransform(transform, 
+    //        new Vector2(snapCheckDirection.x * (horizontalSpeed > 0 ? 1 : -1), snapCheckDirection.y ));
+
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawLine(anchoredPos, anchoredPos + anchoredDirection);
+    //}
 }
