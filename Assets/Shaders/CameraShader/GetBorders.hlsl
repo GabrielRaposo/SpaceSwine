@@ -1,11 +1,12 @@
 #include "Assets/Shaders/CustomRandomShaderFunctions.hlsl"
 
-void GetScreenBorders_float(float2 Screen, float2 Resolution, float BorderSize, out float2 Out0, out float2 Out1, out float2 Out2, out float2 Out3)
+void GetScreenBorders_float(float2 Screen, float2 Resolution, float BorderSize, out float2 Out0, out float2 Out1, out float2 Out2, out float2 Out3, out float2 OutSum)
 {
     Out0 = float2(0,0);
     Out1 = float2(0,0);
     Out2 = float2(0,0);
     Out3 = float2(0,0);
+    OutSum = float2(0,0);
 
     if(Screen.y <= BorderSize)
     {
@@ -30,6 +31,20 @@ void GetScreenBorders_float(float2 Screen, float2 Resolution, float BorderSize, 
         Out3.x = Screen.y;
         Out3.y = Remap(Screen.x, 0, BorderSize, 0, 1);
     }
+
+    if(Out0.x > float(0))
+    {
+        OutSum = Out0+Out2;
+    }
+    else if(Out2.x > float(0))
+    {
+        OutSum = Out0+Out2; 
+    }
+    else
+    {
+        OutSum = Out0+Out1+Out2+Out3;
+    }
+    
     
     
 }
