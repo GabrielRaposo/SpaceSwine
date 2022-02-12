@@ -20,7 +20,8 @@ public class PlatformerCharacter : SidewaysCharacter
 
     [Header("Snap To Platform Values")]
     [SerializeField] Vector2 snapCheckPoint;
-    [SerializeField] Vector2 snapCheckDirection;
+    [SerializeField] Vector2 snapCheckSize;
+    [SerializeField] LayerMask groundLayer;
 
     bool onGround;
 
@@ -230,24 +231,88 @@ public class PlatformerCharacter : SidewaysCharacter
         if (horizontalSpeed == 0 || verticalSpeed > 0)
             return;
 
-        Vector2 anchoredPos = (Vector2) transform.position + RaposUtil.AlignWithTransform(transform, snapCheckPoint); 
-        Vector2 anchoredDirection = RaposUtil.AlignWithTransform(transform, 
-            new Vector2(snapCheckDirection.x * (horizontalSpeed > 0 ? 1 : -1), snapCheckDirection.y ));
+        Vector2 testPoint = new Vector2(snapCheckPoint.x * (horizontalSpeed > 0 ? 1 : -1), snapCheckPoint.y);
+        Vector2 anchoredPos = (Vector2) transform.position + RaposUtil.AlignWithTransform(transform, testPoint);
+        Vector2 anchoredDirection = RaposUtil.AlignWithTransform
+            (transform, new Vector2(snapCheckSize.x * (horizontalSpeed > 0 ? 1 : -1), 0));
 
-        Debug.DrawLine(anchoredPos, anchoredPos + anchoredDirection, Color.green);
+        ExtDebug.DrawBox
+        (   
+            origin: anchoredPos + anchoredDirection, 
+            halfExtents: snapCheckSize, 
+            orientation: Quaternion.Euler(Vector3.forward * transform.eulerAngles.z),
+            Color.green
+        );
 
+        List <Collider2D> results = new List<Collider2D>();
+        ContactFilter2D contactFilter2D = new ContactFilter2D();
+        contactFilter2D.SetLayerMask(groundLayer);
+        if (Physics2D.OverlapBox 
+        (
+            point: anchoredPos + anchoredDirection, 
+            size: new Vector2 (snapCheckSize.x, .1f), 
+            angle: transform.eulerAngles.z, 
+            contactFilter2D, 
+            results) 
+                > 0
+        )
+        {
+            PlanetPlatform planetPlatform = null;
+
+            foreach (Collider2D coll2D in results) 
+            {
+                PlanetPlatform pp = coll2D.GetComponent<PlanetPlatform>();
+                if (pp)
+                {
+                    planetPlatform = pp;
+                    break;
+                }
+            }
+
+            if (planetPlatform)
+            {
+                Debug.Log("Hi platform " + planetPlatform.name);
+            }
+        }
+
+        //if (Physics2D.Raycast(anchoredPos, anchoredDirection, contactFilter2D, results) > 0)
+        ////if (Physics2D.OverlapBox (anchoredPos + (anchoredDirection * .5f), )
+        //{
+        //    PlanetPlatform planetPlatform = null;
+
+        //    foreach (RaycastHit2D ray in results)
+        //    {
+        //        Debug.Log("ray: " + ray.transform.name);
+        //        PlanetPlatform pp = ray.transform.GetComponent<PlanetPlatform>();
+        //        if (pp) 
+        //        {
+        //            Debug.Log("hi pp: " + pp.name);
+        //            planetPlatform = pp;
+        //            break;
+        //        }
+        //    }
+
+        //    if (planetPlatform)
+        //        Debug.Log("hi platform!");
+        //}
     }
 
-    //private void OnDrawGizmosSelected() 
-    //{
-    //    if (horizontalSpeed == 0)
-    //        return;
+    private void OnDrawGizmosSelected() 
+    {
+        if (Application.isPlaying)
+            return;
 
-    //    Vector2 anchoredPos = (Vector2) transform.position + RaposUtil.AlignWithTransform(transform, snapCheckPoint); 
-    //    Vector2 anchoredDirection = RaposUtil.AlignWithTransform(transform, 
-    //        new Vector2(snapCheckDirection.x * (horizontalSpeed > 0 ? 1 : -1), snapCheckDirection.y ));
+        Vector2 testPoint = new Vector2(snapCheckPoint.x * (horizontalSpeed > 0 ? 1 : -1), snapCheckPoint.y);
+        Vector2 anchoredPos = (Vector2) transform.position + RaposUtil.AlignWithTransform(transform, testPoint);
+        Vector2 anchoredDirection = RaposUtil.AlignWithTransform
+            (transform, new Vector2(snapCheckSize.x * (horizontalSpeed > 0 ? 1 : -1), 0));
 
-    //    Gizmos.color = Color.green;
-    //    Gizmos.DrawLine(anchoredPos, anchoredPos + anchoredDirection);
-    //}
+        ExtDebug.DrawBox
+        (   
+            origin: anchoredPos + anchoredDirection, 
+            halfExtents: snapCheckSize, 
+            orientation: Quaternion.Euler(Vector3.forward * transform.eulerAngles.z),
+            Color.green
+        );
+    }
 }
