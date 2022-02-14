@@ -1165,7 +1165,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="gameplay_buyk_pula_longo" ID="{446556CC-84E9-4031-8034-6AE1398AEB49}">
+												<AudioFileSource Name="gameplay_buyk_pula_longo" ID="{16DF144E-3D7B-437A-8B8F-080D4C53166B}">
 													<Language>SFX</Language>
 													<AudioFile>gameplay_buyk_pula_longo.wav</AudioFile>
 													<MediaIDList>
@@ -1175,7 +1175,7 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="gameplay_buyk_pula_longo" ID="{446556CC-84E9-4031-8034-6AE1398AEB49}" Platform="Linked"/>
+												<ActiveSource Name="gameplay_buyk_pula_longo" ID="{16DF144E-3D7B-437A-8B8F-080D4C53166B}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="gameplay_buyk_pousa_curto" ID="{BC59F2BB-D01F-4230-A0EB-86051AB7E7EC}" ShortID="493398357">
@@ -1185,6 +1185,40 @@
 													<ValueList>
 														<Value>1</Value>
 													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<RTPCList>
+														<RTPC Name="" ID="{FC22796C-DF55-4289-A0E3-0F074E3D3757}" ShortID="464535125">
+															<ReferenceList>
+																<Reference Name="ControlInput">
+																	<Custom>
+																		<ModulatorLfo Name="Modulator LFO (Custom)" ID="{C7BBEC6E-0B44-4187-B98B-27F2608002E7}" ShortID="538102603">
+																			<PropertyList>
+																				<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																			</PropertyList>
+																		</ModulatorLfo>
+																	</Custom>
+																</Reference>
+															</ReferenceList>
+															<Curve Name="" ID="{1EE53F14-30D0-4057-912F-4C4539467447}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="65537"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-550</YPos>
+																		<Flags>21</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>1</XPos>
+																		<YPos>0</YPos>
+																		<Flags>53</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</RTPC>
+													</RTPCList>
 												</Property>
 												<Property Name="UseMaxSoundPerInstance" Type="bool">
 													<ValueList>
@@ -1206,7 +1240,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="gameplay_buyk_pousa_curto" ID="{70C0DDA7-3CCA-4E4A-9EFB-A555E9B1729F}">
+												<AudioFileSource Name="gameplay_buyk_pousa_curto" ID="{BD8D997D-4025-43C7-B4BF-8CEA658629CB}">
 													<Language>SFX</Language>
 													<AudioFile>gameplay_buyk_pousa_curto.wav</AudioFile>
 													<MediaIDList>
@@ -1216,11 +1250,16 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="gameplay_buyk_pousa_curto" ID="{70C0DDA7-3CCA-4E4A-9EFB-A555E9B1729F}" Platform="Linked"/>
+												<ActiveSource Name="gameplay_buyk_pousa_curto" ID="{BD8D997D-4025-43C7-B4BF-8CEA658629CB}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="gameplay_buyk_pula_curto" ID="{3D7AEB49-B1A8-458F-854A-5CCA2B522092}" ShortID="47272682">
 											<PropertyList>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>23</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>3</Value>
@@ -1236,7 +1275,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="gameplay_buyk_pula_curto" ID="{8606398F-79BC-4000-9390-8B45F13AC394}">
+												<AudioFileSource Name="gameplay_buyk_pula_curto" ID="{9A168EF8-819C-40DB-AC7E-72B8FF0D6B33}">
 													<Language>SFX</Language>
 													<AudioFile>gameplay_buyk_pula_curto.wav</AudioFile>
 													<MediaIDList>
@@ -1246,7 +1285,7 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="gameplay_buyk_pula_curto" ID="{8606398F-79BC-4000-9390-8B45F13AC394}" Platform="Linked"/>
+												<ActiveSource Name="gameplay_buyk_pula_curto" ID="{9A168EF8-819C-40DB-AC7E-72B8FF0D6B33}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="gameplay_buyk_pousa_longo" ID="{9DD7C3B7-D4A8-4D0F-A5B7-DBA2A301EA65}" ShortID="655250985">
