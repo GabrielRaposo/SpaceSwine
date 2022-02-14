@@ -18,6 +18,10 @@ namespace Minigame
         [SerializeField] GGSSplashScreen splashScreen;
         [SerializeField] RectTransform consoleAnchor;
 
+        [Header("Audio")]
+        [SerializeField] AK.Wwise.Event slideInAKEvent;
+        [SerializeField] AK.Wwise.Event slideOutAKEvent;
+
         bool loadedAndActive;
 
         CanvasGroup canvasGroup;
@@ -71,6 +75,7 @@ namespace Minigame
 
             consoleAnchor.DOKill();
             consoleAnchor.MoveY(HIDDEN_Y);
+            slideInAKEvent?.Post(gameObject);
             DOVirtual.Float(HIDDEN_Y, 0, duration, 
                 (y) => 
                 {
@@ -91,6 +96,7 @@ namespace Minigame
             
             consoleAnchor.DOKill();
             consoleAnchor.MoveY(0);
+            slideOutAKEvent?.Post(gameObject);
             DOVirtual.Float(0, HIDDEN_Y, duration / 2f, 
                 (y) => 
                 {
