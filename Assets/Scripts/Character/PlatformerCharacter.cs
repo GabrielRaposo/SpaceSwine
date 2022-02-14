@@ -23,6 +23,10 @@ public class PlatformerCharacter : SidewaysCharacter
     [SerializeField] Vector2 snapCheckSize;
     [SerializeField] LayerMask groundLayer;
 
+    [Header("Auto Climb Platform Values")]
+    [SerializeField] Vector2 autoClimbCheckPoint;
+    [SerializeField] Vector2 autoClimbCheckSize;
+
     bool onGround;
 
     float horizontalSpeed;
@@ -122,6 +126,7 @@ public class PlatformerCharacter : SidewaysCharacter
 
     private void FixedUpdate() 
     {
+        AutoClimbPlatform();
         SnapToPlatform();
 
         OnGroundLogic();
@@ -225,14 +230,13 @@ public class PlatformerCharacter : SidewaysCharacter
 
     private void SnapToPlatform() 
     {
-        //return;
-
         if (checkGround.OnGround || checkGround.OnPlatform)
             return;
 
         if (horizontalSpeed == 0 || verticalSpeed > 0)
             return;
 
+        // Gera raycasts que vão testar a plataformas próximas
         Vector2 testPoint = new Vector2(snapCheckPoint.x * (horizontalSpeed > 0 ? 1 : -1), snapCheckPoint.y);
         Vector2 anchoredPos = (Vector2) transform.position + RaposUtil.AlignWithTransform(transform, testPoint);
         Vector2 anchoredDirection = RaposUtil.AlignWithTransform
@@ -250,6 +254,7 @@ public class PlatformerCharacter : SidewaysCharacter
         ContactFilter2D contactFilter2D = new ContactFilter2D();
         contactFilter2D.SetLayerMask(groundLayer);
 
+        // Encontra componente de PlanetPlatform em colliders atingidos pelo raycast
         if (Physics2D.OverlapBox 
         (
             point: anchoredPos + anchoredDirection, 
@@ -272,19 +277,85 @@ public class PlatformerCharacter : SidewaysCharacter
                 }
             }
 
+        if (!planetPlatform)
+            return;
+            
+        // Testa a posição do player na tela pra ver se ele ñão está logo acima da plataforma
+        Vector2 diffToPlatform = (transform.position - planetPlatform.transform.position);
+        float diffAngle = Vector2.SignedAngle(Vector2.up, planetPlatform.transform.up);
+        diffToPlatform = RaposUtil.RotateVector(diffToPlatform, - diffAngle);
+
+        float planetBorderX = planetPlatform.GetColliderSize().x - .2f;
+        if (Mathf.Abs(diffToPlatform.x) < planetBorderX)
+            return;
+
+        // Faz o snap to platform
+        float targetX = planetBorderX * (horizontalSpeed > 0 ? -1 : 1);
+
+        transform.eulerAngles = planetPlatform.transform.eulerAngles;
+
+        verticalSpeed = horizontalSpeed = 0;
+        rb.velocity = Vector2.zero;
+
+        Vector2 positionOffset = new Vector2(targetX, .5f);
+        transform.position = 
+            planetPlatform.transform.position + 
+            (Vector3) RaposUtil.AlignWithTransform(planetPlatform.transform, positionOffset);
+        }
+    }
+
+    private void AutoClimbPlatform() 
+    {
+        if (!checkGround.OnGround)
+            return;
+
+        if (horizontalSpeed == 0)
+            return;
+
+        Vector2 testPoint = new Vector2(autoClimbCheckPoint.x * (horizontalSpeed > 0 ? 1 : -1), autoClimbCheckPoint.y);
+        Vector2 anchoredPos = (Vector2) transform.position + RaposUtil.AlignWithTransform(transform, testPoint);
+        Vector2 anchoredDirection = RaposUtil.AlignWithTransform
+            (transform, new Vector2(autoClimbCheckSize.x * (horizontalSpeed > 0 ? 1 : -1), 0));
+
+        ExtDebug.DrawBox
+        (   
+            origin: anchoredPos + anchoredDirection, 
+            halfExtents: autoClimbCheckSize, 
+            orientation: Quaternion.Euler(Vector3.forward * transform.eulerAngles.z),
+            Color.green
+        );
+
+        List <Collider2D> results = new List<Collider2D>();
+        ContactFilter2D contactFilter2D = new ContactFilter2D();
+        contactFilter2D.SetLayerMask(groundLayer);
+
+        if (Physics2D.OverlapBox 
+        (
+            point: anchoredPos + anchoredDirection, 
+            size: new Vector2 (autoClimbCheckSize.x, .1f), 
+            angle: transform.eulerAngles.z, 
+            contactFilter2D, 
+            results) 
+                > 0
+        )
+        {
+            PlanetPlatform planetPlatform = null;
+
+            foreach (Collider2D coll2D in results) 
+            {
+                PlanetPlatform pp = coll2D.GetComponent<PlanetPlatform>();
+                if (pp) 
+                {
+                    planetPlatform = pp;
+                    break;
+                }
+            }
+
             if (!planetPlatform)
                 return;
-            
-            // Testa a posição do player na tela pra ver se ele ñão está logo acima da plataforma
-            Vector2 diffToPlatform = (transform.position - planetPlatform.transform.position);
-            float diffAngle = Vector2.SignedAngle(Vector2.up, planetPlatform.transform.up);
-            diffToPlatform = RaposUtil.RotateVector(diffToPlatform, - diffAngle);
 
-            //Debug.Log("diffToPlatform: " + diffToPlatform);
-
-            float planetBorderX = planetPlatform.GetColliderSize().x - .2f;
-            if (Mathf.Abs(diffToPlatform.x) < planetBorderX)
-                return;
+            Debug.Log("planetPlatform: " + planetPlatform);
+            float planetBorderX = planetPlatform.GetColliderSize().x - .3f;
 
             // Faz o snap to platform
             float targetX = planetBorderX * (horizontalSpeed > 0 ? -1 : 1);
@@ -295,32 +366,10 @@ public class PlatformerCharacter : SidewaysCharacter
             rb.velocity = Vector2.zero;
 
             Vector2 positionOffset = new Vector2(targetX, .5f);
-            transform.position = 
-                planetPlatform.transform.position + 
-                (Vector3) RaposUtil.AlignWithTransform(planetPlatform.transform, positionOffset);
-            
+            transform.position =
+                planetPlatform.transform.position +
+                (Vector3) RaposUtil.AlignWithTransform (planetPlatform.transform, positionOffset);
         }
-
-        //if (Physics2D.Raycast(anchoredPos, anchoredDirection, contactFilter2D, results) > 0)
-        ////if (Physics2D.OverlapBox (anchoredPos + (anchoredDirection * .5f), )
-        //{
-        //    PlanetPlatform planetPlatform = null;
-
-        //    foreach (RaycastHit2D ray in results)
-        //    {
-        //        Debug.Log("ray: " + ray.transform.name);
-        //        PlanetPlatform pp = ray.transform.GetComponent<PlanetPlatform>();
-        //        if (pp) 
-        //        {
-        //            Debug.Log("hi pp: " + pp.name);
-        //            planetPlatform = pp;
-        //            break;
-        //        }
-        //    }
-
-        //    if (planetPlatform)
-        //        Debug.Log("hi platform!");
-        //}
     }
 
     private void OnDrawGizmosSelected() 
@@ -328,17 +377,30 @@ public class PlatformerCharacter : SidewaysCharacter
         if (Application.isPlaying)
             return;
 
-        Vector2 testPoint = new Vector2(snapCheckPoint.x * (horizontalSpeed > 0 ? 1 : -1), snapCheckPoint.y);
-        Vector2 anchoredPos = (Vector2) transform.position + RaposUtil.AlignWithTransform(transform, testPoint);
+        //Vector2 testPoint = new Vector2(snapCheckPoint.x * (horizontalSpeed > 0 ? 1 : -1), snapCheckPoint.y);
+        //Vector2 anchoredPos = (Vector2)transform.position + RaposUtil.AlignWithTransform(transform, testPoint);
+        //Vector2 anchoredDirection = RaposUtil.AlignWithTransform
+        //    (transform, new Vector2(snapCheckSize.x * (horizontalSpeed > 0 ? 1 : -1), 0));
+
+        //ExtDebug.DrawBox
+        //(
+        //    origin: anchoredPos + anchoredDirection,
+        //    halfExtents: snapCheckSize,
+        //    orientation: Quaternion.Euler(Vector3.forward * transform.eulerAngles.z),
+        //    Color.green
+        //);
+
+        Vector2 testPoint = new Vector2(autoClimbCheckPoint.x * (horizontalSpeed > 0 ? 1 : -1), autoClimbCheckPoint.y);
+        Vector2 anchoredPos = (Vector2)transform.position + RaposUtil.AlignWithTransform(transform, testPoint);
         Vector2 anchoredDirection = RaposUtil.AlignWithTransform
-            (transform, new Vector2(snapCheckSize.x * (horizontalSpeed > 0 ? 1 : -1), 0));
+            (transform, new Vector2(autoClimbCheckSize.x * (horizontalSpeed > 0 ? 1 : -1), 0));
 
         ExtDebug.DrawBox
-        (   
-            origin: anchoredPos + anchoredDirection, 
-            halfExtents: snapCheckSize, 
+        (
+            origin: anchoredPos + anchoredDirection,
+            halfExtents: autoClimbCheckSize,
             orientation: Quaternion.Euler(Vector3.forward * transform.eulerAngles.z),
-            Color.green
+            Color.yellow
         );
     }
 }
