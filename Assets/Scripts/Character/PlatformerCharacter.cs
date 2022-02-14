@@ -279,23 +279,14 @@ public class PlatformerCharacter : SidewaysCharacter
             Vector2 diffToPlatform = (transform.position - planetPlatform.transform.position);
             float diffAngle = Vector2.SignedAngle(Vector2.up, planetPlatform.transform.up);
             diffToPlatform = RaposUtil.RotateVector(diffToPlatform, - diffAngle);
-            Debug.Log("diffToPlatform: " + diffToPlatform);
 
-            Debug.DrawLine
-            (
-                planetPlatform.transform.position, 
-                (Vector2) planetPlatform.transform.position + diffToPlatform,
-                Color.red,
-                duration: 3f
-            );
+            //Debug.Log("diffToPlatform: " + diffToPlatform);
 
             float planetBorderX = planetPlatform.GetColliderSize().x - .2f;
-            Debug.Log("planetBorderX: " + planetBorderX);
-
             if (Mathf.Abs(diffToPlatform.x) < planetBorderX)
                 return;
 
-            // Faz o snap
+            // Faz o snap to platform
             float targetX = planetBorderX * (horizontalSpeed > 0 ? -1 : 1);
 
             transform.eulerAngles = planetPlatform.transform.eulerAngles;
