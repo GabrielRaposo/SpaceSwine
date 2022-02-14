@@ -289,11 +289,14 @@ public class PlatformerCharacter : SidewaysCharacter
                 duration: 3f
             );
 
-            if (Mathf.Abs(diffToPlatform.x) < .45f)
+            float planetBorderX = planetPlatform.GetColliderSize().x - .2f;
+            Debug.Log("planetBorderX: " + planetBorderX);
+
+            if (Mathf.Abs(diffToPlatform.x) < planetBorderX)
                 return;
 
             // Faz o snap
-            float targetX = .45f * (horizontalSpeed > 0 ? -1 : 1);
+            float targetX = planetBorderX * (horizontalSpeed > 0 ? -1 : 1);
 
             transform.eulerAngles = planetPlatform.transform.eulerAngles;
 
