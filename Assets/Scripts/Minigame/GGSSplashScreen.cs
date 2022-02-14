@@ -12,6 +12,7 @@ namespace Minigame
         [SerializeField] float silenceDuration;
         [SerializeField] float logoDuration;
         [SerializeField] RawImage logo;
+        [SerializeField] AK.Wwise.Event logoAKEvent;
 
         CanvasGroup canvasGroup;
 
@@ -35,6 +36,7 @@ namespace Minigame
 
             //logo animation
             logo.enabled = true;
+            logoAKEvent?.Post(gameObject);
             yield return new WaitForSecondsRealtime((logoDuration * 2) / 3);
             logo.enabled = false;
             yield return new WaitForSecondsRealtime((logoDuration * 1) / 3);
