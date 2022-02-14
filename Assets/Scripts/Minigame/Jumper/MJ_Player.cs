@@ -16,6 +16,11 @@ namespace Jumper
         [SerializeField] ParticleSystem launchEffect;
         [SerializeField] ParticleSystem landingEffect;
 
+        [Header("Audio")]
+        [SerializeField] AK.Wwise.Event jumpAKEvent;
+        [SerializeField] AK.Wwise.Event landAKEvent;
+        [SerializeField] AK.Wwise.Event breakAKEvent;
+
         int difficultyIndex;
         bool outsideScreen;
         bool hasMoved;
@@ -80,6 +85,7 @@ namespace Jumper
                 launchEffect.Play();
             }
             trailEffect?.Play();
+            jumpAKEvent?.Post(gameObject);
 
             rb.velocity = transform.up * jumpForce * Time.fixedDeltaTime;
 
@@ -112,6 +118,7 @@ namespace Jumper
                 if (landedOn == null && (previous == null || previous != planet))
                 {
                     trailEffect?.Pause();
+                    landAKEvent?.Post(gameObject);
 
                     if (hasMoved)
                         StartCoroutine ( RaposUtil.Wait(1, () => landingEffect?.Play() ) );
@@ -142,6 +149,8 @@ namespace Jumper
         {
             if (destroyAnimation)
             {
+                breakAKEvent?.Post(gameObject);
+
                 destroyAnimation.transform.SetParent(null);
                 destroyAnimation.transform.eulerAngles = Vector3.zero;
                 destroyAnimation.SetActive(true);
