@@ -225,7 +225,9 @@ public class PlatformerCharacter : SidewaysCharacter
 
     private void SnapToPlatform() 
     {
-        if (checkGround.OnGround)
+        //return;
+
+        if (checkGround.OnGround || checkGround.OnPlatform)
             return;
 
         if (horizontalSpeed == 0 || verticalSpeed > 0)
@@ -247,6 +249,7 @@ public class PlatformerCharacter : SidewaysCharacter
         List <Collider2D> results = new List<Collider2D>();
         ContactFilter2D contactFilter2D = new ContactFilter2D();
         contactFilter2D.SetLayerMask(groundLayer);
+
         if (Physics2D.OverlapBox 
         (
             point: anchoredPos + anchoredDirection, 
@@ -269,10 +272,39 @@ public class PlatformerCharacter : SidewaysCharacter
                 }
             }
 
-            if (planetPlatform)
-            {
-                Debug.Log("Hi platform " + planetPlatform.name);
-            }
+            if (!planetPlatform)
+                return;
+            
+            // Testa a posição do player na tela pra ver se ele ñão está logo acima da plataforma
+            Vector2 diffToPlatform = (transform.position - planetPlatform.transform.position);
+            float diffAngle = Vector2.SignedAngle(Vector2.up, planetPlatform.transform.up);
+            diffToPlatform = RaposUtil.RotateVector(diffToPlatform, - diffAngle);
+            Debug.Log("diffToPlatform: " + diffToPlatform);
+
+            Debug.DrawLine
+            (
+                planetPlatform.transform.position, 
+                (Vector2) planetPlatform.transform.position + diffToPlatform,
+                Color.red,
+                duration: 3f
+            );
+
+            if (Mathf.Abs(diffToPlatform.x) < .45f)
+                return;
+
+            // Faz o snap
+            float targetX = .45f * (horizontalSpeed > 0 ? -1 : 1);
+
+            transform.eulerAngles = planetPlatform.transform.eulerAngles;
+
+            verticalSpeed = horizontalSpeed = 0;
+            rb.velocity = Vector2.zero;
+
+            Vector2 positionOffset = new Vector2(targetX, .5f);
+            transform.position = 
+                planetPlatform.transform.position + 
+                (Vector3) RaposUtil.AlignWithTransform(planetPlatform.transform, positionOffset);
+            
         }
 
         //if (Physics2D.Raycast(anchoredPos, anchoredDirection, contactFilter2D, results) > 0)
