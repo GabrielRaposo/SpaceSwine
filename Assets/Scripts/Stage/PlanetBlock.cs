@@ -46,6 +46,9 @@ public class PlanetBlock : MonoBehaviour
 
         transform.localPosition = Vector2.up * (radius.planet + radiusOffset);
 
+        wallCollider.enabled = size.y > .65f;
+
+
         if (!useSpriteSize) 
         { 
             wallCollider.transform.localPosition = positionOffset;
