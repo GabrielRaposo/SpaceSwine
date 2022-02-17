@@ -8,6 +8,7 @@ public class InteractableTerminal : Interactable
     [SerializeField] Animator terminalAnimator;
     [SerializeField] GameObject lightComponent;
     [SerializeField] GameObject inputIcon;
+    [SerializeField] AK.Wwise.Event terminalAKEvent;
 
     public GameObject terminalEventObject;
     ITerminalEvent terminalEvent;
@@ -44,6 +45,7 @@ public class InteractableTerminal : Interactable
         if (terminalEvent == null)
             return;
 
+        terminalAKEvent?.Post(gameObject);
         terminalEvent.Activate(this, interactor);
     }
 
