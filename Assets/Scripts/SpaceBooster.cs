@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpaceLauncher : MonoBehaviour
+public class SpaceBooster : MonoBehaviour
 {
     [SerializeField] GameObject visualComponent;
 
@@ -18,13 +18,14 @@ public class SpaceLauncher : MonoBehaviour
         if (!interactable)
             return;
 
+        // Alinha o vetor de direção com o plano XY
+        // Então compara o tamanho da distância
         Vector2 direction = transform.position - collision.transform.position;
         float angle = Vector2.SignedAngle(Vector2.up, direction);
         Vector2 anchoredDirection = RaposUtil.RotateVector(direction, angle);
 
-        //float distance = Vector2.Distance(collision.transform.position, transform.position);
-        //Debug.Log("distance: " + distance);
-        if (anchoredDirection.y > .15f)
+        Debug.Log("anchoredDirection: " + anchoredDirection.y);
+        if (anchoredDirection.y > .05f)
             return;
 
         if (collision.CompareTag("Player"))
