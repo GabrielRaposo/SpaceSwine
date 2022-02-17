@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class SpaceBooster : MonoBehaviour
 {
+    [SerializeField] Vector2 launchDirection;    
+    [SerializeField] float cooldownDuration;
+
+    [Space(5)]
+
     [SerializeField] GameObject visualComponent;
+    [SerializeField] Transform rotationAnchor;
 
     bool interactable = true;
 
-    void Start()
+    private void OnValidate() 
     {
+        if (rotationAnchor == null || launchDirection == Vector2.zero)
+            return;
 
+        rotationAnchor.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, launchDirection.normalized);
     }
 
     private void OnTriggerStay2D (Collider2D collision) 
@@ -18,15 +27,17 @@ public class SpaceBooster : MonoBehaviour
         if (!interactable)
             return;
 
-        // Alinha o vetor de direção com o plano XY
-        // Então compara o tamanho da distância
+        // Alinha o vetor de direção com o plano XY, e compara o Y do vetor resultante
         Vector2 direction = transform.position - collision.transform.position;
         float angle = Vector2.SignedAngle(Vector2.up, direction);
         Vector2 anchoredDirection = RaposUtil.RotateVector(direction, angle);
 
         Debug.Log("anchoredDirection: " + anchoredDirection.y);
-        if (anchoredDirection.y > .05f)
+        Debug.DrawLine(transform.position, transform.position + (Vector3) direction);
+        if (anchoredDirection.y > .1f)
             return;
+
+        Debug.Log("passed");
 
         if (collision.CompareTag("Player"))
         {
@@ -35,12 +46,21 @@ public class SpaceBooster : MonoBehaviour
                 return;
 
             spaceJumper.transform.position = transform.position;
-            spaceJumper.RedirectIntoDirection(Vector2.right);
-            UpdateVisualState(false);
+            spaceJumper.RedirectIntoDirection (launchDirection.normalized);
 
-            interactable = false;
-            Debug.Log("Called event!!!!");
+            StartCoroutine( CooldownRoutine() );
         }
+    }
+
+    IEnumerator CooldownRoutine()
+    {
+        UpdateVisualState(false);
+        interactable = false;
+        
+        yield return new WaitForSeconds(cooldownDuration);
+
+        UpdateVisualState(true);
+        interactable = true;
     }
 
     private void UpdateVisualState(bool value)
