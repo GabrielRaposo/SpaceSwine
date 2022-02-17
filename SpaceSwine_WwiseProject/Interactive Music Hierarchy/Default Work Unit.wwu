@@ -258,6 +258,91 @@
 								</Entry>
 							</EntryList>
 						</MusicSwitchContainer>
+						<MusicSegment Name="Lofi 02_v2" ID="{F207C744-B45C-444F-8BB1-7FECF6774D51}" ShortID="181831098">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="124753.492063492"/>
+								<Property Name="Tempo" Type="Real64" Value="64"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="Lofi 02_v2" ID="{57311D4F-F66C-4F2E-892A-F1BC643B0A1C}" ShortID="767290094">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Lofi 02_v2" ID="{996F8B84-51BB-46C4-A2F0-02C6EFD0CA5C}">
+											<Language>SFX</Language>
+											<AudioFile>Lofi 02_v2.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="659983745"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{DD6E639D-FFA4-49AE-AB92-D840AA35A4A5}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{923F7319-A3AE-4AD9-BE7D-BC9435774A9D}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="Lofi 02_v2" ID="{0181B63C-CBBC-40D9-9808-B9CCDF70CDEB}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="124753.492063492"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="Lofi 02_v2" ID="{996F8B84-51BB-46C4-A2F0-02C6EFD0CA5C}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{31820B21-4868-4BED-A647-3CE2A0D54A7B}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{44EE2DE1-6C27-4ADA-AC66-23054A446856}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="124753.492063492"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
