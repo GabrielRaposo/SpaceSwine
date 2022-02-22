@@ -29,6 +29,8 @@ namespace AK
         static const AkUniqueID GAMEPLAY_NPC_FALA_ROBOZINHO = 1847119179U;
         static const AkUniqueID GAMEPLAY_TERMINAL_BIPE = 2112164229U;
         static const AkUniqueID GAMEPLAY_TERMINAL_GIRA_PLANETA = 1679981074U;
+        static const AkUniqueID GGS_GAMEPLAY_LINHA_MILESTONE = 3683597123U;
+        static const AkUniqueID GGS_GAMEPLAY_LINHA_RECORDE = 1056476565U;
         static const AkUniqueID GGS_NAVE_MORRE = 592843473U;
         static const AkUniqueID GGS_NAVE_POUSA = 3402632736U;
         static const AkUniqueID GGS_NAVE_PULA = 1092440616U;
@@ -36,7 +38,6 @@ namespace AK
         static const AkUniqueID GGS_UI_CLIQUE = 1368754271U;
         static const AkUniqueID GGS_UI_DESLIGA = 3509273191U;
         static const AkUniqueID GGS_UI_LIGA = 4113901743U;
-        static const AkUniqueID GGS_UI_RECORDE = 1292442974U;
         static const AkUniqueID GGS_UI_RECORDE_FANFARRA = 1270516008U;
         static const AkUniqueID MUSICA1 = 3830703112U;
         static const AkUniqueID UI_MENU_CLIQUE = 937451947U;
