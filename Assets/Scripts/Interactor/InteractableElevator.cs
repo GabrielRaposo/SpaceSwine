@@ -165,6 +165,6 @@ public class InteractableElevator : Interactable
     private void OnDrawGizmos/*Selected*/() 
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(  transform.position, transform.position + (transform.up * 25) );
+        Gizmos.DrawLine(  transform.position, transform.position + (transform.up * 7) );
     }
 }
