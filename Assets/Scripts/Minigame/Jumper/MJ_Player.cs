@@ -18,6 +18,7 @@ namespace Jumper
 
         [Header("Audio")]
         [SerializeField] AK.Wwise.Event jumpAKEvent;
+        [SerializeField] AK.Wwise.Event longFlightAKEvent;
         [SerializeField] AK.Wwise.Event landAKEvent;
         [SerializeField] AK.Wwise.Event breakAKEvent;
 
@@ -87,6 +88,7 @@ namespace Jumper
             }
             trailEffect?.Play();
             jumpAKEvent?.Post(gameObject);
+            longFlightAKEvent?.Post(gameObject);
 
             rb.velocity = transform.up * jumpForce * Time.fixedDeltaTime;
 
@@ -123,6 +125,11 @@ namespace Jumper
                         firstLanding = false;
                     else 
                         landAKEvent?.Post(gameObject);
+
+                    if (longFlightAKEvent != null)
+                    {
+                        longFlightAKEvent.Stop(gameObject);
+                    }
 
                     if (hasMoved)
                         StartCoroutine ( RaposUtil.Wait(1, () => landingEffect?.Play() ) );
