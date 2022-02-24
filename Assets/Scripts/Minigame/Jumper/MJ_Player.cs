@@ -24,6 +24,7 @@ namespace Jumper
         int difficultyIndex;
         bool outsideScreen;
         bool hasMoved;
+        bool firstLanding;
 
         Rigidbody2D rb;
         PlayerInputActions playerInputActions;
@@ -118,7 +119,10 @@ namespace Jumper
                 if (landedOn == null && (previous == null || previous != planet))
                 {
                     trailEffect?.Pause();
-                    landAKEvent?.Post(gameObject);
+                    if (firstLanding)
+                        firstLanding = false;
+                    else 
+                        landAKEvent?.Post(gameObject);
 
                     if (hasMoved)
                         StartCoroutine ( RaposUtil.Wait(1, () => landingEffect?.Play() ) );
