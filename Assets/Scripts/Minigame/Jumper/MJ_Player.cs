@@ -158,6 +158,11 @@ namespace Jumper
 
         private void Die()
         {
+            if (longFlightAKEvent != null)
+            {
+                longFlightAKEvent.Stop(gameObject);
+            }
+
             if (destroyAnimation)
             {
                 breakAKEvent?.Post(gameObject);
