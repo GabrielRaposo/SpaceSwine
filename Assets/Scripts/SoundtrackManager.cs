@@ -97,6 +97,8 @@ public class SoundtrackManager : MonoBehaviour
 
     public void PlayMusic(bool skipPlay = false)
     {
+        return;
+
         if (!play && !skipPlay)
             return;
 

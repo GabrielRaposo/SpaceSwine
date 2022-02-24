@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af3d4b5bb39ba043822f5ca8676fe42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0}
 --- !u!1 &5639081803221880847
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +252,13 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 1ba88f76309f50146a55b2f7189efac6, type: 2}
+  snapCheckPoint: {x: 0.15, y: -0.5}
+  snapCheckSize: {x: 0.1, y: 0.025}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  autoClimbCheckPoint: {x: 0.125, y: -0.3}
+  autoClimbCheckSize: {x: 0.1, y: 0.01}
 --- !u!114 &5639081803221880842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +345,7 @@ MonoBehaviour:
   launchSpeed: 3
   holdAnchor: {fileID: 5639081803509183843}
   directionDisplay: {fileID: 6403593263245072249}
+  arrowSprite: {fileID: 5410982940198010304}
 --- !u!114 &5639081803221880841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,8 +761,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1853893713
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -172775995945652576, guid: d0170e04463f74c4ba2abc0e4aa2946f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

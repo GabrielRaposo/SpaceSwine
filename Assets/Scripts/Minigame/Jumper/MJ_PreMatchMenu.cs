@@ -15,6 +15,8 @@ namespace Jumper
         [SerializeField] TextMeshProUGUI newRecordDisplay;
         [SerializeField] TextMeshProUGUI helpInputDisplay;
         [SerializeField] MJ_Player player;
+        [SerializeField] AK.Wwise.Event newScoreAKEvent;
+
         
         void Start()
         {
@@ -34,7 +36,16 @@ namespace Jumper
                 MJ_ScoreManager.PlayerBest().Item2;
             mainDisplay.text += "BEST: " + bestScore;
 
-            newRecordDisplay.gameObject.SetActive ( MJ_ScoreManager.UseHasScoreTrigger() );
+            if (MJ_ScoreManager.UseHasScoreTrigger() )
+            {
+                newRecordDisplay.gameObject.SetActive (true);
+                newScoreAKEvent?.Post(gameObject);
+            }
+            else
+            {
+                newRecordDisplay.gameObject.SetActive (false);
+            }
+
             if (newRecordDisplay.gameObject.activeSelf)
                 StartCoroutine( RecordBlinkRoutine() );
 
