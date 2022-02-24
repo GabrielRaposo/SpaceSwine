@@ -5,33 +5,26 @@ using UnityEngine;
 public class TerminalChangeBoosterDirection : MonoBehaviour, ITerminalEvent
 {
     [SerializeField] List<SpaceBooster> boosters;
-    [SerializeField] List<Vector2> directions;
     [SerializeField] float duration;
     
-    int index;
     List<Interactable> interactableChildren; 
 
     void Start()
     {
         interactableChildren = new List<Interactable>();
         GetComponentsInChildren<Interactable>(interactableChildren);
-
-        index = 0;
     }
 
     public void Activate (InteractableTerminal terminal, PlayerInteractor player)
     {
-        index = (index + 1) % directions.Count;
-
         BeforeSequence(player);
 
-        if (boosters.Count < 1 || directions.Count < 1)
+        if (boosters.Count < 1)
         {
             enabled = false;
             return;
         }
 
-        Vector2 dir = directions[index % directions.Count];
         for (int i = 0; i < boosters.Count; i++)
         {
             SpaceBooster booster = boosters[i];
