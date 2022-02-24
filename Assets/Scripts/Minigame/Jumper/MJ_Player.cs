@@ -25,7 +25,7 @@ namespace Jumper
         int difficultyIndex;
         bool outsideScreen;
         bool hasMoved;
-        bool firstLanding;
+        bool firstLanding = true;
 
         Rigidbody2D rb;
         PlayerInputActions playerInputActions;
@@ -182,6 +182,8 @@ namespace Jumper
 
         private void OnDisable() 
         {
+            if (longFlightAKEvent != null)
+                longFlightAKEvent.Stop(gameObject);
             playerInputActions.Minigame.Action.Disable();
         }
     }
