@@ -12,7 +12,7 @@ public class TerminalChangeBoosterDirection : MonoBehaviour, ITerminalEvent
     void Start()
     {
         interactableChildren = new List<Interactable>();
-        GetComponentsInChildren<Interactable>(interactableChildren);
+        GetComponentsInChildren(interactableChildren);
     }
 
     public void Activate (InteractableTerminal terminal, PlayerInteractor player)
