@@ -27,6 +27,7 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_VOA = 3132805884U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
         static const AkUniqueID GAMEPLAY_NPC_FALA_ROBOZINHO = 1847119179U;
+        static const AkUniqueID GAMEPLAY_SPACEBOOSTER = 2825424422U;
         static const AkUniqueID GAMEPLAY_TERMINAL_BIPE = 2112164229U;
         static const AkUniqueID GAMEPLAY_TERMINAL_GIRA_PLANETA = 1679981074U;
         static const AkUniqueID GGS_GAMEPLAY_LINHA_MILESTONE = 3683597123U;
