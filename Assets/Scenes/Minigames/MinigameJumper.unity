@@ -20891,6 +20891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 1606759711}
+  wasBeatenThisRound: 0
 --- !u!1001 &409516113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30823,6 +30824,10 @@ MonoBehaviour:
   player: {fileID: 1200172413}
   scoreLine: {fileID: 1867134813}
   heightLine: {fileID: 401712941}
+  HeightlineAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1a2ca1c7a9d76da42a7c7688767a0eba, type: 2}
   HighscoreAKEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -47852,6 +47857,10 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 28e90d0da6c871247ba2eef4838a0287, type: 2}
+  longFlightAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2f6c098aa970b2e458fbc4fe70dd259c, type: 2}
   landAKEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -50866,12 +50875,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423707233}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffca6c89771b1da49b9116b3947ca52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDefaultListener: 1
+  isDefaultListener: 0
   listenerId: 0
 --- !u!20 &1423707235
 Camera:
@@ -60491,7 +60500,7 @@ MonoBehaviour:
   newScoreAKEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: a9779b54ca69dd84193ff8ee857ea09d, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: 67318bf544d494d45a3a7265c76e189a, type: 2}
 --- !u!4 &1716652742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2280785738026234018, guid: 98927eb1b37ebae458ca6fc7731ddc7c, type: 3}
@@ -67838,6 +67847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 2038969413}
+  wasBeatenThisRound: 0
 --- !u!1 &1870566328
 GameObject:
   m_ObjectHideFlags: 0

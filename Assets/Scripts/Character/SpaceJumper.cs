@@ -13,6 +13,7 @@ public class SpaceJumper : MonoBehaviour
 
     [SerializeField] AK.Wwise.Event longJumpAKEvent;
     [SerializeField] AK.Wwise.Event longLandAKEvent;
+    [SerializeField] AK.Wwise.Event flightLoopAKEvent;
 
     bool onLaunch;
 
@@ -32,6 +33,18 @@ public class SpaceJumper : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Update() 
+    {
+        if (!onLaunch || flightLoopAKEvent == null)
+            return;
+
+        if (Time.timeScale == 0)
+            flightLoopAKEvent.Stop(gameObject);
+        
+        if (Time.timeScale != 0 && !flightLoopAKEvent.IsPlaying(gameObject))
+            flightLoopAKEvent.Post(gameObject);
+    }
+
     public void JumpInput()
     {
         if (!checkGround.OnGround)
@@ -45,8 +58,12 @@ public class SpaceJumper : MonoBehaviour
 
     private void SetLaunchState (bool value)
     {
+        if (flightLoopAKEvent != null)
+            flightLoopAKEvent.Stop(gameObject);
+
         if (value) 
         {
+            flightLoopAKEvent?.Post(gameObject);
             longJumpAKEvent?.Post(gameObject);
             playerAnimations.SetLaunchedState();
             gravityInteraction.DettachFromSurfaces();
@@ -125,6 +142,12 @@ public class SpaceJumper : MonoBehaviour
         onLaunch = false;
         rb.velocity = Vector2.zero;
         SetLaunchState(false);
+    }
+
+    private void OnDisable() 
+    {
+        if (flightLoopAKEvent != null)
+            flightLoopAKEvent.Stop(gameObject);
     }
 
     private void OnDrawGizmos() 

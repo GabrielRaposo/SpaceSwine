@@ -62,19 +62,6 @@
 								<MediaID ID="589730432"/>
 							</MediaIDList>
 						</AudioFileSource>
-						<AudioFileSource Name="Garage Foley - 6" ID="{D7929823-02C2-4E55-A2F7-09467E35D766}">
-							<PropertyList>
-								<Property Name="FadeInDuration" Type="Real64" Value="0.246408742645369"/>
-								<Property Name="FadeOutDuration" Type="Real64" Value="0.163349615910975"/>
-								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-								<Property Name="TrimEnd" Type="Real64" Value="0.442982009250102"/>
-							</PropertyList>
-							<Language>SFX</Language>
-							<AudioFile>Garage Foley - 6 .wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="380438304"/>
-							</MediaIDList>
-						</AudioFileSource>
 						<AudioFileSource Name="Garage Foley - 8" ID="{2BFF18C4-B59D-40E8-B990-C6E9BE711DF2}">
 							<PropertyList>
 								<Property Name="FadeOutDuration" Type="Real64" Value="0.288302965826566"/>
@@ -226,7 +213,7 @@
 					</ChildrenList>
 					<ObjectLists/>
 					<ActiveSourceList>
-						<ActiveSource Name="Astropig oinc fofo_slice 2" ID="{ACBD32DE-B737-4D29-B213-A5AE11BA4F3C}" Platform="Linked"/>
+						<ActiveSource Name="EFX INT Goofy Spring Bounces 04" ID="{6EC5AAE1-FA7B-4608-8100-16A7A9A8F3FA}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 				<Folder Name="Buyk" ID="{0302E065-0CBB-4435-850B-72C779BA81E5}" ShortID="207578904">
@@ -316,11 +303,11 @@
 							<ChildrenList>
 								<Folder Name="gameplay_buyk_anda" ID="{08F01D09-115F-4F1B-BA0A-3C4F1425FFDA}" ShortID="286036996">
 									<ChildrenList>
-										<RandomSequenceContainer Name="gameplay_buyk_anda_n" ID="{8477766D-7C83-4351-BB6B-ED9A589A5EE3}" ShortID="883979929">
+										<RandomSequenceContainer Name="gameplay_buyk_anda" ID="{8477766D-7C83-4351-BB6B-ED9A589A5EE3}" ShortID="883979929">
 											<PropertyList>
-												<Property Name="Lowpass" Type="int16">
+												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>12</Value>
+														<Value>-7</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -333,83 +320,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<Sound Name="gameplay_buyk_anda_noise" ID="{A0DEED3C-22B9-4536-9376-FC72438653E3}" ShortID="712774472">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Music_Placeholder" ID="{4C65E99F-0C44-4E05-A00C-0153D5D124F8}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_noise" ID="{FFF1166D-C119-4638-B336-14DA066C8F31}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.0109369152191621"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0437476608766482"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="780201192"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_01" ID="{08F92072-5BD7-482E-A53C-97C297FAAD1B}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.063632961275125"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0904781168130674"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="218252749"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_02" ID="{DEE12EA1-3C00-478B-824B-D40488C82656}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.129254452590098"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.157093873147964"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="514590912"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_03" ID="{F9FA8FFC-B6F3-4CCB-84EA-3154CFB5BBAA}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.230669484622328"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.245583459921185"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="793377152"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_04" ID="{2217B67D-3C39-4C74-99E4-F360BDDAD25B}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.297285240957225"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.321147601435396"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="735038487"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_noise" ID="{FFF1166D-C119-4638-B336-14DA066C8F31}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="gameplay_buyk_anda_noise_01" ID="{53C2D927-BDE6-4EBE-95C9-5BE84202205C}" ShortID="854665954">
+												<Sound Name="gameplay_buyk_anda_01" ID="{FA3ACDB4-8039-49B7-92C4-8901D6216C02}" ShortID="565112272">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -419,73 +330,20 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_noise" ID="{CD8BB23F-63F8-4AA3-A35A-532148396F84}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.0109369152191621"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0437476608766482"/>
-															</PropertyList>
+														<AudioFileSource Name="gameplay_buyk_anda_01" ID="{AEEC1761-F111-4F70-A8B9-442DD2FBB46C}">
 															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
+															<AudioFile>gameplay_buyk_anda_01.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="780201192"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_01" ID="{ADF06B8D-289D-41DF-A57C-39E48039F6DC}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.063632961275125"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0904781168130674"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="218252749"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_02" ID="{89AAFF81-26AD-405A-A0AC-E057D0F9EA56}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.129254452590098"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.157093873147964"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="514590912"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_03" ID="{65D13680-45D7-4663-976F-A277CD2B4AA4}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.230669484622328"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.245583459921185"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="793377152"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_04" ID="{3399E8F8-BCF4-43CB-BB93-214E4E941356}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.297285240957225"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.321147601435396"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="735038487"/>
+																<MediaID ID="1032493817"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ObjectLists/>
 													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_noise_01" ID="{ADF06B8D-289D-41DF-A57C-39E48039F6DC}" Platform="Linked"/>
+														<ActiveSource Name="gameplay_buyk_anda_01" ID="{AEEC1761-F111-4F70-A8B9-442DD2FBB46C}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="gameplay_buyk_anda_noise_02" ID="{8D66C73A-1599-4E66-BEEA-7B0C57634C6D}" ShortID="1048225276">
+												<Sound Name="gameplay_buyk_anda_02" ID="{64BC606F-644A-4FD1-9E36-8BE839D2C27C}" ShortID="16883688">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -495,73 +353,20 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_noise" ID="{1E5F9D6C-C0C5-4EF5-9341-EA7DB72004CD}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.0109369152191621"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0437476608766482"/>
-															</PropertyList>
+														<AudioFileSource Name="gameplay_buyk_anda_02" ID="{E42A005B-7D8B-4FBC-81B9-806AAADF610B}">
 															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
+															<AudioFile>gameplay_buyk_anda_02.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="780201192"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_01" ID="{B6F83991-AE1F-4DBF-A2A9-E8048DFBECF8}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.063632961275125"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0904781168130674"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="218252749"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_02" ID="{0A1C1AF5-97C9-475E-A4B0-A91A7E756D29}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.129254452590098"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.157093873147964"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="514590912"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_03" ID="{CF34DBBB-A134-402B-B963-2DF6A238A822}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.230669484622328"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.245583459921185"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="793377152"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_04" ID="{B9171B2D-7DD5-41C0-9C99-CCBE9ABF8F88}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.297285240957225"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.321147601435396"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="735038487"/>
+																<MediaID ID="9779719"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ObjectLists/>
 													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_noise_02" ID="{0A1C1AF5-97C9-475E-A4B0-A91A7E756D29}" Platform="Linked"/>
+														<ActiveSource Name="gameplay_buyk_anda_02" ID="{E42A005B-7D8B-4FBC-81B9-806AAADF610B}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="gameplay_buyk_anda_noise_03" ID="{6DFA0EF8-871A-4FE1-89CA-7ED3DC58036C}" ShortID="752505859">
+												<Sound Name="gameplay_buyk_anda_03" ID="{C0AC3E1C-D333-4FE6-86C7-C052E73463CA}" ShortID="598878098">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -571,73 +376,20 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_noise" ID="{51995854-D83B-4E06-8E25-3D282303E35D}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.0109369152191621"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0437476608766482"/>
-															</PropertyList>
+														<AudioFileSource Name="gameplay_buyk_anda_03" ID="{12016F20-A3B0-46B0-9D30-703309AEAB71}">
 															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
+															<AudioFile>gameplay_buyk_anda_03.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="780201192"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_01" ID="{CFCC1A35-6054-48A5-BE3F-7AB1FFC12DB8}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.063632961275125"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0904781168130674"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="218252749"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_02" ID="{64FAF788-AA91-4BCB-AC46-44187CB6BC1C}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.129254452590098"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.157093873147964"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="514590912"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_03" ID="{1C85B711-58D3-4051-9B47-163DE9E0726D}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.230669484622328"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.245583459921185"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="793377152"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_04" ID="{DFAD229D-7943-40BB-AE2D-8683B1C1B4B8}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.297285240957225"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.321147601435396"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="735038487"/>
+																<MediaID ID="1021057919"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ObjectLists/>
 													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_noise_03" ID="{1C85B711-58D3-4051-9B47-163DE9E0726D}" Platform="Linked"/>
+														<ActiveSource Name="gameplay_buyk_anda_03" ID="{12016F20-A3B0-46B0-9D30-703309AEAB71}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="gameplay_buyk_anda_noise_04" ID="{EFE7CFD5-B130-4BF1-832E-F21D2B14FA12}" ShortID="705347499">
+												<Sound Name="gameplay_buyk_anda_04" ID="{8F839020-2790-45BF-B7CB-298CFE3B4479}" ShortID="281436290">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -647,498 +399,17 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_noise" ID="{DDD16EC7-FFCA-4E13-AA4E-878306977376}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.0109369152191621"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0437476608766482"/>
-															</PropertyList>
+														<AudioFileSource Name="gameplay_buyk_anda_04" ID="{50077A46-3DB1-4E8F-802F-94685826ED93}">
 															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
+															<AudioFile>gameplay_buyk_anda_04.wav</AudioFile>
 															<MediaIDList>
-																<MediaID ID="780201192"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_01" ID="{A4C0A8B1-0A79-4ACA-864E-3C99616D60C1}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.063632961275125"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0904781168130674"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="218252749"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_02" ID="{C29124D3-E18D-4753-B0EB-7E856BE7D372}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.129254452590098"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.157093873147964"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="514590912"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_03" ID="{2B19E7D1-AA88-4D6F-B4DA-FF6B467F989A}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.230669484622328"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.245583459921185"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="793377152"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_noise_04" ID="{059B33C5-63DD-44E2-BD99-7DC75B60ED70}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.297285240957225"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.321147601435396"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_noise.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="735038487"/>
+																<MediaID ID="536965891"/>
 															</MediaIDList>
 														</AudioFileSource>
 													</ChildrenList>
 													<ObjectLists/>
 													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_noise_04" ID="{059B33C5-63DD-44E2-BD99-7DC75B60ED70}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-											</ChildrenList>
-											<ObjectLists/>
-										</RandomSequenceContainer>
-										<RandomSequenceContainer Name="gameplay_buyk_anda_w" ID="{A0EA0485-AFC6-4220-9B39-1C2B2D2C5FF2}" ShortID="743176450">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<Sound Name="gameplay_buyk_anda_wave" ID="{DFF1837A-4374-4634-93FA-5FAB3619CF29}" ShortID="895892717">
-													<PropertyList>
-														<Property Name="Weight" Type="Real64">
-															<ValueList>
-																<Value>5</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Music_Placeholder" ID="{4C65E99F-0C44-4E05-A00C-0153D5D124F8}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_wave" ID="{984FE2F1-1BD9-4B2C-890F-75C4297B02B1}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.0272201307707549"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0895995971204017"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="849687240"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_01" ID="{D88D5C34-9E3A-465E-AE71-718C4625AF37}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.133504381662676"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.184870054818044"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="667430613"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_02" ID="{7B66BB62-DA18-435D-ADD5-C6712053D51E}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.230549679050027"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.290601108337644"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="800263895"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_03" ID="{34C57F0E-7B80-47A4-8BFA-45C197A77749}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.316966955897203"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.362935076943399"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="208277150"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_04" ID="{1405BA6D-5AF8-4B9B-BC7A-CC4709822DE0}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.393557724060498"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.44686381348656"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="916542751"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_wave" ID="{984FE2F1-1BD9-4B2C-890F-75C4297B02B1}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="gameplay_buyk_anda_wave_01" ID="{A17AD243-15EB-466F-8E45-6E50783CBE40}" ShortID="913254620">
-													<PropertyList>
-														<Property Name="Weight" Type="Real64">
-															<ValueList>
-																<Value>5</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_wave" ID="{51042259-12B4-4E18-921A-8673771D4379}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.0272201307707549"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0895995971204017"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="849687240"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_01" ID="{DCC6F334-A810-4A24-89CC-2AA6B34C99AB}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.133504381662676"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.184870054818044"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="667430613"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_02" ID="{FB96BD00-BA30-4D29-AC8C-A5CA4681CDFD}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.230549679050027"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.290601108337644"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="800263895"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_03" ID="{FA75A6FD-731B-48D2-A93E-E9DBB5D7C362}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.316966955897203"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.362935076943399"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="208277150"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_04" ID="{884C6B3F-8215-42D5-B138-7DD6A73F8E8F}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.393557724060498"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.44686381348656"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="916542751"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_wave_01" ID="{DCC6F334-A810-4A24-89CC-2AA6B34C99AB}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="gameplay_buyk_anda_wave_02" ID="{08758791-71F6-4862-B6B5-5F75756E492C}" ShortID="75893541">
-													<PropertyList>
-														<Property Name="Weight" Type="Real64">
-															<ValueList>
-																<Value>4</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_wave" ID="{A3CF4F6C-5BAE-4149-9849-E8E9E630517B}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.0272201307707549"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0895995971204017"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="849687240"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_01" ID="{C522D580-7296-4ACA-937C-974F7CED34C5}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.133504381662676"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.184870054818044"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="667430613"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_02" ID="{1CC45EF9-DE5C-42C2-882A-25BACE9B3107}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.230549679050027"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.290601108337644"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="800263895"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_03" ID="{FC99C7AC-E808-4409-89EC-3C34EB246C99}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.316966955897203"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.362935076943399"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="208277150"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_04" ID="{E88E33AB-C143-46F1-9F06-1E297F6F3085}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.393557724060498"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.44686381348656"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="916542751"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_wave_02" ID="{1CC45EF9-DE5C-42C2-882A-25BACE9B3107}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="gameplay_buyk_anda_wave_03" ID="{66862622-513D-4BB8-830D-CB8E4DBE85AB}" ShortID="971092608">
-													<PropertyList>
-														<Property Name="Weight" Type="Real64">
-															<ValueList>
-																<Value>3</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_wave" ID="{43E81B83-0B9D-4697-9757-AFD8903D84A6}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.0272201307707549"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0895995971204017"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="849687240"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_01" ID="{0FE10123-22B3-4A9A-8CC9-E2D9D61CE121}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.133504381662676"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.184870054818044"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="667430613"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_02" ID="{0A062791-06DC-43F5-BD32-164D5A7307CB}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.230549679050027"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.290601108337644"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="800263895"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_03" ID="{EB0C5A58-4B03-42D1-8FBF-7445CF66B760}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.316966955897203"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.362935076943399"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="208277150"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_04" ID="{1A71C6FC-7F73-4A69-8D14-53D2F606E29F}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.393557724060498"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.44686381348656"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="916542751"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_wave_03" ID="{EB0C5A58-4B03-42D1-8FBF-7445CF66B760}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="gameplay_buyk_anda_wave_04" ID="{053532FA-119B-4D24-95D3-281A7078F964}" ShortID="1007407721">
-													<PropertyList>
-														<Property Name="Weight" Type="Real64">
-															<ValueList>
-																<Value>2</Value>
-															</ValueList>
-														</Property>
-													</PropertyList>
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_wave" ID="{F37F706B-16E6-4B9F-9955-C4780E498ED2}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.0272201307707549"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.0895995971204017"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="849687240"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_01" ID="{B4023BE0-C7C4-438D-9D9E-6F9CD71F1FCC}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.133504381662676"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.184870054818044"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="667430613"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_02" ID="{52192A32-CE33-4B79-A44C-EE994498661F}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.230549679050027"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.290601108337644"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="800263895"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_03" ID="{1F8E4973-F157-46D6-8F60-93F783304B7D}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.316966955897203"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.362935076943399"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="208277150"/>
-															</MediaIDList>
-														</AudioFileSource>
-														<AudioFileSource Name="gameplay_buyk_anda_wave_04" ID="{2DBD24C3-A4EC-444E-9C6E-003980C21AF4}">
-															<PropertyList>
-																<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-																<Property Name="TrimBegin" Type="Real64" Value="0.393557724060498"/>
-																<Property Name="TrimEnd" Type="Real64" Value="0.44686381348656"/>
-															</PropertyList>
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_wave.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="916542751"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_wave_04" ID="{2DBD24C3-A4EC-444E-9C6E-003980C21AF4}" Platform="Linked"/>
+														<ActiveSource Name="gameplay_buyk_anda_04" ID="{50077A46-3DB1-4E8F-802F-94685826ED93}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
 											</ChildrenList>
@@ -1165,7 +436,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="gameplay_buyk_pula_longo" ID="{446556CC-84E9-4031-8034-6AE1398AEB49}">
+												<AudioFileSource Name="gameplay_buyk_pula_longo" ID="{B8FD2F6C-97CD-42DC-8B90-D822F34BCAEA}">
 													<Language>SFX</Language>
 													<AudioFile>gameplay_buyk_pula_longo.wav</AudioFile>
 													<MediaIDList>
@@ -1175,16 +446,84 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="gameplay_buyk_pula_longo" ID="{446556CC-84E9-4031-8034-6AE1398AEB49}" Platform="Linked"/>
+												<ActiveSource Name="gameplay_buyk_pula_longo" ID="{B8FD2F6C-97CD-42DC-8B90-D822F34BCAEA}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="gameplay_buyk_pousa_curto" ID="{BC59F2BB-D01F-4230-A0EB-86051AB7E7EC}" ShortID="493398357">
 											<PropertyList>
 												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="Lowpass" Type="int16">
+													<RTPCList>
+														<RTPC Name="" ID="{92412488-5412-45B5-93AE-DA251E17865E}" ShortID="515968030">
+															<ReferenceList>
+																<Reference Name="ControlInput">
+																	<Custom>
+																		<ModulatorLfo Name="Modulator LFO (Custom)" ID="{86B3CB23-4F0A-48AB-A21F-A0B111A5E433}" ShortID="863099165">
+																			<PropertyList>
+																				<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																			</PropertyList>
+																		</ModulatorLfo>
+																	</Custom>
+																</Reference>
+															</ReferenceList>
+															<Curve Name="" ID="{21AD0EDA-C3BC-4794-9FDB-1F9F687671E1}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="65537"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-11</YPos>
+																		<Flags>21</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>1</XPos>
+																		<YPos>0</YPos>
+																		<Flags>53</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</RTPC>
+													</RTPCList>
+												</Property>
 												<Property Name="MaxSoundPerInstance" Type="int16">
 													<ValueList>
 														<Value>1</Value>
 													</ValueList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<RTPCList>
+														<RTPC Name="" ID="{FC22796C-DF55-4289-A0E3-0F074E3D3757}" ShortID="464535125">
+															<ReferenceList>
+																<Reference Name="ControlInput">
+																	<Custom>
+																		<ModulatorLfo Name="Modulator LFO (Custom)" ID="{C7BBEC6E-0B44-4187-B98B-27F2608002E7}" ShortID="538102603">
+																			<PropertyList>
+																				<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																			</PropertyList>
+																		</ModulatorLfo>
+																	</Custom>
+																</Reference>
+															</ReferenceList>
+															<Curve Name="" ID="{1EE53F14-30D0-4057-912F-4C4539467447}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="65537"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-550</YPos>
+																		<Flags>21</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>1</XPos>
+																		<YPos>0</YPos>
+																		<Flags>53</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</RTPC>
+													</RTPCList>
 												</Property>
 												<Property Name="UseMaxSoundPerInstance" Type="bool">
 													<ValueList>
@@ -1193,7 +532,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>3</Value>
+														<Value>5</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -1206,7 +545,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="gameplay_buyk_pousa_curto" ID="{70C0DDA7-3CCA-4E4A-9EFB-A555E9B1729F}">
+												<AudioFileSource Name="gameplay_buyk_pousa_curto" ID="{5CE89F73-3399-45B0-98E3-31B629C123EF}">
 													<Language>SFX</Language>
 													<AudioFile>gameplay_buyk_pousa_curto.wav</AudioFile>
 													<MediaIDList>
@@ -1216,11 +555,16 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="gameplay_buyk_pousa_curto" ID="{70C0DDA7-3CCA-4E4A-9EFB-A555E9B1729F}" Platform="Linked"/>
+												<ActiveSource Name="gameplay_buyk_pousa_curto" ID="{5CE89F73-3399-45B0-98E3-31B629C123EF}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="gameplay_buyk_pula_curto" ID="{3D7AEB49-B1A8-458F-854A-5CCA2B522092}" ShortID="47272682">
 											<PropertyList>
+												<Property Name="Lowpass" Type="int16">
+													<ValueList>
+														<Value>23</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>3</Value>
@@ -1236,7 +580,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="gameplay_buyk_pula_curto" ID="{8606398F-79BC-4000-9390-8B45F13AC394}">
+												<AudioFileSource Name="gameplay_buyk_pula_curto" ID="{FC879BE2-604E-487B-86FA-96310287B65F}">
 													<Language>SFX</Language>
 													<AudioFile>gameplay_buyk_pula_curto.wav</AudioFile>
 													<MediaIDList>
@@ -1246,7 +590,7 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="gameplay_buyk_pula_curto" ID="{8606398F-79BC-4000-9390-8B45F13AC394}" Platform="Linked"/>
+												<ActiveSource Name="gameplay_buyk_pula_curto" ID="{FC879BE2-604E-487B-86FA-96310287B65F}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="gameplay_buyk_pousa_longo" ID="{9DD7C3B7-D4A8-4D0F-A5B7-DBA2A301EA65}" ShortID="655250985">
@@ -1277,7 +621,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="gameplay_buyk_pousa_longo" ID="{8E0FE1EF-B761-433D-8288-651FADF3B29F}">
+												<AudioFileSource Name="gameplay_buyk_pousa_longo" ID="{6A61AE8C-89A5-46D1-A44B-7BCDD52B468F}">
 													<Language>SFX</Language>
 													<AudioFile>gameplay_buyk_pousa_longo.wav</AudioFile>
 													<MediaIDList>
@@ -1287,11 +631,49 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="gameplay_buyk_pousa_longo" ID="{8E0FE1EF-B761-433D-8288-651FADF3B29F}" Platform="Linked"/>
+												<ActiveSource Name="gameplay_buyk_pousa_longo" ID="{6A61AE8C-89A5-46D1-A44B-7BCDD52B468F}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
 								</Folder>
+								<Sound Name="gameplay_buyk_voa" ID="{3B7AC84F-3FCD-4345-B2F0-3F0B9E0F0E3C}" ShortID="156564950">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Garage Foley - 6" ID="{D7929823-02C2-4E55-A2F7-09467E35D766}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.106247457913442"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.0486217180281855"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.176478828398599"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.345738573193731"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+											</ReferenceList>
+											<Language>SFX</Language>
+											<AudioFile>Garage Foley - 6 .wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="380438304"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="Garage Foley - 6" ID="{D7929823-02C2-4E55-A2F7-09467E35D766}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</Folder>
 						<Sound Name="gameplay_buyk_morre" ID="{8FCEA67A-6AA6-4FF9-9CCA-EC996E1CE4B4}" ShortID="416559231">
@@ -1407,6 +789,81 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="gameplay_item_gol" ID="{9BC7EB5A-2096-42FF-8B2E-057DDD64C931}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="gameplay_terminal_gira_planeta" ID="{C1B80B91-DB70-4465-94F6-C9D04ECC724C}" ShortID="759235353">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="gameplay_terminal_gira_planeta" ID="{BEA91B63-C393-41E7-B823-B27A55C04E5A}">
+									<Language>SFX</Language>
+									<AudioFile>gameplay_terminal_gira_planeta.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="227068693"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="gameplay_terminal_gira_planeta" ID="{BEA91B63-C393-41E7-B823-B27A55C04E5A}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="gameplay_terminal_bipe" ID="{74848FD3-A2DA-4B82-98CA-CE473FABC93A}" ShortID="222402592">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="gameplay_terminal_bipe" ID="{7AB116A8-4B97-4E53-82C3-291A8245DD4F}">
+									<Language>SFX</Language>
+									<AudioFile>gameplay_terminal_bipe.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="739371326"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="gameplay_terminal_bipe" ID="{7AB116A8-4B97-4E53-82C3-291A8245DD4F}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="gameplay_spacebooster" ID="{7C9DE73D-6F5C-44A9-9FAE-984444E53487}" ShortID="826027796">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="EFX INT Goofy Spring Bounces 04" ID="{9911C382-7B3F-4864-BF43-E8824BE508A5}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.669761512769202"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.00829492594050452"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.887981639805352"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>EFX INT Goofy Spring Bounces 04.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="649743998"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="EFX INT Goofy Spring Bounces 04" ID="{9911C382-7B3F-4864-BF43-E8824BE508A5}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
@@ -1568,7 +1025,7 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="ggs_nave_pula" ID="{97F7020A-5886-4410-BF70-F0DDB79BB574}">
+								<AudioFileSource Name="ggs_nave_pula" ID="{68338C9F-DFB2-4DCD-B7BF-4E3BECD5C830}">
 									<Language>SFX</Language>
 									<AudioFile>ggs_nave_pula.wav</AudioFile>
 									<MediaIDList>
@@ -1578,7 +1035,7 @@
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="ggs_nave_pula" ID="{97F7020A-5886-4410-BF70-F0DDB79BB574}" Platform="Linked"/>
+								<ActiveSource Name="ggs_nave_pula" ID="{68338C9F-DFB2-4DCD-B7BF-4E3BECD5C830}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_nave_pousa" ID="{F0E6BAD0-E814-4F38-AD69-BFD490842ECF}" ShortID="217138429">
@@ -1591,7 +1048,7 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="ggs_nave_pousa" ID="{8AA95D40-55DF-4D1C-8937-FC0A8A3C1C56}">
+								<AudioFileSource Name="ggs_nave_pousa" ID="{3C73DD97-14D4-43BF-AA87-7E665E1271DB}">
 									<Language>SFX</Language>
 									<AudioFile>ggs_nave_pousa.wav</AudioFile>
 									<MediaIDList>
@@ -1601,7 +1058,7 @@
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="ggs_nave_pousa" ID="{8AA95D40-55DF-4D1C-8937-FC0A8A3C1C56}" Platform="Linked"/>
+								<ActiveSource Name="ggs_nave_pousa" ID="{3C73DD97-14D4-43BF-AA87-7E665E1271DB}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_nave_morre" ID="{0A3A3B49-9077-4B31-80B1-A0749D0291F8}" ShortID="46694802">
@@ -1614,7 +1071,7 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="ggs_nave_morre" ID="{93D66B55-4DBF-4806-B6D1-7A00B91AE2ED}">
+								<AudioFileSource Name="ggs_nave_morre" ID="{163DB75F-D840-4880-8C56-25EC5A77CBF6}">
 									<Language>SFX</Language>
 									<AudioFile>ggs_nave_morre.wav</AudioFile>
 									<MediaIDList>
@@ -1624,7 +1081,7 @@
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="ggs_nave_morre" ID="{93D66B55-4DBF-4806-B6D1-7A00B91AE2ED}" Platform="Linked"/>
+								<ActiveSource Name="ggs_nave_morre" ID="{163DB75F-D840-4880-8C56-25EC5A77CBF6}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_ui_clique" ID="{63BF167D-1406-490F-8479-F51AA75945AD}" ShortID="212573668">
@@ -1656,38 +1113,27 @@
 								<ActiveSource Name="Garage Foley - 5" ID="{62ECCA6B-E145-4931-8EB1-97CA03C52CBC}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="ggs_ui_recorde" ID="{7D477166-EF89-4B77-BC3B-16275B3B8118}" ShortID="1072583822">
+						<Sound Name="ggs_gameplay_linha_recorde" ID="{7D477166-EF89-4B77-BC3B-16275B3B8118}" ShortID="1072583822">
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="Garage Foley - 5" ID="{2FB5A628-35B6-4A3D-A699-5777B381437C}">
-									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.180232101651232"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.311587701159759"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.528477179418022"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-										</Reference>
-									</ReferenceList>
+								<AudioFileSource Name="ggs_gameplay_linha_recorde" ID="{22B1E738-7E94-4E44-8D9D-2AF5FB62E038}">
 									<Language>SFX</Language>
-									<AudioFile>Garage Foley - 5.wav</AudioFile>
+									<AudioFile>ggs_gameplay_linha_recorde.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="589730432"/>
+										<MediaID ID="119911326"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="Garage Foley - 5" ID="{2FB5A628-35B6-4A3D-A699-5777B381437C}" Platform="Linked"/>
+								<ActiveSource Name="ggs_gameplay_linha_recorde" ID="{22B1E738-7E94-4E44-8D9D-2AF5FB62E038}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_ui_liga" ID="{E4C0ED77-B6A4-496D-861B-84218E8F4D4D}" ShortID="421215429">
@@ -1700,23 +1146,17 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="Garage Foley - 5" ID="{54F3288C-D232-4340-BB5E-CDDE361AFB44}">
-									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.180232101651232"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.311587701159759"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.528477179418022"/>
-									</PropertyList>
+								<AudioFileSource Name="ggs_ui_liga" ID="{5C313441-00ED-42C9-A52B-302A7CD2C26E}">
 									<Language>SFX</Language>
-									<AudioFile>Garage Foley - 5.wav</AudioFile>
+									<AudioFile>ggs_ui_liga.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="589730432"/>
+										<MediaID ID="640895124"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="Garage Foley - 5" ID="{54F3288C-D232-4340-BB5E-CDDE361AFB44}" Platform="Linked"/>
+								<ActiveSource Name="ggs_ui_liga" ID="{5C313441-00ED-42C9-A52B-302A7CD2C26E}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_ui_desliga" ID="{058FF76F-85FA-48A7-89AF-13382114AAA9}" ShortID="802756916">
@@ -1729,23 +1169,17 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="Garage Foley - 5" ID="{9E7FF1D1-7BD9-4A05-8FBB-77DA72CAAD84}">
-									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.180232101651232"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.311587701159759"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.528477179418022"/>
-									</PropertyList>
+								<AudioFileSource Name="ggs_ui_desliga" ID="{0E421A25-E797-4306-886C-B869D47A2FC9}">
 									<Language>SFX</Language>
-									<AudioFile>Garage Foley - 5.wav</AudioFile>
+									<AudioFile>ggs_ui_desliga.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="589730432"/>
+										<MediaID ID="1041582944"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="Garage Foley - 5" ID="{9E7FF1D1-7BD9-4A05-8FBB-77DA72CAAD84}" Platform="Linked"/>
+								<ActiveSource Name="ggs_ui_desliga" ID="{0E421A25-E797-4306-886C-B869D47A2FC9}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_nave_voa" ID="{5E726E93-DAD9-48BB-AF65-872A69B2E606}" ShortID="527000181">
@@ -1758,23 +1192,17 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="Garage Foley - 5" ID="{0A47B2F9-B9F9-4DA5-A814-EB5EA353BD53}">
-									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.180232101651232"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.311587701159759"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.528477179418022"/>
-									</PropertyList>
+								<AudioFileSource Name="ggs_nave_voa" ID="{B67C92ED-F9A9-41B2-8E88-9A719F587C2F}">
 									<Language>SFX</Language>
-									<AudioFile>Garage Foley - 5.wav</AudioFile>
+									<AudioFile>ggs_nave_voa.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="589730432"/>
+										<MediaID ID="941528667"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="Garage Foley - 5" ID="{0A47B2F9-B9F9-4DA5-A814-EB5EA353BD53}" Platform="Linked"/>
+								<ActiveSource Name="ggs_nave_voa" ID="{B67C92ED-F9A9-41B2-8E88-9A719F587C2F}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_ui_recorde_fanfarra" ID="{81A8F8B0-D5F8-4AE8-A81A-9A78848C51C3}" ShortID="679132504">
@@ -1783,32 +1211,44 @@
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="Garage Foley - 5" ID="{93950E97-8AFC-4939-8246-C5F0B640CFE2}">
-									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.180232101651232"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.311587701159759"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.528477179418022"/>
-									</PropertyList>
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-										</Reference>
-									</ReferenceList>
+								<AudioFileSource Name="ggs_ui_recorde_fanfarra" ID="{95855C2F-E66D-4F2F-97E2-C2AF650F38F9}">
 									<Language>SFX</Language>
-									<AudioFile>Garage Foley - 5.wav</AudioFile>
+									<AudioFile>ggs_ui_recorde_fanfarra.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="589730432"/>
+										<MediaID ID="983383874"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="Garage Foley - 5" ID="{93950E97-8AFC-4939-8246-C5F0B640CFE2}" Platform="Linked"/>
+								<ActiveSource Name="ggs_ui_recorde_fanfarra" ID="{95855C2F-E66D-4F2F-97E2-C2AF650F38F9}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ggs_gameplay_linha_milestone" ID="{AD6259E7-BAEB-48AA-9781-F33EEE747E46}" ShortID="233940184">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ggs_gameplay_linha_milestone" ID="{51C9A1BB-A0BD-4E67-AF9E-EBCB9E363FC7}">
+									<Language>SFX</Language>
+									<AudioFile>ggs_gameplay_linha_milestone.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="781078286"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ggs_gameplay_linha_milestone" ID="{51C9A1BB-A0BD-4E67-AF9E-EBCB9E363FC7}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
