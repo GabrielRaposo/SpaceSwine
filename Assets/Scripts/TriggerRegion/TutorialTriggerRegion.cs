@@ -16,24 +16,18 @@ public class TutorialTriggerRegion : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        Debug.Log("hi: " + collision.name);
         if (!collision.CompareTag("Player"))
             return;    
 
-        Debug.Log("a");
         if (showing)
             return;
 
-        Debug.Log("b");
         if (tutorialTextBox)
         {
-            Debug.Log("c");
             
             (bool valid, string text) localizedData = LocalizationManager.GetStoryText(textID);
             if (!localizedData.valid)
                 return;
-
-            Debug.Log("d");
 
             tutorialTextBox.ShowText(localizedData.text);
             showing = true;

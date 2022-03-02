@@ -52,7 +52,7 @@ public class SpaceBooster : MonoBehaviour
         float angle = Vector2.SignedAngle(Vector2.up, direction);
         Vector2 anchoredDirection = RaposUtil.RotateVector(direction, angle);
 
-        Debug.Log("anchoredDirection: " + anchoredDirection.y);
+        //Debug.Log("anchoredDirection: " + anchoredDirection.y);
         Debug.DrawLine(transform.position, transform.position + (Vector3) direction);
         if (anchoredDirection.y > .1f)
             return;

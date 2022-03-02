@@ -3,34 +3,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Serialization;
 
 public class CameraShaderManager : MonoBehaviour
 {
+    private Camera cam;
     
-    public BlitRenderFeature dangerAreaShader;
-    public BlitRenderFeature distortionShader;
-    [SerializeField] private ForwardRendererData _rendererData;
+    private ForwardRendererData baseRendererData;
+    private ForwardRendererData dangerAreaRendererData;
 
+    public static CameraShaderManager Instance;
+
+    private UniversalAdditionalCameraData _cameraData; 
+    
     private void Awake()
     {
-    }
-
-    private void Update()
-    {
-            
+        cam = Camera.main;
+        _cameraData = cam.GetUniversalAdditionalCameraData();
+        
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     public void SetDangerAreaShader(bool value)
     {
+        Debug.Log($"SetDangerAreaShader {value}");
         if (value)
         {
-            _rendererData.rendererFeatures.Add(distortionShader);
+            _cameraData.SetRenderer(1);
         }
         else
         {
-            _rendererData.rendererFeatures.Clear();
+            _cameraData.SetRenderer(0);
         }
-        
+
     }
-    
+
 }
