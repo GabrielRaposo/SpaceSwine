@@ -18,12 +18,14 @@ namespace Jumper
 
         [Header("Audio")]
         [SerializeField] AK.Wwise.Event jumpAKEvent;
+        [SerializeField] AK.Wwise.Event longFlightAKEvent;
         [SerializeField] AK.Wwise.Event landAKEvent;
         [SerializeField] AK.Wwise.Event breakAKEvent;
 
         int difficultyIndex;
         bool outsideScreen;
         bool hasMoved;
+        bool firstLanding = true;
 
         Rigidbody2D rb;
         PlayerInputActions playerInputActions;
@@ -86,6 +88,7 @@ namespace Jumper
             }
             trailEffect?.Play();
             jumpAKEvent?.Post(gameObject);
+            longFlightAKEvent?.Post(gameObject);
 
             rb.velocity = transform.up * jumpForce * Time.fixedDeltaTime;
 
@@ -118,7 +121,15 @@ namespace Jumper
                 if (landedOn == null && (previous == null || previous != planet))
                 {
                     trailEffect?.Pause();
-                    landAKEvent?.Post(gameObject);
+                    if (firstLanding)
+                        firstLanding = false;
+                    else 
+                        landAKEvent?.Post(gameObject);
+
+                    if (longFlightAKEvent != null)
+                    {
+                        longFlightAKEvent.Stop(gameObject);
+                    }
 
                     if (hasMoved)
                         StartCoroutine ( RaposUtil.Wait(1, () => landingEffect?.Play() ) );
@@ -147,6 +158,11 @@ namespace Jumper
 
         private void Die()
         {
+            if (longFlightAKEvent != null)
+            {
+                longFlightAKEvent.Stop(gameObject);
+            }
+
             if (destroyAnimation)
             {
                 breakAKEvent?.Post(gameObject);
@@ -166,6 +182,8 @@ namespace Jumper
 
         private void OnDisable() 
         {
+            if (longFlightAKEvent != null)
+                longFlightAKEvent.Stop(gameObject);
             playerInputActions.Minigame.Action.Disable();
         }
     }

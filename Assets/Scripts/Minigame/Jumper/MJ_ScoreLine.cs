@@ -8,6 +8,7 @@ namespace Jumper
     public class MJ_ScoreLine : MonoBehaviour
     {
         [SerializeField] TextMeshPro display;    
+
         public int Value {get; private set;}
         [HideInInspector] public bool wasBeatenThisRound;
 

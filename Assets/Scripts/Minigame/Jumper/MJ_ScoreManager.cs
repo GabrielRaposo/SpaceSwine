@@ -13,6 +13,7 @@ namespace Jumper
         [SerializeField] MJ_Player player;
         [SerializeField] MJ_ScoreLine scoreLine;
         [SerializeField] MJ_ScoreLine heightLine;
+        [SerializeField] AK.Wwise.Event HeightlineAKEvent;
         [SerializeField] AK.Wwise.Event HighscoreAKEvent;
 
         int displayedHeight;
@@ -37,6 +38,12 @@ namespace Jumper
         {
             int playerHighest = Mathf.RoundToInt( player.HighestYPosition() );
             
+            if (player.transform.position.y > heightLine.transform.position.y && !heightLine.wasBeatenThisRound)
+            {
+                HeightlineAKEvent?.Post(gameObject);
+                heightLine.wasBeatenThisRound = true;
+            }
+
             if (playerHighest > displayedHeight + (HEIGHT_OFFSET/2) )
             {
                 displayedHeight += HEIGHT_OFFSET;
@@ -50,8 +57,6 @@ namespace Jumper
             {
                 if (PlayerBestScore > 0 && !scoreLine.wasBeatenThisRound)
                 {
-                    //Play effect
-                    Debug.Log("new high score!");
                     HighscoreAKEvent?.Post(gameObject);
                 }
                 
