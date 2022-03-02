@@ -6,18 +6,29 @@ using UnityEngine.Rendering.Universal;
 
 public class CameraShaderManager : MonoBehaviour
 {
+    
+    public BlitRenderFeature dangerAreaShader;
+    public BlitRenderFeature distortionShader;
     [SerializeField] private ForwardRendererData _rendererData;
 
     private void Awake()
     {
-        SetDangerAreaShader(true);
+    }
+
+    private void Update()
+    {
+            
     }
 
     public void SetDangerAreaShader(bool value)
     {
         if (value)
         {
-            var a = _rendererData.rendererFeatures;
+            _rendererData.rendererFeatures.Add(distortionShader);
+        }
+        else
+        {
+            _rendererData.rendererFeatures.Clear();
         }
         
     }
