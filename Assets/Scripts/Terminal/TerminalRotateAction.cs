@@ -7,6 +7,7 @@ public class TerminalRotateAction : MonoBehaviour, ITerminalEvent
 {
     [SerializeField] List <float> targetAngles;
     [SerializeField] float duration;
+    [SerializeField] AK.Wwise.Event actionAKEvent;
 
     int index;
     Sequence sequence;
@@ -35,6 +36,8 @@ public class TerminalRotateAction : MonoBehaviour, ITerminalEvent
             sequence.Kill();
 
         BeforeSequence(player);
+
+        actionAKEvent?.Post(gameObject);
 
         sequence = DOTween.Sequence();
         sequence.Append( transform.DORotate(targetAngles[index] * Vector3.forward, duration, RotateMode.FastBeyond360) );
