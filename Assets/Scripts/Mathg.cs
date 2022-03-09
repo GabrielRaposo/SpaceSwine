@@ -36,4 +36,21 @@ public static class Mathg
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
     
+    public static Vector2 Remap(this Vector2 value, Vector2 from1, Vector2 to1, Vector2 from2, Vector2 to2)
+    {
+        float x = value.x.Remap(from1.x, to1.x, from2.x, to2.x);
+        float y = value.y.Remap(from1.y, to1.y, from2.y, to2.y);
+    
+        return new Vector2(x, y);
+    }
+    
+    public static Vector3 Remap(this Vector3 value, Vector3 from1, Vector3 to1, Vector3 from2, Vector3 to2)
+    {
+        float x = value.x.Remap(from1.x, to1.x, from2.x, to2.x);
+        float y = value.y.Remap(from1.y, to1.y, from2.y, to2.y);
+        float z = value.z.Remap(from1.z, to1.z, from2.z, to2.z);
+    
+        return new Vector3(x, y, z);
+    }
+    
 }

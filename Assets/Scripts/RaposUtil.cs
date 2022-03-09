@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -55,6 +56,15 @@ public static class Vector2Extension
     public static Vector2 SetX (this Vector2 v, float x)
     {
         return new Vector2 (x, v.y);        
+    }
+}
+
+public static class ShaderExtensions
+{
+    public static Tween DOFloat(this Material m, string code, float to, float duration)
+    {
+        Tween t = DOTween.To(() => m.GetFloat(code), x => m.SetFloat(code, x), to, duration);
+        return t;
     }
 }
 
