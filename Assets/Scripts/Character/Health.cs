@@ -45,6 +45,14 @@ public class Health : MonoBehaviour
     {
         deathAKEvent?.Post(gameObject);
         gameObject.SetActive(false);
-        OnDeathEvent?.Invoke();
+
+        Vector2 pos = ((Vector2)transform.position).Remap(new Vector2(-10f, -6f), new Vector2(10f, 6f),
+            Vector2.zero, Vector2.one);
+
+            //Vector2 pos = new Vector2(0.5f, 0.5f);
+        
+        CameraShaderManager.Instance.StartDeathSentence(pos, OnDeathEvent);
+
+        //OnDeathEvent?.Invoke();
     }
 }

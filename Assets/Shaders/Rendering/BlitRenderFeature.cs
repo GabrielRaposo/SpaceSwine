@@ -2,6 +2,7 @@
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
+[CreateAssetMenu(fileName = "BlitRenderFeature", menuName = "ScriptableRendererFeature/Blit Render Feature")]
 public class BlitRenderFeature : ScriptableRendererFeature
 {
     class CustomRenderPass : ScriptableRenderPass
