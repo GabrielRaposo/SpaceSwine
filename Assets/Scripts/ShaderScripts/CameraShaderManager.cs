@@ -54,42 +54,66 @@ public class CameraShaderManager : MonoBehaviour
 
     private string m_spherePos = "_SpherePosition";
     private string m_sphereRadius = "_SphereRadius";
-    private string m_extraDisp = "_ExtraDisplacementDirection";
+    private string m_extraDispDir = "_ExtraDisplacementDirection";
+    private string m_extraDispVal = "_ExtraDisplacement";
     private string m_borderRatio = "_BorderRatio";
-
+    
     private float initBorderRatio;
+    private float initExtraDisp;
     
     private void ResetDangerSceneMaterial()
     {
         dangerSceneMat.SetFloat(m_sphereRadius, 0f);
         dangerSceneMat.SetFloat(m_borderRatio, initBorderRatio);
+        dangerSceneMat.SetFloat(m_extraDispVal, initExtraDisp);
     }
     
     private void SetDangerSceneValues()
     {
         initBorderRatio = dangerSceneMat.GetFloat(m_borderRatio);
+        initExtraDisp = dangerSceneMat.GetFloat(m_extraDispVal);
     }
     
     public void StartDeathSentence(Vector2 position, UnityAction OnCompleteAnimation)
     {
         //_ExtraDisplacementDirection rodando
 
-        Sequence s = DOTween.Sequence();
+        Sequence mainSequence = DOTween.Sequence();
         
         dangerSceneMat.SetVector(m_spherePos, position);
         
-        var sphereT = dangerSceneMat.DOFloat(m_sphereRadius, 0.3f,0.8f).SetEase(Ease.OutBounce);
+        //var sphereTGrow = dangerSceneMat.DOFloat(m_sphereRadius, 0.3f,0.7f).SetEase(Ease.OutBounce);
+        //var sphereTShrink = mainSequence.Append(dangerSceneMat.DOFloat(m_sphereRadius, 0.0f, 0.2f));
 
-        s.Join(sphereT);
+        //Sequence sphereSequence = DOTween.Sequence();
 
-        s.Join(dangerSceneMat.DOFloat(m_borderRatio, initBorderRatio * 10f, 0.4f)).SetEase(Ease.Flash);
+        //sphereSequence.Append(sphereTGrow);
+        //sphereSequence.Append(sphereTShrink);
+        
+        //mainSequence.Join(sphereSequence);
 
-        s.OnComplete(() =>
+        mainSequence.Join(dangerSceneMat.DOFloat(m_extraDispVal, 2f, 0.05f));
+        
+        mainSequence.Join(dangerSceneMat.DOFloat(m_borderRatio, initBorderRatio * 8f, 0.05f));
+
+        //mainSequence.App
+        
+        mainSequence.Append(dangerSceneMat.DOFloat(m_borderRatio, initBorderRatio, 0.18f));
+        
+        mainSequence.Join(dangerSceneMat.DOFloat(m_extraDispVal, initExtraDisp, 0.18f));
+
+        mainSequence.OnComplete(() =>
         {
-            OnCompleteAnimation?.Invoke();
-            ResetDangerSceneMaterial();
+            StartCoroutine(ResetAfterScene(OnCompleteAnimation));
         });
 
+    }
+
+    private IEnumerator ResetAfterScene(UnityAction a)
+    {
+        yield return new WaitForSeconds(0.5f);
+        a?.Invoke();
+        ResetDangerSceneMaterial();
     }
 
 }
