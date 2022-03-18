@@ -13,8 +13,6 @@ public class CustomCameraSize : MonoBehaviour
 
     private void OnEnable() 
     {
-        return;
-
         if ((customSize == CAMERA_SIZE && CameraSizeController.Size == CAMERA_SIZE) || onCustomCamera)
             return;
 
@@ -27,8 +25,6 @@ public class CustomCameraSize : MonoBehaviour
 
     private void OnDisable() 
     {
-        return;
-
         if (!onCustomCamera)
             return;
 
@@ -38,8 +34,6 @@ public class CustomCameraSize : MonoBehaviour
 
     public void ForceCustomCamera()
     {
-        return;
-
         CameraSizeController.Size = customSize;
     }
 
