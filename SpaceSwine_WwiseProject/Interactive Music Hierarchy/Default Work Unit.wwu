@@ -258,37 +258,36 @@
 								</Entry>
 							</EntryList>
 						</MusicSwitchContainer>
-						<MusicSegment Name="Lofi 02_v2" ID="{F207C744-B45C-444F-8BB1-7FECF6774D51}" ShortID="181831098">
+						<MusicSegment Name="20220309 lofi 05" ID="{7D76FE0C-F3EE-4BBE-A5AA-7CE17622C93B}" ShortID="299413376">
 							<PropertyList>
-								<Property Name="EndPosition" Type="Real64" Value="124753.492063492"/>
-								<Property Name="Tempo" Type="Real64" Value="64"/>
+								<Property Name="EndPosition" Type="Real64" Value="123268.548752834"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<MusicTrack Name="Lofi 02_v2" ID="{57311D4F-F66C-4F2E-892A-F1BC643B0A1C}" ShortID="767290094">
+								<MusicTrack Name="20220309 lofi 05" ID="{C17CD59E-30F8-4F16-A4C7-1F529B73F286}" ShortID="825178448">
 									<ReferenceList>
 										<Reference Name="OutputBus">
 											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Lofi 02_v2" ID="{996F8B84-51BB-46C4-A2F0-02C6EFD0CA5C}">
+										<AudioFileSource Name="20220309 lofi 05" ID="{1FD238BB-77D3-4F9D-8B3D-D9AE44C9EF6B}">
 											<Language>SFX</Language>
-											<AudioFile>Lofi 02_v2.wav</AudioFile>
+											<AudioFile>20220309 lofi 05.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="659983745"/>
+												<MediaID ID="865905209"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<TransitionList>
-										<MusicTransition Name="Root" ID="{DD6E639D-FFA4-49AE-AB92-D840AA35A4A5}">
+										<MusicTransition Name="Root" ID="{56A43557-5C90-4459-89E0-6EEE31AF5E5F}">
 											<PropertyList>
 												<Property Name="IsFolder" Type="bool" Value="True"/>
 											</PropertyList>
@@ -299,18 +298,18 @@
 										<ObjectList Name="Sequences">
 											<Reference>
 												<Local>
-													<MusicTrackSequence Name="" ID="{923F7319-A3AE-4AD9-BE7D-BC9435774A9D}">
+													<MusicTrackSequence Name="" ID="{80ED97D9-AA02-4282-9FB6-620AD9EB24A5}">
 														<ObjectLists>
 															<ObjectList Name="Clips">
 																<Reference>
 																	<Local>
-																		<MusicClip Name="Lofi 02_v2" ID="{0181B63C-CBBC-40D9-9808-B9CCDF70CDEB}">
+																		<MusicClip Name="20220309 lofi 05" ID="{4D9C5B1B-47B5-4230-BF46-9DEAB1FE2CB8}">
 																			<PropertyList>
-																				<Property Name="EndTrimOffset" Type="Real64" Value="124753.492063492"/>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="123268.548752834"/>
 																				<Property Name="FadeInMode" Type="int16" Value="0"/>
 																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																			</PropertyList>
-																			<AudioSourceRef Name="Lofi 02_v2" ID="{996F8B84-51BB-46C4-A2F0-02C6EFD0CA5C}"/>
+																			<AudioSourceRef Name="20220309 lofi 05" ID="{1FD238BB-77D3-4F9D-8B3D-D9AE44C9EF6B}"/>
 																		</MusicClip>
 																	</Local>
 																</Reference>
@@ -327,15 +326,15 @@
 								<ObjectList Name="Cues">
 									<Reference>
 										<Local>
-											<MusicCue Name="Entry Cue" ID="{31820B21-4868-4BED-A647-3CE2A0D54A7B}"/>
+											<MusicCue Name="Entry Cue" ID="{63D8DE30-D195-4E21-A735-13729562A021}"/>
 										</Local>
 									</Reference>
 									<Reference>
 										<Local>
-											<MusicCue Name="Exit Cue" ID="{44EE2DE1-6C27-4ADA-AC66-23054A446856}">
+											<MusicCue Name="Exit Cue" ID="{56F13D3C-7D98-45D0-B414-A43053F48650}">
 												<PropertyList>
 													<Property Name="CueType" Type="int16" Value="1"/>
-													<Property Name="TimeMs" Type="Real64" Value="124753.492063492"/>
+													<Property Name="TimeMs" Type="Real64" Value="123268.548752834"/>
 												</PropertyList>
 											</MusicCue>
 										</Local>
