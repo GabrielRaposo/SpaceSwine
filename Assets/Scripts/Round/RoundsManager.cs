@@ -104,14 +104,16 @@ public class RoundsManager : MonoBehaviour
         currentIndex %= rounds.Count;
         for (int i = 0; i < rounds.Count; i++)
         {
-            int localIndex = i;
+            //int localIndex = i;
             //rounds[i].SetActivation(i == currentIndex);
             if (i != currentIndex)
                 rounds[i].SetActivation(false);
-            else
-                //StartCoroutine(RaposUtil.Wait(1, () => rounds[localIndex].SetActivation(true)));
-                rounds[localIndex].SetActivation(true);
+            //else
+            //    //StartCoroutine(RaposUtil.Wait(1, () => rounds[localIndex].SetActivation(true)));
+            //    rounds[localIndex].SetActivation(true);
         }
+
+        rounds[currentIndex].SetActivation(true);
     }
 
     public void NextRoundLogic()

@@ -29,6 +29,7 @@ public class CameraSizeController : MonoBehaviour
 
         set
         {
+            Debug.Log("Set " + value);
             if (Instance)
                 Instance.SetSizeLocal(value);
         }
