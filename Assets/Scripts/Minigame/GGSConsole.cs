@@ -44,13 +44,13 @@ namespace Minigame
         {
             playerInputActions = new PlayerInputActions();
 
-            playerInputActions.UI.Other.performed += (ctx) =>
+            playerInputActions.UI.Start.performed += (ctx) =>
             {
                 if (!TurnedOn)
                     return;
                 ToggleConsoleState();
             };
-            playerInputActions.UI.Other.Enable();
+            playerInputActions.UI.Start.Enable();
         }
 
         public void ToggleConsoleState()
@@ -91,7 +91,6 @@ namespace Minigame
 
         public void TurnConsoleOff()
         {
-            TurnedOn = false;
             splashScreen.SetVisibility(true);
             
             consoleAnchor.DOKill();
@@ -102,7 +101,8 @@ namespace Minigame
                 {
                     consoleAnchor.MoveY(y);    
                 }
-            ).SetEase(Ease.InCirc);
+            ).SetEase(Ease.InCirc)
+            .OnComplete( () => TurnedOn = false );
 
             UnloadMinigame();
         }
@@ -170,7 +170,7 @@ namespace Minigame
 
         private void OnDisable() 
         {
-            playerInputActions.UI.Other.Disable();
+            playerInputActions.UI.Start.Disable();
         }
     }
 }
