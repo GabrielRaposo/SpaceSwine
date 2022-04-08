@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
         Vector3 spawnPosition = spawnManager.GetSpawnPoint();
         playerObject.transform.position = spawnPosition;
-        Debug.Log("set spawnPosition: " + spawnPosition);
+        //Debug.Log("set spawnPosition: " + spawnPosition);
     }
 
     public static void GoToScene (BuildIndex buildIndex)

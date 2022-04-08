@@ -28,7 +28,7 @@ public class InteractablePortal : Interactable
             data.outroScene = (BuildIndex) SceneManager.GetActiveScene().buildIndex;
             data.OnSessionCompleted += () => 
             {
-                Debug.Log("Session Done! ");
+                //Debug.Log("Session Done! ");
                 SpawnManager.index = data.spawnIndex;
             };
             RoundsManager.SessionData = data;

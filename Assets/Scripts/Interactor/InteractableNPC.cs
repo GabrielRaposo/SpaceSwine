@@ -40,7 +40,7 @@ public class InteractableNPC : Interactable
             return;
 
         int previousIndex = data.Index;
-        Debug.Log("previousIndex: " + previousIndex);
+        //Debug.Log("previousIndex: " + previousIndex);
         data.MoveIndex(1);
 
         OnPreviousIndexReached?.Invoke(previousIndex, data);
