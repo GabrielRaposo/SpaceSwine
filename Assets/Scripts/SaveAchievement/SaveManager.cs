@@ -16,8 +16,8 @@ public class SaveManager : MonoBehaviour
 
     static SaveManager()
     {
-        Debug.Log("Save Manager Initiated!");
-        Debug.Log("Path: " + path);
+        //Debug.Log("Save Manager Initiated!");
+        //Debug.Log("Path: " + path);
 
         currentSave = new SaveFile();
         currentSave = Load();
@@ -41,7 +41,7 @@ public class SaveManager : MonoBehaviour
         
         if (File.Exists(path)) 
         {
-            Debug.Log("File found!");
+            //Debug.Log("File found!");
             FileStream file = File.OpenRead(path);
             BinaryFormatter bf = new BinaryFormatter();
             SaveFile loadedSaveFile = (SaveFile)bf.Deserialize(file);

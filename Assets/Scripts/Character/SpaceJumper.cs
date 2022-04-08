@@ -43,6 +43,9 @@ public class SpaceJumper : MonoBehaviour
         
         if (Time.timeScale != 0 && !flightLoopAKEvent.IsPlaying(gameObject))
             flightLoopAKEvent.Post(gameObject);
+
+        if (!platformerCharacter.enabled)
+            Debug.Log("rb.velocity: " + rb.velocity);
     }
 
     public void JumpInput()
@@ -50,10 +53,7 @@ public class SpaceJumper : MonoBehaviour
         if (!checkGround.OnGround)
             return;
 
-        SetLaunchState(true);
-
-        Vector2 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
-        rb.velocity = direction * speed;
+        LaunchIntoDirection(direction: RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z));
     }
 
     private void SetLaunchState (bool value)
