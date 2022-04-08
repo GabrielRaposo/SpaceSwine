@@ -59,6 +59,15 @@ public class PlayerCharacter : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void SetPhysicsBody (bool value)
+    {
+        Rigidbody2D rb2d = GetComponentInChildren<Rigidbody2D>();
+        BoxCollider2D coll = GetComponentInChildren<BoxCollider2D>();
+
+        coll.enabled = value;
+        rb2d.bodyType = value ? RigidbodyType2D.Dynamic : RigidbodyType2D.Static;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         if (!gameplayState || gameplayState.state != GameplayState.Danger)

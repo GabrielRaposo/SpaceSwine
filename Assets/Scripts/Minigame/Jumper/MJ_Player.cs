@@ -131,7 +131,7 @@ namespace Jumper
                         longFlightAKEvent.Stop(gameObject);
                     }
 
-                    if (hasMoved)
+                    if (hasMoved && gameObject) /* Verificação de object porque deu erro quando morreu no mesmo frame em que deu trigger */
                         StartCoroutine ( RaposUtil.Wait(1, () => landingEffect?.Play() ) );
 
                     rb.velocity = Vector2.zero;

@@ -17,10 +17,8 @@ public class InteractableGGSConsole : Interactable
     {
         base.Interaction(interactor);
 
-        Debug.Log("a");
         if (ggsConsole)
         {
-            Debug.Log("hi");
             ggsConsole.ToggleConsoleState();
         }
     }
