@@ -372,6 +372,12 @@ public class PlatformerCharacter : SidewaysCharacter
         }
     }
 
+    public void StandStillState()
+    {
+        playerAnimations.landedOnGround = true;
+        enabled = false;
+    }
+
     private void OnDrawGizmosSelected() 
     {
         if (Application.isPlaying)
