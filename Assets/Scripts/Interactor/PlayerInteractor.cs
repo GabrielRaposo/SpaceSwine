@@ -46,6 +46,7 @@ public class PlayerInteractor : MonoBehaviour
             return false;
 
         interactableList[0].Interaction(this);
+        platformerCharacter.KillInputs();
 
         return true;
     }
