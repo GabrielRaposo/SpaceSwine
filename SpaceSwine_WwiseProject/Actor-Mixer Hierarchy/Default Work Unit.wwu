@@ -639,6 +639,11 @@
 								<Sound Name="gameplay_buyk_voa" ID="{3B7AC84F-3FCD-4345-B2F0-3F0B9E0F0E3C}" ShortID="156564950">
 									<PropertyList>
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>4</Value>
+											</ValueList>
+										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -649,29 +654,57 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Garage Foley - 6" ID="{D7929823-02C2-4E55-A2F7-09467E35D766}">
+										<AudioFileSource Name="gameplay_buyk_voa_v3" ID="{5606B8B1-8044-4D5F-8FE7-787697DC626C}">
 											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="0.106247457913442"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.0486217180281855"/>
+												<Property Name="LoopBegin" Type="Real64" Value="0.467507713682776"/>
+												<Property Name="LoopEnd" Type="Real64" Value="2.00788839080912"/>
 												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimBegin" Type="Real64" Value="0.176478828398599"/>
-												<Property Name="TrimEnd" Type="Real64" Value="0.345738573193731"/>
 											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-												</Reference>
-											</ReferenceList>
 											<Language>SFX</Language>
-											<AudioFile>Garage Foley - 6 .wav</AudioFile>
+											<AudioFile>gameplay_buyk_voa_v3.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="380438304"/>
+												<MediaID ID="313936341"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="gameplay_buyk_voa_v4 sem oscilacao" ID="{29F5E63B-DC1F-40C7-9786-95C947F1CEC0}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="1.78800283119028"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>gameplay_buyk_voa_v4 sem oscilacao.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="537116161"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="gameplay_buyk_voa_v5 baixa oscilacao" ID="{A6AE0841-D027-4E7D-9A8F-4C2CB085CDF0}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.982229529576763"/>
+												<Property Name="LoopEnd" Type="Real64" Value="7.40265669851756"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>gameplay_buyk_voa_v5 baixa oscilacao.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="119934985"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="gameplay_buyk_voa_v6 mais oscilacao" ID="{315F60AF-1A78-427C-BCD5-E5211D58961F}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="1.32065055176038"/>
+												<Property Name="LoopEnd" Type="Real64" Value="3.65178620223707"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>gameplay_buyk_voa_v6 mais oscilacao.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1023648897"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="Garage Foley - 6" ID="{D7929823-02C2-4E55-A2F7-09467E35D766}" Platform="Linked"/>
+										<ActiveSource Name="gameplay_buyk_voa_v6 mais oscilacao" ID="{315F60AF-1A78-427C-BCD5-E5211D58961F}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
