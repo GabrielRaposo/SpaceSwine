@@ -41,7 +41,7 @@ public class CameraShaderManager : MonoBehaviour
 
     public void SetDangerAreaShader(bool value)
     {
-        Debug.Log($"SetDangerAreaShader {value}");
+        //Debug.Log($"SetDangerAreaShader {value}");
         if (value)
         {
             _cameraData.SetRenderer(1);

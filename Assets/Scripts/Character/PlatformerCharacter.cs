@@ -354,7 +354,7 @@ public class PlatformerCharacter : SidewaysCharacter
             if (!planetPlatform)
                 return;
 
-            Debug.Log("planetPlatform: " + planetPlatform);
+            //Debug.Log("planetPlatform: " + planetPlatform);
             float planetBorderX = planetPlatform.GetColliderSize().x - .3f;
 
             // Faz o snap to platform
