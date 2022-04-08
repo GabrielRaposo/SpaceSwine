@@ -43,9 +43,6 @@ public class SpaceJumper : MonoBehaviour
         
         if (Time.timeScale != 0 && !flightLoopAKEvent.IsPlaying(gameObject))
             flightLoopAKEvent.Post(gameObject);
-
-        if (!platformerCharacter.enabled)
-            Debug.Log("rb.velocity: " + rb.velocity);
     }
 
     public void JumpInput()

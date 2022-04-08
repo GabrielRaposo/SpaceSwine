@@ -34,7 +34,7 @@ public class NPCData : ScriptableObject, ISerializationCallbackReceiver
 
     public DialogueGroup GetAtIndex()
     {
-        Debug.Log("get at index: " + accessIndex);
+        //Debug.Log("get at index: " + accessIndex);
         return this[accessIndex];
     }
 
