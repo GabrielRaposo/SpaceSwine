@@ -14,6 +14,8 @@ public class PlatformerCharacter : SidewaysCharacter
 
     [Header("References")]
     [SerializeField] Transform visualAnchor;
+    [SerializeField] ParticleSystem walkVFX;
+    [SerializeField] ParticleSystem shortLandingVFX;
     [SerializeField] AK.Wwise.Event walkAKEvent;
     [SerializeField] AK.Wwise.Event shortHopAKEvent;
     [SerializeField] AK.Wwise.Event shortLandingAKEvent;
@@ -133,6 +135,8 @@ public class PlatformerCharacter : SidewaysCharacter
         LedgeLogic();
         UseCustomGravity();
 
+        EffectsSpawn();
+
         if (AllignFallDirectionWithGravity())
             return;
 
@@ -147,8 +151,11 @@ public class PlatformerCharacter : SidewaysCharacter
         
         if (onGround && verticalSpeed <= .1f)
         {
-            if (!previousState)
+            if (!previousState) 
+            { 
                 shortLandingAKEvent?.Post(gameObject);
+                shortLandingVFX?.Play();
+            }
             playerAnimations.SetLandedState();
         }
 
@@ -378,6 +385,19 @@ public class PlatformerCharacter : SidewaysCharacter
         enabled = false;
     }
 
+    private void EffectsSpawn()
+    {
+        if (!walkVFX)
+            return;
+
+        if (playerAnimations.landedOnGround && horizontalSpeed != 0)
+        {
+            if (!walkVFX.isPlaying)
+                walkVFX.Play();
+        }
+        else walkVFX.Stop();
+    }
+
     private void OnDrawGizmosSelected() 
     {
         if (Application.isPlaying)
@@ -408,5 +428,10 @@ public class PlatformerCharacter : SidewaysCharacter
             orientation: Quaternion.Euler(Vector3.forward * transform.eulerAngles.z),
             Color.yellow
         );
+    }
+
+    private void OnDisable() 
+    {
+        walkVFX?.Stop();    
     }
 }
