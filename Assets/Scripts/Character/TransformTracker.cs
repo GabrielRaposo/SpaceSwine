@@ -8,6 +8,7 @@ public class TransformTracker : MonoBehaviour
     [SerializeField] bool onlyOnChange;
 
     List<Vector2> positions;
+    Vector2 previousPos = Vector2.zero;
 
     void Start()
     {
@@ -16,8 +17,12 @@ public class TransformTracker : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (onlyOnChange && !transform.hasChanged)
-            return;
+        if (onlyOnChange) 
+        {
+            if (transform.position == (Vector3) previousPos)
+                return;
+            previousPos = transform.position;
+        }
 
         positions.Add(transform.position);
         if (positions.Count > max)

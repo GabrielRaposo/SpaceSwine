@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectablesQueue : MonoBehaviour
 {
-    const int MAX_QUANT = 7;
+    const int MAX_QUANT = 4;
 
     [SerializeField] GameObject itemPrefab; 
     [SerializeField] TransformTracker tracker;
@@ -44,18 +44,36 @@ public class CollectablesQueue : MonoBehaviour
 
         queue.Add(queueItem);
 
-        float fractionStep = queue.Count / 2f;
-        if (queue.Count > 0)
-        {
-            fractionStep = 1f / (MAX_QUANT + 1);
-        }
+        queueItem.Initiate(collectable);
 
-        float trackPercent = (queue.Count + 1) * fractionStep;
-        Debug.Log("trackPercent: " + trackPercent);
+        //float fractionStep = queue.Count / 2f;
+        //if (queue.Count > 0)
+        //{
+        //    fractionStep = 1f / (MAX_QUANT + 1);
+        //}
 
-        queueItem.Initiate(collectable, tracker, 1f - trackPercent);
+        //float trackPercent = (queue.Count + 1) * fractionStep;
+        //Debug.Log("trackPercent: " + trackPercent);
+        //queueItem.SetTracker(tracker, 1f - trackPercent);
+
+        UpdateTrackPercents();
 
         return true;
+    }
+
+    private void UpdateTrackPercents()
+    {
+        if (queue.Count < 1)
+            return;
+
+        for (int i = 0; i < queue.Count; i++)
+        {
+            float fractionStep = fractionStep = 1f / (MAX_QUANT + 1);
+            float trackPercent = (i + 1) * fractionStep;
+
+            //Debug.Log("trackPercent: " + trackPercent);
+            queue[i].SetTracker(tracker, 1f - trackPercent);
+        }
     }
 
     public Collectable GetFromQueue()
@@ -71,6 +89,8 @@ public class CollectablesQueue : MonoBehaviour
         // Manda o gameObject pro final da lista
         objectList.Remove(queueItem.gameObject);
         objectList.Add(queueItem.gameObject);
+
+        UpdateTrackPercents();
 
         return collectable;
 

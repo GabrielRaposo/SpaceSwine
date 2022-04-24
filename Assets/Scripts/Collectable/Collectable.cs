@@ -22,6 +22,7 @@ public class Collectable : MonoBehaviour
     {
         gameObject.SetActive(true);
         SetInteractable(true);
+        UpdateSortingLayer(true);
         previousHolder = null;
     }
 
@@ -56,5 +57,12 @@ public class Collectable : MonoBehaviour
         Collider2D coll = GetComponent<Collider2D>();
         if (coll)
             coll.enabled = value;
+    }
+
+    public virtual void UpdateSortingLayer(bool value)
+    {
+        SpriteRenderer renderer = GetComponentInChildren<SpriteRenderer>();
+        if (renderer)
+            renderer.sortingLayerName = (value ? "Item" : "Default");
     }
 }
