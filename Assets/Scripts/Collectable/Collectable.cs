@@ -21,6 +21,7 @@ public class Collectable : MonoBehaviour
     public virtual void OnResetFunction()
     {
         gameObject.SetActive(true);
+        SetInteractable(true);
         previousHolder = null;
     }
 
@@ -48,5 +49,12 @@ public class Collectable : MonoBehaviour
 
             return;
         }
+    }
+
+    public virtual void SetInteractable(bool value)
+    {
+        Collider2D coll = GetComponent<Collider2D>();
+        if (coll)
+            coll.enabled = value;
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimations))]
 public class CollectableInteraction : MonoBehaviour
 {
+    [SerializeField] CollectablesQueue collectablesQueue;
     [SerializeField] float launchSpeed;
     [SerializeField] Transform holdAnchor;
     [SerializeField] PlayerDirectionDisplay directionDisplay; 
@@ -41,12 +42,19 @@ public class CollectableInteraction : MonoBehaviour
             return;
 
         current.Interact(this);
+
+        if (current == null)
+        {
+            current = collectablesQueue.GetFromQueue();
+            if (current != null)
+                SetCurrentCollectable(current);
+        }
     }
 
     public bool SetCurrentCollectable (Collectable collectable)
     {
-        if (current)
-            return false;
+        if (current && current != collectable)
+            return QueueInteraction(collectable);
 
         playerAnimations.holding = true;
 
@@ -68,6 +76,14 @@ public class CollectableInteraction : MonoBehaviour
 
         current = collectable;
         return true;
+    }
+
+    public bool QueueInteraction(Collectable collectable)
+    {
+        if (!collectablesQueue)
+            return false;
+
+        return collectablesQueue.AddToQueue(collectable);
     }
 
     public bool LaunchInput()
@@ -121,7 +137,7 @@ public class CollectableInteraction : MonoBehaviour
         return true;
     }
 
-    public Collectable CollectWhileHolding()
+    public Collectable UseCollectableWhileHolding()
     {
         if (current == null) return null;
         
