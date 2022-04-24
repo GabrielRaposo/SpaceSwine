@@ -5014,6 +5014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 1287844559559302446}
+  tracker: {fileID: 1858426351066712083}
 --- !u!1 &4147405329449145445
 GameObject:
   m_ObjectHideFlags: 0
@@ -5081,6 +5082,7 @@ GameObject:
   - component: {fileID: 5639081803221880881}
   - component: {fileID: 1254165773586094445}
   - component: {fileID: 8208643761033348304}
+  - component: {fileID: 1858426351066712083}
   - component: {fileID: 5639081803221880845}
   - component: {fileID: 5639081803221880886}
   - component: {fileID: 5639081803221880844}
@@ -5385,6 +5387,20 @@ MonoBehaviour:
   holding: 0
   horizontalInput: 0
   verticalSpeed: 0
+--- !u!114 &1858426351066712083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5639081803221880847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b951594e13104f439c6e27775941cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max: 600
+  onlyOnChange: 1
 --- !u!70 &5639081803221880845
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

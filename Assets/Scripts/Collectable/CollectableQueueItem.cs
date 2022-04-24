@@ -5,11 +5,14 @@ using UnityEngine;
 public class CollectableQueueItem : MonoBehaviour
 {
     Collectable collectable;
-    Transform targetToFollow;
+    TransformTracker tracker;
+    float trackPercent;
 
-    public void Initiate (Collectable collectable)
+    public void Initiate (Collectable collectable, TransformTracker tracker, float trackPercent)
     {
         this.collectable = collectable;
+        this.tracker = tracker;
+        this.trackPercent = trackPercent;
 
         collectable.SetInteractable(false);
         collectable.transform.SetParent(transform);
@@ -21,11 +24,21 @@ public class CollectableQueueItem : MonoBehaviour
 
     public Collectable Use()
     {
+        tracker = null;
+
         if (!collectable)
             return null;
 
         gameObject.SetActive(false);
 
         return collectable;
-    } 
+    }
+
+    private void FixedUpdate() 
+    {
+        if (!tracker)
+            return;
+
+        transform.position = tracker.GetPositionAtPercent(trackPercent);
+    }
 }

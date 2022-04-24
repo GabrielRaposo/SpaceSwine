@@ -7,6 +7,7 @@ public class CollectablesQueue : MonoBehaviour
     const int MAX_QUANT = 7;
 
     [SerializeField] GameObject itemPrefab; 
+    [SerializeField] TransformTracker tracker;
 
     List<CollectableQueueItem> queue;
     List<GameObject> objectList; 
@@ -41,8 +42,18 @@ public class CollectablesQueue : MonoBehaviour
         if (!queueItem)
             return false;
 
-        queueItem.Initiate(collectable);
         queue.Add(queueItem);
+
+        float fractionStep = queue.Count / 2f;
+        if (queue.Count > 0)
+        {
+            fractionStep = 1f / (MAX_QUANT + 1);
+        }
+
+        float trackPercent = (queue.Count + 1) * fractionStep;
+        Debug.Log("trackPercent: " + trackPercent);
+
+        queueItem.Initiate(collectable, tracker, 1f - trackPercent);
 
         return true;
     }
