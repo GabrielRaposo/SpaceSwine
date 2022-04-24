@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollectableQueueItem : MonoBehaviour
 {
     Collectable collectable;
+    Transform targetToFollow;
 
     public void Initiate (Collectable collectable)
     {

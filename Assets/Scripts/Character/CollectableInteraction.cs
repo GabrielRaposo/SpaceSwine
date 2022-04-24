@@ -189,8 +189,9 @@ public class CollectableInteraction : MonoBehaviour
 
             current = null;
         }
+        
+        collectablesQueue.ResetStates();
 
-        // current = null;
         playerAnimations.holding = false;
     }
 }

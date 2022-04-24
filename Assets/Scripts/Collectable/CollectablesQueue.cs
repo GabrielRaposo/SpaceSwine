@@ -65,4 +65,9 @@ public class CollectablesQueue : MonoBehaviour
 
         // SetInteractable(true);
     }
+
+    public void ResetStates()
+    {
+        queue = new List<CollectableQueueItem>();
+    }
 }
