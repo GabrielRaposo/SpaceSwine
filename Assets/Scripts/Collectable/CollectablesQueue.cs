@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectablesQueue : MonoBehaviour
 {
-    const int MAX_QUANT = 4;
+    const int MAX_QUANT = 7;
 
     [SerializeField] GameObject itemPrefab; 
     [SerializeField] TransformTracker tracker;
@@ -27,6 +27,8 @@ public class CollectablesQueue : MonoBehaviour
         }
 
         itemPrefab.SetActive(false);
+
+        transform.SetParent(null);
     }
 
     public bool AddToQueue (Collectable collectable)
@@ -47,8 +49,7 @@ public class CollectablesQueue : MonoBehaviour
         queueItem.Initiate(collectable);
 
         //float fractionStep = queue.Count / 2f;
-        //if (queue.Count > 0)
-        //{
+        //if (queue.Count > 0) {
         //    fractionStep = 1f / (MAX_QUANT + 1);
         //}
 
@@ -68,12 +69,18 @@ public class CollectablesQueue : MonoBehaviour
 
         for (int i = 0; i < queue.Count; i++)
         {
-            float fractionStep = fractionStep = 1f / (MAX_QUANT + 1);
-            float trackPercent = (i + 1) * fractionStep;
-
-            //Debug.Log("trackPercent: " + trackPercent);
-            queue[i].SetTracker(tracker, 1f - trackPercent);
+            int local = i;
+            UpdateSinglePercent(i);
         }
+    }
+
+    private void UpdateSinglePercent(int i)
+    {
+        float fractionStep = fractionStep = 1f / (MAX_QUANT + 1);
+        float trackPercent = (i + 1) * fractionStep;
+
+        //Debug.Log("trackPercent: " + trackPercent);
+        queue[i].SetTracker(tracker, 1f - trackPercent);
     }
 
     public Collectable GetFromQueue()
