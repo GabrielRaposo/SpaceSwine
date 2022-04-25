@@ -48,15 +48,6 @@ public class CollectablesQueue : MonoBehaviour
 
         queueItem.Initiate(collectable);
 
-        //float fractionStep = queue.Count / 2f;
-        //if (queue.Count > 0) {
-        //    fractionStep = 1f / (MAX_QUANT + 1);
-        //}
-
-        //float trackPercent = (queue.Count + 1) * fractionStep;
-        //Debug.Log("trackPercent: " + trackPercent);
-        //queueItem.SetTracker(tracker, 1f - trackPercent);
-
         UpdateTrackPercents();
 
         return true;
@@ -107,5 +98,10 @@ public class CollectablesQueue : MonoBehaviour
     public void ResetStates()
     {
         queue = new List<CollectableQueueItem>();
+
+        foreach(GameObject go in objectList)
+        {
+            go.SetActive(false);
+        }
     }
 }

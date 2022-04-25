@@ -108,9 +108,9 @@ public class CollectableInteraction : MonoBehaviour
 
             Vector2 direction = (arrowSprite.transform.position - transform.position).normalized;
 
-            LaunchCurrentIntoDirection(direction.normalized);
-            
             spaceJumper.LaunchIntoDirection(-direction.normalized);
+            
+            LaunchCurrentIntoDirection(direction.normalized);
         }
 
         return true;

@@ -9,7 +9,7 @@ public class CollectableQueueItem : MonoBehaviour
     float trackPercent;
 
     Vector2 transitionStart;
-    float transitionDuration = .2f;
+    float transitionDuration = .3f;
     float t;
     bool onTransition;
 
@@ -28,6 +28,9 @@ public class CollectableQueueItem : MonoBehaviour
         
         collectable.gameObject.SetActive(true);
 
+        tracker = null;
+        trackPercent = 0;
+
         gameObject.SetActive(true);
     }
 
@@ -39,7 +42,8 @@ public class CollectableQueueItem : MonoBehaviour
         this.tracker = tracker;
         this.trackPercent = trackPercent;
 
-        if (Vector3.Distance (transform.position, tracker.GetPositionAtPercent(trackPercent)) > .1f)
+        (Vector3 Position, float Angle) data = tracker.GetDataAtPercent(trackPercent);
+        if (Vector3.Distance (transform.position, data.Position) > .1f)
         {
             t = 0;
             transitionStart = transform.position;
@@ -65,9 +69,11 @@ public class CollectableQueueItem : MonoBehaviour
         if (!tracker)
             return;
 
+        (Vector3 Position, float Angle) data = tracker.GetDataAtPercent(trackPercent);
+
         if (onTransition)
         {
-            transform.position = Vector3.Lerp(transitionStart, tracker.GetPositionAtPercent(trackPercent), t / transitionDuration);
+            transform.position = Vector3.Lerp(transitionStart, data.Position, t / transitionDuration);
             
             if (t >= transitionDuration)
                 onTransition = false;
@@ -80,13 +86,7 @@ public class CollectableQueueItem : MonoBehaviour
             return;
         previousPos = tracker.transform.position;
 
-        transform.position = tracker.GetPositionAtPercent(trackPercent);
-        transform.eulerAngles = Vector2.zero;
-    }
-
-    private void OnDisable() 
-    {
-        tracker = null;
-        trackPercent = 0;
+        transform.position = data.Position;
+        //transform.eulerAngles = data.Angle * Vector3.forward;
     }
 }
