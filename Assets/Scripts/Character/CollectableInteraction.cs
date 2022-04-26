@@ -44,11 +44,14 @@ public class CollectableInteraction : MonoBehaviour
         current.Interact(this);
 
         if (current == null)
-        {
-            current = collectablesQueue.GetFromQueue();
-            if (current != null)
-                SetCurrentCollectable(current);
-        }
+            GetFromQueue();
+    }
+
+    private void GetFromQueue()
+    {
+        current = collectablesQueue.GetFromQueue();
+        if (current != null)
+            SetCurrentCollectable(current);
     }
 
     public bool SetCurrentCollectable (Collectable collectable)
@@ -143,6 +146,9 @@ public class CollectableInteraction : MonoBehaviour
         
         Collectable c = current;
         RemoveCollectable();
+
+        GetFromQueue();
+
         return c;
     }
 

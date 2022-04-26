@@ -33,9 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 349535262282980623}
-  - {fileID: 3316349052985090972}
   - {fileID: 5389647076832484800}
-  - {fileID: 1527296725486894464}
   - {fileID: 2260735053213437051}
   - {fileID: 6561586655194660874}
   m_Father: {fileID: 0}
@@ -90,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b155da20e4d02e41af907f431790616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingHealth: 1
   visualComponent: {fileID: 349535262282980622}
   particles: {fileID: 2760914174616625990}
   col: {fileID: 349535262006152148}
@@ -5007,7 +5006,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.355127, y: 1.355127, z: 1.355127}
-  m_Children: []
+  m_Children:
+  - {fileID: 3316349052985090972}
+  - {fileID: 1527296725486894464}
   m_Father: {fileID: 349535262006152150}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5073,7 +5074,7 @@ GameObject:
   - component: {fileID: 3316349052985090972}
   - component: {fileID: 1350523527353529346}
   m_Layer: 11
-  m_Name: Visual Component (1)
+  m_Name: Cicle Shape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5087,11 +5088,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856219671506054646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.000000059605, z: 0}
-  m_LocalScale: {x: 0.6284306, y: 0.6284306, z: 0.6284306}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.46374297, y: 0.46374297, z: 0.46374297}
   m_Children: []
-  m_Father: {fileID: 349535262006152150}
-  m_RootOrder: 1
+  m_Father: {fileID: 349535262282980623}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1350523527353529346
 SpriteRenderer:
@@ -5174,7 +5175,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 349535262006152150}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &5350282944830365523
 CircleCollider2D:
@@ -5237,7 +5238,7 @@ Transform:
   - {fileID: 349535262182479141}
   - {fileID: 5448637253921595012}
   m_Father: {fileID: 349535262006152150}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &9184513729948099256
 ParticleSystem:
@@ -10049,7 +10050,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 349535262006152150}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &6300792206531495416
 CircleCollider2D:
@@ -10107,10 +10108,10 @@ Transform:
   m_GameObject: {fileID: 6525288006976937049}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.7, y: 2.7, z: 2.7}
+  m_LocalScale: {x: 1.9924332, y: 1.9924332, z: 1.9924332}
   m_Children: []
-  m_Father: {fileID: 349535262006152150}
-  m_RootOrder: 3
+  m_Father: {fileID: 349535262282980623}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6446463147646808581
 SpriteRenderer:

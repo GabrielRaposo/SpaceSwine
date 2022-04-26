@@ -90,6 +90,5 @@ public class CollectableThrowable : Collectable
     {
         gameObject.SetActive(false);
         Instantiate(destroyParticles, transform.position, quaternion.identity);
-
     }
 }
