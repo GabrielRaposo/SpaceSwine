@@ -24,15 +24,17 @@ public class TerminalLock : Lock
             
     }
 
-    public override void Collect(Collectable collectable)
+    public override bool Collect(Collectable collectable)
     {
         base.Collect(collectable);
         
-        if(terminalEvent == null) return;
+        if (terminalEvent == null) return true;
 
         for (int i = 0; i < terminalEvent.Count; i++)
         {
             terminalEvent[i].Activate(null,null);
         }
+
+        return true;
     }
 }

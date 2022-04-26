@@ -41,8 +41,11 @@ public class Lock : MonoBehaviour
         _round.OnReset += OnReset;
     }
 
-    public virtual void Collect (Collectable collectable)
+    public virtual bool Collect (Collectable collectable)
     {
+        if (lockGravityField.CapturedCollectable != collectable && lockGravityField.CapturedCollectable != null)
+            return false;
+
         collectAKEvent?.Post(gameObject);
         collectable.gameObject.SetActive(false);
         
@@ -54,6 +57,8 @@ public class Lock : MonoBehaviour
             if(_door)
                 _door.TakeHealth();
         }
+
+        return true;
     }
     
     public void Unlock()

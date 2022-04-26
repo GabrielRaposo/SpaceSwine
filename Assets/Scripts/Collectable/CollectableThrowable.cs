@@ -60,18 +60,19 @@ public class CollectableThrowable : Collectable
         Lock l = collision.GetComponent<Lock>();
         if (l)
         {
-            l.Collect(this);
-            return;
+            if (l.Collect(this))
+                return;
         }
         
-        if(indestructible) return;
+        if (indestructible) return;
         
         base.TriggerEvent(collision);
 
         LockGravityField lgf = collision.GetComponent<LockGravityField>();
         if (lgf)
         {
-            lgf.GetCollectable(this);
+            if (lgf.GetCollectable(this))
+                return;
         }
 
         Hitbox hb = collision.GetComponent<Hitbox>();
