@@ -30,10 +30,10 @@ public class FloatEffect : MonoBehaviour
     {
         direction = Vector2.up;
 
-        if (queued)
-            AllignWithParent();
-        else if (allignWithPlanet)
-            AllignWithGravity();
+        //if (allignWithPlanet)
+        //    AllignWithGravity();
+        //else if (queued)
+        //    AllignWithParent();
 
         UpdateAnchorPoints();
 
@@ -49,6 +49,8 @@ public class FloatEffect : MonoBehaviour
 
     public void LineUp()
     {
+        return;
+
         queued = true;
         TurnOn();
     }
@@ -57,15 +59,15 @@ public class FloatEffect : MonoBehaviour
     {
         if (Time.timeScale < .1f || !moving) return;
 
-        if (queued)
-            AllignWithParent();
-        else if (allignWithPlanet)
-            AllignWithGravity();
+        //if (allignWithPlanet)
+        //    AllignWithGravity();
+        //else if (queued)
+        //    AllignWithParent();
 
         Vector2 lerpedPos = Vector2.Lerp(A, B, t / duration);
         lerpedPos *= curve.Evaluate(t / duration);
 
-        transform.position = transform.parent.position + (Vector3)lerpedPos;
+        transform.localPosition = lerpedPos;
 
         t += Time.deltaTime;
         if (t >= duration)

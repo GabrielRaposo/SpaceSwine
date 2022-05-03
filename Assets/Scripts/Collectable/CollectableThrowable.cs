@@ -29,6 +29,8 @@ public class CollectableThrowable : Collectable
         FloatEffect floatEffect = GetComponentInChildren<FloatEffect>();
         if (floatEffect)
             floatEffect.enabled = true;
+
+        visualComponent.transform.localEulerAngles = Vector3.zero;
     }
 
     public override void Interact (CollectableInteraction interactor) 
