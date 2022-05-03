@@ -7,6 +7,7 @@ public class TransformTracker : MonoBehaviour
     [SerializeField] int max;
     [SerializeField] bool onlyOnChange;
     [SerializeField] Vector3 offset;
+    [SerializeField] float minDistance;
 
     List<Vector2> positions;
     List<float> rotations;
@@ -22,7 +23,8 @@ public class TransformTracker : MonoBehaviour
     {
         if (onlyOnChange) 
         {
-            if (GetAnchoredPosition() == (Vector3) previousPos)
+            //if (GetAnchoredPosition() == (Vector3) previousPos)
+            if (Vector3.Distance(GetAnchoredPosition(), previousPos) < minDistance)
                 return;
             previousPos = GetAnchoredPosition();
         }
