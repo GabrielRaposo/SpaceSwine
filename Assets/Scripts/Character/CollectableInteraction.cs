@@ -95,8 +95,11 @@ public class CollectableInteraction : MonoBehaviour
             hierarchyController.SetParent(t);
         
         collectable.transform.position = t.position;
-        
         collectable.transform.localRotation = Quaternion.identity;
+
+        FloatEffect floatEffect = collectable.GetComponentInChildren<FloatEffect>();
+        if (floatEffect)
+            floatEffect.enabled = false;
 
         onCollectEffect?.Play();
         current = collectable;

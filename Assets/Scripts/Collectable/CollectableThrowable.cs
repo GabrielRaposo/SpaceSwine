@@ -12,8 +12,6 @@ public class CollectableThrowable : Collectable
     private IEnumerator rotationRoutine;
 
     private bool indestructible;
-
-    
     
     public override void OnResetFunction() 
     {
@@ -27,6 +25,10 @@ public class CollectableThrowable : Collectable
         Collider2D collider2D = GetComponent<Collider2D>();
         if (collider2D)
             collider2D.enabled = true;
+
+        FloatEffect floatEffect = GetComponentInChildren<FloatEffect>();
+        if (floatEffect)
+            floatEffect.enabled = true;
     }
 
     public override void Interact (CollectableInteraction interactor) 

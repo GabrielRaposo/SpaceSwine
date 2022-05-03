@@ -26,6 +26,10 @@ public class CollectableQueueItem : MonoBehaviour
         collectable.transform.SetParent(transform);
         collectable.transform.localEulerAngles = Vector3.zero;
         
+        FloatEffect floatEffect = collectable.GetComponentInChildren<FloatEffect>();
+        if (floatEffect)
+            floatEffect.LineUp();
+
         collectable.gameObject.SetActive(true);
 
         tracker = null;
