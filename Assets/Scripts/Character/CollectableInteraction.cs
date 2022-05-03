@@ -9,10 +9,13 @@ public class CollectableInteraction : MonoBehaviour
 {
     [SerializeField] CollectablesQueue collectablesQueue;
     [SerializeField] float launchSpeed;
+    [SerializeField] float cooldownDuration;
     [SerializeField] Transform holdAnchor;
     [SerializeField] PlayerDirectionDisplay directionDisplay; 
     [SerializeField] Transform arrowSprite;
+    [SerializeField] ParticleSystem onCollectEffect;
 
+    float cooldownCount;
     Vector2 axisInput;
     Collectable current;
 
@@ -25,6 +28,18 @@ public class CollectableInteraction : MonoBehaviour
         checkGround = GetComponent<CheckGround>();
         spaceJumper = GetComponent<SpaceJumper>();
         playerAnimations = GetComponent<PlayerAnimations>();
+    }
+
+    private void FixedUpdate() 
+    {
+        if (cooldownCount > 0)
+        {
+            cooldownCount -= Time.fixedDeltaTime;
+            return;
+        }
+    
+        if (current == null)
+            GetFromQueue();
     }
 
     public void AxisInput (Vector2 axisInput)
@@ -43,8 +58,14 @@ public class CollectableInteraction : MonoBehaviour
 
         current.Interact(this);
 
-        if (current == null)
-            GetFromQueue();
+        //if (current == null)
+            //GetFromQueue();
+        StartCooldownCount();
+    }
+
+    private void StartCooldownCount()
+    {
+        cooldownCount = cooldownDuration;
     }
 
     private void GetFromQueue()
@@ -57,7 +78,7 @@ public class CollectableInteraction : MonoBehaviour
     public bool SetCurrentCollectable (Collectable collectable)
     {
         if (current && current != collectable)
-            return QueueInteraction(collectable);
+            return AddToQueueInteraction(collectable);
 
         playerAnimations.holding = true;
 
@@ -77,11 +98,13 @@ public class CollectableInteraction : MonoBehaviour
         
         collectable.transform.localRotation = Quaternion.identity;
 
+        onCollectEffect?.Play();
         current = collectable;
+
         return true;
     }
 
-    public bool QueueInteraction(Collectable collectable)
+    public bool AddToQueueInteraction(Collectable collectable)
     {
         if (!collectablesQueue)
             return false;
@@ -147,7 +170,8 @@ public class CollectableInteraction : MonoBehaviour
         Collectable c = current;
         RemoveCollectable();
 
-        GetFromQueue();
+        //GetFromQueue();
+        StartCooldownCount();
 
         return c;
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectablesQueue : MonoBehaviour
 {
-    const int MAX_QUANT = 7;
+    const int MAX_QUANT = 3;
 
     [SerializeField] GameObject itemPrefab; 
     [SerializeField] TransformTracker tracker;
