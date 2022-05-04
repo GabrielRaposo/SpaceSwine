@@ -55,7 +55,7 @@ public class CollectablesQueue : MonoBehaviour
 
     private void UpdateTrackPercents()
     {
-        if (queue.Count < 1)
+        if (queue == null || queue.Count < 1)
             return;
 
         for (int i = 0; i < queue.Count; i++)
@@ -76,7 +76,7 @@ public class CollectablesQueue : MonoBehaviour
 
     public Collectable GetFromQueue()
     {
-        if (queue.Count < 1)
+        if (queue == null || queue.Count < 1)
             return null;
 
         CollectableQueueItem queueItem = queue[0];

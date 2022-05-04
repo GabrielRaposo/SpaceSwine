@@ -47,6 +47,9 @@ public class CollectableThrowable : Collectable
     {
         while (true)
         {
+            while (Time.timeScale < 1)
+                yield return new WaitForFixedUpdate();
+
             visualComponent.transform.Rotate(Vector3.forward, 7.5f);
             yield return null;
         }
@@ -89,11 +92,22 @@ public class CollectableThrowable : Collectable
             }
                 
         }
+
+        GravitationalBody gravitationalBody = collision.GetComponent<GravitationalBody>();
+        if (gravitationalBody)
+        {
+            ResetToCollectableState();
+        }
     }
 
     private void DestroyKey()
     {
         gameObject.SetActive(false);
         Instantiate(destroyParticles, transform.position, quaternion.identity);
+    }
+
+    private void ResetToCollectableState()
+    {
+
     }
 }
