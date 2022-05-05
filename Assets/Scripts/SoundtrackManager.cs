@@ -1,20 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using DG.Tweening;
 
 public class SoundtrackManager : MonoBehaviour
 {
     [SerializeField] bool play = true;
-    [SerializeField] AK.Wwise.Event stagePlaylist;
-    //[SerializeField] AK.Wwise.Event menuMusicEvent;
-    //[SerializeField] List <AK.Wwise.Event> stageSongsList;
+
+    [SerializeField] List<AK.Wwise.Event> randomPlaylist;
 
     [Header("Parameters")]
     [SerializeField] AK.Wwise.RTPC masterParameter;
     [SerializeField] AK.Wwise.RTPC musicParameter;
     [SerializeField] AK.Wwise.RTPC sfxParameter;
-    
+
+    [Header("Test Inputs")]
+    [SerializeField] InputAction playMusicTestInput;
+    [SerializeField] InputAction stopMusicTestInput;
     
     //public LocalGameplayState localGameplayState;
     //[SerializeField] AK.Wwise.Switch dangerSwitch;
@@ -26,6 +29,7 @@ public class SoundtrackManager : MonoBehaviour
     public static bool IsPlaying;
 
     GameplayState gameplayState;
+    int currentIndex = -1;
 
     private void Awake() 
     {
@@ -43,6 +47,12 @@ public class SoundtrackManager : MonoBehaviour
     private void Start() 
     {
         StartCoroutine( RaposUtil.Wait(1, DelayedStart) );
+
+        playMusicTestInput.performed += (ctx) => PlayMusic(skipPlay: true);
+        playMusicTestInput.Enable();
+
+        stopMusicTestInput.performed += (ctx) => Stop();
+        stopMusicTestInput.Enable();
     }
 
     private void DelayedStart()
@@ -104,7 +114,12 @@ public class SoundtrackManager : MonoBehaviour
 
         Stop();
 
-        soundtrackEvent = stagePlaylist;
+        if (currentIndex < 0)
+            currentIndex = Random.Range(0, randomPlaylist.Count);
+        else
+            currentIndex = (currentIndex + 1) % randomPlaylist.Count;
+
+        soundtrackEvent = randomPlaylist[currentIndex];
 
         if (soundtrackEvent != null)
             soundtrackEvent.Post(gameObject);
@@ -125,7 +140,10 @@ public class SoundtrackManager : MonoBehaviour
 
             Stop();
 
-            soundtrackEvent = stagePlaylist;
+            if (currentIndex < 0)
+                currentIndex = Random.Range(0, randomPlaylist.Count);
+            else
+                currentIndex = (currentIndex + 1) % randomPlaylist.Count;
 
             if (soundtrackEvent != null)
                 soundtrackEvent.Post(gameObject);
