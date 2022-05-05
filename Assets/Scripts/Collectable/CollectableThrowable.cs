@@ -12,8 +12,6 @@ public class CollectableThrowable : Collectable
     private IEnumerator rotationRoutine;
 
     private bool indestructible;
-
-    
     
     public override void OnResetFunction() 
     {
@@ -27,6 +25,12 @@ public class CollectableThrowable : Collectable
         Collider2D collider2D = GetComponent<Collider2D>();
         if (collider2D)
             collider2D.enabled = true;
+
+        FloatEffect floatEffect = GetComponentInChildren<FloatEffect>();
+        if (floatEffect)
+            floatEffect.enabled = true;
+
+        visualComponent.transform.localEulerAngles = Vector3.zero;
     }
 
     public override void Interact (CollectableInteraction interactor) 
@@ -43,6 +47,9 @@ public class CollectableThrowable : Collectable
     {
         while (true)
         {
+            while (Time.timeScale < 1)
+                yield return new WaitForFixedUpdate();
+
             visualComponent.transform.Rotate(Vector3.forward, 7.5f);
             yield return null;
         }
@@ -60,18 +67,19 @@ public class CollectableThrowable : Collectable
         Lock l = collision.GetComponent<Lock>();
         if (l)
         {
-            l.Collect(this);
-            return;
+            if (l.Collect(this))
+                return;
         }
         
-        if(indestructible) return;
+        if (indestructible) return;
         
         base.TriggerEvent(collision);
 
         LockGravityField lgf = collision.GetComponent<LockGravityField>();
         if (lgf)
         {
-            lgf.GetCollectable(this);
+            if (lgf.GetCollectable(this))
+                return;
         }
 
         Hitbox hb = collision.GetComponent<Hitbox>();
@@ -84,12 +92,22 @@ public class CollectableThrowable : Collectable
             }
                 
         }
+
+        GravitationalBody gravitationalBody = collision.GetComponent<GravitationalBody>();
+        if (gravitationalBody)
+        {
+            ResetToCollectableState();
+        }
     }
 
     private void DestroyKey()
     {
         gameObject.SetActive(false);
         Instantiate(destroyParticles, transform.position, quaternion.identity);
+    }
+
+    private void ResetToCollectableState()
+    {
 
     }
 }

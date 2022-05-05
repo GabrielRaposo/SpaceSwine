@@ -6,19 +6,24 @@ using UnityEngine;
 public class Lock : MonoBehaviour
 {
     //public bool isInternalLock;
-    private Door _door;
+
+    [SerializeField] private int startingHealth = 1;
     [SerializeField] private GameObject visualComponent;
     [SerializeField] private GameObject particles;
     [SerializeField] private Collider2D col;
     [SerializeField] private LockGravityField lockGravityField;
     [SerializeField] private AK.Wwise.Event collectAKEvent;
 
+    private int health;
+
+    private Door _door;
     private Round _round;
 
-    public void Init(Door s, bool isInternal)
+    public void Init (Door s, bool isInternal)
     {
         _door = s;
 
+        health = startingHealth;
         //isInternalLock = isInternal;
 
         col.enabled = !isInternal;
@@ -36,21 +41,46 @@ public class Lock : MonoBehaviour
         _round.OnReset += OnReset;
     }
 
-    public virtual void Collect(Collectable collectable)
+    public virtual bool Collect (Collectable collectable)
     {
-        Unlock();
-        
-        if(_door)
-            _door.TakeHealth();
-        
+        if (lockGravityField.CapturedCollectable != collectable && lockGravityField.CapturedCollectable != null)
+            return false;
+
+        collectAKEvent?.Post(gameObject);
         collectable.gameObject.SetActive(false);
+        
+        health--;
+        if (health < 1)
+        {
+            Unlock();
+
+            if(_door)
+                _door.TakeHealth();
+        }
+
+        return true;
+    }
+    
+    public void Unlock()
+    {
+        visualComponent.SetActive(false);
+        
+        if (particles)
+            particles.SetActive(false);
+
         col.enabled = false;
         lockGravityField.gameObject.SetActive(false);
-        collectAKEvent?.Post(gameObject);
+    }
+    
+    public int GetHealth()
+    {
+        return health;
     }
     
     public void OnReset()
     {
+        health = startingHealth;
+
         if(visualComponent)
             visualComponent.SetActive(true);
         
@@ -61,13 +91,4 @@ public class Lock : MonoBehaviour
         
         lockGravityField.gameObject.SetActive(true);
     }
-    
-    public void Unlock()
-    {
-        visualComponent.SetActive(false);
-        
-        if(particles)
-            particles.SetActive(false);
-    }
-    
 }

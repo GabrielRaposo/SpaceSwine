@@ -11,6 +11,8 @@ public class SpaceJumper : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] LayerMask groundLayer;
 
+
+    [SerializeField] ParticleSystem longLandVFX;
     [SerializeField] AK.Wwise.Event longJumpAKEvent;
     [SerializeField] AK.Wwise.Event longLandAKEvent;
     [SerializeField] AK.Wwise.Event flightLoopAKEvent;
@@ -108,6 +110,7 @@ public class SpaceJumper : MonoBehaviour
         Vector2 direction = (transform.position - planet.transform.position).normalized;
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
 
+        longLandVFX?.Play();
         longLandAKEvent?.Post(gameObject);
 
         SetLaunchState(false);
