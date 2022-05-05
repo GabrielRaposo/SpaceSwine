@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class Door : MonoBehaviour
 {
@@ -12,9 +13,10 @@ public class Door : MonoBehaviour
     private int health;
     
     [SerializeField] float starRadius = 1f;
+    [SerializeField] float openDuration = .1f;
 
     [Header("References")] 
-    //[SerializeField] GameObject lockReference;
+    [SerializeField] Transform visualComponent;
     [SerializeField] RoundPortal portal;
     [SerializeField] TextMeshPro healthPreview;
     [SerializeField] CircleCollider2D mainCollider;
@@ -23,7 +25,9 @@ public class Door : MonoBehaviour
 
     [Space]
     
-    [SerializeField]private List<Lock> externalLocks; 
+    [SerializeField] private List<Lock> externalLocks; 
+
+    Sequence openSequence;
 
     //private List<Lock> internalLocks;
 
@@ -115,7 +119,7 @@ public class Door : MonoBehaviour
         
         Health = externalLocks.Count;
         if (Health < 1)
-            SpawnPortal();
+            SpawnPortal(initiation: true);
 
     }
 
@@ -150,21 +154,56 @@ public class Door : MonoBehaviour
             SpawnPortal();
     }
 
-    public void SpawnPortal()
+    public void SpawnPortal(bool initiation = false)
     {
         if (!portal || !round)
             return;
 
+        if (initiation)
+        {
+            portal.transform.position = transform.position;
+            portal.Setup
+            (
+                () => 
+                {
+                    round.RoundCleared();
+                    portal.transform.SetParent(transform);
+                }
+            );
+
+            animator.SetTrigger("InstantOpen");
+            animator.SetBool("Open", true);
+            return;
+        }
+
+        OpenAnimation();
+    }
+
+    private void OpenAnimation()
+    {
+        if (openSequence != null)
+            openSequence.Kill();
+
         portal.transform.position = transform.position;
-        portal.Setup
-        (
-            () => 
-            {
-                round.RoundCleared();
-                portal.transform.SetParent(transform);
-            }
-        );
-        
+        portal.VisualSetup();
         animator.SetBool("Open", true);
+
+        openSequence = DOTween.Sequence();
+
+        openSequence.AppendInterval( openDuration );
+        openSequence.AppendCallback( () => 
+        {
+            portal.Setup
+            (
+                () => 
+                {
+                    round.RoundCleared();
+                    portal.transform.SetParent(transform);
+                }
+            );
+        });
+        openSequence.Join( visualComponent.DOPunchRotation(Vector3.back * 5f, .3f, vibrato: 0, elasticity: 0) );
+        //openSequence.AppendInterval( VFXs call );
+
     }
 }

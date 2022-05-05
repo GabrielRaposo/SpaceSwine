@@ -7,11 +7,15 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimations))]
 public class CollectableInteraction : MonoBehaviour
 {
+    [SerializeField] CollectablesQueue collectablesQueue;
     [SerializeField] float launchSpeed;
+    [SerializeField] float cooldownDuration;
     [SerializeField] Transform holdAnchor;
     [SerializeField] PlayerDirectionDisplay directionDisplay; 
     [SerializeField] Transform arrowSprite;
+    [SerializeField] ParticleSystem onCollectEffect;
 
+    float cooldownCount;
     Vector2 axisInput;
     Collectable current;
 
@@ -24,6 +28,18 @@ public class CollectableInteraction : MonoBehaviour
         checkGround = GetComponent<CheckGround>();
         spaceJumper = GetComponent<SpaceJumper>();
         playerAnimations = GetComponent<PlayerAnimations>();
+    }
+
+    private void FixedUpdate() 
+    {
+        if (cooldownCount > 0)
+        {
+            cooldownCount -= Time.fixedDeltaTime;
+            return;
+        }
+    
+        if (current == null)
+            GetFromQueue();
     }
 
     public void AxisInput (Vector2 axisInput)
@@ -41,12 +57,28 @@ public class CollectableInteraction : MonoBehaviour
             return;
 
         current.Interact(this);
+
+        //if (current == null)
+            //GetFromQueue();
+        StartCooldownCount();
+    }
+
+    private void StartCooldownCount()
+    {
+        cooldownCount = cooldownDuration;
+    }
+
+    private void GetFromQueue()
+    {
+        current = collectablesQueue.GetFromQueue();
+        if (current != null)
+            SetCurrentCollectable(current);
     }
 
     public bool SetCurrentCollectable (Collectable collectable)
     {
-        if (current)
-            return false;
+        if (current && current != collectable)
+            return AddToQueueInteraction(collectable);
 
         playerAnimations.holding = true;
 
@@ -63,11 +95,24 @@ public class CollectableInteraction : MonoBehaviour
             hierarchyController.SetParent(t);
         
         collectable.transform.position = t.position;
-        
         collectable.transform.localRotation = Quaternion.identity;
 
+        FloatEffect floatEffect = collectable.GetComponentInChildren<FloatEffect>();
+        if (floatEffect)
+            floatEffect.enabled = false;
+
+        onCollectEffect?.Play();
         current = collectable;
+
         return true;
+    }
+
+    public bool AddToQueueInteraction(Collectable collectable)
+    {
+        if (!collectablesQueue)
+            return false;
+
+        return collectablesQueue.AddToQueue(collectable);
     }
 
     public bool LaunchInput()
@@ -92,9 +137,9 @@ public class CollectableInteraction : MonoBehaviour
 
             Vector2 direction = (arrowSprite.transform.position - transform.position).normalized;
 
-            LaunchCurrentIntoDirection(direction.normalized);
-            
             spaceJumper.LaunchIntoDirection(-direction.normalized);
+            
+            LaunchCurrentIntoDirection(direction.normalized);
         }
 
         return true;
@@ -121,12 +166,16 @@ public class CollectableInteraction : MonoBehaviour
         return true;
     }
 
-    public Collectable CollectWhileHolding()
+    public Collectable UseCollectableWhileHolding()
     {
         if (current == null) return null;
         
         Collectable c = current;
         RemoveCollectable();
+
+        //GetFromQueue();
+        StartCooldownCount();
+
         return c;
     }
 
@@ -173,8 +222,9 @@ public class CollectableInteraction : MonoBehaviour
 
             current = null;
         }
+        
+        collectablesQueue.ResetStates();
 
-        // current = null;
         playerAnimations.holding = false;
     }
 }
