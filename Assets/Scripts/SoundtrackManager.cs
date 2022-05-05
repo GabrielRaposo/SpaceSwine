@@ -27,6 +27,7 @@ public class SoundtrackManager : MonoBehaviour
     public static SoundtrackManager Instance;
     static bool paused;
     public static bool IsPlaying;
+    bool applicationIsPaused;
 
     GameplayState gameplayState;
     int currentIndex = -1;
@@ -73,37 +74,29 @@ public class SoundtrackManager : MonoBehaviour
     //#if UNITY_EDITOR
     private void Update() 
     {
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //    Stop();
-
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    paused = !paused;
-        //    if (soundtrackEvent != null)
-        //        soundtrackEvent.Pause(gameObject, paused);
-        //}
-
         //if (Input.GetKeyDown(KeyCode.Z))
         //{
         //    Debug.Log("Player prefs deleted");
         //    PlayerPrefs.DeleteAll();
         //}
 
-        //if (!isPlaying)
-        //    return;
+        if (!IsPlaying || applicationIsPaused)
+            return;
 
-        //if (soundtrackEvent == null)
-        //    return;
+        if (soundtrackEvent == null)
+            return;
 
-        //Debug.Log("soundtrackEvent.IsPlaying: " + soundtrackEvent.IsPlaying(gameObject));
-        //if (!soundtrackEvent.IsPlaying(gameObject))
-        //{
-        //    soundtrackEvent.Post(gameObject);
-        //    Debug.Log("bbb");
-        //}
+        if (!soundtrackEvent.IsPlaying(gameObject))
+        {
+            PlayMusic (skipPlay: true);
+        }
 
     }
-    //#endif
+
+    private void OnApplicationPause (bool pause) 
+    {
+        applicationIsPaused = pause;
+    }
 
     public void PlayMusic(bool skipPlay = false)
     {
@@ -127,7 +120,7 @@ public class SoundtrackManager : MonoBehaviour
         IsPlaying = true;
 
         StopAllCoroutines();
-        StartCoroutine( HardLoopRoutine() );
+        //StartCoroutine( HardLoopRoutine() );
     }
 
     IEnumerator HardLoopRoutine()
@@ -158,6 +151,11 @@ public class SoundtrackManager : MonoBehaviour
             soundtrackEvent.Stop(gameObject);
 
         IsPlaying = false;
+    }
+
+    public void JumpTo (float percent)
+    {
+        
     }
 
     public void FadeOutMusic (float duration)
