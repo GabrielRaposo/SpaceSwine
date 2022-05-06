@@ -10,6 +10,7 @@ public class PlayerAnimations : MonoBehaviour
 
     [HideInInspector] public bool landedOnGround;
     [HideInInspector] public bool holding;
+    [HideInInspector] public bool throwing;
     [HideInInspector] public float horizontalInput;
     [HideInInspector] public float verticalSpeed;
 
@@ -114,4 +115,7 @@ public class AnimationState
     public static string LAUNCH_HOLD = "Player-Launch-Hold";
     public static string JUMP_HOLD = "Player-Jump-Hold";
     public static string FALL_HOLD = "Player-Fall-Hold";
+
+    public static string THROW_GROUND = "Player-Throw-Ground";
+    //public static string THROW_AIR = "Player-Throw-Air";
 }
