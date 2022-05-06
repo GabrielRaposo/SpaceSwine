@@ -7,7 +7,10 @@ public class CollectableThrowable : Collectable
 {
     [SerializeField] AK.Wwise.Event OnThrowAKEvent;
     [SerializeField] SpriteRenderer visualComponent;
+    
+    [Header("Particles")]
     [SerializeField] GameObject destroyParticles;
+    //[SerializeField] ParticleSystem
 
     private IEnumerator rotationRoutine;
 
@@ -108,6 +111,6 @@ public class CollectableThrowable : Collectable
 
     private void ResetToCollectableState()
     {
-
+        DestroyKey();
     }
 }
