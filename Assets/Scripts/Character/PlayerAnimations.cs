@@ -31,21 +31,20 @@ public class PlayerAnimations : MonoBehaviour
         switch (state)
         {
             case State.Landed:
-                if (!landedOnGround)
+                if (throwing)
+                {
+                    ChangeAnimationState(AnimationState.THROW_GROUND);
+                }
+                else if (!landedOnGround)
                 {
                     ChangeAnimationState(!holding ? AnimationState.FALL : AnimationState.FALL_HOLD );
                 } 
                 else if (horizontalInput == 0)
                 {
-                    //walkAKEvent?.Stop(gameObject);
                     ChangeAnimationState(!holding ? AnimationState.IDLE : AnimationState.IDLE_HOLD );
                 }
                 else
                 {
-                    //if (!walkAKEvent.IsPlaying(gameObject))
-                    //{
-                    //    walkAKEvent?.Post(gameObject);
-                    //}
                     ChangeAnimationState(!holding ? AnimationState.WALK : AnimationState.WALK_HOLD );
                 }            
                 break;
@@ -97,6 +96,11 @@ public class PlayerAnimations : MonoBehaviour
         }
 
         animator.Play(newState);
+    }
+
+    public void AnimationEnd_GroundThrow()
+    {
+        throwing = false;
     }
 }
 

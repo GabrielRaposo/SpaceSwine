@@ -124,6 +124,8 @@ public class CollectableInteraction : MonoBehaviour
         {
             Vector2 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
             LaunchCurrentIntoDirection(direction.normalized);
+
+            playerAnimations.throwing = true;
         }
         else
         {
