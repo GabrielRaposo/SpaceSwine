@@ -11,6 +11,7 @@ public class CollectableThrowable : Collectable
     [Header("Particles")]
     [SerializeField] ParticleSystem idleParticle;
     [SerializeField] ParticleSystem trailParticle;
+    [SerializeField] ParticleSystem intenseTrailParticle;
     [SerializeField] GameObject destroyParticles;
 
     private IEnumerator rotationRoutine;
@@ -41,8 +42,11 @@ public class CollectableThrowable : Collectable
         idleParticle?.Play();
         trailParticle?.Clear();
         trailParticle?.Stop();
+        intenseTrailParticle?.Clear();
+        intenseTrailParticle?.Stop();
 
         trailParticle.GetComponent<HierarchyController>()?.SetOriginalState();
+        intenseTrailParticle.GetComponent<HierarchyController>()?.SetOriginalState();
     }
 
     public override void Interact (CollectableInteraction interactor) 
@@ -83,6 +87,7 @@ public class CollectableThrowable : Collectable
         {
             if (l.Collect(this))
             {
+                transform.position = l.transform.position;
                 return;
             }
         }
@@ -97,7 +102,8 @@ public class CollectableThrowable : Collectable
             if (lgf.GetCollectable(this))
             {
                 trailParticle.GetComponent<HierarchyController>()?.SetParent(null);
-
+                intenseTrailParticle.GetComponent<HierarchyController>()?.SetParent(null);
+                intenseTrailParticle.Play();
                 return;
             }
         }
@@ -126,6 +132,7 @@ public class CollectableThrowable : Collectable
         
         idleParticle?.Stop();
         trailParticle?.Stop();
+        intenseTrailParticle?.Stop();
     }
 
     private void DestroyKey()
@@ -143,5 +150,6 @@ public class CollectableThrowable : Collectable
     {
         idleParticle?.Stop();
         trailParticle?.Stop();    
+        intenseTrailParticle?.Stop();
     }
 }
