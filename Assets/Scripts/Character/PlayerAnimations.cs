@@ -10,6 +10,7 @@ public class PlayerAnimations : MonoBehaviour
 
     [HideInInspector] public bool landedOnGround;
     [HideInInspector] public bool holding;
+    [HideInInspector] public bool throwing;
     [HideInInspector] public float horizontalInput;
     [HideInInspector] public float verticalSpeed;
 
@@ -22,6 +23,11 @@ public class PlayerAnimations : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
+    private void OnEnable() 
+    {
+        holding = throwing = false;  
+    }
+
     private void Update() 
     {
         if (Time.timeScale < 1)
@@ -30,21 +36,20 @@ public class PlayerAnimations : MonoBehaviour
         switch (state)
         {
             case State.Landed:
-                if (!landedOnGround)
+                if (throwing)
+                {
+                    ChangeAnimationState(AnimationState.THROW_GROUND);
+                }
+                else if (!landedOnGround)
                 {
                     ChangeAnimationState(!holding ? AnimationState.FALL : AnimationState.FALL_HOLD );
                 } 
                 else if (horizontalInput == 0)
                 {
-                    //walkAKEvent?.Stop(gameObject);
                     ChangeAnimationState(!holding ? AnimationState.IDLE : AnimationState.IDLE_HOLD );
                 }
                 else
                 {
-                    //if (!walkAKEvent.IsPlaying(gameObject))
-                    //{
-                    //    walkAKEvent?.Post(gameObject);
-                    //}
                     ChangeAnimationState(!holding ? AnimationState.WALK : AnimationState.WALK_HOLD );
                 }            
                 break;
@@ -97,6 +102,11 @@ public class PlayerAnimations : MonoBehaviour
 
         animator.Play(newState);
     }
+
+    public void AnimationEnd_GroundThrow()
+    {
+        throwing = false;
+    }
 }
 
 public class AnimationState
@@ -114,4 +124,7 @@ public class AnimationState
     public static string LAUNCH_HOLD = "Player-Launch-Hold";
     public static string JUMP_HOLD = "Player-Jump-Hold";
     public static string FALL_HOLD = "Player-Fall-Hold";
+
+    public static string THROW_GROUND = "Player-Throw-Ground";
+    //public static string THROW_AIR = "Player-Throw-Air";
 }

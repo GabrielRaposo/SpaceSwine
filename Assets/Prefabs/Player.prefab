@@ -10157,7 +10157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectablesQueue: {fileID: 1533980949602244292}
   launchSpeed: 3
-  cooldownDuration: 0.4
+  cooldownDuration: 0.6
   holdAnchor: {fileID: 5639081803509183843}
   directionDisplay: {fileID: 6403593263245072249}
   arrowSprite: {fileID: 5410982940198010304}
@@ -10258,6 +10258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   landedOnGround: 0
   holding: 0
+  throwing: 0
   horizontalInput: 0
   verticalSpeed: 0
 --- !u!114 &1858426351066712083
@@ -10275,6 +10276,7 @@ MonoBehaviour:
   max: 40
   onlyOnChange: 1
   offset: {x: 0, y: -0.1, z: 0}
+  minDistance: 0.01
 --- !u!70 &5639081803221880845
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

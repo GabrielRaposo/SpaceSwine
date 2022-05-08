@@ -7,6 +7,11 @@ public class CollectableThrowable : Collectable
 {
     [SerializeField] AK.Wwise.Event OnThrowAKEvent;
     [SerializeField] SpriteRenderer visualComponent;
+    
+    [Header("Particles")]
+    [SerializeField] ParticleSystem idleParticle;
+    [SerializeField] ParticleSystem trailParticle;
+    [SerializeField] ParticleSystem intenseTrailParticle;
     [SerializeField] GameObject destroyParticles;
 
     private IEnumerator rotationRoutine;
@@ -31,13 +36,26 @@ public class CollectableThrowable : Collectable
             floatEffect.enabled = true;
 
         visualComponent.transform.localEulerAngles = Vector3.zero;
+
+        idleParticle.transform.position = trailParticle.transform.position = transform.position;
+        idleParticle?.Clear();
+        idleParticle?.Play();
+        trailParticle?.Clear();
+        trailParticle?.Stop();
+        intenseTrailParticle?.Clear();
+        intenseTrailParticle?.Stop();
+
+        trailParticle.GetComponent<HierarchyController>()?.SetOriginalState();
+        intenseTrailParticle.GetComponent<HierarchyController>()?.SetOriginalState();
     }
 
     public override void Interact (CollectableInteraction interactor) 
     {
         if (interactor.LaunchInput())
         {
+            trailParticle?.Play();
             OnThrowAKEvent?.Post(gameObject);
+            
             rotationRoutine = RotateCoroutine();
             StartCoroutine(rotationRoutine);
         }
@@ -68,7 +86,10 @@ public class CollectableThrowable : Collectable
         if (l)
         {
             if (l.Collect(this))
+            {
+                transform.position = l.transform.position;
                 return;
+            }
         }
         
         if (indestructible) return;
@@ -79,7 +100,12 @@ public class CollectableThrowable : Collectable
         if (lgf)
         {
             if (lgf.GetCollectable(this))
+            {
+                trailParticle.GetComponent<HierarchyController>()?.SetParent(null);
+                intenseTrailParticle.GetComponent<HierarchyController>()?.SetParent(null);
+                intenseTrailParticle.Play();
                 return;
+            }
         }
 
         Hitbox hb = collision.GetComponent<Hitbox>();
@@ -100,6 +126,15 @@ public class CollectableThrowable : Collectable
         }
     }
 
+    public override void OnCollected() 
+    {
+        base.OnCollected();
+        
+        idleParticle?.Stop();
+        trailParticle?.Stop();
+        intenseTrailParticle?.Stop();
+    }
+
     private void DestroyKey()
     {
         gameObject.SetActive(false);
@@ -108,6 +143,13 @@ public class CollectableThrowable : Collectable
 
     private void ResetToCollectableState()
     {
+        DestroyKey();
+    }
 
+    private void OnDisable() 
+    {
+        idleParticle?.Stop();
+        trailParticle?.Stop();    
+        intenseTrailParticle?.Stop();
     }
 }
