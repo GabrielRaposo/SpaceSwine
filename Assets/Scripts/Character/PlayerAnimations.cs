@@ -23,6 +23,11 @@ public class PlayerAnimations : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
+    private void OnEnable() 
+    {
+        holding = throwing = false;  
+    }
+
     private void Update() 
     {
         if (Time.timeScale < 1)

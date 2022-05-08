@@ -43,13 +43,18 @@ public class Collectable : MonoBehaviour
 
             if (interaction.SetCurrentCollectable (this))
             {
-                OnCollectAKEvent?.Post(gameObject);
+                OnCollected();
 
                 previousHolder = collision.gameObject; 
             }
 
             return;
         }
+    }
+
+    public virtual void OnCollected()
+    {
+        OnCollectAKEvent?.Post(gameObject);
     }
 
     public virtual void SetInteractable(bool value)

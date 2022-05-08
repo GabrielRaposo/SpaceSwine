@@ -9,8 +9,9 @@ public class CollectableThrowable : Collectable
     [SerializeField] SpriteRenderer visualComponent;
     
     [Header("Particles")]
+    [SerializeField] ParticleSystem idleParticle;
+    [SerializeField] ParticleSystem trailParticle;
     [SerializeField] GameObject destroyParticles;
-    //[SerializeField] ParticleSystem
 
     private IEnumerator rotationRoutine;
 
@@ -34,13 +35,23 @@ public class CollectableThrowable : Collectable
             floatEffect.enabled = true;
 
         visualComponent.transform.localEulerAngles = Vector3.zero;
+
+        idleParticle.transform.position = trailParticle.transform.position = transform.position;
+        idleParticle?.Clear();
+        idleParticle?.Play();
+        trailParticle?.Clear();
+        trailParticle?.Stop();
+
+        trailParticle.GetComponent<HierarchyController>()?.SetOriginalState();
     }
 
     public override void Interact (CollectableInteraction interactor) 
     {
         if (interactor.LaunchInput())
         {
+            trailParticle?.Play();
             OnThrowAKEvent?.Post(gameObject);
+            
             rotationRoutine = RotateCoroutine();
             StartCoroutine(rotationRoutine);
         }
@@ -71,7 +82,9 @@ public class CollectableThrowable : Collectable
         if (l)
         {
             if (l.Collect(this))
+            {
                 return;
+            }
         }
         
         if (indestructible) return;
@@ -82,7 +95,11 @@ public class CollectableThrowable : Collectable
         if (lgf)
         {
             if (lgf.GetCollectable(this))
+            {
+                trailParticle.GetComponent<HierarchyController>()?.SetParent(null);
+
                 return;
+            }
         }
 
         Hitbox hb = collision.GetComponent<Hitbox>();
@@ -103,6 +120,14 @@ public class CollectableThrowable : Collectable
         }
     }
 
+    public override void OnCollected() 
+    {
+        base.OnCollected();
+        
+        idleParticle?.Stop();
+        trailParticle?.Stop();
+    }
+
     private void DestroyKey()
     {
         gameObject.SetActive(false);
@@ -112,5 +137,11 @@ public class CollectableThrowable : Collectable
     private void ResetToCollectableState()
     {
         DestroyKey();
+    }
+
+    private void OnDisable() 
+    {
+        idleParticle?.Stop();
+        trailParticle?.Stop();    
     }
 }
