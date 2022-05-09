@@ -69,6 +69,21 @@ public class SpaceBooster : MonoBehaviour
             spaceJumper.RedirectIntoDirection (GetLaunchDirection().normalized);
 
             StartCoroutine( CooldownRoutine() );
+
+            return;
+        }
+
+        CollectableThrowable collectable = collision.GetComponent<CollectableThrowable>();
+        if (collectable)
+        {
+            Rigidbody2D rb = collectable.GetComponent<Rigidbody2D>();
+            if (!rb)
+                return;
+
+            collectable.NullifyPreviousHolder();
+            rb.velocity = GetLaunchDirection().normalized * rb.velocity.magnitude;
+
+            StartCoroutine( CooldownRoutine() );
         }
     }
 
