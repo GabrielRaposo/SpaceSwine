@@ -47,6 +47,8 @@ public class CollectableThrowable : Collectable
 
         trailParticle.GetComponent<HierarchyController>()?.SetOriginalState();
         intenseTrailParticle.GetComponent<HierarchyController>()?.SetOriginalState();
+
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
     public override void Interact (CollectableInteraction interactor) 
@@ -143,13 +145,14 @@ public class CollectableThrowable : Collectable
 
     private void ResetToCollectableState()
     {
-        DestroyKey();
+        //DestroyKey();
+        OnResetFunction();
     }
 
     private void OnDisable() 
     {
         idleParticle?.Stop();
-        trailParticle?.Stop();    
+        trailParticle?.Stop();
         intenseTrailParticle?.Stop();
     }
 }
