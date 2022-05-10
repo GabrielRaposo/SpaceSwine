@@ -70,4 +70,9 @@ public class Collectable : MonoBehaviour
         if (renderer)
             renderer.sortingLayerName = (value ? "Item" : "Default");
     }
+
+    public void NullifyPreviousHolder()
+    {
+        previousHolder = null;
+    }
 }
