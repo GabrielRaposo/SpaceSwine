@@ -6,7 +6,16 @@ using DG.Tweening;
 public class BuddingFlower : MonoBehaviour
 {
     [SerializeField] Transform visualComponent;
+    [SerializeField] SpriteRenderer energyArrow;
+    [SerializeField] GameObject centerLight;
+    
+    [Header("Particle System")]
+    [SerializeField] ParticleSystem closedParticleSystem;
+    [SerializeField] ParticleSystem openParticleSystem;
     [SerializeField] ParticleSystem burstParticleSystem;
+    [SerializeField] ParticleSystem powerUpParticleSystem;
+    [SerializeField] ParticleSystem energyBurstParticleSystem;
+    [SerializeField] ParticleSystem energyParticleSystem;
 
     bool isOpen;
     Animator animator;
@@ -18,7 +27,18 @@ public class BuddingFlower : MonoBehaviour
 
         group = GetComponentInParent<BuddingFlowerGroup>();
         if (group)
+        {
             group.AddFlower(this);
+            
+            if (energyArrow)
+            {
+                Vector2 distance = group.DoorPosition() - transform.position;
+                float angleDifference = Vector2.SignedAngle(Vector2.right, distance.normalized);
+
+                energyArrow.transform.eulerAngles = Vector3.forward * angleDifference;
+                energyArrow.size = new Vector2(distance.magnitude, energyArrow.size.y);
+            }
+        }
 
         Round round = GetComponentInParent<Round>();
         if (round)
@@ -35,11 +55,44 @@ public class BuddingFlower : MonoBehaviour
             visualComponent.localScale = Vector3.one;
         }
 
+        if (centerLight)
+            centerLight.SetActive(false);
+
+        if (energyArrow) 
+            energyArrow.gameObject.SetActive(false);
+        
         if (burstParticleSystem) 
         {
             burstParticleSystem.Stop();
             burstParticleSystem.Clear();
         }
+
+        closedParticleSystem?.Play();
+        
+        if (openParticleSystem)
+        {
+            openParticleSystem.Stop();
+            openParticleSystem.Clear();
+        }
+
+        if (powerUpParticleSystem)
+        {
+            powerUpParticleSystem.Stop();
+            powerUpParticleSystem.Clear();
+        }
+
+        if (energyBurstParticleSystem)
+        {
+            energyBurstParticleSystem.Stop();
+            energyBurstParticleSystem.Clear();
+        }
+
+        if (energyParticleSystem)
+        {
+            energyParticleSystem.Stop();
+            energyParticleSystem.Clear();
+        }
+
 
         SetState(false);
     }
@@ -51,6 +104,12 @@ public class BuddingFlower : MonoBehaviour
 
         if (value && group)
         {
+            if (closedParticleSystem)
+                closedParticleSystem.Stop();
+
+            if (openParticleSystem)
+                openParticleSystem.Play();
+
             group.Activate();
         }
     }
@@ -77,5 +136,29 @@ public class BuddingFlower : MonoBehaviour
         visualComponent.DOPunchScale (Vector3.one * .3f, .15f);
 
         burstParticleSystem?.Play();
+    }
+
+    public void PreLightUp()
+    {
+        if (powerUpParticleSystem)
+            powerUpParticleSystem.Play();
+    }
+
+    public void LightUp()
+    {
+        if (openParticleSystem)
+            openParticleSystem.Stop();
+
+        if (energyBurstParticleSystem)
+            energyBurstParticleSystem.Play();
+
+        if (energyParticleSystem)
+            energyParticleSystem.Play();
+
+        if (centerLight)
+            centerLight.SetActive (true);
+
+        if (energyArrow) 
+            energyArrow.gameObject.SetActive (true);
     }
 }
