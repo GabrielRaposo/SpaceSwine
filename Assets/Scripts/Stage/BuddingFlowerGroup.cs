@@ -49,6 +49,8 @@ public class BuddingFlowerGroup : MonoBehaviour
 
     private IEnumerator ActivationRoutine()
     {
+        yield return new WaitForSeconds(.3f);
+
         foreach(BuddingFlower bf in flowers)
             bf.PreLightUp();
 
