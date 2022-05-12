@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class FacePlayerOnRadius : MonoBehaviour
+public class CheckPlayerOnRadius : MonoBehaviour
 {
     [SerializeField] float radius;
     [SerializeField] float baseOffset;
@@ -11,6 +12,8 @@ public class FacePlayerOnRadius : MonoBehaviour
     [SerializeField] Transform visualComponent;
 
     ContactFilter2D contactFilter2D = new ContactFilter2D();
+
+    public UnityAction <bool> PlayerOnRadiusEvent;
 
     void Start()
     {
@@ -24,6 +27,11 @@ public class FacePlayerOnRadius : MonoBehaviour
     {
         Transform rightTarget = RaycastForTarget (direction:  1);
         Transform leftTarget  = RaycastForTarget (direction: -1);
+
+        if (rightTarget)
+            PlayerOnRadiusEvent?.Invoke(true);
+        if (leftTarget)
+            PlayerOnRadiusEvent?.Invoke(false);
 
         if (rightTarget == leftTarget)
             return;

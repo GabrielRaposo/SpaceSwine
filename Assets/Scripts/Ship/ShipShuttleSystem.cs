@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class ShipShuttleSystem : MonoBehaviour
 {
-    const float UPPER_ANCHOR_Y =  .65f;
+    const float UPPER_ANCHOR_Y =  .6f; //-1.46
     const float LOWER_ANCHOR_Y = -.5f;
 
     [SerializeField] bool alwaysStartPlayerOnShuttle;

@@ -46,6 +46,7 @@ public class InteractableShipComponent : Interactable
 
                 if (GGSConsole.Instance)
                     GGSConsole.Instance.ToggleConsoleState();
+
                 break;
 
 
@@ -53,6 +54,7 @@ public class InteractableShipComponent : Interactable
 
                 if (ShipShuttleSystem.Instance)
                     ShipShuttleSystem.Instance.ExitOnShuttle();
+
                 break;
         }
     }
