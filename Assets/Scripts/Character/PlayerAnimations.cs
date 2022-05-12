@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimations : MonoBehaviour
 {
+    [SerializeField] AnimatorOverrideController shipOverrideController;
+
     Animator animator;
     string currentState;
 
@@ -17,10 +21,15 @@ public class PlayerAnimations : MonoBehaviour
     enum State  { Landed, Jumping, Flying }
     State state;
 
-
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+
+        if (shipOverrideController && SceneManager.GetActiveScene().buildIndex == (int) BuildIndex.Ship) 
+        {
+            animator.runtimeAnimatorController = shipOverrideController;
+        }
+
     }
 
     private void OnEnable() 

@@ -7,13 +7,10 @@ using DG.Tweening;
 
 public class Door : MonoBehaviour
 {
-    [Header("Values")]
-    //[SerializeField] int originalInternalHealth;
-    //private int internalHealth;
-    private int health;
-    
+    [Header("Values")] int health;
     [SerializeField] float starRadius = 1f;
     [SerializeField] float openDuration = .1f;
+    [SerializeField] bool startClosed;
 
     [Header("References")] 
     [SerializeField] Transform visualComponent;
@@ -80,9 +77,9 @@ public class Door : MonoBehaviour
             
     }
 
-
     private void SetLocks()
     {
+        /**
         // internalLocks = new List<Lock>();
         //
         // for (int i = 0; i < originalInternalHealth; i++)
@@ -93,8 +90,9 @@ public class Door : MonoBehaviour
         //     Lock l = go.GetComponent<Lock>();
         //     l.Init(this, true);
         //     internalLocks.Add(l);
-        // }
-    
+        // }    
+        **/
+
         for (int i = 0; i < externalLocks.Count; i++)
         {
             externalLocks[i].Init(this, false);
@@ -118,7 +116,7 @@ public class Door : MonoBehaviour
         animator.SetBool("Open", false);
         
         Health = externalLocks.Count;
-        if (Health < 1)
+        if (Health < 1 && !startClosed)
             SpawnPortal(initiation: true);
 
     }
