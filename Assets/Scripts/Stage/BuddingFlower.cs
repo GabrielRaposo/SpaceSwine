@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class BuddingFlower : MonoBehaviour
 {
+    [SerializeField] Transform visualComponent;
+    [SerializeField] ParticleSystem burstParticleSystem;
+
     bool isOpen;
     Animator animator;
 
@@ -20,6 +24,12 @@ public class BuddingFlower : MonoBehaviour
 
     private void ResetComponents()
     {
+        if (visualComponent)
+        {
+            visualComponent.DOKill();
+            visualComponent.localScale = Vector3.one;
+        }
+
         SetState(false);
     }
     private void SetState(bool value)
@@ -37,5 +47,18 @@ public class BuddingFlower : MonoBehaviour
             return;
 
         SetState(true);
+    }
+
+    public void PunchScale()
+    {
+        if (!visualComponent)
+            return;
+
+        visualComponent.DOKill();
+        visualComponent.localScale = Vector3.one;
+
+        visualComponent.DOPunchScale (Vector3.one * .3f, .15f);
+
+        burstParticleSystem?.Play();
     }
 }
