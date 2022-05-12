@@ -10,10 +10,15 @@ public class BuddingFlower : MonoBehaviour
 
     bool isOpen;
     Animator animator;
+    BuddingFlowerGroup group;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        group = GetComponentInParent<BuddingFlowerGroup>();
+        if (group)
+            group.AddFlower(this);
 
         Round round = GetComponentInParent<Round>();
         if (round)
@@ -30,12 +35,24 @@ public class BuddingFlower : MonoBehaviour
             visualComponent.localScale = Vector3.one;
         }
 
+        if (burstParticleSystem) 
+        {
+            burstParticleSystem.Stop();
+            burstParticleSystem.Clear();
+        }
+
         SetState(false);
     }
-    private void SetState(bool value)
+
+    private void SetState (bool value)
     {
         isOpen = value;
         animator.SetBool("Open", value);
+
+        if (value && group)
+        {
+            group.Activate();
+        }
     }
 
     private void OnTriggerEnter2D (Collider2D collision) 
