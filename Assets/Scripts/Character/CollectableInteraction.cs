@@ -151,7 +151,6 @@ public class CollectableInteraction : MonoBehaviour
     {
         OnAirStall = true;
         playerAnimations.airStall = true;
-        FreezeRigidbody(true);
 
         Vector2 direction = (arrowSprite.transform.position - transform.position).normalized;
         spaceJumper.PointAndHoldIntoDirection(-direction.normalized);
@@ -163,14 +162,8 @@ public class CollectableInteraction : MonoBehaviour
 
         OnAirStall = false;
         playerAnimations.airStall = false;
-        FreezeRigidbody(false);
 
         yield return new WaitForEndOfFrame();
-    }
-
-    private void FreezeRigidbody(bool value)
-    {
-        //rb.bodyType = value ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
     }
 
     public bool JetpackLaunch()
@@ -242,7 +235,6 @@ public class CollectableInteraction : MonoBehaviour
 
     public void ResetStates()
     {
-        FreezeRigidbody(false);
         OnAirStall = false;
 
         if (current != null)

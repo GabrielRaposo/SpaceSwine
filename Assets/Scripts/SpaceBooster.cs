@@ -11,12 +11,17 @@ public class SpaceBooster : MonoBehaviour
 
     [Space(5)]
 
-    [SerializeField] GameObject visualComponent;
     [SerializeField] Transform rotationAnchor;
 
+    int index;
     bool interactable = true;
     Sequence sequence;
-    int index;
+    Animator animator;
+
+    private void Start() 
+    {   
+        animator = GetComponent<Animator>();    
+    }
 
     private void OnValidate() 
     {
@@ -39,7 +44,7 @@ public class SpaceBooster : MonoBehaviour
         if (rotationAnchor == null)
             return;
 
-        rotationAnchor.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, GetLaunchDirection().normalized);
+        rotationAnchor.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.right, GetLaunchDirection().normalized);
     }
 
     private void OnTriggerStay2D (Collider2D collision) 
@@ -89,18 +94,18 @@ public class SpaceBooster : MonoBehaviour
 
     IEnumerator CooldownRoutine()
     {
-        UpdateVisualState(false);
+        SetSpinState(true);
         interactable = false;
         
         yield return new WaitForSeconds(cooldownDuration);
 
-        UpdateVisualState(true);
+        SetSpinState(false);
         interactable = true;
     }
 
-    private void UpdateVisualState(bool value)
+    private void SetSpinState(bool value)
     {
-        visualComponent?.SetActive(value);
+        animator.SetTrigger(value ? "Spin" : "Reset");
     }
 
     public void ChangeLaunchDirection (float duration, UnityAction afterSequenceAction)
@@ -116,7 +121,7 @@ public class SpaceBooster : MonoBehaviour
         (
             rotationAnchor.DORotate
             (
-                Vector2.SignedAngle(Vector2.up, GetLaunchDirection().normalized) * Vector3.forward, 
+                Vector2.SignedAngle(Vector2.right, GetLaunchDirection().normalized) * Vector3.forward, 
                 duration, 
                 RotateMode.FastBeyond360
             )    
