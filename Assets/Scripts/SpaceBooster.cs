@@ -18,17 +18,33 @@ public class SpaceBooster : MonoBehaviour
     Sequence sequence;
     Animator animator;
 
-    private void Start() 
-    {   
-        animator = GetComponent<Animator>();    
-    }
-
     private void OnValidate() 
     {
         if (Application.isPlaying)
             return;
 
         SetRotationAnchor();
+    }
+
+    private void Start() 
+    {   
+        animator = GetComponent<Animator>();
+
+        Round round = GetComponentInParent<Round>();
+        if (round)
+            round.OnReset += ResetComponents;
+    }
+
+    private void ResetComponents()
+    {
+        StopAllCoroutines();
+
+        if (sequence != null)
+            sequence.Kill();
+
+        index = 0;
+        interactable = true;
+        animator.SetTrigger("Reset");
     }
 
     private Vector2 GetLaunchDirection()
