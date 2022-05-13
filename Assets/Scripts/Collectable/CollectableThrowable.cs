@@ -53,14 +53,16 @@ public class CollectableThrowable : Collectable
 
     public override void Interact (CollectableInteraction interactor) 
     {
-        if (interactor.LaunchInput())
-        {
-            trailParticle?.Play();
-            OnThrowAKEvent?.Post(gameObject);
+        interactor.LaunchInput();
+    }
+
+    public void LaunchSetup()
+    {
+        trailParticle?.Play();
+        OnThrowAKEvent?.Post(gameObject);
             
-            rotationRoutine = RotateCoroutine();
-            StartCoroutine(rotationRoutine);
-        }
+        rotationRoutine = RotateCoroutine();
+        StartCoroutine(rotationRoutine);
     }
 
     private IEnumerator RotateCoroutine()
@@ -73,8 +75,6 @@ public class CollectableThrowable : Collectable
             visualComponent.transform.Rotate(Vector3.forward, 7.5f);
             yield return null;
         }
-
-        yield return null;
     }
 
     public void SetIndestructible(bool value)
@@ -145,7 +145,6 @@ public class CollectableThrowable : Collectable
 
     private void ResetToCollectableState()
     {
-        //DestroyKey();
         OnResetFunction();
     }
 

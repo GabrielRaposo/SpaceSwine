@@ -15,6 +15,7 @@ public class PlayerAnimations : MonoBehaviour
     [HideInInspector] public bool landedOnGround;
     [HideInInspector] public bool holding;
     [HideInInspector] public bool throwing;
+    [HideInInspector] public bool airStall;
     [HideInInspector] public float horizontalInput;
     [HideInInspector] public float verticalSpeed;
 
@@ -34,7 +35,7 @@ public class PlayerAnimations : MonoBehaviour
 
     private void OnEnable() 
     {
-        holding = throwing = false;  
+        holding = throwing = airStall = false;  
     }
 
     private void Update() 
@@ -75,6 +76,12 @@ public class PlayerAnimations : MonoBehaviour
                 break;
 
             case State.Flying:
+                //Debug.Log("Flying, airStall: " + airStall);
+                if (airStall) 
+                {
+                    ChangeAnimationState(AnimationState.AIR_STALL);
+                    break;
+                }
                 ChangeAnimationState( !holding ? AnimationState.LAUNCH : AnimationState.LAUNCH_HOLD );
                 break;
         }
@@ -136,4 +143,6 @@ public class AnimationState
 
     public static string THROW_GROUND = "Player-Throw-Ground";
     //public static string THROW_AIR = "Player-Throw-Air";
+
+    public static string AIR_STALL = "Player-AirStall";
 }

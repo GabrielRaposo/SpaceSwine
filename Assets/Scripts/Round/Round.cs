@@ -49,6 +49,7 @@ public class Round : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         OnReset?.Invoke();
+        RaposUtil.ClearLog();
     }
 
     public void RoundCleared()

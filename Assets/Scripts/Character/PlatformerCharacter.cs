@@ -152,7 +152,7 @@ public class PlatformerCharacter : SidewaysCharacter
         if (onGround && verticalSpeed <= .1f)
         {
             if (!previousState) 
-            { 
+            {
                 shortLandingAKEvent?.Post(gameObject);
                 shortLandingVFX?.Play();
             }
