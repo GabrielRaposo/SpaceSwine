@@ -9,9 +9,10 @@ public class SpaceBooster : MonoBehaviour
     [SerializeField] Vector2[] launchDirections;    
     [SerializeField] float cooldownDuration;
 
-    [Space(5)]
-
+    [Header("References")]
+    [SerializeField] Transform visualComponent;
     [SerializeField] Transform rotationAnchor;
+    [SerializeField] ParticleSystem spinParticleSystem;
 
     int index;
     bool interactable = true;
@@ -42,8 +43,16 @@ public class SpaceBooster : MonoBehaviour
         if (sequence != null)
             sequence.Kill();
 
+        if (spinParticleSystem) 
+        {
+            spinParticleSystem.Stop();
+            spinParticleSystem.Clear();
+        }
+
         index = 0;
         interactable = true;
+        visualComponent.DOKill();
+        visualComponent.localScale = Vector3.one;
         animator.SetTrigger("Reset");
     }
 
@@ -110,6 +119,9 @@ public class SpaceBooster : MonoBehaviour
 
     IEnumerator CooldownRoutine()
     {
+        spinParticleSystem?.Play();
+        visualComponent.DOPunchScale(Vector3.one * .1f, .2f, vibrato: 0);
+
         SetSpinState(true);
         interactable = false;
         
