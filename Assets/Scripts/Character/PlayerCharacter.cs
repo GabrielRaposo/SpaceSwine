@@ -9,6 +9,10 @@ using UnityEngine;
 // Classe responsável por conversar com interações externas com controladores e managers
 public class PlayerCharacter : MonoBehaviour
 {
+    Rigidbody2D rb;
+    Collider2D coll;
+    SpriteRenderer spriteRenderer;
+
     LocalGameplayState gameplayState;
     PlatformerCharacter platformerCharacter;
     CollectableInteraction collectableInteraction;
@@ -31,6 +35,10 @@ public class PlayerCharacter : MonoBehaviour
 
     private void Start() 
     {
+        rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>(); 
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
         gameplayState = GetComponent<LocalGameplayState>();
         platformerCharacter = GetComponent<PlatformerCharacter>();
         collectableInteraction = GetComponent<CollectableInteraction>();
@@ -66,6 +74,18 @@ public class PlayerCharacter : MonoBehaviour
 
         coll.enabled = value;
         rb2d.bodyType = value ? RigidbodyType2D.Dynamic : RigidbodyType2D.Static;
+    }
+
+    public void SetHiddenState (bool value) // -- É chamado por fora do código, pelo "ReactOnGGSEvent" no Player
+    {
+        if (rb)
+            rb.bodyType = value ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
+
+        if (coll)
+            coll.enabled = !value;
+        
+        if (spriteRenderer)
+            spriteRenderer.enabled = !value;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) 

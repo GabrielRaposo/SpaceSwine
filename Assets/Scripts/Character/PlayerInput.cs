@@ -103,7 +103,7 @@ public class PlayerInput : MonoBehaviour
         if (DialogueSystem.OnDialogue)
             return true;
 
-        if (GGSConsole.TurnedOn)
+        if (GameManager.BlockCharacterInput)
             return true;
 
         return false;
@@ -144,7 +144,7 @@ public class PlayerInput : MonoBehaviour
         if (DialogueSystem.OnDialogue)
             return;
 
-        if (GGSConsole.TurnedOn)
+        if (GameManager.BlockCharacterInput)
             return;
 
         Vector2 movementInput = movement.ReadValue<Vector2>();

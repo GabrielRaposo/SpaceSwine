@@ -16,12 +16,14 @@ public class GameManager : MonoBehaviour
     PlayerInputActions playerInputActions;
     GGSConsole ggsConsole;
 
+    public static bool BlockCharacterInput;
+
     private void OnEnable() 
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.UI.Start.performed += (ctx) => 
         {
-            if (GGSConsole.TurnedOn)
+            if (BlockCharacterInput)
                 return;
 
             pauseSystem?.TogglePauseState();
@@ -76,7 +78,6 @@ public class GameManager : MonoBehaviour
 
         Vector3 spawnPosition = spawnManager.GetSpawnPoint();
         playerObject.transform.position = spawnPosition;
-        //Debug.Log("set spawnPosition: " + spawnPosition);
     }
 
     public static void GoToScene (BuildIndex buildIndex)
@@ -86,7 +87,6 @@ public class GameManager : MonoBehaviour
 
     public static void ResetScene()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         SceneTransition.ReloadScene();
     }
 

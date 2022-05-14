@@ -18,7 +18,7 @@ namespace Jumper
             this.cycleDuration = cycleDuration;
 
             percent = startingPercent;
-            Debug.Log("startingPercent: " + startingPercent);
+            //Debug.Log("startingPercent: " + startingPercent);
         }    
 
         void FixedUpdate()
