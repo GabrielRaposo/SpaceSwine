@@ -8,15 +8,21 @@ using UnityEngine;
 [RequireComponent(typeof(PlatformerCharacter))]
 public class CollectableInteraction : MonoBehaviour
 {
-    [SerializeField] CollectablesQueue collectablesQueue;
+    [Header("Values")]
     [SerializeField] float launchSpeed;
     [SerializeField] float cooldownDuration;
     [SerializeField] float airHoldDuration;
+    
+    [Header("Particles")]
+    [SerializeField] ParticleSystem onCollectEffect;
+    [SerializeField] ParticleSystem groundThrowEffect;
+    [SerializeField] ParticleSystem airThrowEffect;
+    
+    [Header("References")]
+    [SerializeField] CollectablesQueue collectablesQueue;
     [SerializeField] Transform holdAnchor;
     [SerializeField] PlayerDirectionDisplay directionDisplay; 
     [SerializeField] Transform arrowSprite;
-    [SerializeField] ParticleSystem onCollectEffect;
-    [SerializeField] ParticleSystem airThrowEffect;
 
     [HideInInspector] public bool OnAirStall;
 
@@ -141,6 +147,8 @@ public class CollectableInteraction : MonoBehaviour
         {
             Vector2 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
             LaunchCurrentIntoDirection(direction.normalized);
+
+            groundThrowEffect?.Play();
 
             playerAnimations.throwing = true;
         }

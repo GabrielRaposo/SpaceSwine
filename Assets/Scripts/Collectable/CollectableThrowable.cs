@@ -21,7 +21,11 @@ public class CollectableThrowable : Collectable
     public override void OnResetFunction() 
     {
         base.OnResetFunction();
+        LocalReset();
+    }
 
+    private void LocalReset (bool clearParticles = true) 
+    {
         indestructible = false;
         
         if(rotationRoutine!=null)
@@ -38,17 +42,23 @@ public class CollectableThrowable : Collectable
         visualComponent.transform.localEulerAngles = Vector3.zero;
 
         idleParticle.transform.position = trailParticle.transform.position = transform.position;
-        idleParticle?.Clear();
+        
+        if (clearParticles)
+        {
+            idleParticle?.Clear();
+            trailParticle?.Clear();
+            intenseTrailParticle?.Clear();
+        }
+
         idleParticle?.Play();
-        trailParticle?.Clear();
         trailParticle?.Stop();
-        intenseTrailParticle?.Clear();
         intenseTrailParticle?.Stop();
 
         trailParticle.GetComponent<HierarchyController>()?.SetOriginalState();
         intenseTrailParticle.GetComponent<HierarchyController>()?.SetOriginalState();
 
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            
     }
 
     public override void Interact (CollectableInteraction interactor) 
@@ -145,7 +155,9 @@ public class CollectableThrowable : Collectable
 
     private void ResetToCollectableState()
     {
-        OnResetFunction();
+        base.OnResetFunction();
+
+        LocalReset(clearParticles: false);
     }
 
     private void OnDisable() 
