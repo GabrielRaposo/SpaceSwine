@@ -134,7 +134,7 @@ public class CollectableThrowable : Collectable
         GravitationalBody gravitationalBody = collision.GetComponent<GravitationalBody>();
         if (gravitationalBody)
         {
-            ResetToCollectableState();
+            ResetToCollectableState(gravitationalBody);
         }
     }
 
@@ -153,11 +153,16 @@ public class CollectableThrowable : Collectable
         Instantiate(destroyParticles, transform.position, quaternion.identity);
     }
 
-    private void ResetToCollectableState()
+    private void ResetToCollectableState(GravitationalBody gravitationalBody)
     {
         base.OnResetFunction();
 
         LocalReset(clearParticles: false);
+
+        Vector3 direction = (transform.position - gravitationalBody.transform.position).normalized;
+        transform.position += direction * .1f;
+
+        transform.SetParent(gravitationalBody.transform);
     }
 
     private void OnDisable() 
