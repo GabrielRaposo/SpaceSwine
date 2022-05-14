@@ -111,6 +111,7 @@ public class SpaceBooster : MonoBehaviour
                 return;
 
             collectable.NullifyPreviousHolder();
+            collectable.transform.position = transform.position;
             rb.velocity = GetLaunchDirection().normalized * rb.velocity.magnitude;
 
             StartCoroutine( CooldownRoutine() );
