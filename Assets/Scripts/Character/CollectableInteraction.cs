@@ -16,6 +16,7 @@ public class CollectableInteraction : MonoBehaviour
     [SerializeField] PlayerDirectionDisplay directionDisplay; 
     [SerializeField] Transform arrowSprite;
     [SerializeField] ParticleSystem onCollectEffect;
+    [SerializeField] ParticleSystem airThrowEffect;
 
     [HideInInspector] public bool OnAirStall;
 
@@ -156,6 +157,8 @@ public class CollectableInteraction : MonoBehaviour
         spaceJumper.PointAndHoldIntoDirection(-direction.normalized);
 
         yield return new WaitForSeconds(airHoldDuration);
+
+        airThrowEffect?.Play();
 
         spaceJumper.LaunchIntoDirection(-direction.normalized);
         LaunchCurrentIntoDirection(direction.normalized);
