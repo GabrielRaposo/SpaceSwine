@@ -28,6 +28,7 @@ public class BuddingFlowerGroup : MonoBehaviour
 
     private void ResetComponents()
     {
+        StopAllCoroutines();
         activeCount = 0;
     }
 

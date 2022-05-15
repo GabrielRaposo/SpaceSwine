@@ -21,7 +21,11 @@ public class CollectableThrowable : Collectable
     public override void OnResetFunction() 
     {
         base.OnResetFunction();
+        LocalReset();
+    }
 
+    private void LocalReset (bool clearParticles = true) 
+    {
         indestructible = false;
         
         if(rotationRoutine!=null)
@@ -38,29 +42,37 @@ public class CollectableThrowable : Collectable
         visualComponent.transform.localEulerAngles = Vector3.zero;
 
         idleParticle.transform.position = trailParticle.transform.position = transform.position;
-        idleParticle?.Clear();
+        
+        if (clearParticles)
+        {
+            idleParticle?.Clear();
+            trailParticle?.Clear();
+            intenseTrailParticle?.Clear();
+        }
+
         idleParticle?.Play();
-        trailParticle?.Clear();
         trailParticle?.Stop();
-        intenseTrailParticle?.Clear();
         intenseTrailParticle?.Stop();
 
         trailParticle.GetComponent<HierarchyController>()?.SetOriginalState();
         intenseTrailParticle.GetComponent<HierarchyController>()?.SetOriginalState();
 
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            
     }
 
     public override void Interact (CollectableInteraction interactor) 
     {
-        if (interactor.LaunchInput())
-        {
-            trailParticle?.Play();
-            OnThrowAKEvent?.Post(gameObject);
+        interactor.LaunchInput();
+    }
+
+    public void LaunchSetup()
+    {
+        trailParticle?.Play();
+        OnThrowAKEvent?.Post(gameObject);
             
-            rotationRoutine = RotateCoroutine();
-            StartCoroutine(rotationRoutine);
-        }
+        rotationRoutine = RotateCoroutine();
+        StartCoroutine(rotationRoutine);
     }
 
     private IEnumerator RotateCoroutine()
@@ -73,8 +85,6 @@ public class CollectableThrowable : Collectable
             visualComponent.transform.Rotate(Vector3.forward, 7.5f);
             yield return null;
         }
-
-        yield return null;
     }
 
     public void SetIndestructible(bool value)
@@ -124,7 +134,7 @@ public class CollectableThrowable : Collectable
         GravitationalBody gravitationalBody = collision.GetComponent<GravitationalBody>();
         if (gravitationalBody)
         {
-            ResetToCollectableState();
+            ResetToCollectableState(gravitationalBody);
         }
     }
 
@@ -143,10 +153,16 @@ public class CollectableThrowable : Collectable
         Instantiate(destroyParticles, transform.position, quaternion.identity);
     }
 
-    private void ResetToCollectableState()
+    private void ResetToCollectableState(GravitationalBody gravitationalBody)
     {
-        //DestroyKey();
-        OnResetFunction();
+        base.OnResetFunction();
+
+        LocalReset(clearParticles: false);
+
+        Vector3 direction = (transform.position - gravitationalBody.transform.position).normalized;
+        transform.position += direction * .1f;
+
+        transform.SetParent(gravitationalBody.transform);
     }
 
     private void OnDisable() 

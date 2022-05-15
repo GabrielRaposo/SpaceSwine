@@ -56,6 +56,13 @@ public class InteractableShipComponent : Interactable
                     ShipShuttleSystem.Instance.ExitOnShuttle();
 
                 break;
+
+            case ShipAction.Chill:
+
+                if (RestLoopManager.Instance)
+                    RestLoopManager.Instance.Setup();
+
+                break;
         }
     }
 

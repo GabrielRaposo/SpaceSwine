@@ -9,14 +9,15 @@ public class SpaceBooster : MonoBehaviour
     [SerializeField] Vector2[] launchDirections;    
     [SerializeField] float cooldownDuration;
 
-    [Space(5)]
-
-    [SerializeField] GameObject visualComponent;
+    [Header("References")]
+    [SerializeField] Transform visualComponent;
     [SerializeField] Transform rotationAnchor;
+    [SerializeField] ParticleSystem spinParticleSystem;
 
+    int index;
     bool interactable = true;
     Sequence sequence;
-    int index;
+    Animator animator;
 
     private void OnValidate() 
     {
@@ -24,6 +25,35 @@ public class SpaceBooster : MonoBehaviour
             return;
 
         SetRotationAnchor();
+    }
+
+    private void Start() 
+    {   
+        animator = GetComponent<Animator>();
+
+        Round round = GetComponentInParent<Round>();
+        if (round)
+            round.OnReset += ResetComponents;
+    }
+
+    private void ResetComponents()
+    {
+        StopAllCoroutines();
+
+        if (sequence != null)
+            sequence.Kill();
+
+        if (spinParticleSystem) 
+        {
+            spinParticleSystem.Stop();
+            spinParticleSystem.Clear();
+        }
+
+        index = 0;
+        interactable = true;
+        visualComponent.DOKill();
+        visualComponent.localScale = Vector3.one;
+        animator.SetTrigger("Reset");
     }
 
     private Vector2 GetLaunchDirection()
@@ -39,7 +69,7 @@ public class SpaceBooster : MonoBehaviour
         if (rotationAnchor == null)
             return;
 
-        rotationAnchor.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, GetLaunchDirection().normalized);
+        rotationAnchor.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.right, GetLaunchDirection().normalized);
     }
 
     private void OnTriggerStay2D (Collider2D collision) 
@@ -81,6 +111,7 @@ public class SpaceBooster : MonoBehaviour
                 return;
 
             collectable.NullifyPreviousHolder();
+            collectable.transform.position = transform.position;
             rb.velocity = GetLaunchDirection().normalized * rb.velocity.magnitude;
 
             StartCoroutine( CooldownRoutine() );
@@ -89,18 +120,21 @@ public class SpaceBooster : MonoBehaviour
 
     IEnumerator CooldownRoutine()
     {
-        UpdateVisualState(false);
+        spinParticleSystem?.Play();
+        visualComponent.DOPunchScale(Vector3.one * .1f, .2f, vibrato: 0);
+
+        SetSpinState(true);
         interactable = false;
         
         yield return new WaitForSeconds(cooldownDuration);
 
-        UpdateVisualState(true);
+        SetSpinState(false);
         interactable = true;
     }
 
-    private void UpdateVisualState(bool value)
+    private void SetSpinState(bool value)
     {
-        visualComponent?.SetActive(value);
+        animator.SetTrigger(value ? "Spin" : "Reset");
     }
 
     public void ChangeLaunchDirection (float duration, UnityAction afterSequenceAction)
@@ -116,7 +150,7 @@ public class SpaceBooster : MonoBehaviour
         (
             rotationAnchor.DORotate
             (
-                Vector2.SignedAngle(Vector2.up, GetLaunchDirection().normalized) * Vector3.forward, 
+                Vector2.SignedAngle(Vector2.right, GetLaunchDirection().normalized) * Vector3.forward, 
                 duration, 
                 RotateMode.FastBeyond360
             )    

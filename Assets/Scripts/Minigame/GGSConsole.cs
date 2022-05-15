@@ -26,6 +26,7 @@ namespace Minigame
         [SerializeField] AK.Wwise.Event slideOutAKEvent;
 
         bool loadedAndActive;
+        bool turnedOn;
 
         Sequence mainSequence;
         CanvasGroup canvasGroup;
@@ -35,7 +36,7 @@ namespace Minigame
 
         public UnityAction <bool> OnStateChange;
 
-        public static bool TurnedOn { get; private set; }
+        //public static bool TurnedOn { get; private set; }
         public static GGSConsole Instance;
 
         private void Awake() 
@@ -52,7 +53,7 @@ namespace Minigame
 
             playerInputActions.UI.Start.performed += (ctx) =>
             {
-                if (!TurnedOn)
+                if (!turnedOn)
                     return;
                 ToggleConsoleState();
             };
@@ -61,14 +62,15 @@ namespace Minigame
 
         private void SetTurnedOn (bool value) 
         {
-            TurnedOn = value;
+            turnedOn = value;
+            GameManager.BlockCharacterInput = value;
             OnStateChange?.Invoke(value);
         }
 
 
         public void ToggleConsoleState()
         {
-            if (TurnedOn)
+            if (turnedOn)
             {
                 if (loadedAndActive)
                 {

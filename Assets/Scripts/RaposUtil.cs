@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Reflection;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -48,6 +49,18 @@ public class RaposUtil
         }
 
         action?.Invoke();
+    }
+
+    public static void ClearLog() //you can copy/paste this code to the bottom of your script
+    {
+        #if UNITY_EDITOR
+
+        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+        var type = assembly.GetType("UnityEditor.LogEntries");
+        var method = type.GetMethod("Clear");
+        method.Invoke(new object(), null);
+
+        #endif
     }
 }
 
