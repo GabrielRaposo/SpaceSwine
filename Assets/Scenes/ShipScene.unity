@@ -5834,7 +5834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &109163515
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5861,7 +5861,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109163514}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -12968,9 +12968,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 2e0ced20d309acc4c9ec85a0271d4dd6, type: 3}
-  m_Type: 2
+  m_Type: 1
   m_PreserveAspect: 0
-  m_FillCenter: 1
+  m_FillCenter: 0
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
@@ -19681,6 +19681,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 851190280}
+  - component: {fileID: 851190283}
   - component: {fileID: 851190282}
   - component: {fileID: 851190281}
   m_Layer: 0
@@ -19749,6 +19750,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851190279}
   m_CullTransparentMesh: 0
+--- !u!114 &851190283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851190279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11c4b4060b1401542ae27539b9f94757, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testInput1:
+    m_Name: Test Input 1
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: bfa93454-8d35-4ac7-a6f2-c0b90057ca72
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 3ca88d06-a0fd-46aa-9df3-f1f1170d098d
+      m_Path: <Keyboard>/9
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test Input 1
+      m_Flags: 0
+  testInput2:
+    m_Name: Test Input 2
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: eb24550b-1626-4b6a-9a19-0ded494fb05e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: e0a23a42-a6ad-4a9a-82c3-ca334953f05a
+      m_Path: <Keyboard>/0
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test Input 2
+      m_Flags: 0
+  testInput3:
+    m_Name: Test Input 3
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d97d7213-0d20-4a19-95b5-e5e439be14c8
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 91f42779-ef5e-4d82-8f16-5a71a73fc8d4
+      m_Path: <Keyboard>/7
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test Input 3
+      m_Flags: 0
+  testInput4:
+    m_Name: Test Input 4
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a2c10e55-4f1d-4de1-8817-b98af740c3e4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: d37ebe57-609d-498b-b440-955215c55f46
+      m_Path: <Keyboard>/8
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test Input 4
+      m_Flags: 0
 --- !u!1 &901195077
 GameObject:
   m_ObjectHideFlags: 0
@@ -45083,11 +45160,11 @@ RectTransform:
   m_Father: {fileID: 1231224890}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 302, y: 101}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1897284421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45160,7 +45237,7 @@ MonoBehaviour:
   m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 12
+  m_fontSizeMin: 10
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -45612,7 +45689,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2035248632}
-  - component: {fileID: 2035248634}
   - component: {fileID: 2035248633}
   m_Layer: 0
   m_Name: Dialogue Box
@@ -45657,18 +45733,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac242da3dd3ce2429d25fbb9c929bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2035248634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035248631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11c4b4060b1401542ae27539b9f94757, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  textTyper: {fileID: 1897284421}
+  textDisplay: {fileID: 1897284422}
+  largeBGImage: {fileID: 219584558}
+  smallBGImage: {fileID: 109163516}
+  largeBG: {fileID: 219584557}
+  smallBG: {fileID: 109163515}
+  sideRivets: {fileID: 559803778}
+  borderTop: {fileID: 1496778089}
+  borderBottom: {fileID: 1231224890}
+  textbox: {fileID: 1897284420}
 --- !u!1 &2052532946
 GameObject:
   m_ObjectHideFlags: 0

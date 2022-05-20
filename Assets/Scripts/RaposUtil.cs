@@ -70,6 +70,11 @@ public static class Vector2Extension
     {
         return new Vector2 (x, v.y);        
     }
+
+    public static Vector2 SetY (this Vector2 v, float y)
+    {
+        return new Vector2 (v.x, y);        
+    }
 }
 
 public static class ShaderExtensions
