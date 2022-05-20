@@ -19,20 +19,23 @@ public class ShipDialogueTester : MonoBehaviour
 
         testInput1.performed += (ctx) => 
         {
-            box.SetOpenedState();
+            box.ToggleVerticalTransition();
         };
         testInput2.performed += (ctx) => 
         {
-            box.SetClosedState();
+            box.ToggleVerticalTransition(duration: .1f);
         };
 
         testInput3.performed += (ctx) => 
         {
-            box.SetAllWidth(ShipDialogueBox.BASE_WIDTH);
+            box.Type("Oi, eu meu chamo  <i>P. I. G.</i>\nEu serei a sua companheira nesta missão.");
+            //box.SetAllWidth(ShipDialogueBox.BASE_WIDTH);
         };
         testInput4.performed += (ctx) => 
         {
-            box.SetAllWidth(ShipDialogueBox.BASE_WIDTH - 100);
+            box.ToggleVerticalTransition();
+            box.Type("É de extrema importância que a minha comunicação com você esteja perfeitamente funcional.", delay: .5f);
+            //box.SetAllWidth(ShipDialogueBox.BASE_WIDTH - 100);
         };
 
         testInput1.Enable();
