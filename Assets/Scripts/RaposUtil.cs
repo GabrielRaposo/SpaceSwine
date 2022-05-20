@@ -30,6 +30,11 @@ public class RaposUtil
         return diff < -180 ? diff + 360 : diff;
     }
 
+    public static void Wait(MonoBehaviour script, int frames, UnityAction action) 
+    {
+        script.StartCoroutine( Wait(frames, action) );
+    }
+
     public static void WaitSeconds(MonoBehaviour script, float duration, UnityAction action) 
     {
         script.StartCoroutine( WaitSeconds(duration, action) );

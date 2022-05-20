@@ -28,6 +28,7 @@ public class ShipDialogueBox : MonoBehaviour
     [Header("References")]
     [SerializeField] TextTyper textTyper;
     [SerializeField] TextMeshProUGUI textDisplay;
+    [SerializeField] TextMeshProUGUI textDisplaySimulator;
     
     [Header("Images")]
     [SerializeField] Image largeBGImage;
@@ -173,16 +174,41 @@ public class ShipDialogueBox : MonoBehaviour
 
     #endregion
 
-    public void Type (string text, float delay = 0)
+    public void Type (string text, float delay = .5f, bool instantText = false)
     {
         if (textTyper.IsTyping)
             textTyper.Skip();
 
+        textDisplaySimulator.text = text;
         textDisplay.text = string.Empty;
 
-        if (delay == 0)
-            textTyper.TypeText(text);
-        else
-            RaposUtil.WaitSeconds(this, delay, () => textTyper.TypeText(text));
+        RaposUtil.Wait(this, frames: 2, () =>
+        {
+            int lineCount = textDisplaySimulator.textInfo.lineCount;
+
+            if (lineCount < 3 && open)
+            {
+                VerticalTransition(opening: false, delay);
+                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, instantText));
+                return;
+            }
+
+            if (lineCount >= 3 && !open)
+            {
+                VerticalTransition(opening: true, delay);
+                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, instantText));
+                return;
+            }
+        
+            CallTyper(text);           
+        });
+    }
+
+    private void CallTyper(string text, bool instantText = false)
+    {
+        textTyper.TypeText(text);
+
+        if (instantText)
+            textTyper.Skip();
     }
 }

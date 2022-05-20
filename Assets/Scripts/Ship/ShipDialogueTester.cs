@@ -5,37 +5,44 @@ using UnityEngine.InputSystem;
 
 public class ShipDialogueTester : MonoBehaviour
 {
+    [SerializeField] ShipDialogueBox box;
+
     [SerializeField] InputAction testInput1;
     [SerializeField] InputAction testInput2;
 
     [SerializeField] InputAction testInput3;
     [SerializeField] InputAction testInput4;
 
-    ShipDialogueBox box;
-
     void OnEnable()
     {
-        box = GetComponentInChildren<ShipDialogueBox>();
+        if (!box)
+            box = GetComponentInChildren<ShipDialogueBox>();
 
         testInput1.performed += (ctx) => 
         {
-            box.ToggleVerticalTransition();
+            if (!box.gameObject.activeSelf)
+                return;
+            box.Type("Oi, eu meu chamo [P.I.G.]\nEu serei a sua companheira nesta missão.");
+
+            //box.SetAllWidth(ShipDialogueBox.BASE_WIDTH);
         };
         testInput2.performed += (ctx) => 
         {
-            box.ToggleVerticalTransition(duration: .1f);
-        };
+            if (!box.gameObject.activeSelf)
+                return;
+            box.Type("É de extrema importância que a minha comunicação com você esteja perfeitamente funcional.");
 
+            //box.SetAllWidth(ShipDialogueBox.BASE_WIDTH - 100);
+        };
         testInput3.performed += (ctx) => 
         {
-            box.Type("Oi, eu meu chamo  <i>P. I. G.</i>\nEu serei a sua companheira nesta missão.");
-            //box.SetAllWidth(ShipDialogueBox.BASE_WIDTH);
+            if (!box.gameObject.activeSelf)
+                return;
+            box.Type("<color=red><size=20><anim=fullshake>PERIGO</anim>", delay: .01f, instantText: true);
         };
         testInput4.performed += (ctx) => 
         {
-            box.ToggleVerticalTransition();
-            box.Type("É de extrema importância que a minha comunicação com você esteja perfeitamente funcional.", delay: .5f);
-            //box.SetAllWidth(ShipDialogueBox.BASE_WIDTH - 100);
+            box.gameObject.SetActive(!box.gameObject.activeSelf);
         };
 
         testInput1.Enable();
