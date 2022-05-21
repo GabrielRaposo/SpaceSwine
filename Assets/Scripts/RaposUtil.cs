@@ -30,6 +30,16 @@ public class RaposUtil
         return diff < -180 ? diff + 360 : diff;
     }
 
+    public static void Wait(MonoBehaviour script, int frames, UnityAction action) 
+    {
+        script.StartCoroutine( Wait(frames, action) );
+    }
+
+    public static void WaitSeconds(MonoBehaviour script, float duration, UnityAction action) 
+    {
+        script.StartCoroutine( WaitSeconds(duration, action) );
+    }
+
     public static IEnumerator Wait (int frames, UnityAction action)
     {
         if (frames > 0)
@@ -69,6 +79,11 @@ public static class Vector2Extension
     public static Vector2 SetX (this Vector2 v, float x)
     {
         return new Vector2 (x, v.y);        
+    }
+
+    public static Vector2 SetY (this Vector2 v, float y)
+    {
+        return new Vector2 (v.x, y);        
     }
 }
 
