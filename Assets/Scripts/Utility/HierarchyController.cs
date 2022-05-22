@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HierarchyController : MonoBehaviour
 {
+    [SerializeField] bool useLocalPosition;
+
     Vector3 originalPosition;
     Quaternion originalRotation;
     Transform originalParent;
@@ -12,9 +14,9 @@ public class HierarchyController : MonoBehaviour
     
     void Awake()
     {
-        originalPosition = transform.position;
-        originalRotation = transform.rotation;
         originalParent = transform.parent;
+        originalPosition = useLocalPosition ? transform.localPosition : transform.position;
+        originalRotation = transform.rotation;
 
         Round round = GetComponentInParent<Round>();
         if (round)
@@ -39,9 +41,14 @@ public class HierarchyController : MonoBehaviour
 
     public void SetOriginalState()
     {
-        transform.position = originalPosition;
-        transform.rotation = originalRotation;
         transform.parent = originalParent;
+
+        if (useLocalPosition)
+            transform.localPosition = originalPosition;
+        else
+            transform.position = originalPosition;
+
+        transform.rotation = originalRotation;
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb)
