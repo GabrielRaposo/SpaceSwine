@@ -8,22 +8,7 @@ using TMPro;
 
 public class ShipDialogueBox : MonoBehaviour
 {
-    #region CONST
-
-    public const int BASE_WIDTH  = 302;
-    
-    public const int OPENED_HEIGHT = 101;
-    public const int CLOSED_HEIGHT = 65;
-
-    public const int BG_LARGE_HEIGHT = 62;
-    public const int BG_SMALL_HEIGHT = 44;
-
-    public const float RIVET_OPENED_Y = 0;
-    public const float RIVET_CLOSED_Y = -8.5f;
-
-    public const int CLOSED_TEXT_HEIGHT = 85;
-
-    #endregion
+    const int BASE_WIDTH  = 302;
 
     [Header("References")]
     [SerializeField] TextTyper textTyper;
@@ -31,8 +16,9 @@ public class ShipDialogueBox : MonoBehaviour
     [SerializeField] TextMeshProUGUI textDisplaySimulator;
     
     [Header("Images")]
-    [SerializeField] Image largeBGImage;
-    [SerializeField] Image smallBGImage;
+    [SerializeField] Image closed2BGImage;
+    [SerializeField] Image closed1BGImage;
+    [SerializeField] Image openedBGImage;
 
     [Header("Rect Transforms")]
     [SerializeField] RectTransform largeBG;
@@ -41,22 +27,74 @@ public class ShipDialogueBox : MonoBehaviour
     [SerializeField] RectTransform borderTop;
     [SerializeField] RectTransform borderBottom;
     [SerializeField] RectTransform textbox;
+    [SerializeField] RectTransform textboxSimulator;
+
+    public enum VerticalState { Closed, Open1, Open2 }
+    VerticalState verticalState;
 
     Sequence sequence;
-    bool open;
 
     void Start()
     {
         SetAllWidth(BASE_WIDTH);
-        SetClosedState();
+        SetVerticalState(VerticalState.Closed);
 
-        largeBGImage.enabled = true; 
-        smallBGImage.enabled = true;
+        closed1BGImage.enabled = true; 
+        openedBGImage.enabled = true;
 
         textDisplay.text = string.Empty;
     }
 
     #region IMMEDIATE
+
+    private int Height (VerticalState state)
+    {
+        switch (state)
+        {
+            default:
+            case VerticalState.Closed: return 65;
+            case VerticalState.Open1:  return 101;
+            case VerticalState.Open2:  return 137;
+        }
+    }
+
+    private int BGHeight (VerticalState state)
+    {
+        switch (state)
+        {
+            default:
+            case VerticalState.Closed: return 44;
+            case VerticalState.Open1:  return 62;
+            case VerticalState.Open2:  return 80;
+        }
+    }
+
+    private float RivetY (VerticalState state)
+    {
+        switch (state)
+        {
+            default:
+            case VerticalState.Closed: return -8.5f;
+            case VerticalState.Open1:  return  0.0f;
+            case VerticalState.Open2:  return  8.5f;
+        }
+    }
+
+    private int TextHeight (VerticalState state)
+    {
+        switch (state)
+        {
+            default:
+            case VerticalState.Closed: return 85;
+            case VerticalState.Open1:  return 101;
+            case VerticalState.Open2:  return 119;
+        }
+    }
+
+    private void TextBoxSize (Vector2 sizeDelta)
+    {
+        textbox.sizeDelta = textboxSimulator.sizeDelta = sizeDelta;
+    }
 
     public void SetAllWidth (float width)
     {
@@ -65,39 +103,60 @@ public class ShipDialogueBox : MonoBehaviour
         sideRivets.sizeDelta = sideRivets.sizeDelta.SetX(width);
         borderTop.sizeDelta = borderTop.sizeDelta.SetX(width);
         borderBottom.sizeDelta = borderBottom.sizeDelta.SetX(width);
-        textbox.sizeDelta = textbox.sizeDelta.SetX(width);
+        TextBoxSize(textbox.sizeDelta.SetX(width));
     }
 
-    public void SetOpenedState()
+    public void SetVerticalState(VerticalState vState)
     {
-        largeBGImage.color = new Color(1, 1, 1, 1);
-        smallBGImage.color = new Color(1, 1, 1, 0);
+        switch (vState)
+        {
+            case VerticalState.Closed:
+                
+                closed1BGImage.color = new Color(1, 1, 1, 0);
+                openedBGImage.color = new Color(1, 1, 1, 1);
 
-        largeBG.sizeDelta = smallBG.sizeDelta = largeBG.sizeDelta.SetY(BG_LARGE_HEIGHT);
-        largeBG.transform.SetAsLastSibling();
+                largeBG.sizeDelta = smallBG.sizeDelta = largeBG.sizeDelta.SetY(BGHeight(VerticalState.Closed));
+                smallBG.transform.SetAsLastSibling();
 
-        sideRivets.anchoredPosition = new Vector2(0, RIVET_OPENED_Y);
-        borderTop.sizeDelta = new Vector2(borderTop.sizeDelta.x, OPENED_HEIGHT);
+                sideRivets.anchoredPosition = new Vector2(0, RivetY(VerticalState.Closed));
+                borderTop.sizeDelta = new Vector2(borderTop.sizeDelta.x, Height(VerticalState.Closed));
+
+                TextBoxSize( textbox.sizeDelta.SetY(TextHeight(VerticalState.Closed)) );
+
+                break;
+
+            case VerticalState.Open1:
+                
+                closed1BGImage.color = new Color(1, 1, 1, 1);
+                openedBGImage.color = new Color(1, 1, 1, 0);
+
+                largeBG.sizeDelta = smallBG.sizeDelta = largeBG.sizeDelta.SetY(BGHeight(VerticalState.Open1));
+                largeBG.transform.SetAsLastSibling();
+
+                sideRivets.anchoredPosition = new Vector2(0, RivetY(VerticalState.Open1) );
+                borderTop.sizeDelta = new Vector2(borderTop.sizeDelta.x, Height(VerticalState.Open1));
         
-        textbox.sizeDelta = textbox.sizeDelta.SetY(OPENED_HEIGHT);
+                TextBoxSize( textbox.sizeDelta.SetY(TextHeight(VerticalState.Open1)) );
+            
+                break;
 
-        open = true;
-    }
+            case VerticalState.Open2:
+                
+                closed1BGImage.color = new Color(1, 1, 1, 1);
+                openedBGImage.color = new Color(1, 1, 1, 0);
 
-    public void SetClosedState()
-    {
-        largeBGImage.color = new Color(1, 1, 1, 0);
-        smallBGImage.color = new Color(1, 1, 1, 1);
+                largeBG.sizeDelta = smallBG.sizeDelta = largeBG.sizeDelta.SetY(BGHeight(VerticalState.Open2));
+                largeBG.transform.SetAsLastSibling();
 
-        largeBG.sizeDelta = smallBG.sizeDelta = largeBG.sizeDelta.SetY(BG_SMALL_HEIGHT);
-        smallBG.transform.SetAsLastSibling();
+                sideRivets.anchoredPosition = new Vector2(0, RivetY(VerticalState.Open2));
+                borderTop.sizeDelta = new Vector2(borderTop.sizeDelta.x, Height(VerticalState.Open2));
+        
+                TextBoxSize( textbox.sizeDelta.SetY(TextHeight(VerticalState.Open2)) );
+            
+                break;
+        }
 
-        sideRivets.anchoredPosition = new Vector2(0, RIVET_CLOSED_Y);
-        borderTop.sizeDelta = new Vector2(borderTop.sizeDelta.x, CLOSED_HEIGHT);
-
-        textbox.sizeDelta = textbox.sizeDelta.SetY(CLOSED_TEXT_HEIGHT);
-
-        open = false;
+        verticalState = vState;
     }
 
     #endregion
@@ -115,51 +174,39 @@ public class ShipDialogueBox : MonoBehaviour
         sequence = DOTween.Sequence();
     }
 
-    public void ToggleVerticalTransition(float duration = .5f)
-    {
-        if (sequence != null && sequence.IsPlaying())
-            return;
-
-        VerticalTransition(!open, duration);
-    }
-
-    public void VerticalTransition(bool opening, float duration = .5f)
+    public void VerticalTransition (VerticalState nextVerticalState, float duration)
     {
         SetSequence();
 
-        if (opening) SetClosedState();
-        else         SetOpenedState();
-
-        largeBGImage.color = smallBGImage.color = new Color(1, 1, 1, 1);
+        SetVerticalState(verticalState);
+        closed1BGImage.color = openedBGImage.color = new Color(1, 1, 1, 1);
 
         sequence.Append
         (
             DOVirtual.Float
             (
-                0f, 1f, duration, 
+                0.0f, 1.0f, duration, 
                 (f) =>
                 {
-                    float t = opening ? f : 1 - f;
-
                     borderTop.sizeDelta = borderTop.sizeDelta
-                        .SetY(ValueOnContext(t, CLOSED_HEIGHT, OPENED_HEIGHT));
+                        .SetY(ValueOnContext(f, Height(verticalState), Height(nextVerticalState)));
                     sideRivets.anchoredPosition = sideRivets.anchoredPosition
-                        .SetY(ValueOnContext(t, RIVET_CLOSED_Y, RIVET_OPENED_Y));
+                        .SetY(ValueOnContext(f, RivetY(verticalState), RivetY(nextVerticalState)));
                     textbox.sizeDelta = textbox.sizeDelta
-                        .SetY(ValueOnContext(t, CLOSED_TEXT_HEIGHT, OPENED_HEIGHT));
+                        .SetY(ValueOnContext(f, TextHeight(verticalState), TextHeight(nextVerticalState)));
                     largeBG.sizeDelta = largeBG.sizeDelta
-                        .SetY(ValueOnContext(t, BG_SMALL_HEIGHT, BG_LARGE_HEIGHT));
+                        .SetY(ValueOnContext(f, BGHeight(verticalState), BGHeight(nextVerticalState)));
                     smallBG.sizeDelta = smallBG.sizeDelta
-                        .SetY(ValueOnContext(t, BG_SMALL_HEIGHT, BG_LARGE_HEIGHT));
+                        .SetY(ValueOnContext(f, BGHeight(verticalState), BGHeight(nextVerticalState)));
                 }
-            )
+            ).SetEase(Ease.Linear)
         );
-        if (opening)
-            sequence.Join ( smallBGImage.DOFade(0, duration) );
+        if (nextVerticalState != VerticalState.Closed)
+            sequence.Join ( openedBGImage.DOFade(0, duration) );
         else 
-            sequence.Join ( largeBGImage.DOFade(0, duration) );
+            sequence.Join ( closed1BGImage.DOFade(0, duration) );
 
-        sequence.OnComplete( () => { if (opening) SetOpenedState(); else SetClosedState(); } );
+        sequence.OnComplete( () => SetVerticalState(nextVerticalState) );
     }
 
     public void CloseTransition()
@@ -174,7 +221,9 @@ public class ShipDialogueBox : MonoBehaviour
 
     #endregion
 
-    public void Type (string text, float delay = .5f, bool instantText = false)
+    #region TYPER
+
+    public void Type (string text, float delay = .3f, bool instantText = false)
     {
         if (textTyper.IsTyping)
             textTyper.Skip();
@@ -186,16 +235,23 @@ public class ShipDialogueBox : MonoBehaviour
         {
             int lineCount = textDisplaySimulator.textInfo.lineCount;
 
-            if (lineCount < 3 && open)
+            if (lineCount < 3 && verticalState != VerticalState.Closed)
             {
-                VerticalTransition(opening: false, delay);
+                VerticalTransition(VerticalState.Closed, delay);
                 RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, instantText));
                 return;
             }
 
-            if (lineCount >= 3 && !open)
+            if (lineCount == 3 && verticalState != VerticalState.Open1)
             {
-                VerticalTransition(opening: true, delay);
+                VerticalTransition(VerticalState.Open1, delay);
+                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, instantText));
+                return;
+            }
+
+            if (lineCount >= 4 && verticalState != VerticalState.Open2)
+            {
+                VerticalTransition(VerticalState.Open2, delay);
                 RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, instantText));
                 return;
             }
@@ -211,4 +267,6 @@ public class ShipDialogueBox : MonoBehaviour
         if (instantText)
             textTyper.Skip();
     }
+
+    #endregion
 }
