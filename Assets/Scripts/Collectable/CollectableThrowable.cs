@@ -58,7 +58,6 @@ public class CollectableThrowable : Collectable
         intenseTrailParticle.GetComponent<HierarchyController>()?.SetOriginalState();
 
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            
     }
 
     public override void Interact (CollectableInteraction interactor) 
@@ -142,6 +141,11 @@ public class CollectableThrowable : Collectable
     {
         base.OnCollected();
         
+        if (rotationRoutine != null)
+            StopCoroutine(rotationRoutine);
+
+        visualComponent.transform.localEulerAngles = Vector3.zero;
+
         idleParticle?.Stop();
         trailParticle?.Stop();
         intenseTrailParticle?.Stop();
