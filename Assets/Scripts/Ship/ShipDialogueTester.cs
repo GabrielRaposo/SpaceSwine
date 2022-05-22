@@ -15,6 +15,8 @@ public class ShipDialogueTester : MonoBehaviour
     [SerializeField] InputAction testInput5;
     [SerializeField] InputAction testInput6;
 
+    #if UNITY_EDITOR
+
     void OnEnable()
     {
         if (!box)
@@ -73,4 +75,6 @@ public class ShipDialogueTester : MonoBehaviour
         testInput5.Disable();
         testInput6.Disable();
     }
+
+    #endif
 }
