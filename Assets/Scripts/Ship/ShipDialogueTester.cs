@@ -9,9 +9,11 @@ public class ShipDialogueTester : MonoBehaviour
 
     [SerializeField] InputAction testInput1;
     [SerializeField] InputAction testInput2;
-
     [SerializeField] InputAction testInput3;
     [SerializeField] InputAction testInput4;
+
+    [SerializeField] InputAction testInput5;
+    [SerializeField] InputAction testInput6;
 
     void OnEnable()
     {
@@ -28,7 +30,7 @@ public class ShipDialogueTester : MonoBehaviour
         {
             if (!box.gameObject.activeSelf)
                 return;
-            box.Type("É de extrema importância que a minha comunicação com você esteja perfeitamente funcional.");
+            box.Type("É de extrema importância que a minha comunicação com você esteja perfeitamente funcional, sem perder linha.");
         };
         testInput3.performed += (ctx) => 
         {
@@ -41,11 +43,25 @@ public class ShipDialogueTester : MonoBehaviour
         {
             box.gameObject.SetActive(!box.gameObject.activeSelf);
         };
+        testInput5.performed += (ctx) => 
+        {
+            if (!box.gameObject.activeSelf)
+                return;
+            box.SetAllWidth(202);
+        };
+        testInput6.performed += (ctx) => 
+        {
+            if (!box.gameObject.activeSelf)
+                return;
+           box.SetAllWidth(302);
+        };
 
         testInput1.Enable();
         testInput2.Enable();
         testInput3.Enable();
         testInput4.Enable();
+        testInput5.Enable();
+        testInput6.Enable();
     }
 
     void OnDisable() 
@@ -54,5 +70,7 @@ public class ShipDialogueTester : MonoBehaviour
         testInput2.Disable();
         testInput3.Disable();
         testInput4.Disable();
+        testInput5.Disable();
+        testInput6.Disable();
     }
 }
