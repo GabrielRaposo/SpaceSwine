@@ -43,7 +43,7 @@ public class BuddingFlowerGroup : MonoBehaviour
         
         if (activeCount >= flowers.Count)
         {
-            Debug.Log("All flowers are active");
+            //Debug.Log("All flowers are active");
             StartCoroutine( ActivationRoutine() );
         }
     }

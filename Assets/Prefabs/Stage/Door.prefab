@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 349535262006152150}
   - component: {fileID: 349535262006152149}
-  - component: {fileID: 349535262006152148}
+  - component: {fileID: 332583183480950228}
   - component: {fileID: 349535262006152151}
   - component: {fileID: 2683299369174316088}
   m_Layer: 10
@@ -55,29 +55,26 @@ MonoBehaviour:
   visualComponent: {fileID: 349535263043486808}
   portal: {fileID: 7820829913833309424}
   healthPreview: {fileID: 8328218817550034404}
-  mainCollider: {fileID: 349535262006152148}
+  mainCollider: {fileID: 8297266837622369837}
   animator: {fileID: 2683299369174316088}
   collectAKEvent:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: a3358582bea5cfc47b4698b71092c1f9, type: 2}
   externalLocks: []
---- !u!58 &349535262006152148
-CircleCollider2D:
+--- !u!114 &332583183480950228
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349535262006152145}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.94
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11bcb4ec2825c147ba908fa70ba0ba4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveInDuration: 1
 --- !u!50 &349535262006152151
 Rigidbody2D:
   serializedVersion: 4
@@ -571,3 +568,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ff89b846f485f4490cc250caf1880d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &8297266837622369837 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 4014736132512609068, guid: d0185ed2c21ee2b46b3af5572939b867, type: 3}
+  m_PrefabInstance: {fileID: 4941263561726549249}
+  m_PrefabAsset: {fileID: 0}
