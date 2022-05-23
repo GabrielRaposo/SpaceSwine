@@ -162,4 +162,9 @@ public class SpaceBooster : MonoBehaviour
             }
         );
     }
+
+    private void OnDrawGizmos() 
+    {
+            
+    }
 }
