@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(CollectableInteraction))]
 [RequireComponent(typeof(SpaceJumper))]
 [RequireComponent(typeof(Health))]
+
 // Classe responsável por conversar com interações externas com controladores e managers
 public class PlayerCharacter : MonoBehaviour
 {

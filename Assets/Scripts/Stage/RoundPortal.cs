@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class RoundPortal : MonoBehaviour
 {
-    UnityAction OnContact;
+    UnityAction <GameObject> OnContact;
 
     public void VisualSetup ()
     {
@@ -13,7 +13,7 @@ public class RoundPortal : MonoBehaviour
         gameObject.SetActive(true);
     } 
 
-    public void Setup (UnityAction OnContact)
+    public void Setup (UnityAction <GameObject> OnContact)
     {
         this.OnContact = OnContact;
         GetComponentInChildren<Collider2D>().enabled = true;
@@ -25,6 +25,6 @@ public class RoundPortal : MonoBehaviour
         if (!collision.CompareTag("Player"))
             return;
 
-        OnContact?.Invoke();
+        OnContact?.Invoke(collision.gameObject);
     }
 }

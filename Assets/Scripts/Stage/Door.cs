@@ -25,6 +25,7 @@ public class Door : MonoBehaviour
     [SerializeField] private List<Lock> externalLocks; 
 
     Sequence openSequence;
+    DoorAnimation doorAnimation;
 
     //private List<Lock> internalLocks;
 
@@ -53,12 +54,13 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
+        doorAnimation = GetComponent<DoorAnimation>();
+
         // internalHealth = originalInternalHealth;
         // Health = originalInternalHealth + externalLocks.Count;
         Health = externalLocks.Count;
 
         SetLocks();
-        
         ResetStates();
 
         round = GetComponentInParent<Round>();
@@ -119,19 +121,8 @@ public class Door : MonoBehaviour
         if (Health < 1 && !startClosed)
             SpawnPortal(initiation: true);
 
+        SetInteractable(true);
     }
-
-    // private void UpdateAttributes()
-    // {
-    //     if (mainCollider)
-    //         mainCollider.radius = starRadius;
-    //
-    //     if (outlineVisualComponent)
-    //         outlineVisualComponent.transform.localScale = Vector3.one * starRadius * 2f;
-    //
-    //     if (insideVisualComponent)
-    //         insideVisualComponent.transform.localScale = outlineVisualComponent.transform.localScale - (Vector3.one * .04f);
-    // }
 
     public void Collect (Collectable collectable)
     {
@@ -160,14 +151,7 @@ public class Door : MonoBehaviour
         if (initiation)
         {
             portal.transform.position = transform.position;
-            portal.Setup
-            (
-                () => 
-                {
-                    round.RoundCleared();
-                    portal.transform.SetParent(transform);
-                }
-            );
+            PortalSetup();
 
             animator.SetTrigger("InstantOpen");
             animator.SetBool("Open", true);
@@ -189,19 +173,43 @@ public class Door : MonoBehaviour
         openSequence = DOTween.Sequence();
 
         openSequence.AppendInterval( openDuration );
-        openSequence.AppendCallback( () => 
-        {
-            portal.Setup
-            (
-                () => 
-                {
-                    round.RoundCleared();
-                    portal.transform.SetParent(transform);
-                }
-            );
-        });
+        openSequence.AppendCallback( PortalSetup );
         openSequence.Join( visualComponent.DOPunchRotation(Vector3.back * 5f, .3f, vibrato: 0, elasticity: 0) );
         //openSequence.AppendInterval( VFXs call );
+    }
 
+    private void PortalSetup()
+    {
+        portal.Setup
+        (
+            (player) => 
+            {
+                if (doorAnimation)
+                {
+                    round.OnPortalReached?.Invoke();    
+
+                    doorAnimation.SetupAnimation( this, player, 
+                    
+                        OnAnimationEnd: () => 
+                        {
+                            round.RoundCleared();
+                            portal.transform.SetParent(transform);
+                        }
+
+                    );
+                    
+                    return;
+                }
+
+                round.RoundCleared();
+                portal.transform.SetParent(transform);
+            }
+        );
+    }
+
+    public void SetInteractable (bool value)
+    {
+        if (mainCollider)
+            mainCollider.enabled = value;
     }
 }

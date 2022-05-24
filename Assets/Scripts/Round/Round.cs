@@ -12,7 +12,7 @@ public class Round : MonoBehaviour
     PlayerCharacter player;
 
     public UnityAction OnReset;
-
+    public UnityAction OnPortalReached;
     public UnityAction OnPassRound;
 
     public void SetReferences (RoundsManager manager, PlayerCharacter player)

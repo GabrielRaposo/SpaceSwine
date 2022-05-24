@@ -14,6 +14,7 @@ public class CustomMove : MonoBehaviour
     [SerializeField] bool invertAutoEase;
     [SerializeField] CustomEase customEase;
     [SerializeField] bool moveOnStart;
+    [SerializeField] bool stopDuringOutro;
 
     float startingT = 0; 
     int direction = 1;
@@ -63,7 +64,11 @@ public class CustomMove : MonoBehaviour
 
         Round round = GetComponentInParent<Round>();
         if (round)
+        {
             round.OnReset += Restart;
+            if (stopDuringOutro)
+                round.OnPortalReached += PauseMovement;
+        }
 
         OnStart?.Invoke();
     }

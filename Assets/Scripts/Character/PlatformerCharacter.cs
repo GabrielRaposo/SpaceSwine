@@ -73,6 +73,7 @@ public class PlatformerCharacter : SidewaysCharacter
 
     protected override void SetFacingRight(bool value) 
     {
+        if (!enabled) return;
         base.SetFacingRight(value);
         visualAnchor.localEulerAngles = new Vector3 (visualAnchor.localEulerAngles.x, value ? 0 : 180, visualAnchor.localEulerAngles.z);
         //directionArrow.flipY = !value;

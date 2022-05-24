@@ -266,4 +266,9 @@ public class CollectableInteraction : MonoBehaviour
         playerAnimations.holding = false;
         playerAnimations.airStall = false;
     }
+
+    public void ToggleDirectionDisplay()
+    {
+        directionDisplay.gameObject.SetActive( !directionDisplay.gameObject.activeSelf );
+    }
 }
