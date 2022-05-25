@@ -77,6 +77,8 @@ public class TrailerSceneCaller : MonoBehaviour
         shipDialogueBox.Type("<color=red><b>-- AMEAÇA DETECTADA --", delay: .01f, instantText: true);
         shipDialogueBox.transform.DOPunchScale(Vector3.one * .8f, duration: .3f);
         shipDialogueBox.transform.DOLocalRotate(Vector3.forward * -3, duration: .1f);
+
+        RaposUtil.WaitSeconds(this, 7, GameManager.ResetScene );
     }
 
     private void OnDisable() 
