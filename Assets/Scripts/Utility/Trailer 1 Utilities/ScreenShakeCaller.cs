@@ -22,7 +22,7 @@ public class ScreenShakeCaller : MonoBehaviour
 
         startingPosition = cameraTransform.position;
 
-        RaposUtil.WaitSeconds(this, duration: 2f, CallScreenshake);
+        //RaposUtil.WaitSeconds(this, duration: 2f, CallScreenshake);
     }
 
     public void CallScreenshake()
@@ -45,21 +45,11 @@ public class ScreenShakeCaller : MonoBehaviour
                 fadeOut: true
             )
         );
-        //sequence.Join
-        //(
-        //    cameraTransform.DOShakeRotation
-        //    (
-        //        duration,
-        //        strength: 10,
-        //        vibrato,
-        //        randomness,
-        //        fadeOut: true
-        //    )
-        //);
 
-        sequence.OnComplete
+        sequence.OnComplete 
         (
-            () => {
+            () => 
+            {
                 cameraTransform.position = startingPosition;
             }
         );

@@ -29,7 +29,7 @@ public class GalaxyParallaxTester : MonoBehaviour
         PlaySequence();
     }
 
-    private void PlaySequence()
+    public void PlaySequence()
     {
         if (sequence != null)
             sequence.Kill();
@@ -42,8 +42,6 @@ public class GalaxyParallaxTester : MonoBehaviour
         sequence.Append( starGroup.DOLocalMoveX(.5f, duration).SetEase(Ease.Linear) );
         sequence.Join( starParticles.DOLocalMoveX(3.0f, duration).SetEase(Ease.Linear) );
         sequence.Join( bigStars.DOLocalMoveX(0, duration).SetEase(Ease.Linear) );
-
-        sequence.SetLoops (-1);
     }
 
     private void OnDisable() 

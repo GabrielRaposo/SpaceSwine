@@ -13651,6 +13651,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &648453304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3973693467495190602, guid: 20ebc0cc9586d8d4ba158e2b3696c4c5, type: 3}
+  m_PrefabInstance: {fileID: 3973693467642052019}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac242da3dd3ce2429d25fbb9c929bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &662713791
 GameObject:
   m_ObjectHideFlags: 0
@@ -18847,7 +18858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &737879093
 Transform:
   m_ObjectHideFlags: 0
@@ -38081,6 +38092,97 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1435513619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1435513620}
+  - component: {fileID: 1435513621}
+  m_Layer: 0
+  m_Name: '>>> Scene Caller'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1435513620
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435513619}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1435513621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435513619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543fefddf55ea8c4cb9b727ba7f52cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnOnInput:
+    m_Name: Turn On Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b9268aef-6d85-490e-ae6f-664fa9b8eb1c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1e831eb4-2276-407f-be50-1265cae06972
+      m_Path: <Keyboard>/comma
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Turn On Input
+      m_Flags: 0
+  shakeInput:
+    m_Name: Shake Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2290861b-88c4-43b9-8171-1f0494f86644
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: dcacf092-f37a-4890-8bfc-fbc3006b538c
+      m_Path: <Keyboard>/period
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shake Input
+      m_Flags: 0
+  shipDialogue:
+  - "Oi, eu meu chamo [P.I.G.]\nEu serei a sua companheira nesta miss\xE3o."
+  - "\xC9 de extrema import\xE2ncia que a minha comunica\xE7\xE3o com voc\xEA esteja
+    perfeitamente funcional, sem perder linha."
+  - 'Linha 1
+
+    Linha 2
+
+    Linha 3
+
+    Linha 4'
+  shipDialogueBox: {fileID: 648453304}
+  galaxyParallax: {fileID: 1357313379}
+  screenShake: {fileID: 302663034}
+  relaxingBuyk: {fileID: 737879092}
+  startledBuyk: {fileID: 92536553}
 --- !u!1 &1448627409
 GameObject:
   m_ObjectHideFlags: 0
@@ -50961,6 +51063,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3973693466604601140, guid: 20ebc0cc9586d8d4ba158e2b3696c4c5, type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3973693468490080184, guid: 20ebc0cc9586d8d4ba158e2b3696c4c5, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
