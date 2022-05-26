@@ -18,14 +18,14 @@ public class Lock : MonoBehaviour
 
     private Door _door;
     private Round _round;
+    private Animator animator;
 
     public void Init (Door s, bool isInternal)
     {
+        animator = GetComponent<Animator>();
         _door = s;
 
         health = startingHealth;
-        //isInternalLock = isInternal;
-
         col.enabled = !isInternal;
     }
 
@@ -37,7 +37,6 @@ public class Lock : MonoBehaviour
     protected virtual void Start()
     {
         _round = GetComponentInParent<Round>();
-
         _round.OnReset += OnReset;
     }
 
@@ -63,15 +62,20 @@ public class Lock : MonoBehaviour
     
     public void Unlock()
     {
-        visualComponent.SetActive(false);
+        animator.SetTrigger("Unlock");
         
         if (particles)
             particles.SetActive(false);
 
         col.enabled = false;
-        lockGravityField.gameObject.SetActive(false);
     }
     
+    public void AnimationTrigger()
+    {
+        visualComponent.SetActive(false);
+        lockGravityField.gameObject.SetActive(false);
+    }
+
     public int GetHealth()
     {
         return health;
@@ -79,14 +83,20 @@ public class Lock : MonoBehaviour
     
     public void OnReset()
     {
+        if (animator)
+        {
+            animator.SetBool("Unlock", false);
+            animator.SetTrigger("Reset");
+        }
+
         health = startingHealth;
 
-        if(visualComponent)
+        if (visualComponent)
             visualComponent.SetActive(true);
         
         col.enabled = true;
         
-        if(particles)
+        if (particles)
             particles.SetActive(true);
         
         lockGravityField.gameObject.SetActive(true);
