@@ -62,7 +62,8 @@ public class Lock : MonoBehaviour
     
     public void Unlock()
     {
-        animator.SetTrigger("Unlock");
+        if (animator)
+            animator.SetTrigger("Unlock");
         
         if (particles)
             particles.SetActive(false);
