@@ -63,7 +63,7 @@ public class DoorAnimation : MonoBehaviour
         (
             DOVirtual.Float(from: 1.0f, to: 0.0f, duration: .2f, (f) => whiteCircle.color = new Vector4(1, 1, 1, f))
         );
-        sequence.AppendInterval(.5f);
+        sequence.AppendInterval(.75f);
 
         sequence.AppendCallback( () =>
             { 
