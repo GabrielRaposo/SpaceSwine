@@ -8,7 +8,16 @@ public class DoorAnimation : MonoBehaviour
 {
     [SerializeField] float moveInDuration;
 
+    [Header("References")]
+    [SerializeField] SpriteRenderer whiteCircle;
+
     Sequence sequence;
+
+    private void ResetComponents()
+    {
+        whiteCircle.enabled = false;
+        whiteCircle.color = new Vector4(1, 1, 1, 0);
+    }
 
     public void SetupAnimation( Door door, GameObject player, UnityAction OnAnimationEnd )
     {
@@ -18,11 +27,14 @@ public class DoorAnimation : MonoBehaviour
             sequence.Kill();
 
         PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
+        PlayerReferences playerReferences = player.GetComponent<PlayerReferences>();
+
+        if (!playerCharacter || !playerReferences)
+            return;
 
         // -- Initial Setup
         {
-            if (!playerCharacter)
-                return;
+            playerReferences.backlightPS.Play();
 
             playerCharacter.SetPhysicsBody(false);
             player.transform.SetParent(door.transform);
@@ -33,8 +45,27 @@ public class DoorAnimation : MonoBehaviour
         sequence = DOTween.Sequence();
 
         sequence.Append( player.transform.DOMove(transform.position, moveInDuration) );
+        sequence.AppendCallback( () => 
+            {
+                playerCharacter.gameObject.SetActive(false);
+                whiteCircle.enabled = true;
+            }
+        );
 
-        sequence.AppendCallback( () => playerCharacter.SetPhysicsBody(true) );
+        sequence.Append
+        (
+            DOVirtual.Float(from: 1.0f, to: 0.0f, duration: .3f, (f) => whiteCircle.color = new Vector4(1, 1, 1, f))
+        );
+        sequence.AppendInterval(.5f);
+
+        sequence.AppendCallback( () =>
+            { 
+                playerCharacter.SetPhysicsBody(true);
+                playerReferences.backlightPS.Stop();
+
+                whiteCircle.enabled = false;
+            }
+        );
         sequence.OnComplete( OnAnimationEnd.Invoke );
     }
 
