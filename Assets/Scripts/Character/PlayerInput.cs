@@ -50,10 +50,8 @@ public class PlayerInput : MonoBehaviour
         playerInputActions.Player.Interact.performed += DoInteract;
         playerInputActions.Player.Interact.Enable();
 
-        #if UNITY_EDITOR
-            testInputAction.performed += (ctx) => collectableInteraction.ToggleDirectionDisplay();
-            testInputAction.Enable();
-        #endif
+        testInputAction.performed += (ctx) => collectableInteraction.ToggleDirectionDisplay();
+        testInputAction.Enable();
     }
 
     public void SetJumpAction()
@@ -171,8 +169,6 @@ public class PlayerInput : MonoBehaviour
         playerInputActions.Player.Interact.Disable();
         playerInputActions.Player.Launch.Disable();
 
-        #if UNITY_EDITOR
-            testInputAction.Disable();
-        #endif
+        testInputAction.Disable();
     }
 }
