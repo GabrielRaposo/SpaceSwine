@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PersistentGroup : MonoBehaviour
 {
-    [SerializeField] AK.Wwise.Event bgmAKEvent;
-
     static PersistentGroup Instance;
 
     private void Awake() 
@@ -18,10 +16,5 @@ public class PersistentGroup : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         Instance = this;
-    }
-
-    private void Start() 
-    {
-        //bgmAKEvent?.Post(gameObject);    
     }
 }

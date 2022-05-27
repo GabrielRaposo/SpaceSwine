@@ -29,6 +29,7 @@ public class CameraSizeController : MonoBehaviour
 
         set
         {
+            //Debug.Log("Set " + value);
             if (Instance)
                 Instance.SetSizeLocal(value);
         }
@@ -48,10 +49,14 @@ public class CameraSizeController : MonoBehaviour
 
         if (screenSpaceCollider)
         {
-            screenSpaceCollider.localScale = Vector3.one * size;
+            //screenSpaceCollider.localScale = Vector3.one * size;
+
+            ScreenSpaceCollider sscScript = screenSpaceCollider.GetComponent<ScreenSpaceCollider>();
+            if (sscScript)
+                sscScript.SetSize(size);
         }
         
-        Debug.Log("Size: " + size);
+        //Debug.Log("Size: " + size);
     }
 
 }

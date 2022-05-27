@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Reflection;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -29,6 +30,16 @@ public class RaposUtil
         return diff < -180 ? diff + 360 : diff;
     }
 
+    public static void Wait(MonoBehaviour script, int frames, UnityAction action) 
+    {
+        script.StartCoroutine( Wait(frames, action) );
+    }
+
+    public static void WaitSeconds(MonoBehaviour script, float duration, UnityAction action) 
+    {
+        script.StartCoroutine( WaitSeconds(duration, action) );
+    }
+
     public static IEnumerator Wait (int frames, UnityAction action)
     {
         if (frames > 0)
@@ -49,6 +60,18 @@ public class RaposUtil
 
         action?.Invoke();
     }
+
+    public static void ClearLog() //you can copy/paste this code to the bottom of your script
+    {
+        #if UNITY_EDITOR
+
+        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+        var type = assembly.GetType("UnityEditor.LogEntries");
+        var method = type.GetMethod("Clear");
+        method.Invoke(new object(), null);
+
+        #endif
+    }
 }
 
 public static class Vector2Extension
@@ -56,6 +79,20 @@ public static class Vector2Extension
     public static Vector2 SetX (this Vector2 v, float x)
     {
         return new Vector2 (x, v.y);        
+    }
+
+    public static Vector2 SetY (this Vector2 v, float y)
+    {
+        return new Vector2 (v.x, y);        
+    }
+}
+
+public static class ShaderExtensions
+{
+    public static Tween DOFloat(this Material m, string code, float to, float duration)
+    {
+        Tween t = DOTween.To(() => m.GetFloat(code), x => m.SetFloat(code, x), to, duration);
+        return t;
     }
 }
 

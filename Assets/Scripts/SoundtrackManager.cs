@@ -1,20 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using DG.Tweening;
 
 public class SoundtrackManager : MonoBehaviour
 {
     [SerializeField] bool play = true;
-    [SerializeField] AK.Wwise.Event stagePlaylist;
-    //[SerializeField] AK.Wwise.Event menuMusicEvent;
-    //[SerializeField] List <AK.Wwise.Event> stageSongsList;
+
+    [SerializeField] List<AK.Wwise.Event> randomPlaylist;
 
     [Header("Parameters")]
     [SerializeField] AK.Wwise.RTPC masterParameter;
     [SerializeField] AK.Wwise.RTPC musicParameter;
     [SerializeField] AK.Wwise.RTPC sfxParameter;
-    
+
+    [Header("Test Inputs")]
+    [SerializeField] InputAction playMusicTestInput;
+    [SerializeField] InputAction stopMusicTestInput;
     
     //public LocalGameplayState localGameplayState;
     //[SerializeField] AK.Wwise.Switch dangerSwitch;
@@ -24,8 +27,10 @@ public class SoundtrackManager : MonoBehaviour
     public static SoundtrackManager Instance;
     static bool paused;
     public static bool IsPlaying;
+    bool applicationIsPaused;
 
     GameplayState gameplayState;
+    int currentIndex = -1;
 
     private void Awake() 
     {
@@ -43,6 +48,12 @@ public class SoundtrackManager : MonoBehaviour
     private void Start() 
     {
         StartCoroutine( RaposUtil.Wait(1, DelayedStart) );
+
+        playMusicTestInput.performed += (ctx) => PlayMusic(skipPlay: true);
+        playMusicTestInput.Enable();
+
+        stopMusicTestInput.performed += (ctx) => Stop();
+        stopMusicTestInput.Enable();
     }
 
     private void DelayedStart()
@@ -63,37 +74,29 @@ public class SoundtrackManager : MonoBehaviour
     //#if UNITY_EDITOR
     private void Update() 
     {
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //    Stop();
-
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    paused = !paused;
-        //    if (soundtrackEvent != null)
-        //        soundtrackEvent.Pause(gameObject, paused);
-        //}
-
         //if (Input.GetKeyDown(KeyCode.Z))
         //{
         //    Debug.Log("Player prefs deleted");
         //    PlayerPrefs.DeleteAll();
         //}
 
-        //if (!isPlaying)
-        //    return;
+        if (!IsPlaying || applicationIsPaused)
+            return;
 
-        //if (soundtrackEvent == null)
-        //    return;
+        if (soundtrackEvent == null)
+            return;
 
-        //Debug.Log("soundtrackEvent.IsPlaying: " + soundtrackEvent.IsPlaying(gameObject));
-        //if (!soundtrackEvent.IsPlaying(gameObject))
-        //{
-        //    soundtrackEvent.Post(gameObject);
-        //    Debug.Log("bbb");
-        //}
+        if (!soundtrackEvent.IsPlaying(gameObject))
+        {
+            PlayMusic (skipPlay: true);
+        }
 
     }
-    //#endif
+
+    private void OnApplicationPause (bool pause) 
+    {
+        applicationIsPaused = pause;
+    }
 
     public void PlayMusic(bool skipPlay = false)
     {
@@ -104,7 +107,12 @@ public class SoundtrackManager : MonoBehaviour
 
         Stop();
 
-        soundtrackEvent = stagePlaylist;
+        if (currentIndex < 0)
+            currentIndex = Random.Range(0, randomPlaylist.Count);
+        else
+            currentIndex = (currentIndex + 1) % randomPlaylist.Count;
+
+        soundtrackEvent = randomPlaylist[currentIndex];
 
         if (soundtrackEvent != null)
             soundtrackEvent.Post(gameObject);
@@ -112,7 +120,7 @@ public class SoundtrackManager : MonoBehaviour
         IsPlaying = true;
 
         StopAllCoroutines();
-        StartCoroutine( HardLoopRoutine() );
+        //StartCoroutine( HardLoopRoutine() );
     }
 
     IEnumerator HardLoopRoutine()
@@ -125,7 +133,10 @@ public class SoundtrackManager : MonoBehaviour
 
             Stop();
 
-            soundtrackEvent = stagePlaylist;
+            if (currentIndex < 0)
+                currentIndex = Random.Range(0, randomPlaylist.Count);
+            else
+                currentIndex = (currentIndex + 1) % randomPlaylist.Count;
 
             if (soundtrackEvent != null)
                 soundtrackEvent.Post(gameObject);
@@ -140,6 +151,11 @@ public class SoundtrackManager : MonoBehaviour
             soundtrackEvent.Stop(gameObject);
 
         IsPlaying = false;
+    }
+
+    public void JumpTo (float percent)
+    {
+        
     }
 
     public void FadeOutMusic (float duration)

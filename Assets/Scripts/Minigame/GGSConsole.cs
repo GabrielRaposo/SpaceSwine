@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
@@ -14,6 +15,8 @@ namespace Minigame
         const int HIDDEN_Y = -1000;
     
         [SerializeField] float duration;
+        [SerializeField] float inDelay;
+        [SerializeField] float outDelay;
         [SerializeField] RenderTexture minigameRenderTexture;
         [SerializeField] GGSSplashScreen splashScreen;
         [SerializeField] RectTransform consoleAnchor;
@@ -23,13 +26,17 @@ namespace Minigame
         [SerializeField] AK.Wwise.Event slideOutAKEvent;
 
         bool loadedAndActive;
+        bool turnedOn;
 
+        Sequence mainSequence;
         CanvasGroup canvasGroup;
         AsyncOperation asyncMinigameLoad;
         GGSMinigame pluggedCard;
         PlayerInputActions playerInputActions;
 
-        public static bool TurnedOn { get; private set; }
+        public UnityAction <bool> OnStateChange;
+
+        //public static bool TurnedOn { get; private set; }
         public static GGSConsole Instance;
 
         private void Awake() 
@@ -44,18 +51,26 @@ namespace Minigame
         {
             playerInputActions = new PlayerInputActions();
 
-            playerInputActions.UI.Other.performed += (ctx) =>
+            playerInputActions.UI.Start.performed += (ctx) =>
             {
-                if (!TurnedOn)
+                if (!turnedOn)
                     return;
                 ToggleConsoleState();
             };
-            playerInputActions.UI.Other.Enable();
+            playerInputActions.UI.Start.Enable();
         }
+
+        private void SetTurnedOn (bool value) 
+        {
+            turnedOn = value;
+            GameManager.BlockCharacterInput = value;
+            OnStateChange?.Invoke(value);
+        }
+
 
         public void ToggleConsoleState()
         {
-            if (TurnedOn)
+            if (turnedOn)
             {
                 if (loadedAndActive)
                 {
@@ -70,39 +85,61 @@ namespace Minigame
 
         public void TurnConsoleOn()
         {
-            TurnedOn = true;
+            SetTurnedOn(true);
             canvasGroup.alpha = 1;
 
             consoleAnchor.DOKill();
             consoleAnchor.MoveY(HIDDEN_Y);
-            slideInAKEvent?.Post(gameObject);
-            DOVirtual.Float(HIDDEN_Y, 0, duration, 
-                (y) => 
-                {
-                    consoleAnchor.MoveY(y);    
-                }
-            ).SetEase(Ease.OutCirc);
 
-            splashScreen.Call
+            if (mainSequence != null)
+                mainSequence.Kill();
+
+            mainSequence = DOTween.Sequence();
+            mainSequence.AppendCallback( () => {} );
+            mainSequence.AppendInterval( inDelay );
+            mainSequence.AppendCallback( () => slideInAKEvent?.Post(gameObject) );
+            mainSequence.Append
             (
-                () => SetupMinigame (GGSMinigame.Jumper)
+                DOVirtual.Float(HIDDEN_Y, 0, duration, 
+                    (y) => 
+                    {
+                        consoleAnchor.MoveY(y);    
+                    }
+                ).SetEase(Ease.OutCirc)
+            );
+
+            mainSequence.OnComplete
+            (
+                () => splashScreen.Call
+                (
+                    () => SetupMinigame (GGSMinigame.Jumper)
+                )
             );
         }
 
         public void TurnConsoleOff()
         {
-            TurnedOn = false;
             splashScreen.SetVisibility(true);
             
             consoleAnchor.DOKill();
             consoleAnchor.MoveY(0);
             slideOutAKEvent?.Post(gameObject);
-            DOVirtual.Float(0, HIDDEN_Y, duration / 2f, 
-                (y) => 
-                {
-                    consoleAnchor.MoveY(y);    
-                }
-            ).SetEase(Ease.InCirc);
+
+            if (mainSequence != null)
+                mainSequence.Kill();
+
+            mainSequence = DOTween.Sequence();
+            mainSequence.Append
+            (
+                DOVirtual.Float(0, HIDDEN_Y, duration / 2f, 
+                    (y) => 
+                    {
+                        consoleAnchor.MoveY(y);    
+                    }
+                ).SetEase(Ease.InCirc)
+            );
+            mainSequence.AppendInterval(outDelay);
+            mainSequence.OnComplete( () => SetTurnedOn(false) );
 
             UnloadMinigame();
         }
@@ -170,7 +207,7 @@ namespace Minigame
 
         private void OnDisable() 
         {
-            playerInputActions.UI.Other.Disable();
+            playerInputActions.UI.Start.Disable();
         }
     }
 }

@@ -12,6 +12,8 @@ using Minigame;
 [RequireComponent(typeof(PlayerInteractor))]
 public class PlayerInput : MonoBehaviour
 {
+    [SerializeField] InputAction testInputAction;
+
     PlayerInputActions playerInputActions;
     InputAction movement;
     InputAction jump;
@@ -47,6 +49,11 @@ public class PlayerInput : MonoBehaviour
 
         playerInputActions.Player.Interact.performed += DoInteract;
         playerInputActions.Player.Interact.Enable();
+
+        #if UNITY_EDITOR
+            testInputAction.performed += (ctx) => collectableInteraction.ToggleDirectionDisplay();
+            testInputAction.Enable();
+        #endif
     }
 
     public void SetJumpAction()
@@ -103,7 +110,7 @@ public class PlayerInput : MonoBehaviour
         if (DialogueSystem.OnDialogue)
             return true;
 
-        if (GGSConsole.TurnedOn)
+        if (GameManager.BlockCharacterInput)
             return true;
 
         return false;
@@ -144,7 +151,7 @@ public class PlayerInput : MonoBehaviour
         if (DialogueSystem.OnDialogue)
             return;
 
-        if (GGSConsole.TurnedOn)
+        if (GameManager.BlockCharacterInput)
             return;
 
         Vector2 movementInput = movement.ReadValue<Vector2>();
@@ -163,5 +170,9 @@ public class PlayerInput : MonoBehaviour
         playerInputActions.Player.Throw.Disable();
         playerInputActions.Player.Interact.Disable();
         playerInputActions.Player.Launch.Disable();
+
+        #if UNITY_EDITOR
+            testInputAction.Disable();
+        #endif
     }
 }

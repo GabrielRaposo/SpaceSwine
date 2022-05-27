@@ -21,6 +21,8 @@ public class Collectable : MonoBehaviour
     public virtual void OnResetFunction()
     {
         gameObject.SetActive(true);
+        SetInteractable(true);
+        UpdateSortingLayer(true);
         previousHolder = null;
     }
 
@@ -41,12 +43,36 @@ public class Collectable : MonoBehaviour
 
             if (interaction.SetCurrentCollectable (this))
             {
-                OnCollectAKEvent?.Post(gameObject);
+                OnCollected();
 
                 previousHolder = collision.gameObject; 
             }
 
             return;
         }
+    }
+
+    public virtual void OnCollected()
+    {
+        OnCollectAKEvent?.Post(gameObject);
+    }
+
+    public virtual void SetInteractable(bool value)
+    {
+        Collider2D coll = GetComponent<Collider2D>();
+        if (coll)
+            coll.enabled = value;
+    }
+
+    public virtual void UpdateSortingLayer(bool value)
+    {
+        SpriteRenderer renderer = GetComponentInChildren<SpriteRenderer>();
+        if (renderer)
+            renderer.sortingLayerName = (value ? "Item" : "Default");
+    }
+
+    public void NullifyPreviousHolder()
+    {
+        previousHolder = null;
     }
 }

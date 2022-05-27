@@ -16,12 +16,12 @@
         /// <summary>
         /// The print delay setting. Could make this an option some day, for fast readers.
         /// </summary>
-        private const float PrintDelaySetting = 0.02f;
+        [SerializeField] private float PrintDelaySetting = 0.02f;
 
         /// <summary>
         /// Default delay setting will be multiplied by this when the character is a punctuation mark
         /// </summary>
-        private const float PunctuationDelayMultiplier = 8f;
+        [SerializeField] private float PunctuationDelayMultiplier = 4f;
 
         // Characters that are considered punctuation in this language. TextTyper pauses on these characters
         // a bit longer by default. Could be a setting sometime since this doesn't localize.

@@ -14,6 +14,8 @@ public class PlatformerCharacter : SidewaysCharacter
 
     [Header("References")]
     [SerializeField] Transform visualAnchor;
+    [SerializeField] ParticleSystem walkVFX;
+    [SerializeField] ParticleSystem shortLandingVFX;
     [SerializeField] AK.Wwise.Event walkAKEvent;
     [SerializeField] AK.Wwise.Event shortHopAKEvent;
     [SerializeField] AK.Wwise.Event shortLandingAKEvent;
@@ -71,6 +73,7 @@ public class PlatformerCharacter : SidewaysCharacter
 
     protected override void SetFacingRight(bool value) 
     {
+        if (!enabled) return;
         base.SetFacingRight(value);
         visualAnchor.localEulerAngles = new Vector3 (visualAnchor.localEulerAngles.x, value ? 0 : 180, visualAnchor.localEulerAngles.z);
         //directionArrow.flipY = !value;
@@ -133,6 +136,8 @@ public class PlatformerCharacter : SidewaysCharacter
         LedgeLogic();
         UseCustomGravity();
 
+        EffectsSpawn();
+
         if (AllignFallDirectionWithGravity())
             return;
 
@@ -147,8 +152,11 @@ public class PlatformerCharacter : SidewaysCharacter
         
         if (onGround && verticalSpeed <= .1f)
         {
-            if (!previousState)
+            if (!previousState) 
+            {
                 shortLandingAKEvent?.Post(gameObject);
+                shortLandingVFX?.Play();
+            }
             playerAnimations.SetLandedState();
         }
 
@@ -205,7 +213,8 @@ public class PlatformerCharacter : SidewaysCharacter
 
         float angle = Vector2.SignedAngle(Vector2.down, direction);
 
-        rb.velocity = RaposUtil.RotateVector(new Vector2 (horizontalSpeed, verticalSpeed), angle);
+        if (rb.bodyType != RigidbodyType2D.Static)
+            rb.velocity = RaposUtil.RotateVector(new Vector2 (horizontalSpeed, verticalSpeed), angle);
 
         return true;
     }
@@ -354,7 +363,7 @@ public class PlatformerCharacter : SidewaysCharacter
             if (!planetPlatform)
                 return;
 
-            Debug.Log("planetPlatform: " + planetPlatform);
+            //Debug.Log("planetPlatform: " + planetPlatform);
             float planetBorderX = planetPlatform.GetColliderSize().x - .3f;
 
             // Faz o snap to platform
@@ -370,6 +379,25 @@ public class PlatformerCharacter : SidewaysCharacter
                 planetPlatform.transform.position +
                 (Vector3) RaposUtil.AlignWithTransform (planetPlatform.transform, positionOffset);
         }
+    }
+
+    public void StandStillState()
+    {
+        playerAnimations.landedOnGround = true;
+        enabled = false;
+    }
+
+    private void EffectsSpawn()
+    {
+        if (!walkVFX)
+            return;
+
+        if (playerAnimations.landedOnGround && horizontalSpeed != 0)
+        {
+            if (!walkVFX.isPlaying)
+                walkVFX.Play();
+        }
+        else walkVFX.Stop();
     }
 
     private void OnDrawGizmosSelected() 
@@ -402,5 +430,10 @@ public class PlatformerCharacter : SidewaysCharacter
             orientation: Quaternion.Euler(Vector3.forward * transform.eulerAngles.z),
             Color.yellow
         );
+    }
+
+    private void OnDisable() 
+    {
+        walkVFX?.Stop();    
     }
 }

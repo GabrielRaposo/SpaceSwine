@@ -47,10 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5505efa12e0e04db94f87ad40515e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmAKEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: ead514706bc7b7a44afd45a4e543d861, type: 2}
 --- !u!1 &636125616224979772
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,11 +355,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e25af366ac44747b9bd6419424857b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  play: 1
-  stagePlaylist:
-    idInternal: 0
+  play: 0
+  randomPlaylist:
+  - idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: ead514706bc7b7a44afd45a4e543d861, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: bf266c8608bc0134da8fa3aa0d20703c, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1935732fa6ee91d4caf3a14dd19fefa8, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e77b1c9e0fbd52743a64b0c99d88dce2, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a849ed70ab083bc4399cf732c019636a, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 74c6adc121ac053478a42620d50a1b07, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 8a8cd10d41d26f04bbf473c12bb4340d, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: c9d5dc11343b98e4d86850ca71de6c11, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2702aa12aadfbc042a782a8a46dc3c78, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a984a756cc5a91a4d905a5d00530d1b6, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 09cfea6ad52d7ff48b48e0aebb87fa6c, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 664d4a32abcfde44c9f0b7650ac3680c, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1ae54b10842e82a4cb3aa679b7664a1f, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 70cb6ac48463b1f4692f6e1c83fdc98d, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: ed9f29f0002d52941bf00277c0f4d4cc, type: 2}
   masterParameter:
     idInternal: 0
     valueGuidInternal: 
@@ -376,18 +411,38 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: cb4007dbe5450d643949b11ac221c4e5, type: 2}
-  explorationSwitch:
-    idInternal: 0
-    valueGuidInternal: 
-    groupIdInternal: 0
-    groupGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: baf61879293b3a84aab4bdb4301df4d8, type: 2}
-  dangerSwitch:
-    idInternal: 0
-    valueGuidInternal: 
-    groupIdInternal: 0
-    groupGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 7bfa225da1b3ec440b6d30a00dd3159f, type: 2}
+  playMusicTestInput:
+    m_Name: Play Music Test Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: a5e7ccc1-7c2b-4d77-b8f4-5af2c54ed5a0
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 6192bce6-3eb9-4cab-99c4-0dfce16a2cef
+      m_Path: <Keyboard>/4
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Play Music Test Input
+      m_Flags: 0
+  stopMusicTestInput:
+    m_Name: Stop Music Test Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 934ed3a0-e979-4283-a08c-eeddbd847202
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 65e678ed-6331-42fc-bd36-0026a914f180
+      m_Path: <Keyboard>/5
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Stop Music Test Input
+      m_Flags: 0
 --- !u!1 &4295114856567008506
 GameObject:
   m_ObjectHideFlags: 0

@@ -73,6 +73,8 @@ public class SceneTransition : MonoBehaviour
         yield return new WaitUntil( () => done );
         done = false;
 
+        DOTween.KillAll();
+
         // Carrega cena
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(index);
 

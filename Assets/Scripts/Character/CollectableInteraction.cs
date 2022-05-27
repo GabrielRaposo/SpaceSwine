@@ -5,25 +5,64 @@ using UnityEngine;
 [RequireComponent(typeof(CheckGround))]
 [RequireComponent(typeof(SpaceJumper))]
 [RequireComponent(typeof(PlayerAnimations))]
+[RequireComponent(typeof(PlatformerCharacter))]
 public class CollectableInteraction : MonoBehaviour
 {
+    [Header("Values")]
     [SerializeField] float launchSpeed;
+    [SerializeField] float cooldownDuration;
+    [SerializeField] float airHoldDuration;
+    
+    [Header("Particles")]
+    [SerializeField] ParticleSystem onCollectEffect;
+    [SerializeField] ParticleSystem groundThrowEffect;
+    [SerializeField] ParticleSystem airThrowEffect;
+    
+    [Header("References")]
+    [SerializeField] CollectablesQueue collectablesQueue;
     [SerializeField] Transform holdAnchor;
     [SerializeField] PlayerDirectionDisplay directionDisplay; 
     [SerializeField] Transform arrowSprite;
 
+    [HideInInspector] public bool OnAirStall;
+
+    float cooldownCount;
     Vector2 axisInput;
     Collectable current;
 
+    Rigidbody2D rb;
     CheckGround checkGround;
     SpaceJumper spaceJumper;
     PlayerAnimations playerAnimations;
+    PlatformerCharacter platformerCharacter;
 
     private void Start() 
     {
+        rb = GetComponent<Rigidbody2D>();
         checkGround = GetComponent<CheckGround>();
         spaceJumper = GetComponent<SpaceJumper>();
         playerAnimations = GetComponent<PlayerAnimations>();
+        platformerCharacter = GetComponent<PlatformerCharacter>();
+    }
+
+    private void FixedUpdate() 
+    {
+        QueueCooldown();
+
+        if (OnAirStall)
+            rb.velocity = Vector2.zero;
+    }
+
+    private void QueueCooldown()
+    {
+        if (cooldownCount > 0)
+        {
+            cooldownCount -= Time.fixedDeltaTime;
+            return;
+        }
+    
+        if (current == null)
+            GetFromQueue();
     }
 
     public void AxisInput (Vector2 axisInput)
@@ -41,12 +80,28 @@ public class CollectableInteraction : MonoBehaviour
             return;
 
         current.Interact(this);
+
+        //if (current == null)
+            //GetFromQueue();
+        StartCooldownCount();
+    }
+
+    private void StartCooldownCount()
+    {
+        cooldownCount = cooldownDuration;
+    }
+
+    private void GetFromQueue()
+    {
+        current = collectablesQueue.GetFromQueue();
+        if (current != null)
+            SetCurrentCollectable(current);
     }
 
     public bool SetCurrentCollectable (Collectable collectable)
     {
-        if (current)
-            return false;
+        if (current && current != collectable)
+            return AddToQueueInteraction(collectable);
 
         playerAnimations.holding = true;
 
@@ -63,41 +118,63 @@ public class CollectableInteraction : MonoBehaviour
             hierarchyController.SetParent(t);
         
         collectable.transform.position = t.position;
-        
         collectable.transform.localRotation = Quaternion.identity;
 
+        FloatEffect floatEffect = collectable.GetComponentInChildren<FloatEffect>();
+        if (floatEffect)
+            floatEffect.enabled = false;
+
+        onCollectEffect?.Play();
         current = collectable;
+
         return true;
     }
 
-    public bool LaunchInput()
+    public bool AddToQueueInteraction(Collectable collectable)
     {
-        if (!current)
+        if (!collectablesQueue)
             return false;
 
-        if (checkGround.OnGround)
+        return collectablesQueue.AddToQueue(collectable);
+    }
+
+    public void LaunchInput()
+    {
+        if (!current)
+            return;
+
+        if (checkGround.OnGround || platformerCharacter.enabled) // trocar pelo estado do player
         {
             Vector2 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
             LaunchCurrentIntoDirection(direction.normalized);
+
+            groundThrowEffect?.Play();
+
+            playerAnimations.throwing = true;
         }
         else
-        {
-            //Vector2 direction = axisInput;
+            StartCoroutine(AirHoldSequence());
+    }
 
-            //Debug.Log("directionDisplay.transform.eulerAngles.z: " + directionDisplay.transform.eulerAngles.z);
-            //Vector2 direction = RaposUtil.RotateVector(Vector2.up, directionDisplay.transform.eulerAngles.z);
+    private IEnumerator AirHoldSequence()
+    {
+        OnAirStall = true;
+        playerAnimations.airStall = true;
 
-            //if (axisInput == Vector2.zero)
-            //    direction = RaposUtil.RotateVector(Vector2.up, directionDisplay.transform.eulerAngles.z);
+        Vector2 direction = (arrowSprite.transform.position - transform.position).normalized;
+        spaceJumper.PointAndHoldIntoDirection(-direction.normalized);
 
-            Vector2 direction = (arrowSprite.transform.position - transform.position).normalized;
+        yield return new WaitForSeconds(airHoldDuration);
 
-            LaunchCurrentIntoDirection(direction.normalized);
-            
-            spaceJumper.LaunchIntoDirection(-direction.normalized);
-        }
+        airThrowEffect?.Play();
 
-        return true;
+        spaceJumper.LaunchIntoDirection(-direction.normalized);
+        LaunchCurrentIntoDirection(direction.normalized);
+
+        OnAirStall = false;
+        playerAnimations.airStall = false;
+
+        yield return new WaitForEndOfFrame();
     }
 
     public bool JetpackLaunch()
@@ -105,7 +182,7 @@ public class CollectableInteraction : MonoBehaviour
         if (!current)
             return false;
 
-        if (checkGround.OnGround)
+        if (checkGround.OnGround || platformerCharacter.enabled)
         {
             Vector2 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
         }
@@ -115,18 +192,22 @@ public class CollectableInteraction : MonoBehaviour
             if (axisInput == Vector2.zero)
                 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
 
-            spaceJumper.LaunchIntoDirection(-direction.normalized);
+            spaceJumper.LaunchIntoDirection(- direction.normalized);
         }
 
         return true;
     }
 
-    public Collectable CollectWhileHolding()
+    public Collectable UseCollectableWhileHolding()
     {
         if (current == null) return null;
         
         Collectable c = current;
         RemoveCollectable();
+
+        //GetFromQueue();
+        StartCooldownCount();
+
         return c;
     }
 
@@ -156,11 +237,17 @@ public class CollectableInteraction : MonoBehaviour
             hierarchyController.SetParentToRound();
             //hierarchyController.SetParent(null);
 
+        CollectableThrowable collectableThrowable = current.GetComponent<CollectableThrowable>();
+        if (collectableThrowable)
+            collectableThrowable.LaunchSetup();
+
         current = null;
     }
 
     public void ResetStates()
     {
+        OnAirStall = false;
+
         if (current != null)
         {
             Rigidbody2D rb = current.GetComponent<Rigidbody2D>();
@@ -173,8 +260,15 @@ public class CollectableInteraction : MonoBehaviour
 
             current = null;
         }
+        
+        collectablesQueue.ResetStates();
 
-        // current = null;
         playerAnimations.holding = false;
+        playerAnimations.airStall = false;
+    }
+
+    public void ToggleDirectionDisplay()
+    {
+        directionDisplay.gameObject.SetActive( !directionDisplay.gameObject.activeSelf );
     }
 }

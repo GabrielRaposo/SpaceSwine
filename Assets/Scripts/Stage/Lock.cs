@@ -6,21 +6,26 @@ using UnityEngine;
 public class Lock : MonoBehaviour
 {
     //public bool isInternalLock;
-    private Door _door;
+
+    [SerializeField] private int startingHealth = 1;
     [SerializeField] private GameObject visualComponent;
     [SerializeField] private GameObject particles;
     [SerializeField] private Collider2D col;
     [SerializeField] private LockGravityField lockGravityField;
     [SerializeField] private AK.Wwise.Event collectAKEvent;
 
-    private Round _round;
+    private int health;
 
-    public void Init(Door s, bool isInternal)
+    private Door _door;
+    private Round _round;
+    private Animator animator;
+
+    public void Init (Door s, bool isInternal)
     {
+        animator = GetComponent<Animator>();
         _door = s;
 
-        //isInternalLock = isInternal;
-
+        health = startingHealth;
         col.enabled = !isInternal;
     }
 
@@ -32,42 +37,69 @@ public class Lock : MonoBehaviour
     protected virtual void Start()
     {
         _round = GetComponentInParent<Round>();
-
         _round.OnReset += OnReset;
     }
 
-    public virtual void Collect(Collectable collectable)
+    public virtual bool Collect (Collectable collectable)
     {
-        Unlock();
-        
-        if(_door)
-            _door.TakeHealth();
-        
-        collectable.gameObject.SetActive(false);
-        col.enabled = false;
-        lockGravityField.gameObject.SetActive(false);
+        if (lockGravityField.CapturedCollectable != collectable && lockGravityField.CapturedCollectable != null)
+            return false;
+
         collectAKEvent?.Post(gameObject);
-    }
-    
-    public void OnReset()
-    {
-        if(visualComponent)
-            visualComponent.SetActive(true);
+        collectable.gameObject.SetActive(false);
         
-        col.enabled = true;
-        
-        if(particles)
-            particles.SetActive(true);
-        
-        lockGravityField.gameObject.SetActive(true);
+        health--;
+        if (health < 1)
+        {
+            Unlock();
+
+            if(_door)
+                _door.TakeHealth();
+        }
+
+        return true;
     }
     
     public void Unlock()
     {
-        visualComponent.SetActive(false);
+        if (animator)
+            animator.SetTrigger("Unlock");
         
-        if(particles)
+        if (particles)
             particles.SetActive(false);
+
+        col.enabled = false;
     }
     
+    public void AnimationTrigger()
+    {
+        visualComponent.SetActive(false);
+        lockGravityField.gameObject.SetActive(false);
+    }
+
+    public int GetHealth()
+    {
+        return health;
+    }
+    
+    public void OnReset()
+    {
+        if (animator)
+        {
+            animator.SetBool("Unlock", false);
+            animator.SetTrigger("Reset");
+        }
+
+        health = startingHealth;
+
+        if (visualComponent)
+            visualComponent.SetActive(true);
+        
+        col.enabled = true;
+        
+        if (particles)
+            particles.SetActive(true);
+        
+        lockGravityField.gameObject.SetActive(true);
+    }
 }

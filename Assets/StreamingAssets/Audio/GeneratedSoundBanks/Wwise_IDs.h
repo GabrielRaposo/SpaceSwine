@@ -40,7 +40,20 @@ namespace AK
         static const AkUniqueID GGS_UI_DESLIGA = 3509273191U;
         static const AkUniqueID GGS_UI_LIGA = 4113901743U;
         static const AkUniqueID GGS_UI_RECORDE_FANFARRA = 1270516008U;
-        static const AkUniqueID MUSICA1 = 3830703112U;
+        static const AkUniqueID LOFI_01 = 48927505U;
+        static const AkUniqueID LOFI_02 = 48927506U;
+        static const AkUniqueID LOFI_03 = 48927507U;
+        static const AkUniqueID LOFI_04 = 48927508U;
+        static const AkUniqueID LOFI_05 = 48927509U;
+        static const AkUniqueID LOFI_06 = 48927510U;
+        static const AkUniqueID LOFI_07 = 48927511U;
+        static const AkUniqueID LOFI_08 = 48927512U;
+        static const AkUniqueID LOFI_09 = 48927513U;
+        static const AkUniqueID LOFI_10 = 65705091U;
+        static const AkUniqueID LOFI_11 = 65705090U;
+        static const AkUniqueID LOFI_12 = 65705089U;
+        static const AkUniqueID LOFI_13 = 65705088U;
+        static const AkUniqueID LOFI_14 = 65705095U;
         static const AkUniqueID UI_MENU_CLIQUE = 937451947U;
         static const AkUniqueID UI_MENU_HOVER = 2163476404U;
     } // namespace EVENTS
@@ -72,6 +85,20 @@ namespace AK
     {
         static const AkUniqueID INIT = 1355168291U;
         static const AkUniqueID GENERAL = 133642231U;
+        static const AkUniqueID LOFI_01 = 48927505U;
+        static const AkUniqueID LOFI_02 = 48927506U;
+        static const AkUniqueID LOFI_03 = 48927507U;
+        static const AkUniqueID LOFI_04 = 48927508U;
+        static const AkUniqueID LOFI_05 = 48927509U;
+        static const AkUniqueID LOFI_06 = 48927510U;
+        static const AkUniqueID LOFI_07 = 48927511U;
+        static const AkUniqueID LOFI_08 = 48927512U;
+        static const AkUniqueID LOFI_09 = 48927513U;
+        static const AkUniqueID LOFI_10 = 65705091U;
+        static const AkUniqueID LOFI_11 = 65705090U;
+        static const AkUniqueID LOFI_12 = 65705089U;
+        static const AkUniqueID LOFI_13 = 65705088U;
+        static const AkUniqueID LOFI_14 = 65705095U;
     } // namespace BANKS
 
     namespace BUSSES

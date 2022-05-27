@@ -5,18 +5,24 @@ using UnityEngine;
 
 public class LockGravityField : MonoBehaviour
 {
-    private Collectable capturedCollectable;
     public float pullSpeed;
     public float rotationSpeed;
+
+    public Collectable CapturedCollectable { get; private set; }
     
     private Round _round;
 
-    public void GetCollectable(CollectableThrowable collectable)
+    public bool GetCollectable(CollectableThrowable collectable)
     {
-        capturedCollectable = collectable;
+        if (CapturedCollectable != null)
+            return false;
+
+        CapturedCollectable = collectable;
         
         collectable.SetIndestructible(true);
         collectable.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        return true;
     }
     
     private void Start()
@@ -28,15 +34,15 @@ public class LockGravityField : MonoBehaviour
 
     private void Reset()
     {
-        capturedCollectable = null;
+        CapturedCollectable = null;
     }
 
 
     private void FixedUpdate()
     {
-        if(!capturedCollectable) return;
+        if(!CapturedCollectable) return;
 
-        var colectableTransform = capturedCollectable.transform;
+        var colectableTransform = CapturedCollectable.transform;
         var colectablePos = colectableTransform.position;
         var direction = transform.position - colectablePos;
         

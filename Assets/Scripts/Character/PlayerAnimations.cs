@@ -1,25 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimations : MonoBehaviour
 {
+    [SerializeField] AnimatorOverrideController shipOverrideController;
+
     Animator animator;
     string currentState;
 
     [HideInInspector] public bool landedOnGround;
     [HideInInspector] public bool holding;
+    [HideInInspector] public bool throwing;
+    [HideInInspector] public bool airStall;
     [HideInInspector] public float horizontalInput;
     [HideInInspector] public float verticalSpeed;
 
     enum State  { Landed, Jumping, Flying }
     State state;
 
-
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+
+        if (shipOverrideController && SceneManager.GetActiveScene().buildIndex == (int) BuildIndex.Ship) 
+        {
+            animator.runtimeAnimatorController = shipOverrideController;
+        }
+
+    }
+
+    private void OnEnable() 
+    {
+        holding = throwing = airStall = false;  
     }
 
     private void Update() 
@@ -30,21 +46,20 @@ public class PlayerAnimations : MonoBehaviour
         switch (state)
         {
             case State.Landed:
-                if (!landedOnGround)
+                if (throwing)
+                {
+                    ChangeAnimationState(AnimationState.THROW_GROUND);
+                }
+                else if (!landedOnGround)
                 {
                     ChangeAnimationState(!holding ? AnimationState.FALL : AnimationState.FALL_HOLD );
                 } 
                 else if (horizontalInput == 0)
                 {
-                    //walkAKEvent?.Stop(gameObject);
                     ChangeAnimationState(!holding ? AnimationState.IDLE : AnimationState.IDLE_HOLD );
                 }
                 else
                 {
-                    //if (!walkAKEvent.IsPlaying(gameObject))
-                    //{
-                    //    walkAKEvent?.Post(gameObject);
-                    //}
                     ChangeAnimationState(!holding ? AnimationState.WALK : AnimationState.WALK_HOLD );
                 }            
                 break;
@@ -61,6 +76,12 @@ public class PlayerAnimations : MonoBehaviour
                 break;
 
             case State.Flying:
+                //Debug.Log("Flying, airStall: " + airStall);
+                if (airStall) 
+                {
+                    ChangeAnimationState(AnimationState.AIR_STALL);
+                    break;
+                }
                 ChangeAnimationState( !holding ? AnimationState.LAUNCH : AnimationState.LAUNCH_HOLD );
                 break;
         }
@@ -97,6 +118,11 @@ public class PlayerAnimations : MonoBehaviour
 
         animator.Play(newState);
     }
+
+    public void AnimationEnd_GroundThrow()
+    {
+        throwing = false;
+    }
 }
 
 public class AnimationState
@@ -114,4 +140,9 @@ public class AnimationState
     public static string LAUNCH_HOLD = "Player-Launch-Hold";
     public static string JUMP_HOLD = "Player-Jump-Hold";
     public static string FALL_HOLD = "Player-Fall-Hold";
+
+    public static string THROW_GROUND = "Player-Throw-Ground";
+    //public static string THROW_AIR = "Player-Throw-Air";
+
+    public static string AIR_STALL = "Player-AirStall";
 }

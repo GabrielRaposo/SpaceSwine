@@ -11,6 +11,7 @@ public class StoryEventScriptableObject : ScriptableObject
 
     public void SetState(bool value)
     {
+        Debug.Log("state changed to: " + value);
         state = value;
         OnStateChange?.Invoke(state);
     }

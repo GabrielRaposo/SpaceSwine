@@ -4,6 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlatformerCharacter))]
 [RequireComponent(typeof(GravityInteraction))]
+[RequireComponent(typeof(CollectableInteraction))]
 [RequireComponent(typeof(CheckGround))]
 [RequireComponent(typeof(PlayerAnimations))]
 public class SpaceJumper : MonoBehaviour
@@ -11,6 +12,8 @@ public class SpaceJumper : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] LayerMask groundLayer;
 
+
+    [SerializeField] ParticleSystem longLandVFX;
     [SerializeField] AK.Wwise.Event longJumpAKEvent;
     [SerializeField] AK.Wwise.Event longLandAKEvent;
     [SerializeField] AK.Wwise.Event flightLoopAKEvent;
@@ -19,6 +22,7 @@ public class SpaceJumper : MonoBehaviour
 
     PlatformerCharacter platformerCharacter;
     GravityInteraction gravityInteraction;
+    CollectableInteraction collectableInteraction;
     CheckGround checkGround;
     PlayerAnimations playerAnimations;
     Rigidbody2D rb;
@@ -27,6 +31,7 @@ public class SpaceJumper : MonoBehaviour
     {
         platformerCharacter = GetComponent<PlatformerCharacter>();
         gravityInteraction = GetComponent<GravityInteraction>();
+        collectableInteraction = GetComponent<CollectableInteraction>();
         checkGround = GetComponent<CheckGround>();
         playerAnimations = GetComponent<PlayerAnimations>();
 
@@ -50,10 +55,7 @@ public class SpaceJumper : MonoBehaviour
         if (!checkGround.OnGround)
             return;
 
-        SetLaunchState(true);
-
-        Vector2 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
-        rb.velocity = direction * speed;
+        LaunchIntoDirection(direction: RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z));
     }
 
     private void SetLaunchState (bool value)
@@ -65,6 +67,7 @@ public class SpaceJumper : MonoBehaviour
         {
             flightLoopAKEvent?.Post(gameObject);
             longJumpAKEvent?.Post(gameObject);
+            playerAnimations.throwing = false;
             playerAnimations.SetLaunchedState();
             gravityInteraction.DettachFromSurfaces();
         }
@@ -78,7 +81,7 @@ public class SpaceJumper : MonoBehaviour
         onLaunch = value;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) 
+    private void OnCollisionEnter2D (Collision2D collision) 
     {
         if (!onLaunch)
             return;
@@ -108,13 +111,33 @@ public class SpaceJumper : MonoBehaviour
             else return;
         }
 
+        if (collectableInteraction.OnAirStall)
+        {
+            StartCoroutine( DelayCollisionInteraction(collision) );
+            return;
+        }
+
         Vector2 direction = (transform.position - planet.transform.position).normalized;
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
 
+        longLandVFX?.Play();
         longLandAKEvent?.Post(gameObject);
 
         SetLaunchState(false);
+        //Debug.Log("Long land VFX");
     }
+
+    private IEnumerator DelayCollisionInteraction(Collision2D collision)
+    {
+        yield return new WaitWhile( () => collectableInteraction.OnAirStall );
+        OnCollisionEnter2D(collision);
+    }
+
+    public void PointAndHoldIntoDirection (Vector2 direction)
+    {
+        transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
+        rb.velocity = Vector2.zero;
+    } 
 
     public void LaunchIntoDirection (Vector2 direction, float multiplier = 1.0f)
     {
