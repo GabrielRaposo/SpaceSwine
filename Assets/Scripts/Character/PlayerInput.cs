@@ -169,6 +169,7 @@ public class PlayerInput : MonoBehaviour
         playerInputActions.Player.Interact.Disable();
         playerInputActions.Player.Launch.Disable();
 
+        testInputAction.performed -= (ctx) => collectableInteraction.ToggleDirectionDisplay();
         testInputAction.Disable();
     }
 }
