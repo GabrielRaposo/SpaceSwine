@@ -34,9 +34,12 @@ public class BuddingFlower : MonoBehaviour
             {
                 Vector2 distance = group.DoorPosition() - transform.position;
                 float angleDifference = Vector2.SignedAngle(Vector2.right, distance.normalized);
+                float magnitude = distance.magnitude - .75f;
+                if (magnitude < 0)
+                    magnitude = 0;
 
                 energyArrow.transform.eulerAngles = Vector3.forward * angleDifference;
-                energyArrow.size = new Vector2(distance.magnitude, energyArrow.size.y);
+                energyArrow.size = new Vector2(magnitude, energyArrow.size.y);
             }
         }
 
