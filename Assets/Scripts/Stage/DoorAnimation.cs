@@ -13,11 +13,17 @@ public class DoorAnimation : MonoBehaviour
     [SerializeField] Transform visualComponent;
     [SerializeField] ParticleSystem OnEnterAreaPS;
     [SerializeField] ParticleSystem CenterBurstPS;
+    [SerializeField] Color blinkColor;
+    [SerializeField] ColorSwapper boxColorSwapper;
 
     Sequence sequence;
 
     private void ResetComponents()
     {
+        if (sequence != null)
+            sequence.Kill();
+
+        boxColorSwapper.RestoreColor();
         whiteCircle.enabled = false;
         whiteCircle.color = new Vector4(1, 1, 1, 0);
     }
@@ -63,6 +69,7 @@ public class DoorAnimation : MonoBehaviour
         (
             DOVirtual.Float(from: 1.0f, to: 0.0f, duration: .2f, (f) => whiteCircle.color = new Vector4(1, 1, 1, f))
         );
+        sequence.Join( BlinkBoxSequence() );
         sequence.AppendInterval(.75f);
 
         sequence.AppendCallback( () =>
@@ -76,4 +83,20 @@ public class DoorAnimation : MonoBehaviour
         sequence.OnComplete( OnAnimationEnd.Invoke );
     }
 
+    private Sequence BlinkBoxSequence()
+    {
+        float t = .075f;
+        Sequence s = DOTween.Sequence();
+
+        for (int i = 0; i < 4; i++) 
+        {
+            s.AppendCallback( () => boxColorSwapper.SetColor(blinkColor) );
+            s.AppendInterval( t );
+
+            s.AppendCallback( () => boxColorSwapper.RestoreColor() );
+            s.AppendInterval( t );
+        }
+
+        return s;
+    }
 }
