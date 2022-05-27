@@ -213,7 +213,8 @@ public class PlatformerCharacter : SidewaysCharacter
 
         float angle = Vector2.SignedAngle(Vector2.down, direction);
 
-        rb.velocity = RaposUtil.RotateVector(new Vector2 (horizontalSpeed, verticalSpeed), angle);
+        if (rb.bodyType != RigidbodyType2D.Static)
+            rb.velocity = RaposUtil.RotateVector(new Vector2 (horizontalSpeed, verticalSpeed), angle);
 
         return true;
     }

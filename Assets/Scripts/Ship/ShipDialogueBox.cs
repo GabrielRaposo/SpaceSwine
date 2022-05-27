@@ -8,7 +8,8 @@ using TMPro;
 
 public class ShipDialogueBox : MonoBehaviour
 {
-    const int BASE_WIDTH  = 302;
+    const int BASE_WIDTH =  302;
+    const int HIDDEN_Y   = -400;
 
     [Header("References")]
     [SerializeField] TextTyper textTyper;
@@ -32,7 +33,10 @@ public class ShipDialogueBox : MonoBehaviour
     public enum VerticalState { Closed, Open1, Open2 }
     VerticalState verticalState;
 
-    Sequence sequence;
+    bool shown;
+
+    Sequence showSequence;
+    Sequence verticalSequence;
 
     void Start()
     {
@@ -43,9 +47,17 @@ public class ShipDialogueBox : MonoBehaviour
         openedBGImage.enabled = true;
 
         textDisplay.text = string.Empty;
+
+        Hide();
     }
 
     #region IMMEDIATE
+
+    private void Hide()
+    {
+        GetComponent<RectTransform>().anchoredPosition = Vector2.up * HIDDEN_Y;
+        shown = false;
+    }
 
     private int Height (VerticalState state)
     {
@@ -163,25 +175,49 @@ public class ShipDialogueBox : MonoBehaviour
 
     #region TRANSITION
 
-    private void SetSequence()
+    public void SetShown (bool value, float duration = .5f)
     {
-        if (sequence != null)
+        if (shown == value)
+            return;
+
+        if (showSequence != null)
+            showSequence.Kill();
+
+        RectTransform r = GetComponent<RectTransform>();
+        if (value)
+            r.anchoredPosition = Vector2.up * HIDDEN_Y; 
+
+        showSequence = DOTween.Sequence();
+        showSequence.Append
+        (
+            r.DOAnchorPos
+            (
+                endValue: value ? Vector2.zero : new Vector2 (r.anchoredPosition.x, HIDDEN_Y),
+                duration
+            )
+        );
+        showSequence.OnComplete( () => shown = value );
+    }
+
+    private void SetVerticalSequence()
+    {
+        if (verticalSequence != null)
         {
-            sequence.Complete();
-            sequence.Kill();
+            verticalSequence.Complete();
+            verticalSequence.Kill();
         }
 
-        sequence = DOTween.Sequence();
+        verticalSequence = DOTween.Sequence();
     }
 
     public void VerticalTransition (VerticalState nextVerticalState, float duration)
     {
-        SetSequence();
+        SetVerticalSequence();
 
         SetVerticalState(verticalState);
-        closed1BGImage.color = openedBGImage.color = new Color(1, 1, 1, 1);
+        closed1BGImage.color = openedBGImage.color = new Color (1, 1, 1, 1);
 
-        sequence.Append
+        verticalSequence.Append
         (
             DOVirtual.Float
             (
@@ -202,16 +238,16 @@ public class ShipDialogueBox : MonoBehaviour
             ).SetEase(Ease.Linear)
         );
         if (nextVerticalState != VerticalState.Closed)
-            sequence.Join ( openedBGImage.DOFade(0, duration) );
+            verticalSequence.Join ( openedBGImage.DOFade(0, duration) );
         else 
-            sequence.Join ( closed1BGImage.DOFade(0, duration) );
+            verticalSequence.Join ( closed1BGImage.DOFade(0, duration) );
 
-        sequence.OnComplete( () => SetVerticalState(nextVerticalState) );
+        verticalSequence.OnComplete( () => SetVerticalState(nextVerticalState) );
     }
 
     public void CloseTransition()
     {
-        SetSequence();
+        SetVerticalSequence();
     }
 
     private float ValueOnContext(float f, float start, float end)
