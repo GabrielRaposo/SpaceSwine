@@ -96,15 +96,6 @@ public static class ShaderExtensions
     }
 }
 
-public static class ShaderExtensions
-{
-    public static Tween DOFloat(this Material m, string code, float to, float duration)
-    {
-        Tween t = DOTween.To(() => m.GetFloat(code), x => m.SetFloat(code, x), to, duration);
-        return t;
-    }
-}
-
 public static class RectTransformExtensions
  {
     public static void MoveX (this RectTransform rt, float x)
