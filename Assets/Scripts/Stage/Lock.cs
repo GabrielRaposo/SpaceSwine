@@ -70,17 +70,20 @@ public class Lock : MonoBehaviour
         if (idleParticles)
             idleParticles.SetActive(false);
 
+        lockGravityField.gameObject.SetActive(false);
+        col.enabled = false;
+    }
+    
+    public void CallParticleTrigger()
+    {
         if (burstParticles)
             burstParticles.Play();
 
         if (circleAura)
             circleAura.SetActive(false);
-
-        lockGravityField.gameObject.SetActive(false);
-        col.enabled = false;
     }
-    
-    public void AnimationTrigger()
+
+    public void AnimationEndTrigger()
     {
         visualComponent.SetActive(false);
     }
