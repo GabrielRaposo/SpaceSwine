@@ -9,7 +9,9 @@ public class Lock : MonoBehaviour
 
     [SerializeField] private int startingHealth = 1;
     [SerializeField] private GameObject visualComponent;
-    [SerializeField] private GameObject particles;
+    [SerializeField] private GameObject circleAura;
+    [SerializeField] private GameObject idleParticles;
+    [SerializeField] private ParticleSystem burstParticles;
     [SerializeField] private Collider2D col;
     [SerializeField] private LockGravityField lockGravityField;
     [SerializeField] private AK.Wwise.Event collectAKEvent;
@@ -65,16 +67,22 @@ public class Lock : MonoBehaviour
         if (animator)
             animator.SetTrigger("Unlock");
         
-        if (particles)
-            particles.SetActive(false);
+        if (idleParticles)
+            idleParticles.SetActive(false);
 
+        if (burstParticles)
+            burstParticles.Play();
+
+        if (circleAura)
+            circleAura.SetActive(false);
+
+        lockGravityField.gameObject.SetActive(false);
         col.enabled = false;
     }
     
     public void AnimationTrigger()
     {
         visualComponent.SetActive(false);
-        lockGravityField.gameObject.SetActive(false);
     }
 
     public int GetHealth()
@@ -95,11 +103,29 @@ public class Lock : MonoBehaviour
         if (visualComponent)
             visualComponent.SetActive(true);
         
+        if (circleAura)
+            circleAura.SetActive(true);
+
         col.enabled = true;
         
-        if (particles)
-            particles.SetActive(true);
-        
+        if (idleParticles)
+            idleParticles.SetActive(true);
+
+        if (burstParticles)
+        {
+            burstParticles.Stop();
+            burstParticles.Clear();
+        }
+    
         lockGravityField.gameObject.SetActive(true);
+    }
+
+    private void OnDisable() 
+    {
+        if (burstParticles)
+        {
+            burstParticles.Stop();
+            burstParticles.Clear();
+        }
     }
 }
