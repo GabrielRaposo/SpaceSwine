@@ -47,7 +47,7 @@ public class Lock : MonoBehaviour
         if (lockGravityField.CapturedCollectable != collectable && lockGravityField.CapturedCollectable != null)
             return false;
 
-        //collectAKEvent?.Post(gameObject);
+        PlaySound();
         collectable.gameObject.SetActive(false);
         
         health--;
