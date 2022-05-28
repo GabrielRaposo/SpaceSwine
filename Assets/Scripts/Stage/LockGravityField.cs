@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class LockGravityField : MonoBehaviour
 {
+    public AK.Wwise.Event OnObjectEnterAKEvent;
     public float pullSpeed;
     public float rotationSpeed;
 
@@ -21,6 +22,8 @@ public class LockGravityField : MonoBehaviour
         
         collectable.SetIndestructible(true);
         collectable.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+        OnObjectEnterAKEvent?.Post(gameObject);
 
         return true;
     }
@@ -40,7 +43,7 @@ public class LockGravityField : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!CapturedCollectable) return;
+        if (!CapturedCollectable) return;
 
         var colectableTransform = CapturedCollectable.transform;
         var colectablePos = colectableTransform.position;
@@ -48,10 +51,10 @@ public class LockGravityField : MonoBehaviour
         
         direction = direction.normalized;
         
-        colectablePos = colectablePos + direction*pullSpeed;
+        colectablePos = colectablePos + (direction * pullSpeed * Time.fixedDeltaTime);
         colectableTransform.position = colectablePos;
         
-        colectableTransform.RotateAround(transform.position, new Vector3(0,0,1f), rotationSpeed);
+        colectableTransform.RotateAround(transform.position, new Vector3(0,0,1f), rotationSpeed * Time.fixedDeltaTime);
     }
 
     private void LateUpdate()
