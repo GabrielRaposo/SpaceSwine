@@ -168,7 +168,7 @@ public class CollectableInteraction : MonoBehaviour
 
         airThrowEffect?.Play();
 
-        spaceJumper.LaunchIntoDirection(-direction.normalized);
+        spaceJumper.LaunchIntoDirection(-direction.normalized, multiplier: 1.0f, playLongJumpSound: false);
         LaunchCurrentIntoDirection(direction.normalized);
 
         OnAirStall = false;

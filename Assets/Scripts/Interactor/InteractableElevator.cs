@@ -116,7 +116,7 @@ public class InteractableElevator : Interactable
                 return;
 
             LaunchParticlesRoutine();
-            spaceJumper.LaunchIntoDirection(transform.up, multiplier: 2.0f);
+            spaceJumper.LaunchIntoDirection(transform.up, multiplier: 2.0f, playLongJumpSound: false);
         }        
     }
 
