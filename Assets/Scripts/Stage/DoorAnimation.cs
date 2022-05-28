@@ -15,6 +15,7 @@ public class DoorAnimation : MonoBehaviour
     [SerializeField] ParticleSystem CenterBurstPS;
     [SerializeField] Color blinkColor;
     [SerializeField] ColorSwapper boxColorSwapper;
+    [SerializeField] AK.Wwise.Event enterAKEvent;
 
     Sequence sequence;
 
@@ -51,6 +52,7 @@ public class DoorAnimation : MonoBehaviour
             door.SetInteractable(false);
 
             OnEnterAreaPS?.Play();
+            enterAKEvent?.Post(gameObject);
         }
 
         sequence = DOTween.Sequence();
