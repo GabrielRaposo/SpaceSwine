@@ -991,80 +991,6 @@
 						</Sound>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="NPCs" ID="{1C2DFAF7-CE64-45E0-96AD-BD305A649458}" ShortID="175657450">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="21"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-					<ChildrenList>
-						<Sound Name="gameplay_npc_fala_robozinho" ID="{866F4CA1-9F1C-4033-880C-08CA79C68FEB}" ShortID="787281877">
-							<PropertyList>
-								<Property Name="Pitch" Type="int32">
-									<RTPCList>
-										<RTPC Name="" ID="{1356B257-1845-4931-9E98-2E6BB8BEE52E}" ShortID="1000292600">
-											<ReferenceList>
-												<Reference Name="ControlInput">
-													<Custom>
-														<ModulatorLfo Name="Modulator LFO (Custom)" ID="{1C4EF189-69DB-4AE1-A15C-28F71D2C845F}" ShortID="944494892">
-															<PropertyList>
-																<Property Name="LfoWaveform" Type="int32" Value="5"/>
-															</PropertyList>
-														</ModulatorLfo>
-													</Custom>
-												</Reference>
-											</ReferenceList>
-											<Curve Name="" ID="{A2B0ED80-D09C-4CEF-9BF5-378F5FF3CE40}">
-												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="65537"/>
-												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>-100</YPos>
-														<Flags>21</Flags>
-													</Point>
-													<Point>
-														<XPos>1</XPos>
-														<YPos>100</YPos>
-														<Flags>53</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</RTPC>
-									</RTPCList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Astropig oinc fofo_slice 2" ID="{720EE181-7126-4DC8-827F-0267AE502D64}">
-									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.227908350399876"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.200114649131597"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimBegin" Type="Real64" Value="0.331259743264135"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.58418242480546"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>Astropig oinc fofo_slice 2.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="363192587"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Astropig oinc fofo_slice 2" ID="{720EE181-7126-4DC8-827F-0267AE502D64}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-					</ChildrenList>
-				</Folder>
 				<Folder Name="Minigame - GGS" ID="{3CC9A7A7-8508-4767-B067-9A6BEB704550}" ShortID="351372824">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="15"/>
@@ -1307,6 +1233,255 @@
 								<ActiveSource Name="ggs_gameplay_linha_milestone" ID="{51C9A1BB-A0BD-4E67-AF9E-EBCB9E363FC7}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Personagens" ID="{6B6FD2D5-A395-4FC4-B4A5-F1BEFF327038}" ShortID="476870456">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="18"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Sound Name="gameplay_npc_fala_robozinho" ID="{866F4CA1-9F1C-4033-880C-08CA79C68FEB}" ShortID="787281877">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<RTPCList>
+										<RTPC Name="" ID="{1356B257-1845-4931-9E98-2E6BB8BEE52E}" ShortID="1000292600">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<Custom>
+														<ModulatorLfo Name="Modulator LFO (Custom)" ID="{1C4EF189-69DB-4AE1-A15C-28F71D2C845F}" ShortID="944494892">
+															<PropertyList>
+																<Property Name="LfoWaveform" Type="int32" Value="5"/>
+															</PropertyList>
+														</ModulatorLfo>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{A2B0ED80-D09C-4CEF-9BF5-378F5FF3CE40}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-100</YPos>
+														<Flags>21</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>100</YPos>
+														<Flags>53</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Astropig oinc fofo_slice 2" ID="{720EE181-7126-4DC8-827F-0267AE502D64}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.227908350399876"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.200114649131597"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.331259743264135"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.58418242480546"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Astropig oinc fofo_slice 2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="363192587"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Astropig oinc fofo_slice 2" ID="{720EE181-7126-4DC8-827F-0267AE502D64}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<RandomSequenceContainer Name="ui_nave_fala" ID="{4C15F122-1426-4EF2-B940-7D758AEB61B5}" ShortID="855318820">
+							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<RTPCList>
+										<RTPC Name="" ID="{C6491957-4B6E-460D-BC82-05E6F10ACB1B}" ShortID="565262427">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<Custom>
+														<ModulatorLfo Name="Modulator LFO (Custom)" ID="{1E5BF2D5-A38A-4DFF-9866-491F8AEADEDC}" ShortID="879321726">
+															<PropertyList>
+																<Property Name="LfoWaveform" Type="int32" Value="5"/>
+															</PropertyList>
+														</ModulatorLfo>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{EC1233C5-60DC-4A11-9506-5987DEAABECD}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>50</YPos>
+														<Flags>21</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>40</YPos>
+														<Flags>53</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<RTPCList>
+										<RTPC Name="" ID="{9F8C97DE-2CE0-43F0-B6F4-9F713A687FFA}" ShortID="1053714933">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<Custom>
+														<ModulatorLfo Name="Modulator LFO (Custom)" ID="{3F11EA94-3FFD-4E6E-9823-F403BDE86C76}" ShortID="159308188">
+															<PropertyList>
+																<Property Name="LfoWaveform" Type="int32" Value="5"/>
+															</PropertyList>
+														</ModulatorLfo>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{2FC993E0-2E30-490A-A1D2-0F3D28EBDB22}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>200</YPos>
+														<Flags>21</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>0</YPos>
+														<Flags>53</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="ui_nave_fala_01" ID="{F671C64E-4669-4A2D-8C6B-FD1DE7FD6BD8}" ShortID="246271117">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_nave_fala_01" ID="{72F6567C-57D3-47EB-BF5A-D6F0E346E0AD}">
+											<Language>SFX</Language>
+											<AudioFile>ui_nave_fala_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1069278590"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_nave_fala_01" ID="{72F6567C-57D3-47EB-BF5A-D6F0E346E0AD}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ui_nave_fala_02" ID="{A491D08D-F42A-4991-A27A-370E811F306F}" ShortID="280892591">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_nave_fala_02" ID="{1FBC1931-AE94-420D-8318-12AFD9366372}">
+											<Language>SFX</Language>
+											<AudioFile>ui_nave_fala_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="32135188"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_nave_fala_02" ID="{1FBC1931-AE94-420D-8318-12AFD9366372}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ui_nave_fala_03" ID="{B288C2FA-1C03-4F72-854C-FF7D5DC24CAA}" ShortID="710447863">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_nave_fala_03" ID="{54CCCC53-E03F-437A-A156-60CD7FFF0627}">
+											<Language>SFX</Language>
+											<AudioFile>ui_nave_fala_03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="692900371"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_nave_fala_03" ID="{54CCCC53-E03F-437A-A156-60CD7FFF0627}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ui_nave_fala_04" ID="{77A85B18-FD44-4727-8DE6-7222F5BA2ACC}" ShortID="789949081">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_nave_fala_04" ID="{BEB02539-63E0-464B-ABA0-BA6F75979779}">
+											<Language>SFX</Language>
+											<AudioFile>ui_nave_fala_04.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="845156714"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_nave_fala_04" ID="{BEB02539-63E0-464B-ABA0-BA6F75979779}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<ObjectLists/>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

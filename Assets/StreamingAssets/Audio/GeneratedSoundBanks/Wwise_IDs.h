@@ -57,6 +57,7 @@ namespace AK
         static const AkUniqueID LOFI_14 = 65705095U;
         static const AkUniqueID UI_MENU_CLIQUE = 937451947U;
         static const AkUniqueID UI_MENU_HOVER = 2163476404U;
+        static const AkUniqueID UI_NAVE_FALA = 1320095827U;
     } // namespace EVENTS
 
     namespace SWITCHES
