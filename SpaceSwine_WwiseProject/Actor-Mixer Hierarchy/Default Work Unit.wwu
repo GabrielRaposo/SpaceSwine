@@ -888,6 +888,13 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="gameplay_spacebooster" ID="{7D83C85A-ED9B-4D91-8BB5-7C52C4185A0D}">
+									<PropertyList>
+										<Property Name="VolumeOffset" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>gameplay_spacebooster.wav</AudioFile>
 									<MediaIDList>
@@ -1008,6 +1015,8 @@
 							<ChildrenList>
 								<AudioFileSource Name="gameplay_flor_transition" ID="{17D20198-11E9-451B-9E8D-B1079B00DB84}">
 									<PropertyList>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.000559848216743347"/>
 										<Property Name="VolumeOffset" Type="Real64">
 											<ValueList>
 												<Value>6</Value>
@@ -1037,6 +1046,13 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="gameplay_portal_abre" ID="{5C19F7A7-4784-4841-BD87-687A6A26DFB8}">
+									<PropertyList>
+										<Property Name="VolumeOffset" Type="Real64">
+											<ValueList>
+												<Value>6</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>gameplay_portal_abre.wav</AudioFile>
 									<MediaIDList>
