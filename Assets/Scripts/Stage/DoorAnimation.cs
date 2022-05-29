@@ -72,7 +72,7 @@ public class DoorAnimation : MonoBehaviour
             DOVirtual.Float(from: 1.0f, to: 0.0f, duration: .2f, (f) => whiteCircle.color = new Vector4(1, 1, 1, f))
         );
         sequence.Join( BlinkBoxSequence() );
-        sequence.AppendInterval(.75f);
+        sequence.AppendInterval(.75f + 1.0f/* Tempo extra para deixar mais fácil de croppar pro trailer */);
 
         sequence.AppendCallback( () =>
             { 
