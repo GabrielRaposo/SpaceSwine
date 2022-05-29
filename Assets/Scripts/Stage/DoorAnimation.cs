@@ -38,6 +38,7 @@ public class DoorAnimation : MonoBehaviour
 
         PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
         PlayerReferences playerReferences = player.GetComponent<PlayerReferences>();
+        PlayerShaderController playerShader = player.GetComponent<PlayerShaderController>();
 
         if (!playerCharacter || !playerReferences)
             return;
