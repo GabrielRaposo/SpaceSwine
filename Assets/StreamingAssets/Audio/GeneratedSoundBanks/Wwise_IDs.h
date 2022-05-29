@@ -25,6 +25,7 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_PULA_LONGO = 2563466850U;
         static const AkUniqueID GAMEPLAY_BUYK_TACA_ITEM = 3851873763U;
         static const AkUniqueID GAMEPLAY_BUYK_VOA = 3132805884U;
+        static const AkUniqueID GAMEPLAY_FLOR_TRANSITION = 3272639445U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL_ESPIRAL = 1400340877U;
         static const AkUniqueID GAMEPLAY_NPC_FALA_ROBOZINHO = 1847119179U;
