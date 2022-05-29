@@ -14,6 +14,7 @@ public class Warper : MonoBehaviour
     [SerializeField] Transform visualComponent;
     [SerializeField] ParticleSystem inParticleSystem;
     [SerializeField] ParticleSystem outParticleSystem;
+    [SerializeField] AK.Wwise.Event activationAKEvent;
 
     Sequence sequence;
     Transform current;
@@ -96,6 +97,7 @@ public class Warper : MonoBehaviour
         
         PumpSequence();
         inParticleSystem?.Play();
+        activationAKEvent?.Post(gameObject);
     }
 
     public void CallWarp (Transform target)
