@@ -34,6 +34,7 @@ namespace AK
         static const AkUniqueID GAMEPLAY_SPACEBOOSTER = 2825424422U;
         static const AkUniqueID GAMEPLAY_TERMINAL_BIPE = 2112164229U;
         static const AkUniqueID GAMEPLAY_TERMINAL_GIRA_PLANETA = 1679981074U;
+        static const AkUniqueID GAMEPLAY_WARPER = 1083435951U;
         static const AkUniqueID GGS_GAMEPLAY_LINHA_MILESTONE = 3683597123U;
         static const AkUniqueID GGS_GAMEPLAY_LINHA_RECORDE = 1056476565U;
         static const AkUniqueID GGS_NAVE_MORRE = 592843473U;
