@@ -8,6 +8,7 @@ public class BuddingFlower : MonoBehaviour
     [SerializeField] Transform visualComponent;
     [SerializeField] SpriteRenderer energyArrow;
     [SerializeField] GameObject centerLight;
+    [SerializeField] AK.Wwise.Event openAKEvent;
     
     [Header("Particle System")]
     [SerializeField] ParticleSystem closedParticleSystem;
@@ -96,6 +97,10 @@ public class BuddingFlower : MonoBehaviour
             energyParticleSystem.Clear();
         }
 
+        if (openAKEvent != null && openAKEvent.IsPlaying(gameObject))
+        {
+            openAKEvent.Stop(gameObject);
+        }
 
         SetState(false);
     }
@@ -113,6 +118,7 @@ public class BuddingFlower : MonoBehaviour
             if (openParticleSystem)
                 openParticleSystem.Play();
 
+            openAKEvent?.Post(gameObject);
             group.Activate();
         }
     }
