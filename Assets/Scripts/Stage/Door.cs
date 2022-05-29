@@ -19,6 +19,7 @@ public class Door : MonoBehaviour
     [SerializeField] CircleCollider2D mainCollider;
     [SerializeField] Animator animator;
     [SerializeField] AK.Wwise.Event collectAKEvent;
+    [SerializeField] AK.Wwise.Event openAKEvent;
 
     [Space]
     
@@ -169,6 +170,7 @@ public class Door : MonoBehaviour
         portal.transform.position = transform.position;
         portal.VisualSetup();
         animator.SetBool("Open", true);
+        openAKEvent?.Post(gameObject);
 
         openSequence = DOTween.Sequence();
 
