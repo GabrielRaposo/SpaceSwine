@@ -18,7 +18,7 @@ public class PlayerShaderController : MonoBehaviour
 
     public void SetWhiteFade(float value)
     {
-        if(mat == null) return;
+        if (mat == null) return;
         mat.SetFloat("_WhiteFade",value);
     }
     
