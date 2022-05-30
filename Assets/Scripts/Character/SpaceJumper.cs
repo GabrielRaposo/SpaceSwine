@@ -162,6 +162,9 @@ public class SpaceJumper : MonoBehaviour
 
     public void ResetStates()
     {
+        if (flightLoopAKEvent != null && flightLoopAKEvent.IsPlaying(gameObject))
+            flightLoopAKEvent.Stop(gameObject);
+
         onLaunch = false;
         rb.velocity = Vector2.zero;
         SetLaunchState(false);
