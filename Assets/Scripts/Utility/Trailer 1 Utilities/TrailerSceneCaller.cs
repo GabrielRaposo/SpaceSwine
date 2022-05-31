@@ -51,6 +51,7 @@ public class TrailerSceneCaller : MonoBehaviour
         // -- Mostra a caixa de texto
         float t1 = .5f;
         sequence.AppendCallback( () => shipScreens.SetTrigger("TurnOn") );
+        sequence.AppendCallback( () => relaxingBuyk.GetComponentInChildren<Animator>().SetTrigger("LockTop") );
         sequence.AppendCallback( () => shipDialogueBox.SetShown(true, t1) );
         sequence.AppendInterval( t1 + .5f);
 
@@ -95,9 +96,19 @@ public class TrailerSceneCaller : MonoBehaviour
             cam.transform.DORotate(Vector3.forward * 2f, t);
         }
 
-        shipDialogueBox.Type("<color=red><b>-- WARNING --\nHULL BREACH DETECTED", delay: .01f, instantText: true);
         shipDialogueBox.transform.DOPunchScale(Vector3.one * .8f, duration: .3f);
-        shipDialogueBox.transform.DOLocalRotate(Vector3.forward * -3, duration: .1f);
+        shipDialogueBox.transform.DOLocalRotate(Vector3.forward * 3, duration: .1f);
+
+        Sequence s = DOTween.Sequence();
+        s.AppendCallback( () => shipDialogueBox.Type("<color=red><b>-- WARNING --\nHULL BREACH DETECTED", delay: .01f, instantText: true) );
+        s.AppendInterval( 1f );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=red>LANDNG GEAR FAILURE DETECTED.") );
+        s.AppendInterval( 1f );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=red>SOMEOTHER FAILURE DETECTED.") );
+        s.AppendInterval( 1f );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=red>AND ANOTHER FAILURE DETECTED.") );
+        s.AppendInterval( 1f );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=red>SOMETHING SOMETHING FAILURE DETECTED.") );
 
         //RaposUtil.WaitSeconds(this, 7, GameManager.ResetScene );
     }
