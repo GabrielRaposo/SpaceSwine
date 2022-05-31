@@ -13,6 +13,7 @@ public class SpaceBooster : MonoBehaviour
     [SerializeField] Transform visualComponent;
     [SerializeField] Transform rotationAnchor;
     [SerializeField] ParticleSystem spinParticleSystem;
+    [SerializeField] AK.Wwise.Event activationAKEvent;
 
     int index;
     bool interactable = true;
@@ -53,6 +54,8 @@ public class SpaceBooster : MonoBehaviour
         interactable = true;
         visualComponent.DOKill();
         visualComponent.localScale = Vector3.one;
+        if (activationAKEvent != null && activationAKEvent.IsPlaying(gameObject))
+            activationAKEvent.Stop(gameObject);
         animator.SetTrigger("Reset");
     }
 
@@ -118,6 +121,7 @@ public class SpaceBooster : MonoBehaviour
     IEnumerator CooldownRoutine()
     {
         spinParticleSystem?.Play();
+        activationAKEvent?.Post(gameObject);
         visualComponent.DOPunchScale(Vector3.one * .1f, .2f, vibrato: 0);
 
         SetSpinState(true);
@@ -161,6 +165,12 @@ public class SpaceBooster : MonoBehaviour
                 afterSequenceAction?.Invoke();
             }
         );
+    }
+
+    private void OnDisable() 
+    {
+        if (activationAKEvent != null && activationAKEvent.IsPlaying(gameObject))
+            activationAKEvent.Stop(gameObject);
     }
 
     private void OnDrawGizmos() 

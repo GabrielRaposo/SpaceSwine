@@ -25,11 +25,16 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_PULA_LONGO = 2563466850U;
         static const AkUniqueID GAMEPLAY_BUYK_TACA_ITEM = 3851873763U;
         static const AkUniqueID GAMEPLAY_BUYK_VOA = 3132805884U;
+        static const AkUniqueID GAMEPLAY_FLOR_TRANSITION = 3272639445U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
+        static const AkUniqueID GAMEPLAY_ITEM_GOL_ESPIRAL = 1400340877U;
         static const AkUniqueID GAMEPLAY_NPC_FALA_ROBOZINHO = 1847119179U;
+        static const AkUniqueID GAMEPLAY_PORTAL_ABRE = 1386742035U;
+        static const AkUniqueID GAMEPLAY_PORTAL_ENTRA = 2559851891U;
         static const AkUniqueID GAMEPLAY_SPACEBOOSTER = 2825424422U;
         static const AkUniqueID GAMEPLAY_TERMINAL_BIPE = 2112164229U;
         static const AkUniqueID GAMEPLAY_TERMINAL_GIRA_PLANETA = 1679981074U;
+        static const AkUniqueID GAMEPLAY_WARPER = 1083435951U;
         static const AkUniqueID GGS_GAMEPLAY_LINHA_MILESTONE = 3683597123U;
         static const AkUniqueID GGS_GAMEPLAY_LINHA_RECORDE = 1056476565U;
         static const AkUniqueID GGS_NAVE_MORRE = 592843473U;
@@ -56,6 +61,7 @@ namespace AK
         static const AkUniqueID LOFI_14 = 65705095U;
         static const AkUniqueID UI_MENU_CLIQUE = 937451947U;
         static const AkUniqueID UI_MENU_HOVER = 2163476404U;
+        static const AkUniqueID UI_NAVE_FALA = 1320095827U;
     } // namespace EVENTS
 
     namespace SWITCHES

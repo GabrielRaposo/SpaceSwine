@@ -21,25 +21,25 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: -1704411078747602736, guid: 6d3d0fd942555ea459c4f45398806902, type: 3}
-    - time: 0.06666667
+    - time: 0.071428575
       value: {fileID: 2617482555364472953, guid: 6d3d0fd942555ea459c4f45398806902, type: 3}
-    - time: 0.13333334
+    - time: 0.14285715
       value: {fileID: 1962159471255206973, guid: 6d3d0fd942555ea459c4f45398806902, type: 3}
-    - time: 0.2
+    - time: 0.21428572
       value: {fileID: -6215945232581039842, guid: 6d3d0fd942555ea459c4f45398806902, type: 3}
-    - time: 0.26666668
+    - time: 0.2857143
       value: {fileID: -7190694672863187735, guid: 6d3d0fd942555ea459c4f45398806902, type: 3}
-    - time: 0.33333334
+    - time: 0.42857143
       value: {fileID: -3713798971504704126, guid: 6d3d0fd942555ea459c4f45398806902, type: 3}
-    - time: 0.4
+    - time: 0.5
       value: {fileID: -7190694672863187735, guid: 6d3d0fd942555ea459c4f45398806902, type: 3}
-    - time: 0.46666667
+    - time: 0.5714286
       value: {fileID: -3713798971504704126, guid: 6d3d0fd942555ea459c4f45398806902, type: 3}
     attribute: m_Sprite
     path: Visual Component
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 15
+  m_SampleRate: 14
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -67,7 +67,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6
+    m_StopTime: 0.85714287
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -87,8 +87,15 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.6
-    functionName: AnimationTrigger
+  - time: 0.21428572
+    functionName: CallParticleTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.85714287
+    functionName: AnimationEndTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

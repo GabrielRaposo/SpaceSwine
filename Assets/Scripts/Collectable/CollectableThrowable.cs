@@ -15,7 +15,6 @@ public class CollectableThrowable : Collectable
     [SerializeField] GameObject destroyParticles;
 
     private IEnumerator rotationRoutine;
-
     private bool indestructible;
     
     public override void OnResetFunction() 
@@ -120,14 +119,12 @@ public class CollectableThrowable : Collectable
         }
 
         Hitbox hb = collision.GetComponent<Hitbox>();
-        if (hb)
+        if (hb) 
         {
-            if (hb.damage > 0)
+            if (hb.damage > 0) 
             {
-                Debug.Log($"{gameObject.name} <color=#dd0000><b>Take damage</b></color>");
                 DestroyKey();
             }
-                
         }
 
         GravitationalBody gravitationalBody = collision.GetComponent<GravitationalBody>();
@@ -153,6 +150,8 @@ public class CollectableThrowable : Collectable
 
     private void DestroyKey()
     {
+        return;
+
         gameObject.SetActive(false);
         Instantiate(destroyParticles, transform.position, quaternion.identity);
     }

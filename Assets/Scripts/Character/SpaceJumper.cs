@@ -58,7 +58,7 @@ public class SpaceJumper : MonoBehaviour
         LaunchIntoDirection(direction: RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z));
     }
 
-    private void SetLaunchState (bool value)
+    private void SetLaunchState (bool value, bool playLongJumpSound = true)
     {
         if (flightLoopAKEvent != null)
             flightLoopAKEvent.Stop(gameObject);
@@ -66,7 +66,7 @@ public class SpaceJumper : MonoBehaviour
         if (value) 
         {
             flightLoopAKEvent?.Post(gameObject);
-            longJumpAKEvent?.Post(gameObject);
+            if (playLongJumpSound) longJumpAKEvent?.Post(gameObject);
             playerAnimations.throwing = false;
             playerAnimations.SetLaunchedState();
             gravityInteraction.DettachFromSurfaces();
@@ -139,9 +139,9 @@ public class SpaceJumper : MonoBehaviour
         rb.velocity = Vector2.zero;
     } 
 
-    public void LaunchIntoDirection (Vector2 direction, float multiplier = 1.0f)
+    public void LaunchIntoDirection (Vector2 direction, float multiplier = 1.0f, bool playLongJumpSound = true)
     {
-        SetLaunchState(true);
+        SetLaunchState(true, playLongJumpSound);
 
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
         rb.velocity = direction * speed * multiplier;
@@ -149,7 +149,7 @@ public class SpaceJumper : MonoBehaviour
 
     public void RedirectIntoDirection (Vector2 direction)
     {
-        SetLaunchState(true);
+        SetLaunchState(true, playLongJumpSound: false);
 
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
         rb.velocity = direction * rb.velocity.magnitude;
@@ -162,6 +162,9 @@ public class SpaceJumper : MonoBehaviour
 
     public void ResetStates()
     {
+        if (flightLoopAKEvent != null && flightLoopAKEvent.IsPlaying(gameObject))
+            flightLoopAKEvent.Stop(gameObject);
+
         onLaunch = false;
         rb.velocity = Vector2.zero;
         SetLaunchState(false);

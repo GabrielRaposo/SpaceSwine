@@ -8,6 +8,7 @@ public class BuddingFlower : MonoBehaviour
     [SerializeField] Transform visualComponent;
     [SerializeField] SpriteRenderer energyArrow;
     [SerializeField] GameObject centerLight;
+    [SerializeField] AK.Wwise.Event openAKEvent;
     
     [Header("Particle System")]
     [SerializeField] ParticleSystem closedParticleSystem;
@@ -34,9 +35,12 @@ public class BuddingFlower : MonoBehaviour
             {
                 Vector2 distance = group.DoorPosition() - transform.position;
                 float angleDifference = Vector2.SignedAngle(Vector2.right, distance.normalized);
+                float magnitude = distance.magnitude - .75f;
+                if (magnitude < 0)
+                    magnitude = 0;
 
                 energyArrow.transform.eulerAngles = Vector3.forward * angleDifference;
-                energyArrow.size = new Vector2(distance.magnitude, energyArrow.size.y);
+                energyArrow.size = new Vector2(magnitude, energyArrow.size.y);
             }
         }
 
@@ -93,6 +97,10 @@ public class BuddingFlower : MonoBehaviour
             energyParticleSystem.Clear();
         }
 
+        if (openAKEvent != null && openAKEvent.IsPlaying(gameObject))
+        {
+            openAKEvent.Stop(gameObject);
+        }
 
         SetState(false);
     }
@@ -110,6 +118,7 @@ public class BuddingFlower : MonoBehaviour
             if (openParticleSystem)
                 openParticleSystem.Play();
 
+            openAKEvent?.Post(gameObject);
             group.Activate();
         }
     }

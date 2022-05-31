@@ -15,6 +15,7 @@ public class DoorAnimation : MonoBehaviour
     [SerializeField] ParticleSystem CenterBurstPS;
     [SerializeField] Color blinkColor;
     [SerializeField] ColorSwapper boxColorSwapper;
+    [SerializeField] AK.Wwise.Event enterAKEvent;
 
     Sequence sequence;
 
@@ -26,6 +27,13 @@ public class DoorAnimation : MonoBehaviour
         boxColorSwapper.RestoreColor();
         whiteCircle.enabled = false;
         whiteCircle.color = new Vector4(1, 1, 1, 0);
+
+        // Resetar as interações com o player também
+        /*
+            PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
+            PlayerReferences playerReferences = player.GetComponent<PlayerReferences>();
+            PlayerShaderController playerShader = player.GetComponent<PlayerShaderController>();
+        */
     }
 
     public void SetupAnimation( Door door, GameObject player, UnityAction OnAnimationEnd )
@@ -37,8 +45,9 @@ public class DoorAnimation : MonoBehaviour
 
         PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
         PlayerReferences playerReferences = player.GetComponent<PlayerReferences>();
+        PlayerShaderController playerShader = player.GetComponent<PlayerShaderController>();
 
-        if (!playerCharacter || !playerReferences)
+        if (!playerCharacter || !playerReferences || !playerShader)
             return;
 
         // -- Initial Setup
@@ -47,15 +56,21 @@ public class DoorAnimation : MonoBehaviour
 
             playerCharacter.SetPhysicsBody(false);
             player.transform.SetParent(door.transform);
+            playerShader.SetWhiteFade(0f);
 
             door.SetInteractable(false);
 
             OnEnterAreaPS?.Play();
+            enterAKEvent?.Post(gameObject);
         }
 
         sequence = DOTween.Sequence();
 
+        // -- Aproximação do Player para o centro
         sequence.Append( player.transform.DOMove(transform.position, moveInDuration) );
+        sequence.Join( DOVirtual.Float(0f, 1f, moveInDuration - .1f, (f) => playerShader.SetWhiteFade(f) ) );
+
+        // -- Brilho principal
         sequence.AppendCallback( () => 
             {
                 playerCharacter.gameObject.SetActive(false);
@@ -63,19 +78,20 @@ public class DoorAnimation : MonoBehaviour
                 CenterBurstPS?.Play();
             }
         );
-
         sequence.Append( visualComponent.DOPunchScale(Vector3.one * -.1f, duration: .3f) );
         sequence.Join
         (
             DOVirtual.Float(from: 1.0f, to: 0.0f, duration: .2f, (f) => whiteCircle.color = new Vector4(1, 1, 1, f))
         );
         sequence.Join( BlinkBoxSequence() );
-        sequence.AppendInterval(.75f);
+        sequence.AppendInterval(.75f + 1.0f/* Tempo extra para deixar mais fácil de croppar pro trailer */);
 
+        // -- Ajuste do player para o próximo round
         sequence.AppendCallback( () =>
             { 
                 playerCharacter.SetPhysicsBody(true);
                 playerReferences.backlightPS.Stop();
+                playerShader.SetWhiteFade(0f);
 
                 whiteCircle.enabled = false;
             }
