@@ -16,9 +16,12 @@ public class TrailerSceneCaller : MonoBehaviour
     [Header("References")]
     [SerializeField] ShipDialogueBox shipDialogueBox;
     [SerializeField] GalaxyParallaxTester galaxyParallax;
+    [SerializeField] Animator shipScreens;
     [SerializeField] ScreenShakeCaller screenShake;
     [SerializeField] GameObject relaxingBuyk;
     [SerializeField] GameObject startledBuyk;
+    [SerializeField] ParticleSystem smokePS;
+    [SerializeField] GameObject redLight;
 
     Sequence sequence;
 
@@ -43,10 +46,11 @@ public class TrailerSceneCaller : MonoBehaviour
 
         // -- Reseta paralaxe do fundo
         sequence.AppendCallback( () => galaxyParallax.PlaySequence() );
-        sequence.AppendInterval(1.0f);
+        sequence.AppendInterval(5.0f);
 
         // -- Mostra a caixa de texto
         float t1 = .5f;
+        sequence.AppendCallback( () => shipScreens.SetTrigger("TurnOn") );
         sequence.AppendCallback( () => shipDialogueBox.SetShown(true, t1) );
         sequence.AppendInterval( t1 + .5f);
 
@@ -55,7 +59,12 @@ public class TrailerSceneCaller : MonoBehaviour
         {
             sequence.AppendCallback( () => shipDialogueBox.Type(s) );
 
-            float t2 = 3.0f;
+            float t2 = 3.0f; 
+            if (s.Length < 50) 
+                t2 = 1.0f; 
+            else if (s.Length < 100) 
+                t2 = 2.5f;
+
             t2 += s.Length * .015f;
             sequence.AppendInterval(t2);
         }
@@ -74,11 +83,23 @@ public class TrailerSceneCaller : MonoBehaviour
         relaxingBuyk.SetActive(false);
         startledBuyk.SetActive(true);
 
-        shipDialogueBox.Type("<color=red><b>-- AMEAÇA DETECTADA --", delay: .01f, instantText: true);
+        smokePS.Play();
+        redLight.SetActive(true);
+        shipScreens.SetTrigger("Break");
+
+        Camera cam = Camera.main;
+        if (cam)
+        {
+            float t = .3f;
+            cam.DOOrthoSize(1.75f, t);
+            cam.transform.DORotate(Vector3.forward * 2f, t);
+        }
+
+        shipDialogueBox.Type("<color=red><b>-- WARNING --\nHULL BREACH DETECTED", delay: .01f, instantText: true);
         shipDialogueBox.transform.DOPunchScale(Vector3.one * .8f, duration: .3f);
         shipDialogueBox.transform.DOLocalRotate(Vector3.forward * -3, duration: .1f);
 
-        RaposUtil.WaitSeconds(this, 7, GameManager.ResetScene );
+        //RaposUtil.WaitSeconds(this, 7, GameManager.ResetScene );
     }
 
     private void OnDisable() 
