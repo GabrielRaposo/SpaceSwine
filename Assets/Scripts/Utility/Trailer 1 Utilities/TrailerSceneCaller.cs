@@ -56,15 +56,19 @@ public class TrailerSceneCaller : MonoBehaviour
         sequence.AppendInterval( t1 + .5f);
 
         // -- Leitura dos diálogos
-        foreach (string s in shipDialogue)
+        for (int i = 0; i < shipDialogue.Count; i++)
         {
+            string s = shipDialogue[i];
+
             sequence.AppendCallback( () => shipDialogueBox.Type(s) );
 
             float t2 = 3.0f; 
-            if (s.Length < 50) 
-                t2 = 1.0f; 
-            else if (s.Length < 100) 
-                t2 = 2.5f;
+            //if (s.Length < 80) 
+            //    t2 = 1.0f; 
+            //else if (s.Length < 130) 
+            //    t2 = 2.5f;
+
+            t2 = CustomDurations(i);
 
             t2 += s.Length * .015f;
             sequence.AppendInterval(t2);
@@ -72,6 +76,27 @@ public class TrailerSceneCaller : MonoBehaviour
 
         sequence.AppendCallback( () => shipDialogueBox.Type(" ") );
         sequence.AppendCallback( () => shipDialogueBox.SetShown(false) );
+    }
+
+    float CustomDurations(int i)
+    {
+        switch(i)
+        {
+            default:
+            case 0:
+            case 4:
+                return 1.0f;
+
+            case 1:
+            case 3:
+                return 2.5f;
+            
+            case 2:
+                return 3.0f;
+
+            case 5:
+                return 4.0f;
+        }
     }
 
     private void Shake (InputAction.CallbackContext ctx)
@@ -102,13 +127,13 @@ public class TrailerSceneCaller : MonoBehaviour
         Sequence s = DOTween.Sequence();
         s.AppendCallback( () => shipDialogueBox.Type("<color=red><b>-- WARNING --\nHULL BREACH DETECTED", delay: .01f, instantText: true) );
         s.AppendInterval( 1f );
-        s.AppendCallback( () => shipDialogueBox.Type("<color=red>LANDNG GEAR FAILURE DETECTED.") );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=red>LANDING GEAR FAILURE DETECTED") );
         s.AppendInterval( 1f );
-        s.AppendCallback( () => shipDialogueBox.Type("<color=red>SOMEOTHER FAILURE DETECTED.") );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=red>SOMEOTHER FAILURE DETECTED") );
         s.AppendInterval( 1f );
-        s.AppendCallback( () => shipDialogueBox.Type("<color=red>AND ANOTHER FAILURE DETECTED.") );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=red>AND ANOTHER FAILURE DETECTED") );
         s.AppendInterval( 1f );
-        s.AppendCallback( () => shipDialogueBox.Type("<color=red>SOMETHING SOMETHING FAILURE DETECTED.") );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=red>SOMETHING SOMETHING FAILURE DETECTED") );
 
         //RaposUtil.WaitSeconds(this, 7, GameManager.ResetScene );
     }
