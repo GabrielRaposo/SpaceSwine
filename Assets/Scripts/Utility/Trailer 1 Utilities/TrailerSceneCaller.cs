@@ -8,12 +8,14 @@ public class TrailerSceneCaller : MonoBehaviour
 {
     [SerializeField] InputAction turnOnInput; // input para ligar
     [SerializeField] InputAction shakeInput;  // input para chamar o ScreenShake + Buyk Pulando + possíveis efeitos visuais
+    [SerializeField] InputAction hideInput;
 
     [Space(10)]
     
     [SerializeField] [TextArea(minLines: 2, maxLines: 3)] List<string> shipDialogue;
     
     [Header("References")]
+    [SerializeField] PlayerCharacter player;
     [SerializeField] ShipDialogueBox shipDialogueBox;
     [SerializeField] GalaxyParallaxTester galaxyParallax;
     [SerializeField] Animator shipScreens;
@@ -29,9 +31,11 @@ public class TrailerSceneCaller : MonoBehaviour
     {
         turnOnInput.performed += TurnOn;
         shakeInput.performed += Shake;
+        hideInput.performed += Hide;
 
         turnOnInput.Enable();    
         shakeInput.Enable();
+        hideInput.Enable();
     }
 
     private void TurnOn (InputAction.CallbackContext ctx)
@@ -84,11 +88,11 @@ public class TrailerSceneCaller : MonoBehaviour
         {
             default:
             case 0:
-                return .9f;
+                return .8f;
 
             case 1:
             case 2:
-                return 2.6f;
+                return 2.5f;
 
             case 3:
             case 5:
@@ -122,26 +126,35 @@ public class TrailerSceneCaller : MonoBehaviour
         shipDialogueBox.transform.DOLocalRotate(Vector3.forward * 3, duration: .1f);
 
         Sequence s = DOTween.Sequence();
-        s.AppendCallback( () => shipDialogueBox.Type("<color=red><b>-- WARNING --\nFRONTAL COLLISION ", delay: .01f, instantText: true) );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=#E32327><b>-- WARNING --\nFRONTAL COLLISION ", delay: .01f, instantText: true) );
         s.AppendInterval( 1f );
-        s.AppendCallback( () => shipDialogueBox.Type("<color=red>HULL BREACH DETECTED") );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>HULL BREACH DETECTED") );
         s.AppendInterval( 1f );
-        s.AppendCallback( () => shipDialogueBox.Type("<color=red>ELECTRICAL SYSTEM FAILURE DETECTED") );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>ELECTRICAL SYSTEM FAILURE DETECTED") );
         s.AppendInterval( 1f );
-        s.AppendCallback( () => shipDialogueBox.Type("<color=red>FUEL TANK FAILURE DETECTED") );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>FUEL TANK FAILURE DETECTED") );
         s.AppendInterval( 1f );
-        s.AppendCallback( () => shipDialogueBox.Type("<color=red>BACK THRUSTERS FAILURE DETECTED") );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>BACK THRUSTERS FAILURE DETECTED") );
         s.AppendInterval( 1f );
-        s.AppendCallback( () => shipDialogueBox.Type("<color=red>LANDING GEAR FAILURE DETECTED") );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>LANDING GEAR FAILURE DETECTED") );
         s.AppendInterval( 1f );
-        s.AppendCallback( () => shipDialogueBox.Type("<color=red>SOMETHING-SOMETHING FAILURE DETECTED") );
+        s.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>SOMETHING-SOMETHING FAILURE DETECTED") );
 
         //RaposUtil.WaitSeconds(this, 7, GameManager.ResetScene );
+    }
+
+    private void Hide(InputAction.CallbackContext ctx)
+    {
+        if (player)
+            player.SetHiddenState(true);
+
+        shipScreens.SetTrigger("TurnOn");
     }
 
     private void OnDisable() 
     {
         turnOnInput.Disable();    
         shakeInput.Disable();
+        hideInput.Disable();
     }
 }
