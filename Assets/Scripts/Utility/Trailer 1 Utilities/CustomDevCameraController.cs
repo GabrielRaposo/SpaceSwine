@@ -17,6 +17,8 @@ public class CustomDevCameraController : MonoBehaviour
     [SerializeField] CameraSizeController cameraSizeController;
     [SerializeField] CameraFocusController cameraFocusController;
     [SerializeField] GameObject screenSpaceCollider;
+    [SerializeField] Animator eyeAnimator1;
+    [SerializeField] Animator eyeAnimator2;
 
     float customSize = 4.0f;
 
@@ -44,7 +46,7 @@ public class CustomDevCameraController : MonoBehaviour
         input1.Enable();
         input2.Enable();
 
-        inputActions.Dev.Input3.performed += (ctx) => CustomTween();
+        inputActions.Dev.Input3.performed += (ctx) => CustomTween2();
         inputActions.Dev.Input3.Enable();
 
         inputActions.Enable();
@@ -86,7 +88,7 @@ public class CustomDevCameraController : MonoBehaviour
         CameraSizeController.Size = customSize;
     }
 
-    private void CustomTween()
+    private void CustomTween1()
     {
         float fromSize = customSize;
         float toSize = 4.0f;
@@ -108,6 +110,43 @@ public class CustomDevCameraController : MonoBehaviour
                 camT.localPosition = value;
             })
         );
+    }
+
+    private void CustomTween2()
+    {
+        float fromSize = 2.0f;
+        float toSize = 3.5f;
+
+        //Vector3 fromPos = camT.localPosition;
+        //Vector3 toPos = new Vector3(0, 0, camT.localPosition.z);
+
+        Sequence s = DOTween.Sequence();
+
+        s.Append
+        ( 
+            DOVirtual.Float(fromSize, toSize, tweenDuration, (f) => CameraSizeController.Size = f )
+                .SetEase(Ease.Linear)
+        );
+        
+        RaposUtil.WaitSeconds(this, 3.0f, () => 
+        {
+            if (eyeAnimator1)
+                eyeAnimator1.enabled = true;
+        });
+        RaposUtil.WaitSeconds(this, 3.0f, () => 
+        {
+            if (eyeAnimator2)
+                eyeAnimator2.enabled = true;
+        });
+
+        //s.Join
+        //( 
+        //    DOVirtual.Float(0, 1, tweenDuration, (t) => 
+        //    {
+        //        Vector3 value = Vector3.Lerp(fromPos, toPos, t);
+        //        camT.localPosition = value;
+        //    })
+        //);
     }
 
     private void OnDisable() 
