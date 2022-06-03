@@ -42,12 +42,12 @@ public class SpaceJumper : MonoBehaviour
     {
         if (!onLaunch || flightLoopAKEvent == null)
             return;
-
-        if (Time.timeScale == 0)
-            flightLoopAKEvent.Stop(gameObject);
         
         if (Time.timeScale != 0 && !flightLoopAKEvent.IsPlaying(gameObject))
             flightLoopAKEvent.Post(gameObject);
+
+        if (Time.timeScale == 0)
+            flightLoopAKEvent.Stop(gameObject);
     }
 
     public void JumpInput()
@@ -162,7 +162,7 @@ public class SpaceJumper : MonoBehaviour
 
     public void ResetStates()
     {
-        if (flightLoopAKEvent != null && flightLoopAKEvent.IsPlaying(gameObject))
+        if (flightLoopAKEvent != null)
             flightLoopAKEvent.Stop(gameObject);
 
         onLaunch = false;
