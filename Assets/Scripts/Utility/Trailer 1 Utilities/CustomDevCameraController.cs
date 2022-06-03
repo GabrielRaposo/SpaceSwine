@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using Cinemachine;
 
 public class CustomDevCameraController : MonoBehaviour
 {
@@ -32,8 +33,6 @@ public class CustomDevCameraController : MonoBehaviour
             return;
         }
 
-        customSize = CameraSizeController.Size;
-
         inputActions = new PlayerInputActions();
 
         movementInput = inputActions.Dev.Movement;
@@ -54,11 +53,26 @@ public class CustomDevCameraController : MonoBehaviour
             screenSpaceCollider.SetActive(false);
     }
 
+
+    private void Start() 
+    {
+        customSize = CameraSizeController.Size;    
+    }
+
     private void Update() 
     {
         Vector3 direction = movementInput.ReadValue<Vector2>();
         if (direction != Vector3.zero)
+        {
+            CinemachineVirtualCamera vcam = camT.GetComponentInParent<CinemachineVirtualCamera>();
+            if (vcam)
+            {
+                vcam.Follow = camT;
+                camT.SetParent(null);
+            }
+
             camT.localPosition += direction * moveSpeed * Time.deltaTime;
+        }
 
         if (input1.ReadValue<float>() > .5f)
             SetCameraSize(+1);
