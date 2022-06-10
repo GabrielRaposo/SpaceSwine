@@ -842,6 +842,134 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Dev"",
+            ""id"": ""8f28e439-64b6-4ff7-b10c-2f9e596de871"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Button"",
+                    ""id"": ""8b53109b-2522-4f65-ad47-274fd1e6a0d1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Input1"",
+                    ""type"": ""Button"",
+                    ""id"": ""6d110763-29fb-49d3-a61c-914dc607b87c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Input2"",
+                    ""type"": ""Button"",
+                    ""id"": ""2922f310-2fe0-4586-9faf-5c10458485db"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Input3"",
+                    ""type"": ""Button"",
+                    ""id"": ""e4cf06f3-8706-44ac-9c27-e9afabba5da0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""NumPad"",
+                    ""id"": ""de3150db-3531-4c15-8b50-69050bcf2562"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d8bae2c1-4330-4b8f-913a-89936f7ae9fb"",
+                    ""path"": ""<Keyboard>/numpad8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d2631704-3726-4571-b476-ec453918cf5c"",
+                    ""path"": ""<Keyboard>/numpad5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""54bc1d50-78d3-4da8-a823-6f88aec9173b"",
+                    ""path"": ""<Keyboard>/numpad4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""2f568138-f9f4-4219-97f0-bedd89c6795a"",
+                    ""path"": ""<Keyboard>/numpad6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19006eaa-03ee-4398-b908-16b8bd34f88c"",
+                    ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Input1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8da26c1a-111f-4f09-80ff-b6de61a96875"",
+                    ""path"": ""<Keyboard>/numpad2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Input2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72fc3aea-2b6b-4b92-902c-9eb35d2ec6bf"",
+                    ""path"": ""<Keyboard>/numpad3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Input3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -889,6 +1017,12 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Minigame_Movement = m_Minigame.FindAction("Movement", throwIfNotFound: true);
         m_Minigame_Action = m_Minigame.FindAction("Action", throwIfNotFound: true);
         m_Minigame_Start = m_Minigame.FindAction("Start", throwIfNotFound: true);
+        // Dev
+        m_Dev = asset.FindActionMap("Dev", throwIfNotFound: true);
+        m_Dev_Movement = m_Dev.FindAction("Movement", throwIfNotFound: true);
+        m_Dev_Input1 = m_Dev.FindAction("Input1", throwIfNotFound: true);
+        m_Dev_Input2 = m_Dev.FindAction("Input2", throwIfNotFound: true);
+        m_Dev_Input3 = m_Dev.FindAction("Input3", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1121,6 +1255,63 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         }
     }
     public MinigameActions @Minigame => new MinigameActions(this);
+
+    // Dev
+    private readonly InputActionMap m_Dev;
+    private IDevActions m_DevActionsCallbackInterface;
+    private readonly InputAction m_Dev_Movement;
+    private readonly InputAction m_Dev_Input1;
+    private readonly InputAction m_Dev_Input2;
+    private readonly InputAction m_Dev_Input3;
+    public struct DevActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public DevActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_Dev_Movement;
+        public InputAction @Input1 => m_Wrapper.m_Dev_Input1;
+        public InputAction @Input2 => m_Wrapper.m_Dev_Input2;
+        public InputAction @Input3 => m_Wrapper.m_Dev_Input3;
+        public InputActionMap Get() { return m_Wrapper.m_Dev; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DevActions set) { return set.Get(); }
+        public void SetCallbacks(IDevActions instance)
+        {
+            if (m_Wrapper.m_DevActionsCallbackInterface != null)
+            {
+                @Movement.started -= m_Wrapper.m_DevActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_DevActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_DevActionsCallbackInterface.OnMovement;
+                @Input1.started -= m_Wrapper.m_DevActionsCallbackInterface.OnInput1;
+                @Input1.performed -= m_Wrapper.m_DevActionsCallbackInterface.OnInput1;
+                @Input1.canceled -= m_Wrapper.m_DevActionsCallbackInterface.OnInput1;
+                @Input2.started -= m_Wrapper.m_DevActionsCallbackInterface.OnInput2;
+                @Input2.performed -= m_Wrapper.m_DevActionsCallbackInterface.OnInput2;
+                @Input2.canceled -= m_Wrapper.m_DevActionsCallbackInterface.OnInput2;
+                @Input3.started -= m_Wrapper.m_DevActionsCallbackInterface.OnInput3;
+                @Input3.performed -= m_Wrapper.m_DevActionsCallbackInterface.OnInput3;
+                @Input3.canceled -= m_Wrapper.m_DevActionsCallbackInterface.OnInput3;
+            }
+            m_Wrapper.m_DevActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Input1.started += instance.OnInput1;
+                @Input1.performed += instance.OnInput1;
+                @Input1.canceled += instance.OnInput1;
+                @Input2.started += instance.OnInput2;
+                @Input2.performed += instance.OnInput2;
+                @Input2.canceled += instance.OnInput2;
+                @Input3.started += instance.OnInput3;
+                @Input3.performed += instance.OnInput3;
+                @Input3.canceled += instance.OnInput3;
+            }
+        }
+    }
+    public DevActions @Dev => new DevActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -1161,5 +1352,12 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnAction(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
+    }
+    public interface IDevActions
+    {
+        void OnMovement(InputAction.CallbackContext context);
+        void OnInput1(InputAction.CallbackContext context);
+        void OnInput2(InputAction.CallbackContext context);
+        void OnInput3(InputAction.CallbackContext context);
     }
 }
