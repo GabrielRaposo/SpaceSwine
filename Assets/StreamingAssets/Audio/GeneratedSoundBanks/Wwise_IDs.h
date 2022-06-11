@@ -28,7 +28,6 @@ namespace AK
         static const AkUniqueID GAMEPLAY_FLOR_TRANSITION = 3272639445U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL_ESPIRAL = 1400340877U;
-        static const AkUniqueID GAMEPLAY_NPC_FALA_ROBOZINHO = 1847119179U;
         static const AkUniqueID GAMEPLAY_PORTAL_ABRE = 1386742035U;
         static const AkUniqueID GAMEPLAY_PORTAL_ENTRA = 2559851891U;
         static const AkUniqueID GAMEPLAY_SPACEBOOSTER = 2825424422U;
