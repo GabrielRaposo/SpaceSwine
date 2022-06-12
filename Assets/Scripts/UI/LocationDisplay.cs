@@ -9,6 +9,7 @@ public class LocationDisplay : MonoBehaviour
 
     Animator animator;
     TextMeshProUGUI textDisplay;
+    CanvasGroup canvasGroup;
 
     public static LocationDisplay Instance;
 
@@ -23,6 +24,13 @@ public class LocationDisplay : MonoBehaviour
 
         animator = GetComponentInChildren<Animator>();
         textDisplay = GetComponentInChildren<TextMeshProUGUI>();
+        canvasGroup = GetComponentInChildren<CanvasGroup>();
+    }
+
+    private void Start() 
+    {
+        if (canvasGroup)
+            canvasGroup.alpha = 1;
     }
 
     public void DisplayLocation(string text)
