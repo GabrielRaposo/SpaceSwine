@@ -26,6 +26,7 @@ public class ShipDialogueTester : MonoBehaviour
         {
             if (!box.gameObject.activeSelf)
                 return;
+            box.SetShown(true, duration: .1f);
             box.Type("Oi, eu meu chamo [P.I.G.]\nEu serei a sua companheira nesta missão.");
         };
         testInput2.performed += (ctx) => 

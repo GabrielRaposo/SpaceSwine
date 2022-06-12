@@ -24,9 +24,9 @@ public class ShipDialogueBox : MonoBehaviour
     [Header("Rect Transforms")]
     [SerializeField] RectTransform largeBG;
     [SerializeField] RectTransform smallBG;
-    [SerializeField] RectTransform sideRivets;
-    [SerializeField] RectTransform borderTop;
-    [SerializeField] RectTransform borderBottom;
+    [SerializeField] RectTransform verticalRivets;
+    [SerializeField] RectTransform horizontalRivets;
+    [SerializeField] RectTransform borders;
     [SerializeField] RectTransform textbox;
     [SerializeField] RectTransform textboxSimulator;
 
@@ -59,14 +59,25 @@ public class ShipDialogueBox : MonoBehaviour
         shown = false;
     }
 
-    private int Height (VerticalState state)
+    private int BorderHeight (VerticalState state)
     {
         switch (state)
         {
             default:
-            case VerticalState.Closed: return 65;
-            case VerticalState.Open1:  return 101;
-            case VerticalState.Open2:  return 137;
+            case VerticalState.Closed: return 60;
+            case VerticalState.Open1:  return 80;
+            case VerticalState.Open2:  return 98;
+        }
+    }
+
+    private int RivetHeight (VerticalState state)
+    {
+        switch (state)
+        {
+            default:
+            case VerticalState.Closed: return 84;
+            case VerticalState.Open1:  return 104;
+            case VerticalState.Open2:  return 122;
         }
     }
 
@@ -112,9 +123,9 @@ public class ShipDialogueBox : MonoBehaviour
     {
         largeBG.sizeDelta = largeBG.sizeDelta.SetX(width);
         smallBG.sizeDelta = smallBG.sizeDelta.SetX(width);
-        sideRivets.sizeDelta = sideRivets.sizeDelta.SetX(width);
-        borderTop.sizeDelta = borderTop.sizeDelta.SetX(width);
-        borderBottom.sizeDelta = borderBottom.sizeDelta.SetX(width);
+        verticalRivets.sizeDelta = verticalRivets.sizeDelta.SetX(width);
+        horizontalRivets.sizeDelta = horizontalRivets.sizeDelta.SetX(width);
+        borders.sizeDelta = borders.sizeDelta.SetX(width);
         TextBoxSize(textbox.sizeDelta.SetX(width));
     }
 
@@ -130,8 +141,9 @@ public class ShipDialogueBox : MonoBehaviour
                 largeBG.sizeDelta = smallBG.sizeDelta = largeBG.sizeDelta.SetY(BGHeight(VerticalState.Closed));
                 smallBG.transform.SetAsLastSibling();
 
-                sideRivets.anchoredPosition = new Vector2(0, RivetY(VerticalState.Closed));
-                borderTop.sizeDelta = new Vector2(borderTop.sizeDelta.x, Height(VerticalState.Closed));
+                verticalRivets.anchoredPosition = new Vector2(0, RivetY(VerticalState.Closed));
+                horizontalRivets.sizeDelta = new Vector2(borders.sizeDelta.x, RivetHeight(VerticalState.Closed));
+                borders.sizeDelta = new Vector2(borders.sizeDelta.x, BorderHeight(VerticalState.Closed));
 
                 TextBoxSize( textbox.sizeDelta.SetY(TextHeight(VerticalState.Closed)) );
 
@@ -145,8 +157,9 @@ public class ShipDialogueBox : MonoBehaviour
                 largeBG.sizeDelta = smallBG.sizeDelta = largeBG.sizeDelta.SetY(BGHeight(VerticalState.Open1));
                 largeBG.transform.SetAsLastSibling();
 
-                sideRivets.anchoredPosition = new Vector2(0, RivetY(VerticalState.Open1) );
-                borderTop.sizeDelta = new Vector2(borderTop.sizeDelta.x, Height(VerticalState.Open1));
+                verticalRivets.anchoredPosition = new Vector2(0, RivetY(VerticalState.Open1) );
+                                horizontalRivets.sizeDelta = new Vector2(borders.sizeDelta.x, RivetHeight(VerticalState.Open1));
+                borders.sizeDelta = new Vector2(borders.sizeDelta.x, BorderHeight(VerticalState.Open1));
         
                 TextBoxSize( textbox.sizeDelta.SetY(TextHeight(VerticalState.Open1)) );
             
@@ -160,8 +173,9 @@ public class ShipDialogueBox : MonoBehaviour
                 largeBG.sizeDelta = smallBG.sizeDelta = largeBG.sizeDelta.SetY(BGHeight(VerticalState.Open2));
                 largeBG.transform.SetAsLastSibling();
 
-                sideRivets.anchoredPosition = new Vector2(0, RivetY(VerticalState.Open2));
-                borderTop.sizeDelta = new Vector2(borderTop.sizeDelta.x, Height(VerticalState.Open2));
+                verticalRivets.anchoredPosition = new Vector2(0, RivetY(VerticalState.Open2));
+                horizontalRivets.sizeDelta = new Vector2(borders.sizeDelta.x, RivetHeight(VerticalState.Open2));
+                borders.sizeDelta = new Vector2(borders.sizeDelta.x, BorderHeight(VerticalState.Open2));
         
                 TextBoxSize( textbox.sizeDelta.SetY(TextHeight(VerticalState.Open2)) );
             
@@ -224,10 +238,12 @@ public class ShipDialogueBox : MonoBehaviour
                 0.0f, 1.0f, duration, 
                 (f) =>
                 {
-                    borderTop.sizeDelta = borderTop.sizeDelta
-                        .SetY(ValueOnContext(f, Height(verticalState), Height(nextVerticalState)));
-                    sideRivets.anchoredPosition = sideRivets.anchoredPosition
+                    borders.sizeDelta = borders.sizeDelta
+                        .SetY(ValueOnContext(f, BorderHeight(verticalState), BorderHeight(nextVerticalState)));
+                    verticalRivets.anchoredPosition = verticalRivets.anchoredPosition
                         .SetY(ValueOnContext(f, RivetY(verticalState), RivetY(nextVerticalState)));
+                    horizontalRivets.sizeDelta = horizontalRivets.sizeDelta
+                        .SetY(ValueOnContext(f, RivetHeight(verticalState), RivetHeight(nextVerticalState)));
                     textbox.sizeDelta = textbox.sizeDelta
                         .SetY(ValueOnContext(f, TextHeight(verticalState), TextHeight(nextVerticalState)));
                     largeBG.sizeDelta = largeBG.sizeDelta
