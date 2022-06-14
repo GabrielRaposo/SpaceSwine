@@ -29,26 +29,6 @@ public class PagerInteractionManager : MonoBehaviour
         playerInputActions = new PlayerInputActions();    
 
         navigationAction = playerInputActions.UI.Navigation;
-        //navigationAction.performed += (ctx) => 
-        //{ 
-        //    if(!OnFocus || SceneTransition.OnTransition)
-        //        return;
-
-        //    Vector2 navigationInput = ctx.ReadValue<Vector2>();
-
-        //    if (navigationInput.y != 0)
-        //    {
-        //        if (navigationInput.y > .5f)
-        //            CurrentScreen.ChangeIndex(-1);
-        //        else if (navigationInput.y < .5f)
-        //            CurrentScreen.ChangeIndex(+1);
-        //    }
-            
-        //    if (navigationInput.x != 0)
-        //    {
-        //        CurrentScreen.HorizontalInput (navigationInput.x);
-        //    }
-        //};
         navigationAction.Enable();
 
         playerInputActions.UI.Confirm.performed += (ctx) => 
@@ -59,8 +39,6 @@ public class PagerInteractionManager : MonoBehaviour
             CurrentScreen.ClickInput();
         };
         playerInputActions.UI.Confirm.Enable();
-
-        //OnFocus = true;
     }
 
     private void Update() 

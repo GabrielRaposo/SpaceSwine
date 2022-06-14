@@ -10,7 +10,7 @@ public class PauseSystem : MonoBehaviour
     [SerializeField] float transitionDuration;
 
     [Header("References")]
-    [SerializeField] MenuNavigationManager menuNavigationManager; 
+    [SerializeField] PagerInteractionManager pagerInteractionManager;
 
     [SerializeField] GameObject shipButton;
     [SerializeField] StoryEventScriptableObject shipButtonEventTrigger;
@@ -31,8 +31,8 @@ public class PauseSystem : MonoBehaviour
     {
         canvasGroup.alpha = 0;
 
-        if (menuNavigationManager)
-            menuNavigationManager.OnFocus = false;
+        if (pagerInteractionManager)
+            pagerInteractionManager.OnFocus = false;
 
         if (shipButton && shipButtonEventTrigger)
         {
@@ -56,8 +56,8 @@ public class PauseSystem : MonoBehaviour
  
         OnPause = value;
         
-        if (menuNavigationManager)
-            menuNavigationManager.OnFocus = value;
+        if (pagerInteractionManager)
+            pagerInteractionManager.OnFocus = value;
 
         if (shipButton && shipButtonEventTrigger)
         {
