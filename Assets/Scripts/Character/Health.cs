@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
 
     int value;
 
-    public UnityAction OnDeathEvent;
+    public UnityAction<bool> OnDeathEvent;
 
     void Start()
     {
@@ -38,21 +38,18 @@ public class Health : MonoBehaviour
             value = 0;
         
         if (value == 0)
-            Die();
+            Die(deathFromDamage: true);
     }
 
-    public void Die()
+    public void Die (bool deathFromDamage)
     {
         deathAKEvent?.Post(gameObject);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
 
-        Vector2 pos = ((Vector2)transform.position).Remap(new Vector2(-10f, -6f), new Vector2(10f, 6f),
-            Vector2.zero, Vector2.one);
-
-            //Vector2 pos = new Vector2(0.5f, 0.5f);
+        Vector2 pos = ((Vector2) transform.position)
+            .Remap(new Vector2(-10f, -6f), new Vector2(10f, 6f),Vector2.zero, Vector2.one);
         
-        CameraShaderManager.Instance.StartDeathSentence(pos, OnDeathEvent);
-
-        //OnDeathEvent?.Invoke();
+        //CameraShaderManager.Instance.StartDeathSentence(pos, OnDeathEvent);
+        OnDeathEvent.Invoke(deathFromDamage);
     }
 }

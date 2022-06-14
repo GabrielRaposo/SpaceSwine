@@ -20,7 +20,7 @@ public class PlayerAnimations : MonoBehaviour
     [HideInInspector] public float horizontalInput;
     [HideInInspector] public float verticalSpeed;
 
-    enum State  { Landed, Jumping, Flying }
+    enum State  { Landed, Jumping, Flying, Dead }
     State state;
 
     void Start()
@@ -85,6 +85,10 @@ public class PlayerAnimations : MonoBehaviour
                 }
                 ChangeAnimationState( !holding ? AnimationState.LAUNCH : AnimationState.LAUNCH_HOLD );
                 break;
+
+            case State.Dead:
+                ChangeAnimationState( AnimationState.DEATH );
+                break;
         }
     }
 
@@ -103,6 +107,11 @@ public class PlayerAnimations : MonoBehaviour
     {
         ChangeAnimationState( !holding ? AnimationState.LAUNCH : AnimationState.LAUNCH_HOLD );
         state = State.Flying;
+    }
+
+    public void SetDeathState()
+    {
+        state = State.Dead;
     }
 
     public void ChangeAnimationState (string newState)
@@ -143,7 +152,7 @@ public class AnimationState
     public static string FALL_HOLD = "Player-Fall-Hold";
 
     public static string THROW_GROUND = "Player-Throw-Ground";
-    //public static string THROW_AIR = "Player-Throw-Air";
 
     public static string AIR_STALL = "Player-AirStall";
+    public static string DEATH = "Player-Death";
 }

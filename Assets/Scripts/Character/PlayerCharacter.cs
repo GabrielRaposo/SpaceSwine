@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(PlatformerCharacter))]
+[RequireComponent(typeof(PlayerAnimations))]
 [RequireComponent(typeof(CollectableInteraction))]
 [RequireComponent(typeof(SpaceJumper))]
 [RequireComponent(typeof(Health))]
@@ -14,8 +17,10 @@ public class PlayerCharacter : MonoBehaviour
     Collider2D coll;
     SpriteRenderer spriteRenderer;
 
+    PlayerInput playerInput;
     LocalGameplayState gameplayState;
     PlatformerCharacter platformerCharacter;
+    PlayerAnimations playerAnimations;
     CollectableInteraction collectableInteraction;
     SpaceJumper spaceJumper;
     Health health;
@@ -40,8 +45,10 @@ public class PlayerCharacter : MonoBehaviour
         coll = GetComponent<Collider2D>(); 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
+        playerInput = GetComponent<PlayerInput>();
         gameplayState = GetComponent<LocalGameplayState>();
         platformerCharacter = GetComponent<PlatformerCharacter>();
+        playerAnimations = GetComponent<PlayerAnimations>();
         collectableInteraction = GetComponent<CollectableInteraction>();
         spaceJumper = GetComponent<SpaceJumper>();
         health = GetComponent<Health>();
@@ -49,6 +56,9 @@ public class PlayerCharacter : MonoBehaviour
 
     public void ResetStates()
     {
+        if (coll) coll.enabled = true;
+        if (playerInput) playerInput.enabled = true;
+
         platformerCharacter?.KillInputs();
         collectableInteraction?.ResetStates();
         spaceJumper?.ResetStates();
@@ -89,6 +99,42 @@ public class PlayerCharacter : MonoBehaviour
             spriteRenderer.enabled = !value;
     }
 
+    public void SetDeathEvent (UnityAction roundAction)
+    {
+        Health health = GetComponentInChildren<Health>();
+        if (!health)
+            return;
+
+        health.OnDeathEvent = (deathFromDamage) => DeathSequence(deathFromDamage, roundAction);
+    }
+
+    private void DeathSequence (bool deathFromDamage, UnityAction roundAction)
+    {
+        if (deathFromDamage) // -- Morte tocando em spike
+        {
+            // TO-DO: Lockar inputs de menu
+
+            Vector2 previousVelocity = rb.velocity.normalized;
+            rb.velocity = previousVelocity * -.5f;
+            
+            if (coll) coll.enabled = false;
+            if (playerInput) playerInput.enabled = false;
+
+            playerAnimations.SetDeathState();
+
+            RaposUtil.WaitSeconds(this, duration: 1.0f, () =>
+            {
+                roundAction.Invoke();
+                // TO-DO: Liberar inputs de menu
+            });
+        }
+        else // -- Morte saindo da tela
+        {
+            roundAction?.Invoke();
+        }
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         if (!gameplayState || gameplayState.state != GameplayState.Danger)
@@ -97,6 +143,6 @@ public class PlayerCharacter : MonoBehaviour
         if (!collision.CompareTag("GameplayArea"))
             return;
 
-        health.Die();
+        health.Die(deathFromDamage: false);
     }
 }

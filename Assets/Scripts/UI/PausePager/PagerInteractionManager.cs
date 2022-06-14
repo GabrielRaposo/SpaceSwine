@@ -60,7 +60,7 @@ public class PagerInteractionManager : MonoBehaviour
         };
         playerInputActions.UI.Confirm.Enable();
 
-        OnFocus = true;
+        //OnFocus = true;
     }
 
     private void Update() 
