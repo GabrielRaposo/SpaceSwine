@@ -13,11 +13,15 @@ public class PagerInteractableButton : PagerInteractable
     [SerializeField] UnityEvent interactionEvent;
 
     [Header("References")]
+    [SerializeField] Image border;
     [SerializeField] Image background;
     [SerializeField] TextMeshProUGUI textDisplay;
 
     public override void Select() 
     {
+        if (border)
+            border.color = lightColor;
+
         if (background)
             background.color = darkColor;
 
@@ -27,6 +31,9 @@ public class PagerInteractableButton : PagerInteractable
 
     public override void Deselect() 
     {
+        if (border)
+            border.color = darkColor;
+
         if (background)
             background.color = Color.clear;
 
