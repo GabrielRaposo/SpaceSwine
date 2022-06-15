@@ -46,6 +46,7 @@ public class DialogueBoxStyleController : MonoBehaviour
         }
 
         bgImage.color = style.BGColor;
+        borderImage.sprite = style.borderSprite;
         borderImage.color = style.borderColor;
 
         textDisplay.color = style.textColor;
