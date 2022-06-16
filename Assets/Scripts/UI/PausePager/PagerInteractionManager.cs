@@ -12,6 +12,10 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] UnityEvent backOnMainEvent;
     [SerializeField] List<PagerScreen> screens;
 
+    [Header("Options Mode")]
+    [SerializeField] bool optionsMode;
+    [SerializeField] GameObject optionsBackButton;
+
     [HideInInspector] public bool OnFocus;
     
     int current;
@@ -28,9 +32,15 @@ public class PagerInteractionManager : MonoBehaviour
             return;
         }
 
-        GoToScreen ( 1 % screens.Count );
+        int i = initialIndex > -1 ? initialIndex : 1;
+        if (optionsMode) i = 2;
 
-        playerInputActions = new PlayerInputActions();    
+        GoToScreen ( i );
+
+        if (optionsMode && optionsBackButton)
+            optionsBackButton.SetActive(false);
+
+        playerInputActions = new PlayerInputActions();
 
         navigationAction = playerInputActions.UI.Navigation;
         navigationAction.Enable();
@@ -113,8 +123,8 @@ public class PagerInteractionManager : MonoBehaviour
 
         confirmationScreen.SetScreen
         (
-            title: "Quit Game",
-            description: "Are you sure?",
+            title: "Sair do jogo",
+            description: "Tem certeza?",
             ConfirmEvent: () => GameManager.GoToScene(BuildIndex.Title),
             CancelEvent: () => 
             { 
@@ -141,7 +151,11 @@ public class PagerInteractionManager : MonoBehaviour
                 break;
 
             case 0: // -- Menu de Confirmação
+                GoToScreen (1);
+                break;
+
             case 2: // -- Menu de Opções
+                if (optionsMode) break;
                 GoToScreen (1);
                 break;
 
