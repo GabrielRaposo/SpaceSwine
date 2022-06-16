@@ -7,6 +7,7 @@ public class PagerInteractionManager : MonoBehaviour
 {
     [SerializeField] PagerAxisButtonsVisual pagerAxisButtonsVisual;
     [SerializeField] List<PagerScreen> screens;
+    [SerializeField] PagerConfirmationScreen confirmationScreen;
 
     [HideInInspector] public bool OnFocus;
     
@@ -24,7 +25,8 @@ public class PagerInteractionManager : MonoBehaviour
             return;
         }
 
-        current = 0;
+        current = 1 % screens.Count;
+        ActivateCurrent();
 
         playerInputActions = new PlayerInputActions();    
 
@@ -76,12 +78,42 @@ public class PagerInteractionManager : MonoBehaviour
             CurrentScreen.HorizontalInput (navigationInput.x);
             delay = maxDelay;
         }
+    }
 
+    private void ActivateCurrent()
+    {
+        foreach(PagerScreen screen in screens)
+            screen.gameObject.SetActive(false);
+
+        CurrentScreen.gameObject.SetActive(true);
     }
 
     private PagerScreen CurrentScreen
     {
         get {  return screens[current % screens.Count]; }
+    }
+
+    public void SetQuitConfirmation()
+    {
+        if (!confirmationScreen)
+            return;
+
+        int previousScreen = current;
+
+        confirmationScreen.SetScreen
+        (
+            title: "Quit Game",
+            description: "Are you sure?",
+            ConfirmEvent: () => GameManager.GoToScene(BuildIndex.Title),
+            CancelEvent: () => 
+            { 
+                current = previousScreen; 
+                ActivateCurrent(); 
+            }
+        );
+
+        current = 0;
+        ActivateCurrent();
     }
 
     private void OnDisable() 

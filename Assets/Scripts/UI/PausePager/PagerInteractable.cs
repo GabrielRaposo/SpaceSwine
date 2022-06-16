@@ -10,5 +10,5 @@ public class PagerInteractable : MonoBehaviour
 
     public virtual void OnClick() { }
 
-    public virtual void OnHorizontalInput(float value) { }
+    public virtual void OnHorizontalInput(float direction) { }
 }

@@ -10,6 +10,7 @@ public class PagerInteractableSlider : PagerInteractable
     [Header("Values")]
     [SerializeField] Color lightColor;
     [SerializeField] Color darkColor;
+    [SerializeField] float maxRange;
     [SerializeField] UnityEvent interactionEvent;
 
     [Header("References")]
@@ -18,6 +19,14 @@ public class PagerInteractableSlider : PagerInteractable
     [SerializeField] Image sliderBorder;
     [SerializeField] Image fillBar;
     [SerializeField] Image handler;
+
+    float value;
+
+    private void Start() 
+    {
+        value = .5f;
+        UpdateDisplay();
+    }
 
     public override void Select() 
     {
@@ -53,5 +62,33 @@ public class PagerInteractableSlider : PagerInteractable
 
         if (handler)
             handler.color = darkColor;
+    }
+
+    public override void OnHorizontalInput(float direction) 
+    {
+        value += .1f * direction;
+
+        if (value < 0)
+            value = 0;
+        else if (value > 1)
+            value = 1;
+
+        UpdateDisplay();
+    }
+
+    private void UpdateDisplay()
+    {
+        float offset = 0f;
+        
+        if (fillBar)
+        {
+            fillBar.fillAmount = value - offset;
+        }
+
+        if (handler)
+        {
+            float anchoredX = (maxRange * 2.0f * value) - maxRange;
+            handler.GetComponent<RectTransform>().anchoredPosition = Vector2.right * anchoredX; 
+        }
     }
 }
