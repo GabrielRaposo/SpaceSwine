@@ -11,7 +11,7 @@ public class PagerInteractableSlider : PagerInteractable
     [SerializeField] Color lightColor;
     [SerializeField] Color darkColor;
     [SerializeField] float maxRange;
-    [SerializeField] UnityEvent interactionEvent;
+    [SerializeField] UnityEvent<float> OnValueChanged;
 
     [Header("References")]
     [SerializeField] Image background;
@@ -22,9 +22,17 @@ public class PagerInteractableSlider : PagerInteractable
 
     float value;
 
-    private void Start() 
+    //private void Start() 
+    //{
+    //    // TO-DO: get valur from volume manager
+    //    value = .5f;
+       
+    //    UpdateDisplay();
+    //}
+
+    public void InitiateValue (float value)
     {
-        value = .5f;
+        this.value = value;
         UpdateDisplay();
     }
 
@@ -66,12 +74,17 @@ public class PagerInteractableSlider : PagerInteractable
 
     public override void OnHorizontalInput(float direction) 
     {
+        float previousValue = value;
+
         value += .1f * direction;
 
         if (value < 0)
             value = 0;
         else if (value > 1)
             value = 1;
+
+        if (value != previousValue)
+            OnValueChanged?.Invoke(value);
 
         UpdateDisplay();
     }

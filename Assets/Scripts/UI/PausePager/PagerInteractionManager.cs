@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PagerInteractionManager : MonoBehaviour
 {
+    [SerializeField] int initialIndex;
     [SerializeField] PagerAxisButtonsVisual pagerAxisButtonsVisual;
     [SerializeField] List<PagerScreen> screens;
     [SerializeField] PagerConfirmationScreen confirmationScreen;

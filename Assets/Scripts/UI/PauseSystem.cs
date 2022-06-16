@@ -32,7 +32,10 @@ public class PauseSystem : MonoBehaviour
         canvasGroup.alpha = 0;
 
         if (pagerInteractionManager)
+        {
             pagerInteractionManager.OnFocus = false;
+            pagerInteractionManager.enabled = false;
+        }
 
         if (shipButton && shipButtonEventTrigger)
         {
@@ -57,7 +60,10 @@ public class PauseSystem : MonoBehaviour
         OnPause = value;
         
         if (pagerInteractionManager)
+        {
             pagerInteractionManager.OnFocus = value;
+            pagerInteractionManager.enabled = value;
+        }
 
         if (shipButton && shipButtonEventTrigger)
         {

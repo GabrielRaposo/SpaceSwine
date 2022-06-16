@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PagerScreen : MonoBehaviour
 {
+    [SerializeField] int initialIndex = -1;
     [SerializeField] List <PagerInteractable> interactables;
 
     int index = -1;
@@ -17,7 +18,8 @@ public class PagerScreen : MonoBehaviour
         }
 
         if (index < 0)
-            index = 0;
+            index = (initialIndex > -1) ? initialIndex : 0;
+        
 
         SelectOnIndex();
     }
