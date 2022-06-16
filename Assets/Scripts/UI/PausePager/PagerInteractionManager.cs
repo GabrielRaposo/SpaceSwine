@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PagerInteractionManager : MonoBehaviour
 {
     [SerializeField] int initialIndex;
     [SerializeField] PagerAxisButtonsVisual pagerAxisButtonsVisual;
-    [SerializeField] List<PagerScreen> screens;
     [SerializeField] PagerConfirmationScreen confirmationScreen;
+    [SerializeField] UnityEvent backOnMainEvent;
+    [SerializeField] List<PagerScreen> screens;
 
     [HideInInspector] public bool OnFocus;
     
@@ -26,8 +28,7 @@ public class PagerInteractionManager : MonoBehaviour
             return;
         }
 
-        current = 1 % screens.Count;
-        ActivateCurrent();
+        GoToScreen ( 1 % screens.Count );
 
         playerInputActions = new PlayerInputActions();    
 
@@ -36,12 +37,21 @@ public class PagerInteractionManager : MonoBehaviour
 
         playerInputActions.UI.Confirm.performed += (ctx) => 
         {               
-            if(!OnFocus || SceneTransition.OnTransition)
+            if (!OnFocus || SceneTransition.OnTransition)
                 return;
 
             CurrentScreen.ClickInput();
         };
         playerInputActions.UI.Confirm.Enable();
+
+        playerInputActions.UI.Cancel.performed += (ctx) => 
+        {
+            if (!OnFocus || SceneTransition.OnTransition)
+                return;
+
+            BackInput();
+        };
+        playerInputActions.UI.Cancel.Enable();
     }
 
     private void Update() 
@@ -113,14 +123,39 @@ public class PagerInteractionManager : MonoBehaviour
             }
         );
 
-        current = 0;
+        GoToScreen(0);
+    }
+
+    public void GoToScreen (int index)
+    {
+        current = index;
         ActivateCurrent();
+    }
+
+    public void BackInput()
+    {
+        switch (current)
+        {
+            case 1: // -- Tela principal
+                backOnMainEvent?.Invoke();
+                break;
+
+            case 0: // -- Menu de Confirmação
+            case 2: // -- Menu de Opções
+                GoToScreen (1);
+                break;
+
+            case 3: // -- Menu de Opções (Áudio)
+                GoToScreen (2);
+                break;
+        }
     }
 
     private void OnDisable() 
     {
         navigationAction.Disable();
         playerInputActions.UI.Confirm.Disable();
+        playerInputActions.UI.Cancel.Disable();
 
         OnFocus = false;
     }

@@ -16,6 +16,12 @@ public class PagerVolumeManager : MonoBehaviour
     {
         if (masterSlider && masterParameter != null)
             masterSlider.InitiateValue( ValueToPercent (masterParameter.GetGlobalValue()) );
+
+        if (musicSlider && musicParameter != null)
+            musicSlider.InitiateValue( ValueToPercent (musicParameter.GetGlobalValue()) );
+
+        if (sfxSlider && sfxParameter != null)
+            sfxSlider.InitiateValue( ValueToPercent (sfxParameter.GetGlobalValue()) );
     }
 
     private float ValueToPercent (float value)
@@ -31,6 +37,16 @@ public class PagerVolumeManager : MonoBehaviour
     public void SetMasterVolume(float percent)
     {
         SetSliderValue(percent, masterParameter);
+    }
+
+    public void SetMusicVolume(float percent)
+    {
+        SetSliderValue(percent, musicParameter);
+    }
+
+    public void SetSFXVolume(float percent)
+    {
+        SetSliderValue(percent, sfxParameter);
     }
 
     private void SetSliderValue (float percent, AK.Wwise.RTPC parameter)
