@@ -8,6 +8,7 @@ public class InteractablePortal : Interactable
     [SerializeField] BuildIndex targetIndex;
     [SerializeField] RoundSessionData data;
     //[SerializeField] SpriteSwapper ballonSpriteSwapper;
+    [SerializeField] DoorAnimation doorAnimation;
 
     public override void Interaction (PlayerInteractor interactor) 
     {
@@ -15,26 +16,41 @@ public class InteractablePortal : Interactable
 
         if (data)
         {
-            //DialogueSystem dialogSystem = DialogueSystem.Instance;
-            //dialogSystem?.SetDialogue(this, data.npcName, data.dialog);
-
             //if (interactor)
             //{
             //    PlatformerCharacter platformerCharacter = interactor.GetComponent<PlatformerCharacter>();
             //    platformerCharacter?.KillInputs();
             //    platformerCharacter?.LookAtTarget(transform);
             //}
+            if (!doorAnimation)
+                doorAnimation = GetComponentInChildren<DoorAnimation>();
 
-            data.outroScene = (BuildIndex) SceneManager.GetActiveScene().buildIndex;
-            data.OnSessionCompleted += () => 
+            if (interactor && doorAnimation)
             {
-                //Debug.Log("Session Done! ");
-                SpawnManager.index = data.spawnIndex;
-            };
-            RoundsManager.SessionData = data;
-            
-            SceneTransition.LoadScene( (int) targetIndex /*(int) BuildIndex.TestDangerStage*/ );
+                doorAnimation.SetupAnimation
+                (
+                    doorAnimation.GetComponent<Door>(), 
+                    interactor.gameObject,
+                    LoadSceneAction
+                );
+                return;
+            }
+
+            LoadSceneAction();
         }
+    }
+
+    private void LoadSceneAction()
+    {
+        data.outroScene = (BuildIndex) SceneManager.GetActiveScene().buildIndex;
+        data.OnSessionCompleted += () => 
+        {
+            //Debug.Log("Session Done! ");
+            SpawnManager.index = data.spawnIndex;
+        };
+        RoundsManager.SessionData = data;
+            
+        SceneTransition.LoadScene( (int) targetIndex /*(int) BuildIndex.TestDangerStage*/ );
     }
 
     protected override void HighlightState (bool value) { }

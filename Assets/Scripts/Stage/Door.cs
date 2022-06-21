@@ -7,10 +7,11 @@ using DG.Tweening;
 
 public class Door : MonoBehaviour
 {
-    [Header("Values")] int health;
+    [Header("Values")] 
     [SerializeField] float starRadius = 1f;
     [SerializeField] float openDuration = .1f;
     [SerializeField] bool startClosed;
+    [SerializeField] bool explorationSetup;
 
     [Header("References")] 
     [SerializeField] Transform visualComponent;
@@ -29,6 +30,7 @@ public class Door : MonoBehaviour
     DoorAnimation doorAnimation;
 
     //private List<Lock> internalLocks;
+    int health;
 
     private int Health
     {
@@ -56,15 +58,22 @@ public class Door : MonoBehaviour
     private void Start()
     {
         doorAnimation = GetComponent<DoorAnimation>();
+        round = GetComponentInParent<Round>();
 
-        // internalHealth = originalInternalHealth;
-        // Health = originalInternalHealth + externalLocks.Count;
         Health = externalLocks.Count;
+
+        if (explorationSetup)
+        {
+            animator.SetBool("Open", true);
+            
+            if (portal)
+                portal.gameObject.SetActive(true);
+
+            return;
+        }
 
         SetLocks();
         ResetStates();
-
-        round = GetComponentInParent<Round>();
 
         if (round)
         {

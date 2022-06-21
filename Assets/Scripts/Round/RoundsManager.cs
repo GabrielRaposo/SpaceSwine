@@ -83,9 +83,9 @@ public class RoundsManager : MonoBehaviour
         };
         nextInputAction.Enable();
 
-        Health health = player.GetComponent<Health>();
-        if (health)
-            health.OnDeathEvent += () => RoundTransition.Call(ActivateCurrentIndex);
+        PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
+        if (playerCharacter)
+            playerCharacter.SetDeathEvent( () => RoundTransition.Call(ActivateCurrentIndex) );
     }
 
     public void PreviousRoundLogic()

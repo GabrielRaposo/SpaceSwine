@@ -12,12 +12,12 @@ public class DialogueBoxStyle : ScriptableObject
     }
 
     // typing speed
-    // border style
     // pattern style
     // skip arrow style
     // box anchor sizes
 
     public PatternType patternType;
+    public Sprite borderSprite;
 
     [Header("Colors")]
     public Color textColor = Color.white;
