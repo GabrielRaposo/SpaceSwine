@@ -66,18 +66,27 @@ public class RoundsManager : MonoBehaviour
 
         previousInputAction.performed += ctx => 
         {
+            if (GameManager.BlockCharacterInput)
+                return;
+
             PreviousRoundLogic();
         };
         previousInputAction.Enable();
 
         resetInputAction.performed += ctx => 
         {
+            if (GameManager.BlockCharacterInput)
+                return;
+
             RoundTransition.Call(ActivateCurrentIndex);
         };
         resetInputAction.Enable();
 
         nextInputAction.performed += ctx => 
         {
+            if (GameManager.BlockCharacterInput)
+                return;
+
             if (currentIndex < rounds.Count)
                 rounds[currentIndex].RoundCleared();
         };

@@ -19,6 +19,15 @@ public class DoorAnimation : MonoBehaviour
 
     Sequence sequence;
 
+    private void Start() 
+    {
+        Round round = GetComponentInParent<Round>();
+        if (!round)
+            return;
+
+        round.OnReset += ResetComponents;
+    }
+
     private void ResetComponents()
     {
         if (sequence != null)
@@ -38,7 +47,7 @@ public class DoorAnimation : MonoBehaviour
 
     public void SetupAnimation( Door door, GameObject player, UnityAction OnAnimationEnd )
     {
-        // TO-DO: Ativar uma variável global de ON_TRANSITION para evitar inputs de pausa e etc 
+        GameManager.BlockCharacterInput = true;
 
         if (sequence != null)
             sequence.Kill();
@@ -84,7 +93,7 @@ public class DoorAnimation : MonoBehaviour
             DOVirtual.Float(from: 1.0f, to: 0.0f, duration: .2f, (f) => whiteCircle.color = new Vector4(1, 1, 1, f))
         );
         sequence.Join( BlinkBoxSequence() );
-        sequence.AppendInterval(.75f + 1.0f/* Tempo extra para deixar mais fácil de croppar pro trailer */);
+        sequence.AppendInterval(.5f);
 
         // -- Ajuste do player para o próximo round
         sequence.AppendCallback( () =>
@@ -96,7 +105,14 @@ public class DoorAnimation : MonoBehaviour
                 whiteCircle.enabled = false;
             }
         );
-        sequence.OnComplete( OnAnimationEnd.Invoke );
+        sequence.OnComplete
+        (
+            () => 
+            {
+                GameManager.BlockCharacterInput = false;
+                OnAnimationEnd.Invoke(); 
+            }
+        );
     }
 
     private Sequence BlinkBoxSequence()
