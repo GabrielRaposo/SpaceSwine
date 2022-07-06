@@ -9,12 +9,12 @@ public class ElectricLine : MonoBehaviour
     Transform start; 
     Transform end; 
 
-    SpriteRenderer sr;
+    SpriteRenderer[] srs;
     BoxCollider2D coll;
 
     private void Awake() 
     {
-        sr = GetComponentInChildren<SpriteRenderer>();
+        srs = GetComponentsInChildren<SpriteRenderer>();
         coll = GetComponentInChildren<BoxCollider2D>();    
     }
 
@@ -42,7 +42,7 @@ public class ElectricLine : MonoBehaviour
         transform.position = start.transform.position;
         
         Vector2 direction = end.position - start.position;
-        if (sr) 
+        foreach(SpriteRenderer sr in srs)
             sr.size = new Vector2(direction.magnitude, sr.size.y);
         if (coll)
         {
