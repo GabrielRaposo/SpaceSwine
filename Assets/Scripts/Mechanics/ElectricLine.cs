@@ -51,4 +51,9 @@ public class ElectricLine : MonoBehaviour
         }
         transform.eulerAngles = Vector3.forward * (Vector2.SignedAngle(Vector2.right, direction.normalized));
     }
+
+    public void SetActivation(bool value)
+    {
+        gameObject.SetActive(value);
+    }
 }

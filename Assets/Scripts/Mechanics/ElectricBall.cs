@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class ElectricBall : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Animator animator;
+    private void Awake() 
     {
-        
+        animator = GetComponentInChildren<Animator>();    
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void SetActivation(bool value) 
+    { 
+        animator.SetBool("Active", value);
     }
 }
