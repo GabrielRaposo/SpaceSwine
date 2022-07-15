@@ -16,10 +16,9 @@ public class NavigationShip : MonoBehaviour
     [SerializeField]private float speed = 0.02f;
     private Vector2 movDirection;
 
-    public Transform debugInput;
-    public Transform debugMov;
-
     [SerializeField] private Transform spritesTransform;
+
+    private NavigationObject selectedObject;
 
     private void OnEnable()
     {
@@ -40,16 +39,30 @@ public class NavigationShip : MonoBehaviour
         _playerInputActions.Player.Throw.Disable();
     }
 
-    void Update()
+    private void OnTriggerEnter2D(Collider2D col)
     {
+        var navObject = col.gameObject.GetComponent<NavigationObject>();
+        if(navObject == null) return;
         
+        navObject.OnSelect();
+        selectedObject = navObject;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        var navObject = other.gameObject.GetComponent<NavigationObject>();
+        if(navObject == null)
+            return;
+        
+        navObject.OnDisselect();
+
+        if (navObject == selectedObject)
+            selectedObject = null;
     }
 
     private void FixedUpdate()
     {
         Vector2 input = movementInputAction.ReadValue<Vector2>();
-        debugInput.localPosition = input;
-        
         movDirection += input * aceleration;
 
         if (movDirection.magnitude > movmentCap)
@@ -67,15 +80,16 @@ public class NavigationShip : MonoBehaviour
             spritesTransform.eulerAngles = new Vector3(0, 0, Mathg.VectorToAngle(movDirection, true));    
         }
 
-        debugMov.localPosition = movDirection;
-            
         transform.Translate(movDirection*speed);
         
     }
 
     private void ConfirmAction()
     {
-        Debug.Log("bip");
+        if(selectedObject == null)
+            return;
+
+        selectedObject.OnInteract();
     }
     
 }

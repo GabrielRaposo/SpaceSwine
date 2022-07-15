@@ -10,7 +10,8 @@ public enum ShipAction
     Leave,
     Chill,
     GGS,
-    Customize
+    Customize,
+    Navigate
 }
 
 public class InteractableShipComponent : Interactable
@@ -62,6 +63,13 @@ public class InteractableShipComponent : Interactable
                 if (RestLoopManager.Instance)
                     RestLoopManager.Instance.Setup();
 
+                break;
+            
+            case ShipAction.Navigate:
+
+                if (NavigationConsole.Instance)
+                    NavigationConsole.Instance.ToggleConsoleState();
+                
                 break;
         }
     }

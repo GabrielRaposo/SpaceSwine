@@ -14,7 +14,7 @@ public class ShipShuttleSystem : MonoBehaviour
 
     [SerializeField] GameObject playerObject;
     [SerializeField] float duration;
-    [SerializeField] BuildIndex targetIndex;
+    //[SerializeField] BuildIndex targetIndex;
 
     PlayerCharacter playerCharacter;
     PlayerInput playerInput;
@@ -103,6 +103,7 @@ public class ShipShuttleSystem : MonoBehaviour
             () => 
             {   
                 // Trocar pela última fase em que você estava antes de entrar na Nave ou região
+                int targetIndex = NavigationConsole.ShipTeleportSceneIndex;
                 SceneTransition.LoadScene( (int) targetIndex );
             }
         );
