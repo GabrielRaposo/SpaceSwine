@@ -172,5 +172,6 @@ public class AnimationState
     public static string AIR_STALL = "Player-AirStall";
     public static string DEATH = "Player-Death";
 
+    public static string TRANSITION_TELEPORT_IN = "Player-Transition-TeleportIn";
     public static string TRANSITION_TELEPORT_OUT = "Player-Transition-TeleportOut";
 }

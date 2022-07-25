@@ -10,13 +10,26 @@ public class PlayerTransitionState : MonoBehaviour
 
     UnityAction OnAnimationEnd;
 
+    public enum State { None, Teleport }
+    public static State EnterState;
+
     void Awake()
     {
         playerCharacter = GetComponent<PlayerCharacter>();
         playerAnimations = GetComponent<PlayerAnimations>();
     }
 
-    // -- Nome estranho pra ser mais fácil de achar no menu de Animation Event
+    private void Start() 
+    {
+        switch (EnterState)
+        {
+            case State.Teleport:
+                TeleportIn( () => playerCharacter.ResetStates() );
+                break;
+        }
+    }
+
+    // -- NÃO O NOME DESSA FUNÇÃO: nome específico pra ser mais fácil de achar no menu de Animation Event
     public void _Transition_CallEvent () 
     {
         GameManager.BlockCharacterInput = false;
@@ -27,11 +40,21 @@ public class PlayerTransitionState : MonoBehaviour
 
     public void TeleportOut (UnityAction action)
     {
-        playerCharacter.DisableInteractions();
+        playerCharacter.DisableAllInteractions();
         playerAnimations.SetTransitionState( AnimationState.TRANSITION_TELEPORT_OUT );
 
         OnAnimationEnd = action;
 
         GameManager.BlockCharacterInput = true;
+    }
+
+    public void TeleportIn (UnityAction action)
+    {
+        playerCharacter.DisableAllInteractions();
+        playerAnimations.SetTransitionState( AnimationState.TRANSITION_TELEPORT_IN );
+
+        GameManager.BlockCharacterInput = true;
+
+        OnAnimationEnd = action;
     }
 }

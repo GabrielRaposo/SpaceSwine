@@ -65,13 +65,11 @@ public class PlayerCharacter : MonoBehaviour
         platformerCharacter?.KillInputs();
         collectableInteraction?.ResetStates();
         spaceJumper?.ResetStates();
-        gravityInteraction.enabled = true;
+        //gravityInteraction.enabled = true;
     }
 
-    public void DisableInteractions()
-    {
-        Quaternion originalRotation = transform.rotation;
-
+    public void DisableAllInteractions()
+    { 
         if (playerInput) playerInput.enabled = false;
 
         if (platformerCharacter)
@@ -100,8 +98,6 @@ public class PlayerCharacter : MonoBehaviour
         SetPhysicsBody(false);
         Rigidbody2D rb2d = GetComponentInChildren<Rigidbody2D>();
         rb2d.velocity = Vector2.zero;
-
-        transform.rotation = originalRotation;
     }
 
     public void SpawnAt (Vector2 position, float rotation = 0)
