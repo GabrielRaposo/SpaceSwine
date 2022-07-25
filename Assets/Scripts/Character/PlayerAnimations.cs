@@ -23,6 +23,8 @@ public class PlayerAnimations : MonoBehaviour
     enum State  { Landed, Jumping, Flying, Dead }
     State state;
 
+    bool onTransition;
+
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -42,6 +44,9 @@ public class PlayerAnimations : MonoBehaviour
     private void Update() 
     {
         if (Time.timeScale < 1)
+            return;
+
+        if (onTransition)
             return;
 
         switch (state)
@@ -109,9 +114,20 @@ public class PlayerAnimations : MonoBehaviour
         state = State.Flying;
     }
 
-    public void SetDeathState()
+    public void SetDeathState() // Transformar em transition state
     {
         state = State.Dead;
+    }
+
+    public void SetTransitionState (string animationState)
+    {
+        ChangeAnimationState(animationState);
+        onTransition = true;
+    }
+
+    public void ExitTransitionState() 
+    {
+        onTransition = false;
     }
 
     public void ChangeAnimationState (string newState)
@@ -155,4 +171,6 @@ public class AnimationState
 
     public static string AIR_STALL = "Player-AirStall";
     public static string DEATH = "Player-Death";
+
+    public static string TRANSITION_TELEPORT_OUT = "Player-Transition-TeleportOut";
 }
