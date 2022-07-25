@@ -41,27 +41,51 @@ public class TitleStateManager : MonoBehaviour
             chillMenuNavigation.OnFocus = (newState == State.Intro || newState == State.ChillLoop);
         }
 
-        if (titleMenuNavigation)
+        if (titleMenuNavigation && menuCanvasGroup)
         {
-            if (newState == State.Menu) 
-                titleMenuNavigation.FadeInSequence();
+            if (newState == State.Menu)
+            {
+                if (state != State.Options)
+                {
+                    titleMenuNavigation.FadeInSequence();
+                }
+                else
+                {
+                    titleMenuNavigation.enabled = true;
+                    titleMenuNavigation.OnFocus = true;
+                }
+                menuCanvasGroup.alpha = 1;
+            }
             else
             {
-                titleMenuNavigation.enabled = false;
-                titleMenuNavigation.OnFocus = false;
+                if (newState == State.Options)
+                {
+                    titleMenuNavigation.enabled = false;
+                    titleMenuNavigation.OnFocus = false;
+                }
+                else 
+                {
+                    if (state == State.Menu)
+                    {
+                        titleMenuNavigation.FadeOutSequence();
+                    }
+                    else 
+                    {
+                        titleMenuNavigation.enabled = false;
+                        titleMenuNavigation.OnFocus = false;
+                        menuCanvasGroup.alpha = 0;
+                    }
+                }
             }
                 
         }
-
-        if (menuCanvasGroup)
-            menuCanvasGroup.alpha = (newState == State.Menu ? 1 : 0);
 
         state = newState;
     }
 
     public void SetMenuState()
     {
-        Debug.Log("SetMenuState");
+        //Debug.Log("SetMenuState");
 
         if (state == State.Menu)
             return;
@@ -75,6 +99,14 @@ public class TitleStateManager : MonoBehaviour
             return;
 
         SetState(State.Options);
+    }
+
+    public void SetChillState() 
+    {
+        if (state == State.Intro)
+            return;
+
+        SetState(State.Intro);
     }
 
 }

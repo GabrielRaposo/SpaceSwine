@@ -76,7 +76,7 @@ public class PauseSystem : MonoBehaviour
             .SetUpdate(isIndependentUpdate: true);
     }
 
-    // -- Usado na tela inicial
+    // -- Usado na tela inicial, dá acesso somente às Options
     public void CustomSetPauseState (UnityAction backCall)
     {
         Time.timeScale = 0;
@@ -90,7 +90,7 @@ public class PauseSystem : MonoBehaviour
 
         if (shipButton)
         {
-            shipButton.SetActive(true);
+            shipButton.SetActive(false);
         }
         
         canvasGroup.DOKill();

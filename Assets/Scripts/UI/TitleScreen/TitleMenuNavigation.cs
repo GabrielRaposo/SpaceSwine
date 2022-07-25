@@ -17,7 +17,7 @@ public class TitleMenuNavigation : MonoBehaviour
 
     [HideInInspector] public bool OnFocus;
     
-    int current;
+    int current = -1;
 
     PlayerInputActions playerInputActions;
     Sequence s;
@@ -75,7 +75,8 @@ public class TitleMenuNavigation : MonoBehaviour
             if (canvasGroup)
                 canvasGroup.alpha = 0;
 
-            current = 0;
+            if (current < 0)
+                current = 0;
             SelectCurrent(instant: true);
         }
 
@@ -112,6 +113,58 @@ public class TitleMenuNavigation : MonoBehaviour
             OnFocus = true;
         });
     }
+
+    public void FadeOutSequence()
+    {
+        if (s != null) 
+            s.Kill();
+
+        {
+            VerticalLayoutGroup verticalLayoutGroup = GetComponent<VerticalLayoutGroup>();
+            if (verticalLayoutGroup)
+                verticalLayoutGroup.enabled = false;
+
+            if (canvasGroup)
+                canvasGroup.alpha = 1;
+
+            enabled = false;
+            OnFocus = false;
+        }
+
+        s = DOTween.Sequence();
+        s.Append( canvasGroup.DOFade(0, fadeDuration) );
+
+        /**
+        float hideX = 2200f;
+        for (int i = 0; i < titleButtons.Count; i++)
+        {
+            RectTransform buttonRT = titleButtons[i].GetComponent<RectTransform>();
+            Vector2 originalPosition = buttonRT.anchoredPosition;
+            //buttonRT.anchoredPosition = new Vector2(hideX, buttonRT.anchoredPosition.y);
+
+            float delay = .05f * i;
+            //s.Join( buttonRT.DOAnchorPos(originalPosition, slideDuration).SetEase(Ease.OutCirc).SetDelay(delay) );
+            s.Join
+            ( 
+                DOVirtual.Float 
+                (
+                    from: 0, to: 1, slideDuration, 
+                    (f) => buttonRT.anchoredPosition = new Vector2 
+                    ( 
+                        GetModifiedPosition(f, originalPosition.x, hideX), 
+                        buttonRT.anchoredPosition.y
+                    )
+                ).SetDelay(delay)
+            );
+        }
+
+        s.OnComplete( () => 
+        {
+            // ---
+        });
+        **/
+    }
+
 
     private float GetModifiedPosition(float t, float start, float end)
     {

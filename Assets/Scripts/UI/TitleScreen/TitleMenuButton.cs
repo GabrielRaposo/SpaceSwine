@@ -36,7 +36,7 @@ public class TitleMenuButton : MonoBehaviour
 
     public void Submit()
     {
-        Debug.Log("Submit: " + name);
+        //Debug.Log("Submit: " + name);
         OnClickEvent.Invoke();
     }
 
