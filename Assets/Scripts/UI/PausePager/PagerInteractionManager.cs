@@ -14,7 +14,7 @@ public class PagerInteractionManager : MonoBehaviour
 
     [Header("Options Mode")]
     [SerializeField] bool optionsMode;
-    [SerializeField] GameObject optionsBackButton;
+    [SerializeField] PagerInteractableButton optionsBackButton;
 
     [HideInInspector] public bool OnFocus;
     
@@ -37,8 +37,8 @@ public class PagerInteractionManager : MonoBehaviour
 
         GoToScreen ( i );
 
-        if (optionsMode && optionsBackButton)
-            optionsBackButton.SetActive(false);
+        //if (optionsMode && optionsBackButton)
+        //    optionsBackButton.gameObject.SetActive(false);
 
         playerInputActions = new PlayerInputActions();
 
@@ -62,6 +62,16 @@ public class PagerInteractionManager : MonoBehaviour
             BackInput();
         };
         playerInputActions.UI.Cancel.Enable();
+    }
+
+    public void CustomActivation (UnityAction backCall)
+    {
+        optionsMode = true;
+        OnFocus = true;
+        enabled = true;
+
+        if (optionsBackButton)
+            optionsBackButton.OverrideInteractionEvent(backCall);
     }
 
     private void Update() 

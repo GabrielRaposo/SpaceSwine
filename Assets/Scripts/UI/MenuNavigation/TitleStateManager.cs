@@ -7,11 +7,12 @@ public class TitleStateManager : MonoBehaviour
     [SerializeField] State initialState;
 
     [Header("References")]
-    [SerializeField] ChillMenuNavigation chillMenyNavigation;
+    [SerializeField] ChillMenuNavigation chillMenuNavigation;
     [SerializeField] TitleMenuNavigation titleMenuNavigation;
+    [SerializeField] PauseSystem pauseSystem;
     [SerializeField] CanvasGroup menuCanvasGroup;
 
-    enum State { Intro, Menu, ChillLoop }
+    enum State { Intro, Menu, Options, ChillLoop }
     State state;
 
     void Start()
@@ -19,17 +20,30 @@ public class TitleStateManager : MonoBehaviour
         SetState(State.Intro);
     }
 
-    private void SetState (State state)
+    private void SetState (State newState)
     {
-        if (chillMenyNavigation)
+        if (pauseSystem)
         {
-            chillMenyNavigation.enabled = (state != State.Menu);
-            chillMenyNavigation.OnFocus = (state != State.Menu);
+            if (state != State.Options && newState == State.Options)
+            {
+                pauseSystem.CustomSetPauseState( backCall: () => SetMenuState() );    
+            } 
+            
+            if (state == State.Options && newState != State.Options)
+            {
+                pauseSystem.SetPauseState(false);
+            }
+        }
+
+        if (chillMenuNavigation)
+        {
+            chillMenuNavigation.enabled = (newState == State.Intro || newState == State.ChillLoop);
+            chillMenuNavigation.OnFocus = (newState == State.Intro || newState == State.ChillLoop);
         }
 
         if (titleMenuNavigation)
         {
-            if (state == State.Menu) 
+            if (newState == State.Menu) 
                 titleMenuNavigation.FadeInSequence();
             else
             {
@@ -40,16 +54,27 @@ public class TitleStateManager : MonoBehaviour
         }
 
         if (menuCanvasGroup)
-            menuCanvasGroup.alpha = (state == State.Menu ? 1 : 0);
+            menuCanvasGroup.alpha = (newState == State.Menu ? 1 : 0);
 
-        this.state = state;
+        state = newState;
     }
 
     public void SetMenuState()
     {
+        Debug.Log("SetMenuState");
+
         if (state == State.Menu)
             return;
 
         SetState(State.Menu);
     }
+
+    public void SetOptionsState() 
+    {
+        if (state == State.Options)
+            return;
+
+        SetState(State.Options);
+    }
+
 }

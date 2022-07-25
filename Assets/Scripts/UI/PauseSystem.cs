@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
@@ -50,7 +51,7 @@ public class PauseSystem : MonoBehaviour
         SetPauseState(!OnPause);
     }
 
-    public void SetPauseState(bool value)
+    public void SetPauseState (bool value)
     {
         if (value)
             Time.timeScale = 0;
@@ -72,6 +73,28 @@ public class PauseSystem : MonoBehaviour
         
         canvasGroup.DOKill();
         canvasGroup.DOFade(value ? 1 : 0, transitionDuration)
+            .SetUpdate(isIndependentUpdate: true);
+    }
+
+    // -- Usado na tela inicial
+    public void CustomSetPauseState (UnityAction backCall)
+    {
+        Time.timeScale = 0;
+ 
+        OnPause = true;
+        
+        if (pagerInteractionManager)
+        {
+            pagerInteractionManager.CustomActivation(backCall);
+        }
+
+        if (shipButton)
+        {
+            shipButton.SetActive(true);
+        }
+        
+        canvasGroup.DOKill();
+        canvasGroup.DOFade(1, transitionDuration)
             .SetUpdate(isIndependentUpdate: true);
     }
 

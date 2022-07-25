@@ -21,6 +21,12 @@ public class TitleScreenFunctions : MonoBehaviour
     public void OptionsInput()
     {
         Debug.Log("Options");
+
+        TitleStateManager titleStateManager = GetComponentInParent<TitleStateManager>();
+        if (titleStateManager)
+        {
+            titleStateManager.SetOptionsState();
+        }
     }
 
     public void QuitInput()
