@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class PagerInteractionManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] UnityEvent backOnMainEvent;
     [SerializeField] List<PagerScreen> screens;
 
+    [Header("Transition Data")]
+    [SerializeField] float offscreenX;
+    [SerializeField] float slideDuration;
+
     [Header("Options Mode")]
     [SerializeField] bool optionsMode;
     [SerializeField] PagerInteractableButton optionsBackButton;
@@ -20,9 +25,19 @@ public class PagerInteractionManager : MonoBehaviour
     
     int current;
     float delay;
+    Sequence s;
+
+    RectTransform rt;
+    Animator animator;
 
     PlayerInputActions playerInputActions;
     InputAction navigationAction;
+
+    private void Awake() 
+    {
+        rt = GetComponent<RectTransform>();
+        animator = GetComponent<Animator>();
+    }
 
     private void OnEnable() 
     {
@@ -72,6 +87,70 @@ public class PagerInteractionManager : MonoBehaviour
 
         if (optionsBackButton)
             optionsBackButton.OverrideInteractionEvent(backCall);
+    }
+    public void SetAbsolutePosition (bool shown)
+    {
+        rt = GetComponent<RectTransform>();
+        rt.MoveX(shown ? 0 : offscreenX);
+    }
+
+    public void SlideInSequence()
+    {
+        if (s != null)
+            s.Kill();
+
+        rt = GetComponent<RectTransform>();
+        SetAbsolutePosition(false);
+        // TO-DO: reseta estado da animação
+        animator.SetTrigger("Reset");
+        animator.SetInteger("Slide", 1);
+
+        s = DOTween.Sequence();
+        s.Append
+        ( 
+            DOVirtual.Float(offscreenX, 0, slideDuration, f => rt.MoveX(f) )
+                .SetEase(Ease.OutCirc)
+        );
+        s.SetUpdate(isIndependentUpdate: true);
+
+        s.OnComplete
+        (
+            () => {
+                SetAbsolutePosition(true);
+                animator.SetInteger("Slide", 0);
+                
+                enabled = true;
+                OnFocus = true;
+            }
+        );
+    }
+
+    public void SlideOutSequence()
+    {
+        if (s != null)
+            s.Kill();
+
+        rt = GetComponent<RectTransform>();
+        SetAbsolutePosition(true);
+        // TO-DO: reseta estado da animação
+
+        enabled = false;
+        OnFocus = false;
+
+        s = DOTween.Sequence();
+        s.Append
+        ( 
+            DOVirtual.Float(0, offscreenX, slideDuration, f => rt.MoveX(f) )
+                .SetEase(Ease.InCirc)
+        );
+        s.SetUpdate(isIndependentUpdate: true);
+
+        s.OnComplete
+        (
+            () => {
+                SetAbsolutePosition(false);
+            }
+        );
     }
 
     private void Update() 
