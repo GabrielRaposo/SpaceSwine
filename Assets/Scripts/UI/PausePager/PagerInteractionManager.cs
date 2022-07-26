@@ -101,7 +101,7 @@ public class PagerInteractionManager : MonoBehaviour
 
         rt = GetComponent<RectTransform>();
         SetAbsolutePosition(false);
-        // TO-DO: reseta estado da animação
+
         animator.SetTrigger("Reset");
         animator.SetInteger("Slide", 1);
 
@@ -132,7 +132,9 @@ public class PagerInteractionManager : MonoBehaviour
 
         rt = GetComponent<RectTransform>();
         SetAbsolutePosition(true);
-        // TO-DO: reseta estado da animação
+
+        animator.SetTrigger("Reset");
+        animator.SetInteger("Slide", -1);
 
         enabled = false;
         OnFocus = false;
@@ -149,6 +151,7 @@ public class PagerInteractionManager : MonoBehaviour
         (
             () => {
                 SetAbsolutePosition(false);
+                animator.SetInteger("Slide", 0);
             }
         );
     }
