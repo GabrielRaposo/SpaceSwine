@@ -92,7 +92,10 @@ public class GameManager : MonoBehaviour
 
     public static void QuitGame()
     {
+        #if UNITY_EDITOR
         Debug.Log("Quit game");
+        #endif
+
         Application.Quit();
     }
 

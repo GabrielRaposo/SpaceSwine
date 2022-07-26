@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(PlatformerCharacter))]
+[RequireComponent(typeof(GravityInteraction))]
 [RequireComponent(typeof(PlayerAnimations))]
 [RequireComponent(typeof(CollectableInteraction))]
 [RequireComponent(typeof(SpaceJumper))]
@@ -20,6 +21,7 @@ public class PlayerCharacter : MonoBehaviour
     PlayerInput playerInput;
     LocalGameplayState gameplayState;
     PlatformerCharacter platformerCharacter;
+    GravityInteraction gravityInteraction;
     PlayerAnimations playerAnimations;
     CollectableInteraction collectableInteraction;
     SpaceJumper spaceJumper;
@@ -48,6 +50,7 @@ public class PlayerCharacter : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         gameplayState = GetComponent<LocalGameplayState>();
         platformerCharacter = GetComponent<PlatformerCharacter>();
+        gravityInteraction = GetComponent<GravityInteraction>();
         playerAnimations = GetComponent<PlayerAnimations>();
         collectableInteraction = GetComponent<CollectableInteraction>();
         spaceJumper = GetComponent<SpaceJumper>();
@@ -62,6 +65,39 @@ public class PlayerCharacter : MonoBehaviour
         platformerCharacter?.KillInputs();
         collectableInteraction?.ResetStates();
         spaceJumper?.ResetStates();
+        //gravityInteraction.enabled = true;
+    }
+
+    public void DisableAllInteractions()
+    { 
+        if (playerInput) playerInput.enabled = false;
+
+        if (platformerCharacter)
+        {
+            platformerCharacter.KillInputs();
+            platformerCharacter.enabled = false;
+        }
+
+        if (collectableInteraction)
+        {
+            collectableInteraction.ResetStates();
+            collectableInteraction.enabled = false;
+        }
+
+        if (spaceJumper)
+        {
+            spaceJumper.ResetStates();
+            spaceJumper.enabled = false;
+        }
+
+        if (gravityInteraction)
+        {
+            gravityInteraction.enabled = false;
+        }
+
+        SetPhysicsBody(false);
+        Rigidbody2D rb2d = GetComponentInChildren<Rigidbody2D>();
+        rb2d.velocity = Vector2.zero;
     }
 
     public void SpawnAt (Vector2 position, float rotation = 0)

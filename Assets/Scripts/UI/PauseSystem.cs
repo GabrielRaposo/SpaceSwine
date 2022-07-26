@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 
@@ -50,7 +51,7 @@ public class PauseSystem : MonoBehaviour
         SetPauseState(!OnPause);
     }
 
-    public void SetPauseState(bool value)
+    public void SetPauseState (bool value)
     {
         if (value)
             Time.timeScale = 0;
@@ -75,12 +76,43 @@ public class PauseSystem : MonoBehaviour
             .SetUpdate(isIndependentUpdate: true);
     }
 
+    // -- Usado na tela inicial, dá acesso somente às Options
+    public void CustomSetPauseState (UnityAction backCall)
+    {
+        Time.timeScale = 0;
+ 
+        OnPause = true;
+        
+        if (pagerInteractionManager)
+        {
+            pagerInteractionManager.CustomActivation(backCall);
+        }
+
+        if (shipButton)
+        {
+            shipButton.SetActive(false);
+        }
+        
+        canvasGroup.DOKill();
+        canvasGroup.DOFade(1, transitionDuration)
+            .SetUpdate(isIndependentUpdate: true);
+    }
+
     public void GoToShip()
     {
-        //SetPauseState(false);
+        PlayerCharacter player = PlayerCharacter.Instance;
+        if (player)
+        {
+            SetPauseState(false);
+
+            PlayerTransitionState playerTransitionState = player.GetComponent<PlayerTransitionState>();
+            playerTransitionState.TeleportOut( () => GameManager.GoToScene(BuildIndex.Ship) );
+
+            return;
+        }
+        
         OnPause = false;
         GameManager.GoToScene(BuildIndex.Ship);
-        // Chamar transição do player
     }
 
     public void ResetScene()

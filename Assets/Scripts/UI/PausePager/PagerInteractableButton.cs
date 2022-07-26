@@ -46,4 +46,13 @@ public class PagerInteractableButton : PagerInteractable
         if (interactionEvent != null)
             interactionEvent.Invoke();
     }
+
+    public void OverrideInteractionEvent(UnityAction call)
+    {
+        if (interactionEvent != null)
+        {
+            interactionEvent.RemoveAllListeners();
+            interactionEvent.AddListener(call);
+        }
+    }
 }

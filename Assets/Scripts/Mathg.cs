@@ -15,8 +15,17 @@ public static class Mathg
         return ((Vector3) (Quaternion.Euler(0, 0, angle*(invertRotation?-1:1)) * forward.normalized)).normalized;
     }
 
-    public static float VectorToAngle(Vector3 vector)
+    public static float VectorToAngle(Vector3 vector, bool value360 = false)
     {
+        if (value360)
+        {
+            var a =Vector3.Angle(Vector3.up, vector);
+
+            if (vector.x > 0)
+                return 1800f-a;
+
+        }
+        
         return Vector3.Angle(Vector3.up, vector);
     }
 
