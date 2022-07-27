@@ -10,14 +10,14 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] int initialIndex;
     [SerializeField] PagerAxisButtonsVisual pagerAxisButtonsVisual;
     [SerializeField] PagerConfirmationScreen confirmationScreen;
-    [SerializeField] UnityEvent backOnMainEvent;
     [SerializeField] List<PagerScreen> screens;
+    [SerializeField] UnityEvent backOnMainEvent;
 
     [Header("Keychain Interaction")]
-    [SerializeField] bool hideKeychain;
     [SerializeField] GameObject keychainObject;
     [SerializeField] float holdDuration;
     [SerializeField] ImageSwapper keychainSwapper;
+    [SerializeField] StoryEventScriptableObject unlockStoryEvent; 
     [SerializeField] UnityEvent callShipEvent;
 
     [Header("Transition Data")]
@@ -33,6 +33,7 @@ public class PagerInteractionManager : MonoBehaviour
     int current;
     float delay;
     float holdCount; 
+    bool keychainState;
     Sequence s;
 
     RectTransform rt;
@@ -64,12 +65,6 @@ public class PagerInteractionManager : MonoBehaviour
         //if (optionsMode && optionsBackButton)
         //    optionsBackButton.gameObject.SetActive(false);
 
-        if (GameManager.IsOnScene(BuildIndex.Ship))
-            hideKeychain = true;
-
-        if (keychainObject)
-            keychainObject.SetActive( !hideKeychain );
-
         playerInputActions = new PlayerInputActions();
 
         navigationAction = playerInputActions.UI.Navigation;
@@ -97,6 +92,18 @@ public class PagerInteractionManager : MonoBehaviour
         shipInputAction.Enable();
     }
 
+    private void KeychainInitiationLogic()
+    {
+        if (unlockStoryEvent != null)
+            keychainState = unlockStoryEvent.state;
+
+        if (GameManager.IsOnScene(BuildIndex.Ship) || GameManager.IsOnScene(BuildIndex.Title))
+            keychainState = false;
+
+        if (keychainObject)
+            keychainObject.SetActive( keychainState );
+    }
+
     private bool CheckInputBlock
     {
         get { return !OnFocus || SceneTransition.OnTransition || holdCount > 0; }
@@ -104,8 +111,14 @@ public class PagerInteractionManager : MonoBehaviour
 
     public void CustomActivation (UnityAction backCall)
     {
+        KeychainInitiationLogic();
+
+        if (s != null)
+            s.Kill();
+        SetAbsolutePosition(shown: true);
+        animator.SetTrigger("Reset");
+
         optionsMode = true;
-        hideKeychain = true;
 
         OnFocus = true;
         enabled = true;
@@ -126,6 +139,7 @@ public class PagerInteractionManager : MonoBehaviour
 
         rt = GetComponent<RectTransform>();
         SetAbsolutePosition(false);
+        KeychainInitiationLogic();
 
         animator.SetTrigger("Reset");
         animator.SetInteger("Slide", 1);
@@ -183,7 +197,7 @@ public class PagerInteractionManager : MonoBehaviour
 
     private void ShipInputLogic()
     {
-        if (hideKeychain)
+        if (!keychainState)
             return;
 
         bool shipInput = shipInputAction.ReadValue<float>() > .5f;
