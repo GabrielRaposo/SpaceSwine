@@ -29,7 +29,7 @@ public class PlayerAnimations : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
 
-        if (shipOverrideController && (forceOverride || SceneManager.GetActiveScene().buildIndex == (int) BuildIndex.Ship) ) 
+        if (shipOverrideController && (forceOverride || GameManager.IsOnScene(BuildIndex.Ship)) ) 
         {
             animator.runtimeAnimatorController = shipOverrideController;
         }

@@ -99,6 +99,11 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public static bool IsOnScene (BuildIndex buildIndex)
+    {
+        return SceneManager.GetActiveScene().buildIndex == (int) buildIndex;
+    }
+
     private void OnDisable() 
     {
         playerInputActions.UI.Start.Disable();

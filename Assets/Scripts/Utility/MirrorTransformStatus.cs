@@ -22,6 +22,9 @@ public class MirrorTransformStatus : MonoBehaviour
         if (!target.hasChanged)
             return;
 
+        if (!target.gameObject.activeInHierarchy)
+            gameObject.SetActive(false);
+
         MirrorTarget();
     }
 
