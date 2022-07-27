@@ -10,6 +10,7 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] int initialIndex;
     [SerializeField] PagerAxisButtonsVisual pagerAxisButtonsVisual;
     [SerializeField] PagerConfirmationScreen confirmationScreen;
+    [SerializeField] ImageSwapper keychainSwapper;
     [SerializeField] UnityEvent backOnMainEvent;
     [SerializeField] List<PagerScreen> screens;
 
@@ -32,6 +33,7 @@ public class PagerInteractionManager : MonoBehaviour
 
     PlayerInputActions playerInputActions;
     InputAction navigationAction;
+    InputAction shipInputAction;
 
     private void Awake() 
     {
@@ -77,6 +79,9 @@ public class PagerInteractionManager : MonoBehaviour
             BackInput();
         };
         playerInputActions.UI.Cancel.Enable();
+
+        shipInputAction = playerInputActions.UI.Other;
+        shipInputAction.Enable();
     }
 
     public void CustomActivation (UnityAction backCall)
@@ -156,10 +161,18 @@ public class PagerInteractionManager : MonoBehaviour
         );
     }
 
+    private void ShipInputLogic()
+    {
+        bool shipInput = shipInputAction.ReadValue<float>() > .5f;
+        keychainSwapper.SetSpriteState(shipInput ? 1 : 0);
+    }
+
     private void Update() 
     {
         if(!OnFocus || SceneTransition.OnTransition)
             return;
+
+        ShipInputLogic();
 
         Vector2 navigationInput = navigationAction.ReadValue<Vector2>();
         pagerAxisButtonsVisual.ReadOnline(navigationInput);
@@ -262,6 +275,7 @@ public class PagerInteractionManager : MonoBehaviour
         navigationAction.Disable();
         playerInputActions.UI.Confirm.Disable();
         playerInputActions.UI.Cancel.Disable();
+        shipInputAction.Disable();
 
         OnFocus = false;
     }
