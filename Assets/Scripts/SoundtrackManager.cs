@@ -162,5 +162,7 @@ public class SoundtrackManager : MonoBehaviour
         {
             soundtrackEvent.FadeOut(gameObject, duration);
         }
+
+        IsPlaying = false;
     }
 }

@@ -8,6 +8,7 @@ using DG.Tweening;
 public class SceneTransition : MonoBehaviour
 {
     [SerializeField] TransitionFadeOut transitionFadeOut;
+    [SerializeField] TransitionSafetyToDanger transitionSafetyToDanger;
     
     public static bool OnTransition;
     static SceneTransition Instance;
@@ -50,13 +51,17 @@ public class SceneTransition : MonoBehaviour
         switch (transitionType)
         {
             case TransitionType.SafetyToDanger:
+                transitionSafetyToDanger.CallTransition(index, safetyToDanger: true);
+                break;
+
             case TransitionType.DangerToSafety:
+                transitionSafetyToDanger.CallTransition(index, safetyToDanger: false);
+                break;
 
             case TransitionType.WhiteFade:
                 transitionFadeOut.CallTransition(index);
                 break;
         }
-        //StartCoroutine( TransitionCoroutine(index) );
     }
 }
 
