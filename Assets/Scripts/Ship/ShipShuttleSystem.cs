@@ -104,7 +104,7 @@ public class ShipShuttleSystem : MonoBehaviour
             {   
                 // Trocar pela última fase em que você estava antes de entrar na Nave ou região
                 int targetIndex = NavigationConsole.ShipTeleportSceneIndex;
-                SceneTransition.LoadScene( (int) targetIndex );
+                SceneTransition.LoadScene( (int) targetIndex, SceneTransition.TransitionType.WhiteFade );
             }
         );
     }
