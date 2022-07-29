@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 using DG.Tweening;
 
@@ -26,7 +27,10 @@ public class PlaylistPlayer : MonoBehaviour
     float timerCount;
     bool visible;
     bool playerMode;
+
     Sequence s;
+    InputAction navigationInput;
+    InputAction centerInput;
 
     SoundtrackManager soundtrackManager;
     PlayerInputActions playerInputActions;
@@ -43,7 +47,8 @@ public class PlaylistPlayer : MonoBehaviour
     {
         playerInputActions = new PlayerInputActions();    
     
-        playerInputActions.UI.Navigation.performed += (ctx) => 
+        navigationInput = playerInputActions.UI.Navigation;
+        navigationInput.performed += (ctx) => 
         { 
             if (!OnFocus || SceneTransition.OnTransition)
                 return;
@@ -61,9 +66,10 @@ public class PlaylistPlayer : MonoBehaviour
                     SkipMusic(-1);
             }
         };
-        playerInputActions.UI.Navigation.Enable();
+        navigationInput.Enable();
 
-        playerInputActions.UI.Confirm.performed += (ctx) => 
+        centerInput = playerInputActions.UI.Confirm;
+        centerInput.performed += (ctx) => 
         {               
             if(!OnFocus || SceneTransition.OnTransition)
                 return;
@@ -73,7 +79,7 @@ public class PlaylistPlayer : MonoBehaviour
 
             SetPlayerState(false);
         };
-        playerInputActions.UI.Confirm.Enable();
+        centerInput.Enable();
     }
 
     public void SetPlayerMode(bool value)
@@ -142,9 +148,21 @@ public class PlaylistPlayer : MonoBehaviour
         if (!visible)
             return;
 
+        ButtonsVisualInteractions();
+
         timerCount -= Time.deltaTime;
         if (timerCount <= 0)
             SlideOut();
+    }
+
+    private void ButtonsVisualInteractions()
+    {
+        Vector2 axis = navigationInput.ReadValue<Vector2>();
+        backButton?.SetActive (axis.x > -.5f);
+        forwardButton?.SetActive (axis.x < .5f);
+
+        //float button = centerInput.ReadValue<float>();
+        //centerButton?.SetActive(button < .5f);
     }
 
     public void SlideIn()
@@ -198,8 +216,8 @@ public class PlaylistPlayer : MonoBehaviour
 
     private void OnDisable() 
     {
-        playerInputActions.UI.Navigation.Disable();
-        playerInputActions.UI.Confirm.Disable();
+        navigationInput.Disable();
+        centerInput.Disable();
     }
 
 }
