@@ -105,7 +105,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
         mainSequence.AppendCallback( () => 
         {
             if (soundtrackManager)
-                soundtrackManager.PlayMusic(skipPlay: true);            
+                soundtrackManager.SkipTrack(1);            
         } );
         mainSequence.AppendInterval(2.0f);
         mainSequence.OnComplete( () => done = true );

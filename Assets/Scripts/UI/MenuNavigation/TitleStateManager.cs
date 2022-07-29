@@ -39,6 +39,9 @@ public class TitleStateManager : MonoBehaviour
         {
             chillMenuNavigation.enabled = (newState == State.Intro || newState == State.ChillLoop);
             chillMenuNavigation.OnFocus = (newState == State.Intro || newState == State.ChillLoop);
+
+            if (newState == State.ChillLoop)
+                chillMenuNavigation.SetPlayerState(true);
         }
 
         if (titleMenuNavigation && menuCanvasGroup)
@@ -103,10 +106,10 @@ public class TitleStateManager : MonoBehaviour
 
     public void SetChillState() 
     {
-        if (state == State.Intro)
+        if (state == State.ChillLoop)
             return;
 
-        SetState(State.Intro);
+        SetState(State.ChillLoop);
     }
 
 }

@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class ChillMenuNavigation : MonoBehaviour
 {
-    [SerializeField] bool startOnFocus;
-
     [HideInInspector] public bool OnFocus;
 
     PlayerInputActions playerInputActions;
     TitleStateManager titleStateManager;
+    PlaylistPlayer playlistPlayer;
 
     private void Awake() 
     {
         titleStateManager = GetComponentInParent<TitleStateManager>();    
+        playlistPlayer = GetComponentInChildren<PlaylistPlayer>();
     }
 
     private void OnEnable() 
@@ -27,11 +27,11 @@ public class ChillMenuNavigation : MonoBehaviour
 
             Vector2 navigationInput = ctx.ReadValue<Vector2>();
 
-            if (navigationInput.y != 0)
+            if (navigationInput.x != 0)
             {
-                if (navigationInput.y > .5f)
+                if (navigationInput.x > .5f)
                     MoveCursor(-1);
-                else if (navigationInput.y < .5f)
+                else if (navigationInput.x < .5f)
                     MoveCursor(1);
             }
         };
@@ -42,39 +42,29 @@ public class ChillMenuNavigation : MonoBehaviour
             if(!OnFocus || SceneTransition.OnTransition)
                 return;
 
-            //titleButtons[current].Submit();
             if (titleStateManager)
                 titleStateManager.SetMenuState();
+
+            SetPlayerState(false);
         };
         playerInputActions.UI.Confirm.Enable();
     }
 
-    private void Start() 
+    public void SetPlayerState(bool value)
     {
-        //current = 0;
-        SelectCurrent();
-        
-        if (startOnFocus)
-            OnFocus = true;
-    }
-
-    private void SelectCurrent()
-    {
-        //for (int i = 0; i < titleButtons.Count; i++)
-        //{
-        //    titleButtons[i].Deselect();
-        //}
-        //titleButtons[current].Select();
+        Debug.Log("value: " + value);
+        if (value)
+            playlistPlayer.SlideIn();
+        else 
+            playlistPlayer.SlideOut();
     }
 
     private void MoveCursor (int direction)
     {
-        //current += direction;
-        //if (current < 0)
-        //    current = titleButtons.Count - 1;
-        //current %= titleButtons.Count;
+        if (!playlistPlayer)
+            return;
 
-        //SelectCurrent();
+        playlistPlayer.SkipMusic(direction);
     }
 
     private void OnDisable() 

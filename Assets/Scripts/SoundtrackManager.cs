@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 
 public class SoundtrackManager : MonoBehaviour
 {
-    [SerializeField] bool play = true;
-
-    [SerializeField] List<AK.Wwise.Event> randomPlaylist;
+    [SerializeField] PlaylistScriptableObject fullPlaylist;
+    //[SerializeField] List<AK.Wwise.Event> randomPlaylist;
 
     [Header("Parameters")]
     [SerializeField] AK.Wwise.RTPC masterParameter;
@@ -19,18 +19,18 @@ public class SoundtrackManager : MonoBehaviour
     [SerializeField] InputAction playMusicTestInput;
     [SerializeField] InputAction stopMusicTestInput;
     
-    //public LocalGameplayState localGameplayState;
-    //[SerializeField] AK.Wwise.Switch dangerSwitch;
+    PlaylistScriptableObject playlist;
 
     static AK.Wwise.Event soundtrackEvent;
 
     public static SoundtrackManager Instance;
-    static bool paused;
+    //static bool paused;
     public static bool IsPlaying;
     bool applicationIsPaused;
 
-    GameplayState gameplayState;
-    int currentIndex = -1;
+    int currentIndex = 0;
+
+    public UnityAction<string, int> OnTrackPlayedEvent;
 
     private void Awake() 
     {
@@ -47,39 +47,18 @@ public class SoundtrackManager : MonoBehaviour
 
     private void Start() 
     {
-        StartCoroutine( RaposUtil.Wait(1, DelayedStart) );
+        if (playlist == null)
+            playlist = fullPlaylist;
 
-        playMusicTestInput.performed += (ctx) => PlayMusic(skipPlay: true);
+        playMusicTestInput.performed += (ctx) => PlayTrack();
         playMusicTestInput.Enable();
 
         stopMusicTestInput.performed += (ctx) => Stop();
         stopMusicTestInput.Enable();
     }
 
-    private void DelayedStart()
-    {
-        //masterParameter.SetGlobalValue( PlayerPrefsManager.GetFloat( PlayerPrefsManager.Master, 75f) );
-        //musicParameter.SetGlobalValue( PlayerPrefsManager.GetFloat( PlayerPrefsManager.Music, 75f) );
-        //sfxParameter.SetGlobalValue( PlayerPrefsManager.GetFloat( PlayerPrefsManager.SFX, 75f) );
-
-        //Debug.Log("masterParameter.GetGlobalValue(): " + masterParameter.GetGlobalValue());
-        //Debug.Log("musicParameter.GetGlobalValue(): " + musicParameter.GetGlobalValue());
-        //Debug.Log("sfxParameter.GetGlobalValue(): " + sfxParameter.GetGlobalValue());
-        
-        //gameStateSwitch.SetValue(localGameplayState.gameObject);
-
-        PlayMusic();
-    }
-
-    //#if UNITY_EDITOR
     private void Update() 
     {
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    Debug.Log("Player prefs deleted");
-        //    PlayerPrefs.DeleteAll();
-        //}
-
         if (!IsPlaying || applicationIsPaused)
             return;
 
@@ -88,9 +67,8 @@ public class SoundtrackManager : MonoBehaviour
 
         if (!soundtrackEvent.IsPlaying(gameObject))
         {
-            PlayMusic (skipPlay: true);
+            SkipTrack(1);
         }
-
     }
 
     private void OnApplicationPause (bool pause) 
@@ -98,49 +76,59 @@ public class SoundtrackManager : MonoBehaviour
         applicationIsPaused = pause;
     }
 
-    public void PlayMusic(bool skipPlay = false)
-    {
-        if (!play && !skipPlay)
-            return;
+    //public void PlayMusic(bool skipPlay = false)
+    //{
+    //    if (!play && !skipPlay)
+    //        return;
 
+    //    Stop();
+
+    //    if (currentIndex < 0)
+    //        currentIndex = Random.Range(0, randomPlaylist.Count);
+    //    else
+    //        currentIndex = (currentIndex + 1) % randomPlaylist.Count;
+
+    //    soundtrackEvent = randomPlaylist[currentIndex];
+
+    //    if (soundtrackEvent != null)
+    //        soundtrackEvent.Post(gameObject);
+
+    //    IsPlaying = true;
+
+    //    StopAllCoroutines();
+    //}
+
+    public void SetPlaylist (PlaylistScriptableObject playlist)
+    {
+        Stop();
+        this.playlist = playlist;
+    }
+
+    public void PlayTrack ()
+    {
         Stop();
 
-        if (currentIndex < 0)
-            currentIndex = Random.Range(0, randomPlaylist.Count);
-        else
-            currentIndex = (currentIndex + 1) % randomPlaylist.Count;
-
-        soundtrackEvent = randomPlaylist[currentIndex];
+        MusicDataScriptableObject musicData = playlist[currentIndex % playlist.Count];
+        soundtrackEvent = musicData.akEvent;
 
         if (soundtrackEvent != null)
             soundtrackEvent.Post(gameObject);
 
+        OnTrackPlayedEvent?.Invoke(musicData.fileName, currentIndex);
         IsPlaying = true;
 
         StopAllCoroutines();
-        //StartCoroutine( HardLoopRoutine() );
     }
 
-    IEnumerator HardLoopRoutine()
+    public void SkipTrack(int direction)
     {
-        while (true)
-        {
-            float t = (2.0f) * 60f;
-            t += 4.753f + 1f;
-            yield return new WaitForSecondsRealtime(t);
+        currentIndex += direction;
+        
+        if (currentIndex < 0)
+            currentIndex = playlist.Count - 1;
+        currentIndex %= playlist.Count;
 
-            Stop();
-
-            if (currentIndex < 0)
-                currentIndex = Random.Range(0, randomPlaylist.Count);
-            else
-                currentIndex = (currentIndex + 1) % randomPlaylist.Count;
-
-            if (soundtrackEvent != null)
-                soundtrackEvent.Post(gameObject);
-
-            IsPlaying = true;
-        }
+        PlayTrack();
     }
 
     public void Stop()
@@ -149,11 +137,6 @@ public class SoundtrackManager : MonoBehaviour
             soundtrackEvent.Stop(gameObject);
 
         IsPlaying = false;
-    }
-
-    public void JumpTo (float percent)
-    {
-        
     }
 
     public void FadeOutMusic (float duration)
