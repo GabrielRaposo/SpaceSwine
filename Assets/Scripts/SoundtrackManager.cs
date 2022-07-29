@@ -50,7 +50,7 @@ public class SoundtrackManager : MonoBehaviour
         if (playlist == null)
             playlist = fullPlaylist;
 
-        playMusicTestInput.performed += (ctx) => PlayTrack();
+        playMusicTestInput.performed += (ctx) => SkipTrack(1);
         playMusicTestInput.Enable();
 
         stopMusicTestInput.performed += (ctx) => Stop();

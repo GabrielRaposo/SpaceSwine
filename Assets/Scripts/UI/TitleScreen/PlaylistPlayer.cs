@@ -63,7 +63,7 @@ public class PlaylistPlayer : MonoBehaviour
 
     private void SetupOnTrackEvent(string fileName, int index)
     {
-        screenLabel.text = fileName;
+        screenLabel.text = index.ToString() + " - " + fileName;
         SlideIn();
     }
 

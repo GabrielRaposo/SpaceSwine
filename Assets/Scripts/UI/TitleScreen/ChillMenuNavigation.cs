@@ -30,9 +30,9 @@ public class ChillMenuNavigation : MonoBehaviour
             if (navigationInput.x != 0)
             {
                 if (navigationInput.x > .5f)
-                    MoveCursor(-1);
-                else if (navigationInput.x < .5f)
                     MoveCursor(1);
+                else if (navigationInput.x < .5f)
+                    MoveCursor(-1);
             }
         };
         playerInputActions.UI.Navigation.Enable();
