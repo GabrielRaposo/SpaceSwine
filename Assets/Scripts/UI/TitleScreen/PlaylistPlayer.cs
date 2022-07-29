@@ -12,19 +12,81 @@ public class PlaylistPlayer : MonoBehaviour
     [SerializeField] float slideDuration;
     [SerializeField] float autoHideTimer;
 
+    [Header("Buttons")]
+    [SerializeField] GameObject backButton;
+    [SerializeField] GameObject forwardButton;
+    [SerializeField] GameObject centerButton;
+    
     [Header("References")]
     [SerializeField] RectTransform mainAnchor;
     [SerializeField] TextMeshProUGUI screenLabel;
 
+    [HideInInspector] public bool OnFocus;
+
     float timerCount;
     bool visible;
+    bool playerMode;
     Sequence s;
 
     SoundtrackManager soundtrackManager;
+    PlayerInputActions playerInputActions;
+    TitleStateManager titleStateManager;
 
     private void Awake() 
     {
+        titleStateManager = GetComponentInParent<TitleStateManager>();    
+
         SetAbsolutePosition (visible: false);
+    }
+
+    private void OnEnable() 
+    {
+        playerInputActions = new PlayerInputActions();    
+    
+        playerInputActions.UI.Navigation.performed += (ctx) => 
+        { 
+            if (!OnFocus || SceneTransition.OnTransition)
+                return;
+
+            if (!playerMode)
+                return;
+
+            Vector2 navigationInput = ctx.ReadValue<Vector2>();
+
+            if (navigationInput.x != 0)
+            {
+                if (navigationInput.x > .5f)
+                    SkipMusic(1);
+                else if (navigationInput.x < .5f)
+                    SkipMusic(-1);
+            }
+        };
+        playerInputActions.UI.Navigation.Enable();
+
+        playerInputActions.UI.Confirm.performed += (ctx) => 
+        {               
+            if(!OnFocus || SceneTransition.OnTransition)
+                return;
+
+            if (titleStateManager)
+                titleStateManager.SetMenuState();
+
+            SetPlayerState(false);
+        };
+        playerInputActions.UI.Confirm.Enable();
+    }
+
+    public void SetPlayerMode(bool value)
+    {
+        playerMode = value;
+    }
+
+    public void SetPlayerState(bool value)
+    {
+        if (value)
+            SlideIn();
+        else 
+            SlideOut();
     }
 
     private bool Initiation()
@@ -63,8 +125,10 @@ public class PlaylistPlayer : MonoBehaviour
 
     private void SetupOnTrackEvent(string fileName, int index)
     {
-        screenLabel.text = index.ToString() + " - " + fileName;
-        SlideIn();
+        screenLabel.text = index.ToString() + "- " + fileName;
+
+        if (playerMode)
+            SlideIn();
     }
 
     public void SetAbsolutePosition (bool visible)
@@ -107,6 +171,7 @@ public class PlaylistPlayer : MonoBehaviour
     {
         if (!visible)
             return;
+
         visible = false;
 
         if (s != null)
@@ -125,14 +190,16 @@ public class PlaylistPlayer : MonoBehaviour
     {
         soundtrackManager.PlayTrack();
     }
+
     public void SkipMusic (int direction)
     {
         soundtrackManager.SkipTrack(direction);
     }
 
-    //public void SetScreenLabel (MusicDataScriptableObject musicData)
-    //{
-    //    screenLabel.text = musicData.fileName;
-    //}
+    private void OnDisable() 
+    {
+        playerInputActions.UI.Navigation.Disable();
+        playerInputActions.UI.Confirm.Disable();
+    }
 
 }

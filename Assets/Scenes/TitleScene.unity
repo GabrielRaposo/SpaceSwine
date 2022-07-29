@@ -278,7 +278,6 @@ GameObject:
   m_Component:
   - component: {fileID: 19891229}
   - component: {fileID: 19891233}
-  - component: {fileID: 19891230}
   - component: {fileID: 19891232}
   - component: {fileID: 19891231}
   m_Layer: 0
@@ -308,19 +307,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &19891230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19891228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 971ec3b32575552439644199bfe7733e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnFocus: 0
 --- !u!225 &19891231
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -528,7 +514,7 @@ GameObject:
   - component: {fileID: 123159388}
   - component: {fileID: 123159387}
   m_Layer: 0
-  m_Name: Main Button
+  m_Name: Center Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2334,7 +2320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialState: 0
-  chillMenuNavigation: {fileID: 19891230}
+  playlistPlayer: {fileID: 2104103223}
   titleMenuNavigation: {fileID: 952793209}
   pauseSystem: {fileID: 1292970232}
   menuCanvasGroup: {fileID: 1598926317}
@@ -2395,10 +2381,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ChopSuee2004.mp3
+  m_text: 1- ChopSuee2004.mp3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b4540e20a51ec144cb54e73b477dbf3d, type: 2}
-  m_sharedMaterial: {fileID: -2570181977460321308, guid: b4540e20a51ec144cb54e73b477dbf3d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 69ba995104c0c904589947a6231af2c2, type: 2}
+  m_sharedMaterial: {fileID: -1609048408112892074, guid: 69ba995104c0c904589947a6231af2c2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9104,8 +9090,12 @@ MonoBehaviour:
   offscreenX: -550
   slideDuration: 0.5
   autoHideTimer: 7
+  backButton: {fileID: 733305645}
+  forwardButton: {fileID: 1807681615}
+  centerButton: {fileID: 123159385}
   mainAnchor: {fileID: 2104103222}
   screenLabel: {fileID: 662968252}
+  OnFocus: 0
 --- !u!225 &2104103224
 CanvasGroup:
   m_ObjectHideFlags: 0
