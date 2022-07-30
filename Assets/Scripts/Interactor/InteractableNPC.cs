@@ -6,11 +6,16 @@ using UnityEngine.Events;
 public class InteractableNPC : Interactable
 {
     [SerializeField] NPCData data;
-    [SerializeField] SpriteSwapper ballonSpriteSwapper;
+    [SerializeField] GameObject speechBalloonObject;
     [SerializeField] DialogueBoxStyle customDialogueStyle;
 
     public UnityAction <int, NPCData> OnPreviousIndexReached;
     public UnityAction OnDialogueEnd;
+
+    private void Awake() 
+    {
+        HighlightState(false);
+    }
 
     public override void Interaction (PlayerInteractor interactor) 
     {
@@ -48,14 +53,14 @@ public class InteractableNPC : Interactable
 
     protected override void HighlightState (bool value) 
     {
-        if (ballonSpriteSwapper)
-            ballonSpriteSwapper.SetSpriteState ( value ? 1 : 0 );
+        if (speechBalloonObject)
+            speechBalloonObject.SetActive(value);
     }
 
     public override void IconState (bool value) 
     {
-        if (ballonSpriteSwapper)
-            ballonSpriteSwapper.SetVisibility(value);
+        //if (speechBalloonObject)
+        //    speechBalloonObject.SetActive(value);
     }
 
     public int GetDialogueIndex()

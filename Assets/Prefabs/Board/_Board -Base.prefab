@@ -342,12 +342,12 @@ GameObject:
   - component: {fileID: 7658986100150433155}
   - component: {fileID: 7658986100150433152}
   m_Layer: 0
-  m_Name: HighlightBallon
+  m_Name: HighlightBallon (old)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7658986100150433155
 Transform:
   m_ObjectHideFlags: 0
@@ -513,6 +513,7 @@ Transform:
   m_Children:
   - {fileID: 7658986100394572785}
   - {fileID: 7658986100150433155}
+  - {fileID: 4829557227590321531}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 28.33}
@@ -541,8 +542,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee2b73a4e79b6345bc33802372b9ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoActivate: 1
   data: {fileID: 11400000, guid: fab648fc70a479541b5877ae0682da41, type: 2}
-  ballonSpriteSwapper: {fileID: 7658986100209258718}
+  speechBalloonObject: {fileID: 7597753135884085427}
   customDialogueStyle: {fileID: 0}
 --- !u!58 &7658986100308437233
 CircleCollider2D:
@@ -678,3 +680,70 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1001 &4854976258954466607
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7658986100308437235}
+    m_Modifications:
+    - target: {fileID: 28815565189451860, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28815565189451860, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 28815565189451860, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28815565189451860, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28815565189451860, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28815565189451860, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28815565189451860, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 28815565189451860, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 28815565189451860, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28815565189451860, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28815565189451860, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3031189832426896796, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+      propertyPath: m_Name
+      value: Speech Bubble
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+--- !u!1 &7597753135884085427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3031189832426896796, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+  m_PrefabInstance: {fileID: 4854976258954466607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4829557227590321531 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 28815565189451860, guid: 2d896ba39587d1449b3d9b5e3ccd4835, type: 3}
+  m_PrefabInstance: {fileID: 4854976258954466607}
+  m_PrefabAsset: {fileID: 0}
