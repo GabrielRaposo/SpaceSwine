@@ -43,13 +43,13 @@ public class SoundtrackManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        if (playlist == null)
+            playlist = fullPlaylist;
     }
 
     private void Start() 
     {
-        if (playlist == null)
-            playlist = fullPlaylist;
-
         playMusicTestInput.performed += (ctx) => SkipTrack(1);
         playMusicTestInput.Enable();
 

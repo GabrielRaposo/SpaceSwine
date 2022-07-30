@@ -18,8 +18,8 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
     [Header("Icons")]
     [SerializeField] RectTransform iconsAnchor;
-    [SerializeField] RectTransform safetyIcon;
-    [SerializeField] RectTransform dangerIcon;
+    [SerializeField] Animator safetyIconAnimator;
+    [SerializeField] Animator dangerIconAnimator;
 
     [Header("Stripes")]
     [SerializeField] CanvasGroup stripesGroup;
@@ -51,11 +51,10 @@ public class TransitionSafetyToDanger : MonoBehaviour
         SetState( danger: !safetyToDanger );
         gameObject.SetActive(true);
 
-        //if (safetyToDanger)
-        StartCoroutine( SafetyToDangerTransition(index) );
+        StartCoroutine( SafetyToDangerTransition(index, safetyToDanger) );
     }
 
-    private IEnumerator SafetyToDangerTransition(int index)
+    private IEnumerator SafetyToDangerTransition(int index, bool safetyToDanger)
     {
         SceneTransition.OnTransition = true;
         bool done = false;
@@ -97,11 +96,21 @@ public class TransitionSafetyToDanger : MonoBehaviour
         // -- Faz animação de Safety -> Danger
         mainSequence = DOTween.Sequence();
         mainSequence.AppendInterval(1.0f);
+        mainSequence.AppendCallback( () => 
+        {
+            if (safetyToDanger)
+                dangerIconAnimator.SetTrigger("TipRight"); 
+            else
+                safetyIconAnimator.SetTrigger("TipLeft");
+        });
+
+        float startX = safetyToDanger ? 0 : iconSlideX;
+        float endX   = safetyToDanger ? iconSlideX : 0;
         mainSequence.Append ( 
-            DOVirtual.Float(0, iconSlideX, slideDuration, (f) => iconsAnchor.MoveX(f) )
+            DOVirtual.Float(startX, endX, slideDuration, (f) => iconsAnchor.MoveX(f) )
                 .SetEase(Ease.OutCirc)
         );
-        mainSequence.Join( SwitchStripes (toDanger: true) );
+        mainSequence.Join( SwitchStripes (safetyToDanger) );
         mainSequence.AppendCallback( () => 
         {
             if (soundtrackManager)
