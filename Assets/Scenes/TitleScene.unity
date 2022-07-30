@@ -1227,7 +1227,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306876077}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c075d9d1373c5d145b5d6f0d298391aa, type: 2}
   m_CullingMode: 0
@@ -2358,8 +2358,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0.9, y: 0}
-  m_SizeDelta: {x: 1000, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1500, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &662968252
 MonoBehaviour:
@@ -2381,7 +2381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1- ChopSuee2004.mp3
+  m_text: 1- ChopSuey (2004).mp3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 69ba995104c0c904589947a6231af2c2, type: 2}
   m_sharedMaterial: {fileID: -1609048408112892074, guid: 69ba995104c0c904589947a6231af2c2, type: 2}
@@ -7699,14 +7699,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837763705}
-  m_LocalRotation: {x: -0, y: 0, z: 0.00069040776, w: -0.99999976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 662968251}
   m_Father: {fileID: 1070155767}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.079}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.32, y: 0.4472642}
   m_AnchorMax: {x: 0.92, y: 0.77517164}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -9089,7 +9089,10 @@ MonoBehaviour:
   playlist: {fileID: 11400000, guid: 2b81a455c593d454fa250acf678b62ea, type: 2}
   offscreenX: -550
   slideDuration: 0.5
-  autoHideTimer: 7
+  autoHideTimer: 14
+  textStepSize: 0.9
+  textStepDuration: 0.05
+  textStepEndHold: 2
   backButton: {fileID: 733305645}
   forwardButton: {fileID: 1807681615}
   centerButton: {fileID: 123159385}

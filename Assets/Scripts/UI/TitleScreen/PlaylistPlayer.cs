@@ -12,6 +12,9 @@ public class PlaylistPlayer : MonoBehaviour
     [SerializeField] float offscreenX;
     [SerializeField] float slideDuration;
     [SerializeField] float autoHideTimer;
+    [SerializeField] float textStepSize;
+    [SerializeField] float textStepDuration;
+    [SerializeField] float textStepEndHold;
 
     [Header("Buttons")]
     [SerializeField] GameObject backButton;
@@ -29,6 +32,7 @@ public class PlaylistPlayer : MonoBehaviour
     bool playerMode;
 
     Sequence s;
+    Sequence textSequence;
     InputAction navigationInput;
     InputAction centerInput;
 
@@ -131,10 +135,45 @@ public class PlaylistPlayer : MonoBehaviour
 
     private void SetupOnTrackEvent(string fileName, int index)
     {
-        screenLabel.text = index.ToString() + "- " + fileName;
+        //string text = index.ToString() + " - " + fileName;
+        string text = fileName;
+        screenLabel.text = text;
+
+        int stepsCount = 0; 
+        for (int i = 0; i < text.Length; i++)
+        {
+            if (text[i] == ' ' || text[i] == '.' || text[i] == '-')
+                stepsCount += 3;
+            else
+                stepsCount += 5;
+        }
+        stepsCount += 4;
+        //stepsCount -= 70;
+        if (stepsCount > 0)
+        {
+            RectTransform textRT = screenLabel.GetComponent<RectTransform>();
+
+            if (textSequence != null)
+                textSequence.Kill();
+
+            textSequence = DOTween.Sequence();
+            textSequence.AppendCallback( () => {
+                textRT.anchoredPosition =  new Vector2(0, 0);
+            });
+            textSequence.AppendInterval(textStepEndHold);
+            for (int i = 0; i < stepsCount + 1; i++)
+            {
+                int local_i = i;
+                textSequence.AppendInterval( textStepDuration );
+                textSequence.AppendCallback( () => {
+                    textRT.anchoredPosition =  new Vector2(local_i * textStepSize * -1, 0);
+                });
+            }
+            textSequence.SetLoops(-1);
+        }
 
         if (playerMode)
-            SlideIn();
+            SlideIn(extraTime: stepsCount * textStepDuration);
     }
 
     public void SetAbsolutePosition (bool visible)
@@ -165,9 +204,9 @@ public class PlaylistPlayer : MonoBehaviour
         //centerButton?.SetActive(button < .5f);
     }
 
-    public void SlideIn()
+    public void SlideIn(float extraTime = 0)
     {
-        timerCount = autoHideTimer;
+        timerCount = autoHideTimer + extraTime;
 
         if (visible)
             return;
@@ -212,6 +251,13 @@ public class PlaylistPlayer : MonoBehaviour
     public void SkipMusic (int direction)
     {
         soundtrackManager.SkipTrack(direction);
+    }
+
+    // (f) => XGridMovement(f, 1/8f, card1.transform)).SetEase(Ease.Linear)
+    private void XGridMovement (float x, float step, Transform t)
+    {
+        int division = Mathf.RoundToInt( x / step );
+        t.localPosition = new Vector2(division * step, t.localPosition.y);
     }
 
     private void OnDisable() 
