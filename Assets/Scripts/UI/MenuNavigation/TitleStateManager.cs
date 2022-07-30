@@ -59,7 +59,7 @@ public class TitleStateManager : MonoBehaviour
                     titleMenuNavigation.enabled = true;
                     titleMenuNavigation.OnFocus = true;
                 }
-                menuCanvasGroup.alpha = 1;
+                //menuCanvasGroup.alpha = 1;
             }
             else
             {
