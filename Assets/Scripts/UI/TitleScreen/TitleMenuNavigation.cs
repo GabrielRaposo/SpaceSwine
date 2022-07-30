@@ -96,7 +96,7 @@ public class TitleMenuNavigation : MonoBehaviour
             Vector2 originalPosition = buttonRT.anchoredPosition;
             buttonRT.anchoredPosition = new Vector2(startX, buttonRT.anchoredPosition.y);
 
-            float delay = .05f * i;
+            float delay = .04f * i;
             //s.Join( buttonRT.DOAnchorPos(originalPosition, slideDuration).SetEase(Ease.OutCirc).SetDelay(delay) );
             s.Join
             ( 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChristmasLights : MonoBehaviour
+public class TitleScreenBGEffects : MonoBehaviour
 {
     [Header("Values")]
     [SerializeField] float startDelay;
@@ -10,6 +10,9 @@ public class ChristmasLights : MonoBehaviour
     
     [Header("References")]
     [SerializeField] TitleMenuNavigation titleMenuNavigation;
+    [SerializeField] Animator backPlant;
+    [SerializeField] Animator topPlantPart1;
+    [SerializeField] Animator topPlantPart2;
     [SerializeField] List<Animator> lights;
 
     void Start()
@@ -34,7 +37,12 @@ public class ChristmasLights : MonoBehaviour
 
     private IEnumerator FlailLights()
     {
+        topPlantPart1.SetTrigger("Flail");
         yield return new WaitForSeconds(startDelay);
+        topPlantPart2.SetTrigger("Flail");
+        //yield return new WaitForSeconds(.05f);
+        
+        backPlant.SetTrigger("Flail");
 
         for (int i = 0; i < lights.Count; i++)
         {
