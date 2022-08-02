@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class InteractableNPC : Interactable
 {
     [SerializeField] NPCData data;
-    [SerializeField] SpriteSwapper ballonSpriteSwapper;
+    [SerializeField] SpeechBubble speechBubble;
     [SerializeField] DialogueBoxStyle customDialogueStyle;
 
     public UnityAction <int, NPCData> OnPreviousIndexReached;
@@ -48,14 +48,21 @@ public class InteractableNPC : Interactable
 
     protected override void HighlightState (bool value) 
     {
-        if (ballonSpriteSwapper)
-            ballonSpriteSwapper.SetSpriteState ( value ? 1 : 0 );
+        if (speechBubble)
+        {
+            if (value)
+                speechBubble.Show();
+            else
+                speechBubble.Hide();
+        }
     }
 
     public override void IconState (bool value) 
     {
-        if (ballonSpriteSwapper)
-            ballonSpriteSwapper.SetVisibility(value);
+        if (speechBubble)
+        {
+            speechBubble.SetAnimationState(value);
+        }
     }
 
     public int GetDialogueIndex()

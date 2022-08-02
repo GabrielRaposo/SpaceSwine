@@ -31,6 +31,10 @@ public class ShipInteractionBalloon : MonoBehaviour
                 textDisplay.text = "Talk";
                 break;
 
+            case ShipAction.Navigate:
+                textDisplay.text = "Navigate";
+                break;
+
             case ShipAction.Chill:
                 textDisplay.text = "Chill";
                 break;

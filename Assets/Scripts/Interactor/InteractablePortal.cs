@@ -50,7 +50,7 @@ public class InteractablePortal : Interactable
         };
         RoundsManager.SessionData = data;
             
-        SceneTransition.LoadScene( (int) targetIndex /*(int) BuildIndex.TestDangerStage*/ );
+        SceneTransition.LoadScene( (int) targetIndex, SceneTransition.TransitionType.SafetyToDanger );
     }
 
     protected override void HighlightState (bool value) { }

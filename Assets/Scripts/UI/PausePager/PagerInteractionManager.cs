@@ -3,26 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class PagerInteractionManager : MonoBehaviour
 {
     [SerializeField] int initialIndex;
     [SerializeField] PagerAxisButtonsVisual pagerAxisButtonsVisual;
     [SerializeField] PagerConfirmationScreen confirmationScreen;
-    [SerializeField] UnityEvent backOnMainEvent;
     [SerializeField] List<PagerScreen> screens;
+    [SerializeField] UnityEvent backOnMainEvent;
+
+    [Header("Keychain Interaction")]
+    [SerializeField] GameObject keychainObject;
+    [SerializeField] float holdDuration;
+    [SerializeField] ImageSwapper keychainSwapper;
+    [SerializeField] StoryEventScriptableObject unlockStoryEvent; 
+    [SerializeField] UnityEvent callShipEvent;
+
+    [Header("Transition Data")]
+    [SerializeField] float offscreenX;
+    [SerializeField] float slideDuration;
 
     [Header("Options Mode")]
     [SerializeField] bool optionsMode;
     [SerializeField] PagerInteractableButton optionsBackButton;
 
     [HideInInspector] public bool OnFocus;
-    
+
     int current;
     float delay;
+    float holdCount; 
+    bool keychainState;
+    Sequence s;
+
+    RectTransform rt;
+    Animator animator;
 
     PlayerInputActions playerInputActions;
     InputAction navigationAction;
+    InputAction shipInputAction;
+
+    private void Awake() 
+    {
+        rt = GetComponent<RectTransform>();
+        animator = GetComponent<Animator>();
+    }
 
     private void OnEnable() 
     {
@@ -47,7 +72,7 @@ public class PagerInteractionManager : MonoBehaviour
 
         playerInputActions.UI.Confirm.performed += (ctx) => 
         {               
-            if (!OnFocus || SceneTransition.OnTransition)
+            if (CheckInputBlock)
                 return;
 
             CurrentScreen.ClickInput();
@@ -56,27 +81,149 @@ public class PagerInteractionManager : MonoBehaviour
 
         playerInputActions.UI.Cancel.performed += (ctx) => 
         {
-            if (!OnFocus || SceneTransition.OnTransition)
+            if (CheckInputBlock)
                 return;
 
             BackInput();
         };
         playerInputActions.UI.Cancel.Enable();
+
+        shipInputAction = playerInputActions.UI.Other;
+        shipInputAction.Enable();
+    }
+
+    private void KeychainInitiationLogic()
+    {
+        if (unlockStoryEvent != null)
+            keychainState = unlockStoryEvent.state;
+
+        if (GameManager.IsOnScene(BuildIndex.Ship) || GameManager.IsOnScene(BuildIndex.Title))
+            keychainState = false;
+
+        if (keychainObject)
+            keychainObject.SetActive( keychainState );
+    }
+
+    private bool CheckInputBlock
+    {
+        get { return !OnFocus || SceneTransition.OnTransition || holdCount > 0; }
     }
 
     public void CustomActivation (UnityAction backCall)
     {
+        KeychainInitiationLogic();
+
+        if (s != null)
+            s.Kill();
+        SetAbsolutePosition(shown: true);
+        animator.SetTrigger("Reset");
+
         optionsMode = true;
+
         OnFocus = true;
         enabled = true;
 
         if (optionsBackButton)
             optionsBackButton.OverrideInteractionEvent(backCall);
     }
+    public void SetAbsolutePosition (bool shown)
+    {
+        rt = GetComponent<RectTransform>();
+        rt.MoveX(shown ? 0 : offscreenX);
+    }
+
+    public void SlideInSequence() 
+    {
+        if (s != null)
+            s.Kill();
+
+        rt = GetComponent<RectTransform>();
+        SetAbsolutePosition(false);
+        KeychainInitiationLogic();
+
+        animator.SetTrigger("Reset");
+        animator.SetInteger("Slide", 1);
+
+        s = DOTween.Sequence();
+        s.Append
+        ( 
+            DOVirtual.Float(offscreenX, 0, slideDuration, f => rt.MoveX(f) )
+                .SetEase(Ease.OutCirc)
+        );
+        s.SetUpdate(isIndependentUpdate: true);
+
+        s.OnComplete
+        (
+            () => {
+                SetAbsolutePosition(true);
+                animator.SetInteger("Slide", 0);
+                
+                enabled = true;
+                OnFocus = true;
+            }
+        );
+    }
+
+    public void SlideOutSequence() 
+    {
+        if (s != null)
+            s.Kill();
+
+        rt = GetComponent<RectTransform>();
+        SetAbsolutePosition(true);
+
+        animator.SetTrigger("Reset");
+        animator.SetInteger("Slide", -1);
+
+        enabled = false;
+        OnFocus = false;
+
+        s = DOTween.Sequence();
+        s.Append
+        ( 
+            DOVirtual.Float(0, offscreenX, slideDuration, f => rt.MoveX(f) )
+                .SetEase(Ease.InCirc)
+        );
+        s.SetUpdate(isIndependentUpdate: true);
+
+        s.OnComplete
+        (
+            () => {
+                SetAbsolutePosition(false);
+                animator.SetInteger("Slide", 0);
+            }
+        );
+    }
+
+    private void ShipInputLogic()
+    {
+        if (!keychainState)
+            return;
+
+        bool shipInput = shipInputAction.ReadValue<float>() > .5f;
+        keychainSwapper.SetSpriteState(shipInput ? 1 : 0);
+
+        if (!shipInput)
+            holdCount = 0;
+        else
+        {
+            if (holdCount > holdDuration)
+            {
+                callShipEvent?.Invoke();
+                return;
+            }
+            holdCount += Time.fixedUnscaledDeltaTime;    
+        }
+    }
 
     private void Update() 
     {
-        if(!OnFocus || SceneTransition.OnTransition)
+        if (!OnFocus || SceneTransition.OnTransition)
+            return;
+
+        ShipInputLogic();
+
+        if(CheckInputBlock)
             return;
 
         Vector2 navigationInput = navigationAction.ReadValue<Vector2>();
@@ -180,6 +327,7 @@ public class PagerInteractionManager : MonoBehaviour
         navigationAction.Disable();
         playerInputActions.UI.Confirm.Disable();
         playerInputActions.UI.Cancel.Disable();
+        shipInputAction.Disable();
 
         OnFocus = false;
     }

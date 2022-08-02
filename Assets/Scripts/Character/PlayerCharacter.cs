@@ -125,6 +125,8 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SetHiddenState (bool value) // -- É chamado por fora do código, pelo "ReactOnGGSEvent" no Player
     {
+        Debug.Log("SetHiddenState: " + value);
+
         if (rb)
             rb.bodyType = value ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
 
@@ -132,7 +134,10 @@ public class PlayerCharacter : MonoBehaviour
             coll.enabled = !value;
         
         if (spriteRenderer)
+        {
+            Debug.Log("spriteRenderer.name: " + spriteRenderer.name);
             spriteRenderer.enabled = !value;
+        }
     }
 
     public void SetDeathEvent (UnityAction roundAction)

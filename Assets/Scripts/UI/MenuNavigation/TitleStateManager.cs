@@ -7,7 +7,7 @@ public class TitleStateManager : MonoBehaviour
     [SerializeField] State initialState;
 
     [Header("References")]
-    [SerializeField] ChillMenuNavigation chillMenuNavigation;
+    [SerializeField] PlaylistPlayer playlistPlayer;
     [SerializeField] TitleMenuNavigation titleMenuNavigation;
     [SerializeField] PauseSystem pauseSystem;
     [SerializeField] CanvasGroup menuCanvasGroup;
@@ -35,10 +35,15 @@ public class TitleStateManager : MonoBehaviour
             }
         }
 
-        if (chillMenuNavigation)
+        if (playlistPlayer)
         {
-            chillMenuNavigation.enabled = (newState == State.Intro || newState == State.ChillLoop);
-            chillMenuNavigation.OnFocus = (newState == State.Intro || newState == State.ChillLoop);
+            playlistPlayer.enabled = (newState == State.Intro || newState == State.ChillLoop);
+            playlistPlayer.OnFocus = (newState == State.Intro || newState == State.ChillLoop);
+
+            playlistPlayer.SetPlayerMode( newState == State.ChillLoop );
+            if (newState == State.ChillLoop)
+                playlistPlayer.SetPlayerState(true);
+
         }
 
         if (titleMenuNavigation && menuCanvasGroup)
@@ -54,7 +59,7 @@ public class TitleStateManager : MonoBehaviour
                     titleMenuNavigation.enabled = true;
                     titleMenuNavigation.OnFocus = true;
                 }
-                menuCanvasGroup.alpha = 1;
+                //menuCanvasGroup.alpha = 1;
             }
             else
             {
@@ -103,10 +108,10 @@ public class TitleStateManager : MonoBehaviour
 
     public void SetChillState() 
     {
-        if (state == State.Intro)
+        if (state == State.ChillLoop)
             return;
 
-        SetState(State.Intro);
+        SetState(State.ChillLoop);
     }
 
 }

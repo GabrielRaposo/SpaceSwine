@@ -12,10 +12,13 @@ public class NavigationSceneManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance)
+        if (Instance != null)
         {
-            Destroy (gameObject);
-            return;
+            if (Instance != this)
+            {
+                Destroy (gameObject);
+                return;    
+            }
         }
 
         Instance = this;

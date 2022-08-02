@@ -5,20 +5,18 @@ using UnityEngine;
 
 public class SetSceneNavigationObject : NavigationObject
 {
-    private NavigationSceneManager _navigationSceneManager;
     public BuildIndex scene;
-    private void Awake()
+    
+    private void OnEnable()
     {
-        _navigationSceneManager = NavigationSceneManager.Instance;
-
         interactAction += () =>
         {
-            if (_navigationSceneManager == null)
+            if (NavigationSceneManager.Instance == null)
             {
                 Debug.Log("NAV SCENE MANAGER NOT FOUND");
                 return;
             }
-            _navigationSceneManager.CloseAndSetScene((int)scene);
+            NavigationSceneManager.Instance.CloseAndSetScene((int)scene);
         };
     }
 }

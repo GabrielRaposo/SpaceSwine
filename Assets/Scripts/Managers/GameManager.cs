@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
 
     public static void GoToScene (BuildIndex buildIndex)
     {
-        SceneTransition.LoadScene((int) buildIndex);
+        SceneTransition.LoadScene((int) buildIndex, SceneTransition.TransitionType.WhiteFade);
     }
 
     public static void ResetScene()
@@ -97,6 +97,11 @@ public class GameManager : MonoBehaviour
         #endif
 
         Application.Quit();
+    }
+
+    public static bool IsOnScene (BuildIndex buildIndex)
+    {
+        return SceneManager.GetActiveScene().buildIndex == (int) buildIndex;
     }
 
     private void OnDisable() 
