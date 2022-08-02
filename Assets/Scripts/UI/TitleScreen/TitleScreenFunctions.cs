@@ -22,7 +22,7 @@ public class TitleScreenFunctions : MonoBehaviour
         //Debug.Log("Play");
 
         //SceneTransition.LoadScene((int) BuildIndex.World0Exploration);
-        SceneTransition.LoadScene((int) BuildIndex.World1Exploration );
+        SceneTransition.LoadScene((int) BuildIndex.World1Exploration, SceneTransition.TransitionType.WhiteFade );
     }
 
     //public void OptionsInput()

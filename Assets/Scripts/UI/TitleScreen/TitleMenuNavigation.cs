@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 using DG.Tweening;
 
 public class TitleMenuNavigation : MonoBehaviour
@@ -19,8 +20,10 @@ public class TitleMenuNavigation : MonoBehaviour
     
     int current = -1;
 
-    PlayerInputActions playerInputActions;
     Sequence s;
+    PlayerInputActions playerInputActions;
+
+    public UnityAction OnEnterMenuEvent;
 
     private void OnEnable() 
     {
@@ -77,12 +80,14 @@ public class TitleMenuNavigation : MonoBehaviour
 
             if (current < 0)
                 current = 0;
+
+            OnEnterMenuEvent?.Invoke();
+
             SelectCurrent(instant: true);
         }
 
         s = DOTween.Sequence();
         s.Append( canvasGroup.DOFade(1, fadeDuration) );
-        //s.AppendInterval(.1f );
 
         float startX = 2200f;
         for (int i = 0; i < titleButtons.Count; i++)
@@ -91,7 +96,7 @@ public class TitleMenuNavigation : MonoBehaviour
             Vector2 originalPosition = buttonRT.anchoredPosition;
             buttonRT.anchoredPosition = new Vector2(startX, buttonRT.anchoredPosition.y);
 
-            float delay = .05f * i;
+            float delay = .04f * i;
             //s.Join( buttonRT.DOAnchorPos(originalPosition, slideDuration).SetEase(Ease.OutCirc).SetDelay(delay) );
             s.Join
             ( 

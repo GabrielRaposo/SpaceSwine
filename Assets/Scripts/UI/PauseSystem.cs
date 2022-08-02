@@ -34,6 +34,8 @@ public class PauseSystem : MonoBehaviour
 
         if (pagerInteractionManager)
         {
+            // -- TO-DO: Instant move away and disable
+
             pagerInteractionManager.OnFocus = false;
             pagerInteractionManager.enabled = false;
         }
@@ -62,8 +64,15 @@ public class PauseSystem : MonoBehaviour
         
         if (pagerInteractionManager)
         {
-            pagerInteractionManager.OnFocus = value;
-            pagerInteractionManager.enabled = value;
+            // -- TO-DO: Move in/out with transition
+            if (value)
+            {
+                pagerInteractionManager.SlideInSequence();
+            }
+            else
+            {
+                pagerInteractionManager.SlideOutSequence();
+            }
         }
 
         if (shipButton && shipButtonEventTrigger)
