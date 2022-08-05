@@ -7,6 +7,8 @@ public class PlatformerCharacter : SidewaysCharacter
 {
     const float MAX_GRAVITY = 9.8f;
 
+    [SerializeField] bool dynamicControls;
+
     [Header("Values")]
     [SerializeField] float speed;
     [SerializeField] float acceleration;
@@ -30,6 +32,9 @@ public class PlatformerCharacter : SidewaysCharacter
     [SerializeField] Vector2 autoClimbCheckSize;
 
     bool onGround;
+
+    bool isHoldingInput;
+    float moveInputRotationAnchor;
 
     float horizontalSpeed;
     float verticalSpeed;
@@ -87,8 +92,16 @@ public class PlatformerCharacter : SidewaysCharacter
         SetFacingRight(angledPos.x < 0);
     }
 
-    public void HorizontalInput(float horizontalInput)
+    public void HorizontalInput (Vector2 axisInput)
     {
+        float horizontalInput = axisInput.x;
+
+        if (dynamicControls) 
+        {
+            axisInput = ConvertAxisInput( axisInput );
+            horizontalInput = axisInput.x;
+        }
+
         playerAnimations.horizontalInput = horizontalInput;
 
         if (horizontalInput != 0)
@@ -114,6 +127,32 @@ public class PlatformerCharacter : SidewaysCharacter
         {
             horizontalSpeed = 0;
         }
+    }
+
+    private Vector2 ConvertAxisInput(Vector2 input)
+    {
+        float anchor = transform.eulerAngles.z;
+
+        if (input != Vector2.zero)
+        {
+            if (!isHoldingInput)            
+                moveInputRotationAnchor = transform.eulerAngles.z;
+            anchor = moveInputRotationAnchor;
+
+            isHoldingInput = true;
+        }
+        else
+            isHoldingInput = false;
+
+        Vector2 anchoredInput = RaposUtil.RotateVector(input, -anchor);
+
+        Vector2 output = Vector2.zero;
+        if (Mathf.Abs (anchoredInput.x) > .25f)
+            output = Vector2.right * (anchoredInput.x > 0 ? 1 : -1);
+        if (Mathf.Abs (anchoredInput.y) > .25f)
+            output = new Vector2(output.x, anchoredInput.y > 0 ? 1 : -1);
+
+        return output;
     }
 
     public void JumpInput()
