@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class PlayerTransitionState : MonoBehaviour
 {
     PlayerCharacter playerCharacter;
+    PlayerInput playerInput;
     PlayerAnimations playerAnimations;
 
     UnityAction OnAnimationEnd;
@@ -16,6 +17,7 @@ public class PlayerTransitionState : MonoBehaviour
     void Awake()
     {
         playerCharacter = GetComponent<PlayerCharacter>();
+        playerInput = GetComponent<PlayerInput>();
         playerAnimations = GetComponent<PlayerAnimations>();
     }
 
@@ -24,13 +26,19 @@ public class PlayerTransitionState : MonoBehaviour
         switch (EnterState)
         {
             case State.Teleport:
-                TeleportIn( () => 
+                
+                TeleportIn ( action: () => 
                 {
+                    playerAnimations.ExitTransitionState();
+
+                    playerCharacter.SetPhysicsBody(true);
                     playerCharacter.ResetStates();
-                    EnterState = State.None;
                 });
+
                 break;
         }
+
+        EnterState = State.None;
     }
 
     // -- NÃO MUDAR O NOME DESSA FUNÇÃO: nome específico pra ser mais fácil de achar no menu de Animation Event
@@ -57,7 +65,7 @@ public class PlayerTransitionState : MonoBehaviour
         playerCharacter.DisableAllInteractions();
         playerAnimations.SetTransitionState( AnimationState.TRANSITION_TELEPORT_IN );
 
-        GameManager.BlockCharacterInput = true;
+        //GameManager.BlockCharacterInput = true;
 
         OnAnimationEnd = action;
     }
