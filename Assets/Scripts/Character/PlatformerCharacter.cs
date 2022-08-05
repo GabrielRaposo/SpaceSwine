@@ -59,6 +59,12 @@ public class PlatformerCharacter : SidewaysCharacter
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void OnEnable() 
+    {
+        isHoldingInput = false;    
+        moveInputRotationAnchor = 0;
+    }
+
     private void Start() 
     {
         SetFacingRight(true);
@@ -147,9 +153,9 @@ public class PlatformerCharacter : SidewaysCharacter
         Vector2 anchoredInput = RaposUtil.RotateVector(input, -anchor);
 
         Vector2 output = Vector2.zero;
-        if (Mathf.Abs (anchoredInput.x) > .25f)
+        if (Mathf.Abs (anchoredInput.x) > .15f)
             output = Vector2.right * (anchoredInput.x > 0 ? 1 : -1);
-        if (Mathf.Abs (anchoredInput.y) > .25f)
+        if (Mathf.Abs (anchoredInput.y) > .15f)
             output = new Vector2(output.x, anchoredInput.y > 0 ? 1 : -1);
 
         return output;
