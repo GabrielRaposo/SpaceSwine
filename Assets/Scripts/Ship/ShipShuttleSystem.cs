@@ -84,6 +84,7 @@ public class ShipShuttleSystem : MonoBehaviour
 
     public void ExitOnShuttle()
     {
+        PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
         playerCharacter.SetPhysicsBody(false);
 
         // É bom que o componente do PlayerInput esteja desligado nas cenas em que tem esse script

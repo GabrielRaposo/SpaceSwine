@@ -24,12 +24,16 @@ public class PlayerTransitionState : MonoBehaviour
         switch (EnterState)
         {
             case State.Teleport:
-                TeleportIn( () => playerCharacter.ResetStates() );
+                TeleportIn( () => 
+                {
+                    playerCharacter.ResetStates();
+                    EnterState = State.None;
+                });
                 break;
         }
     }
 
-    // -- NÃO O NOME DESSA FUNÇÃO: nome específico pra ser mais fácil de achar no menu de Animation Event
+    // -- NÃO MUDAR O NOME DESSA FUNÇÃO: nome específico pra ser mais fácil de achar no menu de Animation Event
     public void _Transition_CallEvent () 
     {
         GameManager.BlockCharacterInput = false;

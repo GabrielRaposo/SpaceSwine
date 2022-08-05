@@ -63,6 +63,7 @@ public class PlatformerCharacter : SidewaysCharacter
     {
         isHoldingInput = false;    
         moveInputRotationAnchor = 0;
+        horizontalSpeed = 0;
     }
 
     private void Start() 
