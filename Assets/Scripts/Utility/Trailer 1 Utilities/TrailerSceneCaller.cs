@@ -28,11 +28,13 @@ public class TrailerSceneCaller : MonoBehaviour
     [SerializeField] GameObject redLight;
     [SerializeField] CanvasGroup redCanvasGroup;
     [SerializeField] Image blackImage;
+    [SerializeField] ShowIntroWarnings introWarnings;
+    [SerializeField] AnimationCurve redCanvasCurve;
 
     Sequence sequence;
     Sequence endtextS;
 
-    public static bool AutoStart = false;
+    public static bool AutoStart = true;
 
     #if UNITY_EDITOR
     private void OnEnable() 
@@ -185,13 +187,23 @@ public class TrailerSceneCaller : MonoBehaviour
 
     private IEnumerator ScreenFadeOut()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.0f);
 
-        float t = 4.0f;
+        if (introWarnings)
+            introWarnings.CallInOrder();
+
+        yield return new WaitForSeconds(1.5f);
+
+        float t = 3.5f;
         if (redCanvasGroup)
         {
-            redCanvasGroup.DOFade(1, duration: t)
-                .OnComplete( () => {} );
+            //redCanvasGroup.DOFade(1, duration: t)
+            //    .OnComplete( () => {} );
+            DOVirtual.Float
+            (
+                from: 0, to: 1, duration: t,
+                f => redCanvasGroup.alpha = redCanvasCurve.Evaluate(f)
+            );
         }
 
         yield return new WaitForSeconds(t);
