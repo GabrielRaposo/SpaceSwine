@@ -50,7 +50,11 @@ public class TrailerSceneCaller : MonoBehaviour
     private void Start() 
     {
         if (!AutoStart)
+        {
+            shipScreens.gameObject.SetActive(false);
+
             return;
+        }
 
         AutoStart = false;
 
