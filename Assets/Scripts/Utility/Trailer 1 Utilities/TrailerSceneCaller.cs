@@ -194,7 +194,7 @@ public class TrailerSceneCaller : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        float t = 3.5f;
+        float t = 3.55f;
         if (redCanvasGroup)
         {
             //redCanvasGroup.DOFade(1, duration: t)

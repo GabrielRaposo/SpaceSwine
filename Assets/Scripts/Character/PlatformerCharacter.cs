@@ -35,6 +35,7 @@ public class PlatformerCharacter : SidewaysCharacter
 
     Vector2 heldInput;
     float moveInputRotationAnchor;
+    float lastValidAnchor;
 
     float horizontalSpeed;
     float verticalSpeed;
@@ -62,7 +63,7 @@ public class PlatformerCharacter : SidewaysCharacter
     private void OnEnable() 
     {
         heldInput = Vector2.zero;    
-        moveInputRotationAnchor = 0;
+        moveInputRotationAnchor = lastValidAnchor = 0;
         horizontalSpeed = 0;
     }
 
@@ -142,21 +143,38 @@ public class PlatformerCharacter : SidewaysCharacter
 
         if (rawInput != Vector2.zero)
         {
-            if (heldInput == Vector2.zero || heldInput != rawInput)            
+            if (heldInput == Vector2.zero || heldInput != rawInput)
                 moveInputRotationAnchor = transform.eulerAngles.z;
             anchor = moveInputRotationAnchor;
 
             heldInput = rawInput;
-        }
-        else
+        } 
+        else 
             heldInput = Vector2.zero;
 
+        Vector2 output = FilterThroughAnchor(rawInput, anchor);
+        
+        if (output.x == 0)
+        {
+            output = FilterThroughAnchor(rawInput, lastValidAnchor);
+
+            if (output.x != 0)
+                moveInputRotationAnchor = lastValidAnchor;
+        }
+        else
+            lastValidAnchor = moveInputRotationAnchor;
+
+        return output;
+    }
+
+    private Vector2 FilterThroughAnchor (Vector2 rawInput, float anchor)
+    {
         Vector2 anchoredInput = RaposUtil.RotateVector(rawInput, -anchor);
 
         Vector2 output = Vector2.zero;
-        if (Mathf.Abs (anchoredInput.x) > .1f)
+        if (Mathf.Abs (anchoredInput.x) > .65f)
             output = Vector2.right * (anchoredInput.x > 0 ? 1 : -1);
-        if (Mathf.Abs (anchoredInput.y) > .1f)
+        if (Mathf.Abs (anchoredInput.y) > .65f)
             output = new Vector2(output.x, anchoredInput.y > 0 ? 1 : -1);
 
         return output;

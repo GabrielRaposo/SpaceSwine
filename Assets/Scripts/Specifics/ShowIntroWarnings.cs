@@ -9,10 +9,13 @@ public class ShowIntroWarnings : MonoBehaviour
     [SerializeField] int speedUpDelay = 1;
 
     RescaleTween[] warningsSigns;
+    CanvasGroup canvasGroup;
 
     void Start()
     {
         warningsSigns = GetComponentsInChildren<RescaleTween>();
+        canvasGroup = GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
     }
 
     public void CallInOrder()
@@ -20,6 +23,7 @@ public class ShowIntroWarnings : MonoBehaviour
         if (warningsSigns == null || warningsSigns.Length < 1)
             return;
 
+        canvasGroup.alpha = 1;
         StartCoroutine( MainSequence() );
     }
 
