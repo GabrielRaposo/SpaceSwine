@@ -13,10 +13,11 @@ public class NavigationShip : MonoBehaviour
     private float deceleration = 0.95f;
     private float aceleration = 0.04f;
     private float movmentCap=1.8f;
-    [SerializeField]private float speed = 0.02f;
+    [SerializeField] private float speed = 0.02f;
     private Vector2 movDirection;
 
     [SerializeField] private Transform spritesTransform;
+    [SerializeField] ParticleSystem smokeTrailPS;
 
     private NavigationObject selectedObject;
 
@@ -64,6 +65,7 @@ public class NavigationShip : MonoBehaviour
     {
         Vector2 input = movementInputAction.ReadValue<Vector2>();
         movDirection += input * aceleration;
+        TrailParticleLogic(activate: input != Vector2.zero);
 
         if (movDirection.magnitude > movmentCap)
             movDirection = movDirection.normalized * movmentCap;
@@ -82,6 +84,23 @@ public class NavigationShip : MonoBehaviour
 
         transform.Translate(movDirection*speed);
         
+    }
+
+    private void TrailParticleLogic (bool activate)
+    {
+        if (!smokeTrailPS)
+            return;
+
+        if (activate)
+        {
+            if (!smokeTrailPS.isPlaying)
+                smokeTrailPS.Play();
+        }
+        else
+        {
+            if (smokeTrailPS.isPlaying)
+                smokeTrailPS.Stop();
+        }
     }
 
     private void ConfirmAction()
