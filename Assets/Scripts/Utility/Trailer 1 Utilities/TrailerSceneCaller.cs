@@ -29,12 +29,13 @@ public class TrailerSceneCaller : MonoBehaviour
     [SerializeField] CanvasGroup redCanvasGroup;
     [SerializeField] Image blackImage;
     [SerializeField] ShowIntroWarnings introWarnings;
+    [SerializeField] HoldToSkipScene holdToSkipScene;
     [SerializeField] AnimationCurve redCanvasCurve;
 
     Sequence sequence;
     Sequence endtextS;
 
-    public static bool AutoStart = true;
+    public static bool AutoStart = false;
 
     #if UNITY_EDITOR
     private void OnEnable() 
@@ -54,6 +55,8 @@ public class TrailerSceneCaller : MonoBehaviour
         if (!AutoStart)
         {
             shipScreens.gameObject.SetActive(false);
+            if (holdToSkipScene)
+                holdToSkipScene.enabled = false;
 
             return;
         }
@@ -73,6 +76,10 @@ public class TrailerSceneCaller : MonoBehaviour
 
     private void TurnOn (InputAction.CallbackContext ctx)
     {
+        GameManager.BlockCharacterInput = true;
+        if (holdToSkipScene)
+                holdToSkipScene.enabled = true;
+
         if (sequence != null)
         {
             sequence.Complete();
@@ -128,7 +135,7 @@ public class TrailerSceneCaller : MonoBehaviour
         {
             default:
             case 0:
-                return .8f;
+                return 0.8f;
 
             case 1:
             case 2:
@@ -216,7 +223,7 @@ public class TrailerSceneCaller : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        GameManager.GoToScene( BuildIndex.World0Exploration );
+        CallNextScene();
     }
 
     private void Hide(InputAction.CallbackContext ctx)
@@ -225,6 +232,15 @@ public class TrailerSceneCaller : MonoBehaviour
             player.SetHiddenState(true);
 
         shipScreens.SetTrigger("TurnOn");
+    }
+
+    public void CallNextScene()
+    {
+        if (SoundtrackManager.Instance)
+            SoundtrackManager.Instance.Stop();
+
+        GameManager.BlockCharacterInput = false;
+        GameManager.GoToScene( BuildIndex.World0Exploration );
     }
 
     #if UNITY_EDITOR

@@ -280,8 +280,8 @@ public class PagerInteractionManager : MonoBehaviour
 
         confirmationScreen.SetScreen
         (
-            title: "Sair do jogo",
-            description: "Tem certeza?",
+            title: "Quit game",
+            description: "Are you sure?",
             ConfirmEvent: () => GameManager.GoToScene(BuildIndex.Title),
             CancelEvent: () => 
             { 

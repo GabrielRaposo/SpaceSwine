@@ -62,7 +62,13 @@ public class PlaylistPlayer : MonoBehaviour
 
             Vector2 navigationInput = ctx.ReadValue<Vector2>();
 
-            if (navigationInput.x != 0)
+            if (Mathf.Abs( navigationInput.y ) > .9f)
+            {
+                ExitState();
+                return;
+            }
+
+            if (Mathf.Abs( navigationInput.x ) != 0)
             {
                 if (navigationInput.x > .5f)
                     SkipMusic(1);
@@ -78,12 +84,35 @@ public class PlaylistPlayer : MonoBehaviour
             if(!OnFocus || SceneTransition.OnTransition)
                 return;
 
-            if (titleStateManager)
-                titleStateManager.SetMenuState();
-
-            SetPlayerState(false);
+            ExitState();
         };
         centerInput.Enable();
+
+        playerInputActions.UI.Cancel.performed += (ctx) =>
+        {
+            if(!OnFocus || SceneTransition.OnTransition)
+                return;
+
+            ExitState();
+        };
+        playerInputActions.UI.Cancel.Enable();
+
+        playerInputActions.UI.Other.performed += (ctx) =>
+        {
+            if(!OnFocus || SceneTransition.OnTransition)
+                return;
+
+            ExitState();
+        };
+        playerInputActions.UI.Other.Enable();
+    }
+
+    private void ExitState()
+    {
+        if (titleStateManager)
+            titleStateManager.SetMenuState();
+
+        SetPlayerState(false);
     }
 
     public void SetPlayerMode(bool value)
@@ -262,8 +291,12 @@ public class PlaylistPlayer : MonoBehaviour
 
     private void OnDisable() 
     {
+        playerInputActions.Disable();
+
         navigationInput.Disable();
         centerInput.Disable();
+        playerInputActions.UI.Cancel.Disable();
+        playerInputActions.UI.Other.Disable();
     }
 
 }
