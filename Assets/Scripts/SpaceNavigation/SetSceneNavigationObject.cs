@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SetSceneNavigationObject : NavigationObject
 {
-    public BuildIndex scene;
+    public BuildIndex scene = BuildIndex.World1Exploration;
     
     private void OnEnable()
     {

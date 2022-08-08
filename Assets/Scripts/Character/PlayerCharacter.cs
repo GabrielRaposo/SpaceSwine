@@ -39,10 +39,7 @@ public class PlayerCharacter : MonoBehaviour
         }
 
         Instance = this;
-    }
 
-    private void Start() 
-    {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>(); 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -108,9 +105,6 @@ public class PlayerCharacter : MonoBehaviour
         transform.eulerAngles = rotation * Vector3.forward;
 
         gameObject.SetActive(false);
-        
-        // Enter Spawn state
-
         gameObject.SetActive(true);
     }
 
@@ -125,7 +119,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SetHiddenState (bool value) // -- É chamado por fora do código, pelo "ReactOnGGSEvent" no Player
     {
-        Debug.Log("SetHiddenState: " + value);
+        //Debug.Log("SetHiddenState: " + value);
 
         if (rb)
             rb.bodyType = value ? RigidbodyType2D.Static : RigidbodyType2D.Dynamic;
@@ -135,7 +129,7 @@ public class PlayerCharacter : MonoBehaviour
         
         if (spriteRenderer)
         {
-            Debug.Log("spriteRenderer.name: " + spriteRenderer.name);
+            //Debug.Log("spriteRenderer.name: " + spriteRenderer.name);
             spriteRenderer.enabled = !value;
         }
     }

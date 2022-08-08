@@ -33,7 +33,7 @@ public class TransitionFadeOut : MonoBehaviour
         if (mainSequence != null)
             mainSequence.Kill();
 
-        fillImage.color = new Color(1,1,1,0);
+        fillImage.color = new Color(0,0,0,0);
 
         // Mostra transição
         mainSequence = DOTween.Sequence();

@@ -12,6 +12,11 @@ public class PlatformerCharacter : SidewaysCharacter
     [SerializeField] float acceleration;
     [SerializeField] float jumpForce;
 
+
+    [Header("Dynamic Input Values")]
+    [SerializeField] bool dynamicControls;
+    [SerializeField] [Range(0f, 1f)] float dynamicInputThreshold;
+
     [Header("References")]
     [SerializeField] Transform visualAnchor;
     [SerializeField] ParticleSystem walkVFX;
@@ -29,7 +34,13 @@ public class PlatformerCharacter : SidewaysCharacter
     [SerializeField] Vector2 autoClimbCheckPoint;
     [SerializeField] Vector2 autoClimbCheckSize;
 
+
     bool onGround;
+
+    Vector2 heldInput;
+    float moveInputRotationAnchor;
+    float lastValidAnchor;
+
 
     float horizontalSpeed;
     float verticalSpeed;
@@ -52,6 +63,13 @@ public class PlatformerCharacter : SidewaysCharacter
         playerAnimations = GetComponent<PlayerAnimations>();
 
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnEnable() 
+    {
+        heldInput = Vector2.zero;    
+        moveInputRotationAnchor = lastValidAnchor = 0;
+        horizontalSpeed = 0;
     }
 
     private void Start() 
@@ -87,8 +105,16 @@ public class PlatformerCharacter : SidewaysCharacter
         SetFacingRight(angledPos.x < 0);
     }
 
-    public void HorizontalInput(float horizontalInput)
+    public void HorizontalInput (Vector2 axisInput)
     {
+        float horizontalInput = axisInput.x;
+
+        if (dynamicControls) 
+        {
+            axisInput = ConvertAxisInput( axisInput );
+            horizontalInput = axisInput.x;
+        }
+
         playerAnimations.horizontalInput = horizontalInput;
 
         if (horizontalInput != 0)
@@ -114,6 +140,63 @@ public class PlatformerCharacter : SidewaysCharacter
         {
             horizontalSpeed = 0;
         }
+    }
+
+    private Vector2 ConvertAxisInput(Vector2 rawInput)
+    {
+        #if UNITY_EDITOR
+            Vector2 basePos = transform.position;
+            Debug.DrawLine(basePos, basePos + rawInput, Color.yellow);
+        #endif
+
+        float anchor = transform.eulerAngles.z;
+
+        if (rawInput != Vector2.zero) 
+        {
+            // -- Se o input não é zero, ou é diferente do anterior, ou ele estava anteriormente nulo: troca a âncora
+            if (heldInput == Vector2.zero || heldInput != rawInput)
+                moveInputRotationAnchor = transform.eulerAngles.z;
+            anchor = moveInputRotationAnchor;
+
+            heldInput = rawInput;
+        } 
+        else
+            heldInput = Vector2.zero;
+
+        Vector2 output = FilterThroughAnchor(rawInput, anchor);
+
+        if (output.x == 0) // -- Se o player está no threshold de "inválido"
+        {
+            // -- Se estiver no setor norte do planeta, usa 0 como lastValidAnchor
+            float roundedAngle = transform.eulerAngles.z % 360f; 
+            float angleOffset = 95f;
+            if ( roundedAngle <= angleOffset || roundedAngle >= 360 - angleOffset)
+            {
+                lastValidAnchor = 0;
+            }
+            
+            output = FilterThroughAnchor(rawInput, lastValidAnchor); // -- Faz o movimento com o último válido
+
+            if (output.x != 0) // -- Se não estiver mais no threshold inválido, 
+                moveInputRotationAnchor = lastValidAnchor;
+        }
+        else
+            lastValidAnchor = moveInputRotationAnchor;
+
+        return output;
+    }
+
+    private Vector2 FilterThroughAnchor (Vector2 rawInput, float anchor)
+    {
+        Vector2 anchoredInput = RaposUtil.RotateVector(rawInput, -anchor);
+
+        Vector2 output = Vector2.zero;
+        if (Mathf.Abs (anchoredInput.x) > dynamicInputThreshold)
+            output = Vector2.right * (anchoredInput.x > 0 ? 1 : -1);
+        if (Mathf.Abs (anchoredInput.y) > dynamicInputThreshold)
+            output = new Vector2(output.x, anchoredInput.y > 0 ? 1 : -1);
+
+        return output;
     }
 
     public void JumpInput()

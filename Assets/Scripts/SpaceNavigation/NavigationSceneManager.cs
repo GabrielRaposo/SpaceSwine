@@ -31,7 +31,8 @@ public class NavigationSceneManager : MonoBehaviour
     public void CloseAndSetScene(int sceneIndex)
     {
         SetShipTeleportScene(sceneIndex);
-        _navigationConsole.ToggleConsoleState();
+        if (_navigationConsole)
+            _navigationConsole.ToggleConsoleState();
     }
 
     //TODO: mudar pra fazer por save

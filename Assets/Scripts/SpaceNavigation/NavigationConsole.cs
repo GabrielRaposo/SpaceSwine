@@ -45,6 +45,9 @@ public class NavigationConsole : MonoBehaviour
 
             canvasGroup = GetComponent<CanvasGroup>();
             canvasGroup.alpha = 0;
+
+            // -- Temp
+            ShipTeleportSceneIndex = (int) BuildIndex.World1Exploration;
         }
 
         private void OnEnable() 
