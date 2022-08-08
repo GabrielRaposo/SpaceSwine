@@ -144,7 +144,7 @@ public class PlatformerCharacter : SidewaysCharacter
 
     private Vector2 ConvertAxisInput(Vector2 rawInput)
     {
-        Vector2 basePos = transform.position + Vector3.up * 1f;
+        Vector2 basePos = transform.position;
         Debug.DrawLine(basePos, basePos + rawInput, Color.yellow);
 
         float anchor = transform.eulerAngles.z;
