@@ -35,13 +35,10 @@ public class DialogueBox : MonoBehaviour
     PlayerInputActions playerInputActions;
     Sequence sequence;
 
-    private void Awake() 
-    {
-        playerInputActions = new PlayerInputActions();    
-    }
-
     private void OnEnable() 
     {
+        playerInputActions = new PlayerInputActions();    
+
         playerInputActions.Player.Interact.performed += TestForwardInput;
         playerInputActions.Player.Interact.Enable();
 

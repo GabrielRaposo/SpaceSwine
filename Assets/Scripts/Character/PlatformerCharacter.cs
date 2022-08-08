@@ -7,12 +7,15 @@ public class PlatformerCharacter : SidewaysCharacter
 {
     const float MAX_GRAVITY = 9.8f;
 
-    [SerializeField] bool dynamicControls;
-
     [Header("Values")]
     [SerializeField] float speed;
     [SerializeField] float acceleration;
     [SerializeField] float jumpForce;
+
+
+    [Header("Dynamic Input Values")]
+    [SerializeField] bool dynamicControls;
+    [SerializeField] [Range(0f, 1f)] float dynamicInputThreshold;
 
     [Header("References")]
     [SerializeField] Transform visualAnchor;
@@ -31,11 +34,13 @@ public class PlatformerCharacter : SidewaysCharacter
     [SerializeField] Vector2 autoClimbCheckPoint;
     [SerializeField] Vector2 autoClimbCheckSize;
 
+
     bool onGround;
 
     Vector2 heldInput;
     float moveInputRotationAnchor;
     float lastValidAnchor;
+
 
     float horizontalSpeed;
     float verticalSpeed;
@@ -139,26 +144,38 @@ public class PlatformerCharacter : SidewaysCharacter
 
     private Vector2 ConvertAxisInput(Vector2 rawInput)
     {
+        Vector2 basePos = transform.position + Vector3.up * 1f;
+        Debug.DrawLine(basePos, basePos + rawInput, Color.yellow);
+
         float anchor = transform.eulerAngles.z;
 
-        if (rawInput != Vector2.zero)
+        if (rawInput != Vector2.zero) 
         {
+            // -- Se o input não é zero, ou é diferente do anterior, ou ele estava anteriormente nulo: troca a âncora
             if (heldInput == Vector2.zero || heldInput != rawInput)
                 moveInputRotationAnchor = transform.eulerAngles.z;
             anchor = moveInputRotationAnchor;
 
             heldInput = rawInput;
         } 
-        else 
+        else
             heldInput = Vector2.zero;
 
         Vector2 output = FilterThroughAnchor(rawInput, anchor);
-        
-        if (output.x == 0)
-        {
-            output = FilterThroughAnchor(rawInput, lastValidAnchor);
 
-            if (output.x != 0)
+        if (output.x == 0) // -- Se o player está no threshold de "inválido"
+        {
+            // -- Se estiver no setor norte do planeta, usa 0 como lastValidAnchor
+            float roundedAngle = transform.eulerAngles.z % 360f; 
+            float angleOffset = 95f;
+            if ( roundedAngle <= angleOffset || roundedAngle >= 360 - angleOffset)
+            {
+                lastValidAnchor = 0;
+            }
+            
+            output = FilterThroughAnchor(rawInput, lastValidAnchor); // -- Faz o movimento com o último válido
+
+            if (output.x != 0) // -- Se não estiver mais no threshold inválido, 
                 moveInputRotationAnchor = lastValidAnchor;
         }
         else
@@ -172,9 +189,9 @@ public class PlatformerCharacter : SidewaysCharacter
         Vector2 anchoredInput = RaposUtil.RotateVector(rawInput, -anchor);
 
         Vector2 output = Vector2.zero;
-        if (Mathf.Abs (anchoredInput.x) > .65f)
+        if (Mathf.Abs (anchoredInput.x) > dynamicInputThreshold)
             output = Vector2.right * (anchoredInput.x > 0 ? 1 : -1);
-        if (Mathf.Abs (anchoredInput.y) > .65f)
+        if (Mathf.Abs (anchoredInput.y) > dynamicInputThreshold)
             output = new Vector2(output.x, anchoredInput.y > 0 ? 1 : -1);
 
         return output;
