@@ -19,6 +19,7 @@ public class PagerInteractableSlider : PagerInteractable
     [SerializeField] Image sliderBorder;
     [SerializeField] Image fillBar;
     [SerializeField] Image handler;
+    [SerializeField] Image handlerOutline;
 
     float value;
 
@@ -33,6 +34,7 @@ public class PagerInteractableSlider : PagerInteractable
     public void InitiateValue (float value)
     {
         this.value = value;
+
         UpdateDisplay();
     }
 
@@ -51,7 +53,10 @@ public class PagerInteractableSlider : PagerInteractable
             fillBar.color = lightColor;
 
         if (handler)
-            handler.color = lightColor;
+            handler.color = darkColor;
+
+        if (handlerOutline)
+            handlerOutline.color = lightColor;
     }
 
     public override void Deselect() 
@@ -69,10 +74,13 @@ public class PagerInteractableSlider : PagerInteractable
             fillBar.color = darkColor;
 
         if (handler)
-            handler.color = darkColor;
+            handler.color = lightColor;
+
+        if (handlerOutline)
+            handlerOutline.color = darkColor;
     }
 
-    public override void OnHorizontalInput(float direction) 
+    public override bool OnHorizontalInput(float direction) 
     {
         float previousValue = value;
 
@@ -87,6 +95,8 @@ public class PagerInteractableSlider : PagerInteractable
             OnValueChanged?.Invoke(value);
 
         UpdateDisplay();
+
+        return true;
     }
 
     private void UpdateDisplay()

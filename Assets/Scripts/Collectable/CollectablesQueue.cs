@@ -97,6 +97,9 @@ public class CollectablesQueue : MonoBehaviour
 
     public void ResetStates()
     {
+        if (objectList == null || objectList.Count < 1)
+            return;
+
         queue = new List<CollectableQueueItem>();
 
         foreach(GameObject go in objectList)

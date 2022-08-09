@@ -19,10 +19,10 @@ public class TitleScreenFunctions : MonoBehaviour
 
     public void PlayInput()
     {
-        //Debug.Log("Play");
+        TrailerSceneCaller.AutoStart = true;
+        SceneTransition.LoadScene((int)BuildIndex.Ship, SceneTransition.TransitionType.WhiteFade);
 
-        //SceneTransition.LoadScene((int) BuildIndex.World0Exploration);
-        SceneTransition.LoadScene((int) BuildIndex.World1Exploration, SceneTransition.TransitionType.WhiteFade );
+        //SceneTransition.LoadScene((int)BuildIndex.World1Exploration, SceneTransition.TransitionType.WhiteFade);
     }
 
     //public void OptionsInput()

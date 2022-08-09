@@ -253,8 +253,18 @@ public class PagerInteractionManager : MonoBehaviour
             
         if (navigationInput.x != 0)
         {
-            CurrentScreen.HorizontalInput (navigationInput.x);
-            delay = maxDelay;
+            if (CurrentScreen.HorizontalInput (navigationInput.x))
+            {
+                delay = maxDelay;
+            }
+            else 
+            {
+                if (navigationInput.x < .75f)
+                {
+                    BackInput();
+                    delay = maxDelay;
+                }
+            }
         }
     }
 
@@ -280,8 +290,8 @@ public class PagerInteractionManager : MonoBehaviour
 
         confirmationScreen.SetScreen
         (
-            title: "Sair do jogo",
-            description: "Tem certeza?",
+            title: "Quit game",
+            description: "Are you sure?",
             ConfirmEvent: () => GameManager.GoToScene(BuildIndex.Title),
             CancelEvent: () => 
             { 

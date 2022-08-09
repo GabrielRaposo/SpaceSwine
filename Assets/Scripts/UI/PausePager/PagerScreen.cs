@@ -47,8 +47,8 @@ public class PagerScreen : MonoBehaviour
         interactables[index % interactables.Count].OnClick();
     }
 
-    public void HorizontalInput (float value)
+    public bool HorizontalInput (float value)
     {
-        interactables[index % interactables.Count].OnHorizontalInput(value);
+        return interactables[index % interactables.Count].OnHorizontalInput(value);
     }
 }

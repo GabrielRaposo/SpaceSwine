@@ -36,7 +36,7 @@ public class CollectableInteraction : MonoBehaviour
     PlayerAnimations playerAnimations;
     PlatformerCharacter platformerCharacter;
 
-    private void Start() 
+    private void Awake() 
     {
         rb = GetComponent<Rigidbody2D>();
         checkGround = GetComponent<CheckGround>();

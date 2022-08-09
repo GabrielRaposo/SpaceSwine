@@ -16,6 +16,7 @@ public class PagerInteractableButton : PagerInteractable
     [SerializeField] Image border;
     [SerializeField] Image background;
     [SerializeField] TextMeshProUGUI textDisplay;
+    [SerializeField] Image extraAsset;
 
     public override void Select() 
     {
@@ -27,6 +28,9 @@ public class PagerInteractableButton : PagerInteractable
 
         if (textDisplay)
             textDisplay.color = lightColor;
+
+        if (extraAsset)
+            extraAsset.color = lightColor;
     }
 
     public override void Deselect() 
@@ -39,6 +43,9 @@ public class PagerInteractableButton : PagerInteractable
 
         if (textDisplay)
             textDisplay.color = darkColor;
+
+        if (extraAsset)
+            extraAsset.color = darkColor;
     }
 
     public override void OnClick() 
