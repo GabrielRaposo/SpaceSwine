@@ -34,6 +34,7 @@ public class PagerInteractableSlider : PagerInteractable
     public void InitiateValue (float value)
     {
         this.value = value;
+
         UpdateDisplay();
     }
 
