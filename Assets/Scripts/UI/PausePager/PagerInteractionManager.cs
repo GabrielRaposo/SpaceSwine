@@ -18,6 +18,7 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] float holdDuration;
     [SerializeField] ImageSwapper keychainSwapper;
     [SerializeField] StoryEventScriptableObject unlockStoryEvent; 
+    [SerializeField] KeychainInputBanner keychainBanner;
     [SerializeField] UnityEvent callShipEvent;
 
     [Header("Transition Data")]
@@ -102,6 +103,9 @@ public class PagerInteractionManager : MonoBehaviour
 
         if (keychainObject)
             keychainObject.SetActive( keychainState );
+
+        if (keychainBanner)
+            keychainBanner.Show();
     }
 
     private bool CheckInputBlock
@@ -171,6 +175,9 @@ public class PagerInteractionManager : MonoBehaviour
 
         rt = GetComponent<RectTransform>();
         SetAbsolutePosition(true);
+
+        if (keychainBanner)
+            keychainBanner.Hide();
 
         animator.SetTrigger("Reset");
         animator.SetInteger("Slide", -1);

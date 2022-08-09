@@ -40,6 +40,11 @@ public class RaposUtil
         script.StartCoroutine( WaitSeconds(duration, action) );
     }
 
+    public static void WaitSecondsRealtime(MonoBehaviour script, float duration, UnityAction action) 
+    {
+        script.StartCoroutine( WaitSecondsRealtime(duration, action) );
+    }
+
     public static IEnumerator Wait (int frames, UnityAction action)
     {
         if (frames > 0)
@@ -56,6 +61,16 @@ public class RaposUtil
         if (duration > 0)
         {
             yield return new WaitForSeconds(duration);
+        }
+
+        action?.Invoke();
+    }
+
+    public static IEnumerator WaitSecondsRealtime (float duration, UnityAction action)
+    {
+        if (duration > 0)
+        {
+            yield return new WaitForSecondsRealtime(duration);
         }
 
         action?.Invoke();
