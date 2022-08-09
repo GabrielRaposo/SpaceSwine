@@ -201,7 +201,7 @@ public class Door : MonoBehaviour
 
                     doorAnimation.SetupAnimation( this, player, 
                     
-                        OnAnimationEnd: () => 
+                        OnAnimationStart: () => 
                         {
                             round.RoundCleared();
                             portal.transform.SetParent(transform);

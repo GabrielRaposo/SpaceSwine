@@ -45,7 +45,7 @@ public class DoorAnimation : MonoBehaviour
         */
     }
 
-    public void SetupAnimation( Door door, GameObject player, UnityAction OnAnimationEnd )
+    public void SetupAnimation( Door door, GameObject player, UnityAction OnAnimationStart )
     {
         GameManager.BlockCharacterInput = true;
 
@@ -59,6 +59,8 @@ public class DoorAnimation : MonoBehaviour
         if (!playerCharacter || !playerReferences || !playerShader)
             return;
 
+        OnAnimationStart.Invoke();
+        
         // -- Initial Setup
         {
             playerReferences.backlightPS.Play();
@@ -110,7 +112,7 @@ public class DoorAnimation : MonoBehaviour
             () => 
             {
                 GameManager.BlockCharacterInput = false;
-                OnAnimationEnd.Invoke(); 
+                //OnAnimationStart.Invoke(); 
             }
         );
     }
