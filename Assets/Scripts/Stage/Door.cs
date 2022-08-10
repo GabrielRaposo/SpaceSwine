@@ -199,7 +199,7 @@ public class Door : MonoBehaviour
                 {
                     round.OnPortalReached?.Invoke();    
 
-                    doorAnimation.SetupAnimation( this, player, 
+                    doorAnimation.SetupAnimationStageTransiton( this, player, 
                     
                         OnAnimationEnd: () => 
                         {

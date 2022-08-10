@@ -15,6 +15,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
     [SerializeField] CanvasGroup mainCanvasGroup;    
     [SerializeField] CanvasGroup assetsGroup;
     [SerializeField] Image fillImage;
+    [SerializeField] ImageMaterialInterface materialInterface;
 
     [Header("Icons")]
     [SerializeField] RectTransform iconsAnchor;
@@ -27,6 +28,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
     [SerializeField] Image dangerStripe;
 
     Sequence mainSequence;
+    private static readonly int Play = Animator.StringToHash("Play");
 
     void Start()
     {
@@ -68,8 +70,12 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         // -- Fade-in do fundo
         mainSequence = DOTween.Sequence();
-        mainSequence.Append( mainCanvasGroup.DOFade(1, fadeDuration) );
-        mainSequence.OnComplete( () => done = true );
+        mainCanvasGroup.alpha = 1.0f;
+        materialInterface.animator.SetTrigger(Play);
+        materialInterface.onAnimationEnd = () =>
+        {
+            done = true;
+        };
         mainSequence.SetUpdate(isIndependentUpdate: true);
 
         yield return new WaitUntil( () => done );
