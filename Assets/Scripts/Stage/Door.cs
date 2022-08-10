@@ -199,9 +199,9 @@ public class Door : MonoBehaviour
                 {
                     round.OnPortalReached?.Invoke();    
 
-                    doorAnimation.SetupAnimation( this, player, 
+                    doorAnimation.SetupAnimationStageTransiton( this, player, 
                     
-                        OnAnimationStart: () => 
+                        OnAnimationEnd: () => 
                         {
                             round.RoundCleared();
                             portal.transform.SetParent(transform);

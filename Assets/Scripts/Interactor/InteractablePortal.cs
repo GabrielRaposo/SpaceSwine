@@ -27,7 +27,7 @@ public class InteractablePortal : Interactable
 
             if (interactor && doorAnimation)
             {
-                doorAnimation.SetupAnimation
+                doorAnimation.SetupAnimationDangerZone
                 (
                     doorAnimation.GetComponent<Door>(), 
                     interactor.gameObject,
