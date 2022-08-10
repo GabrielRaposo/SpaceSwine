@@ -22,10 +22,10 @@ public class TransitionSafetyToDanger : MonoBehaviour
     [SerializeField] Animator safetyIconAnimator;
     [SerializeField] Animator dangerIconAnimator;
 
-    [Header("Stripes")]
+    [Header("Stripes Bottom")]
     [SerializeField] CanvasGroup stripesGroup;
-    [SerializeField] Image safetyStripe;
-    [SerializeField] Image dangerStripe;
+    [SerializeField] CanvasGroup safetyStripes;
+    [SerializeField] CanvasGroup dangerStripes;
 
     Sequence mainSequence;
     private static readonly int Play = Animator.StringToHash("Play");
@@ -42,8 +42,8 @@ public class TransitionSafetyToDanger : MonoBehaviour
     {
         iconsAnchor.anchoredPosition = new Vector2(danger ? iconSlideX : 0, iconsAnchor.anchoredPosition.y);
 
-        safetyStripe.color =  danger ? new Color(1,1,1,0) : Color.white;
-        dangerStripe.color = !danger ? new Color(1,1,1,0) : Color.white;
+        safetyStripes.alpha =  danger ? 0 : 1;
+        dangerStripes.alpha =  danger ? 1 : 0;
     }
 
     public void CallTransition (int index, bool safetyToDanger)
@@ -150,18 +150,18 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
     private Sequence SwitchStripes(bool toDanger)
     {
-        Image first  = toDanger ? safetyStripe : dangerStripe;
-        Image second = toDanger ? dangerStripe : safetyStripe;
+        CanvasGroup first  = toDanger ? safetyStripes : dangerStripes;
+        CanvasGroup second = toDanger ? dangerStripes : safetyStripes;
 
-        first.color = Color.white;
-        second.color = new Color(1,1,1,0);
+        first.alpha = 1;
+        second.alpha = 0;
         
         Sequence s = DOTween.Sequence();
 
         s.Append( stripesGroup.DOFade(0, slideDuration/2f) );
         s.AppendCallback( () => {
-            first.color  = new Color(1,1,1,0);
-            second.color = Color.white;
+            first.alpha  = 0;
+            second.alpha = 1;
         } );
         s.Append( stripesGroup.DOFade(1, slideDuration/2f) );
         
