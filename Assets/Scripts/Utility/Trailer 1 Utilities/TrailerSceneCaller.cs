@@ -111,7 +111,7 @@ public class TrailerSceneCaller : MonoBehaviour
             {
                 s = localizedText.value;
             }
-            Debug.Log($"localizedText: {localizedText.isValid}, {localizedText.value}");
+            //Debug.Log($"localizedText: {localizedText.isValid}, {localizedText.value}");
 
             int local = i;
             sequence.AppendCallback
