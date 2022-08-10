@@ -14,6 +14,7 @@ public class TrailerSceneCaller : MonoBehaviour
     [Space(10)]
     
     [SerializeField] [TextArea(minLines: 2, maxLines: 3)] List<string> shipDialogue;
+    [SerializeField] List<string> trailerDialogueID;
     
     [Header("References")]
     [SerializeField] PlayerCharacter player;
@@ -102,10 +103,16 @@ public class TrailerSceneCaller : MonoBehaviour
         sequence.AppendInterval( t1 + .3f);
 
         // -- Leitura dos diálogos
-        for (int i = 0; i < shipDialogue.Count; i++)
+        for (int i = 0; i < trailerDialogueID.Count; i++)
         {
-            string s = shipDialogue[i];
-            
+            string s = shipDialogue[i % shipDialogue.Count];
+            (bool isValid, string value) localizedText = LocalizationManager.GetStoryText(trailerDialogueID[i]);
+            if (localizedText.isValid)
+            {
+                s = localizedText.value;
+            }
+            Debug.Log($"localizedText: {localizedText.isValid}, {localizedText.value}");
+
             int local = i;
             sequence.AppendCallback
             (
@@ -144,7 +151,9 @@ public class TrailerSceneCaller : MonoBehaviour
                 return 4f;
 
             case 3:
-            case 5:
+                return 2f;
+
+            case 4:
                 return 10.0f;
         }
     }
