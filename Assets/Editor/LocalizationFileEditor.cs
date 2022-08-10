@@ -38,6 +38,12 @@ public class LocalizationEditor : EditorWindow
             LocalizationManager.CallUpdate(LocalizedTextTypes.Music);   
             EditorUtility.SetDirty(LocalizationManager.MusicFile);
         }
+
+        if (GUILayout.Button("Nave"))
+        {
+            LocalizationManager.CallUpdate(LocalizedTextTypes.Nave);
+            EditorUtility.SetDirty(LocalizationManager.NaveFile);
+        }
             
     }
 }
