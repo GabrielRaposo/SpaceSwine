@@ -20,12 +20,12 @@ public class RoundsManager : MonoBehaviour
 
     private void Start() 
     {
-        // Define câmera de fases de perigo
+        // -- Define câmera de fases de perigo
         CameraFocusController cameraFocusController = CameraFocusController.Instance;
         if (cameraFocusController)
             cameraFocusController.SetStaticFocus();
         
-        // Encontra a instância do player
+        // -- Encontra a instância do player
         player = PlayerCharacter.Instance;
         if (!player)
         {
@@ -33,7 +33,7 @@ public class RoundsManager : MonoBehaviour
             return;
         }
 
-        // Cria lista de rounds
+        // -- Cria lista de rounds
         rounds = new List<Round>();
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -55,7 +55,7 @@ public class RoundsManager : MonoBehaviour
             SessionData = testSessionData;
         }
 
-        // Encontra o Index inicial
+        // -- Encontra o Index inicial
         if (SessionData != null)
         {
             currentIndex = SessionData.startingIndex;

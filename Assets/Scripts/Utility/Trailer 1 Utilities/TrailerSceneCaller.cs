@@ -15,6 +15,7 @@ public class TrailerSceneCaller : MonoBehaviour
     
     [SerializeField] [TextArea(minLines: 2, maxLines: 3)] List<string> shipDialogue;
     [SerializeField] List<string> trailerDialogueID;
+    [SerializeField] List<string> warningTextsID;
     
     [Header("References")]
     [SerializeField] PlayerCharacter player;
@@ -185,20 +186,32 @@ public class TrailerSceneCaller : MonoBehaviour
         shipDialogueBox.transform.DOPunchScale(Vector3.one * .8f, duration: .3f);
         shipDialogueBox.transform.DOLocalRotate(Vector3.forward * 3, duration: .1f);
 
+        if (warningTextsID.Count < 2)
+            return;
+
         endtextS = DOTween.Sequence();
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327><b>-- WARNING --\nFRONTAL COLLISION ", delay: .01f, instantText: true) );
-        endtextS.AppendInterval( 1f );
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>HULL BREACH DETECTED") );
-        endtextS.AppendInterval( 1f );
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>ELECTRICAL SYSTEM FAILURE DETECTED") );
-        endtextS.AppendInterval( 1f );
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>FUEL TANK FAILURE DETECTED") );
-        endtextS.AppendInterval( 1f );
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>BACK THRUSTERS FAILURE DETECTED") );
-        endtextS.AppendInterval( 1f );
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>LANDING GEAR FAILURE DETECTED") );
-        endtextS.AppendInterval( 1f );
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>SOMETHING-SOMETHING FAILURE DETECTED") );
+
+        (bool isValid, string value) warningText = LocalizationManager.GetShipText( warningTextsID[0] );
+        endtextS.AppendCallback( () => shipDialogueBox.Type(warningText.value, delay: .01f, instantText: true) );
+        
+        for (int i = 1; i < warningTextsID.Count; i++)
+        {
+            endtextS.AppendInterval( 1f );
+
+            (bool isValid, string value) localWarningText = LocalizationManager.GetShipText(warningTextsID[i]);
+            endtextS.AppendCallback( () => shipDialogueBox.Type(localWarningText .value) );
+        }
+        //endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>HULL BREACH DETECTED") );
+        //endtextS.AppendInterval( 1f );
+        //endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>ELECTRICAL SYSTEM FAILURE DETECTED") );
+        //endtextS.AppendInterval( 1f );
+        //endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>FUEL TANK FAILURE DETECTED") );
+        //endtextS.AppendInterval( 1f );
+        //endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>BACK THRUSTERS FAILURE DETECTED") );
+        //endtextS.AppendInterval( 1f );
+        //endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>LANDING GEAR FAILURE DETECTED") );
+        //endtextS.AppendInterval( 1f );
+        //endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>SOMETHING-SOMETHING FAILURE DETECTED") );
 
         StartCoroutine( ScreenFadeOut() );        
     }
