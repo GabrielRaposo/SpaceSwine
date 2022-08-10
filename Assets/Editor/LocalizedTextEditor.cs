@@ -113,7 +113,7 @@ public class LocalizedTextEditor : Editor
 
                     foreach (string key in keys)
                     {
-                        displayList.Add($"{key} - {LocalizationManager.GetNaveText(key)}");
+                        displayList.Add($"{key} - {LocalizationManager.GetShipText(key)}");
                         codeList.Add(key);
                     }
                     

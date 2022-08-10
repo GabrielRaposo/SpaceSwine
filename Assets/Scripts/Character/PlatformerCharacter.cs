@@ -225,6 +225,9 @@ public class PlatformerCharacter : SidewaysCharacter
             return;
 
         // Default method;
+        if (rb.bodyType != RigidbodyType2D.Dynamic)
+            return;
+        
         rb.velocity = RaposUtil.AlignWithTransform(transform, new Vector2 (horizontalSpeed, verticalSpeed));
     }
 

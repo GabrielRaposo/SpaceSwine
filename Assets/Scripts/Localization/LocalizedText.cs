@@ -87,7 +87,8 @@ public class LocalizedText : MonoBehaviour
                 textMesh.text = LocalizationManager.GetMusicText(localizationCode);
                 break;
             case LocalizedTextTypes.Nave:
-                textMesh.text = LocalizationManager.GetNaveText(localizationCode);
+                (bool valid, string text) ship = LocalizationManager.GetShipText(localizationCode);
+                textMesh.text = ship.text;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

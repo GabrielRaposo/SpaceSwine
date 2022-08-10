@@ -106,7 +106,7 @@ public class TrailerSceneCaller : MonoBehaviour
         for (int i = 0; i < trailerDialogueID.Count; i++)
         {
             string s = shipDialogue[i % shipDialogue.Count];
-            (bool isValid, string value) localizedText = LocalizationManager.GetStoryText(trailerDialogueID[i]);
+            (bool isValid, string value) localizedText = LocalizationManager.GetShipText(trailerDialogueID[i]);
             if (localizedText.isValid)
             {
                 s = localizedText.value;

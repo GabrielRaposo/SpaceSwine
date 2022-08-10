@@ -441,19 +441,19 @@ public static class LocalizationManager
         //throw new System.NotImplementedException();
     }
 
-    public static string GetNaveText(string localizationCode)
+    public static (bool, string) GetShipText(string localizationCode)
     {
         if (!GetLocalizationFile(LocalizedTextTypes.Nave).dic
                 .TryGetValue(localizationCode, out LanguageToString languageToString))
         {
-            return $"Nave text not found {localizationCode}";
+            return (false, $"Nave text not found {localizationCode}");
         }
 
         if (!languageToString.TryGetValue(CurrentLanguage, out string s))
         {
-            return $"Nave text not found {localizationCode}";
+            return (false, $"Nave text not found {localizationCode}");
         }
 
-        return s;
+        return (true, s);
     }
 }
