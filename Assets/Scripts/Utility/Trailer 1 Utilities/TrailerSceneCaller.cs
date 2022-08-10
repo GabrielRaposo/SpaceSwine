@@ -55,6 +55,8 @@ public class TrailerSceneCaller : MonoBehaviour
         if (!AutoStart)
         {
             shipScreens.gameObject.SetActive(false);
+            if (galaxyParallax)
+                galaxyParallax.enabled = false;
             if (holdToSkipScene)
                 holdToSkipScene.enabled = false;
 
@@ -135,15 +137,15 @@ public class TrailerSceneCaller : MonoBehaviour
         {
             default:
             case 0:
-                return 0.8f;
+                return 2.5f;
 
             case 1:
             case 2:
-                return 2.5f;
+                return 4f;
 
             case 3:
             case 5:
-                return 9.0f;
+                return 10.0f;
         }
     }
 

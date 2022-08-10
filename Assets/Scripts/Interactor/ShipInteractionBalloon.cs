@@ -44,7 +44,7 @@ public class ShipInteractionBalloon : MonoBehaviour
                 break;
 
             case ShipAction.Customize:
-                textDisplay.text = "Customize";
+                textDisplay.text = "???";
                 break;
                 
             case ShipAction.Leave:
@@ -56,7 +56,7 @@ public class ShipInteractionBalloon : MonoBehaviour
         }
 
         float boxLenght = .4f + (textDisplay.text.Length * .15f);
-        boxOutlineRenderer.size = boxShapeRenderer.size = new Vector2(boxLenght, .7f);
+        boxOutlineRenderer.size = boxShapeRenderer.size = new Vector2(boxLenght, .5f);
     }
 
     public void SetHighlight (bool value)
@@ -68,8 +68,8 @@ public class ShipInteractionBalloon : MonoBehaviour
 
         sequence = DOTween.Sequence();
         
-        transform.localScale = value ? Vector3.zero : Vector3.one; 
+        transform.localScale = value ? Vector3.zero : Vector3.one * 1.5f; 
 
-        sequence.Append( transform.DOScale(value ? 1 : 0, duration) );
+        sequence.Append( transform.DOScale(value ? 1.5f : 0, duration) );
     }
 }
