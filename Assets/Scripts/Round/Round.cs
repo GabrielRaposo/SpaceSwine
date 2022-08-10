@@ -53,8 +53,6 @@ public class Round : MonoBehaviour
             );
         }
 
-        // reposiciona e respawna objetos
-        // resetta
         //OnReset?.Invoke();
     }
 
@@ -74,7 +72,7 @@ public class Round : MonoBehaviour
 
     public void RoundCleared()
     {
-        Debug.Log("RoundCleared()");
+        //Debug.Log("RoundCleared()");
         
         OnPassRound?.Invoke();
         
