@@ -23,23 +23,18 @@ public class GameManager : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.UI.Start.performed += (ctx) => 
         {
-            if (BlockCharacterInput)
+            if (BlockCharacterInput || SceneTransition.OnTransition)
                 return;
 
             pauseSystem?.TogglePauseState();
         };
         playerInputActions.UI.Start.Enable();
-
-        //playerInputActions.UI.Other.performed += (ctx) => 
-        //{
-        //    if (ggsConsole)
-        //        ggsConsole.ToggleConsoleState();
-        //};
-        //playerInputActions.UI.Other.Enable();
         
-        resetInputAction.Enable();
-        saveInputAction.Enable();
-        resetSaveInputAction.Enable();
+        #if UNITY_EDITOR
+            resetInputAction.Enable();
+            saveInputAction.Enable();
+            resetSaveInputAction.Enable();
+        #endif
     }
 
     void Start()
@@ -107,9 +102,11 @@ public class GameManager : MonoBehaviour
     private void OnDisable() 
     {
         playerInputActions.UI.Start.Disable();
-        //playerInputActions.UI.Other.Disable();
-        resetInputAction.Disable();    
-        saveInputAction.Disable();
-        resetSaveInputAction.Disable();
+
+        #if UNITY_EDITOR
+            resetInputAction.Disable();    
+            saveInputAction.Disable();
+            resetSaveInputAction.Disable();
+        #endif
     }
 }

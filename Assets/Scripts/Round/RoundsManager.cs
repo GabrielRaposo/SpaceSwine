@@ -16,6 +16,7 @@ public class RoundsManager : MonoBehaviour
     List<Round> rounds;
     PlayerCharacter player;
 
+    public static bool BlockSpawn;
     public static RoundSessionData SessionData;
 
     private void Start() 
@@ -63,7 +64,16 @@ public class RoundsManager : MonoBehaviour
         else currentIndex = 0;
 
         ActivateCurrentIndex();
+        
+        // -- Chamada de reset de cena na morte do player
+        PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
+        if (playerCharacter)
+            playerCharacter.SetDeathEvent( () => RoundTransition.Call(ActivateCurrentIndex) );
 
+        player.gameObject.SetActive(false);
+
+        // -- Setup de inputs de teste
+        //#if UNITY_EDITOR
         previousInputAction.performed += ctx => 
         {
             if (GameManager.BlockCharacterInput)
@@ -91,10 +101,7 @@ public class RoundsManager : MonoBehaviour
                 rounds[currentIndex].RoundCleared();
         };
         nextInputAction.Enable();
-
-        PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
-        if (playerCharacter)
-            playerCharacter.SetDeathEvent( () => RoundTransition.Call(ActivateCurrentIndex) );
+        //#endif
     }
 
     public void PreviousRoundLogic()
@@ -154,8 +161,10 @@ public class RoundsManager : MonoBehaviour
 
     private void OnDisable()
     {
+        //#if UNITY_EDITOR
         previousInputAction.Disable();
         resetInputAction.Disable();
         nextInputAction.Disable();
+        //#endif
     }
 }

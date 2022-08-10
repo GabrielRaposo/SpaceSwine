@@ -27,7 +27,7 @@ public class SpaceJumper : MonoBehaviour
     PlayerAnimations playerAnimations;
     Rigidbody2D rb;
 
-    void Start()
+    void Awake()
     {
         platformerCharacter = GetComponent<PlatformerCharacter>();
         gravityInteraction = GetComponent<GravityInteraction>();

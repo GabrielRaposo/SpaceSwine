@@ -30,20 +30,40 @@ public class Round : MonoBehaviour
 
     public void SetupRound()
     {
+        StartCoroutine(OnResetRoutine());
+
         if (player)
         {
-            //player.gameObject.SetActive(false);
+            player.gameObject.SetActive(false);
                 
             player.SpawnAt(startingPoint, startingRotation);
-            player.transform.SetParent(transform);
-            player.gameObject.SetActive(true);
+            //player.transform.SetParent(transform);
+            //player.gameObject.SetActive(true);
+
+            StartCoroutine 
+            ( 
+                WaitForSignal 
+                (
+                    () => 
+                    {
+                        player.transform.SetParent(transform);
+                        player.gameObject.SetActive(true);
+                    }
+                ) 
+            );
         }
 
         // reposiciona e respawna objetos
         // resetta
         //OnReset?.Invoke();
-        StartCoroutine(OnResetRoutine());
     }
+
+    private IEnumerator WaitForSignal (UnityAction action)
+    {
+        yield return new WaitWhile( () => RoundsManager.BlockSpawn );
+        //Debug.Log("Call");
+        action.Invoke();
+    } 
 
     public IEnumerator OnResetRoutine()
     {

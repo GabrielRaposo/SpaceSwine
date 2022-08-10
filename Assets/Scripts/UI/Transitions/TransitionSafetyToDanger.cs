@@ -59,27 +59,30 @@ public class TransitionSafetyToDanger : MonoBehaviour
     private IEnumerator SafetyToDangerTransition(int index, bool safetyToDanger)
     {
         SceneTransition.OnTransition = true;
+        RoundsManager.BlockSpawn = true;
         bool done = false;
+
+        if (mainSequence != null)
+            mainSequence.Kill();
 
         SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
         if (soundtrackManager)
             soundtrackManager.FadeOutMusic(2.0f);
 
-        if (mainSequence != null)
-            mainSequence.Kill();
+        fillImage.enabled = false;
 
         // -- Fade-in do fundo
-        mainSequence = DOTween.Sequence();
         mainCanvasGroup.alpha = 1.0f;
         materialInterface.animator.SetTrigger(Play);
         materialInterface.onAnimationEnd = () =>
         {
             done = true;
         };
-        mainSequence.SetUpdate(isIndependentUpdate: true);
 
         yield return new WaitUntil( () => done );
         done = false;
+
+        fillImage.enabled = true;
 
         // -- Inicia carregamento de cena
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(index);
@@ -143,7 +146,9 @@ public class TransitionSafetyToDanger : MonoBehaviour
         
         yield return new WaitUntil( () => done );
 
+        fillImage.enabled = false;
 
+        RoundsManager.BlockSpawn = false;
         gameObject.SetActive(false);
         SceneTransition.OnTransition = false;
     }
