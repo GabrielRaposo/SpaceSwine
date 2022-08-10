@@ -16,10 +16,12 @@ public class NavigationShip : MonoBehaviour
     [SerializeField] private float speed = 0.02f;
     private Vector2 movDirection;
 
-    [SerializeField] private Transform spritesTransform;
+    [SerializeField] public Transform spritesTransform;
     [SerializeField] ParticleSystem smokeTrailPS;
 
     private NavigationObject selectedObject;
+
+    public bool lockControls;
 
     private void OnEnable()
     {
@@ -63,6 +65,8 @@ public class NavigationShip : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(lockControls) return;
+        
         Vector2 input = movementInputAction.ReadValue<Vector2>();
         movDirection += input * aceleration;
         TrailParticleLogic(activate: input != Vector2.zero);
@@ -108,7 +112,7 @@ public class NavigationShip : MonoBehaviour
         if(selectedObject == null)
             return;
 
-        selectedObject.OnInteract();
+        selectedObject.OnInteract(this);
     }
     
 }

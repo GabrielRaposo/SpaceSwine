@@ -29,29 +29,30 @@ public class NavigationObject : MonoBehaviour
     private Coroutine coordinatesRoutine;
     private Coroutine lineRoutine;
     
-    protected UnityAction interactAction;
+    protected UnityAction<NavigationShip> interactAction;
+    protected NavigationShip ship;
 
     private void Awake()
     {
         CloseDisplay();
     }
 
-    public void OnSelect()
+    public virtual void OnSelect()
     {
         sprite.color = Color.white;
         OpenDisplay();
     }
 
-    public void OnDisselect()
+    public virtual void OnDisselect()
     {
         sprite.color = selectionColor;
         CloseDisplay();
     }
 
-    public void OnInteract()
+    public void OnInteract(NavigationShip ship = null)
     {
         Debug.Log("OnInteract()");
-        interactAction?.Invoke();
+        interactAction?.Invoke(ship);
     }
 
     private void OpenDisplay()
