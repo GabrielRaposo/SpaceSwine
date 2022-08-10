@@ -148,8 +148,8 @@ public static class LocalizationManager
         {
             case LocalizedTextTypes.Story:
                 
-                //storyFile = GetLocalizationFile(LocalizedTextTypes.Story);
-                //storyFile.dic = new CodeToDictionary();
+                storyFile = GetLocalizationFile(LocalizedTextTypes.Story);
+                storyFile.dic = new CodeToDictionary();
                 
                 for (int i = -1; i < zoneCount; i++)
                 {
