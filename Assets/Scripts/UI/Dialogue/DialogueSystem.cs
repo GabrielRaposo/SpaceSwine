@@ -21,7 +21,8 @@ public class DialogueSystem : MonoBehaviour
         string speakerName, 
         List<string> dialogueTags, 
         UnityAction OnDialogueEnd,
-        DialogueBoxStyle customDialogueStyle
+        DialogueBoxStyle customDialogueStyle,
+        AK.Wwise.Event talkSoundAKEvent
     )
     {
         if (!dialogBox)
@@ -41,7 +42,7 @@ public class DialogueSystem : MonoBehaviour
             }
         }
 
-        dialogBox.SetDialogueData(interactable, speakerName, translatedDialogues, OnDialogueEnd, customDialogueStyle);
+        dialogBox.SetDialogueData(interactable, speakerName, translatedDialogues, OnDialogueEnd, customDialogueStyle, talkSoundAKEvent);
     }
 
     private void OnDisable() 

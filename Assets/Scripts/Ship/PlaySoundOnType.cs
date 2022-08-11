@@ -22,6 +22,11 @@ public class PlaySoundOnType : MonoBehaviour
         }
     }
 
+    public void SetVoiceEvent(AK.Wwise.Event newEvent)
+    {
+        voiceAkEvent = newEvent;
+    }
+
     public void TypeSound(string s)
     {
         if (voiceAkEvent.IsPlaying(gameObject))

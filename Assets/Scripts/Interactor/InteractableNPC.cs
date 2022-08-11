@@ -8,6 +8,7 @@ public class InteractableNPC : Interactable
     [SerializeField] NPCData data;
     [SerializeField] SpeechBubble speechBubble;
     [SerializeField] DialogueBoxStyle customDialogueStyle;
+    [SerializeField] AK.Wwise.Event talkSoundAKEvent;
 
     public UnityAction <int, NPCData> OnPreviousIndexReached;
     public UnityAction OnDialogueEnd;
@@ -21,7 +22,7 @@ public class InteractableNPC : Interactable
             DialogueSystem dialogSystem = DialogueSystem.Instance;
             DialogueGroup dialogueGroup = data.GetAtIndex();
 
-            dialogSystem?.SetDialogue(this, data.npcName, dialogueGroup.tags, OnDialogueEnd, customDialogueStyle);
+            dialogSystem?.SetDialogue(this, data.npcName, dialogueGroup.tags, OnDialogueEnd, customDialogueStyle, talkSoundAKEvent);
 
             if (interactor)
             {

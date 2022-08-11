@@ -21,6 +21,7 @@ public class InteractableElevator : Interactable
     [SerializeField] Color fadeOutBurstColor;
     [SerializeField] SpriteRenderer fadeOutLights;
     [SerializeField] GameObject inputHelper;
+    [SerializeField] AK.Wwise.Event activationAKEvent;
 
     bool active;   
 
@@ -114,6 +115,9 @@ public class InteractableElevator : Interactable
             SpaceJumper spaceJumper = interactor.GetComponent<SpaceJumper>();
             if (!spaceJumper)
                 return;
+
+            if (activationAKEvent != null)
+                activationAKEvent.Post(gameObject);
 
             LaunchParticlesRoutine();
             spaceJumper.LaunchIntoDirection(transform.up, multiplier: 2.0f, playLongJumpSound: false);
