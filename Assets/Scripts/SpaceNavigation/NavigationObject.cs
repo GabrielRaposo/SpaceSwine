@@ -5,12 +5,14 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class NavigationObject : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sprite;
-    [SerializeField] private Color selectionColor;
+    [FormerlySerializedAs("selectionColor")] [SerializeField] private Color unselectedColor;
+    [FormerlySerializedAs("selectionColor")] [SerializeField] private Color selectedColor;
 
 
     [SerializeField] private Canvas _canvas;
@@ -39,13 +41,13 @@ public class NavigationObject : MonoBehaviour
 
     public virtual void OnSelect()
     {
-        sprite.color = Color.white;
+        sprite.color = selectedColor;
         OpenDisplay();
     }
 
     public virtual void OnDisselect()
     {
-        sprite.color = selectionColor;
+        sprite.color = unselectedColor;
         CloseDisplay();
     }
 

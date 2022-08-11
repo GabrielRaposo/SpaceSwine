@@ -47,6 +47,9 @@ public class NavigationShip : MonoBehaviour
         var navObject = col.gameObject.GetComponent<NavigationObject>();
         if(navObject == null) return;
         
+        if(selectedObject != null)
+            selectedObject.OnDisselect();
+        
         navObject.OnSelect();
         selectedObject = navObject;
     }
@@ -114,5 +117,5 @@ public class NavigationShip : MonoBehaviour
 
         selectedObject.OnInteract(this);
     }
-    
+
 }
