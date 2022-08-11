@@ -89,8 +89,10 @@ public class NavigationShip : MonoBehaviour
             spritesTransform.eulerAngles = new Vector3(0, 0, Mathg.VectorToAngle(movDirection, true));    
         }
 
-        transform.Translate(movDirection*speed);
+        if(NavigationParalaxAnchor.Instance)
+            NavigationParalaxAnchor.Instance.transform.Translate(movDirection*speed*20f);
         
+        transform.Translate(movDirection*speed);
     }
 
     private void TrailParticleLogic (bool activate)
