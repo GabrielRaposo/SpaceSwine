@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class SetSceneNavigationObject : NavigationObject
 {
+    [Header("     ")]
     public BuildIndex scene = BuildIndex.World1Exploration;
     public SpriteRenderer selector;
 
@@ -15,10 +16,14 @@ public class SetSceneNavigationObject : NavigationObject
 
     private Vector2 p2Debug;
     private Vector2 p3Debug;
+
+    private NavigationSceneManager navSceneManager;
     
     private void OnEnable()
     {
         interactAction += ShipAnimation;
+
+        navSceneManager = FindObjectOfType<NavigationSceneManager>();
     }
 
     public override void OnSelect()
@@ -45,33 +50,36 @@ public class SetSceneNavigationObject : NavigationObject
 
         var sequence = DOTween.Sequence();
 
-        sequence.Append(selector.transform.DOPunchScale(new Vector3(0.2f, 0.2f, 0.2f), 0.25f));
+        sprite.color = Color.white;
+
+        //Feedback de seleção e UI de autopilot         
+        sequence.Append(selector.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.22f).OnComplete(()=>navSceneManager.BlinkAutoPilot()));
+        sequence.AppendInterval(0.8f);
         
         float x = 0f;
         float shipStartRotation = navigationShip.spritesTransform.eulerAngles.z + 90f;
         Vector2 startPos = navigationShip.transform.position;
 
+        //Tween da movimentação e rotação
         sequence.Append(DOVirtual.Float(0f, 1f, 2.75f, value =>
         {
             navigationShip.transform.position = AnimationCurvePosition(value, shipStartRotation, startPos, transform.position);
             navigationShip.spritesTransform.transform.eulerAngles = new Vector3(0f,0f,
                 AnimationCurveRotation(value, shipStartRotation, startPos, transform.position));
         }).SetEase(Ease.OutFlash)
+            .OnComplete(() =>
+            {
+                //Mostra UI de aterrisagem no final
+                navSceneManager.StopBlinkAutoPilot();
+                navSceneManager.DisplayLandingSign();
+            })
         );
         
-        float rotation;
-
         Debug.Log("euler z:" + navigationShip.spritesTransform.transform.eulerAngles.z);
-        
-        if (navigationShip.spritesTransform.transform.eulerAngles.z > 180)
-            rotation = -90;
-        else
-            rotation = 90;
-        
-        // sequence.Join(
-        //     navigationShip.spritesTransform.transform.DORotate(new Vector3(0f,0f,rotation), 3f)
-        // );
 
+        sequence.AppendInterval(2.5f);
+
+        //Setta Cena e fecha
         sequence.OnComplete(CloseAndSetScene);
 
     }

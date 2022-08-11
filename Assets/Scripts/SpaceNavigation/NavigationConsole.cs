@@ -15,7 +15,7 @@ public class NavigationConsole : MonoBehaviour
     [SerializeField] float duration;
     [SerializeField] float inDelay;
     [SerializeField] float outDelay;
-    [FormerlySerializedAs("minigameRenderTexture")] [SerializeField] RenderTexture navigationRenderTexture;
+    [SerializeField] RenderTexture navigationRenderTexture;
     [SerializeField] RectTransform consoleAnchor;
 
     [Header("Audio")]
@@ -182,11 +182,6 @@ public class NavigationConsole : MonoBehaviour
             cameraController.SetRenderTexture(navigationRenderTexture);
 
         NavigationSceneManager.Instance.ConectToConsole(this);
-            
-        //MJ_GameManager gameManager = MJ_GameManager.Instance;
-            
-        //if (gameManager)
-            //gameManager.ConnectToConsole(this);
 
         loadedAndActive = true;
     }
