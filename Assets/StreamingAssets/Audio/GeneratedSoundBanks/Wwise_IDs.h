@@ -89,6 +89,7 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
+        static const AkUniqueID BUYK_STUCK = 363529975U;
         static const AkUniqueID VOLUME_MASTER = 3695994288U;
         static const AkUniqueID VOLUME_MUSIC = 3891337659U;
         static const AkUniqueID VOLUME_PLACEHOLDERS = 4083254980U;
