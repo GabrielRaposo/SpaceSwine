@@ -7,7 +7,7 @@ using DG.Tweening;
 [ExecuteInEditMode]
 public class InteractableElevator : Interactable
 {
-    [SerializeField] InputAction testInput;
+    //[SerializeField] InputAction testInput;
 
     [Header("Elevator References")]
     [SerializeField] bool startActive;
