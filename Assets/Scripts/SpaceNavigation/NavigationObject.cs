@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class NavigationObject : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] protected SpriteRenderer sprite;
     [FormerlySerializedAs("selectionColor")] [SerializeField] private Color unselectedColor;
     [FormerlySerializedAs("selectionColor")] [SerializeField] private Color selectedColor;
 
@@ -22,6 +22,7 @@ public class NavigationObject : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coordnatesField;
     [SerializeField] private Image displayLine;
 
+    [Header("Object Info")]
     [SerializeField] private string displayName;
     [SerializeField] private string description;
     [SerializeField] private Vector3 coordinates;
