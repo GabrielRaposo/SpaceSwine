@@ -534,6 +534,38 @@
 													<ValueList>
 														<Value>5</Value>
 													</ValueList>
+													<RTPCList>
+														<RTPC Name="" ID="{650288D9-B952-48A4-BCAB-2C7C75A5E9F1}" ShortID="320465846">
+															<ReferenceList>
+																<Reference Name="ControlInput">
+																	<Custom>
+																		<ModulatorLfo Name="Modulator LFO (Custom)" ID="{1D0B4C94-8688-4056-ACF7-7D9B6196D984}" ShortID="1031509844">
+																			<PropertyList>
+																				<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																			</PropertyList>
+																		</ModulatorLfo>
+																	</Custom>
+																</Reference>
+															</ReferenceList>
+															<Curve Name="" ID="{2F668801-0B4E-43E4-8AC5-786321464917}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-200</YPos>
+																		<Flags>21</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>1</XPos>
+																		<YPos>3.63164</YPos>
+																		<Flags>53</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</RTPC>
+													</RTPCList>
 												</Property>
 											</PropertyList>
 											<ReferenceList>
@@ -739,6 +771,36 @@
 						<Folder Name="Cinematic" ID="{94E88413-F7F2-40A8-A07E-9697471032AC}" ShortID="1004282086">
 							<ChildrenList>
 								<Sound Name="gameplay_buyk_stuck_01" ID="{FA64C98D-52E6-47CA-8EC0-6221EE7B7637}" ShortID="1006592188">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<RTPCList>
+												<RTPC Name="" ID="{2FB5F36D-9BC0-4251-A817-CA6516F56769}" ShortID="901675389">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Buyk_stuck" ID="{5B505BE2-1954-444D-B7A5-9760DCB2E701}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{C956AEB9-43C4-465F-A72E-4271578D7C10}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -762,6 +824,36 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="gameplay_buyk_stuck_02" ID="{652F56F4-E961-4C09-93FB-5A36EB6205F8}" ShortID="421610561">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<RTPCList>
+												<RTPC Name="" ID="{43CCA953-3435-4A36-A379-C1547040426F}" ShortID="427715107">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Buyk_stuck" ID="{5B505BE2-1954-444D-B7A5-9760DCB2E701}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{DE643CA0-6B96-4F03-AE5E-CDBF614BB9F6}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
