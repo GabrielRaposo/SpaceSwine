@@ -21,7 +21,7 @@ public class NavigationShip : MonoBehaviour
 
     private NavigationObject selectedObject;
 
-    public bool lockControls;
+    private bool lockControls;
 
     private void OnEnable()
     {
@@ -40,6 +40,12 @@ public class NavigationShip : MonoBehaviour
         _playerInputActions.Player.Movement.Disable();
         _playerInputActions.Player.Jump.Disable();
         _playerInputActions.Player.Throw.Disable();
+    }
+
+    public void LockControls()
+    {
+        lockControls = true;
+        OnDisable();
     }
 
     private void OnTriggerEnter2D(Collider2D col)

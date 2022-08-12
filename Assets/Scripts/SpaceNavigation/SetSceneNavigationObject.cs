@@ -23,7 +23,9 @@ public class SetSceneNavigationObject : NavigationObject
 
     private NavigationSceneManager navSceneManager;
 
-    [SerializeField]private Transform dotsParent;
+    [SerializeField] private Transform dotsParent;
+
+    [SerializeField] private AK.Wwise.Event sound; 
     
     private void OnEnable()
     {
@@ -52,14 +54,14 @@ public class SetSceneNavigationObject : NavigationObject
             return;
         }
 
-        
-        
-        navigationShip.lockControls = true;
+        navigationShip.LockControls();
 
         var sequence = DOTween.Sequence();
 
         sprite.color = Color.white;
 
+        sound.Post(gameObject);
+        
         //Feedback de seleção e UI de autopilot         
         sequence.Append(selector.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.22f).OnComplete(()=>navSceneManager.BlinkAutoPilot()));
         sequence.AppendInterval(0.1f);
@@ -77,9 +79,6 @@ public class SetSceneNavigationObject : NavigationObject
         //Tween da movimentação e rotação
         sequence.Append(DOVirtual.Float(0f, 1f, 2.75f, value =>
         {
-            // navigationShip.transform.position = AnimationCurvePosition(value, shipStartRotation, startPos, transform.position);
-            // navigationShip.spritesTransform.transform.eulerAngles = new Vector3(0f,0f,
-            //     AnimationCurveRotation(value, shipStartRotation, startPos, transform.position));
             navigationShip.transform.position = animationBezier.GetPoint(value);
             navigationShip.spritesTransform.eulerAngles = new Vector3(0f, 0f,
                 animationBezier.GetRotationAtPoint(value));
@@ -119,9 +118,9 @@ public class SetSceneNavigationObject : NavigationObject
         for (float i = 0f; i < 1f; i+=0.03f)
         {
             Gizmos.color = Color.yellow;
-            //var from = AnimationCurvePosition(i, debugShip.eulerAngles.z+90f, debugShip.transform.position, transform.position);
-            //var to = AnimationCurvePosition(i+0.03f, debugShip.eulerAngles.z+90f, debugShip.transform.position, transform.position);
-            //Gizmos.DrawLine(from,to);
+            var from = animationBezier.GetPoint(i);
+            var to = animationBezier.GetPoint(i + 0.03f);
+            Gizmos.DrawLine(from,to);
         }
         
         Gizmos.color = Color.cyan;
@@ -142,12 +141,10 @@ public class SetSceneNavigationObject : NavigationObject
             int index = i;
             s.Append(DOVirtual.DelayedCall(duration / c, () =>
             {
-                //var pos = AnimationCurvePosition(index / c, startRotation, startPos, endPos);
-                //var pos = animationBezier.GetPoint(index / c);
                 var pos = animationBezier.GetNormalizedPoint(index / c);
                 var dot = dotsParent.GetChild(index);
                 dot.position = pos;
-                //Instantiate(navigationDot, pos, Quaternion.identity);
+                sound.Post(gameObject);
             }));
         }
 
@@ -166,35 +163,5 @@ public class SetSceneNavigationObject : NavigationObject
         
         animationBezier = new Curve(startPos, p2, p3, endPos);
     }
-    
-    // private Vector2 AnimationCurvePosition(float x, float startRotation, Vector2 startPos, Vector2 endPos)
-    // {
-    //     Vector2 p1 = startPos;
-    //     
-    //     Vector2 p2 = startPos + new Vector2(Mathg.AngleToDirection(startRotation).x,Mathg.AngleToDirection(startRotation).y) * p2Lenght;
-    //     p2Debug = p2;
-    //
-    //     float side = (startPos.y < endPos.y) ? -1f : 1f;
-    //
-    //     Vector2 p3 = endPos + Vector2.up * p3Lenght * side;
-    //     p3Debug = p3;
-    //
-    //     Vector2 p4 = endPos;
-    //
-    //     var pos =Mathf.Pow(1f - x, 3f) * p1
-    //              + 3 * Mathf.Pow(1f - x, 2f) * x * p2
-    //              + 3 * (1f - x) * Mathf.Pow(x, 2f) * p3
-    //              + Mathf.Pow(x, 3f) * p4;
-    //
-    //     return pos;
-    // }
-    //
-    // private float AnimationCurveRotation(float x, float startRotation, Vector2 startPos, Vector2 endPos)
-    // {
-    //     var pos = AnimationCurvePosition(x, startRotation, startPos, endPos);
-    //     var prevPos = AnimationCurvePosition(x - 0.1f, startRotation, startPos, endPos);
-    //
-    //     return Mathg.AngleOfTheLineBetweenTwoPoints(prevPos, pos);
-    // }
     
 }
