@@ -973,13 +973,24 @@
 										<ActiveSource Name="gameplay_buyk_stuck_fanfarra" ID="{27ACC984-AB23-4EDF-8772-49F27E384871}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<RandomSequenceContainer Name="teste" ID="{65B197AD-3D6F-4BD1-ADED-8D259A7412EE}" ShortID="755167195">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ObjectLists/>
+								</RandomSequenceContainer>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Level" ID="{C60BF1F6-72A0-474E-912C-C4491A3E3F82}" ShortID="56256241">
 					<PropertyList>
-						<Property Name="Color" Type="int16" Value="12"/>
+						<Property Name="Color" Type="int16" Value="25"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
@@ -1452,7 +1463,7 @@
 				</Folder>
 				<Folder Name="UI" ID="{9B1ED146-6719-4B81-AE3D-F5B877AC7C1A}" ShortID="507530770">
 					<PropertyList>
-						<Property Name="Color" Type="int16" Value="3"/>
+						<Property Name="Color" Type="int16" Value="19"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
@@ -2064,7 +2075,7 @@
 				</Folder>
 				<Folder Name="Personagens" ID="{6B6FD2D5-A395-4FC4-B4A5-F1BEFF327038}" ShortID="476870456">
 					<PropertyList>
-						<Property Name="Color" Type="int16" Value="18"/>
+						<Property Name="Color" Type="int16" Value="2"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
@@ -2948,6 +2959,83 @@
 							</ChildrenList>
 							<ObjectLists/>
 						</RandomSequenceContainer>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Cutscenes" ID="{F177A6F5-3F5F-441B-AEC1-5E1944C50797}" ShortID="873829652">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="21"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Sound Name="cenario_nave_bip_perigo" ID="{B878D53F-407D-48BB-A59A-516DDD3FE7EA}" ShortID="1069049632">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="cenario_nave_bip_perigo" ID="{4AC7724B-4F15-4CD8-8E87-E5611F181E61}">
+									<Language>SFX</Language>
+									<AudioFile>cenario_nave_bip_perigo.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="492882767"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="cenario_nave_bip_perigo" ID="{4AC7724B-4F15-4CD8-8E87-E5611F181E61}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="cenario_nave_bip_tv" ID="{5E347B5A-25CE-473D-A0E8-A2BBCB6A5D08}" ShortID="659291529">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="cenario_nave_bip_tv" ID="{60D01BA5-005F-4F93-8CF9-6EA6F6F6DBAD}">
+									<Language>SFX</Language>
+									<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="203295385"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="cenario_nave_bip_tv" ID="{60D01BA5-005F-4F93-8CF9-6EA6F6F6DBAD}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="cenario_nave_explode" ID="{1774DF2B-2CDB-4608-BADE-C69AE6BDE31F}" ShortID="309481773">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="cenario_nave_explode" ID="{038E42AE-4D01-455E-BFEC-593899A8776E}">
+									<Language>SFX</Language>
+									<AudioFile>cenario_nave_explode.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="121295341"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="cenario_nave_explode" ID="{038E42AE-4D01-455E-BFEC-593899A8776E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

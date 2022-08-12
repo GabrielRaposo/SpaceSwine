@@ -207,11 +207,14 @@
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
-		<SoundBank Id="133642231" Language="SFX" Hash="2172222110">
+		<SoundBank Id="133642231" Language="SFX" Hash="837989370">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
 			<IncludedEvents>
+				<Event Id="3298760050" Name="cenario_nave_bip_perigo" ObjectPath="\Events\Default Work Unit\Cutscenes\cenario_nave_bip_perigo" DurationType="OneShot" DurationMin="0.293855" DurationMax="0.293855"/>
+				<Event Id="3867903812" Name="cenario_nave_bip_tv" ObjectPath="\Events\Default Work Unit\Cutscenes\cenario_nave_bip_tv" DurationType="OneShot" DurationMin="1.384671" DurationMax="1.384671"/>
+				<Event Id="1147273941" Name="cenario_nave_explode" ObjectPath="\Events\Default Work Unit\Cutscenes\cenario_nave_explode" DurationType="OneShot" DurationMin="5.691066" DurationMax="5.691066"/>
 				<Event Id="1982671206" Name="cenario_passarinhos_voam" ObjectPath="\Events\Default Work Unit\Level\cenario_passarinhos_voam" DurationType="OneShot" DurationMin="0.356652" DurationMax="0.713303"/>
 				<Event Id="3223415371" Name="cenario_transicao" ObjectPath="\Events\Default Work Unit\Level\cenario_transicao" DurationType="OneShot" DurationMin="0.356652" DurationMax="0.356652"/>
 				<Event Id="3655190725" Name="cenario_vitoria" ObjectPath="\Events\Default Work Unit\Level\cenario_vitoria" DurationType="OneShot" DurationMin="0.900988" DurationMax="0.900988"/>
@@ -270,11 +273,15 @@
 				</File>
 				<File Id="78398219" Language="SFX">
 					<ShortName>ui_pager_clique_04.wav</ShortName>
-					<Path>SFX\ui_pager_clique_04_059F6BB1.wem</Path>
+					<Path>SFX\ui_pager_clique_04_41219684.wem</Path>
 				</File>
 				<File Id="119911326" Language="SFX">
 					<ShortName>ggs_gameplay_linha_recorde.wav</ShortName>
 					<Path>SFX\ggs_gameplay_linha_recorde_10C4C929.wem</Path>
+				</File>
+				<File Id="121295341" Language="SFX">
+					<ShortName>cenario_nave_explode.wav</ShortName>
+					<Path>SFX\cenario_nave_explode_10C4C929.wem</Path>
 				</File>
 				<File Id="175724304" Language="SFX">
 					<ShortName>ggs_nave_morre.wav</ShortName>
@@ -295,6 +302,10 @@
 				<File Id="192065964" Language="SFX">
 					<ShortName>gameplay_buyk_stuck_01.wav</ShortName>
 					<Path>SFX\gameplay_buyk_stuck_01_10C4C929.wem</Path>
+				</File>
+				<File Id="203295385" Language="SFX">
+					<ShortName>cenario_nave_bip_tv.wav</ShortName>
+					<Path>SFX\cenario_nave_bip_tv_10C4C929.wem</Path>
 				</File>
 				<File Id="217993848" Language="SFX">
 					<ShortName>gameplay_flor_transition.wav</ShortName>
@@ -350,7 +361,7 @@
 				</File>
 				<File Id="393854216" Language="SFX">
 					<ShortName>ui_pager_clique_01.wav</ShortName>
-					<Path>SFX\ui_pager_clique_01_327A3B16.wem</Path>
+					<Path>SFX\ui_pager_clique_01_82528F3A.wem</Path>
 				</File>
 				<File Id="432320192" Language="SFX">
 					<ShortName>gameplay_buyk_pousa_longo.wav</ShortName>
@@ -359,6 +370,10 @@
 				<File Id="491042569" Language="SFX">
 					<ShortName>gameplay_buyk_pega_item.wav</ShortName>
 					<Path>SFX\gameplay_buyk_pega_item_10C4C929.wem</Path>
+				</File>
+				<File Id="492882767" Language="SFX">
+					<ShortName>cenario_nave_bip_perigo.wav</ShortName>
+					<Path>SFX\cenario_nave_bip_perigo_10C4C929.wem</Path>
 				</File>
 				<File Id="536965891" Language="SFX">
 					<ShortName>gameplay_buyk_anda_04.wav</ShortName>
@@ -378,7 +393,7 @@
 				</File>
 				<File Id="594873839" Language="SFX">
 					<ShortName>ui_pager_clique_nota.wav</ShortName>
-					<Path>SFX\ui_pager_clique_nota_2E887A85.wem</Path>
+					<Path>SFX\ui_pager_clique_nota_23B39147.wem</Path>
 				</File>
 				<File Id="605628690" Language="SFX">
 					<ShortName>gameplay_buyk_pula_curto.wav</ShortName>
@@ -386,7 +401,7 @@
 				</File>
 				<File Id="611202276" Language="SFX">
 					<ShortName>ui_pager_clique_02.wav</ShortName>
-					<Path>SFX\ui_pager_clique_02_6D963FFB.wem</Path>
+					<Path>SFX\ui_pager_clique_02_DC31689A.wem</Path>
 				</File>
 				<File Id="640895124" Language="SFX">
 					<ShortName>ggs_ui_liga.wav</ShortName>
@@ -486,7 +501,7 @@
 				</File>
 				<File Id="1067322840" Language="SFX">
 					<ShortName>ui_pager_clique_03.wav</ShortName>
-					<Path>SFX\ui_pager_clique_03_D93FC6C8.wem</Path>
+					<Path>SFX\ui_pager_clique_03_56BE99C1.wem</Path>
 				</File>
 				<File Id="1069278590" Language="SFX">
 					<ShortName>ui_nave_fala_01.wav</ShortName>
@@ -495,17 +510,19 @@
 			</IncludedMemoryFiles>
 			<GameParameters>
 				<GameParameter Id="363529975" Name="Buyk_stuck" ObjectPath="\Game Parameters\Default Work Unit\Buyk_stuck"/>
+				<GameParameter Id="2340947590" Name="volume_cutscene" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_cutscene"/>
 				<GameParameter Id="3673881719" Name="volume_sfx" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_sfx"/>
 				<GameParameter Id="3695994288" Name="volume_master" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_master"/>
 				<GameParameter Id="3891337659" Name="volume_music" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_music"/>
 				<GameParameter Id="4083254980" Name="volume_placeholders" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_placeholders"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2467575156">
+		<SoundBank Id="1355168291" Language="SFX" Hash="4028529278">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<GameParameters>
+				<GameParameter Id="2340947590" Name="volume_cutscene" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_cutscene"/>
 				<GameParameter Id="3673881719" Name="volume_sfx" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_sfx"/>
 				<GameParameter Id="3695994288" Name="volume_master" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_master"/>
 				<GameParameter Id="3891337659" Name="volume_music" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_music"/>

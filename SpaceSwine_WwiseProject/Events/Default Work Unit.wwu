@@ -176,7 +176,7 @@
 				</Folder>
 				<Folder Name="Level" ID="{0837BF11-1908-4626-AC0F-EB03A6DCF19F}" ShortID="939438226">
 					<PropertyList>
-						<Property Name="Color" Type="int16" Value="11"/>
+						<Property Name="Color" Type="int16" Value="25"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
@@ -316,7 +316,7 @@
 				</Folder>
 				<Folder Name="UI" ID="{A605F833-337F-4E50-B645-2CF63495EEFF}" ShortID="785344164">
 					<PropertyList>
-						<Property Name="Color" Type="int16" Value="3"/>
+						<Property Name="Color" Type="int16" Value="19"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
@@ -344,25 +344,6 @@
 					</ChildrenList>
 				</Folder>
 				<Folder Name="System" ID="{CEE7E884-1059-4A36-841B-7DC8BBB2584A}" ShortID="590989639"/>
-				<Folder Name="NPCs" ID="{2F3DB8ED-FF30-4BE6-86AA-D328DC9E5520}" ShortID="565071774">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="21"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-					<ChildrenList>
-						<Event Name="gameplay_npc_fala_robozinho" ID="{1A21F0D5-79CB-4399-A565-CD3F5AA11535}">
-							<ChildrenList>
-								<Action Name="" ID="{D31C4E39-772D-4BD3-BBD4-0A13897D0405}" ShortID="67232300">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="gameplay_npc_fala_robozinho" ID="{866F4CA1-9F1C-4033-880C-08CA79C68FEB}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-					</ChildrenList>
-				</Folder>
 				<Folder Name="Minigame GGS" ID="{F13C716F-82B1-4251-BCF2-9F39C2E45F7C}" ShortID="31250332">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="15"/>
@@ -645,7 +626,7 @@
 				</Folder>
 				<Folder Name="Personagens" ID="{0ADBD128-F7D6-4009-9C13-50E993C7A7B9}" ShortID="485793408">
 					<PropertyList>
-						<Property Name="Color" Type="int16" Value="18"/>
+						<Property Name="Color" Type="int16" Value="2"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
@@ -710,6 +691,47 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="ui_robozinho_fala_tree" ID="{0BFA9E94-C401-4CF8-98BB-03669BF4C920}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Cutscenes" ID="{E994BF1C-CA00-4EFC-802D-2FB7C0B50652}" ShortID="27748643">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="21"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="cenario_nave_bip_perigo" ID="{D7C8AA1B-B09C-4F03-9913-B859D389EB53}">
+							<ChildrenList>
+								<Action Name="" ID="{E0AD3C48-3EBC-4814-8010-527316F04912}" ShortID="42771877">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cenario_nave_bip_perigo" ID="{B878D53F-407D-48BB-A59A-516DDD3FE7EA}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="cenario_nave_bip_tv" ID="{02C8761D-9E5C-48CD-9188-66D15ABF6DD3}">
+							<ChildrenList>
+								<Action Name="" ID="{E86D9DF2-1D0F-4119-80BC-D5B42C1354F6}" ShortID="292513574">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cenario_nave_bip_tv" ID="{5E347B5A-25CE-473D-A0E8-A2BBCB6A5D08}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="cenario_nave_explode" ID="{3472E752-9A72-43FF-B091-5323AA51D915}">
+							<ChildrenList>
+								<Action Name="" ID="{AAAF7E15-E25E-4A30-B17B-76F3539E3052}" ShortID="767557709">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cenario_nave_explode" ID="{1774DF2B-2CDB-4608-BADE-C69AE6BDE31F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
