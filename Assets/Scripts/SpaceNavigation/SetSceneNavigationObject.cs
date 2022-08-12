@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using RedBlueGames.Tools.TextTyper;
 using UnityEngine;
 
 public class SetSceneNavigationObject : NavigationObject
@@ -13,11 +14,16 @@ public class SetSceneNavigationObject : NavigationObject
     [SerializeField] private Transform debugShip;
     private float p2Lenght = 1.5f;
     private float p3Lenght = 0.6f;
+    private Curve animationBezier;
+    
+    [SerializeField] private GameObject navigationDot;
 
     private Vector2 p2Debug;
     private Vector2 p3Debug;
 
     private NavigationSceneManager navSceneManager;
+
+    [SerializeField]private Transform dotsParent;
     
     private void OnEnable()
     {
@@ -46,6 +52,8 @@ public class SetSceneNavigationObject : NavigationObject
             return;
         }
 
+        
+        
         navigationShip.lockControls = true;
 
         var sequence = DOTween.Sequence();
@@ -54,18 +62,27 @@ public class SetSceneNavigationObject : NavigationObject
 
         //Feedback de seleção e UI de autopilot         
         sequence.Append(selector.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.22f).OnComplete(()=>navSceneManager.BlinkAutoPilot()));
-        sequence.AppendInterval(0.8f);
+        sequence.AppendInterval(0.1f);
         
         float x = 0f;
         float shipStartRotation = navigationShip.spritesTransform.eulerAngles.z + 90f;
         Vector2 startPos = navigationShip.transform.position;
 
+        SetCurve(shipStartRotation, startPos, transform.position);
+        
+        sequence.Append(DrawDots(.3f, 10, shipStartRotation, startPos, transform.position));
+
+        sequence.AppendInterval(0.35f);
+        
         //Tween da movimentação e rotação
         sequence.Append(DOVirtual.Float(0f, 1f, 2.75f, value =>
         {
-            navigationShip.transform.position = AnimationCurvePosition(value, shipStartRotation, startPos, transform.position);
-            navigationShip.spritesTransform.transform.eulerAngles = new Vector3(0f,0f,
-                AnimationCurveRotation(value, shipStartRotation, startPos, transform.position));
+            // navigationShip.transform.position = AnimationCurvePosition(value, shipStartRotation, startPos, transform.position);
+            // navigationShip.spritesTransform.transform.eulerAngles = new Vector3(0f,0f,
+            //     AnimationCurveRotation(value, shipStartRotation, startPos, transform.position));
+            navigationShip.transform.position = animationBezier.GetPoint(value);
+            navigationShip.spritesTransform.eulerAngles = new Vector3(0f, 0f,
+                animationBezier.GetRotationAtPoint(value));
         }).SetEase(Ease.OutFlash)
             .OnComplete(() =>
             {
@@ -102,9 +119,9 @@ public class SetSceneNavigationObject : NavigationObject
         for (float i = 0f; i < 1f; i+=0.03f)
         {
             Gizmos.color = Color.yellow;
-            var from = AnimationCurvePosition(i, debugShip.eulerAngles.z+90f, debugShip.transform.position, transform.position);
-            var to = AnimationCurvePosition(i+0.03f, debugShip.eulerAngles.z+90f, debugShip.transform.position, transform.position);
-            Gizmos.DrawLine(from,to);
+            //var from = AnimationCurvePosition(i, debugShip.eulerAngles.z+90f, debugShip.transform.position, transform.position);
+            //var to = AnimationCurvePosition(i+0.03f, debugShip.eulerAngles.z+90f, debugShip.transform.position, transform.position);
+            //Gizmos.DrawLine(from,to);
         }
         
         Gizmos.color = Color.cyan;
@@ -114,34 +131,70 @@ public class SetSceneNavigationObject : NavigationObject
 
     }
 
-    private Vector2 AnimationCurvePosition(float x, float startRotation, Vector2 startPos, Vector2 endPos)
+    private Tween DrawDots(float duration, int count, float startRotation, Vector2 startPos, Vector2 endPos)
     {
-        Vector2 p1 = startPos;
+        var s = DOTween.Sequence();
+
+        float c = count;
         
+        for (int i = 0; i < count; i++)
+        {
+            int index = i;
+            s.Append(DOVirtual.DelayedCall(duration / c, () =>
+            {
+                //var pos = AnimationCurvePosition(index / c, startRotation, startPos, endPos);
+                //var pos = animationBezier.GetPoint(index / c);
+                var pos = animationBezier.GetNormalizedPoint(index / c);
+                var dot = dotsParent.GetChild(index);
+                dot.position = pos;
+                //Instantiate(navigationDot, pos, Quaternion.identity);
+            }));
+        }
+
+        return s;
+    }
+
+    private void SetCurve(float startRotation, Vector2 startPos, Vector2 endPos)
+    {
         Vector2 p2 = startPos + new Vector2(Mathg.AngleToDirection(startRotation).x,Mathg.AngleToDirection(startRotation).y) * p2Lenght;
         p2Debug = p2;
-
+        
         float side = (startPos.y < endPos.y) ? -1f : 1f;
-
+        
         Vector2 p3 = endPos + Vector2.up * p3Lenght * side;
         p3Debug = p3;
-
-        Vector2 p4 = endPos;
-
-        var pos =Mathf.Pow(1f - x, 3f) * p1
-                 + 3 * Mathf.Pow(1f - x, 2f) * x * p2
-                 + 3 * (1f - x) * Mathf.Pow(x, 2f) * p3
-                 + Mathf.Pow(x, 3f) * p4;
-
-        return pos;
+        
+        animationBezier = new Curve(startPos, p2, p3, endPos);
     }
-
-    private float AnimationCurveRotation(float x, float startRotation, Vector2 startPos, Vector2 endPos)
-    {
-        var pos = AnimationCurvePosition(x, startRotation, startPos, endPos);
-        var prevPos = AnimationCurvePosition(x - 0.1f, startRotation, startPos, endPos);
-
-        return Mathg.AngleOfTheLineBetweenTwoPoints(prevPos, pos);
-    }
+    
+    // private Vector2 AnimationCurvePosition(float x, float startRotation, Vector2 startPos, Vector2 endPos)
+    // {
+    //     Vector2 p1 = startPos;
+    //     
+    //     Vector2 p2 = startPos + new Vector2(Mathg.AngleToDirection(startRotation).x,Mathg.AngleToDirection(startRotation).y) * p2Lenght;
+    //     p2Debug = p2;
+    //
+    //     float side = (startPos.y < endPos.y) ? -1f : 1f;
+    //
+    //     Vector2 p3 = endPos + Vector2.up * p3Lenght * side;
+    //     p3Debug = p3;
+    //
+    //     Vector2 p4 = endPos;
+    //
+    //     var pos =Mathf.Pow(1f - x, 3f) * p1
+    //              + 3 * Mathf.Pow(1f - x, 2f) * x * p2
+    //              + 3 * (1f - x) * Mathf.Pow(x, 2f) * p3
+    //              + Mathf.Pow(x, 3f) * p4;
+    //
+    //     return pos;
+    // }
+    //
+    // private float AnimationCurveRotation(float x, float startRotation, Vector2 startPos, Vector2 endPos)
+    // {
+    //     var pos = AnimationCurvePosition(x, startRotation, startPos, endPos);
+    //     var prevPos = AnimationCurvePosition(x - 0.1f, startRotation, startPos, endPos);
+    //
+    //     return Mathg.AngleOfTheLineBetweenTwoPoints(prevPos, pos);
+    // }
     
 }
