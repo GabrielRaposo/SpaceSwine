@@ -13,6 +13,9 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID CENARIO_NAVE_BIP_PERIGO = 3298760050U;
+        static const AkUniqueID CENARIO_NAVE_BIP_TV = 3867903812U;
+        static const AkUniqueID CENARIO_NAVE_EXPLODE = 1147273941U;
         static const AkUniqueID CENARIO_PASSARINHOS_VOAM = 1982671206U;
         static const AkUniqueID CENARIO_TRANSICAO = 3223415371U;
         static const AkUniqueID CENARIO_VITORIA = 3655190725U;
@@ -89,6 +92,7 @@ namespace AK
     namespace GAME_PARAMETERS
     {
         static const AkUniqueID BUYK_STUCK = 363529975U;
+        static const AkUniqueID VOLUME_CUTSCENE = 2340947590U;
         static const AkUniqueID VOLUME_MASTER = 3695994288U;
         static const AkUniqueID VOLUME_MUSIC = 3891337659U;
         static const AkUniqueID VOLUME_PLACEHOLDERS = 4083254980U;
@@ -117,6 +121,7 @@ namespace AK
 
     namespace BUSSES
     {
+        static const AkUniqueID CUTSCENE = 1182958561U;
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MUSIC = 3991942870U;
         static const AkUniqueID MUSIC_PLACEHOLDER = 2342674260U;

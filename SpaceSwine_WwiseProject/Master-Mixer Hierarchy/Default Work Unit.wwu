@@ -176,6 +176,39 @@
 							</ChildrenList>
 							<ObjectLists/>
 						</Bus>
+						<Bus Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}">
+							<PropertyList>
+								<Property Name="BusVolume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{7E87C940-3AE7-44CD-A1FA-A1DA0F70809D}" ShortID="1071206751">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="volume_cutscene" ID="{07686012-4595-4FA7-A5AF-42741B4951DE}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{2CF63D49-6257-48D6-9990-204F8862F5F9}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ObjectLists/>
+						</Bus>
 					</ChildrenList>
 					<ObjectLists/>
 				</Bus>
