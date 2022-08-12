@@ -305,6 +305,74 @@
 									<ChildrenList>
 										<RandomSequenceContainer Name="gameplay_buyk_anda" ID="{8477766D-7C83-4351-BB6B-ED9A589A5EE3}" ShortID="883979929">
 											<PropertyList>
+												<Property Name="Lowpass" Type="int16">
+													<RTPCList>
+														<RTPC Name="" ID="{A8FF7693-CECF-4EED-AE23-3D1896C3D28A}" ShortID="762170774">
+															<ReferenceList>
+																<Reference Name="ControlInput">
+																	<Custom>
+																		<ModulatorLfo Name="Modulator LFO (Custom)" ID="{0F40E4C2-1C93-4951-B9A7-F60109523F4D}" ShortID="270414230">
+																			<PropertyList>
+																				<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																			</PropertyList>
+																		</ModulatorLfo>
+																	</Custom>
+																</Reference>
+															</ReferenceList>
+															<Curve Name="" ID="{79213447-D5A5-4728-9235-3C1C2701AC1F}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="65537"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>0</YPos>
+																		<Flags>21</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>1</XPos>
+																		<YPos>20</YPos>
+																		<Flags>53</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</RTPC>
+													</RTPCList>
+												</Property>
+												<Property Name="Pitch" Type="int32">
+													<RTPCList>
+														<RTPC Name="" ID="{955666E8-8F45-4E95-8823-7E533E4B5A1A}" ShortID="40862376">
+															<ReferenceList>
+																<Reference Name="ControlInput">
+																	<Custom>
+																		<ModulatorLfo Name="Modulator LFO (Custom)" ID="{DB0ABBBA-E82B-402E-9C40-2DE7D6EC8EA6}" ShortID="355114923">
+																			<PropertyList>
+																				<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																			</PropertyList>
+																		</ModulatorLfo>
+																	</Custom>
+																</Reference>
+															</ReferenceList>
+															<Curve Name="" ID="{7D257C31-BF39-411E-9615-12302C1F7605}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="65537"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>0</YPos>
+																		<Flags>21</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>1</XPos>
+																		<YPos>700</YPos>
+																		<Flags>53</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</RTPC>
+													</RTPCList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>-7</Value>
@@ -532,7 +600,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>5</Value>
+														<Value>12</Value>
 													</ValueList>
 													<RTPCList>
 														<RTPC Name="" ID="{080A5734-49FE-41A0-BAEB-A692C752ED2A}" ShortID="148398894">
@@ -556,7 +624,7 @@
 																<PointList>
 																	<Point>
 																		<XPos>0</XPos>
-																		<YPos>-7</YPos>
+																		<YPos>-4</YPos>
 																		<Flags>21</Flags>
 																	</Point>
 																	<Point>
@@ -1391,9 +1459,6 @@
 						<RandomSequenceContainer Name="ui_pager_clique" ID="{F221BF9B-ECB1-4251-8691-78D6B8A98BBA}" ShortID="397216314">
 							<PropertyList>
 								<Property Name="Lowpass" Type="int16">
-									<ValueList>
-										<Value>31</Value>
-									</ValueList>
 									<RTPCList>
 										<RTPC Name="" ID="{A69395CD-1697-4937-8976-076605B59F0E}" ShortID="928215792">
 											<ReferenceList>
@@ -1462,9 +1527,6 @@
 									</RTPCList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>10</Value>
-									</ValueList>
 									<RTPCList>
 										<RTPC Name="" ID="{87EF5CFE-1706-4E8B-8708-1C8B7EDA7C80}" ShortID="274101866">
 											<ReferenceList>
@@ -1718,6 +1780,42 @@
 							</ChildrenList>
 							<ObjectLists/>
 						</RandomSequenceContainer>
+						<Sound Name="ui_pager_clique_nota" ID="{474B1DBD-96A4-4861-BDAA-F545FA1990EB}" ShortID="839264240">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>8</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_pager_clique_nota" ID="{DD5D072F-3D6E-465E-AE78-9A61ACE1EA31}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.109465317919075"/>
+										<Property Name="FadeOutShape" Type="int16" Value="7"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.173049132947977"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>ui_pager_clique_nota.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="594873839"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_pager_clique_nota" ID="{DD5D072F-3D6E-465E-AE78-9A61ACE1EA31}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Minigame - GGS" ID="{3CC9A7A7-8508-4767-B067-9A6BEB704550}" ShortID="351372824">
