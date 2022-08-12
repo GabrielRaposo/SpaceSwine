@@ -143,7 +143,7 @@ public class CollectableInteraction : MonoBehaviour
         if (!current)
             return;
 
-        if (checkGround.OnGround || platformerCharacter.enabled) // trocar pelo estado do player
+        if (checkGround.OnGround || platformerCharacter.enabled) // -- TO-DO: trocar pelo estado do player
         {
             Vector2 direction = RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
             LaunchCurrentIntoDirection(direction.normalized);
@@ -161,7 +161,8 @@ public class CollectableInteraction : MonoBehaviour
         OnAirStall = true;
         playerAnimations.airStall = true;
 
-        Vector2 direction = (arrowSprite.transform.position - transform.position).normalized;
+        //Vector2 direction = (arrowSprite.transform.position - transform.position).normalized;
+        Vector2 direction = directionDisplay.GetDirection();
         spaceJumper.PointAndHoldIntoDirection(-direction.normalized);
 
         yield return new WaitForSeconds(airHoldDuration);

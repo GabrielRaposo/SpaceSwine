@@ -28,10 +28,21 @@ public class PlayerDirectionDisplay : MonoBehaviour
             return;
         }
 
+        this.direction = direction;
+
         if (direction == Vector2.zero)
             return;
 
         transform.eulerAngles = Vector2.SignedAngle(Vector2.up, direction) * Vector3.forward;
-        this.direction = direction;
+    }
+
+    public Vector2 GetDirection()
+    {
+        if (direction == Vector2.zero)
+        {
+            return RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
+        }
+
+        return direction;
     }
 }
