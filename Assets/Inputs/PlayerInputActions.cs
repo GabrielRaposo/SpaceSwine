@@ -410,6 +410,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""982e20e6-af34-46bf-9b2c-320f40aeec36"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -795,6 +803,28 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Other"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb1dd6f5-3662-4e4e-a3fb-cadc3d16e4b4"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eb4ac04c-a89e-41f5-b807-b7db4629fe57"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1243,6 +1273,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Start = m_UI.FindAction("Start", throwIfNotFound: true);
         m_UI_Other = m_UI.FindAction("Other", throwIfNotFound: true);
+        m_UI_Reset = m_UI.FindAction("Reset", throwIfNotFound: true);
         // Minigame
         m_Minigame = asset.FindActionMap("Minigame", throwIfNotFound: true);
         m_Minigame_Movement = m_Minigame.FindAction("Movement", throwIfNotFound: true);
@@ -1381,6 +1412,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Start;
     private readonly InputAction m_UI_Other;
+    private readonly InputAction m_UI_Reset;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1390,6 +1422,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputAction @Start => m_Wrapper.m_UI_Start;
         public InputAction @Other => m_Wrapper.m_UI_Other;
+        public InputAction @Reset => m_Wrapper.m_UI_Reset;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1414,6 +1447,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Other.started -= m_Wrapper.m_UIActionsCallbackInterface.OnOther;
                 @Other.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnOther;
                 @Other.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnOther;
+                @Reset.started -= m_Wrapper.m_UIActionsCallbackInterface.OnReset;
+                @Reset.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnReset;
+                @Reset.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnReset;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1433,6 +1469,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Other.started += instance.OnOther;
                 @Other.performed += instance.OnOther;
                 @Other.canceled += instance.OnOther;
+                @Reset.started += instance.OnReset;
+                @Reset.performed += instance.OnReset;
+                @Reset.canceled += instance.OnReset;
             }
         }
     }
@@ -1577,6 +1616,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnCancel(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
         void OnOther(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
     public interface IMinigameActions
     {

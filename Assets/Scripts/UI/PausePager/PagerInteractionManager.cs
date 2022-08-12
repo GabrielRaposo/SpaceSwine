@@ -11,6 +11,7 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] PagerAxisButtonsVisual pagerAxisButtonsVisual;
     [SerializeField] PagerConfirmationScreen confirmationScreen;
     [SerializeField] List<PagerScreen> screens;
+    [SerializeField] GameObject resetRoundButton;
     [SerializeField] UnityEvent backOnMainEvent;
 
     [Header("Keychain Interaction")]
@@ -66,31 +67,34 @@ public class PagerInteractionManager : MonoBehaviour
         //if (optionsMode && optionsBackButton)
         //    optionsBackButton.gameObject.SetActive(false);
 
-        playerInputActions = new PlayerInputActions();
-
-        navigationAction = playerInputActions.UI.Navigation;
-        navigationAction.Enable();
-
-        playerInputActions.UI.Confirm.performed += (ctx) => 
-        {               
-            if (CheckInputBlock)
-                return;
-
-            CurrentScreen.ClickInput();
-        };
-        playerInputActions.UI.Confirm.Enable();
-
-        playerInputActions.UI.Cancel.performed += (ctx) => 
+        // -- Setup de inputs
         {
-            if (CheckInputBlock)
-                return;
+            playerInputActions = new PlayerInputActions();
 
-            BackInput();
-        };
-        playerInputActions.UI.Cancel.Enable();
+            navigationAction = playerInputActions.UI.Navigation;
+            navigationAction.Enable();
 
-        shipInputAction = playerInputActions.UI.Other;
-        shipInputAction.Enable();
+            playerInputActions.UI.Confirm.performed += (ctx) => 
+            {               
+                if (CheckInputBlock)
+                    return;
+
+                CurrentScreen.ClickInput();
+            };
+            playerInputActions.UI.Confirm.Enable();
+
+            playerInputActions.UI.Cancel.performed += (ctx) => 
+            {
+                if (CheckInputBlock)
+                    return;
+
+                BackInput();
+            };
+            playerInputActions.UI.Cancel.Enable();
+
+            shipInputAction = playerInputActions.UI.Other;
+            shipInputAction.Enable();
+        }
     }
 
     private void KeychainInitiationLogic()
@@ -142,8 +146,12 @@ public class PagerInteractionManager : MonoBehaviour
             s.Kill();
 
         rt = GetComponent<RectTransform>();
+        
         SetAbsolutePosition(false);
         KeychainInitiationLogic();
+        if (resetRoundButton)
+            resetRoundButton.SetActive (RoundsManager.Instance);
+        
 
         animator.SetTrigger("Reset");
         animator.SetInteger("Slide", 1);

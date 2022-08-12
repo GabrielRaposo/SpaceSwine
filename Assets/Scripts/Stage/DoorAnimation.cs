@@ -31,7 +31,26 @@ public class DoorAnimation : MonoBehaviour
     private void ResetComponents()
     {
         if (sequence != null)
+        {
             sequence.Kill();
+
+            if (enterAKEvent != null && enterAKEvent.IsPlaying(gameObject))
+                enterAKEvent.Stop(gameObject);
+
+            PlayerCharacter player = PlayerCharacter.Instance;
+            if (!player)
+                return;
+
+            PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
+            PlayerReferences playerReferences = player.GetComponent<PlayerReferences>();
+            PlayerShaderController playerShader = player.GetComponent<PlayerShaderController>();
+
+            playerCharacter.SetPhysicsBody(true);
+            playerReferences.backlightPS.Stop();
+            playerShader.SetWhiteFade(0f);
+
+            GameManager.BlockCharacterInput = false;
+        }
 
         boxColorSwapper.RestoreColor();
         whiteCircle.enabled = false;

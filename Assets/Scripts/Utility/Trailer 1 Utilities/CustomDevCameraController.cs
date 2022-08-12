@@ -27,6 +27,7 @@ public class CustomDevCameraController : MonoBehaviour
     InputAction input1;
     InputAction input2;
 
+    #if UNITY_EDITOR
     private void OnEnable() 
     {
         if (!camT || !cameraSizeController || !cameraFocusController) 
@@ -165,4 +166,5 @@ public class CustomDevCameraController : MonoBehaviour
         //if (screenSpaceCollider)
         //    screenSpaceCollider.SetActive(true);
     }
+    #endif
 }

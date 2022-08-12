@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] InputAction saveInputAction;
     [SerializeField] InputAction resetSaveInputAction;
 
+    RoundsManager roundsManager;
     PauseSystem pauseSystem;
     PlayerInputActions playerInputActions;
     GGSConsole ggsConsole;
@@ -23,12 +24,22 @@ public class GameManager : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.UI.Start.performed += (ctx) => 
         {
-            if (BlockCharacterInput || SceneTransition.OnTransition)
+            if (BlockCharacterInput || OnTransition)
                 return;
 
             pauseSystem?.TogglePauseState();
         };
         playerInputActions.UI.Start.Enable();
+
+        playerInputActions.UI.Reset.performed += (ctx) => 
+        {
+            if (BlockCharacterInput || OnTransition || PauseSystem.OnPause)
+                return;
+
+            if (RoundsManager.Instance)
+                RoundsManager.Instance.CallReset();
+        };
+        playerInputActions.UI.Reset.Enable();
         
         #if UNITY_EDITOR
             resetInputAction.Enable();
@@ -51,9 +62,11 @@ public class GameManager : MonoBehaviour
         pauseSystem = PauseSystem.Instance; 
         ggsConsole = GGSConsole.Instance;
 
+        #if UNITY_EDITOR
         //resetInputAction.performed += (ctx) => ResetScene();
         saveInputAction.performed += (ctx) => SaveManager.SaveAllData();
         resetSaveInputAction.performed += (ctx) => SaveManager.ResetSave();
+        #endif
 
         SetupPlayer(); // Deve ocorrer no Start()
     }
@@ -99,9 +112,15 @@ public class GameManager : MonoBehaviour
         return SceneManager.GetActiveScene().buildIndex == (int) buildIndex;
     }
 
+    public static bool OnTransition
+    {
+        get { return SceneTransition.OnTransition || RoundTransition.OnTransition; }
+    }
+
     private void OnDisable() 
     {
         playerInputActions.UI.Start.Disable();
+        playerInputActions.UI.Reset.Disable();
 
         #if UNITY_EDITOR
             resetInputAction.Disable();    

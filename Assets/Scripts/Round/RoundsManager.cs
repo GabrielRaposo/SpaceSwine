@@ -19,6 +19,13 @@ public class RoundsManager : MonoBehaviour
     public static bool BlockSpawn;
     public static RoundSessionData SessionData;
 
+    public static RoundsManager Instance;
+
+    private void Awake() 
+    {
+        Instance = this;    
+    }
+
     private void Start() 
     {
         // -- Define câmera de fases de perigo
@@ -76,25 +83,16 @@ public class RoundsManager : MonoBehaviour
         //#if UNITY_EDITOR
         previousInputAction.performed += ctx => 
         {
-            if (GameManager.BlockCharacterInput)
+            if (GameManager.BlockCharacterInput || GameManager.OnTransition || PauseSystem.OnPause)
                 return;
 
             PreviousRoundLogic();
         };
         previousInputAction.Enable();
 
-        resetInputAction.performed += ctx => 
-        {
-            if (GameManager.BlockCharacterInput)
-                return;
-
-            RoundTransition.Call(ActivateCurrentIndex);
-        };
-        resetInputAction.Enable();
-
         nextInputAction.performed += ctx => 
         {
-            if (GameManager.BlockCharacterInput)
+            if (GameManager.BlockCharacterInput || GameManager.OnTransition || PauseSystem.OnPause)
                 return;
 
             if (currentIndex < rounds.Count)
@@ -159,11 +157,15 @@ public class RoundsManager : MonoBehaviour
         }
     }
 
+    public void CallReset()
+    {
+        RoundTransition.Call(ActivateCurrentIndex);
+    }
+
     private void OnDisable()
     {
         //#if UNITY_EDITOR
         previousInputAction.Disable();
-        resetInputAction.Disable();
         nextInputAction.Disable();
         //#endif
     }
