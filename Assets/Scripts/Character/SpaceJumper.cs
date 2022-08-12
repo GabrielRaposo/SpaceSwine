@@ -144,6 +144,8 @@ public class SpaceJumper : MonoBehaviour
         SetLaunchState(true, playLongJumpSound);
 
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
+        Debug.Log("direction: " + direction);
+        Debug.Log("transform.eulerAngles: " + transform.eulerAngles);
         rb.velocity = direction * speed * multiplier;
     } 
 
