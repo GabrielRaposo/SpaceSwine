@@ -473,12 +473,12 @@
 																<PointList>
 																	<Point>
 																		<XPos>0</XPos>
-																		<YPos>-11</YPos>
+																		<YPos>15</YPos>
 																		<Flags>21</Flags>
 																	</Point>
 																	<Point>
 																		<XPos>1</XPos>
-																		<YPos>0</YPos>
+																		<YPos>30</YPos>
 																		<Flags>53</Flags>
 																	</Point>
 																</PointList>
@@ -534,6 +534,40 @@
 													<ValueList>
 														<Value>5</Value>
 													</ValueList>
+													<RTPCList>
+														<RTPC Name="" ID="{080A5734-49FE-41A0-BAEB-A692C752ED2A}" ShortID="148398894">
+															<ReferenceList>
+																<Reference Name="ControlInput">
+																	<Custom>
+																		<ModulatorLfo Name="Modulator LFO (Custom)" ID="{33DC86E8-B063-4EA4-B765-EEF8FBFB9F4F}" ShortID="344009904">
+																			<PropertyList>
+																				<Property Name="LfoFrequency" Type="Real64" Value="15.58"/>
+																				<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																				<Property Name="OverrideColor" Type="bool" Value="True"/>
+																			</PropertyList>
+																		</ModulatorLfo>
+																	</Custom>
+																</Reference>
+															</ReferenceList>
+															<Curve Name="" ID="{5C2BCAEF-CF39-4676-817E-795EC4508E87}">
+																<PropertyList>
+																	<Property Name="Flags" Type="int32" Value="3"/>
+																</PropertyList>
+																<PointList>
+																	<Point>
+																		<XPos>0</XPos>
+																		<YPos>-7</YPos>
+																		<Flags>21</Flags>
+																	</Point>
+																	<Point>
+																		<XPos>1</XPos>
+																		<YPos>0</YPos>
+																		<Flags>53</Flags>
+																	</Point>
+																</PointList>
+															</Curve>
+														</RTPC>
+													</RTPCList>
 												</Property>
 											</PropertyList>
 											<ReferenceList>
@@ -1354,36 +1388,6 @@
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
-						<Sound Name="ui_menu_hover" ID="{B80B98C8-E0E3-4E2B-B4E3-5DF96B0EA552}" ShortID="804569360">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Astropig oinc fofo_slice 2" ID="{D1840AF9-3A24-4BD1-9DF8-7848E4BFE83F}">
-									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.227908350399876"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.200114649131597"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimBegin" Type="Real64" Value="0.331259743264135"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.58418242480546"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>Astropig oinc fofo_slice 2.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="363192587"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Astropig oinc fofo_slice 2" ID="{D1840AF9-3A24-4BD1-9DF8-7848E4BFE83F}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<RandomSequenceContainer Name="ui_pager_clique" ID="{F221BF9B-ECB1-4251-8691-78D6B8A98BBA}" ShortID="397216314">
 							<PropertyList>
 								<Property Name="Lowpass" Type="int16">
