@@ -43,6 +43,7 @@ public class PagerInteractionManager : MonoBehaviour
 
     PlayerInputActions playerInputActions;
     InputAction navigationAction;
+    InputAction confirmAction;
     InputAction shipInputAction;
 
     private void Awake() 
@@ -74,14 +75,16 @@ public class PagerInteractionManager : MonoBehaviour
             navigationAction = playerInputActions.UI.Navigation;
             navigationAction.Enable();
 
-            playerInputActions.UI.Confirm.performed += (ctx) => 
-            {               
-                if (CheckInputBlock)
-                    return;
+            confirmAction = playerInputActions.UI.Confirm;
+            //confirmAction.performed += (ctx) => 
+            //{               
+            //    if (CheckInputBlock)
+            //        return;
 
-                CurrentScreen.ClickInput();
-            };
-            playerInputActions.UI.Confirm.Enable();
+            //    CurrentScreen.ClickInput();
+
+            //};
+            confirmAction.Enable();
 
             playerInputActions.UI.Cancel.performed += (ctx) => 
             {
@@ -242,7 +245,10 @@ public class PagerInteractionManager : MonoBehaviour
             return;
 
         Vector2 navigationInput = navigationAction.ReadValue<Vector2>();
-        pagerAxisButtonsVisual.SetButtons(navigationInput);
+        if (confirmAction.ReadValue<float>() > .5f)
+            navigationInput = Vector2.right;
+        
+        pagerAxisButtonsVisual.SetAxisButtons(navigationInput);
 
         if (navigationInput == Vector2.zero)
             delay = 0;
@@ -274,9 +280,14 @@ public class PagerInteractionManager : MonoBehaviour
             }
             else 
             {
-                if (navigationInput.x < .75f)
+                if (navigationInput.x < .75f) // -- Custom back input
                 {
                     BackInput();
+                    delay = maxDelay;
+                }
+                else if (navigationInput.x > .75f) // -- Custom forward input
+                {
+                    CurrentScreen.ClickInput();
                     delay = maxDelay;
                 }
             }
@@ -350,7 +361,7 @@ public class PagerInteractionManager : MonoBehaviour
     private void OnDisable() 
     {
         navigationAction.Disable();
-        playerInputActions.UI.Confirm.Disable();
+        confirmAction.Disable();
         playerInputActions.UI.Cancel.Disable();
         shipInputAction.Disable();
 

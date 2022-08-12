@@ -23,7 +23,7 @@ public class PagerAxisButtonsVisual : MonoBehaviour
         }
     }
 
-    public void SetButtons (Vector2 axis)
+    public void SetAxisButtons (Vector2 axis)
     {
         topButton.SetActive (axis.y <= 0);
         lowerButton.SetActive (axis.y >= 0);
