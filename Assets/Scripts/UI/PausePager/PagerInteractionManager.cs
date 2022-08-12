@@ -242,7 +242,7 @@ public class PagerInteractionManager : MonoBehaviour
             return;
 
         Vector2 navigationInput = navigationAction.ReadValue<Vector2>();
-        pagerAxisButtonsVisual.ReadOnline(navigationInput);
+        pagerAxisButtonsVisual.SetButtons(navigationInput);
 
         if (navigationInput == Vector2.zero)
             delay = 0;
