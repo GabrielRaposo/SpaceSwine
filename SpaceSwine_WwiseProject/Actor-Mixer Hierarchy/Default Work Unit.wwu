@@ -534,38 +534,6 @@
 													<ValueList>
 														<Value>5</Value>
 													</ValueList>
-													<RTPCList>
-														<RTPC Name="" ID="{650288D9-B952-48A4-BCAB-2C7C75A5E9F1}" ShortID="320465846">
-															<ReferenceList>
-																<Reference Name="ControlInput">
-																	<Custom>
-																		<ModulatorLfo Name="Modulator LFO (Custom)" ID="{1D0B4C94-8688-4056-ACF7-7D9B6196D984}" ShortID="1031509844">
-																			<PropertyList>
-																				<Property Name="LfoWaveform" Type="int32" Value="5"/>
-																			</PropertyList>
-																		</ModulatorLfo>
-																	</Custom>
-																</Reference>
-															</ReferenceList>
-															<Curve Name="" ID="{2F668801-0B4E-43E4-8AC5-786321464917}">
-																<PropertyList>
-																	<Property Name="Flags" Type="int32" Value="3"/>
-																</PropertyList>
-																<PointList>
-																	<Point>
-																		<XPos>0</XPos>
-																		<YPos>-200</YPos>
-																		<Flags>21</Flags>
-																	</Point>
-																	<Point>
-																		<XPos>1</XPos>
-																		<YPos>3.63164</YPos>
-																		<Flags>53</Flags>
-																	</Point>
-																</PointList>
-															</Curve>
-														</RTPC>
-													</RTPCList>
 												</Property>
 											</PropertyList>
 											<ReferenceList>
@@ -578,6 +546,10 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="gameplay_buyk_pousa_curto" ID="{5CE89F73-3399-45B0-98E3-31B629C123EF}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0119408071513769"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>gameplay_buyk_pousa_curto.wav</AudioFile>
 													<MediaIDList>
