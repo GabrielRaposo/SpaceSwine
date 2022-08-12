@@ -21,7 +21,7 @@ public class NavigationShip : MonoBehaviour
 
     private NavigationObject selectedObject;
 
-    private bool lockControls;
+    public static bool ControlsLocked;
 
     private void OnEnable()
     {
@@ -33,6 +33,8 @@ public class NavigationShip : MonoBehaviour
         movementInputAction = _playerInputActions.Player.Movement;
         _playerInputActions.Player.Jump.performed += ctx => { ConfirmAction();};
         _playerInputActions.Player.Throw.performed += ctx => { ConfirmAction();};
+
+        ControlsLocked = false;
     }
 
     private void OnDisable()
@@ -40,11 +42,13 @@ public class NavigationShip : MonoBehaviour
         _playerInputActions.Player.Movement.Disable();
         _playerInputActions.Player.Jump.Disable();
         _playerInputActions.Player.Throw.Disable();
+
+        ControlsLocked = true;
     }
 
     public void LockControls()
     {
-        lockControls = true;
+        ControlsLocked = true;
         OnDisable();
     }
 
@@ -74,7 +78,7 @@ public class NavigationShip : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(lockControls) return;
+        if(ControlsLocked) return;
         
         Vector2 input = movementInputAction.ReadValue<Vector2>();
         movDirection += input * aceleration;

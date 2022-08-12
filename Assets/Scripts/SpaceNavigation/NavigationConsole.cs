@@ -56,8 +56,9 @@ public class NavigationConsole : MonoBehaviour
 
         playerInputActions.UI.Start.performed += (ctx) =>
         {
-            if (!turnedOn)
+            if (!turnedOn || NavigationShip.ControlsLocked)
                 return;
+
             ToggleConsoleState();
         };
         playerInputActions.UI.Start.Enable();
