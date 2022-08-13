@@ -232,7 +232,7 @@ public class PagerInteractionManager : MonoBehaviour
                 callShipEvent?.Invoke();
                 return;
             }
-            holdCount += Time.fixedUnscaledDeltaTime;    
+            holdCount += Time.unscaledDeltaTime;    
         }
         if (callCountFillDisplay)
             callCountFillDisplay.fillAmount = holdCount / holdDuration;
