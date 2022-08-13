@@ -320,5 +320,13 @@ public class ShipDialogueBox : MonoBehaviour
             textTyper.Skip();
     }
 
+    public void StopType()
+    {
+        if (textTyper.IsTyping)
+            textTyper.Skip();
+
+        textTyper.StopAllCoroutines();
+    }
+
     #endregion
 }
