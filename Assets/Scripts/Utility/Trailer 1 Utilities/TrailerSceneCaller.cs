@@ -20,6 +20,7 @@ public class TrailerSceneCaller : MonoBehaviour
     [Header("WWise")]
     [SerializeField] AK.Wwise.Event screenLightUpAKEvent;
     [SerializeField] AK.Wwise.Event explosionAKEvent;
+    [SerializeField] AK.Wwise.RTPC intensityAKEvent;
 
     [Header("References")]
     [SerializeField] PlayerCharacter player;
@@ -232,26 +233,40 @@ public class TrailerSceneCaller : MonoBehaviour
 
     private IEnumerator ScreenFadeOut()
     {
-        yield return new WaitForSeconds(1.0f);
+        float t1 = 1.0f;
+        float t2 = 1.5f;
+        float t3 = 3.55f;
+
+        DOVirtual.Float
+        (
+            from: 0, to: 100, duration: t1 + t2 + t3,
+            (f) =>  
+            {
+                //Debug.Log("f: " + f);
+                if (intensityAKEvent != null)
+                    intensityAKEvent.SetGlobalValue(f);
+            }
+        );
+
+        yield return new WaitForSeconds(t1);
 
         if (introWarnings)
             introWarnings.CallInOrder();
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(t2);
 
-        float t = 3.55f;
         if (redCanvasGroup)
         {
             //redCanvasGroup.DOFade(1, duration: t)
             //    .OnComplete( () => {} );
             DOVirtual.Float
             (
-                from: 0, to: 1, duration: t,
+                from: 0, to: 1, duration: t3,
                 f => redCanvasGroup.alpha = redCanvasCurve.Evaluate(f)
             );
         }
 
-        yield return new WaitForSeconds(t);
+        yield return new WaitForSeconds(t3);
 
         if (endtextS != null)
             endtextS.Kill();
