@@ -23,12 +23,16 @@ public class PlayerTransitionState : MonoBehaviour
 
     private void Start() 
     {
+        Debug.Log("PlayerTransitionState - Start");
+        Debug.Log("EnterState: " + EnterState);
+
         switch (EnterState)
         {
             case State.Teleport:
                 
                 TeleportIn ( action: () => 
                 {
+                    Debug.Log("Exit intro state");
                     playerAnimations.ExitTransitionState();
 
                     playerCharacter.SetPhysicsBody(true);
@@ -62,6 +66,8 @@ public class PlayerTransitionState : MonoBehaviour
 
     public void TeleportIn (UnityAction action)
     {
+        Debug.Log("-- TeleportIn();");
+
         playerCharacter.DisableAllInteractions();
         playerAnimations.SetTransitionState( AnimationState.TRANSITION_TELEPORT_IN );
 

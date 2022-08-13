@@ -11,7 +11,7 @@ public class PlayerInteractor : MonoBehaviour
     CheckGround checkGround;   
     List <Interactable> interactableList = new List<Interactable>();
 
-    private void Start()
+    private void Awake()
     {
         platformerCharacter = GetComponent<PlatformerCharacter>();
         checkGround = GetComponent<CheckGround>();

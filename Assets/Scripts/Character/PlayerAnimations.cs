@@ -25,7 +25,7 @@ public class PlayerAnimations : MonoBehaviour
 
     bool onTransition;
 
-    void Start()
+    private void Awake() 
     {
         animator = GetComponentInChildren<Animator>();
 
@@ -33,7 +33,6 @@ public class PlayerAnimations : MonoBehaviour
         {
             animator.runtimeAnimatorController = shipOverrideController;
         }
-
     }
 
     private void OnEnable() 
@@ -121,6 +120,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void SetTransitionState (string animationState)
     {
+        Debug.Log("SetTransitionState");
         ChangeAnimationState(animationState);
         onTransition = true;
     }

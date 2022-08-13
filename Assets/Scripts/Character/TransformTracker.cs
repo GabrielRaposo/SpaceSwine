@@ -13,7 +13,7 @@ public class TransformTracker : MonoBehaviour
     List<float> rotations;
     Vector2 previousPos = Vector2.zero;
 
-    void Start()
+    void Awake()
     {
         positions = new List<Vector2>();
         rotations = new List<float>();

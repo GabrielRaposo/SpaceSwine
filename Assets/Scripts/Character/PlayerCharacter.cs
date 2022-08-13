@@ -56,6 +56,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void ResetStates()
     {
+        Debug.Log("PlayerCharacter.ResetStates();");
         if (coll) coll.enabled = true;
         if (playerInput) playerInput.enabled = true;
 
@@ -67,6 +68,8 @@ public class PlayerCharacter : MonoBehaviour
 
     public void DisableAllInteractions()
     { 
+        Debug.Log("DisableAllInteractions()");
+
         if (playerInput) playerInput.enabled = false;
 
         if (platformerCharacter)
@@ -99,6 +102,8 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SpawnAt (Vector2 position, float rotation = 0)
     {
+        Debug.Log("PlayerCharacter.SpawnAt()");
+
         ResetStates();
 
         transform.position = position;

@@ -6,12 +6,24 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] List<Vector3> points;
 
-    public static int index = 0;
+    private static int index = 0;
+    public static int Index
+    {
+        get { return index; }
+        set { index = value; Debug.Log("set index = " + index); }
+    }
+    
+    
     public static SpawnManager Instance;
 
     void Awake()
     {
         Instance = this;
+    }
+
+    private void OnEnable() 
+    {
+        Debug.Log("index: " + index);    
     }
 
     public Vector3 GetSpawnPoint ()
@@ -25,6 +37,7 @@ public class SpawnManager : MonoBehaviour
 
         return point;
     }
+
 
     private void OnDrawGizmosSelected() 
     {

@@ -146,8 +146,8 @@ public class SpaceJumper : MonoBehaviour
         //direction = new Vector2(Mathf.RoundToInt(direction.x), Mathf.RoundToInt(direction.y) );
 
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
-        Debug.Log("direction: " + direction);
-        Debug.Log("transform.eulerAngles: " + transform.eulerAngles);
+        //Debug.Log("direction: " + direction);
+        //Debug.Log("transform.eulerAngles: " + transform.eulerAngles);
         rb.velocity = direction * speed * multiplier;
     } 
 

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GoToSceneTriggerRegion : MonoBehaviour
 {
-    [SerializeField] PlaylistScriptableObject nextScenePlaylist;
     [SerializeField] BuildIndex targetScene;
+    [SerializeField] int nextSceneSpawnPoint = -1;
+    [SerializeField] PlaylistScriptableObject nextScenePlaylist;
     bool activated;
 
     private void OnTriggerEnter2D(Collider2D collision) 
@@ -16,7 +17,11 @@ public class GoToSceneTriggerRegion : MonoBehaviour
         if (activated)
             return;
 
+        if (nextSceneSpawnPoint > -1)
+            SpawnManager.Index = nextSceneSpawnPoint;
+        
         // -- TO-DO: gameManager.SetPlaylistOnStart
+
         GameManager.GoToScene(targetScene);
         activated = true;   
     }
