@@ -19,6 +19,7 @@ public class SoundtrackManager : MonoBehaviour
     [SerializeField] InputAction stopMusicTestInput;
     
     PlaylistScriptableObject playlist;
+    List<int> playOrder;
 
     static AK.Wwise.Event soundtrackEvent;
 
@@ -44,7 +45,43 @@ public class SoundtrackManager : MonoBehaviour
         }
 
         if (playlist == null)
-            playlist = fullPlaylist;
+        {
+            playlist = fullPlaylist; 
+            MakePlaylistPlayOrder();
+        }
+    }
+
+    private void MakePlaylistPlayOrder()
+    {
+        playOrder = new List<int>();
+
+        if (playlist == null)
+            return;
+
+        // -- Playlist linear
+        if (!playlist.shuffle) 
+        {
+            for (int i = 0; i < playlist.Count; i++) playOrder.Add(i);
+            return;
+        }
+
+        // -- Playlist com shuffle
+        List<int> aux = new List<int>();
+        for (int i = 0; i < playlist.Count; i++) aux.Add(i);
+
+        for (int i = 0; i < playlist.Count; i++)
+        {
+            int random = 0;
+            if (aux.Count > 1) 
+                random = Random.Range(0, aux.Count);
+            int randomizedIndex = aux[random];
+            aux.RemoveAt(random);
+
+            playOrder.Add(randomizedIndex);
+            Debug.Log("randomizedIndex: " + randomizedIndex);
+        }
+
+        currentIndex = 0;
     }
 
     private void Start() 
@@ -103,6 +140,7 @@ public class SoundtrackManager : MonoBehaviour
             return;
 
         this.playlist = playlist;
+        MakePlaylistPlayOrder();
 
         if (soundtrackEvent != null && soundtrackEvent.IsPlaying(gameObject))
         {
@@ -123,9 +161,14 @@ public class SoundtrackManager : MonoBehaviour
         if (playlist == null)
             return;
 
-        // -- TO-DO: opção de shuffle
+        int orderedIndex = currentIndex;
+        if (playOrder != null) // -- Interação com shuffle
+        {
+            orderedIndex = playOrder[currentIndex % playOrder.Count];
+        }
+        orderedIndex %= playlist.Count;
 
-        MusicDataScriptableObject musicData = playlist[currentIndex % playlist.Count];
+        MusicDataScriptableObject musicData = playlist[orderedIndex];
         soundtrackEvent = musicData.akEvent;
 
         if (soundtrackEvent != null)

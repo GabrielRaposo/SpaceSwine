@@ -6,7 +6,7 @@ public class SetPlaylistOnStart : MonoBehaviour
 {
     [SerializeField] PlaylistScriptableObject playlist;
 
-    public static bool Block = true;
+    public static bool Block;
 
     void Start()
     {
