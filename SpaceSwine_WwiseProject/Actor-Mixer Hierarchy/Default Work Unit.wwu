@@ -2134,7 +2134,7 @@
 														<Flags>5</Flags>
 													</Point>
 													<Point>
-														<XPos>10</XPos>
+														<XPos>50</XPos>
 														<YPos>400</YPos>
 														<Flags>0</Flags>
 													</Point>
@@ -2998,6 +2998,12 @@
 					<ChildrenList>
 						<Sound Name="cenario_nave_bip_perigo" ID="{B878D53F-407D-48BB-A59A-516DDD3FE7EA}" ShortID="1069049632">
 							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>3</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Pitch" Type="int32">
 									<RTPCList>
 										<RTPC Name="" ID="{9F95DCE5-F741-4F07-A800-A98DC77AA09F}" ShortID="434759921">
@@ -3025,6 +3031,11 @@
 											</Curve>
 										</RTPC>
 									</RTPCList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<RTPCList>
@@ -3125,6 +3136,12 @@
 						</Sound>
 						<Sound Name="cenario_nave_bip_perigo_reverb" ID="{88435EEC-C7D1-491C-8B40-067C5BB28D18}" ShortID="705885371">
 							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>3</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Pitch" Type="int32">
 									<RTPCList>
 										<RTPC Name="" ID="{A186224E-B0A8-4B79-9564-22772F1853DD}" ShortID="406077080">
@@ -3152,6 +3169,11 @@
 											</Curve>
 										</RTPC>
 									</RTPCList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<RTPCList>
