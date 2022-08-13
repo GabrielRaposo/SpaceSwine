@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using RedBlueGames.Tools.TextTyper;
 
 public class TrailerSceneCaller : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class TrailerSceneCaller : MonoBehaviour
     [SerializeField] ShowIntroWarnings introWarnings;
     [SerializeField] HoldToSkipScene holdToSkipScene;
     [SerializeField] AnimationCurve redCanvasCurve;
+    [SerializeField] TextTyper shipTextTyper;
 
     Sequence sequence;
     Sequence endtextS;
@@ -200,10 +202,16 @@ public class TrailerSceneCaller : MonoBehaviour
         shipDialogueBox.transform.DOPunchScale(Vector3.one * .8f, duration: .3f);
         shipDialogueBox.transform.DOLocalRotate(Vector3.forward * 3, duration: .1f);
 
+
+        // -- Chamada dos textos de perigo
         if (warningTextsID.Count < 2)
             return;
 
-        // -- Chamada dos textos de perigo
+        if (shipTextTyper)
+        {
+            shipTextTyper.SetTypeSpeedValues(printDelaySetting: .01f, punctuationDelayMultiplier: 1f);
+        }
+
         endtextS = DOTween.Sequence();
 
         (bool isValid, string value) warningText = LocalizationManager.GetShipText( warningTextsID[0] );
@@ -211,7 +219,7 @@ public class TrailerSceneCaller : MonoBehaviour
         
         for (int i = 1; i < warningTextsID.Count; i++)
         {
-            endtextS.AppendInterval( 1f );
+            endtextS.AppendInterval( 1.1f );
 
             (bool isValid, string value) localWarningText = LocalizationManager.GetShipText(warningTextsID[i]);
             endtextS.AppendCallback( () => shipDialogueBox.Type(localWarningText .value) );
