@@ -78,6 +78,8 @@ public class RaposUtil
 
     public static void ClearLog() //you can copy/paste this code to the bottom of your script
     {
+        return;
+
         #if UNITY_EDITOR
 
         var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));

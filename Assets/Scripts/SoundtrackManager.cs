@@ -78,7 +78,7 @@ public class SoundtrackManager : MonoBehaviour
             aux.RemoveAt(random);
 
             playOrder.Add(randomizedIndex);
-            Debug.Log("randomizedIndex: " + randomizedIndex);
+            //Debug.Log("randomizedIndex: " + randomizedIndex);
         }
 
         currentIndex = 0;

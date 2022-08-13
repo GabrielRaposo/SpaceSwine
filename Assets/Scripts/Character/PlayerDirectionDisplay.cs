@@ -40,9 +40,15 @@ public class PlayerDirectionDisplay : MonoBehaviour
     {
         if (direction == Vector2.zero)
         {
-            return RaposUtil.RotateVector(Vector2.up, transform.eulerAngles.z);
+            float angle = (transform.eulerAngles.y == 0) ?
+                transform.eulerAngles.z : 
+                360 - transform.eulerAngles.z;
+            //Debug.Log("angle: " + angle);
+
+            return RaposUtil.RotateVector(Vector2.up, angle);
         }
 
+        //Debug.Log($"x: {direction.x.ToString("0.00000")}, y: {direction.y.ToString("0.00000")}");
         return direction;
     }
 }
