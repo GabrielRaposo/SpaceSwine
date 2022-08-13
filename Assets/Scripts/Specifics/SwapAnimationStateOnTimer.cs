@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwapAnimationStateOnTimer : MonoBehaviour
 {
+    [SerializeField] float firstDuration;
     [SerializeField] float duration;
     [SerializeField] List<int> stateValues;
     
@@ -27,7 +28,13 @@ public class SwapAnimationStateOnTimer : MonoBehaviour
     IEnumerator AnimationLoop()
     {
         index = 0;
-        
+        animator.SetInteger("State", stateValues[index]);
+
+        yield return new WaitForSeconds(firstDuration);
+
+        index = (index + 1) % stateValues.Count;
+        animator.SetInteger("State", stateValues[index]);
+
         while (true)
         {
             yield return new WaitForSeconds(duration);

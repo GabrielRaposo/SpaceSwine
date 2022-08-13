@@ -17,6 +17,10 @@ public class TrailerSceneCaller : MonoBehaviour
     [SerializeField] List<string> trailerDialogueID;
     [SerializeField] List<string> warningTextsID;
     
+    [Header("WWise")]
+    [SerializeField] AK.Wwise.Event screenLightUpAKEvent;
+    [SerializeField] AK.Wwise.Event explosionAKEvent;
+
     [Header("References")]
     [SerializeField] PlayerCharacter player;
     [SerializeField] GameObject bedBuyk;
@@ -37,7 +41,7 @@ public class TrailerSceneCaller : MonoBehaviour
     Sequence sequence;
     Sequence endtextS;
 
-    public static bool AutoStart = false;
+    public static bool AutoStart = true;
 
     #if UNITY_EDITOR
     private void OnEnable() 
@@ -98,7 +102,13 @@ public class TrailerSceneCaller : MonoBehaviour
 
         // -- Mostra a caixa de texto
         float t1 = .5f;
-        sequence.AppendCallback( () => shipScreens.SetTrigger("TurnOn") );
+        sequence.AppendCallback( () => 
+        {
+            shipScreens.SetTrigger("TurnOn");
+
+            if (screenLightUpAKEvent != null)
+                screenLightUpAKEvent.Post(gameObject);
+        });
         sequence.AppendCallback( () => relaxingBuyk.GetComponentInChildren<Animator>().SetTrigger("LockTop") );
         sequence.AppendCallback( () => shipDialogueBox.SetShown(true, t1) );
         sequence.AppendInterval( t1 + .3f);
@@ -175,6 +185,9 @@ public class TrailerSceneCaller : MonoBehaviour
         redLight.SetActive(true);
         shipScreens.SetTrigger("Break");
 
+        if (explosionAKEvent != null)
+            explosionAKEvent.Post(gameObject);
+
         Camera cam = Camera.main;
         if (cam)
         {
@@ -189,6 +202,7 @@ public class TrailerSceneCaller : MonoBehaviour
         if (warningTextsID.Count < 2)
             return;
 
+        // -- Chamada dos textos de perigo
         endtextS = DOTween.Sequence();
 
         (bool isValid, string value) warningText = LocalizationManager.GetShipText( warningTextsID[0] );
@@ -238,6 +252,12 @@ public class TrailerSceneCaller : MonoBehaviour
         }
 
         yield return new WaitForSeconds(t);
+
+        if (endtextS != null)
+            endtextS.Kill();
+
+        if (shipDialogueBox)
+            shipDialogueBox.StopType();
 
         if (blackImage)
             blackImage.enabled = true;
