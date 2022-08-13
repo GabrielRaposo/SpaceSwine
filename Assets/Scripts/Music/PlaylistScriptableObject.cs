@@ -6,6 +6,8 @@ using Malee.List;
 [CreateAssetMenu (fileName = "Playlist", menuName = "ScriptableObjects/Playlist Data") ]
 public class PlaylistScriptableObject : ScriptableObject
 {
+    public bool shuffle;
+
 	//[Reorderable(paginate = true, pageSize = 2)]
 	[Reorderable] public TrackList list;
 

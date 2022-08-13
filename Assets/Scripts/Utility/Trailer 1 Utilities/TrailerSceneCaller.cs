@@ -44,7 +44,7 @@ public class TrailerSceneCaller : MonoBehaviour
     Sequence sequence;
     Sequence endtextS;
 
-    public static bool AutoStart = true;
+    public static bool AutoStart = false;
 
     #if UNITY_EDITOR
     private void OnEnable() 

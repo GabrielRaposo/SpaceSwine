@@ -27,6 +27,10 @@ public class TransitionSafetyToDanger : MonoBehaviour
     [SerializeField] CanvasGroup safetyStripes;
     [SerializeField] CanvasGroup dangerStripes;
 
+    [Header("Playlists")]
+    [SerializeField] PlaylistScriptableObject safetyPlaylist;
+    [SerializeField] PlaylistScriptableObject dangerPlaylist;
+
     Sequence mainSequence;
     private static readonly int Play = Animator.StringToHash("Play");
 
@@ -136,7 +140,6 @@ public class TransitionSafetyToDanger : MonoBehaviour
         asyncOperation.allowSceneActivation = true;
         DOTween.KillAll();
         yield return new WaitForEndOfFrame();
-
 
         // -- Fade-out da tela de transição
         mainSequence = DOTween.Sequence();

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GoToSceneTriggerRegion : MonoBehaviour
 {
+    [SerializeField] PlaylistScriptableObject nextScenePlaylist;
     [SerializeField] BuildIndex targetScene;
     bool activated;
 
@@ -15,6 +16,7 @@ public class GoToSceneTriggerRegion : MonoBehaviour
         if (activated)
             return;
 
+        // -- TO-DO: gameManager.SetPlaylistOnStart
         GameManager.GoToScene(targetScene);
         activated = true;   
     }
