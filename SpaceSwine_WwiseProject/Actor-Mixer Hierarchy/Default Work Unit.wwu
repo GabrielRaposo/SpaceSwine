@@ -2117,6 +2117,35 @@
 								</Property>
 								<Property Name="Pitch" Type="int32">
 									<RTPCList>
+										<RTPC Name="" ID="{33C3F525-E278-4346-96E7-6C3333A4B483}" ShortID="806810969">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{B99F933C-DDFE-431A-A73D-3E17844E5F43}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>0</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>10</XPos>
+														<YPos>400</YPos>
+														<Flags>0</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>448</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
 										<RTPC Name="" ID="{9F8C97DE-2CE0-43F0-B6F4-9F713A687FFA}" ShortID="1053714933">
 											<ReferenceList>
 												<Reference Name="ControlInput">
@@ -2968,6 +2997,64 @@
 					</PropertyList>
 					<ChildrenList>
 						<Sound Name="cenario_nave_bip_perigo" ID="{B878D53F-407D-48BB-A59A-516DDD3FE7EA}" ShortID="1069049632">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<RTPCList>
+										<RTPC Name="" ID="{9F95DCE5-F741-4F07-A800-A98DC77AA09F}" ShortID="434759921">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{40DBCFCE-F219-4D8C-9049-39B4256B0E02}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>0</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>300</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{94CA0796-E3BE-418D-8E74-E33702DFD578}" ShortID="78767010">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{48654EE3-7E15-4D76-A959-77A909EF6662}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>0</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>-200</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -3034,6 +3121,87 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="cenario_nave_explode" ID="{038E42AE-4D01-455E-BFEC-593899A8776E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="cenario_nave_bip_perigo_reverb" ID="{88435EEC-C7D1-491C-8B40-067C5BB28D18}" ShortID="705885371">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<RTPCList>
+										<RTPC Name="" ID="{A186224E-B0A8-4B79-9564-22772F1853DD}" ShortID="406077080">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{095A4398-8C6C-4A29-85A5-AADC920C25BF}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>0</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>300</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{9CC2164E-8341-402B-AB35-F2F1D3F87906}" ShortID="787903901">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{C14800A4-E44E-4D9A-AACC-590B8E09D649}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="cenario_nave_bip_perigo_reverb" ID="{6097BCD8-DB41-4D07-A1A9-C8B128E93ED1}">
+									<Language>SFX</Language>
+									<AudioFile>cenario_nave_bip_perigo_reverb.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="31496269"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="cenario_nave_bip_perigo_reverb" ID="{6097BCD8-DB41-4D07-A1A9-C8B128E93ED1}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
