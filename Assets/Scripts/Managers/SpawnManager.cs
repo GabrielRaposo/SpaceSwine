@@ -21,11 +21,6 @@ public class SpawnManager : MonoBehaviour
         Instance = this;
     }
 
-    private void OnEnable() 
-    {
-        Debug.Log("index: " + index);    
-    }
-
     public Vector3 GetSpawnPoint ()
     {
         Vector3 point = Vector3.zero;

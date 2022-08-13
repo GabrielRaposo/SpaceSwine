@@ -8,7 +8,6 @@ using DG.Tweening;
 public class SoundtrackManager : MonoBehaviour
 {
     [SerializeField] PlaylistScriptableObject fullPlaylist;
-    //[SerializeField] List<AK.Wwise.Event> randomPlaylist;
 
     [Header("Parameters")]
     [SerializeField] AK.Wwise.RTPC masterParameter;
@@ -100,13 +99,31 @@ public class SoundtrackManager : MonoBehaviour
 
     public void SetPlaylist (PlaylistScriptableObject playlist)
     {
-        Stop();
+        if (this.playlist == playlist)
+            return;
+
         this.playlist = playlist;
+
+        if (soundtrackEvent != null && soundtrackEvent.IsPlaying(gameObject))
+        {
+            float duration = 1.0f;
+            FadeOutMusic(duration);
+            RaposUtil.WaitSeconds(this, duration, () => PlayTrack());
+            
+            return;
+        }
+
+        PlayTrack();        
     }
 
     public void PlayTrack ()
     {
         Stop();
+
+        if (playlist == null)
+            return;
+
+        // -- TO-DO: opção de shuffle
 
         MusicDataScriptableObject musicData = playlist[currentIndex % playlist.Count];
         soundtrackEvent = musicData.akEvent;
@@ -135,6 +152,8 @@ public class SoundtrackManager : MonoBehaviour
     {
         if (soundtrackEvent != null)
             soundtrackEvent.Stop(gameObject);
+
+        soundtrackEvent = null;
 
         IsPlaying = false;
     }

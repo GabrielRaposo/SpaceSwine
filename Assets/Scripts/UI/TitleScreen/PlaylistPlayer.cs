@@ -153,7 +153,7 @@ public class PlaylistPlayer : MonoBehaviour
 
         soundtrackManager.OnTrackPlayedEvent += SetupOnTrackEvent;
         soundtrackManager.SetPlaylist(playlist);
-        PlayCurrent();
+        //PlayCurrent();
     }
 
     private void OnDestroy() 

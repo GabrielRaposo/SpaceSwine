@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     GGSConsole ggsConsole;
 
     public static bool BlockCharacterInput;
+    public static PlaylistScriptableObject CurrentPlaylist; 
 
     private void OnEnable() 
     {
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
         #endif
 
         SetupPlayer(); // Deve ocorrer no Start()
+        SetupPlaylist();
     }
 
     private void SetupPlayer()
@@ -86,6 +88,18 @@ public class GameManager : MonoBehaviour
 
         Vector3 spawnPosition = spawnManager.GetSpawnPoint();
         playerObject.transform.position = spawnPosition;
+    }
+
+    private void SetupPlaylist()
+    {
+        if (CurrentPlaylist == null)
+            return;
+
+        SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
+        if (!soundtrackManager)
+            return;
+
+        soundtrackManager.SetPlaylist(CurrentPlaylist);
     }
 
     public static void GoToScene (BuildIndex buildIndex)

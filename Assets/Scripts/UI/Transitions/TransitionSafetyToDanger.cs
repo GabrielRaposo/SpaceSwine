@@ -27,7 +27,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
     [SerializeField] CanvasGroup safetyStripes;
     [SerializeField] CanvasGroup dangerStripes;
 
-    [Header("Playlists")]
+    [Header("Playlists - TEMP: sistematizar depois")]
     [SerializeField] PlaylistScriptableObject safetyPlaylist;
     [SerializeField] PlaylistScriptableObject dangerPlaylist;
 
@@ -64,6 +64,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
     {
         SceneTransition.OnTransition = true;
         RoundsManager.BlockSpawn = true;
+        SetPlaylistOnStart.Block = true;
         bool done = false;
 
         if (mainSequence != null)
@@ -127,7 +128,9 @@ public class TransitionSafetyToDanger : MonoBehaviour
         mainSequence.AppendCallback( () => 
         {
             if (soundtrackManager)
-                soundtrackManager.SkipTrack(1);            
+            {
+                soundtrackManager.SetPlaylist(safetyToDanger ? dangerPlaylist : safetyPlaylist );
+            }
         } );
         mainSequence.AppendInterval(2.0f);
         mainSequence.OnComplete( () => done = true );
@@ -154,6 +157,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
         RoundsManager.BlockSpawn = false;
         gameObject.SetActive(false);
         SceneTransition.OnTransition = false;
+        SetPlaylistOnStart.Block = false; 
     }
 
     private Sequence SwitchStripes(bool toDanger)
