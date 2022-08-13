@@ -68,6 +68,7 @@ public class PagerInteractionManager : MonoBehaviour
         if (optionsMode) i = 2;
 
         GoToScreen ( i );
+        callScreen.SetActive(false); 
 
         // -- Setup de inputs
         {
@@ -121,7 +122,6 @@ public class PagerInteractionManager : MonoBehaviour
             s.Kill();
         SetAbsolutePosition(shown: true);
         animator.SetTrigger("Reset");
-
         optionsMode = true;
 
         OnFocus = true;
@@ -129,6 +129,7 @@ public class PagerInteractionManager : MonoBehaviour
 
         if (optionsBackButton)
             optionsBackButton.OverrideInteractionEvent(backCall);
+        callScreen.SetActive(false); 
     }
     public void SetAbsolutePosition (bool shown)
     {
