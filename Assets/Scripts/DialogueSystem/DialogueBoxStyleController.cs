@@ -51,7 +51,11 @@ public class DialogueBoxStyleController : MonoBehaviour
 
         textDisplay.color = style.textColor;
         textDisplay.fontSize = style.fontSize;
+        textDisplay.enableAutoSizing = style.autoSize;
         textDisplay.font = style.fontAsset;
+        textDisplay.horizontalAlignment = style.horizontalAlignment;
+        textDisplay.verticalAlignment = style.verticalAlignment;
+        
 
         nameBoxObject.SetActive(style.showNameBox);
 

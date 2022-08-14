@@ -24,6 +24,7 @@ public class PlaylistPlayer : MonoBehaviour
     [Header("References")]
     [SerializeField] RectTransform mainAnchor;
     [SerializeField] TextMeshProUGUI screenLabel;
+    [SerializeField] TextMeshProUGUI pressAnykeyDisplay;
 
     [HideInInspector] public bool OnFocus;
 
@@ -57,9 +58,6 @@ public class PlaylistPlayer : MonoBehaviour
             if (!OnFocus || SceneTransition.OnTransition)
                 return;
 
-            if (!playerMode)
-                return;
-
             Vector2 navigationInput = ctx.ReadValue<Vector2>();
 
             if (Mathf.Abs( navigationInput.y ) > .9f)
@@ -67,6 +65,9 @@ public class PlaylistPlayer : MonoBehaviour
                 ExitState();
                 return;
             }
+
+            if (!playerMode)
+                return;
 
             if (Mathf.Abs( navigationInput.x ) != 0)
             {
@@ -109,6 +110,9 @@ public class PlaylistPlayer : MonoBehaviour
 
     private void ExitState()
     {
+        if (pressAnykeyDisplay)
+            pressAnykeyDisplay.enabled = false;
+
         if (titleStateManager)
             titleStateManager.SetMenuState();
 

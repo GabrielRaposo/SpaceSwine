@@ -24,8 +24,8 @@ public class TutorialTriggerRegion : MonoBehaviour
 
         if (tutorialTextBox)
         {
-            
             (bool valid, string text) localizedData = LocalizationManager.GetStoryText(textID);
+
             if (!localizedData.valid)
                 return;
 
