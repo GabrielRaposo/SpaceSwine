@@ -20,7 +20,7 @@ public class SaveManager : MonoBehaviour
         //Debug.Log("Path: " + path);
 
         currentSave = new SaveFile();
-        currentSave = Load();
+        //currentSave = Load();
 
         safety = 0;
 

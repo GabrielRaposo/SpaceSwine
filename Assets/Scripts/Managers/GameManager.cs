@@ -52,10 +52,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (!SaveManager.Initiated)
-        {
-            SaveManager.Load();
-        }
+        //if (!SaveManager.Initiated)
+        //{
+        //    SaveManager.Load();
+        //}
 
         #if UNITY_EDITOR
         CustomEditorInicialization.Initialize();

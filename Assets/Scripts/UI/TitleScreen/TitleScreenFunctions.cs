@@ -13,8 +13,8 @@ public class TitleScreenFunctions : MonoBehaviour
 
     void Start()
     {
-        if (!SaveManager.Initiated)
-            SaveManager.Load();
+        //if (!SaveManager.Initiated)
+        //    SaveManager.Load();
     }
 
     public void PlayInput()
