@@ -19,7 +19,7 @@ public class TrailerSceneCaller : MonoBehaviour
     [SerializeField] List<string> warningTextsID;
     
     [Header("WWise")]
-    [SerializeField] AK.Wwise.Event screenLightUpAKEvent;
+    //[SerializeField] AK.Wwise.Event screenLightUpAKEvent;
     [SerializeField] AK.Wwise.Event explosionAKEvent;
     [SerializeField] AK.Wwise.RTPC intensityAKEvent;
 
@@ -28,7 +28,7 @@ public class TrailerSceneCaller : MonoBehaviour
     [SerializeField] GameObject bedBuyk;
     [SerializeField] ShipDialogueBox shipDialogueBox;
     [SerializeField] GalaxyParallaxTester galaxyParallax;
-    [SerializeField] Animator shipScreens;
+    [SerializeField] ShipScreensOverlay shipScreens;
     [SerializeField] ScreenShakeCaller screenShake;
     [SerializeField] GameObject relaxingBuyk;
     [SerializeField] GameObject startledBuyk;
@@ -61,9 +61,12 @@ public class TrailerSceneCaller : MonoBehaviour
 
     private void Start() 
     {
+        if (intensityAKEvent != null)
+            intensityAKEvent.SetGlobalValue(0);
+
         if (!AutoStart)
         {
-            shipScreens.gameObject.SetActive(false);
+            //shipScreens.gameObject.SetActive(false);
             if (galaxyParallax)
                 galaxyParallax.enabled = false;
             if (holdToSkipScene)
@@ -107,10 +110,7 @@ public class TrailerSceneCaller : MonoBehaviour
         float t1 = .5f;
         sequence.AppendCallback( () => 
         {
-            shipScreens.SetTrigger("TurnOn");
-
-            if (screenLightUpAKEvent != null)
-                screenLightUpAKEvent.Post(gameObject);
+            shipScreens.TurnOn();
         });
         sequence.AppendCallback( () => relaxingBuyk.GetComponentInChildren<Animator>().SetTrigger("LockTop") );
         sequence.AppendCallback( () => shipDialogueBox.SetShown(true, t1) );
@@ -186,7 +186,7 @@ public class TrailerSceneCaller : MonoBehaviour
 
         smokePS.Play();
         redLight.SetActive(true);
-        shipScreens.SetTrigger("Break");
+        shipScreens.Break();
 
         if (explosionAKEvent != null)
             explosionAKEvent.Post(gameObject);
@@ -298,7 +298,8 @@ public class TrailerSceneCaller : MonoBehaviour
         if (player)
             player.SetHiddenState(true);
 
-        shipScreens.SetTrigger("TurnOn");
+        //shipScreens.SetTrigger("TurnOn");
+        shipScreens.TurnOn();
     }
 
     public void CallNextScene()

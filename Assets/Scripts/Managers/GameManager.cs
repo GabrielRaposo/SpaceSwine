@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
 
     public static void GoToScene (BuildIndex buildIndex)
     {
-        SceneTransition.LoadScene((int) buildIndex, SceneTransition.TransitionType.WhiteFade);
+        SceneTransition.LoadScene((int) buildIndex, SceneTransition.TransitionType.BlackFade);
     }
 
     public static void ResetScene()
