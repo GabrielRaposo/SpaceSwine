@@ -313,7 +313,7 @@ public class ShipDialogueBox : MonoBehaviour
             textTyper.Skip();
 
         textTyper.PrintCompleted.RemoveAllListeners();
-        skippable = (afterInputAction != null);
+        skippable = false;
 
         textDisplaySimulator.text = text;
         textDisplay.text = string.Empty;
@@ -344,11 +344,6 @@ public class ShipDialogueBox : MonoBehaviour
             }
         
             CallTyper(text);
-            
-            if (afterInputAction == null)
-                return;
-
-            textTyper.PrintCompleted.AddListener( ()  => DisplaySkipIcon(true) ); // -- TO-DO: libera input de passar de texto 
         });
     }
 
@@ -384,6 +379,12 @@ public class ShipDialogueBox : MonoBehaviour
 
         if (instantText)
             textTyper.Skip();
+
+        if (afterInputAction != null)
+        {
+            skippable = true;
+            textTyper.PrintCompleted.AddListener( ()  => DisplaySkipIcon(true) ); // -- TO-DO: libera input de passar de texto 
+        }
     }
 
     public void StopType()

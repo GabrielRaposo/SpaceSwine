@@ -22,6 +22,7 @@ public class InteractableShipComponent : Interactable
     [SerializeField] Color iconColorOff;
     [SerializeField] Color iconColorOn;
 
+    bool highlighted;
     Sequence highlightSequence;
 
     private void Awake() 
@@ -76,6 +77,13 @@ public class InteractableShipComponent : Interactable
 
     protected override void HighlightState (bool value) 
     {
+        if (GameManager.OnDialogue)
+            value = false;
+
+        if (highlighted == value)
+            return;
+        highlighted = value;
+
         if (highlightSequence != null)
             highlightSequence.Kill();
         highlightSequence = DOTween.Sequence();

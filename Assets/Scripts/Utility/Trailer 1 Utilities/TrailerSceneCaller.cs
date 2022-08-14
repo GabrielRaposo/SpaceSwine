@@ -69,6 +69,7 @@ public class TrailerSceneCaller : MonoBehaviour
             //shipScreens.gameObject.SetActive(false);
             if (galaxyParallax)
                 galaxyParallax.enabled = false;
+
             if (holdToSkipScene)
                 holdToSkipScene.enabled = false;
 

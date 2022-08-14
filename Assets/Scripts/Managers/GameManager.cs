@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     GGSConsole ggsConsole;
 
     public static bool BlockCharacterInput;
+    public static bool OnDialogue;
     public static PlaylistScriptableObject CurrentPlaylist; 
 
     private void OnEnable() 

@@ -2,21 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using DG.Tweening;
 
 public class ShipDialogueManager : MonoBehaviour
 {
+    [Header("Start Scene")]
     [SerializeField] ShipNPCData startDialogueData;
+    [SerializeField] float startUpDelay;
+    [SerializeField] float lookAtScreensDuration;
+    [SerializeField] Transform lookAtTarget;
 
     [Header("References")]
+    [SerializeField] PlayerCharacter playerCharacter;
     [SerializeField] ShipDialogueBox dialogueBox;
     [SerializeField] ShipShuttleSystem shuttleSystem;
 
-    //public static int StartDialogueIndex = -1; // -- Chama "-1" se não tiver diálogo no início
     public static int StartDialogueIndex = 0; // -- Chama "-1" se não tiver diálogo no início
+
+    Sequence startSequence;
 
     void Start()
     {
-        if (!dialogueBox || !shuttleSystem)
+        if (!playerCharacter || !dialogueBox || !shuttleSystem || TrailerSceneCaller.AutoStart)
         {
             enabled = false;
             return;
@@ -33,6 +40,8 @@ public class ShipDialogueManager : MonoBehaviour
         if (startDialogueData == null)
             return;
 
+        GameManager.OnDialogue = true;
+
         shuttleSystem.AfterStartAction = () => 
         {
             CallDialogueOnStart();
@@ -45,11 +54,19 @@ public class ShipDialogueManager : MonoBehaviour
         if (dialogueGroups.Count < 1)
             return;
 
-        SetupForScene (startDialogueData);
-
-        dialogueBox.SetShown(true);
-
-        SetDialogueGroup (startDialogueData, dialogueGroups[StartDialogueIndex % dialogueGroups.Count]);
+        startSequence = DOTween.Sequence();
+        startSequence.AppendInterval(startUpDelay);
+        startSequence.Append( SetupForScene (startDialogueData) );
+        startSequence.AppendInterval(lookAtScreensDuration);
+        startSequence.AppendCallback
+        (
+            () => dialogueBox.SetShown(true)
+        );
+        startSequence.AppendInterval(.5f);
+        startSequence.OnComplete
+        (
+            () => SetDialogueGroup (startDialogueData, dialogueGroups[StartDialogueIndex % dialogueGroups.Count])
+        );
     }
 
     private void SetDialogueGroup (ShipNPCData dialogueData, DialogueGroup dialogueGroup, int index = 0)
@@ -65,9 +82,11 @@ public class ShipDialogueManager : MonoBehaviour
         }
         else // -- Termina a sessão de diálogos 
         {
-            ResumeOnScene(dialogueData);
             dialogueBox.SetShown(false);
+            ResumeOnScene(dialogueData);
+
             StartDialogueIndex = -1;
+            GameManager.OnDialogue = false;
             return;
         }
 
@@ -83,13 +102,20 @@ public class ShipDialogueManager : MonoBehaviour
 
         dialogueBox.Type (data.text, delay: .5f, instantText: false, afterInputAction);
     }
-    private void SetupForScene (ShipNPCData data)
+    private Sequence SetupForScene (ShipNPCData data)
     {
+        Sequence s = DOTween.Sequence();
+
         switch (data.sceneType)
         {
             case ShipSceneType.TurnOnScreensAndTalk:
+                PlatformerCharacter platformerCharacter = playerCharacter.GetComponent<PlatformerCharacter>();
+                if (platformerCharacter)
+                    s.AppendCallback( () => platformerCharacter.LookAtTarget(lookAtTarget != null ? lookAtTarget : transform) );
                 break;
         }
+
+        return s;
     }
 
     private void ResumeOnScene (ShipNPCData data)
@@ -97,6 +123,7 @@ public class ShipDialogueManager : MonoBehaviour
         switch (data.sceneType)
         {
             case ShipSceneType.TurnOnScreensAndTalk:
+                shuttleSystem.RestorePlayerControls();
                 break;
         }
     }

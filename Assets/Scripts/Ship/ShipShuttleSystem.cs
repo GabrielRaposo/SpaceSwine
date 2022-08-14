@@ -83,6 +83,8 @@ public class ShipShuttleSystem : MonoBehaviour
                     screensOverlay.TurnOn();
 
                 playerCharacter.SetPhysicsBody(true);
+                playerCharacter.enabled = true;
+                platformerCharacter.enabled = true;
 
                 if (AfterStartAction == null) 
                 {
@@ -97,9 +99,7 @@ public class ShipShuttleSystem : MonoBehaviour
 
     public void RestorePlayerControls()
     {
-        playerCharacter.enabled = true;
         playerInput.enabled = true;
-        platformerCharacter.enabled = true;
     }
 
     public void ExitOnShuttle()
