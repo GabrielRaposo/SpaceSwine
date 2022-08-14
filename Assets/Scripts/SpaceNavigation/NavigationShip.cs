@@ -23,8 +23,12 @@ public class NavigationShip : MonoBehaviour
 
     public static bool ControlsLocked;
 
+    private static Vector2 previousPostion = new Vector2(0f, 330f-1.28f);
+
     private void OnEnable()
     {
+        transform.position = previousPostion;
+        
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Movement.Enable();
         _playerInputActions.Player.Jump.Enable();
@@ -78,6 +82,7 @@ public class NavigationShip : MonoBehaviour
 
     private void FixedUpdate()
     {
+        previousPostion = transform.position;
         if(ControlsLocked) return;
         
         Vector2 input = movementInputAction.ReadValue<Vector2>();

@@ -70,29 +70,46 @@ public class SetSceneNavigationObject : NavigationObject
         float shipStartRotation = navigationShip.spritesTransform.eulerAngles.z + 90f;
         Vector2 startPos = navigationShip.transform.position;
 
-        SetCurve(shipStartRotation, startPos, transform.position);
-        
-        sequence.Append(DrawDots(.3f, 10, shipStartRotation, startPos, transform.position));
-
-        sequence.AppendInterval(0.35f);
-        
-        //Tween da movimentação e rotação
-        sequence.Append(DOVirtual.Float(0f, 1f, 2.75f, value =>
+        //Animação curta ou longa
+        if (Vector2.Distance(startPos, transform.position) < 0.7f)
         {
-            navigationShip.transform.position = animationBezier.GetPoint(value);
-            navigationShip.spritesTransform.eulerAngles = new Vector3(0f, 0f,
-                animationBezier.GetRotationAtPoint(value));
-        }).SetEase(Ease.OutFlash)
-            .OnComplete(() =>
-            {
-                //Mostra UI de aterrisagem no final
-                navSceneManager.StopBlinkAutoPilot();
-                navSceneManager.DisplayLandingSign();
-            })
-        );
+            var angle = Mathg.AngleOfTheLineBetweenTwoPoints(new Vector2(transform.position.x, transform.position.y), startPos)-180f;
+            sequence.Append(
+                navigationShip.spritesTransform.DORotate(new Vector3(0f,0f, angle),1.3f));
+            sequence.Join(navigationShip.transform.DOMove(transform.position, 1.3f).OnComplete(
+                () =>
+                {
+                    //Mostra UI de aterrisagem no final
+                    navSceneManager.StopBlinkAutoPilot();
+                    navSceneManager.DisplayLandingSign();    
+                }));
+        }
+        else
+        {
+            SetCurve(shipStartRotation, startPos, transform.position);
         
-        Debug.Log("euler z:" + navigationShip.spritesTransform.transform.eulerAngles.z);
+            sequence.Append(DrawDots(.3f, 10, shipStartRotation, startPos, transform.position));
 
+            sequence.AppendInterval(0.35f);
+        
+            //Tween da movimentação e rotação
+            sequence.Append(DOVirtual.Float(0f, 1f, 2.75f, value =>
+                {
+                    navigationShip.transform.position = animationBezier.GetPoint(value);
+                    navigationShip.spritesTransform.eulerAngles = new Vector3(0f, 0f,
+                        animationBezier.GetRotationAtPoint(value));
+                }).SetEase(Ease.OutFlash)
+                .OnComplete(() =>
+                {
+                    //Mostra UI de aterrisagem no final
+                    navSceneManager.StopBlinkAutoPilot();
+                    navSceneManager.DisplayLandingSign();
+                })
+            );    
+        }
+        
+        
+        
         sequence.AppendInterval(2.5f);
 
         //Setta Cena e fecha
