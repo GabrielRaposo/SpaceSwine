@@ -223,6 +223,9 @@ public class CollectableInteraction : MonoBehaviour
     {
         playerAnimations.holding = false;
 
+        if (current == null)
+            return;
+
         current.transform.position = transform.position;
 
         Rigidbody2D rb = current.GetComponent<Rigidbody2D>();
@@ -236,7 +239,6 @@ public class CollectableInteraction : MonoBehaviour
         HierarchyController hierarchyController = current.GetComponent<HierarchyController>();
         if (hierarchyController)
             hierarchyController.SetParentToRound();
-            //hierarchyController.SetParent(null);
 
         CollectableThrowable collectableThrowable = current.GetComponent<CollectableThrowable>();
         if (collectableThrowable)
