@@ -102,6 +102,27 @@ public static class Vector2Extension
     {
         return new Vector2 (v.x, y);        
     }
+
+    public static Vector2 To8Directions(this Vector2 v)
+    {
+        float threshold = .5f;
+        Vector2 result = Vector2.zero;
+        if (v.x != 0)
+        {
+            if (v.x > threshold)
+                result = result.SetX (1);
+            if (v.x < -threshold)
+                result = result.SetX (-1);
+        }
+        if (v.y != 0)
+        {
+            if (v.y > threshold)
+                result = result.SetY (1);
+            if (v.y < -threshold)
+                result = result.SetY (-1);
+        }
+        return result;
+    } 
 }
 
 public static class ShaderExtensions

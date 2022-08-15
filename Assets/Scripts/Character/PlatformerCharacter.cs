@@ -16,6 +16,7 @@ public class PlatformerCharacter : SidewaysCharacter
     [Header("Dynamic Input Values")]
     [SerializeField] bool dynamicControls;
     [SerializeField] [Range(0f, 1f)] float dynamicInputThreshold;
+    [SerializeField] [Range(0, 30)] int holdAnchorDuration;
 
     [Header("References")]
     [SerializeField] Transform visualAnchor;
@@ -40,7 +41,7 @@ public class PlatformerCharacter : SidewaysCharacter
     Vector2 heldInput;
     float moveInputRotationAnchor;
     float lastValidAnchor;
-
+    int holdAnchorCount;
 
     float horizontalSpeed;
     float verticalSpeed;
@@ -68,7 +69,7 @@ public class PlatformerCharacter : SidewaysCharacter
     private void OnEnable() 
     {
         heldInput = Vector2.zero;    
-        moveInputRotationAnchor = lastValidAnchor = 0;
+        moveInputRotationAnchor = lastValidAnchor = holdAnchorCount = 0;
         horizontalSpeed = 0;
     }
 
@@ -154,14 +155,33 @@ public class PlatformerCharacter : SidewaysCharacter
         if (rawInput != Vector2.zero) 
         {
             // -- Se o input não é zero, ou é diferente do anterior, ou ele estava anteriormente nulo: troca a âncora
-            if (heldInput == Vector2.zero || heldInput != rawInput)
+            /**
+            if (  
+                    ( heldInput == Vector2.zero        && holdAnchorCount < 1 ) || 
+                    ( !IsTooClose(heldInput, rawInput) && holdAnchorCount < 1 ) ||
+                    IsTooClose(heldInput, rawInput)
+               )
+            **/
+            if ( (heldInput == Vector2.zero || !IsTooClose(heldInput, rawInput)) && holdAnchorCount < 1)
+            {
                 moveInputRotationAnchor = transform.eulerAngles.z;
+            }
+            if (IsTooClose(heldInput, rawInput))
+            {
+                moveInputRotationAnchor = transform.eulerAngles.z;
+            }
             anchor = moveInputRotationAnchor;
-
             heldInput = rawInput;
+
+            holdAnchorCount = holdAnchorDuration; 
         } 
         else
+        {
             heldInput = Vector2.zero;
+
+            if (holdAnchorCount > 0)
+                holdAnchorCount--;
+        }
 
         Vector2 output = FilterThroughAnchor(rawInput, anchor);
 
@@ -184,6 +204,18 @@ public class PlatformerCharacter : SidewaysCharacter
             lastValidAnchor = moveInputRotationAnchor;
 
         return output;
+    }
+
+    private bool IsTooClose(Vector2 A, Vector2 B)
+    {
+        A = A.To8Directions();
+        B = B.To8Directions();
+
+        // -- TO-DO: verificar com ângulos
+        if ( A.x == -B.x || A.y == -B.y )
+            return false;
+
+        return true;
     }
 
     private Vector2 FilterThroughAnchor (Vector2 rawInput, float anchor)
