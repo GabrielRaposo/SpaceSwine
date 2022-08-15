@@ -64,7 +64,7 @@ public class NavigationConsole : MonoBehaviour
         playerInputActions.UI.Start.Enable();
     }
 
-    private void SetTurnedOn (bool value) 
+    public void SetTurnedOn (bool value) 
     {
         turnedOn = value;
         GameManager.BlockCharacterInput = value;

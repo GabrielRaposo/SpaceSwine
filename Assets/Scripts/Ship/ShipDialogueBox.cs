@@ -213,9 +213,9 @@ public class ShipDialogueBox : MonoBehaviour
 
     #region TRANSITION
 
-    public void SetShown (bool value, float duration = .5f)
+    public void SetShown (bool value, float duration = .5f, bool forceOut = false)
     {
-        if (shown == value)
+        if (shown == value && !forceOut)
             return;
 
         if (showSequence != null)

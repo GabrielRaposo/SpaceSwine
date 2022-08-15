@@ -23,7 +23,7 @@ public class PlayerTransitionState : MonoBehaviour
 
     private void Start() 
     {
-        Debug.Log("PlayerTransitionState - EnterState: " + EnterState);
+        //Debug.Log("PlayerTransitionState - EnterState: " + EnterState);
 
         switch (EnterState)
         {

@@ -81,13 +81,20 @@ public class NavigationSceneManager : MonoBehaviour
         SetShipTeleportScene(sceneIndex);
         if (_navigationConsole)
             _navigationConsole.ToggleConsoleState();
+        
+        // -- TEMP
+
+        if (_navigationConsole)
+            _navigationConsole.SetTurnedOn(false);
+
+        GameManager.GoToScene((BuildIndex)sceneIndex);
     }
 
     //TODO: mudar pra fazer por save
     private void SetShipTeleportScene(int sceneIndex)
     {
         NavigationConsole.ShipTeleportSceneIndex = sceneIndex;
-        Debug.Log($"Setting scene: {NavigationConsole.ShipTeleportSceneIndex}");
+        //Debug.Log($"Setting scene: {NavigationConsole.ShipTeleportSceneIndex}");
     }
     
 }

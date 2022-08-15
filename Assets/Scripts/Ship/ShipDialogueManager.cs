@@ -17,7 +17,7 @@ public class ShipDialogueManager : MonoBehaviour
     [SerializeField] ShipDialogueBox dialogueBox;
     [SerializeField] ShipShuttleSystem shuttleSystem;
 
-    public static int StartDialogueIndex = 0; // -- Chama "-1" se não tiver diálogo no início
+    public static int StartDialogueIndex = -1; // -- Chama "-1" se não tiver diálogo no início
 
     Sequence startSequence;
 
@@ -82,11 +82,7 @@ public class ShipDialogueManager : MonoBehaviour
         }
         else // -- Termina a sessão de diálogos 
         {
-            dialogueBox.SetShown(false);
-            ResumeOnScene(dialogueData);
-
-            StartDialogueIndex = -1;
-            GameManager.OnDialogue = false;
+            EndDialogue(dialogueData);
             return;
         }
 
@@ -94,14 +90,25 @@ public class ShipDialogueManager : MonoBehaviour
         (bool isValid, string text) data = LocalizationManager.GetShipText( dialogueGroup[index % dialogueGroup.Count] );
         if (!data.isValid)
         {
-            dialogueBox.SetShown(false);
+            EndDialogue (dialogueData, forceOut: true);
             return;
         }
 
-        // -- TO-DO: tratar tags do texto
-
         dialogueBox.Type (data.text, delay: .5f, instantText: false, afterInputAction);
     }
+
+    private void EndDialogue (ShipNPCData dialogueData, bool forceOut = false)
+    {
+        if (!forceOut)
+            dialogueBox.SetShown(false);
+        else 
+            dialogueBox.SetShown(false, duration: .5f, forceOut: true);
+        ResumeOnScene(dialogueData);
+
+        StartDialogueIndex = -1;
+        GameManager.OnDialogue = false;
+    }
+
     private Sequence SetupForScene (ShipNPCData data)
     {
         Sequence s = DOTween.Sequence();
