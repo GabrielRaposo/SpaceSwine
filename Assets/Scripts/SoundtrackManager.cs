@@ -136,7 +136,7 @@ public class SoundtrackManager : MonoBehaviour
 
     public void SetPlaylist (PlaylistScriptableObject playlist)
     {
-        if (this.playlist == playlist)
+        if (this.playlist == playlist && this.playlist != fullPlaylist)
             return;
 
         this.playlist = playlist;
@@ -178,6 +178,22 @@ public class SoundtrackManager : MonoBehaviour
         IsPlaying = true;
 
         StopAllCoroutines();
+    }
+
+    public (string fileName, int currentIndex) GetTrackData()
+    {
+        if (playlist == null)
+            return (string.Empty, 0);
+
+        int orderedIndex = currentIndex;
+        if (playOrder != null) // -- Interação com shuffle
+        {
+            orderedIndex = playOrder[currentIndex % playOrder.Count];
+        }
+        orderedIndex %= playlist.Count;
+
+        MusicDataScriptableObject musicData = playlist[orderedIndex];
+        return (musicData.fileName, currentIndex);
     }
 
     public void SkipTrack(int direction)

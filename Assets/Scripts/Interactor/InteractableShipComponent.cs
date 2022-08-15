@@ -62,7 +62,7 @@ public class InteractableShipComponent : Interactable
             case ShipAction.Chill:
 
                 if (RestLoopManager.Instance)
-                    RestLoopManager.Instance.Setup();
+                    RestLoopManager.Instance.TurnOn();
 
                 break;
             

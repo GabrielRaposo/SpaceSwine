@@ -40,10 +40,14 @@ public class PlaylistPlayer : MonoBehaviour
     SoundtrackManager soundtrackManager;
     PlayerInputActions playerInputActions;
     TitleStateManager titleStateManager;
+    RestLoopManager restLoopManager;
+
+    public static bool CutsceneMode;
 
     private void Awake() 
     {
-        titleStateManager = GetComponentInParent<TitleStateManager>();    
+        titleStateManager = GetComponentInParent<TitleStateManager>();
+        restLoopManager = GetComponentInParent<RestLoopManager>();
 
         SetAbsolutePosition (visible: false);
     }
@@ -116,6 +120,9 @@ public class PlaylistPlayer : MonoBehaviour
         if (titleStateManager)
             titleStateManager.SetMenuState();
 
+        if (restLoopManager)
+            restLoopManager.TurnOff();
+
         SetPlayerState(false);
     }
 
@@ -156,8 +163,14 @@ public class PlaylistPlayer : MonoBehaviour
         }
 
         soundtrackManager.OnTrackPlayedEvent += SetupOnTrackEvent;
-        soundtrackManager.SetPlaylist(playlist);
-        //PlayCurrent();
+        if (!CutsceneMode)
+        {
+            soundtrackManager.SetPlaylist(playlist);
+        }
+        CutsceneMode = false;
+
+        var data = soundtrackManager.GetTrackData();
+        SetupOnTrackEvent(data.fileName, data.currentIndex);
     }
 
     private void OnDestroy() 
