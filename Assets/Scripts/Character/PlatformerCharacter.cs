@@ -205,6 +205,7 @@ public class PlatformerCharacter : SidewaysCharacter
             {
                 output = FilterThroughAnchor(rawInput, anchor, customThrehold: 0);
             }
+            /**
             //else if (output != Vector2.zero) // -- Se o input ainda está perpendicular demais, tenta se mover com os verticais
             //{
             //    float angleWithRaw = Vector2.SignedAngle(transform.up, output);
@@ -221,6 +222,7 @@ public class PlatformerCharacter : SidewaysCharacter
             //    }
             //    output = FilterThroughAnchor(rawInput, lastValidAnchor); // -- Faz o movimento com o último válido
             //}
+            **/
         }
         else
             lastValidAnchor = moveInputRotationAnchor;
@@ -234,9 +236,19 @@ public class PlatformerCharacter : SidewaysCharacter
         A = A.To8Directions();
         B = B.To8Directions();
 
-        // -- TO-DO: verificar com ângulos
-        if ( A.x == -B.x || A.y == -B.y )
+        if (A.x == -B.x || A.y == -B.y)
             return false;
+
+        //float angleA = Vector2.SignedAngle(Vector2.up, A);
+        //if (angleA < 360) angleA += 360;
+        //angleA %= 360;
+
+        //float angleB = Vector2.SignedAngle(Vector2.up, B);
+        //if (angleB < 360) angleB += 360;
+        //angleB %= 360;
+
+        //if (Mathf.Abs(angleA - angleB) > 90)
+        //    return false;
 
         return true;
     }
@@ -254,7 +266,7 @@ public class PlatformerCharacter : SidewaysCharacter
         return output;
     }
 
-    private Vector2 FilterThroughAnchor (Vector2 rawInput, float anchor, float customThrehold = 0)
+    private Vector2 FilterThroughAnchor (Vector2 rawInput, float anchor, float customThrehold)
     {
         Vector2 anchoredInput = RaposUtil.RotateVector(rawInput, -anchor);
 
