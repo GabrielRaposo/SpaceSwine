@@ -162,11 +162,11 @@ public class PlatformerCharacter : SidewaysCharacter
                     IsTooClose(heldInput, rawInput)
                )
             **/
-            if ( (heldInput == Vector2.zero || !IsTooClose(heldInput, rawInput)) && holdAnchorCount < 1)
+            if ( (heldInput == Vector2.zero || !IsCloseEnough(heldInput, rawInput)) && holdAnchorCount < 1)
             {
                 moveInputRotationAnchor = transform.eulerAngles.z;
             }
-            if (IsTooClose(heldInput, rawInput))
+            if (heldInput != rawInput && IsCloseEnough(heldInput, rawInput))
             {
                 moveInputRotationAnchor = transform.eulerAngles.z;
             }
@@ -185,28 +185,51 @@ public class PlatformerCharacter : SidewaysCharacter
 
         Vector2 output = FilterThroughAnchor(rawInput, anchor);
 
-        if (output.x == 0) // -- Se o player está no threshold de "inválido"
+        if (output.x == 0) // -- Se o player está no threshold de "inválido" do X
         {
             // -- Se estiver no setor norte do planeta, usa 0 como lastValidAnchor
-            float roundedAngle = transform.eulerAngles.z % 360f; 
+            float roundedAngle = transform.eulerAngles.z % 360f;
             float angleOffset = 95f;
-            if ( roundedAngle <= angleOffset || roundedAngle >= 360 - angleOffset)
+            if ( roundedAngle <= angleOffset || roundedAngle >= 360 - angleOffset )
             {
                 lastValidAnchor = 0;
             }
             
             output = FilterThroughAnchor(rawInput, lastValidAnchor); // -- Faz o movimento com o último válido
 
-            if (output.x != 0) // -- Se não estiver mais no threshold inválido, 
+            if (output.x != 0) // -- Se não estiver mais no threshold inválido, guarda o novo anchor
+            {
                 moveInputRotationAnchor = lastValidAnchor;
+            }
+            else if (output != Vector2.zero)
+            {
+                output = FilterThroughAnchor(rawInput, anchor, customThrehold: 0);
+            }
+            //else if (output != Vector2.zero) // -- Se o input ainda está perpendicular demais, tenta se mover com os verticais
+            //{
+            //    float angleWithRaw = Vector2.SignedAngle(transform.up, output);
+            //    Debug.Log("angleWithRaw: " + angleWithRaw );
+            //    if (angleWithRaw < 0)
+            //    {
+            //        float a = 270 * (roundedAngle <= angleOffset || roundedAngle >= 360 - angleOffset ? 1 : -1);
+            //        moveInputRotationAnchor = lastValidAnchor = a % 360;
+            //    }
+            //    else
+            //    {
+            //        float a = 90 * (roundedAngle <= angleOffset || roundedAngle >= 360 - angleOffset ? 1 : -1);
+            //        moveInputRotationAnchor = lastValidAnchor = a % 360;
+            //    }
+            //    output = FilterThroughAnchor(rawInput, lastValidAnchor); // -- Faz o movimento com o último válido
+            //}
         }
         else
             lastValidAnchor = moveInputRotationAnchor;
+        
 
         return output;
     }
 
-    private bool IsTooClose(Vector2 A, Vector2 B)
+    private bool IsCloseEnough(Vector2 A, Vector2 B)
     {
         A = A.To8Directions();
         B = B.To8Directions();
@@ -226,7 +249,20 @@ public class PlatformerCharacter : SidewaysCharacter
         if (Mathf.Abs (anchoredInput.x) > dynamicInputThreshold)
             output = Vector2.right * (anchoredInput.x > 0 ? 1 : -1);
         if (Mathf.Abs (anchoredInput.y) > dynamicInputThreshold)
-            output = new Vector2(output.x, anchoredInput.y > 0 ? 1 : -1);
+            output = new Vector2(output.x, anchoredInput.y > 0 ? 1 : -1);  
+
+        return output;
+    }
+
+    private Vector2 FilterThroughAnchor (Vector2 rawInput, float anchor, float customThrehold = 0)
+    {
+        Vector2 anchoredInput = RaposUtil.RotateVector(rawInput, -anchor);
+
+        Vector2 output = Vector2.zero;
+        if (Mathf.Abs (anchoredInput.x) > customThrehold)
+            output = Vector2.right * (anchoredInput.x > 0 ? 1 : -1);
+        if (Mathf.Abs (anchoredInput.y) > customThrehold)
+            output = new Vector2(output.x, anchoredInput.y > 0 ? 1 : -1);  
 
         return output;
     }
