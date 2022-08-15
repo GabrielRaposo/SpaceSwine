@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
+using RedBlueGames.Tools.TextTyper;
 
 public class NavigationObject : MonoBehaviour
 {
@@ -87,31 +88,49 @@ public class NavigationObject : MonoBehaviour
 
     private IEnumerator ShowName()
     {
+        TextTyper typer = nameField.GetComponent<TextTyper>();
+        if (!typer)
+            yield break;
+
+        if (typer.IsTyping)
+            typer.Skip();
+
         nameField.text = "";
+        typer.TypeText( displayName );
 
-        int count = displayName.Length;
-        int i = 0;
+        //int count = displayName.Length;
+        //int i = 0;
 
-        while (i<=count)
-        {
-            nameField.text = displayName.Substring(0, i);
-            yield return new WaitForSeconds(0.08f);
-            i++;
-        }
+        //while (i<=count)
+        //{
+        //    nameField.text = displayName.Substring(0, i);
+        //    yield return new WaitForSeconds(0.08f);
+        //    i++;
+        //}
+        //yield break;
     }
     private IEnumerator ShowDescription()
     {
+        TextTyper typer = descriptionField.GetComponent<TextTyper>();
+        if (!typer)
+            yield break;
+
+        if (typer.IsTyping)
+            typer.Skip();
+
         descriptionField.text = "";
+        typer.TypeText( description );
 
-        int count = description.Length;
-        int i = 0;
+        //int count = description.Length;
+        //int i = 0;
 
-        while (i<=count)
-        {
-            descriptionField.text = description.Substring(0, i);
-            yield return new WaitForSeconds(0.06f);
-            i++;
-        }
+        //while (i<=count)
+        //{
+        //    descriptionField.text = description.Substring(0, i);
+        //    yield return new WaitForSeconds(0.06f);
+        //    i++;
+        //}
+        //yield break;
     }
 
     private IEnumerator SetCoordinates()

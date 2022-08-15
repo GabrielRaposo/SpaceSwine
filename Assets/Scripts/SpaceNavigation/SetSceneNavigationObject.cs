@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using RedBlueGames.Tools.TextTyper;
 using UnityEngine;
 
 public class SetSceneNavigationObject : NavigationObject
