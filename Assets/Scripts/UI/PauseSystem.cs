@@ -101,7 +101,7 @@ public class PauseSystem : MonoBehaviour
         {
             shipButton.SetActive(false);
         }
-        
+
         canvasGroup.DOKill();
         canvasGroup.DOFade(1, transitionDuration)
             .SetUpdate(isIndependentUpdate: true);

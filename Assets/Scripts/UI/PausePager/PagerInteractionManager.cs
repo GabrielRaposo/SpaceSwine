@@ -116,20 +116,20 @@ public class PagerInteractionManager : MonoBehaviour
 
     public void CustomActivation (UnityAction backCall)
     {
-        KeychainInitiationLogic();
+        //KeychainInitiationLogic();
+        //if (s != null)
+        //    s.Kill();
+        //SetAbsolutePosition(shown: true);
+        //animator.SetTrigger("Reset");
+        //OnFocus = true;
+        //enabled = true;
 
-        if (s != null)
-            s.Kill();
-        SetAbsolutePosition(shown: true);
-        animator.SetTrigger("Reset");
         optionsMode = true;
-
-        OnFocus = true;
-        enabled = true;
 
         if (optionsBackButton)
             optionsBackButton.OverrideInteractionEvent(backCall);
-        callScreen.SetActive(false); 
+
+        SlideInSequence();
     }
     public void SetAbsolutePosition (bool shown)
     {
