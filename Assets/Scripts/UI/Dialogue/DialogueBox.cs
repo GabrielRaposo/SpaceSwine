@@ -22,6 +22,7 @@ public class DialogueBox : MonoBehaviour
     bool showing;
     bool autoSkip;
     CanvasGroup canvasGroup;
+    //List<>
 
     int delayFrames;
     int dialogueIndex;
