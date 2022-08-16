@@ -8,6 +8,8 @@ public class CupStack : MonoBehaviour
 {
     [SerializeField] private List<Rigidbody2D> cups;
 
+    [SerializeField] private float strenght;
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if(!col.gameObject.CompareTag("Player")) return;
@@ -29,7 +31,8 @@ public class CupStack : MonoBehaviour
             rb.drag = 0.7f;
             rb.angularDrag = 0.1f;
             var randomDir = angle > 0 ? Random.Range(180f, 360f) : Random.Range(0f, 180f);
-            rb.AddForce(kickDirection*2f + Mathg.AngleToDirection2(randomDir)*.5f, ForceMode2D.Impulse);
+            Vector2 force = kickDirection*2f + Mathg.AngleToDirection2(randomDir)*.5f;
+            rb.AddForce(force*strenght, ForceMode2D.Impulse);
             //rb.AddForce(kickDirection*2f + Mathg.AngleToDirection2(Random.Range(0f,180f))*0f, ForceMode2D.Impulse);
             float side = Random.Range(0, 2) == 0 ? -1f : 1f;
             rb.AddTorque(Random.Range(20f,50f)*side);
