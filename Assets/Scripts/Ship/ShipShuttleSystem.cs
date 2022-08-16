@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using DG.Tweening;
 
 public class ShipShuttleSystem : MonoBehaviour
@@ -14,6 +15,7 @@ public class ShipShuttleSystem : MonoBehaviour
 
     [SerializeField] GameObject playerObject;
     [SerializeField] float duration;
+    [SerializeField] ShipScreensOverlay screensOverlay;
     //[SerializeField] BuildIndex targetIndex;
 
     PlayerCharacter playerCharacter;
@@ -21,6 +23,8 @@ public class ShipShuttleSystem : MonoBehaviour
     PlatformerCharacter platformerCharacter;
 
     Sequence sequence;
+
+    public UnityAction AfterStartAction = null;
 
     public static ShipShuttleSystem Instance;
 
@@ -75,13 +79,27 @@ public class ShipShuttleSystem : MonoBehaviour
         (
             () => 
             {   
-                playerCharacter.SetPhysicsBody(true);
+                if (screensOverlay)
+                    screensOverlay.TurnOn();
 
+                playerCharacter.SetPhysicsBody(true);
                 playerCharacter.enabled = true;
-                playerInput.enabled = true;
                 platformerCharacter.enabled = true;
+
+                if (AfterStartAction == null) 
+                {
+                    RestorePlayerControls();
+                    return;
+                }
+
+                AfterStartAction.Invoke();
             }
         );
+    }
+
+    public void RestorePlayerControls()
+    {
+        playerInput.enabled = true;
     }
 
     public void ExitOnShuttle()
@@ -105,9 +123,9 @@ public class ShipShuttleSystem : MonoBehaviour
         (
             () => 
             {   
-                // Trocar pela última fase em que você estava antes de entrar na Nave ou região
+                // Troca pela última fase em que você estava antes de entrar na Nave ou região
                 int targetIndex = NavigationConsole.ShipTeleportSceneIndex;
-                SceneTransition.LoadScene( targetIndex, SceneTransition.TransitionType.WhiteFade );
+                SceneTransition.LoadScene( targetIndex, SceneTransition.TransitionType.BlackFade );
             }
         );
     }

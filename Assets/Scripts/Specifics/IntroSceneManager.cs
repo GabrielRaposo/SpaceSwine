@@ -7,6 +7,12 @@ using DG.Tweening;
 
 public class IntroSceneManager : MonoBehaviour
 {
+    [Header("Soundscape")]
+    [SerializeField] SoundLoopCaller soundLoopCaller;
+    [SerializeField] AK.Wwise.RTPC fadeInRTPC;
+    [SerializeField] AK.Wwise.RTPC fadeOutRTPC;
+    [SerializeField] CameraLockTriggerRegion exitTriggerRegion;
+
     [Header("Sequence Values")]
     [SerializeField] float startingYPosition;
     [SerializeField] float startHoldDuration;
@@ -19,6 +25,7 @@ public class IntroSceneManager : MonoBehaviour
     [Header("Camera")]
     [SerializeField] CameraFocusController focusController;
     [SerializeField] CinemachineVirtualCamera playerVirtualCam;
+    [SerializeField] AK.Wwise.RTPC stuckVolumeRTPC;
 
     [Header("Player")]
     [SerializeField] PlayerCharacter player;
@@ -54,7 +61,51 @@ public class IntroSceneManager : MonoBehaviour
     IEnumerator IntroSequence()
     {
         // -- Setup
+        if (soundLoopCaller)
+        {
+            if (fadeInRTPC != null)
+            {
+                fadeInRTPC.SetGlobalValue(0);
+                DOVirtual.Float(0, 100, duration: 10f, f => 
+                { 
+                    fadeInRTPC.SetGlobalValue(f);
+                    Debug.Log("f: " + f);
+                });
+            }
+
+            if (fadeOutRTPC != null)
+            {
+                fadeOutRTPC.SetGlobalValue(0);
+            }
+
+            soundLoopCaller.StartLoop();
+
+            if (exitTriggerRegion)
+            {
+                //exitTriggerRegion.OnTriggerAction += soundLoopCaller.CallFadeOut;
+                exitTriggerRegion.onCallAction += () => 
+                {
+                    float duration = 3f;
+
+                    if (fadeOutRTPC != null)
+                    {
+                        fadeOutRTPC.SetGlobalValue(0);
+                        DOVirtual.Float(0, 100, duration, f => {
+                            fadeOutRTPC.SetGlobalValue(f);
+                            Debug.Log("f: " + f);
+                        });
+                    }
+
+                    if (soundLoopCaller != null)
+                    {
+                        soundLoopCaller.CallFadeOut();
+                    }
+                };
+            }
+        }
+
         jumpTutorialGroup.alpha = 0;
+        stuckVolumeRTPC.SetGlobalValue(0);
 
         LensSettings lensSettings = new LensSettings(fov: 1, startingZoomValue, .3f, 1000, 0);
         playerVirtualCam.m_Lens = lensSettings;
@@ -70,20 +121,36 @@ public class IntroSceneManager : MonoBehaviour
         yield return new WaitForSeconds( startHoldDuration );
 
         bool done = false;
-        player.transform.DOMoveY
+        Sequence s = DOTween.Sequence();
+        s.Append
         (
-            endValue: stuckPlayer.transform.position.y,
-            duration: moveDownDuration
-        )
-        .SetEase(Ease.OutCirc)
-        .OnComplete( () => done = true );
+            player.transform.DOMoveY
+            (
+                endValue: stuckPlayer.transform.position.y,
+                duration: moveDownDuration
+            )
+            .SetEase(Ease.OutCirc)
+        );
+        float delay = moveDownDuration * .4f;
+        s.Join
+        (
+            DOVirtual.Float
+            (
+                from: 0, to: 100f, moveDownDuration - delay,
+                (f) => 
+                {
+                    stuckVolumeRTPC.SetGlobalValue(f);
+                }
+            ).SetDelay(delay)
+        );
+        s.OnComplete( () => done = true );
         yield return new WaitWhile( () => !done );
 
         yield return new WaitForSeconds(1.0f);
 
         // -- Zoom-out (1)
         done = false;
-        Sequence s = DOTween.Sequence();
+        s = DOTween.Sequence();
         s.Append( 
             player.transform.DOMoveY(1.82f, zoomOutDuration)
                 .SetEase(Ease.Linear) 

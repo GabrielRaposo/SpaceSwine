@@ -135,11 +135,48 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Folder Name="Cinematic" ID="{1E1E1AFC-29C4-4AC0-9D3D-B95C77664398}" ShortID="707341337">
+							<ChildrenList>
+								<Event Name="gameplay_buyk_stuck_01" ID="{0AF00E6C-05FD-4A99-83F6-CFAC14798487}">
+									<ChildrenList>
+										<Action Name="" ID="{E9B61BCD-A66C-43F7-8566-D40192CF6AA6}" ShortID="103056162">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_stuck_01" ID="{FA64C98D-52E6-47CA-8EC0-6221EE7B7637}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="gameplay_buyk_stuck_02" ID="{8762CE80-5F4E-41BB-B696-72E3C0A7E777}">
+									<ChildrenList>
+										<Action Name="" ID="{4AA211B8-F47B-4956-982A-29D21EE1B6FF}" ShortID="1062602794">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_stuck_02" ID="{652F56F4-E961-4C09-93FB-5A36EB6205F8}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="gameplay_buyk_stuck_fanfarra" ID="{0CE2B565-6D51-4AF9-BCF5-8502A5163BCF}">
+									<ChildrenList>
+										<Action Name="" ID="{FCF37ABE-E307-43D5-8AFF-CE01C3BEA704}" ShortID="147140238">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_stuck_fanfarra" ID="{92ACFB75-3A59-48FF-A00C-ACE1D883BDDA}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Level" ID="{0837BF11-1908-4626-AC0F-EB03A6DCF19F}" ShortID="939438226">
 					<PropertyList>
-						<Property Name="Color" Type="int16" Value="11"/>
+						<Property Name="Color" Type="int16" Value="25"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
@@ -264,31 +301,41 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-					</ChildrenList>
-				</Folder>
-				<Folder Name="UI" ID="{A605F833-337F-4E50-B645-2CF63495EEFF}" ShortID="785344164">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="3"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-					<ChildrenList>
-						<Event Name="ui_menu_clique" ID="{2E0EE592-A469-404E-AFD1-0EFF1E074C32}">
+						<Event Name="cenario_passarinhos_voam" ID="{C3A3AEC2-5D63-485D-9C21-7C281E068F48}">
 							<ChildrenList>
-								<Action Name="" ID="{A86E7762-1FF3-4164-B076-DAAC1B7406E0}" ShortID="438595369">
+								<Action Name="" ID="{32543B7E-DEA1-40B8-819D-C866F390FDA7}" ShortID="921452165">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="ui_menu_clique" ID="{0DB6E663-7188-44A9-A552-09292BC5B924}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+											<ObjectRef Name="cenario_passarinhos_voam" ID="{AEC874B7-8668-4F1A-9875-29F5EB875118}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="ui_menu_hover" ID="{F21AEC7E-8CF0-4FEC-B8B7-1161EEC73F10}">
+					</ChildrenList>
+				</Folder>
+				<Folder Name="UI" ID="{A605F833-337F-4E50-B645-2CF63495EEFF}" ShortID="785344164">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="19"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="ui_pager_clique" ID="{2E0EE592-A469-404E-AFD1-0EFF1E074C32}">
 							<ChildrenList>
-								<Action Name="" ID="{07DF8DFC-4BF7-4A55-88D9-D92A076BA2B8}" ShortID="375170348">
+								<Action Name="" ID="{0A230CD4-31EE-4C85-A767-F53DD0597D87}" ShortID="941342439">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="ui_menu_hover" ID="{B80B98C8-E0E3-4E2B-B4E3-5DF96B0EA552}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+											<ObjectRef Name="ui_pager_clique" ID="{F221BF9B-ECB1-4251-8691-78D6B8A98BBA}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{66BF1447-9E58-4B25-8770-0DEE500743F9}" ShortID="680729612">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="0.04"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_pager_clique_nota" ID="{474B1DBD-96A4-4861-BDAA-F545FA1990EB}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -297,25 +344,6 @@
 					</ChildrenList>
 				</Folder>
 				<Folder Name="System" ID="{CEE7E884-1059-4A36-841B-7DC8BBB2584A}" ShortID="590989639"/>
-				<Folder Name="NPCs" ID="{2F3DB8ED-FF30-4BE6-86AA-D328DC9E5520}" ShortID="565071774">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="21"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-					<ChildrenList>
-						<Event Name="gameplay_npc_fala_robozinho" ID="{1A21F0D5-79CB-4399-A565-CD3F5AA11535}">
-							<ChildrenList>
-								<Action Name="" ID="{D31C4E39-772D-4BD3-BBD4-0A13897D0405}" ShortID="67232300">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="gameplay_npc_fala_robozinho" ID="{866F4CA1-9F1C-4033-880C-08CA79C68FEB}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-					</ChildrenList>
-				</Folder>
 				<Folder Name="Minigame GGS" ID="{F13C716F-82B1-4251-BCF2-9F39C2E45F7C}" ShortID="31250332">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="15"/>
@@ -598,7 +626,7 @@
 				</Folder>
 				<Folder Name="Personagens" ID="{0ADBD128-F7D6-4009-9C13-50E993C7A7B9}" ShortID="485793408">
 					<PropertyList>
-						<Property Name="Color" Type="int16" Value="18"/>
+						<Property Name="Color" Type="int16" Value="2"/>
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
@@ -608,6 +636,120 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="ui_nave_fala" ID="{4C15F122-1426-4EF2-B940-7D758AEB61B5}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ui_robozao_fala" ID="{FB89972B-C99C-4ADD-8CBA-1ABA698D350F}">
+							<ChildrenList>
+								<Action Name="" ID="{090B7E78-1285-433B-8BC3-6410D797D1A9}" ShortID="283898862">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_robozao_fala" ID="{F018DB10-B814-4E25-B5D5-409565BCF1AD}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ui_robozinho_fala_leg" ID="{0A30245C-722D-42E8-A6DA-3049D52D7B67}">
+							<ChildrenList>
+								<Action Name="" ID="{DA0A5318-BB5C-4523-805B-B96BDD9A8E4F}" ShortID="47819439">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_robozinho_fala_leg" ID="{C498FEC6-F6DF-4FE6-8F39-5527BC75842C}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ui_robozinho_fala_plank" ID="{25D4A8BA-8CDE-4497-B9CD-DBFFA714E09F}">
+							<ChildrenList>
+								<Action Name="" ID="{8E99895C-D291-45A3-8D0F-4EEF1080B6BF}" ShortID="33091961">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_robozinho_fala_plank" ID="{EFFCFEEF-9BAD-48B8-A9BF-67C056618F39}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ui_robozinho_fala_tom" ID="{5A7A0503-C55E-4472-8D48-71B2EAA17F91}">
+							<ChildrenList>
+								<Action Name="" ID="{89B38A94-E53C-48F4-823F-99332450C587}" ShortID="273749742">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_robozinho_fala_tom" ID="{803CB281-9087-4446-8752-BAF55846A20C}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ui_robozinho_fala_tree" ID="{660374A3-42AC-434E-B887-FDF199D4304B}">
+							<ChildrenList>
+								<Action Name="" ID="{9D588298-21E9-4693-8EDA-4EDACCA4B4A9}" ShortID="839896942">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_robozinho_fala_tree" ID="{0BFA9E94-C401-4CF8-98BB-03669BF4C920}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Cutscenes" ID="{E994BF1C-CA00-4EFC-802D-2FB7C0B50652}" ShortID="27748643">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="21"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Event Name="cenario_nave_bip_perigo" ID="{D7C8AA1B-B09C-4F03-9913-B859D389EB53}">
+							<ChildrenList>
+								<Action Name="" ID="{E0AD3C48-3EBC-4814-8010-527316F04912}" ShortID="42771877">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cenario_nave_bip_perigo" ID="{B878D53F-407D-48BB-A59A-516DDD3FE7EA}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+								<Action Name="" ID="{D3032250-9976-48A9-8894-6A3DFBEB5AA6}" ShortID="832448814">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cenario_nave_bip_perigo_reverb" ID="{88435EEC-C7D1-491C-8B40-067C5BB28D18}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="cenario_nave_bip_tv" ID="{02C8761D-9E5C-48CD-9188-66D15ABF6DD3}">
+							<ChildrenList>
+								<Action Name="" ID="{E86D9DF2-1D0F-4119-80BC-D5B42C1354F6}" ShortID="292513574">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cenario_nave_bip_tv" ID="{5E347B5A-25CE-473D-A0E8-A2BBCB6A5D08}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="cenario_nave_explode" ID="{3472E752-9A72-43FF-B091-5323AA51D915}">
+							<ChildrenList>
+								<Action Name="" ID="{AAAF7E15-E25E-4A30-B17B-76F3539E3052}" ShortID="767557709">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cenario_nave_explode" ID="{1774DF2B-2CDB-4608-BADE-C69AE6BDE31F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="cenario_tutorial_soundscape" ID="{5564B828-F1AF-495E-AD87-1798ACE64DED}">
+							<ChildrenList>
+								<Action Name="" ID="{61B090A4-183E-46B6-9DFA-66711BD1774F}" ShortID="878500811">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cenario_tutorial_soundscape" ID="{1A29B9BC-0963-4B74-BA12-92AF8BC0EC03}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>

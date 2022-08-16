@@ -104,9 +104,21 @@ public class LocalizedTextEditor : Editor
                         displayList.Add($"{key} - {LocalizationManager.GetMusicText(key)}");
                         codeList.Add(key);
                     }
-                        
+                    
                     
                     break;
+                
+                case LocalizedTextTypes.Nave:
+                    keys = LocalizationManager.LocalizationFile(LocalizedTextTypes.Nave).dic.Keys;
+
+                    foreach (string key in keys)
+                    {
+                        displayList.Add($"{key} - {LocalizationManager.GetShipText(key)}");
+                        codeList.Add(key);
+                    }
+                    
+                    break;
+                
                 default:
                     throw new ArgumentOutOfRangeException();
             }

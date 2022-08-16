@@ -173,7 +173,7 @@ public class TitleMenuNavigation : MonoBehaviour
 
     private float GetModifiedPosition(float t, float start, float end)
     {
-        float f = Mathf.Lerp(start, end, t);
+        float f = Mathf.Lerp (start, end, t);
         return f * approachCurve.Evaluate(t);
     }
 

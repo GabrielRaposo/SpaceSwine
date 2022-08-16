@@ -13,6 +13,7 @@ public class BirdSpawner : MonoBehaviour
     [SerializeField] float minFlightDistance;
     [SerializeField] float duration;
     [SerializeField] AnimationCurve customCurve;
+    [SerializeField] AK.Wwise.Event flightAKEvent;
 
     bool fleeToTheRight;
     Sequence mainSequence;
@@ -160,13 +161,10 @@ public class BirdSpawner : MonoBehaviour
         Vector2 endValue = birdTransform.localPosition;
         endValue += new Vector2(fleeToTheRight ? 1 : -1, 1) * minFlightDistance;
 
-        mainSequence = DOTween.Sequence();
+        if (flightAKEvent != null)
+            flightAKEvent.Post(gameObject);
 
-        //mainSequence.Append
-        //( 
-        //    birdTransform.DOLocalMove ( endValue, duration )
-        //        .SetEase(Ease.Linear)
-        //);
+        mainSequence = DOTween.Sequence();
 
         mainSequence.Append
         (

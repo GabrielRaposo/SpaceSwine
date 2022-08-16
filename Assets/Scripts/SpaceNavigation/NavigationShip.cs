@@ -16,13 +16,19 @@ public class NavigationShip : MonoBehaviour
     [SerializeField] private float speed = 0.02f;
     private Vector2 movDirection;
 
-    [SerializeField] private Transform spritesTransform;
+    [SerializeField] public Transform spritesTransform;
     [SerializeField] ParticleSystem smokeTrailPS;
 
     private NavigationObject selectedObject;
 
+    public static bool ControlsLocked;
+
+    private static Vector2 previousPostion = new Vector2(0f, 330f-1.28f);
+
     private void OnEnable()
     {
+        transform.position = previousPostion;
+        
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Movement.Enable();
         _playerInputActions.Player.Jump.Enable();
@@ -31,6 +37,8 @@ public class NavigationShip : MonoBehaviour
         movementInputAction = _playerInputActions.Player.Movement;
         _playerInputActions.Player.Jump.performed += ctx => { ConfirmAction();};
         _playerInputActions.Player.Throw.performed += ctx => { ConfirmAction();};
+
+        ControlsLocked = false;
     }
 
     private void OnDisable()
@@ -38,12 +46,23 @@ public class NavigationShip : MonoBehaviour
         _playerInputActions.Player.Movement.Disable();
         _playerInputActions.Player.Jump.Disable();
         _playerInputActions.Player.Throw.Disable();
+
+        ControlsLocked = true;
+    }
+
+    public void LockControls()
+    {
+        ControlsLocked = true;
+        OnDisable();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         var navObject = col.gameObject.GetComponent<NavigationObject>();
         if(navObject == null) return;
+        
+        if(selectedObject != null)
+            selectedObject.OnDisselect();
         
         navObject.OnSelect();
         selectedObject = navObject;
@@ -63,6 +82,9 @@ public class NavigationShip : MonoBehaviour
 
     private void FixedUpdate()
     {
+        previousPostion = transform.position;
+        if(ControlsLocked) return;
+        
         Vector2 input = movementInputAction.ReadValue<Vector2>();
         movDirection += input * aceleration;
         TrailParticleLogic(activate: input != Vector2.zero);
@@ -82,8 +104,10 @@ public class NavigationShip : MonoBehaviour
             spritesTransform.eulerAngles = new Vector3(0, 0, Mathg.VectorToAngle(movDirection, true));    
         }
 
-        transform.Translate(movDirection*speed);
+        if(NavigationParalaxAnchor.Instance)
+            NavigationParalaxAnchor.Instance.transform.Translate(movDirection*speed*20f);
         
+        transform.Translate(movDirection*speed);
     }
 
     private void TrailParticleLogic (bool activate)
@@ -108,7 +132,7 @@ public class NavigationShip : MonoBehaviour
         if(selectedObject == null)
             return;
 
-        selectedObject.OnInteract();
+        selectedObject.OnInteract(this);
     }
-    
+
 }

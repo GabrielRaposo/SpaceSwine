@@ -86,7 +86,6 @@ namespace Minigame
         public void TurnConsoleOn()
         {
             SetTurnedOn(true);
-            canvasGroup.alpha = 1;
 
             consoleAnchor.DOKill();
             consoleAnchor.MoveY(HIDDEN_Y);
@@ -96,7 +95,8 @@ namespace Minigame
 
             mainSequence = DOTween.Sequence();
             mainSequence.AppendCallback( () => {} );
-            mainSequence.AppendInterval( inDelay );
+            mainSequence.AppendInterval( inDelay/2f );
+            mainSequence.Append( canvasGroup.DOFade(1, inDelay/2f) );
             mainSequence.AppendCallback( () => slideInAKEvent?.Post(gameObject) );
             mainSequence.Append
             (
@@ -138,7 +138,8 @@ namespace Minigame
                     }
                 ).SetEase(Ease.InCirc)
             );
-            mainSequence.AppendInterval(outDelay);
+            //mainSequence.AppendInterval(outDelay);
+            mainSequence.Append( canvasGroup.DOFade(0, outDelay) );
             mainSequence.OnComplete( () => SetTurnedOn(false) );
 
             UnloadMinigame();

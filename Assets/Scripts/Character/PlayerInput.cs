@@ -105,10 +105,7 @@ public class PlayerInput : MonoBehaviour
         if (Time.timeScale < 1)
             return true;
 
-        if (DialogueSystem.OnDialogue)
-            return true;
-
-        if (GameManager.BlockCharacterInput)
+        if (GameManager.BlockCharacterInput || DialogueSystem.OnDialogue || SceneTransition.OnTransition)
             return true;
 
         return false;

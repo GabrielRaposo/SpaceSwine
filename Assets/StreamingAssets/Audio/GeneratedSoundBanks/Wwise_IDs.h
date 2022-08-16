@@ -13,7 +13,12 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID CENARIO_NAVE_BIP_PERIGO = 3298760050U;
+        static const AkUniqueID CENARIO_NAVE_BIP_TV = 3867903812U;
+        static const AkUniqueID CENARIO_NAVE_EXPLODE = 1147273941U;
+        static const AkUniqueID CENARIO_PASSARINHOS_VOAM = 1982671206U;
         static const AkUniqueID CENARIO_TRANSICAO = 3223415371U;
+        static const AkUniqueID CENARIO_TUTORIAL_SOUNDSCAPE = 1243364701U;
         static const AkUniqueID CENARIO_VITORIA = 3655190725U;
         static const AkUniqueID GAMEPLAY_BUYK_ANDA = 2274976510U;
         static const AkUniqueID GAMEPLAY_BUYK_MORRE = 2418446987U;
@@ -23,6 +28,9 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_POUSA_LONGO = 1717148742U;
         static const AkUniqueID GAMEPLAY_BUYK_PULA_CURTO = 3434033334U;
         static const AkUniqueID GAMEPLAY_BUYK_PULA_LONGO = 2563466850U;
+        static const AkUniqueID GAMEPLAY_BUYK_STUCK_01 = 671794308U;
+        static const AkUniqueID GAMEPLAY_BUYK_STUCK_02 = 671794311U;
+        static const AkUniqueID GAMEPLAY_BUYK_STUCK_FANFARRA = 1336538064U;
         static const AkUniqueID GAMEPLAY_BUYK_TACA_ITEM = 3851873763U;
         static const AkUniqueID GAMEPLAY_BUYK_VOA = 3132805884U;
         static const AkUniqueID GAMEPLAY_FLOR_TRANSITION = 3272639445U;
@@ -58,9 +66,13 @@ namespace AK
         static const AkUniqueID LOFI_12 = 65705089U;
         static const AkUniqueID LOFI_13 = 65705088U;
         static const AkUniqueID LOFI_14 = 65705095U;
-        static const AkUniqueID UI_MENU_CLIQUE = 937451947U;
-        static const AkUniqueID UI_MENU_HOVER = 2163476404U;
         static const AkUniqueID UI_NAVE_FALA = 1320095827U;
+        static const AkUniqueID UI_PAGER_CLIQUE = 1750137231U;
+        static const AkUniqueID UI_ROBOZAO_FALA = 2728419545U;
+        static const AkUniqueID UI_ROBOZINHO_FALA_LEG = 1360832738U;
+        static const AkUniqueID UI_ROBOZINHO_FALA_PLANK = 3630789066U;
+        static const AkUniqueID UI_ROBOZINHO_FALA_TOM = 1460218450U;
+        static const AkUniqueID UI_ROBOZINHO_FALA_TREE = 966578514U;
     } // namespace EVENTS
 
     namespace SWITCHES
@@ -80,6 +92,11 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
+        static const AkUniqueID BUYK_STUCK = 363529975U;
+        static const AkUniqueID CUTSCENE_INICIO = 1171258525U;
+        static const AkUniqueID TUTORIAL_FINAL_PULO_FADEOUT = 2164391380U;
+        static const AkUniqueID TUTORIAL_INICIO_FADEIN = 4133059913U;
+        static const AkUniqueID VOLUME_CUTSCENE = 2340947590U;
         static const AkUniqueID VOLUME_MASTER = 3695994288U;
         static const AkUniqueID VOLUME_MUSIC = 3891337659U;
         static const AkUniqueID VOLUME_PLACEHOLDERS = 4083254980U;
@@ -108,6 +125,7 @@ namespace AK
 
     namespace BUSSES
     {
+        static const AkUniqueID CUTSCENE = 1182958561U;
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MUSIC = 3991942870U;
         static const AkUniqueID MUSIC_PLACEHOLDER = 2342674260U;

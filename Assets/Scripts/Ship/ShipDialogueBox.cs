@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using RedBlueGames.Tools.TextTyper;
 using DG.Tweening;
 using TMPro;
@@ -15,6 +17,7 @@ public class ShipDialogueBox : MonoBehaviour
     [SerializeField] TextTyper textTyper;
     [SerializeField] TextMeshProUGUI textDisplay;
     [SerializeField] TextMeshProUGUI textDisplaySimulator;
+    [SerializeField] GameObject skipIcon;
     
     [Header("Images")]
     [SerializeField] Image closed2BGImage;
@@ -34,9 +37,24 @@ public class ShipDialogueBox : MonoBehaviour
     VerticalState verticalState;
 
     bool shown;
+    bool skippable;
 
     Sequence showSequence;
     Sequence verticalSequence;
+
+    UnityAction afterInputAction;
+
+    PlayerInputActions inputActions;
+
+    private void OnEnable() 
+    {
+        DisplaySkipIcon(false);
+
+        inputActions = new PlayerInputActions();
+
+        inputActions.UI.Confirm.performed += SkipInput;
+        inputActions.UI.Confirm.Enable();
+    }
 
     void Start()
     {
@@ -49,6 +67,12 @@ public class ShipDialogueBox : MonoBehaviour
         textDisplay.text = string.Empty;
 
         Hide();
+    }
+
+
+    private void OnDisable() 
+    {
+        inputActions.UI.Confirm.Disable();
     }
 
     #region IMMEDIATE
@@ -189,9 +213,9 @@ public class ShipDialogueBox : MonoBehaviour
 
     #region TRANSITION
 
-    public void SetShown (bool value, float duration = .5f)
+    public void SetShown (bool value, float duration = .5f, bool forceOut = false)
     {
-        if (shown == value)
+        if (shown == value && !forceOut)
             return;
 
         if (showSequence != null)
@@ -275,10 +299,21 @@ public class ShipDialogueBox : MonoBehaviour
 
     #region TYPER
 
-    public void Type (string text, float delay = .3f, bool instantText = false)
+    public void Type 
+    (
+        string text, 
+        float delay = .3f, 
+        bool instantText = false,
+        UnityAction afterInputAction = null
+    )
     {
+        this.afterInputAction = afterInputAction;
+
         if (textTyper.IsTyping)
             textTyper.Skip();
+
+        textTyper.PrintCompleted.RemoveAllListeners();
+        skippable = false;
 
         textDisplaySimulator.text = text;
         textDisplay.text = string.Empty;
@@ -308,8 +343,34 @@ public class ShipDialogueBox : MonoBehaviour
                 return;
             }
         
-            CallTyper(text);           
+            CallTyper(text);
         });
+    }
+
+    private void DisplaySkipIcon(bool value)
+    {
+        if (!skipIcon)
+            return;
+
+        skipIcon.SetActive(value);
+    }
+
+    private void SkipInput(InputAction.CallbackContext ctx) 
+    {
+        if (!skippable)
+            return;
+
+        if (textTyper.IsTyping)
+        {
+            textTyper.Skip();
+            return;
+        }
+
+        if (afterInputAction == null) 
+            return;
+        
+        DisplaySkipIcon (false);
+        afterInputAction();
     }
 
     private void CallTyper(string text, bool instantText = false)
@@ -318,6 +379,20 @@ public class ShipDialogueBox : MonoBehaviour
 
         if (instantText)
             textTyper.Skip();
+
+        if (afterInputAction != null)
+        {
+            skippable = true;
+            textTyper.PrintCompleted.AddListener( ()  => DisplaySkipIcon(true) ); // -- TO-DO: libera input de passar de texto 
+        }
+    }
+
+    public void StopType()
+    {
+        if (textTyper.IsTyping)
+            textTyper.Skip();
+
+        textTyper.StopAllCoroutines();
     }
 
     #endregion

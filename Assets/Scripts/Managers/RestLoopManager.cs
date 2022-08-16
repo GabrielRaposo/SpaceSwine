@@ -7,6 +7,7 @@ public class RestLoopManager : MonoBehaviour
 {
     [SerializeField] GameObject restLoopAnimation;
     [SerializeField] PlayerCharacter playerCharacter;
+    [SerializeField] PlaylistPlayer playlistPlayer;
 
     bool isActive;
     PlayerInputActions playerInputActions;
@@ -20,22 +21,41 @@ public class RestLoopManager : MonoBehaviour
     private void Start() 
     {
         restLoopAnimation.SetActive(false);
+
+        if (playlistPlayer)
+        {
+            playlistPlayer.SetPlayerMode(true);
+            playlistPlayer.SetPlayerState(false);
+        }
     }
 
-    public void Setup()
+    public void TurnOn()
     {
         GameManager.BlockCharacterInput = true;
         restLoopAnimation.SetActive(true);
         playerCharacter.SetHiddenState(true);
-        TurnControlsOn();
+        //TurnControlsOn();
+
+        if (playlistPlayer)
+        {
+            playlistPlayer.SetPlayerState(true);
+            playlistPlayer.OnFocus = true;
+        }
     }
 
-    private void TurnOff()
+    public void TurnOff()
     {
-        GameManager.BlockCharacterInput = false;
+        if (playlistPlayer) 
+        {
+            playlistPlayer.OnFocus = false;
+        }
         restLoopAnimation.SetActive(false);
         playerCharacter.SetHiddenState(false);
-        TurnControlsOff();
+
+        RaposUtil.Wait(this, frames: 2, () => 
+        {
+            GameManager.BlockCharacterInput = false;
+        });
     }
 
     private void TurnControlsOn()
@@ -68,6 +88,8 @@ public class RestLoopManager : MonoBehaviour
 
     public void OnAnyInput(InputAction.CallbackContext ctx)
     {
+        return;
+
         if (!isActive)
             return;
 

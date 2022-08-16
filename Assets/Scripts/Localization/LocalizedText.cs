@@ -10,7 +10,8 @@ public enum LocalizedTextTypes
     UI,
     Story,
     Achievement,
-    Music
+    Music,
+    Nave
 }
 
 public class LocalizedText : MonoBehaviour
@@ -84,6 +85,10 @@ public class LocalizedText : MonoBehaviour
                 break;
             case LocalizedTextTypes.Music:
                 textMesh.text = LocalizationManager.GetMusicText(localizationCode);
+                break;
+            case LocalizedTextTypes.Nave:
+                (bool valid, string text) ship = LocalizationManager.GetShipText(localizationCode);
+                textMesh.text = ship.text;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

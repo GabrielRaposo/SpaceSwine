@@ -78,13 +78,14 @@ public class Door : MonoBehaviour
         if (round)
         {
             round.OnReset += ResetStates;
-            round.OnPassRound += () =>
-            {
-                if(gameObject)
-                    gameObject.SetActive(false);
-                if(portal)
-                    portal.gameObject.SetActive(false);
-            };
+            //round.OnPassRound += () =>
+            //{
+                //if(gameObject)
+                //    gameObject.SetActive(false);
+
+                //if(portal)
+                //    portal.gameObject.SetActive(false);
+            //};
         }
             
     }
@@ -199,7 +200,7 @@ public class Door : MonoBehaviour
                 {
                     round.OnPortalReached?.Invoke();    
 
-                    doorAnimation.SetupAnimation( this, player, 
+                    doorAnimation.SetupAnimationStageTransiton( this, player, 
                     
                         OnAnimationEnd: () => 
                         {

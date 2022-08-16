@@ -7,7 +7,7 @@ public class LocationData : MonoBehaviour
     [SerializeField] string locationCode;
     [SerializeField] string fallbackText;
 
-    float delay = 1.0f;
+    float delay = 1.5f;
 
     void Start()
     {

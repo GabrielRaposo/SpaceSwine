@@ -38,7 +38,7 @@ public class SplashScreenManager : MonoBehaviour
 
     private void EndReached(VideoPlayer vp)
     {
-        SceneTransition.LoadScene( (int) BuildIndex.Title, SceneTransition.TransitionType.WhiteFade );
+        SceneTransition.LoadScene( (int) BuildIndex.Title, SceneTransition.TransitionType.BlackFade );
     }
 
 }

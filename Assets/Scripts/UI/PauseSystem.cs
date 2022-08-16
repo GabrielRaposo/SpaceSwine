@@ -101,7 +101,7 @@ public class PauseSystem : MonoBehaviour
         {
             shipButton.SetActive(false);
         }
-        
+
         canvasGroup.DOKill();
         canvasGroup.DOFade(1, transitionDuration)
             .SetUpdate(isIndependentUpdate: true);
@@ -122,6 +122,16 @@ public class PauseSystem : MonoBehaviour
         
         OnPause = false;
         GameManager.GoToScene(BuildIndex.Ship);
+    }
+
+    public void CallResetRound()
+    {
+        RoundsManager roundsManager = RoundsManager.Instance;
+        if (!roundsManager)
+            return;
+
+        SetPauseState(false);
+        roundsManager.CallReset();
     }
 
     public void ResetScene()

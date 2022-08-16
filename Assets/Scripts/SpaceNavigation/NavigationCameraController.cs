@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class NavigationCameraController : MonoBehaviour
 {
-    
     const float SCREEN_OFFSET = 3.25f;
+
+    public NavigationShip ship;
 
     //[SerializeField] float lerpRatio;
 

@@ -8,6 +8,8 @@ public class PlaySoundOnType : MonoBehaviour
     [SerializeField] AK.Wwise.Event voiceAkEvent;
     [SerializeField] TextTyper typer;
 
+    List<string> silentCharacters = new List<string>() { string.Empty, " ", ",", ".", "!", "?" }; 
+
     void Start()
     {
         if (!typer)
@@ -18,15 +20,21 @@ public class PlaySoundOnType : MonoBehaviour
             enabled = false;
             return;
         }
-
     }
 
-    private void Update() 
+    public void SetVoiceEvent(AK.Wwise.Event newEvent)
     {
-        if (!typer.IsTyping || voiceAkEvent.IsPlaying(gameObject))
+        voiceAkEvent = newEvent;
+    }
+
+    public void TypeSound(string s)
+    {
+        if (voiceAkEvent.IsPlaying(gameObject))
+            return;
+
+        if (silentCharacters.Contains(s))
             return;
 
         voiceAkEvent.Post(gameObject);
     }
-
 }

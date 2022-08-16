@@ -39,6 +39,15 @@ public static class Mathg
         
         return VectorToAngle(rotationVector) * side;
     }
+    
+    public static float AngleOfTheLineBetweenTwoPoints(Vector2 start, Vector2 end)
+    {
+        Vector3 rotationVector = end - start;
+
+        float side = (end.x > start.x) ? -1 : 1;
+        
+        return VectorToAngle(rotationVector) * side;
+    }
 
     public static float Remap (this float value, float from1, float to1, float from2, float to2)
     {

@@ -61,6 +61,12 @@
         private List<TextAnimation> animations;
         private Coroutine typeTextCoroutine;
 
+        public void SetTypeSpeedValues (float printDelaySetting = .02f, float punctuationDelayMultiplier = 8f)
+        {
+            PrintDelaySetting = printDelaySetting;
+            PunctuationDelayMultiplier = punctuationDelayMultiplier;
+        }
+
         /// <summary>
         /// Gets the PrintCompleted callback event.
         /// </summary>

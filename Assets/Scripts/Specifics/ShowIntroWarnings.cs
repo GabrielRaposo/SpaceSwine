@@ -7,6 +7,7 @@ public class ShowIntroWarnings : MonoBehaviour
     [SerializeField] float delayBetween;
     [SerializeField] float speedUpRatio;
     [SerializeField] int speedUpDelay = 1;
+    [SerializeField] AK.Wwise.Event bipAKEvent;
 
     RescaleTween[] warningsSigns;
     CanvasGroup canvasGroup;
@@ -33,6 +34,10 @@ public class ShowIntroWarnings : MonoBehaviour
         for (int i = 0; i < warningsSigns.Length; i++)
         {
             warningsSigns[i].Call();
+
+            if (bipAKEvent != null)
+                bipAKEvent.Post(gameObject);
+
             yield return new WaitForSeconds( d );
 
             if (i > 0 && i % speedUpDelay == 0)

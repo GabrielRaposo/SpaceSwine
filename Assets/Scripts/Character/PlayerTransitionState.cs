@@ -23,12 +23,15 @@ public class PlayerTransitionState : MonoBehaviour
 
     private void Start() 
     {
+        //Debug.Log("PlayerTransitionState - EnterState: " + EnterState);
+
         switch (EnterState)
         {
             case State.Teleport:
                 
                 TeleportIn ( action: () => 
                 {
+                    //Debug.Log("Exit intro state");
                     playerAnimations.ExitTransitionState();
 
                     playerCharacter.SetPhysicsBody(true);
@@ -63,10 +66,17 @@ public class PlayerTransitionState : MonoBehaviour
     public void TeleportIn (UnityAction action)
     {
         playerCharacter.DisableAllInteractions();
-        playerAnimations.SetTransitionState( AnimationState.TRANSITION_TELEPORT_IN );
+        playerCharacter.SetHiddenState(true);
+        playerCharacter.SetPhysicsBody(false);
 
-        //GameManager.BlockCharacterInput = true;
+        RaposUtil.Wait(this, frames: 3, () => 
+        {
+            playerCharacter.SetHiddenState(false);
+            playerCharacter.SetPhysicsBody(true);
 
-        OnAnimationEnd = action;
+            playerAnimations.SetTransitionState( AnimationState.TRANSITION_TELEPORT_IN );
+            //GameManager.BlockCharacterInput = true;
+            OnAnimationEnd = action;
+        });
     }
 }

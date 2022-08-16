@@ -40,6 +40,11 @@ public class RaposUtil
         script.StartCoroutine( WaitSeconds(duration, action) );
     }
 
+    public static void WaitSecondsRealtime(MonoBehaviour script, float duration, UnityAction action) 
+    {
+        script.StartCoroutine( WaitSecondsRealtime(duration, action) );
+    }
+
     public static IEnumerator Wait (int frames, UnityAction action)
     {
         if (frames > 0)
@@ -61,8 +66,20 @@ public class RaposUtil
         action?.Invoke();
     }
 
+    public static IEnumerator WaitSecondsRealtime (float duration, UnityAction action)
+    {
+        if (duration > 0)
+        {
+            yield return new WaitForSecondsRealtime(duration);
+        }
+
+        action?.Invoke();
+    }
+
     public static void ClearLog() //you can copy/paste this code to the bottom of your script
     {
+        return;
+
         #if UNITY_EDITOR
 
         var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
@@ -85,11 +102,38 @@ public static class Vector2Extension
     {
         return new Vector2 (v.x, y);        
     }
+
+    public static Vector2 To8Directions(this Vector2 v)
+    {
+        float threshold = .5f;
+        Vector2 result = Vector2.zero;
+        if (v.x != 0)
+        {
+            if (v.x > threshold)
+                result = result.SetX (1);
+            if (v.x < -threshold)
+                result = result.SetX (-1);
+        }
+        if (v.y != 0)
+        {
+            if (v.y > threshold)
+                result = result.SetY (1);
+            if (v.y < -threshold)
+                result = result.SetY (-1);
+        }
+        return result;
+    } 
 }
 
 public static class ShaderExtensions
 {
     public static Tween DOFloat(this Material m, string code, float to, float duration)
+    {
+        Tween t = DOTween.To(() => m.GetFloat(code), x => m.SetFloat(code, x), to, duration);
+        return t;
+    }
+    
+    public static Tween DOFloat(this Material m, int code, float to, float duration)
     {
         Tween t = DOTween.To(() => m.GetFloat(code), x => m.SetFloat(code, x), to, duration);
         return t;

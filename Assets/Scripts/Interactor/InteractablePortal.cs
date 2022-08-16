@@ -9,6 +9,13 @@ public class InteractablePortal : Interactable
     [SerializeField] RoundSessionData data;
     //[SerializeField] SpriteSwapper ballonSpriteSwapper;
     [SerializeField] DoorAnimation doorAnimation;
+    [SerializeField] GameObject inputHelper;
+
+    private void Start()
+    {
+        if (inputHelper) 
+            inputHelper.SetActive(false);    
+    }
 
     public override void Interaction (PlayerInteractor interactor) 
     {
@@ -16,18 +23,22 @@ public class InteractablePortal : Interactable
 
         if (data)
         {
+            if (inputHelper)
+                inputHelper.SetActive(false);
+
             //if (interactor)
             //{
             //    PlatformerCharacter platformerCharacter = interactor.GetComponent<PlatformerCharacter>();
             //    platformerCharacter?.KillInputs();
             //    platformerCharacter?.LookAtTarget(transform);
             //}
+
             if (!doorAnimation)
                 doorAnimation = GetComponentInChildren<DoorAnimation>();
 
             if (interactor && doorAnimation)
             {
-                doorAnimation.SetupAnimation
+                doorAnimation.SetupAnimationDangerZone
                 (
                     doorAnimation.GetComponent<Door>(), 
                     interactor.gameObject,
@@ -46,14 +57,19 @@ public class InteractablePortal : Interactable
         data.OnSessionCompleted += () => 
         {
             //Debug.Log("Session Done! ");
-            SpawnManager.index = data.spawnIndex;
+            Debug.Log("LoadSceneAction");
+            SpawnManager.Index = data.spawnIndex;
         };
         RoundsManager.SessionData = data;
             
         SceneTransition.LoadScene( (int) targetIndex, SceneTransition.TransitionType.SafetyToDanger );
     }
 
-    protected override void HighlightState (bool value) { }
+    protected override void HighlightState (bool value) 
+    {
+        if (inputHelper)
+            inputHelper.SetActive(value && interactable);
+    }
 
     public override void IconState (bool value) { }
 }

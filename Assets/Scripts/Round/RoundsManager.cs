@@ -16,16 +16,24 @@ public class RoundsManager : MonoBehaviour
     List<Round> rounds;
     PlayerCharacter player;
 
+    public static bool BlockSpawn;
     public static RoundSessionData SessionData;
+
+    public static RoundsManager Instance;
+
+    private void Awake() 
+    {
+        Instance = this;    
+    }
 
     private void Start() 
     {
-        // Define câmera de fases de perigo
+        // -- Define câmera de fases de perigo
         CameraFocusController cameraFocusController = CameraFocusController.Instance;
         if (cameraFocusController)
             cameraFocusController.SetStaticFocus();
         
-        // Encontra a instância do player
+        // -- Encontra a instância do player
         player = PlayerCharacter.Instance;
         if (!player)
         {
@@ -33,7 +41,7 @@ public class RoundsManager : MonoBehaviour
             return;
         }
 
-        // Cria lista de rounds
+        // -- Cria lista de rounds
         rounds = new List<Round>();
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -55,7 +63,7 @@ public class RoundsManager : MonoBehaviour
             SessionData = testSessionData;
         }
 
-        // Encontra o Index inicial
+        // -- Encontra o Index inicial
         if (SessionData != null)
         {
             currentIndex = SessionData.startingIndex;
@@ -63,38 +71,35 @@ public class RoundsManager : MonoBehaviour
         else currentIndex = 0;
 
         ActivateCurrentIndex();
+        
+        // -- Chamada de reset de cena na morte do player
+        PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
+        if (playerCharacter)
+            playerCharacter.SetDeathEvent( () => RoundTransition.Call(ActivateCurrentIndex) );
 
+        player.gameObject.SetActive(false);
+
+        // -- Setup de inputs de teste
+        //#if UNITY_EDITOR
         previousInputAction.performed += ctx => 
         {
-            if (GameManager.BlockCharacterInput)
+            if (GameManager.BlockCharacterInput || GameManager.OnTransition || PauseSystem.OnPause)
                 return;
 
             PreviousRoundLogic();
         };
         previousInputAction.Enable();
 
-        resetInputAction.performed += ctx => 
-        {
-            if (GameManager.BlockCharacterInput)
-                return;
-
-            RoundTransition.Call(ActivateCurrentIndex);
-        };
-        resetInputAction.Enable();
-
         nextInputAction.performed += ctx => 
         {
-            if (GameManager.BlockCharacterInput)
+            if (GameManager.BlockCharacterInput || GameManager.OnTransition || PauseSystem.OnPause)
                 return;
 
             if (currentIndex < rounds.Count)
                 rounds[currentIndex].RoundCleared();
         };
         nextInputAction.Enable();
-
-        PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
-        if (playerCharacter)
-            playerCharacter.SetDeathEvent( () => RoundTransition.Call(ActivateCurrentIndex) );
+        //#endif
     }
 
     public void PreviousRoundLogic()
@@ -152,10 +157,16 @@ public class RoundsManager : MonoBehaviour
         }
     }
 
+    public void CallReset()
+    {
+        RoundTransition.Call(ActivateCurrentIndex);
+    }
+
     private void OnDisable()
     {
+        //#if UNITY_EDITOR
         previousInputAction.Disable();
-        resetInputAction.Disable();
         nextInputAction.Disable();
+        //#endif
     }
 }

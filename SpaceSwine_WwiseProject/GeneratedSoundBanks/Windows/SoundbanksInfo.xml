@@ -207,12 +207,17 @@
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
-		<SoundBank Id="133642231" Language="SFX" Hash="3337942338">
+		<SoundBank Id="133642231" Language="SFX" Hash="3940459206">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
 			<IncludedEvents>
+				<Event Id="3298760050" Name="cenario_nave_bip_perigo" ObjectPath="\Events\Default Work Unit\Cutscenes\cenario_nave_bip_perigo" DurationType="OneShot" DurationMin="1.412562" DurationMax="1.412562"/>
+				<Event Id="3867903812" Name="cenario_nave_bip_tv" ObjectPath="\Events\Default Work Unit\Cutscenes\cenario_nave_bip_tv" DurationType="OneShot" DurationMin="1.384671" DurationMax="1.384671"/>
+				<Event Id="1147273941" Name="cenario_nave_explode" ObjectPath="\Events\Default Work Unit\Cutscenes\cenario_nave_explode" DurationType="OneShot" DurationMin="5.691066" DurationMax="5.691066"/>
+				<Event Id="1982671206" Name="cenario_passarinhos_voam" ObjectPath="\Events\Default Work Unit\Level\cenario_passarinhos_voam" DurationType="OneShot" DurationMin="0.356652" DurationMax="0.713303"/>
 				<Event Id="3223415371" Name="cenario_transicao" ObjectPath="\Events\Default Work Unit\Level\cenario_transicao" DurationType="OneShot" DurationMin="0.356652" DurationMax="0.356652"/>
+				<Event Id="1243364701" Name="cenario_tutorial_soundscape" ObjectPath="\Events\Default Work Unit\Cutscenes\cenario_tutorial_soundscape" DurationType="Infinite"/>
 				<Event Id="3655190725" Name="cenario_vitoria" ObjectPath="\Events\Default Work Unit\Level\cenario_vitoria" DurationType="OneShot" DurationMin="0.900988" DurationMax="0.900988"/>
 				<Event Id="2274976510" Name="gameplay_buyk_anda" ObjectPath="\Events\Default Work Unit\Buyk\Movimentação\gameplay_buyk_anda" DurationType="OneShot" DurationMin="0.164626" DurationMax="0.167029"/>
 				<Event Id="2418446987" Name="gameplay_buyk_morre" ObjectPath="\Events\Default Work Unit\Buyk\gameplay_buyk_morre" DurationType="OneShot" DurationMin="1.012154" DurationMax="1.012154"/>
@@ -222,6 +227,9 @@
 				<Event Id="1717148742" Name="gameplay_buyk_pousa_longo" ObjectPath="\Events\Default Work Unit\Buyk\Movimentação\gameplay_buyk_pousa_longo" DurationType="OneShot" DurationMin="0.703809" DurationMax="0.703809"/>
 				<Event Id="3434033334" Name="gameplay_buyk_pula_curto" ObjectPath="\Events\Default Work Unit\Buyk\Movimentação\gameplay_buyk_pula_curto" DurationType="OneShot" DurationMin="0.541973" DurationMax="0.541973"/>
 				<Event Id="2563466850" Name="gameplay_buyk_pula_longo" ObjectPath="\Events\Default Work Unit\Buyk\Movimentação\gameplay_buyk_pula_longo" DurationType="OneShot" DurationMin="1.036327" DurationMax="1.036327"/>
+				<Event Id="671794308" Name="gameplay_buyk_stuck_01" ObjectPath="\Events\Default Work Unit\Buyk\Cinematic\gameplay_buyk_stuck_01" DurationType="OneShot" DurationMin="0.371905" DurationMax="0.371905"/>
+				<Event Id="671794311" Name="gameplay_buyk_stuck_02" ObjectPath="\Events\Default Work Unit\Buyk\Cinematic\gameplay_buyk_stuck_02" DurationType="OneShot" DurationMin="0.717914" DurationMax="0.717914"/>
+				<Event Id="1336538064" Name="gameplay_buyk_stuck_fanfarra" ObjectPath="\Events\Default Work Unit\Buyk\Cinematic\gameplay_buyk_stuck_fanfarra" DurationType="OneShot" DurationMin="3.147800" DurationMax="3.147800"/>
 				<Event Id="3851873763" Name="gameplay_buyk_taca_item" ObjectPath="\Events\Default Work Unit\Buyk\Item\gameplay_buyk_taca_item" DurationType="OneShot" DurationMin="1.721927" DurationMax="1.721927"/>
 				<Event Id="3132805884" Name="gameplay_buyk_voa" ObjectPath="\Events\Default Work Unit\Buyk\Movimentação\gameplay_buyk_voa" DurationType="Infinite"/>
 				<Event Id="3272639445" Name="gameplay_flor_transition" ObjectPath="\Events\Default Work Unit\Level\gameplay_flor_transition" DurationType="OneShot" DurationMin="0.386855" DurationMax="0.386855"/>
@@ -243,22 +251,42 @@
 				<Event Id="3509273191" Name="ggs_ui_desliga" ObjectPath="\Events\Default Work Unit\Minigame GGS\ggs_ui_desliga" DurationType="OneShot" DurationMin="1.542381" DurationMax="1.542381"/>
 				<Event Id="4113901743" Name="ggs_ui_liga" ObjectPath="\Events\Default Work Unit\Minigame GGS\ggs_ui_liga" DurationType="OneShot" DurationMin="1.602608" DurationMax="1.602608"/>
 				<Event Id="1270516008" Name="ggs_ui_recorde_fanfarra" ObjectPath="\Events\Default Work Unit\Minigame GGS\ggs_ui_recorde_fanfarra" DurationType="OneShot" DurationMin="0.650771" DurationMax="0.650771"/>
-				<Event Id="937451947" Name="ui_menu_clique" ObjectPath="\Events\Default Work Unit\UI\ui_menu_clique" DurationType="OneShot" DurationMin="0.405438" DurationMax="0.405438"/>
-				<Event Id="2163476404" Name="ui_menu_hover" ObjectPath="\Events\Default Work Unit\UI\ui_menu_hover" DurationType="OneShot" DurationMin="0.252923" DurationMax="0.252923"/>
 				<Event Id="1320095827" Name="ui_nave_fala" ObjectPath="\Events\Default Work Unit\Personagens\ui_nave_fala" DurationType="OneShot" DurationMin="0.130884" DurationMax="0.147710"/>
+				<Event Id="1750137231" Name="ui_pager_clique" ObjectPath="\Events\Default Work Unit\UI\ui_pager_clique" DurationType="OneShot" DurationMin="0.213049" DurationMax="0.250000"/>
+				<Event Id="2728419545" Name="ui_robozao_fala" ObjectPath="\Events\Default Work Unit\Personagens\ui_robozao_fala" DurationType="OneShot" DurationMin="0.125011" DurationMax="0.180703"/>
+				<Event Id="1360832738" Name="ui_robozinho_fala_leg" ObjectPath="\Events\Default Work Unit\Personagens\ui_robozinho_fala_leg" DurationType="OneShot" DurationMin="0.125011" DurationMax="0.125011"/>
+				<Event Id="3630789066" Name="ui_robozinho_fala_plank" ObjectPath="\Events\Default Work Unit\Personagens\ui_robozinho_fala_plank" DurationType="OneShot" DurationMin="0.125011" DurationMax="0.125011"/>
+				<Event Id="1460218450" Name="ui_robozinho_fala_tom" ObjectPath="\Events\Default Work Unit\Personagens\ui_robozinho_fala_tom" DurationType="OneShot" DurationMin="0.125011" DurationMax="0.125011"/>
+				<Event Id="966578514" Name="ui_robozinho_fala_tree" ObjectPath="\Events\Default Work Unit\Personagens\ui_robozinho_fala_tree" DurationType="OneShot" DurationMin="0.125011" DurationMax="0.125011"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="9779719" Language="SFX">
 					<ShortName>gameplay_buyk_anda_02.wav</ShortName>
 					<Path>SFX\gameplay_buyk_anda_02_10C4C929.wem</Path>
 				</File>
+				<File Id="31496269" Language="SFX">
+					<ShortName>cenario_nave_bip_perigo_reverb.wav</ShortName>
+					<Path>SFX\cenario_nave_bip_perigo_reverb_10C4C929.wem</Path>
+				</File>
 				<File Id="32135188" Language="SFX">
 					<ShortName>ui_nave_fala_02.wav</ShortName>
 					<Path>SFX\ui_nave_fala_02_10C4C929.wem</Path>
 				</File>
+				<File Id="56959011" Language="SFX">
+					<ShortName>ui_pager_clique_04.wav</ShortName>
+					<Path>SFX\ui_pager_clique_04_10C4C929.wem</Path>
+				</File>
+				<File Id="78398219" Language="SFX">
+					<ShortName>ui_pager_clique_04.wav</ShortName>
+					<Path>SFX\ui_pager_clique_04_41219684.wem</Path>
+				</File>
 				<File Id="119911326" Language="SFX">
 					<ShortName>ggs_gameplay_linha_recorde.wav</ShortName>
 					<Path>SFX\ggs_gameplay_linha_recorde_10C4C929.wem</Path>
+				</File>
+				<File Id="121295341" Language="SFX">
+					<ShortName>cenario_nave_explode.wav</ShortName>
+					<Path>SFX\cenario_nave_explode_10C4C929.wem</Path>
 				</File>
 				<File Id="175724304" Language="SFX">
 					<ShortName>ggs_nave_morre.wav</ShortName>
@@ -275,6 +303,14 @@
 				<File Id="184829572" Language="SFX">
 					<ShortName>ui_robozinho_fala01.wav</ShortName>
 					<Path>SFX\ui_robozinho_fala01_10C4C929.wem</Path>
+				</File>
+				<File Id="192065964" Language="SFX">
+					<ShortName>gameplay_buyk_stuck_01.wav</ShortName>
+					<Path>SFX\gameplay_buyk_stuck_01_10C4C929.wem</Path>
+				</File>
+				<File Id="203295385" Language="SFX">
+					<ShortName>cenario_nave_bip_tv.wav</ShortName>
+					<Path>SFX\cenario_nave_bip_tv_10C4C929.wem</Path>
 				</File>
 				<File Id="217993848" Language="SFX">
 					<ShortName>gameplay_flor_transition.wav</ShortName>
@@ -312,13 +348,25 @@
 					<ShortName>gameplay_portal_entra.wav</ShortName>
 					<Path>SFX\gameplay_portal_entra_10C4C929.wem</Path>
 				</File>
+				<File Id="330896339" Language="SFX">
+					<ShortName>ui_pager_clique_03.wav</ShortName>
+					<Path>SFX\ui_pager_clique_03_10C4C929.wem</Path>
+				</File>
 				<File Id="356637613" Language="SFX">
 					<ShortName>gameplay_buyk_pula_longo.wav</ShortName>
 					<Path>SFX\gameplay_buyk_pula_longo_10C4C929.wem</Path>
 				</File>
-				<File Id="363192587" Language="SFX">
-					<ShortName>Astropig oinc fofo_slice 2.wav</ShortName>
-					<Path>SFX\Astropig oinc fofo_slice 2_DDB0E549.wem</Path>
+				<File Id="387370001" Language="SFX">
+					<ShortName>gameplay_buyk_stuck_fanfarra.wav</ShortName>
+					<Path>SFX\gameplay_buyk_stuck_fanfarra_10C4C929.wem</Path>
+				</File>
+				<File Id="388759442" Language="SFX">
+					<ShortName>ui_pager_clique_01.wav</ShortName>
+					<Path>SFX\ui_pager_clique_01_10C4C929.wem</Path>
+				</File>
+				<File Id="393854216" Language="SFX">
+					<ShortName>ui_pager_clique_01.wav</ShortName>
+					<Path>SFX\ui_pager_clique_01_82528F3A.wem</Path>
 				</File>
 				<File Id="432320192" Language="SFX">
 					<ShortName>gameplay_buyk_pousa_longo.wav</ShortName>
@@ -328,9 +376,17 @@
 					<ShortName>gameplay_buyk_pega_item.wav</ShortName>
 					<Path>SFX\gameplay_buyk_pega_item_10C4C929.wem</Path>
 				</File>
+				<File Id="492882767" Language="SFX">
+					<ShortName>cenario_nave_bip_perigo.wav</ShortName>
+					<Path>SFX\cenario_nave_bip_perigo_10C4C929.wem</Path>
+				</File>
 				<File Id="536965891" Language="SFX">
 					<ShortName>gameplay_buyk_anda_04.wav</ShortName>
 					<Path>SFX\gameplay_buyk_anda_04_10C4C929.wem</Path>
+				</File>
+				<File Id="565043529" Language="SFX">
+					<ShortName>gameplay_buyk_stuck_02.wav</ShortName>
+					<Path>SFX\gameplay_buyk_stuck_02_10C4C929.wem</Path>
 				</File>
 				<File Id="586969306" Language="SFX">
 					<ShortName>gameplay_portal_abre.wav</ShortName>
@@ -340,13 +396,17 @@
 					<ShortName>Garage Foley - 5.wav</ShortName>
 					<Path>SFX\Garage Foley - 5_81EBCAB1.wem</Path>
 				</File>
+				<File Id="594873839" Language="SFX">
+					<ShortName>ui_pager_clique_nota.wav</ShortName>
+					<Path>SFX\ui_pager_clique_nota_23B39147.wem</Path>
+				</File>
 				<File Id="605628690" Language="SFX">
 					<ShortName>gameplay_buyk_pula_curto.wav</ShortName>
 					<Path>SFX\gameplay_buyk_pula_curto_10C4C929.wem</Path>
 				</File>
-				<File Id="628454795" Language="SFX">
-					<ShortName>Astropig Abajour.wav</ShortName>
-					<Path>SFX\Astropig Abajour_2F8894DA.wem</Path>
+				<File Id="611202276" Language="SFX">
+					<ShortName>ui_pager_clique_02.wav</ShortName>
+					<Path>SFX\ui_pager_clique_02_DC31689A.wem</Path>
 				</File>
 				<File Id="640895124" Language="SFX">
 					<ShortName>ggs_ui_liga.wav</ShortName>
@@ -363,6 +423,14 @@
 				<File Id="739371326" Language="SFX">
 					<ShortName>gameplay_terminal_bipe.wav</ShortName>
 					<Path>SFX\gameplay_terminal_bipe_10C4C929.wem</Path>
+				</File>
+				<File Id="754970854" Language="SFX">
+					<ShortName>ui_pager_clique_02.wav</ShortName>
+					<Path>SFX\ui_pager_clique_02_10C4C929.wem</Path>
+				</File>
+				<File Id="759831566" Language="SFX">
+					<ShortName>cenario_tutorial_soundscape.wav</ShortName>
+					<Path>SFX\cenario_tutorial_soundscape_DBA5BAA9.wem</Path>
 				</File>
 				<File Id="781078286" Language="SFX">
 					<ShortName>ggs_gameplay_linha_milestone.wav</ShortName>
@@ -438,7 +506,11 @@
 				</File>
 				<File Id="1050438253" Language="SFX">
 					<ShortName>gameplay_buyk_pousa_curto.wav</ShortName>
-					<Path>SFX\gameplay_buyk_pousa_curto_10C4C929.wem</Path>
+					<Path>SFX\gameplay_buyk_pousa_curto_22C7BDBA.wem</Path>
+				</File>
+				<File Id="1067322840" Language="SFX">
+					<ShortName>ui_pager_clique_03.wav</ShortName>
+					<Path>SFX\ui_pager_clique_03_56BE99C1.wem</Path>
 				</File>
 				<File Id="1069278590" Language="SFX">
 					<ShortName>ui_nave_fala_01.wav</ShortName>
@@ -446,17 +518,23 @@
 				</File>
 			</IncludedMemoryFiles>
 			<GameParameters>
+				<GameParameter Id="363529975" Name="Buyk_stuck" ObjectPath="\Game Parameters\Default Work Unit\Buyk_stuck"/>
+				<GameParameter Id="1171258525" Name="Cutscene_inicio" ObjectPath="\Game Parameters\Default Work Unit\Cutscene_inicio"/>
+				<GameParameter Id="2164391380" Name="Tutorial_final_pulo_fadeout" ObjectPath="\Game Parameters\Default Work Unit\Tutorial_final_pulo_fadeout"/>
+				<GameParameter Id="2340947590" Name="volume_cutscene" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_cutscene"/>
 				<GameParameter Id="3673881719" Name="volume_sfx" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_sfx"/>
 				<GameParameter Id="3695994288" Name="volume_master" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_master"/>
 				<GameParameter Id="3891337659" Name="volume_music" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_music"/>
 				<GameParameter Id="4083254980" Name="volume_placeholders" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_placeholders"/>
+				<GameParameter Id="4133059913" Name="Tutorial_inicio_fadein" ObjectPath="\Game Parameters\Default Work Unit\Tutorial_inicio_fadein"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2871125085">
+		<SoundBank Id="1355168291" Language="SFX" Hash="1205810924">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<GameParameters>
+				<GameParameter Id="2340947590" Name="volume_cutscene" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_cutscene"/>
 				<GameParameter Id="3673881719" Name="volume_sfx" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_sfx"/>
 				<GameParameter Id="3695994288" Name="volume_master" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_master"/>
 				<GameParameter Id="3891337659" Name="volume_music" ObjectPath="\Game Parameters\Default Work Unit\Volume Bus\volume_music"/>

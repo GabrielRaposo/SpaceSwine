@@ -13,14 +13,16 @@ public class TitleScreenFunctions : MonoBehaviour
 
     void Start()
     {
-        if (!SaveManager.Initiated)
-            SaveManager.Load();
+        //if (!SaveManager.Initiated)
+        //    SaveManager.Load();
     }
 
     public void PlayInput()
     {
         TrailerSceneCaller.AutoStart = true;
-        SceneTransition.LoadScene((int)BuildIndex.Ship, SceneTransition.TransitionType.WhiteFade);
+        PlaylistPlayer.CutsceneMode = true;
+
+        SceneTransition.LoadScene((int)BuildIndex.Ship, SceneTransition.TransitionType.BlackFade);
 
         //SceneTransition.LoadScene((int)BuildIndex.World1Exploration, SceneTransition.TransitionType.WhiteFade);
     }

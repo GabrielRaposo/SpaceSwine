@@ -31,6 +31,7 @@ public class DialogueBox : MonoBehaviour
     string speakerName;
     List <string> dialogues;
     UnityAction OnDialogueEnd;
+    PlaySoundOnType playSoundOnType;
 
     PlayerInputActions playerInputActions;
     Sequence sequence;
@@ -69,7 +70,8 @@ public class DialogueBox : MonoBehaviour
         string speakerName, 
         List<string> dialogues, 
         UnityAction OnDialogueEnd,
-        DialogueBoxStyle customDialogueStyle
+        DialogueBoxStyle customDialogueStyle,
+        AK.Wwise.Event talkSoundAKEvent
     )
     {
         this.interactable = interactable;
@@ -90,6 +92,10 @@ public class DialogueBox : MonoBehaviour
             dialogueBoxStyleController?.SetMainStyle();
         }
 
+        playSoundOnType = GetComponent<PlaySoundOnType>();
+        if (playSoundOnType)
+            playSoundOnType.SetVoiceEvent(talkSoundAKEvent);
+
         SetDialogueEvents();
 
         dialogueIndex = 0;
@@ -98,7 +104,6 @@ public class DialogueBox : MonoBehaviour
 
         DialogueSystem.OnDialogue = true;
         delayFrames = 15;
-
     }
 
     private void SetDialogueEvents()
@@ -157,7 +162,7 @@ public class DialogueBox : MonoBehaviour
                 sequence.Kill();
 
             sequence.Append( transform.DOScaleY ( 1f, transitionDuration ) );
-            sequence.Join ( canvasGroup.DOFade ( 1f, transitionDuration ) );
+            sequence.Join  ( canvasGroup.DOFade ( 1f, transitionDuration ) );
         }
         showing = true;
 

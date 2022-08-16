@@ -15,18 +15,24 @@ public class TransitionSafetyToDanger : MonoBehaviour
     [SerializeField] CanvasGroup mainCanvasGroup;    
     [SerializeField] CanvasGroup assetsGroup;
     [SerializeField] Image fillImage;
+    [SerializeField] ImageMaterialInterface materialInterface;
 
     [Header("Icons")]
     [SerializeField] RectTransform iconsAnchor;
     [SerializeField] Animator safetyIconAnimator;
     [SerializeField] Animator dangerIconAnimator;
 
-    [Header("Stripes")]
+    [Header("Stripes Bottom")]
     [SerializeField] CanvasGroup stripesGroup;
-    [SerializeField] Image safetyStripe;
-    [SerializeField] Image dangerStripe;
+    [SerializeField] CanvasGroup safetyStripes;
+    [SerializeField] CanvasGroup dangerStripes;
+
+    [Header("Playlists - TEMP: sistematizar depois")]
+    [SerializeField] PlaylistScriptableObject safetyPlaylist;
+    [SerializeField] PlaylistScriptableObject dangerPlaylist;
 
     Sequence mainSequence;
+    private static readonly int Play = Animator.StringToHash("Play");
 
     void Start()
     {
@@ -40,8 +46,8 @@ public class TransitionSafetyToDanger : MonoBehaviour
     {
         iconsAnchor.anchoredPosition = new Vector2(danger ? iconSlideX : 0, iconsAnchor.anchoredPosition.y);
 
-        safetyStripe.color =  danger ? new Color(1,1,1,0) : Color.white;
-        dangerStripe.color = !danger ? new Color(1,1,1,0) : Color.white;
+        safetyStripes.alpha =  danger ? 0 : 1;
+        dangerStripes.alpha =  danger ? 1 : 0;
     }
 
     public void CallTransition (int index, bool safetyToDanger)
@@ -57,23 +63,31 @@ public class TransitionSafetyToDanger : MonoBehaviour
     private IEnumerator SafetyToDangerTransition(int index, bool safetyToDanger)
     {
         SceneTransition.OnTransition = true;
+        RoundsManager.BlockSpawn = true;
+        SetPlaylistOnStart.Block = true;
         bool done = false;
+
+        if (mainSequence != null)
+            mainSequence.Kill();
 
         SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
         if (soundtrackManager)
             soundtrackManager.FadeOutMusic(2.0f);
 
-        if (mainSequence != null)
-            mainSequence.Kill();
+        fillImage.enabled = false;
 
         // -- Fade-in do fundo
-        mainSequence = DOTween.Sequence();
-        mainSequence.Append( mainCanvasGroup.DOFade(1, fadeDuration) );
-        mainSequence.OnComplete( () => done = true );
-        mainSequence.SetUpdate(isIndependentUpdate: true);
+        mainCanvasGroup.alpha = 1.0f;
+        materialInterface.animator.SetTrigger(Play);
+        materialInterface.onAnimationEnd = () =>
+        {
+            done = true;
+        };
 
         yield return new WaitUntil( () => done );
         done = false;
+
+        fillImage.enabled = true;
 
         // -- Inicia carregamento de cena
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(index);
@@ -114,7 +128,9 @@ public class TransitionSafetyToDanger : MonoBehaviour
         mainSequence.AppendCallback( () => 
         {
             if (soundtrackManager)
-                soundtrackManager.SkipTrack(1);            
+            {
+                soundtrackManager.SetPlaylist(safetyToDanger ? dangerPlaylist : safetyPlaylist );
+            }
         } );
         mainSequence.AppendInterval(2.0f);
         mainSequence.OnComplete( () => done = true );
@@ -128,7 +144,6 @@ public class TransitionSafetyToDanger : MonoBehaviour
         DOTween.KillAll();
         yield return new WaitForEndOfFrame();
 
-
         // -- Fade-out da tela de transição
         mainSequence = DOTween.Sequence();
         mainSequence.Append( mainCanvasGroup.DOFade(0, slideDuration) );
@@ -137,25 +152,28 @@ public class TransitionSafetyToDanger : MonoBehaviour
         
         yield return new WaitUntil( () => done );
 
+        fillImage.enabled = false;
 
+        RoundsManager.BlockSpawn = false;
         gameObject.SetActive(false);
         SceneTransition.OnTransition = false;
+        SetPlaylistOnStart.Block = false; 
     }
 
     private Sequence SwitchStripes(bool toDanger)
     {
-        Image first  = toDanger ? safetyStripe : dangerStripe;
-        Image second = toDanger ? dangerStripe : safetyStripe;
+        CanvasGroup first  = toDanger ? safetyStripes : dangerStripes;
+        CanvasGroup second = toDanger ? dangerStripes : safetyStripes;
 
-        first.color = Color.white;
-        second.color = new Color(1,1,1,0);
+        first.alpha = 1;
+        second.alpha = 0;
         
         Sequence s = DOTween.Sequence();
 
         s.Append( stripesGroup.DOFade(0, slideDuration/2f) );
         s.AppendCallback( () => {
-            first.color  = new Color(1,1,1,0);
-            second.color = Color.white;
+            first.alpha  = 0;
+            second.alpha = 1;
         } );
         s.Append( stripesGroup.DOFade(1, slideDuration/2f) );
         

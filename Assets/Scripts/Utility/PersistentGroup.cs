@@ -14,6 +14,8 @@ public class PersistentGroup : MonoBehaviour
             return;
         }
 
+        Application.targetFrameRate = 60;
+
         DontDestroyOnLoad(gameObject);
         Instance = this;
     }

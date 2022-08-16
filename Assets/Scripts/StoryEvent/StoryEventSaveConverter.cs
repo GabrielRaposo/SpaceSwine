@@ -56,7 +56,7 @@ public class StoryEventSaveConverter : MonoBehaviour
             if (data == null)
                 continue;
 
-            storyEvents[i].state = data.state;
+            storyEvents[i].SetState( data.state );
         }
     } 
 

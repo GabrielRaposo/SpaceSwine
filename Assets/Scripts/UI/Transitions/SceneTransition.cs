@@ -13,7 +13,7 @@ public class SceneTransition : MonoBehaviour
     public static bool OnTransition;
     static SceneTransition Instance;
 
-    public enum TransitionType { WhiteFade, SafetyToDanger, DangerToSafety }
+    public enum TransitionType { BlackFade, SafetyToDanger, DangerToSafety }
 
     private void Awake()
     {
@@ -43,7 +43,7 @@ public class SceneTransition : MonoBehaviour
     public static void ReloadScene()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
-        LoadScene(currentScene, TransitionType.WhiteFade);
+        LoadScene(currentScene, TransitionType.BlackFade);
     }
 
     private void LocalLoadScene(int index, TransitionType transitionType)
@@ -58,7 +58,7 @@ public class SceneTransition : MonoBehaviour
                 transitionSafetyToDanger.CallTransition(index, safetyToDanger: false);
                 break;
 
-            case TransitionType.WhiteFade:
+            case TransitionType.BlackFade:
                 transitionFadeOut.CallTransition(index);
                 break;
         }

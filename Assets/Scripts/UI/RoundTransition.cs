@@ -7,10 +7,15 @@ using DG.Tweening;
 
 public class RoundTransition : MonoBehaviour
 {
-    [SerializeField] Image fillImage;
+    [SerializeField] RectTransform fillAnchor;
+
+    //[Header("Values")]
     [SerializeField] float duration;
+    [SerializeField] float topY;
+    [SerializeField] float botY;
 
     Sequence mainSequence;
+    CanvasGroup canvasGroup;
     
     public static bool OnTransition;
     static RoundTransition Instance;
@@ -24,6 +29,9 @@ public class RoundTransition : MonoBehaviour
         }
 
         Instance = this;
+
+        canvasGroup = GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0;
     }
 
     public static void Call(UnityAction action)
@@ -48,17 +56,22 @@ public class RoundTransition : MonoBehaviour
         OnTransition = true;
         bool done = false;
 
-        if (!fillImage)
-            yield break;
-
         if (mainSequence != null)
             mainSequence.Kill();
 
-        fillImage.color = new Color(0,0,0,0);
+        fillAnchor.MoveY(botY);
+        canvasGroup.alpha = 1;
 
         // Mostra transição
         mainSequence = DOTween.Sequence();
-        mainSequence.Append( fillImage.DOFade(1, duration) );
+        mainSequence.Append
+        ( 
+            DOVirtual.Float
+            (
+                from: botY, to: 0, duration, 
+                (f) => fillAnchor.MoveY(f)
+            ).SetEase(Ease.Linear)
+        );
         mainSequence.OnComplete( () => done = true );
         mainSequence.SetUpdate(isIndependentUpdate: true);
 
@@ -71,7 +84,14 @@ public class RoundTransition : MonoBehaviour
 
         // Some com transição
         mainSequence = DOTween.Sequence();
-        mainSequence.Append( fillImage.DOFade(0, duration) );
+        mainSequence.Append
+        ( 
+            DOVirtual.Float
+            (
+                from: 0, to: topY, duration, 
+                (f) => fillAnchor.MoveY(f)
+            ).SetEase(Ease.Linear)
+        );
         mainSequence.OnComplete( () => done = true );
         mainSequence.SetUpdate(isIndependentUpdate: true);
         

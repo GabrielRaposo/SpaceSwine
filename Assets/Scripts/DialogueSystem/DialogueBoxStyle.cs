@@ -27,6 +27,9 @@ public class DialogueBoxStyle : ScriptableObject
     [Header("Text")]
     public bool showNameBox = true;
     public float fontSize = 36f;
+    public bool autoSize = false;
     public TMP_FontAsset fontAsset;
     public bool instantText = false;
+    public HorizontalAlignmentOptions horizontalAlignment = HorizontalAlignmentOptions.Center;
+    public VerticalAlignmentOptions verticalAlignment = VerticalAlignmentOptions.Top;
 }

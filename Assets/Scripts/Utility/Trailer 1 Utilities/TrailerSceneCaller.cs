@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using RedBlueGames.Tools.TextTyper;
 
 public class TrailerSceneCaller : MonoBehaviour
 {
@@ -14,13 +15,20 @@ public class TrailerSceneCaller : MonoBehaviour
     [Space(10)]
     
     [SerializeField] [TextArea(minLines: 2, maxLines: 3)] List<string> shipDialogue;
+    [SerializeField] List<string> trailerDialogueID;
+    [SerializeField] List<string> warningTextsID;
     
+    [Header("WWise")]
+    //[SerializeField] AK.Wwise.Event screenLightUpAKEvent;
+    [SerializeField] AK.Wwise.Event explosionAKEvent;
+    [SerializeField] AK.Wwise.RTPC intensityAKEvent;
+
     [Header("References")]
     [SerializeField] PlayerCharacter player;
     [SerializeField] GameObject bedBuyk;
     [SerializeField] ShipDialogueBox shipDialogueBox;
     [SerializeField] GalaxyParallaxTester galaxyParallax;
-    [SerializeField] Animator shipScreens;
+    [SerializeField] ShipScreensOverlay shipScreens;
     [SerializeField] ScreenShakeCaller screenShake;
     [SerializeField] GameObject relaxingBuyk;
     [SerializeField] GameObject startledBuyk;
@@ -31,6 +39,7 @@ public class TrailerSceneCaller : MonoBehaviour
     [SerializeField] ShowIntroWarnings introWarnings;
     [SerializeField] HoldToSkipScene holdToSkipScene;
     [SerializeField] AnimationCurve redCanvasCurve;
+    [SerializeField] TextTyper shipTextTyper;
 
     Sequence sequence;
     Sequence endtextS;
@@ -52,9 +61,15 @@ public class TrailerSceneCaller : MonoBehaviour
 
     private void Start() 
     {
+        if (intensityAKEvent != null)
+            intensityAKEvent.SetGlobalValue(0);
+
         if (!AutoStart)
         {
-            shipScreens.gameObject.SetActive(false);
+            //shipScreens.gameObject.SetActive(false);
+            if (galaxyParallax)
+                galaxyParallax.enabled = false;
+
             if (holdToSkipScene)
                 holdToSkipScene.enabled = false;
 
@@ -94,16 +109,25 @@ public class TrailerSceneCaller : MonoBehaviour
 
         // -- Mostra a caixa de texto
         float t1 = .5f;
-        sequence.AppendCallback( () => shipScreens.SetTrigger("TurnOn") );
+        sequence.AppendCallback( () => 
+        {
+            shipScreens.TurnOn();
+        });
         sequence.AppendCallback( () => relaxingBuyk.GetComponentInChildren<Animator>().SetTrigger("LockTop") );
         sequence.AppendCallback( () => shipDialogueBox.SetShown(true, t1) );
         sequence.AppendInterval( t1 + .3f);
 
         // -- Leitura dos diálogos
-        for (int i = 0; i < shipDialogue.Count; i++)
+        for (int i = 0; i < trailerDialogueID.Count; i++)
         {
-            string s = shipDialogue[i];
-            
+            string s = shipDialogue[i % shipDialogue.Count];
+            (bool isValid, string value) localizedText = LocalizationManager.GetShipText(trailerDialogueID[i]);
+            if (localizedText.isValid)
+            {
+                s = localizedText.value;
+            }
+            //Debug.Log($"localizedText: {localizedText.isValid}, {localizedText.value}");
+
             int local = i;
             sequence.AppendCallback
             (
@@ -135,15 +159,17 @@ public class TrailerSceneCaller : MonoBehaviour
         {
             default:
             case 0:
-                return 0.8f;
+                return 2.5f;
 
             case 1:
             case 2:
-                return 2.5f;
+                return 4f;
 
             case 3:
-            case 5:
-                return 9.0f;
+                return 2f;
+
+            case 4:
+                return 10.0f;
         }
     }
 
@@ -161,7 +187,10 @@ public class TrailerSceneCaller : MonoBehaviour
 
         smokePS.Play();
         redLight.SetActive(true);
-        shipScreens.SetTrigger("Break");
+        shipScreens.Break();
+
+        if (explosionAKEvent != null)
+            explosionAKEvent.Post(gameObject);
 
         Camera cam = Camera.main;
         if (cam)
@@ -174,46 +203,85 @@ public class TrailerSceneCaller : MonoBehaviour
         shipDialogueBox.transform.DOPunchScale(Vector3.one * .8f, duration: .3f);
         shipDialogueBox.transform.DOLocalRotate(Vector3.forward * 3, duration: .1f);
 
+
+        // -- Chamada dos textos de perigo
+        if (warningTextsID.Count < 2)
+            return;
+
+        if (shipTextTyper)
+        {
+            shipTextTyper.SetTypeSpeedValues(printDelaySetting: .01f, punctuationDelayMultiplier: 1f);
+        }
+
         endtextS = DOTween.Sequence();
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327><b>-- WARNING --\nFRONTAL COLLISION ", delay: .01f, instantText: true) );
-        endtextS.AppendInterval( 1f );
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>HULL BREACH DETECTED") );
-        endtextS.AppendInterval( 1f );
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>ELECTRICAL SYSTEM FAILURE DETECTED") );
-        endtextS.AppendInterval( 1f );
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>FUEL TANK FAILURE DETECTED") );
-        endtextS.AppendInterval( 1f );
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>BACK THRUSTERS FAILURE DETECTED") );
-        endtextS.AppendInterval( 1f );
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>LANDING GEAR FAILURE DETECTED") );
-        endtextS.AppendInterval( 1f );
-        endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>SOMETHING-SOMETHING FAILURE DETECTED") );
+
+        (bool isValid, string value) warningText = LocalizationManager.GetShipText( warningTextsID[0] );
+        endtextS.AppendCallback( () => shipDialogueBox.Type(warningText.value, delay: .01f, instantText: true) );
+        
+        for (int i = 1; i < warningTextsID.Count; i++)
+        {
+            endtextS.AppendInterval( 1.1f );
+
+            (bool isValid, string value) localWarningText = LocalizationManager.GetShipText(warningTextsID[i]);
+            endtextS.AppendCallback( () => shipDialogueBox.Type(localWarningText .value) );
+        }
+        //endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>HULL BREACH DETECTED") );
+        //endtextS.AppendInterval( 1f );
+        //endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>ELECTRICAL SYSTEM FAILURE DETECTED") );
+        //endtextS.AppendInterval( 1f );
+        //endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>FUEL TANK FAILURE DETECTED") );
+        //endtextS.AppendInterval( 1f );
+        //endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>BACK THRUSTERS FAILURE DETECTED") );
+        //endtextS.AppendInterval( 1f );
+        //endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>LANDING GEAR FAILURE DETECTED") );
+        //endtextS.AppendInterval( 1f );
+        //endtextS.AppendCallback( () => shipDialogueBox.Type("<color=#E32327>SOMETHING-SOMETHING FAILURE DETECTED") );
 
         StartCoroutine( ScreenFadeOut() );        
     }
 
     private IEnumerator ScreenFadeOut()
     {
-        yield return new WaitForSeconds(1.0f);
+        float t1 = 1.0f;
+        float t2 = 1.5f;
+        float t3 = 3.55f;
+
+        DOVirtual.Float
+        (
+            from: 0, to: 100, duration: t1 + t2 + t3,
+            (f) =>  
+            {
+                //Debug.Log("f: " + f);
+                if (intensityAKEvent != null)
+                    intensityAKEvent.SetGlobalValue(f);
+            }
+        );
+
+        yield return new WaitForSeconds(t1);
 
         if (introWarnings)
             introWarnings.CallInOrder();
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(t2);
 
-        float t = 3.55f;
         if (redCanvasGroup)
         {
             //redCanvasGroup.DOFade(1, duration: t)
             //    .OnComplete( () => {} );
             DOVirtual.Float
             (
-                from: 0, to: 1, duration: t,
+                from: 0, to: 1, duration: t3,
                 f => redCanvasGroup.alpha = redCanvasCurve.Evaluate(f)
             );
         }
 
-        yield return new WaitForSeconds(t);
+        yield return new WaitForSeconds(t3);
+
+        if (endtextS != null)
+            endtextS.Kill();
+
+        if (shipDialogueBox)
+            shipDialogueBox.StopType();
 
         if (blackImage)
             blackImage.enabled = true;
@@ -231,7 +299,8 @@ public class TrailerSceneCaller : MonoBehaviour
         if (player)
             player.SetHiddenState(true);
 
-        shipScreens.SetTrigger("TurnOn");
+        //shipScreens.SetTrigger("TurnOn");
+        shipScreens.TurnOn();
     }
 
     public void CallNextScene()

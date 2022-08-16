@@ -23,10 +23,16 @@ public class GravityInteraction : MonoBehaviour
     PlanetPlatform platform;
     GravitationalBody planet;
 
-    CheckGround checkGround;
     Rigidbody2D rb;
+    CheckGround checkGround;
 
     public UnityAction<Transform> OnChangeGravityAnchor;
+
+    private void Awake() 
+    {
+        rb = GetComponent<Rigidbody2D>();   
+        checkGround = GetComponent<CheckGround>();
+    }
 
     private void OnEnable() 
     {
@@ -39,9 +45,6 @@ public class GravityInteraction : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();   
-        checkGround = GetComponent<CheckGround>();
-
         CameraFocusController cameraFocusController = CameraFocusController.Instance;
 
         playerFocusInput.performed += (ctx) => 

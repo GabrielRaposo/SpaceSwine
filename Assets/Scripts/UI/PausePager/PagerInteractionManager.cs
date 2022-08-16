@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using DG.Tweening;
@@ -11,6 +12,9 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] PagerAxisButtonsVisual pagerAxisButtonsVisual;
     [SerializeField] PagerConfirmationScreen confirmationScreen;
     [SerializeField] List<PagerScreen> screens;
+    [SerializeField] GameObject callScreen;
+    [SerializeField] Image callCountFillDisplay;
+    [SerializeField] GameObject resetRoundButton;
     [SerializeField] UnityEvent backOnMainEvent;
 
     [Header("Keychain Interaction")]
@@ -18,6 +22,7 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] float holdDuration;
     [SerializeField] ImageSwapper keychainSwapper;
     [SerializeField] StoryEventScriptableObject unlockStoryEvent; 
+    [SerializeField] KeychainInputBanner keychainBanner;
     [SerializeField] UnityEvent callShipEvent;
 
     [Header("Transition Data")]
@@ -34,6 +39,7 @@ public class PagerInteractionManager : MonoBehaviour
     float delay;
     float holdCount; 
     bool keychainState;
+    bool callingShip;
     Sequence s;
 
     RectTransform rt;
@@ -41,6 +47,7 @@ public class PagerInteractionManager : MonoBehaviour
 
     PlayerInputActions playerInputActions;
     InputAction navigationAction;
+    InputAction confirmAction;
     InputAction shipInputAction;
 
     private void Awake() 
@@ -61,35 +68,30 @@ public class PagerInteractionManager : MonoBehaviour
         if (optionsMode) i = 2;
 
         GoToScreen ( i );
+        callScreen.SetActive(false); 
 
-        //if (optionsMode && optionsBackButton)
-        //    optionsBackButton.gameObject.SetActive(false);
-
-        playerInputActions = new PlayerInputActions();
-
-        navigationAction = playerInputActions.UI.Navigation;
-        navigationAction.Enable();
-
-        playerInputActions.UI.Confirm.performed += (ctx) => 
-        {               
-            if (CheckInputBlock)
-                return;
-
-            CurrentScreen.ClickInput();
-        };
-        playerInputActions.UI.Confirm.Enable();
-
-        playerInputActions.UI.Cancel.performed += (ctx) => 
+        // -- Setup de inputs
         {
-            if (CheckInputBlock)
-                return;
+            playerInputActions = new PlayerInputActions();
 
-            BackInput();
-        };
-        playerInputActions.UI.Cancel.Enable();
+            navigationAction = playerInputActions.UI.Navigation;
+            navigationAction.Enable();
 
-        shipInputAction = playerInputActions.UI.Other;
-        shipInputAction.Enable();
+            confirmAction = playerInputActions.UI.Confirm;
+            confirmAction.Enable();
+
+            playerInputActions.UI.Cancel.performed += (ctx) => 
+            {
+                if (CheckInputBlock || callingShip)
+                    return;
+
+                BackInput();
+            };
+            playerInputActions.UI.Cancel.Enable();
+
+            shipInputAction = playerInputActions.UI.Other;
+            shipInputAction.Enable();
+        }
     }
 
     private void KeychainInitiationLogic()
@@ -102,6 +104,9 @@ public class PagerInteractionManager : MonoBehaviour
 
         if (keychainObject)
             keychainObject.SetActive( keychainState );
+
+        if (keychainBanner)
+            keychainBanner.Show();
     }
 
     private bool CheckInputBlock
@@ -111,20 +116,12 @@ public class PagerInteractionManager : MonoBehaviour
 
     public void CustomActivation (UnityAction backCall)
     {
-        KeychainInitiationLogic();
-
-        if (s != null)
-            s.Kill();
-        SetAbsolutePosition(shown: true);
-        animator.SetTrigger("Reset");
-
         optionsMode = true;
-
-        OnFocus = true;
-        enabled = true;
 
         if (optionsBackButton)
             optionsBackButton.OverrideInteractionEvent(backCall);
+
+        SlideInSequence();
     }
     public void SetAbsolutePosition (bool shown)
     {
@@ -138,8 +135,19 @@ public class PagerInteractionManager : MonoBehaviour
             s.Kill();
 
         rt = GetComponent<RectTransform>();
+        
         SetAbsolutePosition(false);
+
+        int i = initialIndex > -1 ? initialIndex : 1;
+        if (optionsMode) i = 2;
+        
+        GoToScreen ( i );
+        callScreen.SetActive(false); 
         KeychainInitiationLogic();
+
+        if (resetRoundButton)
+            resetRoundButton.SetActive (RoundsManager.Instance);
+        
 
         animator.SetTrigger("Reset");
         animator.SetInteger("Slide", 1);
@@ -172,6 +180,9 @@ public class PagerInteractionManager : MonoBehaviour
         rt = GetComponent<RectTransform>();
         SetAbsolutePosition(true);
 
+        if (keychainBanner)
+            keychainBanner.Hide();
+
         animator.SetTrigger("Reset");
         animator.SetInteger("Slide", -1);
 
@@ -203,6 +214,7 @@ public class PagerInteractionManager : MonoBehaviour
         bool shipInput = shipInputAction.ReadValue<float>() > .5f;
         keychainSwapper.SetSpriteState(shipInput ? 1 : 0);
 
+        // -- Contagem de tempo do timer
         if (!shipInput)
             holdCount = 0;
         else
@@ -212,8 +224,24 @@ public class PagerInteractionManager : MonoBehaviour
                 callShipEvent?.Invoke();
                 return;
             }
-            holdCount += Time.fixedUnscaledDeltaTime;    
+            holdCount += Time.unscaledDeltaTime;    
         }
+        if (callCountFillDisplay)
+            callCountFillDisplay.fillAmount = holdCount / holdDuration;
+
+        // -- Mostra a tela certa
+        callScreen.SetActive(shipInput);
+        if (callingShip)
+        {
+            if (!shipInput)
+                CurrentScreen.gameObject.SetActive(true);    
+        }
+        else
+        {
+            if (shipInput)
+                CurrentScreen.gameObject.SetActive(false);    
+        }
+        callingShip = shipInput;
     }
 
     private void Update() 
@@ -223,11 +251,14 @@ public class PagerInteractionManager : MonoBehaviour
 
         ShipInputLogic();
 
-        if(CheckInputBlock)
+        if (CheckInputBlock || callingShip)
             return;
 
         Vector2 navigationInput = navigationAction.ReadValue<Vector2>();
-        pagerAxisButtonsVisual.ReadOnline(navigationInput);
+        if (confirmAction.ReadValue<float>() > .5f)
+            navigationInput = Vector2.right;
+        
+        pagerAxisButtonsVisual.SetAxisButtons(navigationInput);
 
         if (navigationInput == Vector2.zero)
             delay = 0;
@@ -259,9 +290,14 @@ public class PagerInteractionManager : MonoBehaviour
             }
             else 
             {
-                if (navigationInput.x < .75f)
+                if (navigationInput.x < .75f) // -- Custom back input
                 {
                     BackInput();
+                    delay = maxDelay;
+                }
+                else if (navigationInput.x > .75f) // -- Custom forward input
+                {
+                    CurrentScreen.ClickInput();
                     delay = maxDelay;
                 }
             }
@@ -335,7 +371,7 @@ public class PagerInteractionManager : MonoBehaviour
     private void OnDisable() 
     {
         navigationAction.Disable();
-        playerInputActions.UI.Confirm.Disable();
+        confirmAction.Disable();
         playerInputActions.UI.Cancel.Disable();
         shipInputAction.Disable();
 

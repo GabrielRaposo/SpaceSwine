@@ -28,7 +28,7 @@ namespace Jumper
             }
         }
 
-        void Update()
+        void FixedUpdate()
         {
             float targetY = player.HighestYPosition();
 

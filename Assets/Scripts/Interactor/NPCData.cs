@@ -80,4 +80,15 @@ public class DialogueGroup
             return tags[i % tags.Count]; 
         }
     }
+
+    public int Count
+    {
+        get 
+        {
+            if (tags == null)
+                return 0;
+
+            return tags.Count;
+        }
+    }
 }

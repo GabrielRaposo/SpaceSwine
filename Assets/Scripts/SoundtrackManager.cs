@@ -8,7 +8,6 @@ using DG.Tweening;
 public class SoundtrackManager : MonoBehaviour
 {
     [SerializeField] PlaylistScriptableObject fullPlaylist;
-    //[SerializeField] List<AK.Wwise.Event> randomPlaylist;
 
     [Header("Parameters")]
     [SerializeField] AK.Wwise.RTPC masterParameter;
@@ -20,6 +19,7 @@ public class SoundtrackManager : MonoBehaviour
     [SerializeField] InputAction stopMusicTestInput;
     
     PlaylistScriptableObject playlist;
+    List<int> playOrder;
 
     static AK.Wwise.Event soundtrackEvent;
 
@@ -45,7 +45,43 @@ public class SoundtrackManager : MonoBehaviour
         }
 
         if (playlist == null)
-            playlist = fullPlaylist;
+        {
+            playlist = fullPlaylist; 
+            MakePlaylistPlayOrder();
+        }
+    }
+
+    private void MakePlaylistPlayOrder()
+    {
+        playOrder = new List<int>();
+
+        if (playlist == null)
+            return;
+
+        // -- Playlist linear
+        if (!playlist.shuffle) 
+        {
+            for (int i = 0; i < playlist.Count; i++) playOrder.Add(i);
+            return;
+        }
+
+        // -- Playlist com shuffle
+        List<int> aux = new List<int>();
+        for (int i = 0; i < playlist.Count; i++) aux.Add(i);
+
+        for (int i = 0; i < playlist.Count; i++)
+        {
+            int random = 0;
+            if (aux.Count > 1) 
+                random = Random.Range(0, aux.Count);
+            int randomizedIndex = aux[random];
+            aux.RemoveAt(random);
+
+            playOrder.Add(randomizedIndex);
+            //Debug.Log("randomizedIndex: " + randomizedIndex);
+        }
+
+        currentIndex = 0;
     }
 
     private void Start() 
@@ -100,15 +136,39 @@ public class SoundtrackManager : MonoBehaviour
 
     public void SetPlaylist (PlaylistScriptableObject playlist)
     {
-        Stop();
+        if (this.playlist == playlist && this.playlist != fullPlaylist)
+            return;
+
         this.playlist = playlist;
+        MakePlaylistPlayOrder();
+
+        if (soundtrackEvent != null && soundtrackEvent.IsPlaying(gameObject))
+        {
+            float duration = 1.0f;
+            FadeOutMusic(duration);
+            RaposUtil.WaitSeconds(this, duration, () => PlayTrack());
+            
+            return;
+        }
+
+        PlayTrack();        
     }
 
     public void PlayTrack ()
     {
         Stop();
 
-        MusicDataScriptableObject musicData = playlist[currentIndex % playlist.Count];
+        if (playlist == null)
+            return;
+
+        int orderedIndex = currentIndex;
+        if (playOrder != null) // -- Interação com shuffle
+        {
+            orderedIndex = playOrder[currentIndex % playOrder.Count];
+        }
+        orderedIndex %= playlist.Count;
+
+        MusicDataScriptableObject musicData = playlist[orderedIndex];
         soundtrackEvent = musicData.akEvent;
 
         if (soundtrackEvent != null)
@@ -118,6 +178,22 @@ public class SoundtrackManager : MonoBehaviour
         IsPlaying = true;
 
         StopAllCoroutines();
+    }
+
+    public (string fileName, int currentIndex) GetTrackData()
+    {
+        if (playlist == null)
+            return (string.Empty, 0);
+
+        int orderedIndex = currentIndex;
+        if (playOrder != null) // -- Interação com shuffle
+        {
+            orderedIndex = playOrder[currentIndex % playOrder.Count];
+        }
+        orderedIndex %= playlist.Count;
+
+        MusicDataScriptableObject musicData = playlist[orderedIndex];
+        return (musicData.fileName, currentIndex);
     }
 
     public void SkipTrack(int direction)
@@ -135,6 +211,8 @@ public class SoundtrackManager : MonoBehaviour
     {
         if (soundtrackEvent != null)
             soundtrackEvent.Stop(gameObject);
+
+        soundtrackEvent = null;
 
         IsPlaying = false;
     }

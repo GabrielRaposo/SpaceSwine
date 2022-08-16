@@ -46,6 +46,9 @@ public class GalaxyParallaxTester : MonoBehaviour
 
     private void OnDisable() 
     {
+        if (sequence != null)
+            sequence.Kill();
+
         testInput.Disable();
     }
 }
