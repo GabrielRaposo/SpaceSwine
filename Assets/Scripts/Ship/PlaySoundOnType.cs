@@ -8,7 +8,9 @@ public class PlaySoundOnType : MonoBehaviour
     [SerializeField] AK.Wwise.Event voiceAkEvent;
     [SerializeField] TextTyper typer;
 
-    List<string> silentCharacters = new List<string>() { string.Empty, " ", ",", ".", "!", "?" }; 
+    bool mute;
+
+    List<string> silentCharacters = new List<string>() { string.Empty, " ", ",", ".", "!", "?", "\"", "'"}; 
 
     void Start()
     {
@@ -29,6 +31,9 @@ public class PlaySoundOnType : MonoBehaviour
 
     public void TypeSound(string s)
     {
+        if (mute)
+            return;
+
         if (voiceAkEvent.IsPlaying(gameObject))
             return;
 
@@ -36,5 +41,10 @@ public class PlaySoundOnType : MonoBehaviour
             return;
 
         voiceAkEvent.Post(gameObject);
+    }
+
+    public void SetMute (bool value)
+    {
+        mute = value;
     }
 }

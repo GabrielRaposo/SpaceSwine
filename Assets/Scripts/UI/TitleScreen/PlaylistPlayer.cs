@@ -167,7 +167,6 @@ public class PlaylistPlayer : MonoBehaviour
         {
             soundtrackManager.SetPlaylist(playlist);
         }
-        CutsceneMode = false;
 
         var data = soundtrackManager.GetTrackData();
         SetupOnTrackEvent(data.fileName, data.currentIndex);
@@ -218,7 +217,7 @@ public class PlaylistPlayer : MonoBehaviour
             textSequence.SetLoops(-1);
         }
 
-        if (playerMode)
+        if (playerMode && !CutsceneMode)
             SlideIn(extraTime: stepsCount * textStepDuration);
     }
 
@@ -314,6 +313,9 @@ public class PlaylistPlayer : MonoBehaviour
         centerInput.Disable();
         playerInputActions.UI.Cancel.Disable();
         playerInputActions.UI.Other.Disable();
+
+        if (CutsceneMode)
+            CutsceneMode = false;
     }
 
 }

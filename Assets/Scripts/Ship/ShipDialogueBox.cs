@@ -44,11 +44,14 @@ public class ShipDialogueBox : MonoBehaviour
 
     UnityAction afterInputAction;
 
+    PlaySoundOnType playSoundOnType;
     PlayerInputActions inputActions;
 
     private void OnEnable() 
     {
-        DisplaySkipIcon(false);
+        DisplaySkipIcon (false);
+
+        playSoundOnType = GetComponentInChildren<PlaySoundOnType>();
 
         inputActions = new PlayerInputActions();
 
@@ -315,6 +318,19 @@ public class ShipDialogueBox : MonoBehaviour
         textTyper.PrintCompleted.RemoveAllListeners();
         skippable = false;
 
+        List<TextBoxTag> textTags = new List<TextBoxTag>();
+        if (instantText)
+            textTags.Add(TextBoxTag.InstantText);
+
+        var parsedText = TextFunctions.ParseTags(text);
+        if (parsedText.tags != null)
+        {
+            if (parsedText.tags.Contains(TextBoxTag.InstantText))
+                textTags.Add(TextBoxTag.InstantText);
+
+            text = parsedText.output;
+        }
+
         textDisplaySimulator.text = text;
         textDisplay.text = string.Empty;
 
@@ -325,25 +341,25 @@ public class ShipDialogueBox : MonoBehaviour
             if (lineCount < 3 && verticalState != VerticalState.Closed)
             {
                 VerticalTransition(VerticalState.Closed, delay);
-                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, instantText));
+                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, textTags));
                 return;
             }
 
             if (lineCount == 3 && verticalState != VerticalState.Open1)
             {
                 VerticalTransition(VerticalState.Open1, delay);
-                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, instantText));
+                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, textTags));
                 return;
             }
 
             if (lineCount >= 4 && verticalState != VerticalState.Open2)
             {
                 VerticalTransition(VerticalState.Open2, delay);
-                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, instantText));
+                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, textTags));
                 return;
             }
         
-            CallTyper(text);
+            CallTyper(text, textTags);
         });
     }
 
@@ -373,12 +389,18 @@ public class ShipDialogueBox : MonoBehaviour
         afterInputAction();
     }
 
-    private void CallTyper(string text, bool instantText = false)
+    private void CallTyper(string text, List<TextBoxTag> textTags)
     {
+        if (playSoundOnType) 
+            playSoundOnType.SetMute ( textTags.Contains(TextBoxTag.InstantText) );
+
         textTyper.TypeText(text);
 
-        if (instantText)
+        if (textTags.Contains(TextBoxTag.InstantText))
+        {
             textTyper.Skip();
+            // -- Chama som
+        }
 
         if (afterInputAction != null)
         {
