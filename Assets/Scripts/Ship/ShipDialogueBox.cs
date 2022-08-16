@@ -13,6 +13,9 @@ public class ShipDialogueBox : MonoBehaviour
     const int BASE_WIDTH =  302;
     const int HIDDEN_Y   = -400;
 
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event awardSoundAKEvent;
+
     [Header("References")]
     [SerializeField] TextTyper textTyper;
     [SerializeField] TextMeshProUGUI textDisplay;
@@ -396,10 +399,14 @@ public class ShipDialogueBox : MonoBehaviour
 
         textTyper.TypeText(text);
 
+        // -- Usa tags
         if (textTags.Contains(TextBoxTag.InstantText))
-        {
             textTyper.Skip();
-            // -- Chama som
+        
+        if (textTags.Contains(TextBoxTag.AwardSound))   
+        {
+            if (awardSoundAKEvent != null)
+                awardSoundAKEvent.Post(gameObject);
         }
 
         if (afterInputAction != null)
