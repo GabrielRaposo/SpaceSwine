@@ -226,7 +226,6 @@ public class PlatformerCharacter : SidewaysCharacter
         }
         else
             lastValidAnchor = moveInputRotationAnchor;
-        
 
         return output;
     }

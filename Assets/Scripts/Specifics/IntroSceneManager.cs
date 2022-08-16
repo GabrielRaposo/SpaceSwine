@@ -7,6 +7,10 @@ using DG.Tweening;
 
 public class IntroSceneManager : MonoBehaviour
 {
+    [Header("Soundscape")]
+    [SerializeField] SoundLoopCaller soundLoopCaller;
+    [SerializeField] GoToSceneTriggerRegion exitTriggerRegion;
+
     [Header("Sequence Values")]
     [SerializeField] float startingYPosition;
     [SerializeField] float startHoldDuration;
@@ -55,6 +59,16 @@ public class IntroSceneManager : MonoBehaviour
     IEnumerator IntroSequence()
     {
         // -- Setup
+        if (soundLoopCaller)
+        {
+            soundLoopCaller.StartLoop();
+
+            if (exitTriggerRegion)
+            {
+                exitTriggerRegion.OnTriggerAction += soundLoopCaller.CallFadeOut;
+            }
+        }
+
         jumpTutorialGroup.alpha = 0;
         stuckVolumeRTPC.SetGlobalValue(0);
 
