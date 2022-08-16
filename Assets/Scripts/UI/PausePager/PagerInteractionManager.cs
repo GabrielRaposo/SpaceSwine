@@ -33,6 +33,10 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] bool optionsMode;
     [SerializeField] PagerInteractableButton optionsBackButton;
 
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event appearAKEvent;
+    [SerializeField] AK.Wwise.Event vanishAKEvent;
+
     [HideInInspector] public bool OnFocus;
 
     int current;
@@ -148,6 +152,8 @@ public class PagerInteractionManager : MonoBehaviour
         if (resetRoundButton)
             resetRoundButton.SetActive (RoundsManager.Instance);
         
+        if (appearAKEvent != null)
+            appearAKEvent.Post(gameObject);
 
         animator.SetTrigger("Reset");
         animator.SetInteger("Slide", 1);
@@ -182,6 +188,9 @@ public class PagerInteractionManager : MonoBehaviour
 
         if (keychainBanner)
             keychainBanner.Hide();
+
+        if (vanishAKEvent != null)
+            vanishAKEvent.Post(gameObject);
 
         animator.SetTrigger("Reset");
         animator.SetInteger("Slide", -1);

@@ -17,6 +17,10 @@ public class TitleMenuButton : MonoBehaviour
     [SerializeField] float hiddenX;
     [SerializeField] float duration;
 
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event hoverAKEvent;
+    [SerializeField] AK.Wwise.Event clickAKEvent;
+
     [Header("References")]
     [SerializeField] Image tabLine;
     [SerializeField] Image sideSlot;
@@ -37,6 +41,10 @@ public class TitleMenuButton : MonoBehaviour
     public void Submit()
     {
         //Debug.Log("Submit: " + name);
+        
+        if (clickAKEvent != null)
+            clickAKEvent.Post(gameObject);
+
         OnClickEvent.Invoke();
     }
 
@@ -44,7 +52,7 @@ public class TitleMenuButton : MonoBehaviour
     {
         if (!tabLine)
             return false;
-        
+
         if (s != null)
             s.Kill();
         
@@ -56,7 +64,7 @@ public class TitleMenuButton : MonoBehaviour
         return true;
     }
 
-    public void InstantSelect(bool value)
+    public void InstantSelect (bool value)
     {
         if (value)
             SetState( selected = true );
@@ -64,8 +72,11 @@ public class TitleMenuButton : MonoBehaviour
             SetState( selected = false );
     }
 
-    public void Select()
+    public void Select (bool playSound = false)
     {
+        if (playSound && hoverAKEvent != null)
+            hoverAKEvent.Post(gameObject);
+
         bool value = true;
         if (! SlideSequence(value, () => SetState(selected = value) ))
             SetState (selected = value);

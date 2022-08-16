@@ -10,6 +10,9 @@ public class TitleMenuNavigation : MonoBehaviour
     [SerializeField] bool startOnFocus;
     [SerializeField] List<TitleMenuButton> titleButtons;
 
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event OnEnterMenuAKEvent;
+
     [Header("Sequence")]
     [SerializeField] float fadeDuration;
     [SerializeField] float slideDuration;
@@ -17,13 +20,12 @@ public class TitleMenuNavigation : MonoBehaviour
     [SerializeField] CanvasGroup canvasGroup;
 
     [HideInInspector] public bool OnFocus;
+    public UnityAction OnEnterMenuEvent;
     
     int current = -1;
 
     Sequence s;
     PlayerInputActions playerInputActions;
-
-    public UnityAction OnEnterMenuEvent;
 
     private void OnEnable() 
     {
@@ -82,6 +84,8 @@ public class TitleMenuNavigation : MonoBehaviour
                 current = 0;
 
             OnEnterMenuEvent?.Invoke();
+            if (OnEnterMenuAKEvent != null && !OnEnterMenuAKEvent.IsPlaying(gameObject))
+                OnEnterMenuAKEvent.Post(gameObject);
 
             SelectCurrent(instant: true);
         }
@@ -177,7 +181,7 @@ public class TitleMenuNavigation : MonoBehaviour
         return f * approachCurve.Evaluate(t);
     }
 
-    private void SelectCurrent(bool instant = false)
+    private void SelectCurrent (bool instant = false, bool playSound = false)
     {
         for (int i = 0; i < titleButtons.Count; i++)
         {
@@ -191,7 +195,7 @@ public class TitleMenuNavigation : MonoBehaviour
         if (instant)
             titleButtons[current].InstantSelect(true);
         else
-            titleButtons[current].Select();        
+            titleButtons[current].Select(playSound);        
     }
 
     private void MoveCursor (int direction)
@@ -201,7 +205,7 @@ public class TitleMenuNavigation : MonoBehaviour
             current = titleButtons.Count - 1;
         current %= titleButtons.Count;
 
-        SelectCurrent();
+        SelectCurrent(instant: false, playSound: true);
     }
 
     private void OnDisable() 

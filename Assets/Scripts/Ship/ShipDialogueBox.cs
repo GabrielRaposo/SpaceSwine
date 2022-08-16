@@ -41,6 +41,7 @@ public class ShipDialogueBox : MonoBehaviour
 
     bool shown;
     bool skippable;
+    bool autoSkip;
 
     Sequence showSequence;
     Sequence verticalSequence;
@@ -321,16 +322,13 @@ public class ShipDialogueBox : MonoBehaviour
         textTyper.PrintCompleted.RemoveAllListeners();
         skippable = false;
 
-        List<TextBoxTag> textTags = new List<TextBoxTag>();
-        if (instantText)
-            textTags.Add(TextBoxTag.InstantText);
+        autoSkip = instantText;
 
+        List<TextBoxTag> textTags = new List<TextBoxTag>();
         var parsedText = TextFunctions.ParseTags(text);
         if (parsedText.tags != null)
         {
-            if (parsedText.tags.Contains(TextBoxTag.InstantText))
-                textTags.Add(TextBoxTag.InstantText);
-
+            textTags = parsedText.tags;
             text = parsedText.output;
         }
 
@@ -400,7 +398,7 @@ public class ShipDialogueBox : MonoBehaviour
         textTyper.TypeText(text);
 
         // -- Usa tags
-        if (textTags.Contains(TextBoxTag.InstantText))
+        if (textTags.Contains(TextBoxTag.InstantText) || autoSkip)
             textTyper.Skip();
         
         if (textTags.Contains(TextBoxTag.AwardSound))   

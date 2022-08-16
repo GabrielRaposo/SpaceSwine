@@ -10,7 +10,9 @@ using UnityEngine;
 public class SpaceJumper : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] float gravitationalPull;
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] LayerMask gravityAreaLayer;
 
 
     [SerializeField] ParticleSystem longLandVFX;
@@ -48,6 +50,28 @@ public class SpaceJumper : MonoBehaviour
 
         if (Time.timeScale == 0)
             flightLoopAKEvent.Stop(gameObject);
+    }
+
+    private void FixedUpdate() 
+    {
+        if (gravitationalPull <= 0 || !onLaunch)
+            return;
+
+        float groundCastDistance = 1f;
+        Debug.DrawLine (transform.position, transform.position + (transform.up * groundCastDistance), Color.green);
+        var groundCast = Physics2D.Raycast (transform.position, transform.up, groundCastDistance, groundLayer);
+        if (groundCast)
+        {
+            Debug.Log("Hi ground");
+        }
+
+        //float gravityCastDistance = 1f;
+        //Debug.DrawLine (transform.position, transform.position + (transform.up * gravityCastDistance), Color.blue);
+        //var gravityCast = Physics2D.Raycast (transform.position, transform.up, gravityCastDistance, groundLayer);
+        //if (gravityCast)
+        //{
+        //    Debug.Log("Hi gravity");
+        //}
     }
 
     public void JumpInput()
