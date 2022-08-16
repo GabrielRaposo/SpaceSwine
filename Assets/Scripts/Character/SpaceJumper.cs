@@ -12,8 +12,6 @@ public class SpaceJumper : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float gravitationalPull;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] LayerMask gravityAreaLayer;
-
 
     [SerializeField] ParticleSystem longLandVFX;
     [SerializeField] AK.Wwise.Event longJumpAKEvent;
@@ -52,27 +50,32 @@ public class SpaceJumper : MonoBehaviour
             flightLoopAKEvent.Stop(gameObject);
     }
 
+    /**
     private void FixedUpdate() 
     {
         if (gravitationalPull <= 0 || !onLaunch)
             return;
 
-        float groundCastDistance = 1f;
-        Debug.DrawLine (transform.position, transform.position + (transform.up * groundCastDistance), Color.green);
+        float groundCastDistance = 2f;
         var groundCast = Physics2D.Raycast (transform.position, transform.up, groundCastDistance, groundLayer);
-        if (groundCast)
+        if (!groundCast)
         {
-            Debug.Log("Hi ground");
-        }
+            var gravityData = gravityInteraction.GetGravityArea();
+            if (gravityData.isValid)
+            {
+                Vector2 direction = (gravityData.Area.transform.position - transform.position).normalized;
+                if  (Vector2.Angle(direction, transform.up) > 67.5f )
+                    return;
 
-        //float gravityCastDistance = 1f;
-        //Debug.DrawLine (transform.position, transform.position + (transform.up * gravityCastDistance), Color.blue);
-        //var gravityCast = Physics2D.Raycast (transform.position, transform.up, gravityCastDistance, groundLayer);
-        //if (gravityCast)
-        //{
-        //    Debug.Log("Hi gravity");
-        //}
+                Debug.Log("Is on gravity area: " + gravityData.Area.transform.parent.name);
+
+                float speed = rb.velocity.magnitude;
+                direction = rb.velocity + (direction * gravitationalPull); 
+                rb.velocity = direction.normalized * speed; 
+            }
+        }
     }
+    **/
 
     public void JumpInput()
     {
