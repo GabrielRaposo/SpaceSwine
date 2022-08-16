@@ -749,6 +749,32 @@
 											<ValueList>
 												<Value>4</Value>
 											</ValueList>
+											<RTPCList>
+												<RTPC Name="" ID="{D86C3562-24FC-4A7E-A635-4495707B2AAA}" ShortID="456986627">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Tutorial_final_pulo_fadeout" ID="{C099BEC3-29DB-45EB-A1AD-59DDDC56B176}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{6BEA2A03-4DDB-4BCE-AAB1-6FD943269EE4}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>-200</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
 										</Property>
 									</PropertyList>
 									<ReferenceList>
@@ -3224,6 +3250,34 @@
 						<Sound Name="cenario_tutorial_soundscape" ID="{1A29B9BC-0963-4B74-BA12-92AF8BC0EC03}" ShortID="773252051">
 							<PropertyList>
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{31AD9044-CA14-417E-9663-29C3F2C7C0F4}" ShortID="396360162">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="Tutorial_inicio_fadein" ID="{AF3E9602-6B09-4B65-B317-15A88D787DAB}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{909F0E04-0B6F-4A49-9D6A-05548C64EA85}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>-0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">

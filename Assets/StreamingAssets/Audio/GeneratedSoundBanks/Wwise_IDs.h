@@ -94,6 +94,8 @@ namespace AK
     {
         static const AkUniqueID BUYK_STUCK = 363529975U;
         static const AkUniqueID CUTSCENE_INICIO = 1171258525U;
+        static const AkUniqueID TUTORIAL_FINAL_PULO_FADEOUT = 2164391380U;
+        static const AkUniqueID TUTORIAL_INICIO_FADEIN = 4133059913U;
         static const AkUniqueID VOLUME_CUTSCENE = 2340947590U;
         static const AkUniqueID VOLUME_MASTER = 3695994288U;
         static const AkUniqueID VOLUME_MUSIC = 3891337659U;
