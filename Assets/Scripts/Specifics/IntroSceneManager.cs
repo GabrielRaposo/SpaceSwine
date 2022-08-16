@@ -9,7 +9,9 @@ public class IntroSceneManager : MonoBehaviour
 {
     [Header("Soundscape")]
     [SerializeField] SoundLoopCaller soundLoopCaller;
-    [SerializeField] GoToSceneTriggerRegion exitTriggerRegion;
+    [SerializeField] AK.Wwise.RTPC fadeInRTPC;
+    [SerializeField] AK.Wwise.RTPC fadeOutRTPC;
+    [SerializeField] CameraLockTriggerRegion exitTriggerRegion;
 
     [Header("Sequence Values")]
     [SerializeField] float startingYPosition;
@@ -61,11 +63,44 @@ public class IntroSceneManager : MonoBehaviour
         // -- Setup
         if (soundLoopCaller)
         {
+            if (fadeInRTPC != null)
+            {
+                fadeInRTPC.SetGlobalValue(0);
+                DOVirtual.Float(0, 100, duration: 10f, f => 
+                { 
+                    fadeInRTPC.SetGlobalValue(f);
+                    Debug.Log("f: " + f);
+                });
+            }
+
+            if (fadeOutRTPC != null)
+            {
+                fadeOutRTPC.SetGlobalValue(0);
+            }
+
             soundLoopCaller.StartLoop();
 
             if (exitTriggerRegion)
             {
-                exitTriggerRegion.OnTriggerAction += soundLoopCaller.CallFadeOut;
+                //exitTriggerRegion.OnTriggerAction += soundLoopCaller.CallFadeOut;
+                exitTriggerRegion.onCallAction += () => 
+                {
+                    float duration = 3f;
+
+                    if (fadeOutRTPC != null)
+                    {
+                        fadeOutRTPC.SetGlobalValue(0);
+                        DOVirtual.Float(0, 100, duration, f => {
+                            fadeOutRTPC.SetGlobalValue(f);
+                            Debug.Log("f: " + f);
+                        });
+                    }
+
+                    if (soundLoopCaller != null)
+                    {
+                        soundLoopCaller.CallFadeOut();
+                    }
+                };
             }
         }
 

@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CameraLockTriggerRegion : MonoBehaviour
 {
     bool activated;
     CameraFocusController cameraFocusController;
+    
+    [HideInInspector] public UnityAction onCallAction;
 
     void Start()
     {
@@ -24,6 +27,11 @@ public class CameraLockTriggerRegion : MonoBehaviour
         {
             cameraFocusController.SetStaticFocus();
             activated = true;
+        }
+
+        if (onCallAction != null)
+        {
+            onCallAction.Invoke();
         }
     }
 

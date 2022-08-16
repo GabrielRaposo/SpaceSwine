@@ -36,6 +36,7 @@ public class SoundLoopCaller : MonoBehaviour
             return;
 
         soundscapeAKEvent.FadeOut(gameObject, fadeDuration);
+        playing = false;
     }
 
     private void OnDisable() 
