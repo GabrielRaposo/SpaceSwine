@@ -17,13 +17,19 @@ public static class TextFunctions
         for (int i = 0; i < subStrings.Length - 1; i++)
         {
             string subString = subStrings[i].Trim().ToLower();
-            //Debug.Log("subString: " + subString);
-            //Debug.Log("subString.CompareTo(\"instant text\"): " + subString.CompareTo("instant text"));
+
             if (subString.CompareTo("instant text") > -1)
             {   
                 Debug.Log("TAG: Instant Text");
                 if (!tags.Contains(TextBoxTag.InstantText))
                     tags.Add(TextBoxTag.InstantText);
+            }
+
+            if (subString.CompareTo("award sound") > -1)
+            {   
+                Debug.Log("TAG: Award Sound");
+                if (!tags.Contains(TextBoxTag.AwardSound))
+                    tags.Add(TextBoxTag.AwardSound);
             }
         }
 
@@ -33,5 +39,5 @@ public static class TextFunctions
 
 public enum TextBoxTag 
 {
-    InstantText
+    InstantText, AwardSound
 } 
