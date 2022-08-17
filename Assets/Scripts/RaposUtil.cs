@@ -123,6 +123,11 @@ public static class Vector2Extension
         }
         return result;
     } 
+
+    public static Vector2 To8Normalized(this Vector2 v)
+    {
+        return v.To8Directions().normalized;
+    }
 }
 
 public static class ShaderExtensions

@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using DG.Tweening;
 
 public class TitleMenuNavigation : MonoBehaviour
 {
     [SerializeField] bool startOnFocus;
     [SerializeField] List<TitleMenuButton> titleButtons;
+
+    [Header("Input")]
+    [SerializeField] float holdCooldown;
 
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event OnEnterMenuAKEvent;
@@ -23,30 +27,35 @@ public class TitleMenuNavigation : MonoBehaviour
     public UnityAction OnEnterMenuEvent;
     
     int current = -1;
+    float holdCount;
 
     Sequence s;
     PlayerInputActions playerInputActions;
+    InputAction axisInput;
 
     private void OnEnable() 
     {
         playerInputActions = new PlayerInputActions();    
     
-        playerInputActions.UI.Navigation.performed += (ctx) => 
-        { 
-            if(!OnFocus || SceneTransition.OnTransition)
-                return;
+        axisInput = playerInputActions.UI.Navigation;
+        /**
+        //axisInput.performed += (ctx) => 
+        //{ 
+        //    if(!OnFocus || SceneTransition.OnTransition)
+        //        return;
 
-            Vector2 navigationInput = ctx.ReadValue<Vector2>();
+        //    Vector2 navigationInput = ctx.ReadValue<Vector2>();
 
-            if (navigationInput.y != 0)
-            {
-                if (navigationInput.y > .5f)
-                    MoveCursor(-1);
-                else if (navigationInput.y < .5f)
-                    MoveCursor(1);
-            }
-        };
-        playerInputActions.UI.Navigation.Enable();
+        //    if (navigationInput.y != 0)
+        //    {
+        //        if (navigationInput.y > .5f)
+        //            MoveCursor(-1);
+        //        else if (navigationInput.y < .5f)
+        //            MoveCursor(1);
+        //    }
+        //};
+        **/
+        axisInput.Enable();
 
         playerInputActions.UI.Confirm.performed += (ctx) => 
         {               
@@ -65,6 +74,33 @@ public class TitleMenuNavigation : MonoBehaviour
         
         if (startOnFocus)
             OnFocus = true;
+    }
+
+    private void Update() 
+    {
+        Vector2 axis = axisInput.ReadValue<Vector2>();
+        if (axis == Vector2.zero)
+            holdCount = 0;
+        else
+            holdCount -= Time.deltaTime;
+
+        if (holdCount < 0)
+            holdCount = 0;
+
+        if (!OnFocus || SceneTransition.OnTransition)
+            return;
+        
+        if (holdCount > 0)
+            return;
+
+        if (axis.y != 0)
+        {
+            if (axis.y > .75f)
+                MoveCursor(-1);
+            else if (axis.y < -.75f)
+                MoveCursor(1);
+        }
+
     }
 
     public void FadeInSequence()
@@ -200,6 +236,8 @@ public class TitleMenuNavigation : MonoBehaviour
 
     private void MoveCursor (int direction)
     {
+        holdCount = holdCooldown;
+
         current += direction;
         if (current < 0)
             current = titleButtons.Count - 1;
@@ -210,7 +248,7 @@ public class TitleMenuNavigation : MonoBehaviour
 
     private void OnDisable() 
     {
-        playerInputActions.UI.Navigation.Disable();
+        axisInput.Disable();
         playerInputActions.UI.Confirm.Disable();
     }
 

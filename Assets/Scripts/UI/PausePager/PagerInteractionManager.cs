@@ -16,6 +16,7 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] Image callCountFillDisplay;
     [SerializeField] GameObject resetRoundButton;
     [SerializeField] UnityEvent backOnMainEvent;
+    [SerializeField] float maxScreenDelay = .4f;
 
     [Header("Keychain Interaction")]
     [SerializeField] GameObject keychainObject;
@@ -40,8 +41,8 @@ public class PagerInteractionManager : MonoBehaviour
     [HideInInspector] public bool OnFocus;
 
     int current;
-    float delay;
-    float holdCount; 
+    float screenDelay;
+    float shipCallCount; 
     bool keychainState;
     bool callingShip;
     Sequence s;
@@ -115,7 +116,7 @@ public class PagerInteractionManager : MonoBehaviour
 
     private bool CheckInputBlock
     {
-        get { return !OnFocus || SceneTransition.OnTransition || holdCount > 0; }
+        get { return !OnFocus || SceneTransition.OnTransition || shipCallCount > 0; }
     }
 
     public void CustomActivation (UnityAction backCall)
@@ -225,18 +226,18 @@ public class PagerInteractionManager : MonoBehaviour
 
         // -- Contagem de tempo do timer
         if (!shipInput)
-            holdCount = 0;
+            shipCallCount = 0;
         else
         {
-            if (holdCount > holdDuration)
+            if (shipCallCount > holdDuration)
             {
                 callShipEvent?.Invoke();
                 return;
             }
-            holdCount += Time.unscaledDeltaTime;    
+            shipCallCount += Time.unscaledDeltaTime;    
         }
         if (callCountFillDisplay)
-            callCountFillDisplay.fillAmount = holdCount / holdDuration;
+            callCountFillDisplay.fillAmount = shipCallCount / holdDuration;
 
         // -- Mostra a tela certa
         callScreen.SetActive(shipInput);
@@ -255,6 +256,10 @@ public class PagerInteractionManager : MonoBehaviour
 
     private void Update() 
     {
+        Vector2 axis = Vector2.zero;
+        if (navigationAction != null)
+            axis = navigationAction.ReadValue<Vector2>();
+
         if (!OnFocus || SceneTransition.OnTransition)
             return;
 
@@ -263,51 +268,52 @@ public class PagerInteractionManager : MonoBehaviour
         if (CheckInputBlock || callingShip)
             return;
 
-        Vector2 navigationInput = navigationAction.ReadValue<Vector2>();
-        if (confirmAction.ReadValue<float>() > .5f)
-            navigationInput = Vector2.right;
+        if (confirmAction.ReadValue<float>() > .75f)
+            axis = Vector2.right;
         
-        pagerAxisButtonsVisual.SetAxisButtons(navigationInput);
+        pagerAxisButtonsVisual.SetAxisButtons(axis);
 
-        if (navigationInput == Vector2.zero)
-            delay = 0;
+        if (axis == Vector2.zero)
+            screenDelay = 0;
 
-        if (delay > 0)
+        if (screenDelay > 0)
         {
-            delay -= Time.deltaTime;
+            screenDelay -= Time.unscaledDeltaTime;
             return;
         }
 
-        float maxDelay = 1.0f;
-
-        if (navigationInput.y != 0)
+        if (axis.y != 0)
         {
-            if (navigationInput.y > .5f)
+            if (axis.y > .5f)
+            {
                 CurrentScreen.ChangeIndex(-1);
-            else if (navigationInput.y < .5f)
+            }
+            else if (axis.y < .5f)
+            {
                 CurrentScreen.ChangeIndex(+1);
+            }
 
-            delay = maxDelay;
+            screenDelay = maxScreenDelay;
             return;
         }
             
-        if (navigationInput.x != 0)
+        if (axis.x != 0)
         {
-            if (CurrentScreen.HorizontalInput (navigationInput.x))
+            if (CurrentScreen.HorizontalInput (axis.x))
             {
-                delay = maxDelay;
+                screenDelay = maxScreenDelay;
             }
             else 
             {
-                if (navigationInput.x < .75f) // -- Custom back input
+                if (axis.x < .75f) // -- Custom back input
                 {
                     BackInput();
-                    delay = maxDelay;
+                    screenDelay = maxScreenDelay;
                 }
-                else if (navigationInput.x > .75f) // -- Custom forward input
+                else if (axis.x > .75f) // -- Custom forward input
                 {
                     CurrentScreen.ClickInput();
-                    delay = maxDelay;
+                    screenDelay = maxScreenDelay;
                 }
             }
         }
