@@ -6,25 +6,59 @@ public class PlayerDirectionDisplay : MonoBehaviour
 {
     public Vector2 direction;
 
-    private void Start() 
-    {
-        LocalGameplayState localGameplayState = GetComponentInParent<LocalGameplayState>();    
-        if (!localGameplayState)
-            return;
+    Transform parent;    
+    LocalGameplayState localGameplayState;
+    SpriteRenderer spriteRenderer;
 
-        SetVisibility (localGameplayState.state == GameplayState.Danger);
+    private void Awake() 
+    {
+        localGameplayState = GetComponentInParent<LocalGameplayState>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    private void SetVisibility(bool value)
+    private void Start() 
     {
-        gameObject.SetActive(value);
+        Dettach();
+        SetVisibility (true);
+    }
+
+    private void Dettach()
+    {
+        parent = transform.parent;
+        transform.SetParent(null);
+    }
+
+    private void Update() 
+    {
+        if (parent == null)
+            return;
+
+        transform.position = parent.position;
+        SetVisibility(parent.gameObject.activeInHierarchy);
+    }
+
+    public void SetVisibility (bool value)
+    {
+        if (!localGameplayState || localGameplayState.state == GameplayState.Exploration)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        spriteRenderer.enabled = value;
     }
 
     public void UpdateDirection (bool aiming, Vector2 direction)
     {
         if (!aiming)
         {
-            transform.localEulerAngles = Vector3.zero; 
+            Vector3 angle = Vector3.zero;
+            if (parent)
+            {
+                //Debug.Log("previousParent: " + previousParent);
+                angle = parent.eulerAngles;
+            }
+            transform.eulerAngles = angle; 
             return;
         }
 

@@ -22,7 +22,7 @@ public class CollectableInteraction : MonoBehaviour
     [SerializeField] CollectablesQueue collectablesQueue;
     [SerializeField] Transform holdAnchor;
     [SerializeField] PlayerDirectionDisplay directionDisplay; 
-    [SerializeField] Transform arrowSprite;
+    //[SerializeField] Transform arrowSprite; // -- Era usado pra gerar o ângulo de arremesso
 
     [HideInInspector] public bool OnAirStall;
 
@@ -268,6 +268,9 @@ public class CollectableInteraction : MonoBehaviour
 
         playerAnimations.holding = false;
         playerAnimations.airStall = false;
+
+        if (directionDisplay)
+            directionDisplay.SetVisibility(true);
     }
 
     public void ToggleDirectionDisplay()
