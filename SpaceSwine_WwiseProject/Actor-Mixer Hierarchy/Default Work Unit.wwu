@@ -873,6 +873,9 @@
 								<Sound Name="gameplay_buyk_stuck_01" ID="{FA64C98D-52E6-47CA-8EC0-6221EE7B7637}" ShortID="1006592188">
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{2FB5F36D-9BC0-4251-A817-CA6516F56769}" ShortID="901675389">
 													<ReferenceList>
@@ -926,6 +929,9 @@
 								<Sound Name="gameplay_buyk_stuck_02" ID="{652F56F4-E961-4C09-93FB-5A36EB6205F8}" ShortID="421610561">
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{43CCA953-3435-4A36-A379-C1547040426F}" ShortID="427715107">
 													<ReferenceList>
@@ -977,6 +983,13 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="gameplay_buyk_stuck_fanfarra" ID="{92ACFB75-3A59-48FF-A00C-ACE1D883BDDA}" ShortID="434554963">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1078,6 +1091,18 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_item_gol" ID="{5CA4FC9D-55CE-4717-B2FC-673556BAA15D}" ShortID="702238103">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>20</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1185,6 +1210,11 @@
 						</Sound>
 						<Sound Name="gameplay_item_gol_espiral" ID="{3202368A-36DB-4007-AC00-F64D644BCC41}" ShortID="701529851">
 							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>30</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Pitch" Type="int32">
 									<RTPCList>
 										<RTPC Name="" ID="{36822EEF-ADA1-4A12-A80C-04DC3D153A7C}" ShortID="154303054">
@@ -1218,6 +1248,11 @@
 											</Curve>
 										</RTPC>
 									</RTPCList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-2</Value>
+									</ValueList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>
@@ -1372,6 +1407,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<RandomSequenceContainer Name="cenario_passarinhos_voam" ID="{AEC874B7-8668-4F1A-9875-29F5EB875118}" ShortID="1013700087">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>9</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1381,7 +1423,7 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="Som Template_placeh" ID="{7CDB1C0F-440B-4640-86B7-2B97147EFF7C}" ShortID="416299433">
+								<Sound Name="cenario_passarinhos_voam_01" ID="{B882EB3D-3015-4C58-AB3F-C926D388AC7B}" ShortID="592831203">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1391,33 +1433,20 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Garage Foley - 12" ID="{015EB07B-71E2-46DE-B9B5-1CD4CBE6A80A}">
-											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="0.161068456751276"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.152439789425315"/>
-												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimEnd" Type="Real64" Value="0.356651582806397"/>
-											</PropertyList>
+										<AudioFileSource Name="cenario_passarinhos_voam_01" ID="{CDFF6521-14F5-4AA2-9DFE-315E5F796162}">
 											<Language>SFX</Language>
-											<AudioFile>Garage Foley - 12.wav</AudioFile>
+											<AudioFile>cenario_passarinhos_voam_01.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="1003456523"/>
+												<MediaID ID="1026301433"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="Garage Foley - 12" ID="{015EB07B-71E2-46DE-B9B5-1CD4CBE6A80A}" Platform="Linked"/>
+										<ActiveSource Name="cenario_passarinhos_voam_01" ID="{CDFF6521-14F5-4AA2-9DFE-315E5F796162}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="Som Template_placeh_01" ID="{DA3E196F-AF61-4460-8534-F7117248CF27}" ShortID="157235155">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>-1200</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
+								<Sound Name="cenario_passarinhos_voam_02" ID="{66B30DD8-5980-4CF2-B77D-7E98128D6FBD}" ShortID="373981100">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1427,33 +1456,20 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Garage Foley - 12" ID="{D2874058-9971-4FBD-A24C-9724F81FF1D3}">
-											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="0.161068456751276"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.152439789425315"/>
-												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimEnd" Type="Real64" Value="0.356651582806397"/>
-											</PropertyList>
+										<AudioFileSource Name="cenario_passarinhos_voam_02" ID="{5541ECBC-DDB4-418F-B4F2-3A0A98EA1636}">
 											<Language>SFX</Language>
-											<AudioFile>Garage Foley - 12.wav</AudioFile>
+											<AudioFile>cenario_passarinhos_voam_02.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="1003456523"/>
+												<MediaID ID="272567145"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="Garage Foley - 12" ID="{D2874058-9971-4FBD-A24C-9724F81FF1D3}" Platform="Linked"/>
+										<ActiveSource Name="cenario_passarinhos_voam_02" ID="{5541ECBC-DDB4-418F-B4F2-3A0A98EA1636}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="Som Template_placeh_02" ID="{A8B49DCF-0D33-43A8-9748-905783667B4E}" ShortID="437510783">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>-700</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
+								<Sound Name="cenario_passarinhos_voam_03" ID="{CEF7D3B6-B749-4830-8A01-F8A04728C791}" ShortID="981480934">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1463,23 +1479,17 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Garage Foley - 12" ID="{97A6D90B-A4D3-4919-9A74-26502D5C9ED5}">
-											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="0.161068456751276"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.152439789425315"/>
-												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimEnd" Type="Real64" Value="0.356651582806397"/>
-											</PropertyList>
+										<AudioFileSource Name="cenario_passarinhos_voam_03" ID="{0A70B3E3-9490-463A-A612-28A4BD276E8E}">
 											<Language>SFX</Language>
-											<AudioFile>Garage Foley - 12.wav</AudioFile>
+											<AudioFile>cenario_passarinhos_voam_03.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="1003456523"/>
+												<MediaID ID="1043777171"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="Garage Foley - 12" ID="{97A6D90B-A4D3-4919-9A74-26502D5C9ED5}" Platform="Linked"/>
+										<ActiveSource Name="cenario_passarinhos_voam_03" ID="{0A70B3E3-9490-463A-A612-28A4BD276E8E}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -1564,6 +1574,9 @@
 									</RTPCList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>11</Value>
+									</ValueList>
 									<RTPCList>
 										<RTPC Name="" ID="{87EF5CFE-1706-4E8B-8708-1C8B7EDA7C80}" ShortID="274101866">
 											<ReferenceList>
@@ -1819,9 +1832,14 @@
 						</RandomSequenceContainer>
 						<Sound Name="ui_pager_clique_nota" ID="{474B1DBD-96A4-4861-BDAA-F545FA1990EB}" ShortID="839264240">
 							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-57</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>8</Value>
+										<Value>4.5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -2050,6 +2068,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ui_titulo_botao_clica" ID="{D5E86FCA-9EBC-42C5-A978-209D9053464A}" ShortID="436099165">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-4</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -2059,11 +2084,12 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="ui_titulo_botao_clica" ID="{1FB39F4C-73FC-4EFD-B48A-1684E4776CB5}">
+								<AudioFileSource Name="ui_titulo_botao_clica" ID="{9D96AB65-45D0-4EBB-A0C8-2756D8615664}">
 									<PropertyList>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.272012701034171"/>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.0390572857273931"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.322537585361698"/>
 										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.555242420667689"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.322537585361698"/>
 									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>ui_titulo_botao_clica.wav</AudioFile>
@@ -2074,10 +2100,87 @@
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="ui_titulo_botao_clica" ID="{1FB39F4C-73FC-4EFD-B48A-1684E4776CB5}" Platform="Linked"/>
+								<ActiveSource Name="ui_titulo_botao_clica" ID="{9D96AB65-45D0-4EBB-A0C8-2756D8615664}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ui_titulo_ventinho" ID="{5A9C8A50-21DA-43AF-A308-9CAD8301BB58}" ShortID="703941026">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<RTPCList>
+										<RTPC Name="" ID="{A6BC90E2-DC0F-4F1E-8D24-3DCC713A2696}" ShortID="105610433">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<Custom>
+														<ModulatorLfo Name="Modulator LFO (Custom)" ID="{984DEF67-065D-479F-9D85-E6E3B72F2FDA}" ShortID="451730583">
+															<PropertyList>
+																<Property Name="LfoAttack" Type="Real64" Value="0.03"/>
+																<Property Name="LfoFrequency" Type="Real64" Value="0"/>
+																<Property Name="LfoWaveform" Type="int32" Value="5"/>
+															</PropertyList>
+														</ModulatorLfo>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{87082881-2DF8-45ED-AD5C-601D475E9079}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>35</YPos>
+														<Flags>21</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>-1</YPos>
+														<Flags>53</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<RTPCList>
+										<RTPC Name="" ID="{2CBC51B1-A2AF-4A25-8F40-51D752CC94EA}" ShortID="318262483">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<Custom>
+														<ModulatorLfo Name="Modulator LFO (Custom)" ID="{4CF1E2CB-1152-41C0-ABCB-58BF11444FBD}" ShortID="598628181">
+															<PropertyList>
+																<Property Name="LfoWaveform" Type="int32" Value="5"/>
+															</PropertyList>
+														</ModulatorLfo>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{E0F07989-43A7-46C7-A36F-2064C26F0909}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-50</YPos>
+														<Flags>21</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>50</YPos>
+														<Flags>53</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>12</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -2087,26 +2190,38 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="Garage Foley - 12" ID="{674FE44E-A0C0-41AA-9DDC-28D7F9E5C85F}">
+								<AudioFileSource Name="ui_titulo_ventinho" ID="{6AF01D9B-395F-4EFA-9498-A575F9BB2E4D}">
 									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.161068456751276"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.152439789425315"/>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.490300027525462"/>
+										<Property Name="FadeInShape" Type="int16" Value="8"/>
 										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.356651582806397"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.778711808422792"/>
+										<Property Name="VolumeOffset" Type="Real64">
+											<ValueList>
+												<Value>17</Value>
+											</ValueList>
+										</Property>
 									</PropertyList>
 									<Language>SFX</Language>
-									<AudioFile>Garage Foley - 12.wav</AudioFile>
+									<AudioFile>ui_titulo_ventinho.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="1003456523"/>
+										<MediaID ID="87428047"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="Garage Foley - 12" ID="{674FE44E-A0C0-41AA-9DDC-28D7F9E5C85F}" Platform="Linked"/>
+								<ActiveSource Name="ui_titulo_ventinho" ID="{6AF01D9B-395F-4EFA-9498-A575F9BB2E4D}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ui_pager_aparece" ID="{94A64F0C-8A52-4008-932B-8FB653DF4A1C}" ShortID="810426610">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -2116,26 +2231,27 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="Garage Foley - 12" ID="{9D024BE0-F8AD-4B2E-A080-E99CF234049D}">
-									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.161068456751276"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.152439789425315"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.356651582806397"/>
-									</PropertyList>
+								<AudioFileSource Name="ui_pager_aparece" ID="{949D7B95-48A0-40B2-86CD-FA68386F1F57}">
 									<Language>SFX</Language>
-									<AudioFile>Garage Foley - 12.wav</AudioFile>
+									<AudioFile>ui_pager_aparece.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="1003456523"/>
+										<MediaID ID="462690976"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="Garage Foley - 12" ID="{9D024BE0-F8AD-4B2E-A080-E99CF234049D}" Platform="Linked"/>
+								<ActiveSource Name="ui_pager_aparece" ID="{949D7B95-48A0-40B2-86CD-FA68386F1F57}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ui_pager_some" ID="{33289EA9-62B8-4AB0-BB75-1B065594B47D}" ShortID="55014708">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -2145,23 +2261,17 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="Garage Foley - 12" ID="{2DD681FE-3819-4231-9818-4354A32F4FEA}">
-									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.161068456751276"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.152439789425315"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.356651582806397"/>
-									</PropertyList>
+								<AudioFileSource Name="ui_pager_some-1" ID="{E50B27B2-45E1-4E00-B678-7FF0DF6E173F}">
 									<Language>SFX</Language>
-									<AudioFile>Garage Foley - 12.wav</AudioFile>
+									<AudioFile>ui_pager_some-1.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="1003456523"/>
+										<MediaID ID="46249905"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="Garage Foley - 12" ID="{2DD681FE-3819-4231-9818-4354A32F4FEA}" Platform="Linked"/>
+								<ActiveSource Name="ui_pager_some-1" ID="{E50B27B2-45E1-4E00-B678-7FF0DF6E173F}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
@@ -3558,36 +3668,17 @@
 								<ActiveSource Name="cenario_nave_bip_perigo_reverb" ID="{6097BCD8-DB41-4D07-A1A9-C8B128E93ED1}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="cenario_tutorial_soundscape" ID="{1A29B9BC-0963-4B74-BA12-92AF8BC0EC03}" ShortID="773252051">
+						<Sound Name="cenario_tutorial_soundscape" ID="{74EAF518-FB01-4E7A-B703-4DB9BF261E45}" ShortID="380076591">
 							<PropertyList>
-								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-700</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
-									<RTPCList>
-										<RTPC Name="" ID="{31AD9044-CA14-417E-9663-29C3F2C7C0F4}" ShortID="396360162">
-											<ReferenceList>
-												<Reference Name="ControlInput">
-													<ObjectRef Name="Tutorial_inicio_fadein" ID="{AF3E9602-6B09-4B65-B317-15A88D787DAB}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
-												</Reference>
-											</ReferenceList>
-											<Curve Name="" ID="{909F0E04-0B6F-4A49-9D6A-05548C64EA85}">
-												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="3"/>
-												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>-200</YPos>
-														<Flags>5</Flags>
-													</Point>
-													<Point>
-														<XPos>100</XPos>
-														<YPos>0</YPos>
-														<Flags>37</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</RTPC>
-									</RTPCList>
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>
@@ -3595,11 +3686,11 @@
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+									<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="cenario_tutorial_soundscape" ID="{69BF699F-FE91-4D22-8A98-A20D1CC722AC}">
+								<AudioFileSource Name="cenario_tutorial_soundscape" ID="{9B5A55E6-8D39-476B-BED2-DF349B97F881}">
 									<PropertyList>
 										<Property Name="LoopBegin" Type="Real64" Value="2.08091338654922"/>
 										<Property Name="LoopEnd" Type="Real64" Value="56.6840806496009"/>
@@ -3608,13 +3699,13 @@
 									<Language>SFX</Language>
 									<AudioFile>cenario_tutorial_soundscape.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="759831566"/>
+										<MediaID ID="451223913"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="cenario_tutorial_soundscape" ID="{69BF699F-FE91-4D22-8A98-A20D1CC722AC}" Platform="Linked"/>
+								<ActiveSource Name="cenario_tutorial_soundscape" ID="{9B5A55E6-8D39-476B-BED2-DF349B97F881}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
