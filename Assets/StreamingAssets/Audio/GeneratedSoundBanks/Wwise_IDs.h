@@ -68,7 +68,10 @@ namespace AK
         static const AkUniqueID LOFI_14 = 65705095U;
         static const AkUniqueID UI_NAVE_FALA = 1320095827U;
         static const AkUniqueID UI_PAGER_APARECE = 1544588369U;
+        static const AkUniqueID UI_PAGER_CHAMA_NAVE = 476413945U;
+        static const AkUniqueID UI_PAGER_CHAMA_NAVE_BOTAO = 3652001215U;
         static const AkUniqueID UI_PAGER_CLIQUE = 1750137231U;
+        static const AkUniqueID UI_PAGER_KEYCHAIN = 2974033650U;
         static const AkUniqueID UI_PAGER_SOME = 1841407834U;
         static const AkUniqueID UI_ROBOZAO_FALA = 2728419545U;
         static const AkUniqueID UI_ROBOZINHO_FALA_LEG = 1360832738U;
