@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class PlayerTransitionState : MonoBehaviour
 {
+    [SerializeField] AK.Wwise.Event teleportInAKEvent;
+    [SerializeField] AK.Wwise.Event teleportOutAKEvent;
+
     PlayerCharacter playerCharacter;
     PlayerInput playerInput;
     PlayerAnimations playerAnimations;
@@ -57,6 +60,9 @@ public class PlayerTransitionState : MonoBehaviour
 
     public void TeleportOut (UnityAction action)
     {
+        if (teleportOutAKEvent != null)
+            teleportOutAKEvent.Post(gameObject);
+
         playerCharacter.DisableAllInteractions();
         playerAnimations.SetTransitionState( AnimationState.TRANSITION_TELEPORT_OUT );
 
@@ -74,11 +80,14 @@ public class PlayerTransitionState : MonoBehaviour
 
         StartCoroutine( WaitForBlock(frames: 3, () => 
         {
+            if (teleportInAKEvent != null)
+                teleportInAKEvent.Post(gameObject);    
+
             playerCharacter.SetHiddenState(false);
             playerCharacter.SetPhysicsBody(true);
 
             playerAnimations.SetTransitionState( AnimationState.TRANSITION_TELEPORT_IN );
-            //GameManager.BlockCharacterInput = true;
+
             OnAnimationEnd = action;
         }));
     }
