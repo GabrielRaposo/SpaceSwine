@@ -116,7 +116,7 @@ public class PagerInteractionManager : MonoBehaviour
         if (keychainBanner)
             keychainBanner.Show();
 
-        if (keychainShakeAKEvent != null)
+        if (keychainState && keychainShakeAKEvent != null)
             keychainShakeAKEvent.Post(gameObject);
     }
 
