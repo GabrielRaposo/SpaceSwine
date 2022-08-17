@@ -32,8 +32,6 @@ public class MinirobotMovement : AttachToPlanet
         if (duration == 0 || range == 0)
             return;
         
-        if (mySequence != null)
-            mySequence.Kill();
         this.DOKill();
 
         angle = startingAngle;
@@ -46,7 +44,7 @@ public class MinirobotMovement : AttachToPlanet
         mySequence.AppendCallback(()=>SetMoveAnimation(true));
         //var going = DOTween.To(() => angle, x => angle = x, angle + range, duration).SetEase(Ease.Linear);
         //s.Append( DOTween.To(() => angle, x => angle = x, startingAngle + range, duration).SetEase(Ease.Linear) );
-        mySequence.Append( DOVirtual.Float(from: startingAngle, to: startingAngle + range, duration, f => angle = f ) );
+        mySequence.Append( DOVirtual.Float(from: startingAngle, to: startingAngle + range, duration, f => angle = f ).SetEase(Ease.Linear) );
         mySequence.AppendCallback(()=>SetMoveAnimation(false));
         mySequence.AppendInterval(pauseTime);
         mySequence.AppendCallback(() => sprite.flipX = true);
@@ -54,7 +52,7 @@ public class MinirobotMovement : AttachToPlanet
         mySequence.AppendCallback(()=>SetMoveAnimation(true));
         //var returning = DOTween.To(() => angle, x => angle = x, angle, duration).SetEase(Ease.Linear);
         //s.Append( DOTween.To(() => angle, x => angle = x, startingAngle, duration).SetEase(Ease.Linear) );
-        mySequence.Append( DOVirtual.Float(from: startingAngle + range, to: startingAngle, duration, f => angle = f ) );
+        mySequence.Append( DOVirtual.Float(from: startingAngle + range, to: startingAngle, duration, f => angle = f ).SetEase(Ease.Linear) );
         mySequence.AppendCallback(()=>SetMoveAnimation(false));
         mySequence.AppendInterval(pauseTime);
         mySequence.AppendCallback(() => sprite.flipX = false);
