@@ -37,6 +37,9 @@ public class PagerInteractionManager : MonoBehaviour
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event appearAKEvent;
     [SerializeField] AK.Wwise.Event vanishAKEvent;
+    [SerializeField] AK.Wwise.Event callShipAKEvent;
+    [SerializeField] AK.Wwise.Event keychainButtonAKEvent;
+    [SerializeField] AK.Wwise.Event keychainShakeAKEvent;
 
     [HideInInspector] public bool OnFocus;
 
@@ -112,6 +115,9 @@ public class PagerInteractionManager : MonoBehaviour
 
         if (keychainBanner)
             keychainBanner.Show();
+
+        if (keychainShakeAKEvent != null)
+            keychainShakeAKEvent.Post(gameObject);
     }
 
     private bool CheckInputBlock
@@ -224,6 +230,22 @@ public class PagerInteractionManager : MonoBehaviour
         bool shipInput = shipInputAction.ReadValue<float>() > .5f;
         keychainSwapper.SetSpriteState(shipInput ? 1 : 0);
 
+        // -- Som de chamada da Nave
+        if (callShipAKEvent != null)
+        {
+            if (shipInput && !callShipAKEvent.IsPlaying(gameObject))
+            {
+                if (keychainButtonAKEvent != null)
+                    keychainButtonAKEvent.Post(gameObject);
+
+                callShipAKEvent.Post(gameObject);
+            } else
+            if (!shipInput && callShipAKEvent.IsPlaying(gameObject))
+            {
+                callShipAKEvent.FadeOut(gameObject, duration: .1f);
+            }
+        }
+        
         // -- Contagem de tempo do timer
         if (!shipInput)
             shipCallCount = 0;
@@ -231,6 +253,9 @@ public class PagerInteractionManager : MonoBehaviour
         {
             if (shipCallCount > holdDuration)
             {
+                if (callShipAKEvent != null)
+                    callShipAKEvent.Stop(gameObject);
+
                 callShipEvent?.Invoke();
                 return;
             }
@@ -385,6 +410,9 @@ public class PagerInteractionManager : MonoBehaviour
 
     private void OnDisable() 
     {
+        if (callShipAKEvent != null)
+            callShipAKEvent.Stop(gameObject);
+
         navigationAction.Disable();
         confirmAction.Disable();
         playerInputActions.UI.Cancel.Disable();
