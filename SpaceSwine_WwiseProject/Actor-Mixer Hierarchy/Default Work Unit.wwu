@@ -1407,6 +1407,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<RandomSequenceContainer Name="cenario_passarinhos_voam" ID="{AEC874B7-8668-4F1A-9875-29F5EB875118}" ShortID="1013700087">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>9</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1416,7 +1423,7 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="Som Template_placeh" ID="{7CDB1C0F-440B-4640-86B7-2B97147EFF7C}" ShortID="416299433">
+								<Sound Name="cenario_passarinhos_voam_01" ID="{B882EB3D-3015-4C58-AB3F-C926D388AC7B}" ShortID="592831203">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1426,33 +1433,20 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Garage Foley - 12" ID="{015EB07B-71E2-46DE-B9B5-1CD4CBE6A80A}">
-											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="0.161068456751276"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.152439789425315"/>
-												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimEnd" Type="Real64" Value="0.356651582806397"/>
-											</PropertyList>
+										<AudioFileSource Name="cenario_passarinhos_voam_01" ID="{CDFF6521-14F5-4AA2-9DFE-315E5F796162}">
 											<Language>SFX</Language>
-											<AudioFile>Garage Foley - 12.wav</AudioFile>
+											<AudioFile>cenario_passarinhos_voam_01.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="1003456523"/>
+												<MediaID ID="1026301433"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="Garage Foley - 12" ID="{015EB07B-71E2-46DE-B9B5-1CD4CBE6A80A}" Platform="Linked"/>
+										<ActiveSource Name="cenario_passarinhos_voam_01" ID="{CDFF6521-14F5-4AA2-9DFE-315E5F796162}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="Som Template_placeh_01" ID="{DA3E196F-AF61-4460-8534-F7117248CF27}" ShortID="157235155">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>-1200</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
+								<Sound Name="cenario_passarinhos_voam_02" ID="{66B30DD8-5980-4CF2-B77D-7E98128D6FBD}" ShortID="373981100">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1462,33 +1456,20 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Garage Foley - 12" ID="{D2874058-9971-4FBD-A24C-9724F81FF1D3}">
-											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="0.161068456751276"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.152439789425315"/>
-												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimEnd" Type="Real64" Value="0.356651582806397"/>
-											</PropertyList>
+										<AudioFileSource Name="cenario_passarinhos_voam_02" ID="{5541ECBC-DDB4-418F-B4F2-3A0A98EA1636}">
 											<Language>SFX</Language>
-											<AudioFile>Garage Foley - 12.wav</AudioFile>
+											<AudioFile>cenario_passarinhos_voam_02.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="1003456523"/>
+												<MediaID ID="272567145"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="Garage Foley - 12" ID="{D2874058-9971-4FBD-A24C-9724F81FF1D3}" Platform="Linked"/>
+										<ActiveSource Name="cenario_passarinhos_voam_02" ID="{5541ECBC-DDB4-418F-B4F2-3A0A98EA1636}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="Som Template_placeh_02" ID="{A8B49DCF-0D33-43A8-9748-905783667B4E}" ShortID="437510783">
-									<PropertyList>
-										<Property Name="Pitch" Type="int32">
-											<ValueList>
-												<Value>-700</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
+								<Sound Name="cenario_passarinhos_voam_03" ID="{CEF7D3B6-B749-4830-8A01-F8A04728C791}" ShortID="981480934">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1498,23 +1479,17 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="Garage Foley - 12" ID="{97A6D90B-A4D3-4919-9A74-26502D5C9ED5}">
-											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="0.161068456751276"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.152439789425315"/>
-												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimEnd" Type="Real64" Value="0.356651582806397"/>
-											</PropertyList>
+										<AudioFileSource Name="cenario_passarinhos_voam_03" ID="{0A70B3E3-9490-463A-A612-28A4BD276E8E}">
 											<Language>SFX</Language>
-											<AudioFile>Garage Foley - 12.wav</AudioFile>
+											<AudioFile>cenario_passarinhos_voam_03.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="1003456523"/>
+												<MediaID ID="1043777171"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="Garage Foley - 12" ID="{97A6D90B-A4D3-4919-9A74-26502D5C9ED5}" Platform="Linked"/>
+										<ActiveSource Name="cenario_passarinhos_voam_03" ID="{0A70B3E3-9490-463A-A612-28A4BD276E8E}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
