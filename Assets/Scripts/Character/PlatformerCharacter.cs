@@ -12,7 +12,6 @@ public class PlatformerCharacter : SidewaysCharacter
     [SerializeField] float acceleration;
     [SerializeField] float jumpForce;
 
-
     [Header("Dynamic Input Values")]
     [SerializeField] bool dynamicControls;
     [SerializeField] [Range(0f, 1f)] float dynamicInputThreshold;
@@ -35,7 +34,7 @@ public class PlatformerCharacter : SidewaysCharacter
     [SerializeField] Vector2 autoClimbCheckPoint;
     [SerializeField] Vector2 autoClimbCheckSize;
 
-
+    [HideInInspector] public bool BlockLandFeedback; 
     bool onGround;
 
     Vector2 heldInput;
@@ -319,8 +318,11 @@ public class PlatformerCharacter : SidewaysCharacter
         {
             if (!previousState) 
             {
-                shortLandingAKEvent?.Post(gameObject);
-                shortLandingVFX?.Play();
+                if (!BlockLandFeedback)
+                {
+                    shortLandingAKEvent?.Post(gameObject);
+                    shortLandingVFX?.Play();
+                }
             }
             playerAnimations.SetLandedState();
         }

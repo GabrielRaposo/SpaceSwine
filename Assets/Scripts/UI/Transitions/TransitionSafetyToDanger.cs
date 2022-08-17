@@ -63,8 +63,13 @@ public class TransitionSafetyToDanger : MonoBehaviour
     private IEnumerator SafetyToDangerTransition(int index, bool safetyToDanger)
     {
         SceneTransition.OnTransition = true;
+        PlayerTransitionState.BlockSpawn = true;
         RoundsManager.BlockSpawn = true;
         SetPlaylistOnStart.Block = true;
+
+        if (!safetyToDanger)
+            PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
+
         bool done = false;
 
         if (mainSequence != null)
@@ -155,6 +160,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
         fillImage.enabled = false;
 
         RoundsManager.BlockSpawn = false;
+        PlayerTransitionState.BlockSpawn = false;
         gameObject.SetActive(false);
         SceneTransition.OnTransition = false;
         SetPlaylistOnStart.Block = false; 

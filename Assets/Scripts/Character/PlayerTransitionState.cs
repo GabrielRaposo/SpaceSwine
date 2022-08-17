@@ -14,6 +14,8 @@ public class PlayerTransitionState : MonoBehaviour
     public enum State { None, Teleport }
     public static State EnterState;
 
+    public static bool BlockSpawn;
+
     void Awake()
     {
         playerCharacter = GetComponent<PlayerCharacter>();
@@ -31,7 +33,7 @@ public class PlayerTransitionState : MonoBehaviour
                 
                 TeleportIn ( action: () => 
                 {
-                    //Debug.Log("Exit intro state");
+                    playerCharacter.BlockSpawnEffects(false);
                     playerAnimations.ExitTransitionState();
 
                     playerCharacter.SetPhysicsBody(true);
@@ -67,9 +69,10 @@ public class PlayerTransitionState : MonoBehaviour
     {
         playerCharacter.DisableAllInteractions();
         playerCharacter.SetHiddenState(true);
+        playerCharacter.BlockSpawnEffects(true);
         playerCharacter.SetPhysicsBody(false);
 
-        RaposUtil.Wait(this, frames: 3, () => 
+        StartCoroutine( WaitForBlock(frames: 3, () => 
         {
             playerCharacter.SetHiddenState(false);
             playerCharacter.SetPhysicsBody(true);
@@ -77,6 +80,16 @@ public class PlayerTransitionState : MonoBehaviour
             playerAnimations.SetTransitionState( AnimationState.TRANSITION_TELEPORT_IN );
             //GameManager.BlockCharacterInput = true;
             OnAnimationEnd = action;
-        });
+        }));
+    }
+
+    private IEnumerator WaitForBlock (int frames, UnityAction action)
+    {
+        yield return new WaitWhile( () => BlockSpawn );
+
+        for (int i = 0; i < frames; i++)
+            yield return new WaitForEndOfFrame();
+
+        action.Invoke();
     }
 }
