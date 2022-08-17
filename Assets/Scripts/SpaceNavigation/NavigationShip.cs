@@ -129,20 +129,27 @@ public class NavigationShip : MonoBehaviour
                 smokeTrailPS.Play();
 
                 if (flightStepsRoutine != null)
-                    StopCoroutine(flightStepsRoutine);
+                    StopAllCoroutines();
 
                 flightStepsRoutine = StartCoroutine( FlightStepsLoop() );
             }
+
+            //if (flightAmbienceAKEvent != null && !flightAmbienceAKEvent.IsPlaying(gameObject))
+            //    flightAmbienceAKEvent.Post(gameObject);
         }
         else
         {
             if (smokeTrailPS.isPlaying)
             {
                 smokeTrailPS.Stop();
-
+                
                 if (flightStepsRoutine != null)
-                    StopCoroutine(flightStepsRoutine);
+                    StopAllCoroutines();
             }
+
+
+            //if (flightAmbienceAKEvent != null && flightAmbienceAKEvent.IsPlaying(gameObject))
+            //    flightAmbienceAKEvent.Stop(gameObject);
         }
     }
 
@@ -150,14 +157,13 @@ public class NavigationShip : MonoBehaviour
     {
         if (flightStepsAKEvent == null)
             yield break;
-            
-        while (true)
+
+        while (true) 
         {
-            yield return new WaitForSeconds( flightStepsDelay );
+            yield return new WaitForSeconds(flightStepsDelay);
             //Debug.Log("step");
             flightStepsAKEvent.Post(gameObject);
         }
-
     }
 
     private void ConfirmAction()

@@ -26,6 +26,9 @@ public class SetSceneNavigationObject : NavigationObject
     [SerializeField] private Transform dotsParent;
     [SerializeField] private AK.Wwise.Event sound; 
     
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event OnSelectAKEvent;
+
     public UnityAction OnSelectAction;
 
     private void OnEnable()
@@ -39,6 +42,9 @@ public class SetSceneNavigationObject : NavigationObject
     {
         base.OnSelect();
         selector.enabled = true;
+
+        if (OnSelectAKEvent != null)
+            OnSelectAKEvent.Post(gameObject);
 
         if (OnSelectAction != null)
             OnSelectAction.Invoke();
