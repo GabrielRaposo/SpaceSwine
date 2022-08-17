@@ -67,18 +67,19 @@ public class SceneTransition : MonoBehaviour
 
 public enum BuildIndex
 {
-    Splash = 0,
-    Title = 1,
-    Ship = 2,
-    World1Exploration = 3,
-    World1Danger = 4,
-    World2Exploration = 5,
-    World2Danger = 6,
-    World3Exploration = 7,
-    World3Danger = 8,
-    MinigameJumper = 9,
-    World0Exploration = 10,
-    TestExplorationStage = 11,
-    TestDangerStage = 12,
-    NavigationScene = 13
+    Splash                  = 0,
+    Title                   = 1,
+    Ship                    = 2,
+    World1Exploration       = 3,
+    World1Danger            = 4,
+    World2Exploration       = 5,
+    World2Danger            = 6,
+    World3Exploration       = 7,
+    World3Danger            = 8,
+    MinigameJumper          = 9,
+    World0Exploration       = 10,
+    TestExplorationStage    = 11,
+    TestDangerStage         = 12,
+    NavigationScene         = 13,
+    WorldXExploration       = 14
 }
