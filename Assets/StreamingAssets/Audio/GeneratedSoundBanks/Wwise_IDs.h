@@ -75,6 +75,7 @@ namespace AK
         static const AkUniqueID UI_NAVEGACAO__AUTOPILOT = 1865826492U;
         static const AkUniqueID UI_NAVEGACAO__PLANETA_SELECAO = 3359879035U;
         static const AkUniqueID UI_NAVEGACAO_MOVIMENTACAO = 2042242719U;
+        static const AkUniqueID UI_NAVEGACAO_MOVIMENTACAO_AMBIENCIA = 4033432919U;
         static const AkUniqueID UI_PAGER_APARECE = 1544588369U;
         static const AkUniqueID UI_PAGER_CHAMA_NAVE = 476413945U;
         static const AkUniqueID UI_PAGER_CHAMA_NAVE_BOTAO = 3652001215U;
