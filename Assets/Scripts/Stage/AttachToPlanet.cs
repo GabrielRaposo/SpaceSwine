@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class AttachToPlanet : MonoBehaviour
 {
-    [SerializeField] float angle;
+    [SerializeField] protected float angle;
     
     bool attached;
     GravitationalPlanet planet;
@@ -16,7 +16,7 @@ public class AttachToPlanet : MonoBehaviour
     }
 
     #if UNITY_EDITOR
-    private void Update() 
+    protected virtual void Update() 
     {
         if (Application.isPlaying)
             return;
@@ -25,7 +25,7 @@ public class AttachToPlanet : MonoBehaviour
     }
     #endif
 
-    private void Attach()
+    protected void Attach()
     {
         planet = GetComponentInParent<GravitationalPlanet>();
         if (!planet) 
