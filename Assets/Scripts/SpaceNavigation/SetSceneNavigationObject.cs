@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SetSceneNavigationObject : NavigationObject
 {
@@ -23,9 +24,10 @@ public class SetSceneNavigationObject : NavigationObject
     private NavigationSceneManager navSceneManager;
 
     [SerializeField] private Transform dotsParent;
-
     [SerializeField] private AK.Wwise.Event sound; 
     
+    public UnityAction OnSelectAction;
+
     private void OnEnable()
     {
         interactAction += ShipAnimation;
@@ -37,11 +39,14 @@ public class SetSceneNavigationObject : NavigationObject
     {
         base.OnSelect();
         selector.enabled = true;
+
+        if (OnSelectAction != null)
+            OnSelectAction.Invoke();
     }
 
-    public override void OnDisselect()
+    public override void OnDeselect()
     {
-        base.OnDisselect();
+        base.OnDeselect();
         selector.enabled = false;
     }
 

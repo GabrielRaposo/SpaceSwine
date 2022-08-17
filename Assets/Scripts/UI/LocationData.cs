@@ -17,6 +17,18 @@ public class LocationData : MonoBehaviour
 
         string t = LocalizationManager.GetUiText(locationCode, fallbackText);
 
+        //RaposUtil.WaitSeconds(this, delay, () => 
+        //    {
+        //        display.DisplayLocation(t);
+        //    }
+        //);
+        StartCoroutine ( WaitForBlock (delay, display, t) );
+    }
+
+    IEnumerator WaitForBlock(float delay, LocationDisplay display, string t)
+    {
+        yield return new WaitWhile( () => PlayerTransitionState.BlockSpawn );
+
         RaposUtil.WaitSeconds(this, delay, () => 
             {
                 display.DisplayLocation(t);

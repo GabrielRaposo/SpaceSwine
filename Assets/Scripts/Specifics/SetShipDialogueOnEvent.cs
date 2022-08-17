@@ -11,10 +11,19 @@ public class SetShipDialogueOnEvent : MonoBehaviour
     [SerializeField] StoryEventScriptableObject storyEvent;
     [SerializeField] UnityEvent OnTrueStoryEvent; // -- Deve chamar um SetWorldState() pelo editor
 
-    // -- TEMP
+    #region TEMP
     public static bool World1ShipDialogueSet;
     public static bool World2ShipDialogueSet;
     public static bool World3ShipDialogueSet;
+
+    public static bool AllDialoguesSet
+    {
+        get 
+        {
+            return World1ShipDialogueSet && World2ShipDialogueSet && World3ShipDialogueSet;
+        }
+    }
+    #endregion
 
     void OnEnable()
     {

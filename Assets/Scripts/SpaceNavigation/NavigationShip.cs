@@ -62,7 +62,7 @@ public class NavigationShip : MonoBehaviour
         if(navObject == null) return;
         
         if(selectedObject != null)
-            selectedObject.OnDisselect();
+            selectedObject.OnDeselect();
         
         navObject.OnSelect();
         selectedObject = navObject;
@@ -74,7 +74,7 @@ public class NavigationShip : MonoBehaviour
         if(navObject == null)
             return;
         
-        navObject.OnDisselect();
+        navObject.OnDeselect();
 
         if (navObject == selectedObject)
             selectedObject = null;
