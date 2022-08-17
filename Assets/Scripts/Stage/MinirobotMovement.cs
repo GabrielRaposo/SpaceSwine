@@ -35,7 +35,7 @@ public class MinirobotMovement : AttachToPlanet
         this.DOKill();
 
         angle = startingAngle;
-        sprite.flipX = false;
+        sprite.flipX = range>0?false:true;
 
         mySequence = DOTween.Sequence();
 
@@ -47,7 +47,7 @@ public class MinirobotMovement : AttachToPlanet
         mySequence.Append( DOVirtual.Float(from: startingAngle, to: startingAngle + range, duration, f => angle = f ).SetEase(Ease.Linear) );
         mySequence.AppendCallback(()=>SetMoveAnimation(false));
         mySequence.AppendInterval(pauseTime);
-        mySequence.AppendCallback(() => sprite.flipX = true);
+        mySequence.AppendCallback(() => sprite.flipX = range>0?true:false);
 
         mySequence.AppendCallback(()=>SetMoveAnimation(true));
         //var returning = DOTween.To(() => angle, x => angle = x, angle, duration).SetEase(Ease.Linear);
@@ -55,7 +55,7 @@ public class MinirobotMovement : AttachToPlanet
         mySequence.Append( DOVirtual.Float(from: startingAngle + range, to: startingAngle, duration, f => angle = f ).SetEase(Ease.Linear) );
         mySequence.AppendCallback(()=>SetMoveAnimation(false));
         mySequence.AppendInterval(pauseTime);
-        mySequence.AppendCallback(() => sprite.flipX = false);
+        mySequence.AppendCallback(() => sprite.flipX = range>0?false:true);
         
         mySequence.SetLoops(-1);
     }
