@@ -27,6 +27,11 @@ public class TransitionSafetyToDanger : MonoBehaviour
     [SerializeField] CanvasGroup safetyStripes;
     [SerializeField] CanvasGroup dangerStripes;
 
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event twistedTransitionAKEvent;
+    [SerializeField] AK.Wwise.Event safetyToDangerAKEvent;
+    [SerializeField] AK.Wwise.Event dangerToSafetyAKEvent;
+
     [Header("Playlists - TEMP: sistematizar depois")]
     [SerializeField] PlaylistScriptableObject safetyPlaylist;
     [SerializeField] PlaylistScriptableObject dangerPlaylist;
@@ -81,9 +86,11 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         fillImage.enabled = false;
 
-        // -- Fade-in do fundo
+        // -- Transição de vórtice
         mainCanvasGroup.alpha = 1.0f;
         materialInterface.animator.SetTrigger(Play);
+        if (twistedTransitionAKEvent != null)
+            twistedTransitionAKEvent.Post(gameObject);
         materialInterface.onAnimationEnd = () =>
         {
             done = true;
@@ -108,6 +115,17 @@ public class TransitionSafetyToDanger : MonoBehaviour
         mainSequence.Append( assetsGroup.DOFade(1, fadeDuration) );
         mainSequence.OnComplete( () => done = true );
         mainSequence.SetUpdate(isIndependentUpdate: true);
+
+        if (safetyToDanger)
+        {
+            if (safetyToDangerAKEvent != null)
+                safetyToDangerAKEvent.Post(gameObject);
+        }
+        else
+        {
+            if (dangerToSafetyAKEvent != null)
+                dangerToSafetyAKEvent.Post(gameObject);
+        }
 
         yield return new WaitUntil( () => done );
         done = false;

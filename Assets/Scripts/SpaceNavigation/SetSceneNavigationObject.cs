@@ -28,6 +28,7 @@ public class SetSceneNavigationObject : NavigationObject
     
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event OnSelectAKEvent;
+    [SerializeField] AK.Wwise.Event MakePathAKEvent;
 
     public UnityAction OnSelectAction;
 
@@ -160,6 +161,9 @@ public class SetSceneNavigationObject : NavigationObject
     private Tween DrawDots(float duration, int count, float startRotation, Vector2 startPos, Vector2 endPos)
     {
         var s = DOTween.Sequence();
+
+        if (MakePathAKEvent != null)
+            MakePathAKEvent.Post(gameObject);
 
         float c = count;
         

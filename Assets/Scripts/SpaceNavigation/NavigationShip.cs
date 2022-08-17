@@ -134,8 +134,8 @@ public class NavigationShip : MonoBehaviour
                 flightStepsRoutine = StartCoroutine( FlightStepsLoop() );
             }
 
-            //if (flightAmbienceAKEvent != null && !flightAmbienceAKEvent.IsPlaying(gameObject))
-            //    flightAmbienceAKEvent.Post(gameObject);
+            if (flightAmbienceAKEvent != null && !flightAmbienceAKEvent.IsPlaying(gameObject))
+                flightAmbienceAKEvent.Post(gameObject);
         }
         else
         {
@@ -148,8 +148,8 @@ public class NavigationShip : MonoBehaviour
             }
 
 
-            //if (flightAmbienceAKEvent != null && flightAmbienceAKEvent.IsPlaying(gameObject))
-            //    flightAmbienceAKEvent.Stop(gameObject);
+            if (flightAmbienceAKEvent != null && flightAmbienceAKEvent.IsPlaying(gameObject))
+                flightAmbienceAKEvent.Stop(gameObject);
         }
     }
 
