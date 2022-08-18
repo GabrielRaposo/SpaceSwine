@@ -68,7 +68,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void DisableAllInteractions()
     { 
-        Debug.Log("DisableAllInteractions()");
+        //Debug.Log("DisableAllInteractions()");
 
         if (playerInput) playerInput.enabled = false;
 

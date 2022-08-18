@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class PlayerTransitionState : MonoBehaviour
 {
+    [SerializeField] PlayerSpawnPortal spawnPortal;
+
+    [Header("Audio")]
     [SerializeField] AK.Wwise.Event teleportInAKEvent;
     [SerializeField] AK.Wwise.Event teleportOutAKEvent;
 
@@ -14,7 +17,7 @@ public class PlayerTransitionState : MonoBehaviour
 
     UnityAction OnAnimationEnd;
 
-    public enum State { None, Teleport }
+    public enum State { None, Teleport, OutOfPortal }
     public static State EnterState;
 
     public static bool BlockSpawn;
@@ -27,6 +30,11 @@ public class PlayerTransitionState : MonoBehaviour
     }
 
     private void Start() 
+    {
+        CallOnStartSpawn();
+    }
+
+    public void CallOnStartSpawn()
     {
         //Debug.Log("PlayerTransitionState - EnterState: " + EnterState);
 
@@ -43,6 +51,20 @@ public class PlayerTransitionState : MonoBehaviour
                     playerCharacter.ResetStates();
                 });
 
+                break;
+
+            case State.OutOfPortal:
+                
+                OutOfPortal ( action: () => 
+                {
+                    playerCharacter.BlockSpawnEffects(false);
+
+                    playerCharacter.SetPhysicsBody(true);
+                    playerCharacter.ResetStates();
+
+                    //Debug.Log("RESET STATES");
+                });
+                
                 break;
         }
 
@@ -89,6 +111,31 @@ public class PlayerTransitionState : MonoBehaviour
             playerAnimations.SetTransitionState( AnimationState.TRANSITION_TELEPORT_IN );
 
             OnAnimationEnd = action;
+        }));
+    }
+
+    public void OutOfPortal (UnityAction action)
+    {
+        playerCharacter.DisableAllInteractions();
+        playerCharacter.SetHiddenState(true);
+        playerCharacter.BlockSpawnEffects(true);
+        playerCharacter.SetPhysicsBody(false);
+
+        StartCoroutine( WaitForBlock (frames: 3, action: () => 
+        {
+            //if (teleportInAKEvent != null)
+            //    teleportInAKEvent.Post(gameObject);    
+
+            //Debug.Log("-- Call spawn portal --");
+            spawnPortal.Call();
+
+            RaposUtil.Wait(this, frames: 3, () =>
+            {
+                playerCharacter.SetHiddenState(false);
+                    playerCharacter.SetPhysicsBody(true);
+
+                    action.Invoke();
+            });
         }));
     }
 

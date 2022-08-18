@@ -72,8 +72,8 @@ public class TransitionSafetyToDanger : MonoBehaviour
         RoundsManager.BlockSpawn = true;
         SetPlaylistOnStart.Block = true;
 
-        if (!safetyToDanger)
-            PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
+        //if (!safetyToDanger)
+            PlayerTransitionState.EnterState = PlayerTransitionState.State.OutOfPortal;
 
         bool done = false;
 
@@ -177,6 +177,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         fillImage.enabled = false;
 
+        Debug.Log("end");
         RoundsManager.BlockSpawn = false;
         PlayerTransitionState.BlockSpawn = false;
         gameObject.SetActive(false);

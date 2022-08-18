@@ -39,7 +39,7 @@ public class MinirobotMovement : AttachToPlanet
 
         mySequence = DOTween.Sequence();
 
-        Debug.Log("mySequence.id: " + mySequence.id);
+        //Debug.Log("mySequence.id: " + mySequence.id);
 
         mySequence.AppendCallback(()=>SetMoveAnimation(true));
         //var going = DOTween.To(() => angle, x => angle = x, angle + range, duration).SetEase(Ease.Linear);
@@ -78,7 +78,7 @@ public class MinirobotMovement : AttachToPlanet
 
     private void SetMoveAnimation(bool value)
     {
-        Debug.Log("SetMoveAnimation: " + value);
+        //Debug.Log("SetMoveAnimation: " + value);
         if (animator != null)
             animator.SetBool("Moving", value);
     }
