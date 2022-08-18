@@ -32,6 +32,7 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_POUSA_LONGO = 1717148742U;
         static const AkUniqueID GAMEPLAY_BUYK_PULA_CURTO = 3434033334U;
         static const AkUniqueID GAMEPLAY_BUYK_PULA_LONGO = 2563466850U;
+        static const AkUniqueID GAMEPLAY_BUYK_SENTA_GGS = 1238238045U;
         static const AkUniqueID GAMEPLAY_BUYK_STUCK_01 = 671794308U;
         static const AkUniqueID GAMEPLAY_BUYK_STUCK_02 = 671794311U;
         static const AkUniqueID GAMEPLAY_BUYK_STUCK_FANFARRA = 1336538064U;
