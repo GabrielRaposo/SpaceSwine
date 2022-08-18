@@ -16,6 +16,13 @@
 							</PropertyList>
 							<ChildrenList>
 								<Sound Name="gameplay_buyk_pega_chave" ID="{C2875326-F527-46FD-B68C-5AA2430E94F6}" ShortID="343726287">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>8</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -39,6 +46,13 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="gameplay_buyk_pega_item" ID="{4F22D2C7-E44D-44FC-960A-A0DC463DABD9}" ShortID="741970045">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -62,6 +76,13 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="gameplay_buyk_taca_item" ID="{66895EE5-EBB8-4279-9B48-606E99EE09FA}" ShortID="591220521">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -88,197 +109,13 @@
 						</Folder>
 						<Folder Name="Movimentação" ID="{9C25E53C-F2A9-44AF-B79A-13B45BA40CAB}" ShortID="175789909">
 							<ChildrenList>
-								<Folder Name="gameplay_buyk_anda" ID="{08F01D09-115F-4F1B-BA0A-3C4F1425FFDA}" ShortID="286036996">
-									<ChildrenList>
-										<RandomSequenceContainer Name="gameplay_buyk_anda" ID="{8477766D-7C83-4351-BB6B-ED9A589A5EE3}" ShortID="883979929">
-											<PropertyList>
-												<Property Name="Lowpass" Type="int16">
-													<RTPCList>
-														<RTPC Name="" ID="{A8FF7693-CECF-4EED-AE23-3D1896C3D28A}" ShortID="762170774">
-															<ReferenceList>
-																<Reference Name="ControlInput">
-																	<Custom>
-																		<ModulatorLfo Name="Modulator LFO (Custom)" ID="{0F40E4C2-1C93-4951-B9A7-F60109523F4D}" ShortID="270414230">
-																			<PropertyList>
-																				<Property Name="LfoWaveform" Type="int32" Value="5"/>
-																			</PropertyList>
-																		</ModulatorLfo>
-																	</Custom>
-																</Reference>
-															</ReferenceList>
-															<Curve Name="" ID="{79213447-D5A5-4728-9235-3C1C2701AC1F}">
-																<PropertyList>
-																	<Property Name="Flags" Type="int32" Value="65537"/>
-																</PropertyList>
-																<PointList>
-																	<Point>
-																		<XPos>0</XPos>
-																		<YPos>0</YPos>
-																		<Flags>21</Flags>
-																	</Point>
-																	<Point>
-																		<XPos>1</XPos>
-																		<YPos>20</YPos>
-																		<Flags>53</Flags>
-																	</Point>
-																</PointList>
-															</Curve>
-														</RTPC>
-													</RTPCList>
-												</Property>
-												<Property Name="Pitch" Type="int32">
-													<RTPCList>
-														<RTPC Name="" ID="{955666E8-8F45-4E95-8823-7E533E4B5A1A}" ShortID="40862376">
-															<ReferenceList>
-																<Reference Name="ControlInput">
-																	<Custom>
-																		<ModulatorLfo Name="Modulator LFO (Custom)" ID="{DB0ABBBA-E82B-402E-9C40-2DE7D6EC8EA6}" ShortID="355114923">
-																			<PropertyList>
-																				<Property Name="LfoWaveform" Type="int32" Value="5"/>
-																			</PropertyList>
-																		</ModulatorLfo>
-																	</Custom>
-																</Reference>
-															</ReferenceList>
-															<Curve Name="" ID="{7D257C31-BF39-411E-9615-12302C1F7605}">
-																<PropertyList>
-																	<Property Name="Flags" Type="int32" Value="65537"/>
-																</PropertyList>
-																<PointList>
-																	<Point>
-																		<XPos>0</XPos>
-																		<YPos>0</YPos>
-																		<Flags>21</Flags>
-																	</Point>
-																	<Point>
-																		<XPos>1</XPos>
-																		<YPos>700</YPos>
-																		<Flags>53</Flags>
-																	</Point>
-																</PointList>
-															</Curve>
-														</RTPC>
-													</RTPCList>
-												</Property>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>-7</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<Sound Name="gameplay_buyk_anda_01" ID="{FA3ACDB4-8039-49B7-92C4-8901D6216C02}" ShortID="565112272">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_01" ID="{AEEC1761-F111-4F70-A8B9-442DD2FBB46C}">
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_01.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="1032493817"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_01" ID="{AEEC1761-F111-4F70-A8B9-442DD2FBB46C}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="gameplay_buyk_anda_02" ID="{64BC606F-644A-4FD1-9E36-8BE839D2C27C}" ShortID="16883688">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_02" ID="{E42A005B-7D8B-4FBC-81B9-806AAADF610B}">
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_02.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="9779719"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_02" ID="{E42A005B-7D8B-4FBC-81B9-806AAADF610B}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="gameplay_buyk_anda_03" ID="{C0AC3E1C-D333-4FE6-86C7-C052E73463CA}" ShortID="598878098">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_03" ID="{12016F20-A3B0-46B0-9D30-703309AEAB71}">
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_03.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="1021057919"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_03" ID="{12016F20-A3B0-46B0-9D30-703309AEAB71}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="gameplay_buyk_anda_04" ID="{8F839020-2790-45BF-B7CB-298CFE3B4479}" ShortID="281436290">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="gameplay_buyk_anda_04" ID="{50077A46-3DB1-4E8F-802F-94685826ED93}">
-															<Language>SFX</Language>
-															<AudioFile>gameplay_buyk_anda_04.wav</AudioFile>
-															<MediaIDList>
-																<MediaID ID="536965891"/>
-															</MediaIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ObjectLists/>
-													<ActiveSourceList>
-														<ActiveSource Name="gameplay_buyk_anda_04" ID="{50077A46-3DB1-4E8F-802F-94685826ED93}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-											</ChildrenList>
-											<ObjectLists/>
-										</RandomSequenceContainer>
-									</ChildrenList>
-								</Folder>
 								<Folder Name="pulo e pouso" ID="{C7A5C536-F57D-4F02-9869-0EC007A11697}" ShortID="137020467">
 									<ChildrenList>
 										<Sound Name="gameplay_buyk_pula_longo" ID="{29F608C4-F015-460F-A26E-A208B47BF76A}" ShortID="159596662">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>3</Value>
+														<Value>8</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -387,7 +224,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>12</Value>
+														<Value>15</Value>
 													</ValueList>
 													<RTPCList>
 														<RTPC Name="" ID="{080A5734-49FE-41A0-BAEB-A692C752ED2A}" ShortID="148398894">
@@ -460,7 +297,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>3</Value>
+														<Value>8</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -501,7 +338,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>3</Value>
+														<Value>8</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -534,7 +371,7 @@
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>4</Value>
+												<Value>9</Value>
 											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{D86C3562-24FC-4A7E-A635-4495707B2AAA}" ShortID="456986627">
@@ -626,12 +463,197 @@
 										<ActiveSource Name="gameplay_buyk_voa_v6 mais oscilacao" ID="{315F60AF-1A78-427C-BCD5-E5211D58961F}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<RandomSequenceContainer Name="gameplay_buyk_anda" ID="{8477766D-7C83-4351-BB6B-ED9A589A5EE3}" ShortID="883979929">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<RTPCList>
+												<RTPC Name="" ID="{A8FF7693-CECF-4EED-AE23-3D1896C3D28A}" ShortID="762170774">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{0F40E4C2-1C93-4951-B9A7-F60109523F4D}" ShortID="270414230">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{79213447-D5A5-4728-9235-3C1C2701AC1F}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>20</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<RTPCList>
+												<RTPC Name="" ID="{955666E8-8F45-4E95-8823-7E533E4B5A1A}" ShortID="40862376">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{DB0ABBBA-E82B-402E-9C40-2DE7D6EC8EA6}" ShortID="355114923">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{7D257C31-BF39-411E-9615-12302C1F7605}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>700</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-1</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="gameplay_buyk_anda_01" ID="{FA3ACDB4-8039-49B7-92C4-8901D6216C02}" ShortID="565112272">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="gameplay_buyk_anda_01" ID="{AEEC1761-F111-4F70-A8B9-442DD2FBB46C}">
+													<Language>SFX</Language>
+													<AudioFile>gameplay_buyk_anda_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1032493817"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="gameplay_buyk_anda_01" ID="{AEEC1761-F111-4F70-A8B9-442DD2FBB46C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="gameplay_buyk_anda_02" ID="{64BC606F-644A-4FD1-9E36-8BE839D2C27C}" ShortID="16883688">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="gameplay_buyk_anda_02" ID="{E42A005B-7D8B-4FBC-81B9-806AAADF610B}">
+													<Language>SFX</Language>
+													<AudioFile>gameplay_buyk_anda_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="9779719"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="gameplay_buyk_anda_02" ID="{E42A005B-7D8B-4FBC-81B9-806AAADF610B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="gameplay_buyk_anda_03" ID="{C0AC3E1C-D333-4FE6-86C7-C052E73463CA}" ShortID="598878098">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="gameplay_buyk_anda_03" ID="{12016F20-A3B0-46B0-9D30-703309AEAB71}">
+													<Language>SFX</Language>
+													<AudioFile>gameplay_buyk_anda_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1021057919"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="gameplay_buyk_anda_03" ID="{12016F20-A3B0-46B0-9D30-703309AEAB71}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="gameplay_buyk_anda_04" ID="{8F839020-2790-45BF-B7CB-298CFE3B4479}" ShortID="281436290">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="gameplay_buyk_anda_04" ID="{50077A46-3DB1-4E8F-802F-94685826ED93}">
+													<Language>SFX</Language>
+													<AudioFile>gameplay_buyk_anda_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="536965891"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="gameplay_buyk_anda_04" ID="{50077A46-3DB1-4E8F-802F-94685826ED93}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</RandomSequenceContainer>
 							</ChildrenList>
 						</Folder>
 						<Sound Name="gameplay_buyk_morre" ID="{8FCEA67A-6AA6-4FF9-9CCA-EC996E1CE4B4}" ShortID="416559231">
 							<PropertyList>
 								<Property Name="Color" Type="int16" Value="26"/>
 								<Property Name="OverrideColor" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -799,7 +821,15 @@
 										<ActiveSource Name="gameplay_buyk_stuck_fanfarra" ID="{27ACC984-AB23-4EDF-8772-49F27E384871}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<RandomSequenceContainer Name="teste" ID="{65B197AD-3D6F-4BD1-ADED-8D259A7412EE}" ShortID="755167195">
+								<Sound Name="gameplay_buyk_beamup" ID="{90B58B70-6D67-4156-937C-5A453329DA63}" ShortID="225832656">
+									<Comment>Teleport do Buyk para a nave</Comment>
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>9</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -808,8 +838,51 @@
 											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 										</Reference>
 									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="gameplay_buyk_beamup" ID="{F7160517-68D9-4485-98D6-20BC9865E65D}">
+											<Language>SFX</Language>
+											<AudioFile>gameplay_buyk_beamup.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="528806122"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
 									<ObjectLists/>
-								</RandomSequenceContainer>
+									<ActiveSourceList>
+										<ActiveSource Name="gameplay_buyk_beamup" ID="{F7160517-68D9-4485-98D6-20BC9865E65D}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="gameplay_buyk_beamdown" ID="{B909644C-06F4-4D05-8363-101885EF9BE3}" ShortID="8073660">
+									<Comment>Teleport do Buyk vindo da nave</Comment>
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>9</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="gameplay_buyk_beamdown" ID="{735C45BA-1318-4B89-981D-CE971B259186}">
+											<Language>SFX</Language>
+											<AudioFile>gameplay_buyk_beamdown.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="472154800"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="gameplay_buyk_beamdown" ID="{735C45BA-1318-4B89-981D-CE971B259186}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>
@@ -886,7 +959,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-3</Value>
+										<Value>4</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -966,6 +1039,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_spacebooster" ID="{7C9DE73D-6F5C-44A9-9FAE-984444E53487}" ShortID="826027796">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>7</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1038,7 +1118,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-2</Value>
+										<Value>5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1072,6 +1152,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_portal_entra" ID="{72116878-88D7-4571-A327-5BCD751AE007}" ShortID="113087327">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>4</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1145,6 +1232,9 @@
 							<ChildrenList>
 								<AudioFileSource Name="gameplay_portal_abre" ID="{5C19F7A7-4784-4841-BD87-687A6A26DFB8}">
 									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.162152491054225"/>
+										<Property Name="FadeInShape" Type="int16" Value="2"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
 										<Property Name="VolumeOffset" Type="Real64">
 											<ValueList>
 												<Value>6</Value>
@@ -1164,6 +1254,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_warper" ID="{85243C3A-01B9-4D91-A577-E597ED6827BB}" ShortID="596094854">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>6.5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1193,95 +1290,6 @@
 								<ActiveSource Name="gameplay_warper" ID="{64FFF161-2631-4DF4-9113-551CFE437859}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<RandomSequenceContainer Name="cenario_passarinhos_voam" ID="{AEC874B7-8668-4F1A-9875-29F5EB875118}" ShortID="1013700087">
-							<PropertyList>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>9</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<Sound Name="cenario_passarinhos_voam_01" ID="{B882EB3D-3015-4C58-AB3F-C926D388AC7B}" ShortID="592831203">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="cenario_passarinhos_voam_01" ID="{CDFF6521-14F5-4AA2-9DFE-315E5F796162}">
-											<Language>SFX</Language>
-											<AudioFile>cenario_passarinhos_voam_01.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="1026301433"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="cenario_passarinhos_voam_01" ID="{CDFF6521-14F5-4AA2-9DFE-315E5F796162}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="cenario_passarinhos_voam_02" ID="{66B30DD8-5980-4CF2-B77D-7E98128D6FBD}" ShortID="373981100">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="cenario_passarinhos_voam_02" ID="{5541ECBC-DDB4-418F-B4F2-3A0A98EA1636}">
-											<Language>SFX</Language>
-											<AudioFile>cenario_passarinhos_voam_02.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="272567145"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="cenario_passarinhos_voam_02" ID="{5541ECBC-DDB4-418F-B4F2-3A0A98EA1636}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-								<Sound Name="cenario_passarinhos_voam_03" ID="{CEF7D3B6-B749-4830-8A01-F8A04728C791}" ShortID="981480934">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="cenario_passarinhos_voam_03" ID="{0A70B3E3-9490-463A-A612-28A4BD276E8E}">
-											<Language>SFX</Language>
-											<AudioFile>cenario_passarinhos_voam_03.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="1043777171"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<ObjectLists/>
-									<ActiveSourceList>
-										<ActiveSource Name="cenario_passarinhos_voam_03" ID="{0A70B3E3-9490-463A-A612-28A4BD276E8E}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
-							</ChildrenList>
-							<ObjectLists/>
-						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{9B1ED146-6719-4B81-AE3D-F5B877AC7C1A}" ShortID="507530770">
@@ -1350,7 +1358,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>5</Value>
+												<Value>9</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -1380,7 +1388,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>5</Value>
+												<Value>9</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -1804,10 +1812,21 @@
 												<MediaID ID="489584710"/>
 											</MediaIDList>
 										</AudioFileSource>
+										<AudioFileSource Name="ui_pager_chama_nave_v1" ID="{C5946863-B32F-4AF4-B44C-8D41D3A95CA9}">
+											<PropertyList>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="2.33540783558125"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ui_pager_chama_nave_v1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="983357580"/>
+											</MediaIDList>
+										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="ui_pager_chama_nave" ID="{CA35F6E6-21A9-4168-BF44-EC625C961599}" Platform="Linked"/>
+										<ActiveSource Name="ui_pager_chama_nave_v1" ID="{C5946863-B32F-4AF4-B44C-8D41D3A95CA9}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="ui_pager_keychain" ID="{27D9CF9C-B3DE-4C3F-A68B-7A1DFF42DFF3}" ShortID="662251088">
@@ -3444,330 +3463,6 @@
 						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="Cutscenes" ID="{F177A6F5-3F5F-441B-AEC1-5E1944C50797}" ShortID="873829652">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="21"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-					<ChildrenList>
-						<Sound Name="cenario_nave_bip_perigo" ID="{B878D53F-407D-48BB-A59A-516DDD3FE7EA}" ShortID="1069049632">
-							<PropertyList>
-								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-								<Property Name="MaxSoundPerInstance" Type="int16">
-									<ValueList>
-										<Value>3</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Pitch" Type="int32">
-									<RTPCList>
-										<RTPC Name="" ID="{9F95DCE5-F741-4F07-A800-A98DC77AA09F}" ShortID="434759921">
-											<ReferenceList>
-												<Reference Name="ControlInput">
-													<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
-												</Reference>
-											</ReferenceList>
-											<Curve Name="" ID="{40DBCFCE-F219-4D8C-9049-39B4256B0E02}">
-												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="65537"/>
-												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>0</YPos>
-														<Flags>5</Flags>
-													</Point>
-													<Point>
-														<XPos>100</XPos>
-														<YPos>300</YPos>
-														<Flags>37</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</RTPC>
-									</RTPCList>
-								</Property>
-								<Property Name="UseMaxSoundPerInstance" Type="bool">
-									<ValueList>
-										<Value>True</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Volume" Type="Real64">
-									<RTPCList>
-										<RTPC Name="" ID="{94CA0796-E3BE-418D-8E74-E33702DFD578}" ShortID="78767010">
-											<ReferenceList>
-												<Reference Name="ControlInput">
-													<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
-												</Reference>
-											</ReferenceList>
-											<Curve Name="" ID="{48654EE3-7E15-4D76-A959-77A909EF6662}">
-												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="3"/>
-												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>0</YPos>
-														<Flags>5</Flags>
-													</Point>
-													<Point>
-														<XPos>100</XPos>
-														<YPos>-200</YPos>
-														<Flags>37</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</RTPC>
-									</RTPCList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="cenario_nave_bip_perigo" ID="{4AC7724B-4F15-4CD8-8E87-E5611F181E61}">
-									<Language>SFX</Language>
-									<AudioFile>cenario_nave_bip_perigo.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="492882767"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="cenario_nave_bip_perigo" ID="{4AC7724B-4F15-4CD8-8E87-E5611F181E61}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="cenario_nave_bip_tv" ID="{5E347B5A-25CE-473D-A0E8-A2BBCB6A5D08}" ShortID="659291529">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="cenario_nave_bip_tv" ID="{60D01BA5-005F-4F93-8CF9-6EA6F6F6DBAD}">
-									<Language>SFX</Language>
-									<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="203295385"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="cenario_nave_bip_tv" ID="{60D01BA5-005F-4F93-8CF9-6EA6F6F6DBAD}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="cenario_nave_explode" ID="{1774DF2B-2CDB-4608-BADE-C69AE6BDE31F}" ShortID="309481773">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="cenario_nave_explode" ID="{038E42AE-4D01-455E-BFEC-593899A8776E}">
-									<Language>SFX</Language>
-									<AudioFile>cenario_nave_explode.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="121295341"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="cenario_nave_explode" ID="{038E42AE-4D01-455E-BFEC-593899A8776E}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="cenario_nave_bip_perigo_reverb" ID="{88435EEC-C7D1-491C-8B40-067C5BB28D18}" ShortID="705885371">
-							<PropertyList>
-								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-								<Property Name="MaxSoundPerInstance" Type="int16">
-									<ValueList>
-										<Value>3</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Pitch" Type="int32">
-									<RTPCList>
-										<RTPC Name="" ID="{A186224E-B0A8-4B79-9564-22772F1853DD}" ShortID="406077080">
-											<ReferenceList>
-												<Reference Name="ControlInput">
-													<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
-												</Reference>
-											</ReferenceList>
-											<Curve Name="" ID="{095A4398-8C6C-4A29-85A5-AADC920C25BF}">
-												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="65537"/>
-												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>0</YPos>
-														<Flags>5</Flags>
-													</Point>
-													<Point>
-														<XPos>100</XPos>
-														<YPos>300</YPos>
-														<Flags>37</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</RTPC>
-									</RTPCList>
-								</Property>
-								<Property Name="UseMaxSoundPerInstance" Type="bool">
-									<ValueList>
-										<Value>True</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Volume" Type="Real64">
-									<RTPCList>
-										<RTPC Name="" ID="{9CC2164E-8341-402B-AB35-F2F1D3F87906}" ShortID="787903901">
-											<ReferenceList>
-												<Reference Name="ControlInput">
-													<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
-												</Reference>
-											</ReferenceList>
-											<Curve Name="" ID="{C14800A4-E44E-4D9A-AACC-590B8E09D649}">
-												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="3"/>
-												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>-200</YPos>
-														<Flags>5</Flags>
-													</Point>
-													<Point>
-														<XPos>100</XPos>
-														<YPos>0</YPos>
-														<Flags>37</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</RTPC>
-									</RTPCList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="cenario_nave_bip_perigo_reverb" ID="{6097BCD8-DB41-4D07-A1A9-C8B128E93ED1}">
-									<Language>SFX</Language>
-									<AudioFile>cenario_nave_bip_perigo_reverb.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="31496269"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="cenario_nave_bip_perigo_reverb" ID="{6097BCD8-DB41-4D07-A1A9-C8B128E93ED1}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="cenario_tutorial_soundscape" ID="{74EAF518-FB01-4E7A-B703-4DB9BF261E45}" ShortID="380076591">
-							<PropertyList>
-								<Property Name="Pitch" Type="int32">
-									<ValueList>
-										<Value>-700</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>5</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="cenario_tutorial_soundscape" ID="{9B5A55E6-8D39-476B-BED2-DF349B97F881}">
-									<PropertyList>
-										<Property Name="LoopBegin" Type="Real64" Value="2.08091338654922"/>
-										<Property Name="LoopEnd" Type="Real64" Value="56.6840806496009"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>cenario_tutorial_soundscape.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="451223913"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="cenario_tutorial_soundscape" ID="{9B5A55E6-8D39-476B-BED2-DF349B97F881}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-					</ChildrenList>
-				</Folder>
-				<Sound Name="cenario_nave_elevador_desce" ID="{D338631A-D60C-48FE-B296-5BC59A9FC004}" ShortID="1016991870">
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="cenario_nave_elevador_desce" ID="{3EF11086-BB8E-410C-99FC-5FDDC23E646A}">
-							<Language>SFX</Language>
-							<AudioFile>cenario_nave_elevador_desce.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="821678688"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="cenario_nave_elevador_desce" ID="{3EF11086-BB8E-410C-99FC-5FDDC23E646A}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="cenario_nave_elevador_sobe" ID="{A75EA6F9-D041-486B-983A-E652F9701388}" ShortID="720096884">
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="cenario_nave_elevador_sobe" ID="{540DF4E5-6E2C-4E45-9274-022B89BFBEFD}">
-							<Language>SFX</Language>
-							<AudioFile>cenario_nave_elevador_sobe.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="554161034"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="cenario_nave_elevador_sobe" ID="{540DF4E5-6E2C-4E45-9274-022B89BFBEFD}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
 				<Sound Name="gameplay_flor_energiza" ID="{2081E2C7-80DF-42A2-B817-29A60941293B}" ShortID="796589617">
 					<ReferenceList>
 						<Reference Name="Conversion">
@@ -3886,62 +3581,6 @@
 					<ObjectLists/>
 					<ActiveSourceList>
 						<ActiveSource Name="cenario_nave_bip_tv" ID="{7B5A1F96-DCB6-480A-895E-3B84DDB70178}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="gameplay_buyk_beamup" ID="{90B58B70-6D67-4156-937C-5A453329DA63}" ShortID="225832656">
-					<Comment>Teleport do Buyk para a nave</Comment>
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="cenario_nave_bip_tv" ID="{9769D9BD-002A-4DF2-BCF0-CA46EE78AD23}">
-							<PropertyList>
-								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-								<Property Name="TrimEnd" Type="Real64" Value="0.0660320081789928"/>
-							</PropertyList>
-							<Language>SFX</Language>
-							<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="626021311"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="cenario_nave_bip_tv" ID="{9769D9BD-002A-4DF2-BCF0-CA46EE78AD23}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="gameplay_buyk_beamdown" ID="{B909644C-06F4-4D05-8363-101885EF9BE3}" ShortID="8073660">
-					<Comment>Teleport do Buyk vindo da nave</Comment>
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="cenario_nave_bip_tv" ID="{994AA4D7-A356-478B-A737-33D30CB6E306}">
-							<PropertyList>
-								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-								<Property Name="TrimEnd" Type="Real64" Value="0.0660320081789928"/>
-							</PropertyList>
-							<Language>SFX</Language>
-							<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="626021311"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="cenario_nave_bip_tv" ID="{994AA4D7-A356-478B-A737-33D30CB6E306}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 				<Sound Name="ui_transicao_levels" ID="{079B11AD-0EC8-4E2E-AEB1-A8536D835D9E}" ShortID="99037608">
@@ -4091,6 +3730,470 @@
 						<ActiveSource Name="cenario_nave_bip_tv" ID="{799582FB-5E6E-447D-B5EC-3E322004795C}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
+				<Folder Name="Cenário" ID="{463750BC-90C6-4D59-92D2-8EA35F359632}" ShortID="379141186">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="21"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Folder Name="Cutscenes" ID="{F177A6F5-3F5F-441B-AEC1-5E1944C50797}" ShortID="873829652">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="21"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Sound Name="cenario_nave_bip_perigo" ID="{B878D53F-407D-48BB-A59A-516DDD3FE7EA}" ShortID="1069049632">
+									<PropertyList>
+										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<RTPCList>
+												<RTPC Name="" ID="{9F95DCE5-F741-4F07-A800-A98DC77AA09F}" ShortID="434759921">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{40DBCFCE-F219-4D8C-9049-39B4256B0E02}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>300</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<RTPCList>
+												<RTPC Name="" ID="{94CA0796-E3BE-418D-8E74-E33702DFD578}" ShortID="78767010">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{48654EE3-7E15-4D76-A959-77A909EF6662}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>-200</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="cenario_nave_bip_perigo" ID="{4AC7724B-4F15-4CD8-8E87-E5611F181E61}">
+											<Language>SFX</Language>
+											<AudioFile>cenario_nave_bip_perigo.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="492882767"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="cenario_nave_bip_perigo" ID="{4AC7724B-4F15-4CD8-8E87-E5611F181E61}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="cenario_nave_bip_tv" ID="{5E347B5A-25CE-473D-A0E8-A2BBCB6A5D08}" ShortID="659291529">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="cenario_nave_bip_tv" ID="{60D01BA5-005F-4F93-8CF9-6EA6F6F6DBAD}">
+											<Language>SFX</Language>
+											<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="203295385"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="cenario_nave_bip_tv" ID="{60D01BA5-005F-4F93-8CF9-6EA6F6F6DBAD}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="cenario_nave_explode" ID="{1774DF2B-2CDB-4608-BADE-C69AE6BDE31F}" ShortID="309481773">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="cenario_nave_explode" ID="{038E42AE-4D01-455E-BFEC-593899A8776E}">
+											<Language>SFX</Language>
+											<AudioFile>cenario_nave_explode.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="121295341"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="cenario_nave_explode" ID="{038E42AE-4D01-455E-BFEC-593899A8776E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="cenario_nave_bip_perigo_reverb" ID="{88435EEC-C7D1-491C-8B40-067C5BB28D18}" ShortID="705885371">
+									<PropertyList>
+										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<RTPCList>
+												<RTPC Name="" ID="{A186224E-B0A8-4B79-9564-22772F1853DD}" ShortID="406077080">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{095A4398-8C6C-4A29-85A5-AADC920C25BF}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>300</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<RTPCList>
+												<RTPC Name="" ID="{9CC2164E-8341-402B-AB35-F2F1D3F87906}" ShortID="787903901">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{C14800A4-E44E-4D9A-AACC-590B8E09D649}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Cutscene" ID="{BC0C6D4D-34D6-46FF-9547-E49196EDCD2E}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="cenario_nave_bip_perigo_reverb" ID="{6097BCD8-DB41-4D07-A1A9-C8B128E93ED1}">
+											<Language>SFX</Language>
+											<AudioFile>cenario_nave_bip_perigo_reverb.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="31496269"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="cenario_nave_bip_perigo_reverb" ID="{6097BCD8-DB41-4D07-A1A9-C8B128E93ED1}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="cenario_tutorial_soundscape" ID="{74EAF518-FB01-4E7A-B703-4DB9BF261E45}" ShortID="380076591">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-700</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="cenario_tutorial_soundscape" ID="{9B5A55E6-8D39-476B-BED2-DF349B97F881}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="2.08091338654922"/>
+												<Property Name="LoopEnd" Type="Real64" Value="56.6840806496009"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>cenario_tutorial_soundscape.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="451223913"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="cenario_tutorial_soundscape" ID="{9B5A55E6-8D39-476B-BED2-DF349B97F881}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Área de Exploração" ID="{FA018703-647A-4225-B7CD-969CCC98C19F}" ShortID="182272540">
+							<ChildrenList>
+								<RandomSequenceContainer Name="cenario_passarinhos_voam" ID="{AEC874B7-8668-4F1A-9875-29F5EB875118}" ShortID="1013700087">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>17</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="cenario_passarinhos_voam_01" ID="{B882EB3D-3015-4C58-AB3F-C926D388AC7B}" ShortID="592831203">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="cenario_passarinhos_voam_01" ID="{CDFF6521-14F5-4AA2-9DFE-315E5F796162}">
+													<Language>SFX</Language>
+													<AudioFile>cenario_passarinhos_voam_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1026301433"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="cenario_passarinhos_voam_01" ID="{CDFF6521-14F5-4AA2-9DFE-315E5F796162}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="cenario_passarinhos_voam_02" ID="{66B30DD8-5980-4CF2-B77D-7E98128D6FBD}" ShortID="373981100">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="cenario_passarinhos_voam_02" ID="{5541ECBC-DDB4-418F-B4F2-3A0A98EA1636}">
+													<Language>SFX</Language>
+													<AudioFile>cenario_passarinhos_voam_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="272567145"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="cenario_passarinhos_voam_02" ID="{5541ECBC-DDB4-418F-B4F2-3A0A98EA1636}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="cenario_passarinhos_voam_03" ID="{CEF7D3B6-B749-4830-8A01-F8A04728C791}" ShortID="981480934">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="cenario_passarinhos_voam_03" ID="{0A70B3E3-9490-463A-A612-28A4BD276E8E}">
+													<Language>SFX</Language>
+													<AudioFile>cenario_passarinhos_voam_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1043777171"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="cenario_passarinhos_voam_03" ID="{0A70B3E3-9490-463A-A612-28A4BD276E8E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Nave" ID="{F27216EF-07E1-4B3D-87D9-BD05452CCFD2}" ShortID="526252604">
+							<ChildrenList>
+								<Sound Name="cenario_nave_elevador_sobe" ID="{A75EA6F9-D041-486B-983A-E652F9701388}" ShortID="720096884">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="cenario_nave_elevador_sobe" ID="{540DF4E5-6E2C-4E45-9274-022B89BFBEFD}">
+											<Language>SFX</Language>
+											<AudioFile>cenario_nave_elevador_sobe.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="554161034"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="cenario_nave_elevador_sobe_v1" ID="{F58C892A-E0E4-459D-8964-FECCED42C0D8}">
+											<Language>SFX</Language>
+											<AudioFile>cenario_nave_elevador_sobe_v1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="193160122"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="cenario_nave_elevador_sobe_v1" ID="{F58C892A-E0E4-459D-8964-FECCED42C0D8}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="cenario_nave_elevador_desce" ID="{D338631A-D60C-48FE-B296-5BC59A9FC004}" ShortID="1016991870">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="cenario_nave_elevador_desce" ID="{3EF11086-BB8E-410C-99FC-5FDDC23E646A}">
+											<Language>SFX</Language>
+											<AudioFile>cenario_nave_elevador_desce.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="821678688"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="cenario_nave_elevador_desce_v1" ID="{46DC5C8A-0C8E-4FED-B3F2-58CD412A564C}">
+											<Language>SFX</Language>
+											<AudioFile>cenario_nave_elevador_desce_v1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="322118874"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="cenario_nave_elevador_desce_v1" ID="{46DC5C8A-0C8E-4FED-B3F2-58CD412A564C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>
