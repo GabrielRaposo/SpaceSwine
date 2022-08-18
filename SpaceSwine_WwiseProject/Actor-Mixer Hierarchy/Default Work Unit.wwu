@@ -4194,6 +4194,40 @@
 						</Folder>
 					</ChildrenList>
 				</Folder>
+				<Sound Name="PORTAL_DO_PEDRO" ID="{AD0CD9D9-F71A-4864-A06F-C5CCF23B5A23}" ShortID="780264444">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>9</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="cenario_nave_bip_tv" ID="{CAAE39F5-5E4A-4EBA-833A-2ABC74F040EF}">
+							<PropertyList>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+								<Property Name="TrimEnd" Type="Real64" Value="0.0660320081789928"/>
+							</PropertyList>
+							<Language>SFX</Language>
+							<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
+							<MediaIDList>
+								<MediaID ID="626021311"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ObjectLists/>
+					<ActiveSourceList>
+						<ActiveSource Name="cenario_nave_bip_tv" ID="{CAAE39F5-5E4A-4EBA-833A-2ABC74F040EF}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

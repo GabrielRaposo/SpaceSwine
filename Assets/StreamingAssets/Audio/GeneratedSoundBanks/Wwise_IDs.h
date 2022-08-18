@@ -71,6 +71,7 @@ namespace AK
         static const AkUniqueID LOFI_12 = 65705089U;
         static const AkUniqueID LOFI_13 = 65705088U;
         static const AkUniqueID LOFI_14 = 65705095U;
+        static const AkUniqueID PORTAL_DO_PEDRO = 2044480626U;
         static const AkUniqueID UI_NAVE_FALA = 1320095827U;
         static const AkUniqueID UI_NAVEGACAO__AUTOPILOT = 1865826492U;
         static const AkUniqueID UI_NAVEGACAO__PLANETA_SELECAO = 3359879035U;
