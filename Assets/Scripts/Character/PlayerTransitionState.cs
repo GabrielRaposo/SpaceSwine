@@ -132,9 +132,9 @@ public class PlayerTransitionState : MonoBehaviour
             RaposUtil.Wait(this, frames: 3, () =>
             {
                 playerCharacter.SetHiddenState(false);
-                    playerCharacter.SetPhysicsBody(true);
+                playerCharacter.SetPhysicsBody(true);
 
-                    action.Invoke();
+                action.Invoke();
             });
         }));
     }

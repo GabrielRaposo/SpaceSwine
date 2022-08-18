@@ -61,8 +61,11 @@ public class CollectableInteraction : MonoBehaviour
             return;
         }
     
+
         if (current == null)
+        {
             GetFromQueue();
+        }
     }
 
     public void AxisInput (Vector2 axisInput)
@@ -80,19 +83,20 @@ public class CollectableInteraction : MonoBehaviour
             return;
 
         current.Interact(this);
-
-        //if (current == null)
-            //GetFromQueue();
+ 
+        //GetFromQueue();
         StartCooldownCount();
     }
 
     private void StartCooldownCount()
     {
+        Debug.Log("StartCooldownCount");
         cooldownCount = cooldownDuration;
     }
 
     private void GetFromQueue()
     {
+        Debug.Log("Get from queue");
         current = collectablesQueue.GetFromQueue();
         if (current != null)
             SetCurrentCollectable(current);
@@ -271,6 +275,8 @@ public class CollectableInteraction : MonoBehaviour
 
         if (directionDisplay)
             directionDisplay.SetVisibility(true);
+
+        enabled = true;
     }
 
     public void ToggleDirectionDisplay()
