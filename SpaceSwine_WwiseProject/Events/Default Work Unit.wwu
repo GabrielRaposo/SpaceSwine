@@ -170,6 +170,28 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="gameplay_buyk_beamdown" ID="{0C467A17-CA80-40BA-A611-0A7D73585FD8}">
+									<ChildrenList>
+										<Action Name="" ID="{76D300F1-A8FB-4D66-AD2A-F8F1FC00D477}" ShortID="580035293">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_beamdown" ID="{B909644C-06F4-4D05-8363-101885EF9BE3}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="gameplay_buyk_beamup" ID="{4DF72EAC-2A20-4ABE-956A-251229EC3001}">
+									<ChildrenList>
+										<Action Name="" ID="{3F39C825-11E2-4FA8-8766-04134C143D8B}" ShortID="866640549">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="gameplay_buyk_beamup" ID="{90B58B70-6D67-4156-937C-5A453329DA63}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>
@@ -442,7 +464,6 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="System" ID="{CEE7E884-1059-4A36-841B-7DC8BBB2584A}" ShortID="590989639"/>
 				<Folder Name="Minigame GGS" ID="{F13C716F-82B1-4251-BCF2-9F39C2E45F7C}" ShortID="31250332">
 					<PropertyList>
 						<Property Name="Color" Type="int16" Value="15"/>
@@ -528,10 +549,10 @@
 						</Event>
 						<Event Name="ggs_ui_desliga" ID="{39D10100-0059-4A03-B763-0D50198A3C1A}">
 							<ChildrenList>
-								<Action Name="" ID="{EAA53EDF-40AD-4921-BA53-AE8612C0A785}" ShortID="543411980">
+								<Action Name="" ID="{D25A4AF2-EB0A-4127-BE45-D07BA5A0D3B8}" ShortID="167267525">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="ggs_ui_desliga" ID="{058FF76F-85FA-48A7-89AF-13382114AAA9}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+											<ObjectRef Name="ui_pager_some" ID="{33289EA9-62B8-4AB0-BB75-1B065594B47D}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -797,87 +818,6 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="Cutscenes" ID="{E994BF1C-CA00-4EFC-802D-2FB7C0B50652}" ShortID="27748643">
-					<PropertyList>
-						<Property Name="Color" Type="int16" Value="21"/>
-						<Property Name="OverrideColor" Type="bool" Value="True"/>
-					</PropertyList>
-					<ChildrenList>
-						<Event Name="cenario_nave_bip_perigo" ID="{D7C8AA1B-B09C-4F03-9913-B859D389EB53}">
-							<ChildrenList>
-								<Action Name="" ID="{E0AD3C48-3EBC-4814-8010-527316F04912}" ShortID="42771877">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="cenario_nave_bip_perigo" ID="{B878D53F-407D-48BB-A59A-516DDD3FE7EA}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{D3032250-9976-48A9-8894-6A3DFBEB5AA6}" ShortID="832448814">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="cenario_nave_bip_perigo_reverb" ID="{88435EEC-C7D1-491C-8B40-067C5BB28D18}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="cenario_nave_bip_tv" ID="{02C8761D-9E5C-48CD-9188-66D15ABF6DD3}">
-							<ChildrenList>
-								<Action Name="" ID="{E86D9DF2-1D0F-4119-80BC-D5B42C1354F6}" ShortID="292513574">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="cenario_nave_bip_tv" ID="{5E347B5A-25CE-473D-A0E8-A2BBCB6A5D08}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="cenario_nave_explode" ID="{3472E752-9A72-43FF-B091-5323AA51D915}">
-							<ChildrenList>
-								<Action Name="" ID="{AAAF7E15-E25E-4A30-B17B-76F3539E3052}" ShortID="767557709">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="cenario_nave_explode" ID="{1774DF2B-2CDB-4608-BADE-C69AE6BDE31F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="cenario_tutorial_soundscape" ID="{5564B828-F1AF-495E-AD87-1798ACE64DED}">
-							<ChildrenList>
-								<Action Name="" ID="{AF31CCB9-19A6-451C-BB6B-109E42A1FC2B}" ShortID="512534720">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="cenario_tutorial_soundscape" ID="{74EAF518-FB01-4E7A-B703-4DB9BF261E45}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-					</ChildrenList>
-				</Folder>
-				<Event Name="cenario_nave_elevador_sobe" ID="{86BA6F50-4F7A-4B3C-BDE6-14CFA2F8B03A}">
-					<ChildrenList>
-						<Action Name="" ID="{08D0A9A0-296B-47A5-A85D-010FADB84E16}" ShortID="1052906381">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="cenario_nave_elevador_sobe" ID="{A75EA6F9-D041-486B-983A-E652F9701388}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
-				<Event Name="cenario_nave_elevador_desce" ID="{96F15374-5343-4AF5-8789-D0E8045A065B}">
-					<ChildrenList>
-						<Action Name="" ID="{CB7E518D-8268-43AC-B577-0F2BCFBC596D}" ShortID="328978331">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="cenario_nave_elevador_desce" ID="{D338631A-D60C-48FE-B296-5BC59A9FC004}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
 				<Event Name="ui_transicao_levels" ID="{A97407C1-829B-4587-AC82-B631BF98E79F}">
 					<ChildrenList>
 						<Action Name="" ID="{BBD7DEC9-5C2D-4D97-AAEA-ECA55FEC7050}" ShortID="571275791">
@@ -966,28 +906,6 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="gameplay_buyk_beamup" ID="{4DF72EAC-2A20-4ABE-956A-251229EC3001}">
-					<ChildrenList>
-						<Action Name="" ID="{3F39C825-11E2-4FA8-8766-04134C143D8B}" ShortID="866640549">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="gameplay_buyk_beamup" ID="{90B58B70-6D67-4156-937C-5A453329DA63}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
-				<Event Name="gameplay_buyk_beamdown" ID="{0C467A17-CA80-40BA-A611-0A7D73585FD8}">
-					<ChildrenList>
-						<Action Name="" ID="{76D300F1-A8FB-4D66-AD2A-F8F1FC00D477}" ShortID="580035293">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="gameplay_buyk_beamdown" ID="{B909644C-06F4-4D05-8363-101885EF9BE3}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
 				<Event Name="ui_navegacao_movimentacao_ambiencia" ID="{50C135D5-EE14-4236-B33D-54E07A5F6867}">
 					<ChildrenList>
 						<Action Name="" ID="{4711D293-08CA-4B67-A093-DB9295E9BBD3}" ShortID="268167444">
@@ -1010,6 +928,100 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Folder Name="Cenario" ID="{9304F3A5-FF53-4043-9275-9D6E9F6369CF}" ShortID="456833858">
+					<PropertyList>
+						<Property Name="Color" Type="int16" Value="21"/>
+						<Property Name="OverrideColor" Type="bool" Value="True"/>
+					</PropertyList>
+					<ChildrenList>
+						<Folder Name="Cutscenes" ID="{E994BF1C-CA00-4EFC-802D-2FB7C0B50652}" ShortID="27748643">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="21"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Event Name="cenario_nave_bip_perigo" ID="{D7C8AA1B-B09C-4F03-9913-B859D389EB53}">
+									<ChildrenList>
+										<Action Name="" ID="{E0AD3C48-3EBC-4814-8010-527316F04912}" ShortID="42771877">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="cenario_nave_bip_perigo" ID="{B878D53F-407D-48BB-A59A-516DDD3FE7EA}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{D3032250-9976-48A9-8894-6A3DFBEB5AA6}" ShortID="832448814">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="cenario_nave_bip_perigo_reverb" ID="{88435EEC-C7D1-491C-8B40-067C5BB28D18}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="cenario_nave_bip_tv" ID="{02C8761D-9E5C-48CD-9188-66D15ABF6DD3}">
+									<ChildrenList>
+										<Action Name="" ID="{E86D9DF2-1D0F-4119-80BC-D5B42C1354F6}" ShortID="292513574">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="cenario_nave_bip_tv" ID="{5E347B5A-25CE-473D-A0E8-A2BBCB6A5D08}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="cenario_nave_explode" ID="{3472E752-9A72-43FF-B091-5323AA51D915}">
+									<ChildrenList>
+										<Action Name="" ID="{AAAF7E15-E25E-4A30-B17B-76F3539E3052}" ShortID="767557709">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="cenario_nave_explode" ID="{1774DF2B-2CDB-4608-BADE-C69AE6BDE31F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="cenario_tutorial_soundscape" ID="{5564B828-F1AF-495E-AD87-1798ACE64DED}">
+									<ChildrenList>
+										<Action Name="" ID="{AF31CCB9-19A6-451C-BB6B-109E42A1FC2B}" ShortID="512534720">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="cenario_tutorial_soundscape" ID="{74EAF518-FB01-4E7A-B703-4DB9BF261E45}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Nave" ID="{3B3FBE93-D3AE-408F-8B4C-EF75ACEC82C8}" ShortID="682738784">
+							<ChildrenList>
+								<Event Name="cenario_nave_elevador_sobe" ID="{86BA6F50-4F7A-4B3C-BDE6-14CFA2F8B03A}">
+									<ChildrenList>
+										<Action Name="" ID="{08D0A9A0-296B-47A5-A85D-010FADB84E16}" ShortID="1052906381">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="cenario_nave_elevador_sobe" ID="{A75EA6F9-D041-486B-983A-E652F9701388}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="cenario_nave_elevador_desce" ID="{96F15374-5343-4AF5-8789-D0E8045A065B}">
+									<ChildrenList>
+										<Action Name="" ID="{CB7E518D-8268-43AC-B577-0F2BCFBC596D}" ShortID="328978331">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="cenario_nave_elevador_desce" ID="{D338631A-D60C-48FE-B296-5BC59A9FC004}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="Área de Exploração" ID="{06DE4630-9D4B-4092-A604-6DD5769E2D37}" ShortID="790959468"/>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

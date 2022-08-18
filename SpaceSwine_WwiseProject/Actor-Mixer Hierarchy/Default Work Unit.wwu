@@ -1189,6 +1189,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_flor_transition" ID="{DF25B34E-8A9C-4E7F-9FA9-8CFE18785411}" ShortID="1017878979">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>15</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1200,8 +1207,9 @@
 							<ChildrenList>
 								<AudioFileSource Name="gameplay_flor_transition" ID="{17D20198-11E9-451B-9E8D-B1079B00DB84}">
 									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.00559848216743345"/>
 										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimBegin" Type="Real64" Value="0.000559848216743347"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.0711007235264049"/>
 										<Property Name="VolumeOffset" Type="Real64">
 											<ValueList>
 												<Value>6</Value>
@@ -2311,6 +2319,13 @@
 					</PropertyList>
 					<ChildrenList>
 						<Sound Name="ggs_nave_pula" ID="{70E6A275-0845-45DC-A805-6B6C6BEF5AE1}" ShortID="378814695">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>7</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -2334,6 +2349,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_nave_pousa" ID="{F0E6BAD0-E814-4F38-AD69-BFD490842ECF}" ShortID="217138429">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>7</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -2357,6 +2379,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_nave_morre" ID="{0A3A3B49-9077-4B31-80B1-A0749D0291F8}" ShortID="46694802">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>7</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -2409,6 +2438,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_gameplay_linha_recorde" ID="{7D477166-EF89-4B77-BC3B-16275B3B8118}" ShortID="1072583822">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>4</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -2432,6 +2468,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_ui_liga" ID="{E4C0ED77-B6A4-496D-861B-84218E8F4D4D}" ShortID="421215429">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>12</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -2455,12 +2498,19 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_ui_desliga" ID="{058FF76F-85FA-48A7-89AF-13382114AAA9}" ShortID="802756916">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>7</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
@@ -2478,16 +2528,29 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_nave_voa" ID="{5E726E93-DAD9-48BB-AF65-872A69B2E606}" ShortID="527000181">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>13</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="ggs_nave_voa" ID="{B67C92ED-F9A9-41B2-8E88-9A719F587C2F}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="2"/>
+										<Property Name="FadeInShape" Type="int16" Value="6"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.83"/>
+									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>ggs_nave_voa.wav</AudioFile>
 									<MediaIDList>
@@ -2501,6 +2564,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_ui_recorde_fanfarra" ID="{81A8F8B0-D5F8-4AE8-A81A-9A78848C51C3}" ShortID="679132504">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>4</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -2524,6 +2594,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ggs_gameplay_linha_milestone" ID="{AD6259E7-BAEB-48AA-9781-F33EEE747E46}" ShortID="233940184">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>4</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
