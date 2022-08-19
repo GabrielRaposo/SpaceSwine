@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     public static int Index
     {
         get { return index; }
-        set { index = value; Debug.Log("set index = " + index); }
+        set { index = value; /*Debug.Log("set index = " + index);*/ }
     }
     
     

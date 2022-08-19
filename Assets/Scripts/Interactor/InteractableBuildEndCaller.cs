@@ -2,26 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableBuildEndCaller : Interactable
+namespace WhitethornBuild
 {
-    [SerializeField] GameObject inputIcon;
-
-    private void Start() 
+    public class InteractableBuildEndCaller : Interactable
     {
-        HighlightState(false);
+        [SerializeField] GameObject inputIcon;
+        [SerializeField] BuildEndCaller buildEndCaller;
+
+        private void Start() 
+        {
+            HighlightState(false);
+        }
+
+        public override void Interaction(PlayerInteractor interactor) 
+        {
+            base.Interaction(interactor);
+
+            if (!buildEndCaller)
+                return;
+
+            buildEndCaller.SetEndBuildOutro(interactor);
+            Debug.Log("Hi icon");
+        }
+
+        protected override void HighlightState(bool value) 
+        {
+            if (inputIcon)
+                inputIcon.SetActive(value);
+        }
     }
-
-    public override void Interaction(PlayerInteractor interactor) 
-    {
-        base.Interaction(interactor);
-
-        Debug.Log("Hi icon");
-    }
-
-    protected override void HighlightState(bool value) 
-    {
-        if (inputIcon)
-            inputIcon.SetActive(value);
-    }
-
 }

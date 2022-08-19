@@ -129,7 +129,13 @@ public static class Vector2Extension
         return v.To8Directions().normalized;
     }
 }
-
+public static class Vector4Extension
+{
+    public static Vector4 SetAlpha (this Vector4 v, float a)
+    {
+        return new Vector4 (v.x, v.y, v.z, a);        
+    }
+}
 public static class ShaderExtensions
 {
     public static Tween DOFloat(this Material m, string code, float to, float duration)
