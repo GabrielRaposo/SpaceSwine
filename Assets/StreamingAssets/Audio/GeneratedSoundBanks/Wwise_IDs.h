@@ -13,6 +13,8 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID CENARIO_BUYK_CHUTA_BOLINHA = 2035115204U;
+        static const AkUniqueID CENARIO_BUYK_CHUTA_COPO = 223749984U;
         static const AkUniqueID CENARIO_NAVE_BIP_PERIGO = 3298760050U;
         static const AkUniqueID CENARIO_NAVE_BIP_TV = 3867903812U;
         static const AkUniqueID CENARIO_NAVE_ELEVADOR_DESCE = 1899025469U;
@@ -74,6 +76,8 @@ namespace AK
         static const AkUniqueID LOFI_13 = 65705088U;
         static const AkUniqueID LOFI_14 = 65705095U;
         static const AkUniqueID PORTAL_DO_PEDRO = 2044480626U;
+        static const AkUniqueID UI_LABORBOT_FALA = 1076532240U;
+        static const AkUniqueID UI_MAROMBOT_FALA = 1293565034U;
         static const AkUniqueID UI_NAVE_FALA = 1320095827U;
         static const AkUniqueID UI_NAVEGACAO__AUTOPILOT = 1865826492U;
         static const AkUniqueID UI_NAVEGACAO__PLANETA_SELECAO = 3359879035U;
