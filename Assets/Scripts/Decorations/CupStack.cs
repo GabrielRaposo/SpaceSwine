@@ -6,18 +6,35 @@ using Random = UnityEngine.Random;
 
 public class CupStack : MonoBehaviour
 {
+    [SerializeField] private AK.Wwise.Event activationAKEvent;
     [SerializeField] private List<Rigidbody2D> cups;
-
     [SerializeField] private float strenght;
+
+    private static bool HasBeenKicked;
+
+    private void Start() 
+    {
+        if (HasBeenKicked) 
+        { 
+            GetKicked(transform.position + new Vector3( 0f, -1f ));
+            HasBeenKicked = false;
+        }
+
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if(!col.gameObject.CompareTag("Player")) return;
 
-        float angle = Mathg.AngleOfTheLineBetweenTwoPoints(transform.position, col.transform.position);
+        GetKicked(col.transform.position);
+    }
+
+    private void GetKicked (Vector3 origin)
+    {
+        float angle = Mathg.AngleOfTheLineBetweenTwoPoints(transform.position, origin);
         Vector2 kickDirection;
         
-        Debug.Log("angle: " + angle);
+        //Debug.Log("angle: " + angle);
         if(angle > 90)
             kickDirection = Mathg.AngleToDirection2(angle).normalized;
         else
@@ -39,7 +56,11 @@ public class CupStack : MonoBehaviour
             rb.AddTorque(Random.Range(20f,50f)*side);
         }
 
+        if (activationAKEvent != null)
+            activationAKEvent.Post(gameObject);
+
         GetComponent<Collider2D>().enabled = false;
 
+        HasBeenKicked = true;
     }
 }
