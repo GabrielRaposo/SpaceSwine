@@ -96,7 +96,7 @@ public class CollectableInteraction : MonoBehaviour
 
     private void GetFromQueue()
     {
-        Debug.Log("Get from queue");
+        //Debug.Log("Get from queue");
         current = collectablesQueue.GetFromQueue();
         if (current != null)
             SetCurrentCollectable(current);

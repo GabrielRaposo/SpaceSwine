@@ -17,12 +17,13 @@ public class CupStack : MonoBehaviour
         float angle = Mathg.AngleOfTheLineBetweenTwoPoints(transform.position, col.transform.position);
         Vector2 kickDirection;
         
-        if(angle<0)
-         kickDirection = Mathg.AngleToDirection2(angle).normalized;
+        Debug.Log("angle: " + angle);
+        if(angle > 90)
+            kickDirection = Mathg.AngleToDirection2(angle).normalized;
         else
-            kickDirection = Mathg.AngleToDirection2(angle-180f).normalized;
+            kickDirection = Mathg.AngleToDirection2(angle+180f).normalized;
         
-        Debug.Log($"kickDirection: {kickDirection}\nangle: {angle}");
+        //Debug.Log($"kickDirection: {kickDirection}\nangle: {angle}");
         
         foreach (var rb in cups)
         {
@@ -30,7 +31,7 @@ public class CupStack : MonoBehaviour
             rb.gravityScale = 0.001f;
             rb.drag = 0.7f;
             rb.angularDrag = 0.1f;
-            var randomDir = angle > 0 ? Random.Range(180f, 360f) : Random.Range(0f, 180f);
+            var randomDir = angle < 90 ? Random.Range(180f, 360f) : Random.Range(0f, 180f);
             Vector2 force = kickDirection*2f + Mathg.AngleToDirection2(randomDir)*.5f;
             rb.AddForce(force*strenght, ForceMode2D.Impulse);
             //rb.AddForce(kickDirection*2f + Mathg.AngleToDirection2(Random.Range(0f,180f))*0f, ForceMode2D.Impulse);
