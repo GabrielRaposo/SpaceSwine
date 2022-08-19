@@ -41,6 +41,7 @@ public class ShipDialogueBox : MonoBehaviour
 
     bool shown;
     bool skippable;
+    bool onTransition;
     bool autoSkip;
 
     Sequence showSequence;
@@ -79,6 +80,7 @@ public class ShipDialogueBox : MonoBehaviour
 
     private void OnDisable() 
     {
+        Debug.Log("OnDisable");
         inputActions.UI.Confirm.Disable();
     }
 
@@ -225,6 +227,9 @@ public class ShipDialogueBox : MonoBehaviour
         if (shown == value && !forceOut)
             return;
 
+        enabled = true;
+        onTransition = true;
+
         if (showSequence != null)
             showSequence.Kill();
 
@@ -241,7 +246,14 @@ public class ShipDialogueBox : MonoBehaviour
                 duration
             )
         );
-        showSequence.OnComplete( () => shown = value );
+        showSequence.OnComplete( () => 
+            {
+                shown = value; 
+                enabled = value;
+
+                onTransition = false;
+            }
+        );
     }
 
     private void SetVerticalSequence()
@@ -372,8 +384,11 @@ public class ShipDialogueBox : MonoBehaviour
         skipIcon.SetActive(value);
     }
 
-    private void SkipInput(InputAction.CallbackContext ctx) 
+    private void SkipInput (InputAction.CallbackContext ctx) 
     {
+        if (onTransition)
+            return;
+
         if (!skippable)
             return;
 

@@ -120,7 +120,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void SetTransitionState (string animationState)
     {
-        Debug.Log("SetTransitionState");
+        //Debug.Log("SetTransitionState");
         ChangeAnimationState(animationState);
         onTransition = true;
     }

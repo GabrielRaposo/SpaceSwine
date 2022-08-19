@@ -20,6 +20,7 @@ public class SetShipDialogueOnEvent : MonoBehaviour
     {
         get 
         {
+            //return true;
             return World1ShipDialogueSet && World2ShipDialogueSet && World3ShipDialogueSet;
         }
     }
@@ -65,18 +66,21 @@ public class SetShipDialogueOnEvent : MonoBehaviour
                 if (World1ShipDialogueSet)
                     return;
                 World1ShipDialogueSet = true;
+                Debug.Log("World1ShipDialogueSet");
                 break;
 
             case 2:
                 if (World2ShipDialogueSet)
                     return;
                 World2ShipDialogueSet = true;
+                Debug.Log("World2ShipDialogueSet");
                 break;
 
             case 3:
                 if (World3ShipDialogueSet)
                     return;
                 World3ShipDialogueSet = true;
+                Debug.Log("World3ShipDialogueSet");
                 break;
         }
 

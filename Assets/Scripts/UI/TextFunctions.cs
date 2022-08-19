@@ -20,14 +20,14 @@ public static class TextFunctions
 
             if (subString.CompareTo("instant text") > -1)
             {   
-                Debug.Log("TAG: Instant Text");
+                //Debug.Log("TAG: Instant Text");
                 if (!tags.Contains(TextBoxTag.InstantText))
                     tags.Add(TextBoxTag.InstantText);
             }
 
             if (subString.CompareTo("award sound") > -1)
             {   
-                Debug.Log("TAG: Award Sound");
+                //Debug.Log("TAG: Award Sound");
                 if (!tags.Contains(TextBoxTag.AwardSound))
                     tags.Add(TextBoxTag.AwardSound);
             }
