@@ -13,6 +13,8 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID CENARIO_BUYK_CHUTA_BOLINHA = 2035115204U;
+        static const AkUniqueID CENARIO_BUYK_CHUTA_COPO = 223749984U;
         static const AkUniqueID CENARIO_NAVE_BIP_PERIGO = 3298760050U;
         static const AkUniqueID CENARIO_NAVE_BIP_TV = 3867903812U;
         static const AkUniqueID CENARIO_NAVE_ELEVADOR_DESCE = 1899025469U;
