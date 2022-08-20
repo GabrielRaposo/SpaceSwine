@@ -87,8 +87,7 @@ public class SpaceJumper : MonoBehaviour
 
     private void SetLaunchState (bool value, bool playLongJumpSound = true)
     {
-        if (flightLoopAKEvent != null)
-            flightLoopAKEvent.Stop(gameObject);
+        KillFlightSound();
 
         if (value) 
         {
@@ -193,24 +192,38 @@ public class SpaceJumper : MonoBehaviour
 
     public void ResetStates()
     {
-        if (flightLoopAKEvent != null)
-            flightLoopAKEvent.Stop(gameObject);
+        KillFlightSound();
 
         onLaunch = false;
         rb.velocity = Vector2.zero;
         SetLaunchState(false);
     }
 
-    private void OnDisable() 
+    public void CancelOnLaunch()
+    {
+        onLaunch = false;
+        KillFlightSound();
+    }
+
+    private void KillFlightSound()
     {
         if (flightLoopAKEvent != null)
             flightLoopAKEvent.Stop(gameObject);
     }
 
+    private void OnDisable() 
+    {
+        onLaunch = false;
+        KillFlightSound();
+    }
+
     private void OnDestroy() 
     {
-        if (flightLoopAKEvent != null)
-            flightLoopAKEvent.Stop(gameObject);
+        if (!Application.isPlaying)
+            return;
+
+        onLaunch = false;
+        KillFlightSound();
     }
 
     private void OnDrawGizmos() 
