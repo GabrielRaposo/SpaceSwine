@@ -207,6 +207,12 @@ public class SpaceJumper : MonoBehaviour
             flightLoopAKEvent.Stop(gameObject);
     }
 
+    private void OnDestroy() 
+    {
+        if (flightLoopAKEvent != null)
+            flightLoopAKEvent.Stop(gameObject);
+    }
+
     private void OnDrawGizmos() 
     {
         if (!onLaunch)
