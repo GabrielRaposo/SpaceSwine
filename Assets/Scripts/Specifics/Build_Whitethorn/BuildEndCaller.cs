@@ -6,6 +6,8 @@ namespace WhitethornBuild
 {
     public class BuildEndCaller : MonoBehaviour
     {
+        [SerializeField] ShipDialogueBox dialogueBox;
+
         BuildOutroCardDisplay buildOutroCardDisplay;
 
         private void Awake () 
@@ -23,7 +25,18 @@ namespace WhitethornBuild
             GameManager.BlockCharacterInput = true;
             player.DisableAllInteractions();
 
-            buildOutroCardDisplay.CallScreen();
+            CallDialogue();
+        }
+
+        private void CallDialogue()
+        {
+            if (!dialogueBox)
+            {
+                buildOutroCardDisplay.CallScreen();
+                return;
+            }
+
+
         }
     }
 }
