@@ -12,6 +12,7 @@ public class RoundSessionData : ScriptableObject
 
     [Space(10)]
     public BuildIndex outroScene;
-    public int spawnIndex;
+    public int AbandonSpawnIndex;
+    public int OutroSpawnIndex;
     public UnityAction OnSessionCompleted;
 }

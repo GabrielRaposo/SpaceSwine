@@ -134,6 +134,16 @@ public class PauseSystem : MonoBehaviour
         roundsManager.CallReset();
     }
 
+    public void CallExitZone()
+    {
+        RoundsManager roundsManager = RoundsManager.Instance;
+        if (!roundsManager)
+            return;
+
+        SetPauseState(false);
+
+    }
+
     public void ResetScene()
     {
         GameManager.ResetScene();
