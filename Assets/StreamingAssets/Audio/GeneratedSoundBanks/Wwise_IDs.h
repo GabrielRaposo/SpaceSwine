@@ -13,14 +13,20 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID CENARIO_BUYK_CHUTA_BOLINHA = 2035115204U;
+        static const AkUniqueID CENARIO_BUYK_CHUTA_COPO = 223749984U;
         static const AkUniqueID CENARIO_NAVE_BIP_PERIGO = 3298760050U;
         static const AkUniqueID CENARIO_NAVE_BIP_TV = 3867903812U;
+        static const AkUniqueID CENARIO_NAVE_ELEVADOR_DESCE = 1899025469U;
+        static const AkUniqueID CENARIO_NAVE_ELEVADOR_SOBE = 2287841762U;
         static const AkUniqueID CENARIO_NAVE_EXPLODE = 1147273941U;
         static const AkUniqueID CENARIO_PASSARINHOS_VOAM = 1982671206U;
         static const AkUniqueID CENARIO_TRANSICAO = 3223415371U;
         static const AkUniqueID CENARIO_TUTORIAL_SOUNDSCAPE = 1243364701U;
         static const AkUniqueID CENARIO_VITORIA = 3655190725U;
         static const AkUniqueID GAMEPLAY_BUYK_ANDA = 2274976510U;
+        static const AkUniqueID GAMEPLAY_BUYK_BEAMDOWN = 294436755U;
+        static const AkUniqueID GAMEPLAY_BUYK_BEAMUP = 3509944340U;
         static const AkUniqueID GAMEPLAY_BUYK_MORRE = 2418446987U;
         static const AkUniqueID GAMEPLAY_BUYK_PEGA_CHAVE = 625695075U;
         static const AkUniqueID GAMEPLAY_BUYK_PEGA_ITEM = 2017389967U;
@@ -28,16 +34,20 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_POUSA_LONGO = 1717148742U;
         static const AkUniqueID GAMEPLAY_BUYK_PULA_CURTO = 3434033334U;
         static const AkUniqueID GAMEPLAY_BUYK_PULA_LONGO = 2563466850U;
+        static const AkUniqueID GAMEPLAY_BUYK_SENTA_CAMA = 3648797446U;
+        static const AkUniqueID GAMEPLAY_BUYK_SENTA_GGS = 1238238045U;
         static const AkUniqueID GAMEPLAY_BUYK_STUCK_01 = 671794308U;
         static const AkUniqueID GAMEPLAY_BUYK_STUCK_02 = 671794311U;
         static const AkUniqueID GAMEPLAY_BUYK_STUCK_FANFARRA = 1336538064U;
         static const AkUniqueID GAMEPLAY_BUYK_TACA_ITEM = 3851873763U;
         static const AkUniqueID GAMEPLAY_BUYK_VOA = 3132805884U;
+        static const AkUniqueID GAMEPLAY_FLOR_ENERGIZA = 3179447255U;
         static const AkUniqueID GAMEPLAY_FLOR_TRANSITION = 3272639445U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL_ESPIRAL = 1400340877U;
         static const AkUniqueID GAMEPLAY_PORTAL_ABRE = 1386742035U;
         static const AkUniqueID GAMEPLAY_PORTAL_ENTRA = 2559851891U;
+        static const AkUniqueID GAMEPLAY_PORTAL_FIMDAFASE = 3223678633U;
         static const AkUniqueID GAMEPLAY_SPACEBOOSTER = 2825424422U;
         static const AkUniqueID GAMEPLAY_TERMINAL_BIPE = 2112164229U;
         static const AkUniqueID GAMEPLAY_TERMINAL_GIRA_PLANETA = 1679981074U;
@@ -66,13 +76,32 @@ namespace AK
         static const AkUniqueID LOFI_12 = 65705089U;
         static const AkUniqueID LOFI_13 = 65705088U;
         static const AkUniqueID LOFI_14 = 65705095U;
+        static const AkUniqueID UI_LABORBOT_FALA = 1076532240U;
+        static const AkUniqueID UI_MAROMBOT_FALA = 1293565034U;
         static const AkUniqueID UI_NAVE_FALA = 1320095827U;
+        static const AkUniqueID UI_NAVEGACAO__AUTOPILOT = 1865826492U;
+        static const AkUniqueID UI_NAVEGACAO__PLANETA_SELECAO = 3359879035U;
+        static const AkUniqueID UI_NAVEGACAO_MOVIMENTACAO = 2042242719U;
+        static const AkUniqueID UI_NAVEGACAO_MOVIMENTACAO_AMBIENCIA = 4033432919U;
+        static const AkUniqueID UI_PAGER_APARECE = 1544588369U;
+        static const AkUniqueID UI_PAGER_CHAMA_NAVE = 476413945U;
+        static const AkUniqueID UI_PAGER_CHAMA_NAVE_BOTAO = 3652001215U;
         static const AkUniqueID UI_PAGER_CLIQUE = 1750137231U;
+        static const AkUniqueID UI_PAGER_KEYCHAIN = 2974033650U;
+        static const AkUniqueID UI_PAGER_SOME = 1841407834U;
         static const AkUniqueID UI_ROBOZAO_FALA = 2728419545U;
         static const AkUniqueID UI_ROBOZINHO_FALA_LEG = 1360832738U;
         static const AkUniqueID UI_ROBOZINHO_FALA_PLANK = 3630789066U;
         static const AkUniqueID UI_ROBOZINHO_FALA_TOM = 1460218450U;
         static const AkUniqueID UI_ROBOZINHO_FALA_TREE = 966578514U;
+        static const AkUniqueID UI_TEXTO_FANFARRA = 197292196U;
+        static const AkUniqueID UI_TITULO_BOTAO_CLICA = 4045676724U;
+        static const AkUniqueID UI_TITULO_BOTAO_HOVER = 3555001732U;
+        static const AkUniqueID UI_TITULO_VENTINHO = 2733542331U;
+        static const AkUniqueID UI_TRANSICAO_DANGER = 1866226342U;
+        static const AkUniqueID UI_TRANSICAO_DESCARGA = 841217249U;
+        static const AkUniqueID UI_TRANSICAO_EXPLORACAO = 2331041427U;
+        static const AkUniqueID UI_TRANSICAO_LEVELS = 2524279794U;
     } // namespace EVENTS
 
     namespace SWITCHES

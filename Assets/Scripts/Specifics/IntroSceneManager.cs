@@ -69,7 +69,7 @@ public class IntroSceneManager : MonoBehaviour
                 DOVirtual.Float(0, 100, duration: 10f, f => 
                 { 
                     fadeInRTPC.SetGlobalValue(f);
-                    Debug.Log("f: " + f);
+                    //Debug.Log("f: " + f);
                 });
             }
 

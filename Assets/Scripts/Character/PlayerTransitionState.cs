@@ -5,14 +5,22 @@ using UnityEngine.Events;
 
 public class PlayerTransitionState : MonoBehaviour
 {
+    [SerializeField] PlayerSpawnPortal spawnPortal;
+
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event teleportInAKEvent;
+    [SerializeField] AK.Wwise.Event teleportOutAKEvent;
+
     PlayerCharacter playerCharacter;
     PlayerInput playerInput;
     PlayerAnimations playerAnimations;
 
     UnityAction OnAnimationEnd;
 
-    public enum State { None, Teleport }
+    public enum State { None, Teleport, OutOfPortal }
     public static State EnterState;
+
+    public static bool BlockSpawn;
 
     void Awake()
     {
@@ -23,6 +31,11 @@ public class PlayerTransitionState : MonoBehaviour
 
     private void Start() 
     {
+        CallOnStartSpawn();
+    }
+
+    public void CallOnStartSpawn()
+    {
         //Debug.Log("PlayerTransitionState - EnterState: " + EnterState);
 
         switch (EnterState)
@@ -31,13 +44,27 @@ public class PlayerTransitionState : MonoBehaviour
                 
                 TeleportIn ( action: () => 
                 {
-                    //Debug.Log("Exit intro state");
+                    playerCharacter.BlockSpawnEffects(false);
                     playerAnimations.ExitTransitionState();
 
                     playerCharacter.SetPhysicsBody(true);
                     playerCharacter.ResetStates();
                 });
 
+                break;
+
+            case State.OutOfPortal:
+                
+                OutOfPortal ( action: () => 
+                {
+                    playerCharacter.BlockSpawnEffects(false);
+
+                    playerCharacter.SetPhysicsBody(true);
+                    playerCharacter.ResetStates();
+
+                    //Debug.Log("RESET STATES");
+                });
+                
                 break;
         }
 
@@ -55,6 +82,9 @@ public class PlayerTransitionState : MonoBehaviour
 
     public void TeleportOut (UnityAction action)
     {
+        if (teleportOutAKEvent != null)
+            teleportOutAKEvent.Post(gameObject);
+
         playerCharacter.DisableAllInteractions();
         playerAnimations.SetTransitionState( AnimationState.TRANSITION_TELEPORT_OUT );
 
@@ -67,16 +97,55 @@ public class PlayerTransitionState : MonoBehaviour
     {
         playerCharacter.DisableAllInteractions();
         playerCharacter.SetHiddenState(true);
+        playerCharacter.BlockSpawnEffects(true);
         playerCharacter.SetPhysicsBody(false);
 
-        RaposUtil.Wait(this, frames: 3, () => 
+        StartCoroutine( WaitForBlock(frames: 3, () => 
         {
+            if (teleportInAKEvent != null)
+                teleportInAKEvent.Post(gameObject);    
+
             playerCharacter.SetHiddenState(false);
             playerCharacter.SetPhysicsBody(true);
 
             playerAnimations.SetTransitionState( AnimationState.TRANSITION_TELEPORT_IN );
-            //GameManager.BlockCharacterInput = true;
+
             OnAnimationEnd = action;
-        });
+        }));
+    }
+
+    public void OutOfPortal (UnityAction action)
+    {
+        playerCharacter.DisableAllInteractions();
+        playerCharacter.SetHiddenState(true);
+        playerCharacter.BlockSpawnEffects(true);
+        playerCharacter.SetPhysicsBody(false);
+
+        StartCoroutine( WaitForBlock (frames: 3, action: () => 
+        {
+            //if (teleportInAKEvent != null)
+            //    teleportInAKEvent.Post(gameObject);    
+
+            //Debug.Log("-- Call spawn portal --");
+            spawnPortal.Call();
+
+            RaposUtil.Wait(this, frames: 3, () =>
+            {
+                playerCharacter.SetHiddenState(false);
+                playerCharacter.SetPhysicsBody(true);
+
+                action.Invoke();
+            });
+        }));
+    }
+
+    private IEnumerator WaitForBlock (int frames, UnityAction action)
+    {
+        yield return new WaitWhile( () => BlockSpawn );
+
+        for (int i = 0; i < frames; i++)
+            yield return new WaitForEndOfFrame();
+
+        action.Invoke();
     }
 }

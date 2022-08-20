@@ -47,7 +47,7 @@ public class NavigationObject : MonoBehaviour
         OpenDisplay();
     }
 
-    public virtual void OnDisselect()
+    public virtual void OnDeselect()
     {
         sprite.color = unselectedColor;
         CloseDisplay();

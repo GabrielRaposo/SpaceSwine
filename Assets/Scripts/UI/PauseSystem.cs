@@ -18,6 +18,8 @@ public class PauseSystem : MonoBehaviour
 
     CanvasGroup canvasGroup;
 
+    public static UnityAction OnPauseAction;
+
     public static bool OnPause {get; private set;}
     public static PauseSystem Instance;
 
@@ -61,10 +63,12 @@ public class PauseSystem : MonoBehaviour
             StartCoroutine( RaposUtil.Wait(1, () => Time.timeScale = 1) );
  
         OnPause = value;
-        
+
+        if (value && OnPauseAction != null)
+            OnPauseAction.Invoke();
+
         if (pagerInteractionManager)
         {
-            // -- TO-DO: Move in/out with transition
             if (value)
             {
                 pagerInteractionManager.SlideInSequence();
@@ -132,6 +136,16 @@ public class PauseSystem : MonoBehaviour
 
         SetPauseState(false);
         roundsManager.CallReset();
+    }
+
+    public void CallExitZone()
+    {
+        RoundsManager roundsManager = RoundsManager.Instance;
+        if (!roundsManager)
+            return;
+
+        SetPauseState(false);
+
     }
 
     public void ResetScene()

@@ -25,6 +25,13 @@ public class NavigationShip : MonoBehaviour
 
     private static Vector2 previousPostion = new Vector2(0f, 330f-1.28f);
 
+    [Header("Audio")]
+    [SerializeField] float flightStepsDelay;
+    [SerializeField] AK.Wwise.Event flightStepsAKEvent;
+    [SerializeField] AK.Wwise.Event flightAmbienceAKEvent;
+
+    Coroutine flightStepsRoutine;
+
     private void OnEnable()
     {
         transform.position = previousPostion;
@@ -62,7 +69,7 @@ public class NavigationShip : MonoBehaviour
         if(navObject == null) return;
         
         if(selectedObject != null)
-            selectedObject.OnDisselect();
+            selectedObject.OnDeselect();
         
         navObject.OnSelect();
         selectedObject = navObject;
@@ -74,7 +81,7 @@ public class NavigationShip : MonoBehaviour
         if(navObject == null)
             return;
         
-        navObject.OnDisselect();
+        navObject.OnDeselect();
 
         if (navObject == selectedObject)
             selectedObject = null;
@@ -83,7 +90,7 @@ public class NavigationShip : MonoBehaviour
     private void FixedUpdate()
     {
         previousPostion = transform.position;
-        if(ControlsLocked) return;
+        if (ControlsLocked) return;
         
         Vector2 input = movementInputAction.ReadValue<Vector2>();
         movDirection += input * aceleration;
@@ -118,12 +125,44 @@ public class NavigationShip : MonoBehaviour
         if (activate)
         {
             if (!smokeTrailPS.isPlaying)
+            {
                 smokeTrailPS.Play();
+
+                if (flightStepsRoutine != null)
+                    StopAllCoroutines();
+
+                flightStepsRoutine = StartCoroutine( FlightStepsLoop() );
+            }
+
+            if (flightAmbienceAKEvent != null && !flightAmbienceAKEvent.IsPlaying(gameObject))
+                flightAmbienceAKEvent.Post(gameObject);
         }
         else
         {
             if (smokeTrailPS.isPlaying)
+            {
                 smokeTrailPS.Stop();
+                
+                if (flightStepsRoutine != null)
+                    StopAllCoroutines();
+            }
+
+
+            if (flightAmbienceAKEvent != null && flightAmbienceAKEvent.IsPlaying(gameObject))
+                flightAmbienceAKEvent.Stop(gameObject);
+        }
+    }
+
+    private IEnumerator FlightStepsLoop()
+    {
+        if (flightStepsAKEvent == null)
+            yield break;
+
+        while (true) 
+        {
+            yield return new WaitForSeconds(flightStepsDelay);
+            //Debug.Log("step");
+            flightStepsAKEvent.Post(gameObject);
         }
     }
 

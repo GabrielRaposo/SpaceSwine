@@ -12,6 +12,9 @@ using TMPro;
 public class DialogueBox : MonoBehaviour
 {
     [SerializeField] float transitionDuration;
+    
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event awardSoundAKEvent;
 
     [Header("References")]
     [SerializeField] TextMeshProUGUI nameDisplay;
@@ -21,17 +24,20 @@ public class DialogueBox : MonoBehaviour
 
     bool showing;
     bool autoSkip;
-    CanvasGroup canvasGroup;
 
     int delayFrames;
     int dialogueIndex;
+
+    List<TextBoxTag> textTags;
+
+    CanvasGroup canvasGroup;
+    PlaySoundOnType playSoundOnType;
 
     Interactable interactable;
     DialogueAnimation dialogueAnimation;
     string speakerName;
     List <string> dialogues;
     UnityAction OnDialogueEnd;
-    PlaySoundOnType playSoundOnType;
 
     PlayerInputActions playerInputActions;
     Sequence sequence;
@@ -62,6 +68,8 @@ public class DialogueBox : MonoBehaviour
     {
         canvasGroup = GetComponent<CanvasGroup>(); 
         canvasGroup.alpha = 0;
+
+        playSoundOnType = GetComponent<PlaySoundOnType>();
     }
 
     public void SetDialogueData 
@@ -80,11 +88,13 @@ public class DialogueBox : MonoBehaviour
         this.OnDialogueEnd = OnDialogueEnd;
 
         autoSkip = false;
+        if (customDialogueStyle)
+            autoSkip = customDialogueStyle.instantText;
+        
 
         DialogueBoxStyleController dialogueBoxStyleController = GetComponent<DialogueBoxStyleController>();
         if (customDialogueStyle != null)
         {
-            autoSkip = customDialogueStyle.instantText;
             dialogueBoxStyleController?.SetStyle(customDialogueStyle);
         }
         else
@@ -92,7 +102,6 @@ public class DialogueBox : MonoBehaviour
             dialogueBoxStyleController?.SetMainStyle();
         }
 
-        playSoundOnType = GetComponent<PlaySoundOnType>();
         if (playSoundOnType)
             playSoundOnType.SetVoiceEvent(talkSoundAKEvent);
 
@@ -150,8 +159,9 @@ public class DialogueBox : MonoBehaviour
         }
     }
 
-    public void ShowText (string name, string dialog)
+    public void ShowText (string name, string dialogue)
     {
+
         if (!showing)
         {
             transform.localScale = new Vector3 (1, 0);
@@ -169,12 +179,32 @@ public class DialogueBox : MonoBehaviour
         if (nameDisplay)
             nameDisplay.text = name;
 
-        if (dialogTyper)
-        {
-            dialogTyper.TypeText (dialog);
+        if (!dialogTyper)
+            return;
+    
+        // -- Trata os tags
+        textTags = new List<TextBoxTag>();
 
-            if (autoSkip)
-                dialogTyper.Skip();
+        var data = TextFunctions.ParseTags(dialogue);
+        if (data.tags != null)
+        {
+            dialogue = data.output;
+            textTags = data.tags;
+        }
+
+        if (playSoundOnType) 
+            playSoundOnType.SetMute ( textTags.Contains(TextBoxTag.InstantText) );
+
+        dialogTyper.TypeText (dialogue);
+
+        // -- Executa os tags
+        if (textTags.Contains(TextBoxTag.InstantText) || autoSkip)
+            dialogTyper.Skip();
+                
+        if (textTags.Contains(TextBoxTag.AwardSound))    
+        {
+            if (awardSoundAKEvent != null)
+                awardSoundAKEvent.Post(gameObject);
         }
     }
 

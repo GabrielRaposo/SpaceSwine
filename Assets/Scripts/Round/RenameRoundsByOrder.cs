@@ -17,16 +17,15 @@ public class RenameRoundsByOrder : MonoBehaviour
             index++;
 
             string finalName = "Round (" + world + "-" + stageIndex + ")";
-            
-            //string n = transform.GetChild(i).name;
-            //if (n.Contains(")"))
-            //{
-            //    string[] splits = n.Split(')');
-            //    if (splits.Length > 1 && splits[1].Trim() != string.Empty)
-            //    {
-            //        finalName += splits[1];
-            //    }
-            //}
+
+            string n = transform.GetChild(i).name;
+            if (n.Contains(")")) 
+            {
+                string[] splits = n.Split(')');
+                if (splits.Length > 1 && splits[1].Trim() != string.Empty) {
+                    finalName += splits[1];
+                }
+            }
 
             transform.GetChild(i).name = finalName;
         }

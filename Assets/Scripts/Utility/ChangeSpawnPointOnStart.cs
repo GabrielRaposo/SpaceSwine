@@ -8,7 +8,7 @@ public class ChangeSpawnPointOnStart : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("-- ChangeSpawnPointOnStart");
+        //Debug.Log("-- ChangeSpawnPointOnStart");
         SpawnManager.Index = index;
     }
 }

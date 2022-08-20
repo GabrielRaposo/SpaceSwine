@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using DG.Tweening;
 
 public class TitleMenuNavigation : MonoBehaviour
 {
     [SerializeField] bool startOnFocus;
     [SerializeField] List<TitleMenuButton> titleButtons;
+
+    [Header("Input")]
+    [SerializeField] float holdCooldown;
+
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event OnEnterMenuAKEvent;
 
     [Header("Sequence")]
     [SerializeField] float fadeDuration;
@@ -17,34 +24,38 @@ public class TitleMenuNavigation : MonoBehaviour
     [SerializeField] CanvasGroup canvasGroup;
 
     [HideInInspector] public bool OnFocus;
+    public UnityAction OnEnterMenuEvent;
     
     int current = -1;
+    float holdCount;
 
     Sequence s;
     PlayerInputActions playerInputActions;
-
-    public UnityAction OnEnterMenuEvent;
+    InputAction axisInput;
 
     private void OnEnable() 
     {
         playerInputActions = new PlayerInputActions();    
     
-        playerInputActions.UI.Navigation.performed += (ctx) => 
-        { 
-            if(!OnFocus || SceneTransition.OnTransition)
-                return;
+        axisInput = playerInputActions.UI.Navigation;
+        /**
+        //axisInput.performed += (ctx) => 
+        //{ 
+        //    if(!OnFocus || SceneTransition.OnTransition)
+        //        return;
 
-            Vector2 navigationInput = ctx.ReadValue<Vector2>();
+        //    Vector2 navigationInput = ctx.ReadValue<Vector2>();
 
-            if (navigationInput.y != 0)
-            {
-                if (navigationInput.y > .5f)
-                    MoveCursor(-1);
-                else if (navigationInput.y < .5f)
-                    MoveCursor(1);
-            }
-        };
-        playerInputActions.UI.Navigation.Enable();
+        //    if (navigationInput.y != 0)
+        //    {
+        //        if (navigationInput.y > .5f)
+        //            MoveCursor(-1);
+        //        else if (navigationInput.y < .5f)
+        //            MoveCursor(1);
+        //    }
+        //};
+        **/
+        axisInput.Enable();
 
         playerInputActions.UI.Confirm.performed += (ctx) => 
         {               
@@ -65,6 +76,33 @@ public class TitleMenuNavigation : MonoBehaviour
             OnFocus = true;
     }
 
+    private void Update() 
+    {
+        Vector2 axis = axisInput.ReadValue<Vector2>();
+        if (axis == Vector2.zero)
+            holdCount = 0;
+        else
+            holdCount -= Time.deltaTime;
+
+        if (holdCount < 0)
+            holdCount = 0;
+
+        if (!OnFocus || SceneTransition.OnTransition)
+            return;
+        
+        if (holdCount > 0)
+            return;
+
+        if (axis.y != 0)
+        {
+            if (axis.y > .75f)
+                MoveCursor(-1);
+            else if (axis.y < -.75f)
+                MoveCursor(1);
+        }
+
+    }
+
     public void FadeInSequence()
     {
         if (s != null) 
@@ -82,6 +120,8 @@ public class TitleMenuNavigation : MonoBehaviour
                 current = 0;
 
             OnEnterMenuEvent?.Invoke();
+            if (OnEnterMenuAKEvent != null && !OnEnterMenuAKEvent.IsPlaying(gameObject))
+                OnEnterMenuAKEvent.Post(gameObject);
 
             SelectCurrent(instant: true);
         }
@@ -177,7 +217,7 @@ public class TitleMenuNavigation : MonoBehaviour
         return f * approachCurve.Evaluate(t);
     }
 
-    private void SelectCurrent(bool instant = false)
+    private void SelectCurrent (bool instant = false, bool playSound = false)
     {
         for (int i = 0; i < titleButtons.Count; i++)
         {
@@ -191,22 +231,24 @@ public class TitleMenuNavigation : MonoBehaviour
         if (instant)
             titleButtons[current].InstantSelect(true);
         else
-            titleButtons[current].Select();        
+            titleButtons[current].Select(playSound);        
     }
 
     private void MoveCursor (int direction)
     {
+        holdCount = holdCooldown;
+
         current += direction;
         if (current < 0)
             current = titleButtons.Count - 1;
         current %= titleButtons.Count;
 
-        SelectCurrent();
+        SelectCurrent(instant: false, playSound: true);
     }
 
     private void OnDisable() 
     {
-        playerInputActions.UI.Navigation.Disable();
+        axisInput.Disable();
         playerInputActions.UI.Confirm.Disable();
     }
 

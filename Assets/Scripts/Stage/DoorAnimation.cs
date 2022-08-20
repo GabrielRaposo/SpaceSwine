@@ -54,7 +54,7 @@ public class DoorAnimation : MonoBehaviour
 
         boxColorSwapper.RestoreColor();
         whiteCircle.enabled = false;
-        whiteCircle.color = new Vector4(1, 1, 1, 0);
+        whiteCircle.color = new Vector4 (1, 1, 1, 0);
 
         // Resetar as interações com o player também
         /*
@@ -64,6 +64,7 @@ public class DoorAnimation : MonoBehaviour
         */
     }
 
+    // -- Chamada de transiçaõ de Safety -> Danger
     public void SetupAnimationDangerZone( Door door, GameObject player, UnityAction OnAnimationStart)
     {
         GameManager.BlockCharacterInput = true;
@@ -74,8 +75,9 @@ public class DoorAnimation : MonoBehaviour
         PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
         PlayerReferences playerReferences = player.GetComponent<PlayerReferences>();
         PlayerShaderController playerShader = player.GetComponent<PlayerShaderController>();
+        SpaceJumper spaceJumper = player.GetComponent<SpaceJumper>();
 
-        if (!playerCharacter || !playerReferences || !playerShader)
+        if (!playerCharacter || !playerReferences || !playerShader || !spaceJumper)
             return;
 
         OnAnimationStart.Invoke();
@@ -87,6 +89,7 @@ public class DoorAnimation : MonoBehaviour
             playerCharacter.SetPhysicsBody(false);
             player.transform.SetParent(door.transform);
             playerShader.SetWhiteFade(0f);
+            spaceJumper.CancelOnLaunch();
 
             door.SetInteractable(false);
 
@@ -122,6 +125,7 @@ public class DoorAnimation : MonoBehaviour
                 playerCharacter.SetPhysicsBody(true);
                 playerReferences.backlightPS.Stop();
                 playerShader.SetWhiteFade(0f);
+                spaceJumper.enabled = true;
 
                 whiteCircle.enabled = false;
             }
@@ -136,7 +140,8 @@ public class DoorAnimation : MonoBehaviour
         );
     }
     
-        public void SetupAnimationStageTransiton( Door door, GameObject player, UnityAction OnAnimationEnd)
+    // -- Chamada de próximo Round
+    public void SetupAnimationStageTransiton( Door door, GameObject player, UnityAction OnAnimationEnd)
     {
         GameManager.BlockCharacterInput = true;
 
@@ -146,6 +151,7 @@ public class DoorAnimation : MonoBehaviour
         PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
         PlayerReferences playerReferences = player.GetComponent<PlayerReferences>();
         PlayerShaderController playerShader = player.GetComponent<PlayerShaderController>();
+        SpaceJumper spaceJumper = player.GetComponent<SpaceJumper>();
 
         if (!playerCharacter || !playerReferences || !playerShader)
             return;
@@ -157,6 +163,7 @@ public class DoorAnimation : MonoBehaviour
             playerCharacter.SetPhysicsBody(false);
             player.transform.SetParent(door.transform);
             playerShader.SetWhiteFade(0f);
+            spaceJumper.CancelOnLaunch();
 
             door.SetInteractable(false);
 

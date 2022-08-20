@@ -10,8 +10,8 @@ using UnityEngine;
 public class SpaceJumper : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] float gravitationalPull;
     [SerializeField] LayerMask groundLayer;
-
 
     [SerializeField] ParticleSystem longLandVFX;
     [SerializeField] AK.Wwise.Event longJumpAKEvent;
@@ -50,6 +50,33 @@ public class SpaceJumper : MonoBehaviour
             flightLoopAKEvent.Stop(gameObject);
     }
 
+    /**
+    private void FixedUpdate() 
+    {
+        if (gravitationalPull <= 0 || !onLaunch)
+            return;
+
+        float groundCastDistance = 2f;
+        var groundCast = Physics2D.Raycast (transform.position, transform.up, groundCastDistance, groundLayer);
+        if (!groundCast)
+        {
+            var gravityData = gravityInteraction.GetGravityArea();
+            if (gravityData.isValid)
+            {
+                Vector2 direction = (gravityData.Area.transform.position - transform.position).normalized;
+                if  (Vector2.Angle(direction, transform.up) > 67.5f )
+                    return;
+
+                Debug.Log("Is on gravity area: " + gravityData.Area.transform.parent.name);
+
+                float speed = rb.velocity.magnitude;
+                direction = rb.velocity + (direction * gravitationalPull); 
+                rb.velocity = direction.normalized * speed; 
+            }
+        }
+    }
+    **/
+
     public void JumpInput()
     {
         if (!checkGround.OnGround)
@@ -60,8 +87,7 @@ public class SpaceJumper : MonoBehaviour
 
     private void SetLaunchState (bool value, bool playLongJumpSound = true)
     {
-        if (flightLoopAKEvent != null)
-            flightLoopAKEvent.Stop(gameObject);
+        KillFlightSound();
 
         if (value) 
         {
@@ -166,18 +192,38 @@ public class SpaceJumper : MonoBehaviour
 
     public void ResetStates()
     {
-        if (flightLoopAKEvent != null)
-            flightLoopAKEvent.Stop(gameObject);
+        KillFlightSound();
 
         onLaunch = false;
         rb.velocity = Vector2.zero;
         SetLaunchState(false);
     }
 
-    private void OnDisable() 
+    public void CancelOnLaunch()
+    {
+        onLaunch = false;
+        KillFlightSound();
+    }
+
+    private void KillFlightSound()
     {
         if (flightLoopAKEvent != null)
             flightLoopAKEvent.Stop(gameObject);
+    }
+
+    private void OnDisable() 
+    {
+        onLaunch = false;
+        KillFlightSound();
+    }
+
+    private void OnDestroy() 
+    {
+        if (!Application.isPlaying)
+            return;
+
+        onLaunch = false;
+        KillFlightSound();
     }
 
     private void OnDrawGizmos() 

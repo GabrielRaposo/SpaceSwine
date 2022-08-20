@@ -9,7 +9,7 @@ public class BuddingFlower : MonoBehaviour
     [SerializeField] SpriteRenderer energyArrow;
     [SerializeField] GameObject centerLight;
     [SerializeField] AK.Wwise.Event openAKEvent;
-    
+
     [Header("Particle System")]
     [SerializeField] ParticleSystem closedParticleSystem;
     [SerializeField] ParticleSystem openParticleSystem;
@@ -22,17 +22,14 @@ public class BuddingFlower : MonoBehaviour
     Animator animator;
     BuddingFlowerGroup group;
 
-    void Start()
-    {
+    void Start() {
         animator = GetComponent<Animator>();
 
         group = GetComponentInParent<BuddingFlowerGroup>();
-        if (group)
-        {
+        if (group) {
             group.AddFlower(this);
-            
-            if (energyArrow)
-            {
+
+            if (energyArrow) {
                 Vector2 distance = group.DoorPosition() - transform.position;
                 float angleDifference = Vector2.SignedAngle(Vector2.right, distance.normalized);
                 float magnitude = distance.magnitude - .75f;
@@ -45,16 +42,13 @@ public class BuddingFlower : MonoBehaviour
         }
 
         Round round = GetComponentInParent<Round>();
-        if (round)
-        {
+        if (round) {
             round.OnReset += ResetComponents;
         }
     }
 
-    private void ResetComponents()
-    {
-        if (visualComponent)
-        {
+    private void ResetComponents() {
+        if (visualComponent) {
             visualComponent.DOKill();
             visualComponent.localScale = Vector3.one;
         }
@@ -62,66 +56,64 @@ public class BuddingFlower : MonoBehaviour
         if (centerLight)
             centerLight.SetActive(false);
 
-        if (energyArrow) 
+        if (energyArrow)
             energyArrow.gameObject.SetActive(false);
-        
-        if (burstParticleSystem) 
-        {
+
+        if (burstParticleSystem) {
             burstParticleSystem.Stop();
             burstParticleSystem.Clear();
         }
 
         closedParticleSystem?.Play();
-        
-        if (openParticleSystem)
-        {
+
+        if (openParticleSystem) {
             openParticleSystem.Stop();
             openParticleSystem.Clear();
         }
 
-        if (powerUpParticleSystem)
-        {
+        if (powerUpParticleSystem) {
             powerUpParticleSystem.Stop();
             powerUpParticleSystem.Clear();
         }
 
-        if (energyBurstParticleSystem)
-        {
+        if (energyBurstParticleSystem) {
             energyBurstParticleSystem.Stop();
             energyBurstParticleSystem.Clear();
         }
 
-        if (energyParticleSystem)
-        {
+        if (energyParticleSystem) {
             energyParticleSystem.Stop();
             energyParticleSystem.Clear();
         }
 
-        if (openAKEvent != null && openAKEvent.IsPlaying(gameObject))
-        {
+        if (openAKEvent != null && openAKEvent.IsPlaying(gameObject)) {
             openAKEvent.Stop(gameObject);
         }
 
         SetState(false);
     }
 
-    private void SetState (bool value)
-    {
+    private void SetState(bool value) {
         isOpen = value;
         animator.SetBool("Open", value);
 
-        if (value && group)
-        {
+        if (value && group) {
             if (closedParticleSystem)
                 closedParticleSystem.Stop();
 
             if (openParticleSystem)
                 openParticleSystem.Play();
 
-            openAKEvent?.Post(gameObject);
             group.Activate();
         }
     }
+
+    public void CallOpenSound()
+    {
+        if (openAKEvent != null)
+            openAKEvent.Post(gameObject);        
+    }
+
 
     private void OnTriggerEnter2D (Collider2D collision) 
     {

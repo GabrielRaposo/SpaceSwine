@@ -99,12 +99,25 @@ public class ShipDialogueManager : MonoBehaviour
 
     private void EndDialogue (ShipNPCData dialogueData, bool forceOut = false)
     {
+        //Debug.Log("EndDialogue()");
+
         if (!forceOut)
             dialogueBox.SetShown(false);
         else 
             dialogueBox.SetShown(false, duration: .5f, forceOut: true);
-        ResumeOnScene(dialogueData);
 
+        // -- TEMP PRA BUILD -------
+        if (SetShipDialogueOnEvent.AllDialoguesSet && StartDialogueIndex < 3)
+        {
+            StartDialogueIndex = 3;
+            //RaposUtil.WaitSeconds(this, duration: .5f,  );
+            dialogueBox.Type(" ", delay: .5f, instantText: true, afterInputAction: null);
+            CallDialogueOnStart();
+            return;
+        }
+        // -- 
+
+        ResumeOnScene(dialogueData);
         StartDialogueIndex = -1;
         GameManager.OnDialogue = false;
     }

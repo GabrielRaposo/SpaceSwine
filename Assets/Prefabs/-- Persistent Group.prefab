@@ -324,6 +324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 636125617110750573}
   - component: {fileID: 636125617110750569}
+  - component: {fileID: 6477245873530545675}
   - component: {fileID: 636125617110750568}
   - component: {fileID: 636125617110750575}
   - component: {fileID: 636125617110750574}
@@ -369,6 +370,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transitionFadeOut: {fileID: 1707365068923361260}
   transitionSafetyToDanger: {fileID: 4221016504372361418}
+--- !u!114 &6477245873530545675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636125617110750572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa8b11df321afe4dbdd48fa588d9eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &636125617110750568
 Canvas:
   m_ObjectHideFlags: 0
@@ -560,6 +573,10 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: cb4007dbe5450d643949b11ac221c4e5, type: 2}
+  placeholderParameter:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e3b0120eabb284c41be708b47bf91e4b, type: 2}
   playMusicTestInput:
     m_Name: Play Music Test Input
     m_Type: 0
@@ -1026,6 +1043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3470082450678822234}
   - component: {fileID: 2990343034216344243}
+  - component: {fileID: 6978687356229844745}
   - component: {fileID: 7400477348298068633}
   - component: {fileID: 6387829184079158066}
   - component: {fileID: 150192022806198616}
@@ -1073,6 +1091,22 @@ MonoBehaviour:
   duration: 0.2
   topY: 2000
   botY: -2000
+  transitionAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 9772ca1d226569c428aa22c871cfb7fb, type: 2}
+--- !u!114 &6978687356229844745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295114856567008506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa8b11df321afe4dbdd48fa588d9eab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &7400477348298068633
 Canvas:
   m_ObjectHideFlags: 0
@@ -1155,6 +1189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 705140438050653483}
   - component: {fileID: 948401799324841114}
+  - component: {fileID: 5031890990725345277}
   - component: {fileID: 7132273193073938759}
   - component: {fileID: 6908792234026802975}
   - component: {fileID: 940983122080898918}
@@ -1196,6 +1231,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a3f431965a30442b1c20eefcd4d08d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5031890990725345277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4454248119500506051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa8b11df321afe4dbdd48fa588d9eab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!223 &7132273193073938759
@@ -1546,6 +1593,18 @@ MonoBehaviour:
   stripesGroup: {fileID: 4366584049377915147}
   safetyStripes: {fileID: 7262373245037876684}
   dangerStripes: {fileID: 3162033895542350167}
+  twistedTransitionAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 39f49dad283436f46926eb94e3a33ed3, type: 2}
+  safetyToDangerAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 7465cbd5ed084e94184df675b5959c03, type: 2}
+  dangerToSafetyAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 275a822744353764783ba2eb6857269d, type: 2}
   safetyPlaylist: {fileID: 11400000, guid: 12284a3eda1658e4cb90090abb7e49c2, type: 2}
   dangerPlaylist: {fileID: 11400000, guid: 029182bd2c4fd1b48a75476fee0aaedb, type: 2}
 --- !u!225 &8232591258871688760

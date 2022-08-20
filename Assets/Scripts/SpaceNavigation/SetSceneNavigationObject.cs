@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SetSceneNavigationObject : NavigationObject
 {
@@ -23,9 +24,14 @@ public class SetSceneNavigationObject : NavigationObject
     private NavigationSceneManager navSceneManager;
 
     [SerializeField] private Transform dotsParent;
-
     [SerializeField] private AK.Wwise.Event sound; 
     
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event OnSelectAKEvent;
+    [SerializeField] AK.Wwise.Event MakePathAKEvent;
+
+    public UnityAction OnSelectAction;
+
     private void OnEnable()
     {
         interactAction += ShipAnimation;
@@ -37,11 +43,17 @@ public class SetSceneNavigationObject : NavigationObject
     {
         base.OnSelect();
         selector.enabled = true;
+
+        if (OnSelectAKEvent != null)
+            OnSelectAKEvent.Post(gameObject);
+
+        if (OnSelectAction != null)
+            OnSelectAction.Invoke();
     }
 
-    public override void OnDisselect()
+    public override void OnDeselect()
     {
-        base.OnDisselect();
+        base.OnDeselect();
         selector.enabled = false;
     }
 
@@ -149,6 +161,9 @@ public class SetSceneNavigationObject : NavigationObject
     private Tween DrawDots(float duration, int count, float startRotation, Vector2 startPos, Vector2 endPos)
     {
         var s = DOTween.Sequence();
+
+        if (MakePathAKEvent != null)
+            MakePathAKEvent.Post(gameObject);
 
         float c = count;
         

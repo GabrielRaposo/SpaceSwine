@@ -197,7 +197,7 @@ public class GravityInteraction : MonoBehaviour
         } 
     }
 
-    public (bool, GravityArea, float multiplier, bool onPlatform) GetGravityArea()
+    public (bool isValid, GravityArea Area, float multiplier, bool onPlatform) GetGravityArea()
     {
         return (gravityArea != null, gravityArea, jumpHeld ? lowGravityMultiplier : defaultMultiplier, platform); 
     }

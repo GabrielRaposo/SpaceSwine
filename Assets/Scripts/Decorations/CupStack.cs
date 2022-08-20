@@ -6,23 +6,41 @@ using Random = UnityEngine.Random;
 
 public class CupStack : MonoBehaviour
 {
+    [SerializeField] private AK.Wwise.Event activationAKEvent;
     [SerializeField] private List<Rigidbody2D> cups;
-
     [SerializeField] private float strenght;
+
+    private static bool HasBeenKicked;
+
+    private void Start() 
+    {
+        if (HasBeenKicked) 
+        { 
+            GetKicked(transform.position + new Vector3( 0f, -1f ));
+            HasBeenKicked = false;
+        }
+
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if(!col.gameObject.CompareTag("Player")) return;
 
-        float angle = Mathg.AngleOfTheLineBetweenTwoPoints(transform.position, col.transform.position);
+        GetKicked(col.transform.position);
+    }
+
+    private void GetKicked (Vector3 origin)
+    {
+        float angle = Mathg.AngleOfTheLineBetweenTwoPoints(transform.position, origin);
         Vector2 kickDirection;
         
-        if(angle<0)
-         kickDirection = Mathg.AngleToDirection2(angle).normalized;
+        //Debug.Log("angle: " + angle);
+        if(angle > 90)
+            kickDirection = Mathg.AngleToDirection2(angle).normalized;
         else
-            kickDirection = Mathg.AngleToDirection2(angle-180f).normalized;
+            kickDirection = Mathg.AngleToDirection2(angle+180f).normalized;
         
-        Debug.Log($"kickDirection: {kickDirection}\nangle: {angle}");
+        //Debug.Log($"kickDirection: {kickDirection}\nangle: {angle}");
         
         foreach (var rb in cups)
         {
@@ -30,7 +48,7 @@ public class CupStack : MonoBehaviour
             rb.gravityScale = 0.001f;
             rb.drag = 0.7f;
             rb.angularDrag = 0.1f;
-            var randomDir = angle > 0 ? Random.Range(180f, 360f) : Random.Range(0f, 180f);
+            var randomDir = angle < 90 ? Random.Range(180f, 360f) : Random.Range(0f, 180f);
             Vector2 force = kickDirection*2f + Mathg.AngleToDirection2(randomDir)*.5f;
             rb.AddForce(force*strenght, ForceMode2D.Impulse);
             //rb.AddForce(kickDirection*2f + Mathg.AngleToDirection2(Random.Range(0f,180f))*0f, ForceMode2D.Impulse);
@@ -38,7 +56,11 @@ public class CupStack : MonoBehaviour
             rb.AddTorque(Random.Range(20f,50f)*side);
         }
 
+        if (activationAKEvent != null)
+            activationAKEvent.Post(gameObject);
+
         GetComponent<Collider2D>().enabled = false;
 
+        HasBeenKicked = true;
     }
 }

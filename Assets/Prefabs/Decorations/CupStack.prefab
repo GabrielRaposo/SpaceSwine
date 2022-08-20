@@ -114,8 +114,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6090164373527635525}
   - component: {fileID: 6090164373527635520}
-  - component: {fileID: 6090164373527635527}
   - component: {fileID: 6090164373527635526}
+  - component: {fileID: 6090164373527635527}
   m_Layer: 10
   m_Name: CupStack
   m_TagString: Untagged
@@ -156,6 +156,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 132.74
+  heightOffset: 0
+--- !u!114 &6090164373527635526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6090164373527635524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd6be51c521a5e74cbb942fc59e45723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activationAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 77d37a4b72e93484a93355170c9652f3, type: 2}
+  cups:
+  - {fileID: 6090164375239921222}
+  - {fileID: 6090164374539171656}
+  - {fileID: 6090164373496843192}
+  - {fileID: 6090164375134026049}
+  - {fileID: 6090164374841804736}
+  - {fileID: 6090164374990394884}
+  strenght: 1
 --- !u!61 &6090164373527635527
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,26 +207,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.19, y: 0.3355543}
   m_EdgeRadius: 0
---- !u!114 &6090164373527635526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6090164373527635524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd6be51c521a5e74cbb942fc59e45723, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cups:
-  - {fileID: 6090164375239921222}
-  - {fileID: 6090164374539171656}
-  - {fileID: 6090164373496843192}
-  - {fileID: 6090164375134026049}
-  - {fileID: 6090164374841804736}
-  - {fileID: 6090164374990394884}
-  strenght: 1
 --- !u!1 &6090164374539171662
 GameObject:
   m_ObjectHideFlags: 0

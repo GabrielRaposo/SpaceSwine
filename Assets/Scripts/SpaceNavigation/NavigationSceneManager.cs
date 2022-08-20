@@ -40,7 +40,7 @@ public class NavigationSceneManager : MonoBehaviour
 
     public void BlinkAutoPilot()
     {
-        Debug.Log("BlinkAutoPilot()");
+        //Debug.Log("BlinkAutoPilot()");
         autopilotBlinkSequence = DOTween.Sequence();
 
         autopilotBlinkSequence.Append(autoPilotText.DOColor(uiColor, 0.6f));
@@ -81,12 +81,12 @@ public class NavigationSceneManager : MonoBehaviour
         SetShipTeleportScene(sceneIndex);
         if (_navigationConsole)
             _navigationConsole.ToggleConsoleState();
-        
-        // -- TEMP
 
+        // -- TEMP
         if (_navigationConsole)
             _navigationConsole.SetTurnedOn(false);
 
+        PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
         GameManager.GoToScene((BuildIndex)sceneIndex);
     }
 

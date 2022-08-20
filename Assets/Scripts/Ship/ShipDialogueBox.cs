@@ -13,6 +13,9 @@ public class ShipDialogueBox : MonoBehaviour
     const int BASE_WIDTH =  302;
     const int HIDDEN_Y   = -400;
 
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event awardSoundAKEvent;
+
     [Header("References")]
     [SerializeField] TextTyper textTyper;
     [SerializeField] TextMeshProUGUI textDisplay;
@@ -38,17 +41,22 @@ public class ShipDialogueBox : MonoBehaviour
 
     bool shown;
     bool skippable;
+    bool onTransition;
+    bool autoSkip;
 
     Sequence showSequence;
     Sequence verticalSequence;
 
     UnityAction afterInputAction;
 
+    PlaySoundOnType playSoundOnType;
     PlayerInputActions inputActions;
 
     private void OnEnable() 
     {
-        DisplaySkipIcon(false);
+        DisplaySkipIcon (false);
+
+        playSoundOnType = GetComponentInChildren<PlaySoundOnType>();
 
         inputActions = new PlayerInputActions();
 
@@ -72,6 +80,7 @@ public class ShipDialogueBox : MonoBehaviour
 
     private void OnDisable() 
     {
+        Debug.Log("OnDisable");
         inputActions.UI.Confirm.Disable();
     }
 
@@ -218,6 +227,9 @@ public class ShipDialogueBox : MonoBehaviour
         if (shown == value && !forceOut)
             return;
 
+        enabled = true;
+        onTransition = true;
+
         if (showSequence != null)
             showSequence.Kill();
 
@@ -234,7 +246,14 @@ public class ShipDialogueBox : MonoBehaviour
                 duration
             )
         );
-        showSequence.OnComplete( () => shown = value );
+        showSequence.OnComplete( () => 
+            {
+                shown = value; 
+                enabled = value;
+
+                onTransition = false;
+            }
+        );
     }
 
     private void SetVerticalSequence()
@@ -315,6 +334,16 @@ public class ShipDialogueBox : MonoBehaviour
         textTyper.PrintCompleted.RemoveAllListeners();
         skippable = false;
 
+        autoSkip = instantText;
+
+        List<TextBoxTag> textTags = new List<TextBoxTag>();
+        var parsedText = TextFunctions.ParseTags(text);
+        if (parsedText.tags != null)
+        {
+            textTags = parsedText.tags;
+            text = parsedText.output;
+        }
+
         textDisplaySimulator.text = text;
         textDisplay.text = string.Empty;
 
@@ -325,25 +354,25 @@ public class ShipDialogueBox : MonoBehaviour
             if (lineCount < 3 && verticalState != VerticalState.Closed)
             {
                 VerticalTransition(VerticalState.Closed, delay);
-                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, instantText));
+                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, textTags));
                 return;
             }
 
             if (lineCount == 3 && verticalState != VerticalState.Open1)
             {
                 VerticalTransition(VerticalState.Open1, delay);
-                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, instantText));
+                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, textTags));
                 return;
             }
 
             if (lineCount >= 4 && verticalState != VerticalState.Open2)
             {
                 VerticalTransition(VerticalState.Open2, delay);
-                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, instantText));
+                RaposUtil.WaitSeconds(this, delay, () => CallTyper(text, textTags));
                 return;
             }
         
-            CallTyper(text);
+            CallTyper(text, textTags);
         });
     }
 
@@ -355,8 +384,11 @@ public class ShipDialogueBox : MonoBehaviour
         skipIcon.SetActive(value);
     }
 
-    private void SkipInput(InputAction.CallbackContext ctx) 
+    private void SkipInput (InputAction.CallbackContext ctx) 
     {
+        if (onTransition)
+            return;
+
         if (!skippable)
             return;
 
@@ -373,12 +405,22 @@ public class ShipDialogueBox : MonoBehaviour
         afterInputAction();
     }
 
-    private void CallTyper(string text, bool instantText = false)
+    private void CallTyper(string text, List<TextBoxTag> textTags)
     {
+        if (playSoundOnType) 
+            playSoundOnType.SetMute ( textTags.Contains(TextBoxTag.InstantText) );
+
         textTyper.TypeText(text);
 
-        if (instantText)
+        // -- Usa tags
+        if (textTags.Contains(TextBoxTag.InstantText) || autoSkip)
             textTyper.Skip();
+        
+        if (textTags.Contains(TextBoxTag.AwardSound))   
+        {
+            if (awardSoundAKEvent != null)
+                awardSoundAKEvent.Post(gameObject);
+        }
 
         if (afterInputAction != null)
         {
