@@ -4427,6 +4427,13 @@
 					</ActiveSourceList>
 				</Sound>
 				<RandomSequenceContainer Name="ui_laborbot_fala" ID="{7F4B63BF-C904-4995-83EC-2F46AE54BF86}" ShortID="45500125">
+					<PropertyList>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>7</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -4437,6 +4444,13 @@
 					</ReferenceList>
 					<ChildrenList>
 						<Sound Name="ui_robozinho_fala02" ID="{A2E9E6BD-8BFF-4A3D-ACF9-F0AD552D2E0F}" ShortID="263126395">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -4460,6 +4474,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ui_robozinho_fala03" ID="{C59A09CF-811B-4D78-BDF9-86DD92ACC782}" ShortID="898381854">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -4483,6 +4504,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ui_robozinho_fala04" ID="{30F6499A-EC5B-4D3B-8070-863AB5D4B4AE}" ShortID="567774790">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -4506,6 +4534,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ui_robozinho_fala01" ID="{0B5FA3EA-C20B-41AF-AC5F-77892D13FE87}" ShortID="967217693">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -4528,10 +4563,119 @@
 								<ActiveSource Name="ui_robozinho_fala01" ID="{67BE91B1-2FAA-4DCE-9072-66C0E259AF30}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="ui_laborbot_fala_01" ID="{56A1216C-178E-474A-A9F8-1F189964AD0C}" ShortID="58116765">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_laborbot_fala_01" ID="{07CE63F3-9616-4EFE-9EFC-9530A107B7A5}">
+									<Language>SFX</Language>
+									<AudioFile>ui_laborbot_fala_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="925209900"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_laborbot_fala_01" ID="{07CE63F3-9616-4EFE-9EFC-9530A107B7A5}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ui_laborbot_fala_02" ID="{8224FD34-25E6-49B0-B6DC-8CAA6B751536}" ShortID="206805370">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_laborbot_fala_02" ID="{C20A4376-4BA5-4D32-B803-F6082E721653}">
+									<Language>SFX</Language>
+									<AudioFile>ui_laborbot_fala_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="615472779"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_laborbot_fala_02" ID="{C20A4376-4BA5-4D32-B803-F6082E721653}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ui_laborbot_fala_03" ID="{434D5A5C-5FDA-4837-AADA-E93050E23EDD}" ShortID="899260660">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_laborbot_fala_03" ID="{CECD434E-5378-4DA6-907D-1E2CEC8C0DB7}">
+									<Language>SFX</Language>
+									<AudioFile>ui_laborbot_fala_03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1022336474"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_laborbot_fala_03" ID="{CECD434E-5378-4DA6-907D-1E2CEC8C0DB7}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ui_laborbot_fala_04" ID="{B88CABC5-21F3-4275-841C-7DF74DEED5A4}" ShortID="773706508">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_laborbot_fala_04" ID="{6ABD8A5F-3D53-400A-AD70-268288EA8BB5}">
+									<Language>SFX</Language>
+									<AudioFile>ui_laborbot_fala_04.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="12552598"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_laborbot_fala_04" ID="{6ABD8A5F-3D53-400A-AD70-268288EA8BB5}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 					<ObjectLists/>
 				</RandomSequenceContainer>
 				<RandomSequenceContainer Name="ui_marombot_fala" ID="{1F34455C-AB04-40A1-A42A-94B26851BACA}" ShortID="783195957">
+					<PropertyList>
+						<Property Name="Highpass" Type="int16">
+							<ValueList>
+								<Value>37</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Pitch" Type="int32">
+							<ValueList>
+								<Value>100</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>7</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -4542,6 +4686,13 @@
 					</ReferenceList>
 					<ChildrenList>
 						<Sound Name="ui_robozinho_fala02" ID="{479A8684-E93E-49D4-AEEB-F82D24A7EC95}" ShortID="19516163">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -4565,6 +4716,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ui_robozinho_fala03" ID="{96C973C9-4CFA-4900-BCD1-35A45039E4D6}" ShortID="911369856">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -4588,6 +4746,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ui_robozinho_fala04" ID="{880BA18D-4619-472B-94DB-4AAB07E7499C}" ShortID="628790519">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -4611,6 +4776,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ui_robozinho_fala01" ID="{A6E82624-4B79-4D01-B7E3-6E6D094DDDB1}" ShortID="899853858">
+							<PropertyList>
+								<Property Name="Inclusion" Type="bool">
+									<ValueList>
+										<Value>False</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -4631,6 +4803,98 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="ui_robozinho_fala01" ID="{8966BA30-15D6-4755-966F-F06D19437FF0}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ui_marombot_fala_01" ID="{B895F24B-C027-4B23-9795-FBB689EB5575}" ShortID="84613693">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_marombot_fala_01" ID="{DA762049-EA72-4000-909D-37054F32AC63}">
+									<Language>SFX</Language>
+									<AudioFile>ui_marombot_fala_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="361526243"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_marombot_fala_01" ID="{DA762049-EA72-4000-909D-37054F32AC63}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ui_marombot_fala_02" ID="{6CFA33A5-E49B-41DE-8A49-124C3C901E88}" ShortID="921924397">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_marombot_fala_02" ID="{C91036BA-EEE4-4BE1-B8A7-AE9805F6F5FE}">
+									<Language>SFX</Language>
+									<AudioFile>ui_marombot_fala_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="703531209"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_marombot_fala_02" ID="{C91036BA-EEE4-4BE1-B8A7-AE9805F6F5FE}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ui_marombot_fala_03" ID="{0DF02A44-CA11-48CB-81CC-88A1A8903481}" ShortID="524062179">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_marombot_fala_03" ID="{6509600B-C5C4-4618-B31D-C7C203040A4D}">
+									<Language>SFX</Language>
+									<AudioFile>ui_marombot_fala_03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="420401779"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_marombot_fala_03" ID="{6509600B-C5C4-4618-B31D-C7C203040A4D}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="ui_marombot_fala_04" ID="{8F07EB66-58BF-4E77-BCC5-EB54834AAD6F}" ShortID="795683585">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_marombot_fala_04" ID="{FC0115CC-2D82-4795-8119-2E6AF3759BD8}">
+									<Language>SFX</Language>
+									<AudioFile>ui_marombot_fala_04.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="671395523"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_marombot_fala_04" ID="{FC0115CC-2D82-4795-8119-2E6AF3759BD8}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
