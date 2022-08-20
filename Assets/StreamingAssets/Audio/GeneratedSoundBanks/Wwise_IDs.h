@@ -47,6 +47,7 @@ namespace AK
         static const AkUniqueID GAMEPLAY_ITEM_GOL_ESPIRAL = 1400340877U;
         static const AkUniqueID GAMEPLAY_PORTAL_ABRE = 1386742035U;
         static const AkUniqueID GAMEPLAY_PORTAL_ENTRA = 2559851891U;
+        static const AkUniqueID GAMEPLAY_PORTAL_FIMDAFASE = 3223678633U;
         static const AkUniqueID GAMEPLAY_SPACEBOOSTER = 2825424422U;
         static const AkUniqueID GAMEPLAY_TERMINAL_BIPE = 2112164229U;
         static const AkUniqueID GAMEPLAY_TERMINAL_GIRA_PLANETA = 1679981074U;
@@ -75,7 +76,6 @@ namespace AK
         static const AkUniqueID LOFI_12 = 65705089U;
         static const AkUniqueID LOFI_13 = 65705088U;
         static const AkUniqueID LOFI_14 = 65705095U;
-        static const AkUniqueID PORTAL_DO_PEDRO = 2044480626U;
         static const AkUniqueID UI_LABORBOT_FALA = 1076532240U;
         static const AkUniqueID UI_MAROMBOT_FALA = 1293565034U;
         static const AkUniqueID UI_NAVE_FALA = 1320095827U;

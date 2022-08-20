@@ -207,7 +207,7 @@
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
-		<SoundBank Id="133642231" Language="SFX" Hash="2420553719">
+		<SoundBank Id="133642231" Language="SFX" Hash="1780867892">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -246,6 +246,7 @@
 				<Event Id="1400340877" Name="gameplay_item_gol_espiral" ObjectPath="\Events\Default Work Unit\Level\gameplay_item_gol_espiral" DurationType="OneShot" DurationMin="0.596757" DurationMax="0.596757"/>
 				<Event Id="1386742035" Name="gameplay_portal_abre" ObjectPath="\Events\Default Work Unit\Level\gameplay_portal_abre" DurationType="OneShot" DurationMin="0.267166" DurationMax="0.267166"/>
 				<Event Id="2559851891" Name="gameplay_portal_entra" ObjectPath="\Events\Default Work Unit\Level\gameplay_portal_entra" DurationType="OneShot" DurationMin="2.145737" DurationMax="2.145737"/>
+				<Event Id="3223678633" Name="gameplay_portal_fimdafase" ObjectPath="\Events\Default Work Unit\gameplay_portal_fimdafase" DurationType="OneShot" DurationMin="0.066032" DurationMax="0.066032"/>
 				<Event Id="2825424422" Name="gameplay_spacebooster" ObjectPath="\Events\Default Work Unit\Level\gameplay_spacebooster" DurationType="OneShot" DurationMin="1.856780" DurationMax="1.856780"/>
 				<Event Id="2112164229" Name="gameplay_terminal_bipe" ObjectPath="\Events\Default Work Unit\Level\gameplay_terminal_bipe" DurationType="OneShot" DurationMin="0.703696" DurationMax="0.703696"/>
 				<Event Id="1679981074" Name="gameplay_terminal_gira_planeta" ObjectPath="\Events\Default Work Unit\Level\gameplay_terminal_gira_planeta" DurationType="OneShot" DurationMin="1.121723" DurationMax="1.121723"/>
@@ -260,9 +261,8 @@
 				<Event Id="3509273191" Name="ggs_ui_desliga" ObjectPath="\Events\Default Work Unit\Cenario\Minigame GGS\ggs_ui_desliga" DurationType="OneShot" DurationMin="1.068186" DurationMax="1.068186"/>
 				<Event Id="4113901743" Name="ggs_ui_liga" ObjectPath="\Events\Default Work Unit\Cenario\Minigame GGS\ggs_ui_liga" DurationType="OneShot" DurationMin="1.602608" DurationMax="1.602608"/>
 				<Event Id="1270516008" Name="ggs_ui_recorde_fanfarra" ObjectPath="\Events\Default Work Unit\Cenario\Minigame GGS\ggs_ui_recorde_fanfarra" DurationType="OneShot" DurationMin="0.650771" DurationMax="0.650771"/>
-				<Event Id="2044480626" Name="PORTAL_DO_PEDRO" ObjectPath="\Events\Default Work Unit\PORTAL_DO_PEDRO" DurationType="OneShot" DurationMin="0.066032" DurationMax="0.066032"/>
 				<Event Id="1076532240" Name="ui_laborbot_fala" ObjectPath="\Events\Default Work Unit\ui_laborbot_fala" DurationType="OneShot" DurationMin="0.140400" DurationMax="0.145061"/>
-				<Event Id="1293565034" Name="ui_marombot_fala" ObjectPath="\Events\Default Work Unit\ui_marombot_fala" DurationType="OneShot" DurationMin="0.098995" DurationMax="0.098995"/>
+				<Event Id="1293565034" Name="ui_marombot_fala" ObjectPath="\Events\Default Work Unit\ui_marombot_fala" DurationType="OneShot" DurationMin="0.153534" DurationMax="0.170442"/>
 				<Event Id="1320095827" Name="ui_nave_fala" ObjectPath="\Events\Default Work Unit\Personagens\ui_nave_fala" DurationType="OneShot" DurationMin="0.138667" DurationMax="0.156493"/>
 				<Event Id="1865826492" Name="ui_navegacao__autopilot" ObjectPath="\Events\Default Work Unit\ui_navegacao__autopilot" DurationType="OneShot" DurationMin="0.066032" DurationMax="0.066032"/>
 				<Event Id="3359879035" Name="ui_navegacao__planeta_selecao" ObjectPath="\Events\Default Work Unit\ui_navegacao__planeta_selecao" DurationType="OneShot" DurationMin="0.066032" DurationMax="0.066032"/>
@@ -421,6 +421,10 @@
 					<ShortName>cenario_nave_elevador_desce_v1.wav</ShortName>
 					<Path>SFX\cenario_nave_elevador_desce_v1_10C4C929.wem</Path>
 				</File>
+				<File Id="327362739" Language="SFX">
+					<ShortName>ui_marombot_fala_02_v1.wav</ShortName>
+					<Path>SFX\ui_marombot_fala_02_v1_10C4C929.wem</Path>
+				</File>
 				<File Id="330896339" Language="SFX">
 					<ShortName>ui_pager_clique_03.wav</ShortName>
 					<Path>SFX\ui_pager_clique_03_10C4C929.wem</Path>
@@ -432,10 +436,6 @@
 				<File Id="357011581" Language="SFX">
 					<ShortName>ui_robozinho_fala04.wav</ShortName>
 					<Path>SFX\ui_robozinho_fala04_96339C8B.wem</Path>
-				</File>
-				<File Id="361526243" Language="SFX">
-					<ShortName>ui_marombot_fala_01.wav</ShortName>
-					<Path>SFX\ui_marombot_fala_01_A1D04880.wem</Path>
 				</File>
 				<File Id="377969374" Language="SFX">
 					<ShortName>ui_robozinho_fala01.wav</ShortName>
@@ -453,13 +453,13 @@
 					<ShortName>ui_pager_clique_01.wav</ShortName>
 					<Path>SFX\ui_pager_clique_01_82528F3A.wem</Path>
 				</File>
-				<File Id="420401779" Language="SFX">
-					<ShortName>ui_marombot_fala_03.wav</ShortName>
-					<Path>SFX\ui_marombot_fala_03_A1D04880.wem</Path>
-				</File>
 				<File Id="432320192" Language="SFX">
 					<ShortName>gameplay_buyk_pousa_longo.wav</ShortName>
 					<Path>SFX\gameplay_buyk_pousa_longo_1D60C1E6.wem</Path>
+				</File>
+				<File Id="442863321" Language="SFX">
+					<ShortName>ui_marombot_fala_04_v1.wav</ShortName>
+					<Path>SFX\ui_marombot_fala_04_v1_10C4C929.wem</Path>
 				</File>
 				<File Id="451223913" Language="SFX">
 					<ShortName>cenario_tutorial_soundscape.wav</ShortName>
@@ -533,17 +533,13 @@
 					<ShortName>ggs_ui_liga.wav</ShortName>
 					<Path>SFX\ggs_ui_liga_10C4C929.wem</Path>
 				</File>
-				<File Id="671395523" Language="SFX">
-					<ShortName>ui_marombot_fala_04.wav</ShortName>
-					<Path>SFX\ui_marombot_fala_04_A1D04880.wem</Path>
-				</File>
 				<File Id="692900371" Language="SFX">
 					<ShortName>ui_nave_fala_03.wav</ShortName>
 					<Path>SFX\ui_nave_fala_03_10C4C929.wem</Path>
 				</File>
-				<File Id="703531209" Language="SFX">
-					<ShortName>ui_marombot_fala_02.wav</ShortName>
-					<Path>SFX\ui_marombot_fala_02_A1D04880.wem</Path>
+				<File Id="712872889" Language="SFX">
+					<ShortName>ui_marombot_fala_01_v1.wav</ShortName>
+					<Path>SFX\ui_marombot_fala_01_v1_10C4C929.wem</Path>
 				</File>
 				<File Id="713572310" Language="SFX">
 					<ShortName>gameplay_flor_transition_com sobra.wav</ShortName>
@@ -568,6 +564,10 @@
 				<File Id="781078286" Language="SFX">
 					<ShortName>ggs_gameplay_linha_milestone.wav</ShortName>
 					<Path>SFX\ggs_gameplay_linha_milestone_10C4C929.wem</Path>
+				</File>
+				<File Id="784349783" Language="SFX">
+					<ShortName>ui_marombot_fala_03_v1.wav</ShortName>
+					<Path>SFX\ui_marombot_fala_03_v1_10C4C929.wem</Path>
 				</File>
 				<File Id="833521607" Language="SFX">
 					<ShortName>ui_robozinho_fala03.wav</ShortName>
