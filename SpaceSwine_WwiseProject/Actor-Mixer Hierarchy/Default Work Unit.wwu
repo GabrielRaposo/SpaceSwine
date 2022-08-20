@@ -3904,6 +3904,47 @@
 					</ChildrenList>
 				</Folder>
 				<Sound Name="ui_transicao_levels" ID="{079B11AD-0EC8-4E2E-AEB1-A8536D835D9E}" ShortID="99037608">
+					<PropertyList>
+						<Property Name="Pitch" Type="int32">
+							<RTPCList>
+								<RTPC Name="" ID="{42CDEE29-FBFE-4673-B3CE-979F6189423C}" ShortID="209130941">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<Custom>
+												<ModulatorLfo Name="Modulator LFO (Custom)" ID="{2DDBF521-A0C4-4D0D-98B3-49F5DB38589D}" ShortID="523860805">
+													<PropertyList>
+														<Property Name="LfoWaveform" Type="int32" Value="5"/>
+													</PropertyList>
+												</ModulatorLfo>
+											</Custom>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{E43FD190-E00A-4019-BD16-314978884786}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="65537"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>100</YPos>
+												<Flags>21</Flags>
+											</Point>
+											<Point>
+												<XPos>1</XPos>
+												<YPos>-100</YPos>
+												<Flags>53</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>10</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -3913,24 +3954,38 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="cenario_nave_bip_tv" ID="{986216CD-70C8-40AA-9494-972C5200AD36}">
+						<AudioFileSource Name="ui_transicao_levels" ID="{EC982220-109B-464A-9A13-9338396CEFA2}">
 							<PropertyList>
+								<Property Name="FadeOutDuration" Type="Real64" Value="0.402748318980771"/>
 								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-								<Property Name="TrimEnd" Type="Real64" Value="0.0660320081789928"/>
+								<Property Name="TrimBegin" Type="Real64" Value="0.0718709121413498"/>
+								<Property Name="TrimEnd" Type="Real64" Value="0.690231967546171"/>
 							</PropertyList>
 							<Language>SFX</Language>
-							<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
+							<AudioFile>ui_transicao_levels.wav</AudioFile>
 							<MediaIDList>
-								<MediaID ID="626021311"/>
+								<MediaID ID="808241402"/>
 							</MediaIDList>
 						</AudioFileSource>
 					</ChildrenList>
 					<ObjectLists/>
 					<ActiveSourceList>
-						<ActiveSource Name="cenario_nave_bip_tv" ID="{986216CD-70C8-40AA-9494-972C5200AD36}" Platform="Linked"/>
+						<ActiveSource Name="ui_transicao_levels" ID="{EC982220-109B-464A-9A13-9338396CEFA2}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 				<Sound Name="ui_transicao_descarga" ID="{BF4643D9-D890-4942-B97B-BC7A2283A114}" ShortID="971649997">
+					<PropertyList>
+						<Property Name="Lowpass" Type="int16">
+							<ValueList>
+								<Value>20</Value>
+							</ValueList>
+						</Property>
+						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>14</Value>
+							</ValueList>
+						</Property>
+					</PropertyList>
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -3940,21 +3995,22 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="cenario_nave_bip_tv" ID="{7928DBF8-5182-41B4-B1F4-395DF8968C61}">
+						<AudioFileSource Name="ui_transicao_descarga_extra1" ID="{71519049-7A3E-4AE8-A851-CFD7A874F89C}">
 							<PropertyList>
+								<Property Name="FadeInDuration" Type="Real64" Value="1.09944850772679"/>
+								<Property Name="FadeInShape" Type="int16" Value="7"/>
 								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-								<Property Name="TrimEnd" Type="Real64" Value="0.0660320081789928"/>
 							</PropertyList>
 							<Language>SFX</Language>
-							<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
+							<AudioFile>ui_transicao_descarga_extra1.wav</AudioFile>
 							<MediaIDList>
-								<MediaID ID="626021311"/>
+								<MediaID ID="918794115"/>
 							</MediaIDList>
 						</AudioFileSource>
 					</ChildrenList>
 					<ObjectLists/>
 					<ActiveSourceList>
-						<ActiveSource Name="cenario_nave_bip_tv" ID="{7928DBF8-5182-41B4-B1F4-395DF8968C61}" Platform="Linked"/>
+						<ActiveSource Name="ui_transicao_descarga_extra1" ID="{71519049-7A3E-4AE8-A851-CFD7A874F89C}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 				<Sound Name="ui_transicao_danger" ID="{ADCCE5AD-8C6B-4A3D-B7E8-C4B06822C47F}" ShortID="795894128">
