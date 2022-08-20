@@ -14,7 +14,12 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] List<PagerScreen> screens;
     [SerializeField] GameObject callScreen;
     [SerializeField] Image callCountFillDisplay;
+
+    [Header("Exclusive Buttons")]
     [SerializeField] GameObject resetRoundButton;
+    [SerializeField] GameObject exitZoneButton;
+
+    [Header(" ")]
     [SerializeField] UnityEvent backOnMainEvent;
     [SerializeField] float maxScreenDelay = .4f;
 
@@ -158,7 +163,9 @@ public class PagerInteractionManager : MonoBehaviour
 
         if (resetRoundButton)
             resetRoundButton.SetActive (RoundsManager.Instance);
-        
+        if (exitZoneButton)
+            exitZoneButton.SetActive(RoundsManager.Instance);
+
         if (appearAKEvent != null)
             appearAKEvent.Post(gameObject);
 
@@ -355,6 +362,43 @@ public class PagerInteractionManager : MonoBehaviour
     private PagerScreen CurrentScreen
     {
         get {  return screens[current % screens.Count]; }
+    }
+
+    
+    public void SetExitZoneConfirmation()
+    {
+        if (!confirmationScreen)
+            return;
+
+        RoundsManager roundsManager = RoundsManager.Instance;
+        if (!roundsManager)
+            return;
+
+        BuildIndex buildIndex = BuildIndex.World0Exploration; 
+        if (RoundsManager.SessionData != null)
+            buildIndex = RoundsManager.SessionData.outroScene;
+
+        int previousScreen = current;
+
+        confirmationScreen.SetScreen
+        (
+            title: "Exit zone?",
+            description: "Progress will be lost.",
+            ConfirmEvent: () => 
+            {
+                if (RoundsManager.SessionData)
+                    SpawnManager.Index = RoundsManager.SessionData.AbandonSpawnIndex;
+                PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
+                GameManager.GoToScene(buildIndex);
+            }, 
+            CancelEvent: () => 
+            { 
+                current = previousScreen; 
+                ActivateCurrent(); 
+            }
+        );
+
+        GoToScreen(0);
     }
 
     public void SetQuitConfirmation()
