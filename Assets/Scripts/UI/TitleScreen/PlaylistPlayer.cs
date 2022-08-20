@@ -278,6 +278,8 @@ public class PlaylistPlayer : MonoBehaviour
     private void ButtonsVisualInteractions()
     {
         Vector2 axis = navigationInput.ReadValue<Vector2>();
+        if (!playerMode || !OnFocus || SceneTransition.OnTransition)
+            axis = Vector2.zero;
         backButton?.SetActive (axis.x > -.5f);
         forwardButton?.SetActive (axis.x < .5f);
 
