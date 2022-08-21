@@ -91,6 +91,24 @@ public class RaposUtil
     }
 }
 
+public static class MonobehaviourExtension
+{
+    public static void Wait (this MonoBehaviour m, int frames, UnityAction action)
+    {
+        RaposUtil.Wait(m, frames, action);
+    }
+
+    public static void WaitSeconds (this MonoBehaviour m, float duration, UnityAction action)
+    {
+        RaposUtil.WaitSeconds(m, duration, action);
+    }
+
+    public static void WaitSecondsRealtime (this MonoBehaviour m, float duration, UnityAction action)
+    {
+        RaposUtil.WaitSecondsRealtime(m, duration, action);
+    }
+}
+
 public static class Vector2Extension
 {
     public static Vector2 SetX (this Vector2 v, float x)
