@@ -177,9 +177,6 @@ public class PlatformerCharacter : SidewaysCharacter
         else
         {
             heldInput = Vector2.zero;
-
-            if (holdAnchorCount > 0)
-                holdAnchorCount--;
         }
 
         Vector2 output = FilterThroughAnchor(rawInput, anchor);
@@ -392,6 +389,9 @@ public class PlatformerCharacter : SidewaysCharacter
 
         horizontalSpeed = verticalSpeed = 0;
         playerAnimations.horizontalInput = 0;
+
+        heldInput = Vector2.zero;    
+        moveInputRotationAnchor = lastValidAnchor = holdAnchorCount = 0;
     }
 
     public Vector2 LocalSpeed()
