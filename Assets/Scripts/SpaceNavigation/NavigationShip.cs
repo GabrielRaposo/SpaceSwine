@@ -171,7 +171,7 @@ public class NavigationShip : MonoBehaviour
             yield return new WaitForSeconds(flightStepsDelay);
             //Debug.Log("step");
             
-            //flightStepsAKEvent.Post(gameObject);
+            flightStepsAKEvent.Post(gameObject);
         }
     }
 

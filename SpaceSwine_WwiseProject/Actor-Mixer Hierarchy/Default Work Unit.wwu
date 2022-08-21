@@ -5162,6 +5162,9 @@
 					<PropertyList>
 						<Property Name="OverrideOutput" Type="bool" Value="True"/>
 						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-15</Value>
+							</ValueList>
 							<RTPCList>
 								<RTPC Name="" ID="{070735BE-51BF-47DE-B8BB-83367E191478}" ShortID="270359602">
 									<ReferenceList>
@@ -5218,6 +5221,9 @@
 				<Sound Name="ui_navegacao_movimentacao_loop" ID="{09B238EF-737D-4F76-9749-9C8AA80EB250}" ShortID="181425326">
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-15</Value>
+							</ValueList>
 							<RTPCList>
 								<RTPC Name="" ID="{B9EA1064-D761-4348-909C-1866D34817EC}" ShortID="820070763">
 									<ReferenceList>
@@ -5278,6 +5284,9 @@
 				<Sound Name="ui_navegacao_movimentacao_outro" ID="{23CF85D8-433C-4B37-A80D-0FCE335A847B}" ShortID="81857576">
 					<PropertyList>
 						<Property Name="Volume" Type="Real64">
+							<ValueList>
+								<Value>-15</Value>
+							</ValueList>
 							<RTPCList>
 								<RTPC Name="" ID="{2E618FCE-71DF-4DEA-A6D2-FE45C1E5831B}" ShortID="963851768">
 									<ReferenceList>
@@ -5316,6 +5325,10 @@
 					</ReferenceList>
 					<ChildrenList>
 						<AudioFileSource Name="ui_navegacao_movimentacao_outro" ID="{A3F02C0C-43F2-41BB-8EA0-AADC652A3DB1}">
+							<PropertyList>
+								<Property Name="FadeInDuration" Type="Real64" Value="0.041533004338537"/>
+								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+							</PropertyList>
 							<Language>SFX</Language>
 							<AudioFile>ui_navegacao_movimentacao_outro.wav</AudioFile>
 							<MediaIDList>
