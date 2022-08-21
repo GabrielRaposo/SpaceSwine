@@ -81,8 +81,10 @@ namespace AK
         static const AkUniqueID UI_NAVE_FALA = 1320095827U;
         static const AkUniqueID UI_NAVEGACAO__AUTOPILOT = 1865826492U;
         static const AkUniqueID UI_NAVEGACAO__PLANETA_SELECAO = 3359879035U;
-        static const AkUniqueID UI_NAVEGACAO_MOVIMENTACAO = 2042242719U;
         static const AkUniqueID UI_NAVEGACAO_MOVIMENTACAO_AMBIENCIA = 4033432919U;
+        static const AkUniqueID UI_NAVEGACAO_MOVIMENTACAO_INTRO = 3361592752U;
+        static const AkUniqueID UI_NAVEGACAO_MOVIMENTACAO_LOOP = 2757513700U;
+        static const AkUniqueID UI_NAVEGACAO_MOVIMENTACAO_OUTRO = 730814295U;
         static const AkUniqueID UI_PAGER_APARECE = 1544588369U;
         static const AkUniqueID UI_PAGER_CHAMA_NAVE = 476413945U;
         static const AkUniqueID UI_PAGER_CHAMA_NAVE_BOTAO = 3652001215U;
@@ -128,6 +130,7 @@ namespace AK
         static const AkUniqueID VOLUME_CUTSCENE = 2340947590U;
         static const AkUniqueID VOLUME_MASTER = 3695994288U;
         static const AkUniqueID VOLUME_MUSIC = 3891337659U;
+        static const AkUniqueID VOLUME_NAVEGACAO = 2864841961U;
         static const AkUniqueID VOLUME_PLACEHOLDERS = 4083254980U;
         static const AkUniqueID VOLUME_SFX = 3673881719U;
     } // namespace GAME_PARAMETERS

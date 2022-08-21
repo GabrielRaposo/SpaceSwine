@@ -817,6 +817,9 @@
 				<Event Name="ui_navegacao__planeta_selecao" ID="{8CFE9C20-67CD-42F6-BE54-33500208926A}">
 					<ChildrenList>
 						<Action Name="" ID="{E71CB09E-84ED-42F8-B925-B40DD1DAF33E}" ShortID="651936716">
+							<PropertyList>
+								<Property Name="ActionType" Type="int16" Value="36"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="ui_navegacao__planeta_selecao" ID="{C046F7D8-8134-4835-8141-F3A25572AD2F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
@@ -825,12 +828,12 @@
 						</Action>
 					</ChildrenList>
 				</Event>
-				<Event Name="ui_navegacao_movimentacao" ID="{2FB5A965-BDA0-450F-A969-863CCD5DA2F6}">
+				<Event Name="ui_navegacao_movimentacao_loop" ID="{2FB5A965-BDA0-450F-A969-863CCD5DA2F6}">
 					<ChildrenList>
 						<Action Name="" ID="{1CCDF845-80F3-4AB4-8D75-71C204E12411}" ShortID="353172418">
 							<ReferenceList>
 								<Reference Name="Target">
-									<ObjectRef Name="ui_navegacao_movimentacao" ID="{09B238EF-737D-4F76-9749-9C8AA80EB250}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+									<ObjectRef Name="ui_navegacao_movimentacao_loop" ID="{09B238EF-737D-4F76-9749-9C8AA80EB250}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
@@ -1134,6 +1137,28 @@
 							<ReferenceList>
 								<Reference Name="Target">
 									<ObjectRef Name="cenario_buyk_chuta_copo" ID="{D7135217-DF92-420D-B214-71892044022F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ui_navegacao_movimentacao_outro" ID="{CB711259-FE46-4AB8-8561-11E93E26D43C}">
+					<ChildrenList>
+						<Action Name="" ID="{6B6C56CE-CD01-4C14-9646-63C93FD91688}" ShortID="235427458">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ui_navegacao_movimentacao_outro" ID="{23CF85D8-433C-4B37-A80D-0FCE335A847B}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="ui_navegacao_movimentacao_intro" ID="{D05C015C-5971-410E-85FD-E63DD929C66C}">
+					<ChildrenList>
+						<Action Name="" ID="{78382BAE-811C-408C-9CB6-6BCDD7040DC7}" ShortID="1002469680">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="ui_navegacao_movimentacao_intro" ID="{D24FDAD1-8444-4E57-A8F4-396DB2A7E43A}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 								</Reference>
 							</ReferenceList>
 						</Action>
