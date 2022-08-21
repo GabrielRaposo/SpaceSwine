@@ -28,9 +28,15 @@ public class NavigationShip : MonoBehaviour
     [Header("Audio")]
     [SerializeField] float flightStepsDelay;
     [SerializeField] AK.Wwise.Event flightStepsAKEvent;
-    [SerializeField] AK.Wwise.Event flightAmbienceAKEvent;
+    //[SerializeField] AK.Wwise.Event flightAmbienceAKEvent;
 
+    NavigationShipSoundController movementSoundController; 
     Coroutine flightStepsRoutine;
+
+    private void Awake() 
+    {
+        movementSoundController = GetComponent<NavigationShipSoundController>();    
+    }
 
     private void OnEnable()
     {
@@ -94,6 +100,8 @@ public class NavigationShip : MonoBehaviour
         
         Vector2 input = movementInputAction.ReadValue<Vector2>();
         movDirection += input * aceleration;
+        if (movementSoundController)
+            movementSoundController.ReadInput(movDirection);
         TrailParticleLogic(activate: input != Vector2.zero);
 
         if (movDirection.magnitude > movmentCap)
@@ -114,7 +122,7 @@ public class NavigationShip : MonoBehaviour
         if(NavigationParalaxAnchor.Instance)
             NavigationParalaxAnchor.Instance.transform.Translate(movDirection*speed*20f);
         
-        transform.Translate(movDirection*speed);
+        transform.Translate(movDirection * speed);
     }
 
     private void TrailParticleLogic (bool activate)
@@ -134,8 +142,8 @@ public class NavigationShip : MonoBehaviour
                 flightStepsRoutine = StartCoroutine( FlightStepsLoop() );
             }
 
-            if (flightAmbienceAKEvent != null && !flightAmbienceAKEvent.IsPlaying(gameObject))
-                flightAmbienceAKEvent.Post(gameObject);
+            //if (flightAmbienceAKEvent != null && !flightAmbienceAKEvent.IsPlaying(gameObject))
+            //    flightAmbienceAKEvent.Post(gameObject);
         }
         else
         {
@@ -148,8 +156,8 @@ public class NavigationShip : MonoBehaviour
             }
 
 
-            if (flightAmbienceAKEvent != null && flightAmbienceAKEvent.IsPlaying(gameObject))
-                flightAmbienceAKEvent.Stop(gameObject);
+            //if (flightAmbienceAKEvent != null && flightAmbienceAKEvent.IsPlaying(gameObject))
+            //    flightAmbienceAKEvent.Stop(gameObject);
         }
     }
 
@@ -162,7 +170,8 @@ public class NavigationShip : MonoBehaviour
         {
             yield return new WaitForSeconds(flightStepsDelay);
             //Debug.Log("step");
-            flightStepsAKEvent.Post(gameObject);
+            
+            //flightStepsAKEvent.Post(gameObject);
         }
     }
 
