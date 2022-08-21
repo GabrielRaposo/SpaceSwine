@@ -101,7 +101,7 @@ public class NavigationShip : MonoBehaviour
         Vector2 input = movementInputAction.ReadValue<Vector2>();
         movDirection += input * aceleration;
         if (movementSoundController)
-            movementSoundController.ReadInput(movDirection);
+            movementSoundController.ReadInput(input.normalized, movDirection.magnitude);
         TrailParticleLogic(activate: input != Vector2.zero);
 
         if (movDirection.magnitude > movmentCap)

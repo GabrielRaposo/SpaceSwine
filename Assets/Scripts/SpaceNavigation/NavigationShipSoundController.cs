@@ -23,12 +23,16 @@ public class NavigationShipSoundController : MonoBehaviour
         state = State.None;
     }
 
-    public void ReadInput (Vector2 input)
+    public void ReadInput (Vector2 input, float intensity)
     {
-        // 0 -> 100  :  100 -> 0
 
         if (movementRTPC != null)
-            movementRTPC.SetGlobalValue(100);
+        {
+        //Debug.Log("intensity: " + intensity);
+            // 0 -> 100  :  100 -> 0
+            parameterVolume = (intensity / 1.84f) * 100;
+            movementRTPC.SetGlobalValue(parameterVolume);
+        }
 
         if (input != Vector2.zero)
         {
