@@ -20,6 +20,7 @@ public class PagerInteractableSlider : PagerInteractable
     [SerializeField] Image fillBar;
     [SerializeField] Image handler;
     [SerializeField] Image handlerOutline;
+    [SerializeField] List<TextMeshProUGUI> extraTextDisplays;
 
     float value;
 
@@ -57,6 +58,12 @@ public class PagerInteractableSlider : PagerInteractable
 
         if (handlerOutline)
             handlerOutline.color = lightColor;
+
+        if (extraTextDisplays.Count > 0)
+        {
+            foreach (var d in extraTextDisplays)
+                d.color = lightColor;
+        }
     }
 
     public override void Deselect() 
@@ -78,6 +85,12 @@ public class PagerInteractableSlider : PagerInteractable
 
         if (handlerOutline)
             handlerOutline.color = darkColor;
+
+        if (extraTextDisplays.Count > 0)
+        {
+            foreach (var d in extraTextDisplays)
+                d.color = darkColor;
+        }
     }
 
     public override bool OnHorizontalInput(float direction) 

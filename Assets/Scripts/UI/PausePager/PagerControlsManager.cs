@@ -14,7 +14,16 @@ public class PagerControlsManager : MonoBehaviour
 
         List <string> stringValues = new List<string>();
         for (int i = 0; i < controlTypes.Count; i++)
-            stringValues.Add ( controlTypes[i].ToString() );
+        {
+            string[] subString = controlTypes[i].ToString().Split('_');
+            if (subString.Length < 2)
+                stringValues.Add ( controlTypes[i].ToString() );
+            else
+            {
+                string s = subString[0] + " " + subString[1];
+                stringValues.Add (s);
+            }
+        }
 
         if (controlTypeScrollList == null)
             return;
@@ -32,8 +41,6 @@ public class PagerControlsManager : MonoBehaviour
     {
         if (controlTypes.Count < 1)
             return;
-
-        Debug.Log("Troca control type");
 
         GroundControlType controlType = controlTypes[index % controlTypes.Count];
         PlatformerCharacter.OnGroundControlType = controlType;

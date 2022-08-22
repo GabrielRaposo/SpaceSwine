@@ -41,7 +41,7 @@ public class SetTextMeshOnStoryEvent : MonoBehaviour
 
     private void OnDisable() 
     {
-        Debug.Log("OnDisable() - " + name);
+        //Debug.Log("OnDisable() - " + name);
         if (storyEvent == null)
             return;
  
