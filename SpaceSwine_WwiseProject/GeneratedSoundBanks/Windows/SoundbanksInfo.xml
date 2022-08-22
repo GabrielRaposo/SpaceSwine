@@ -207,7 +207,7 @@
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>
-		<SoundBank Id="133642231" Language="SFX" Hash="2991089400">
+		<SoundBank Id="133642231" Language="SFX" Hash="2802147360">
 			<ObjectPath>\SoundBanks\Default Work Unit\General</ObjectPath>
 			<ShortName>General</ShortName>
 			<Path>General.bnk</Path>
@@ -266,10 +266,10 @@
 				<Event Id="1320095827" Name="ui_nave_fala" ObjectPath="\Events\Default Work Unit\Personagens\ui_nave_fala" DurationType="OneShot" DurationMin="0.138667" DurationMax="0.156493"/>
 				<Event Id="1865826492" Name="ui_navegacao__autopilot" ObjectPath="\Events\Default Work Unit\ui_navegacao__autopilot" DurationType="OneShot" DurationMin="0.066032" DurationMax="0.066032"/>
 				<Event Id="3359879035" Name="ui_navegacao__planeta_selecao" ObjectPath="\Events\Default Work Unit\ui_navegacao__planeta_selecao" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
-				<Event Id="4033432919" Name="ui_navegacao_movimentacao_ambiencia" ObjectPath="\Events\Default Work Unit\ui_navegacao_movimentacao_ambiencia" DurationType="OneShot" DurationMin="0.264128" DurationMax="0.264128"/>
-				<Event Id="3361592752" Name="ui_navegacao_movimentacao_intro" ObjectPath="\Events\Default Work Unit\ui_navegacao_movimentacao_intro" DurationType="OneShot" DurationMin="1.829600" DurationMax="1.829600"/>
-				<Event Id="2757513700" Name="ui_navegacao_movimentacao_loop" ObjectPath="\Events\Default Work Unit\ui_navegacao_movimentacao_loop" DurationType="OneShot" DurationMin="2.361400" DurationMax="2.361400"/>
-				<Event Id="730814295" Name="ui_navegacao_movimentacao_outro" ObjectPath="\Events\Default Work Unit\ui_navegacao_movimentacao_outro" DurationType="OneShot" DurationMin="1.512676" DurationMax="1.512676"/>
+				<Event Id="4033432919" Name="ui_navegacao_movimentacao_ambiencia" ObjectPath="\Events\Default Work Unit\ui_navegacao_movimentacao_ambiencia" DurationType="OneShot" DurationMin="0.060839" DurationMax="0.060839"/>
+				<Event Id="3361592752" Name="ui_navegacao_movimentacao_intro" ObjectPath="\Events\Default Work Unit\ui_navegacao_movimentacao_intro" DurationType="OneShot" DurationMin="0.590087" DurationMax="0.590087"/>
+				<Event Id="2757513700" Name="ui_navegacao_movimentacao_loop" ObjectPath="\Events\Default Work Unit\ui_navegacao_movimentacao_loop" DurationType="Infinite"/>
+				<Event Id="730814295" Name="ui_navegacao_movimentacao_outro" ObjectPath="\Events\Default Work Unit\ui_navegacao_movimentacao_outro" DurationType="OneShot" DurationMin="3.232290" DurationMax="3.232290"/>
 				<Event Id="1544588369" Name="ui_pager_aparece" ObjectPath="\Events\Default Work Unit\UI\Pager\ui_pager_aparece" DurationType="OneShot" DurationMin="0.673628" DurationMax="0.673628"/>
 				<Event Id="476413945" Name="ui_pager_chama_nave" ObjectPath="\Events\Default Work Unit\UI\Pager\ui_pager_chama_nave" DurationType="OneShot" DurationMin="2.922812" DurationMax="2.922812"/>
 				<Event Id="3652001215" Name="ui_pager_chama_nave_botao" ObjectPath="\Events\Default Work Unit\UI\Pager\ui_pager_chama_nave_botao" DurationType="OneShot" DurationMin="0.240107" DurationMax="0.240107"/>
@@ -403,6 +403,10 @@
 					<ShortName>ggs_nave_pousa.wav</ShortName>
 					<Path>SFX\ggs_nave_pousa_10C4C929.wem</Path>
 				</File>
+				<File Id="265878812" Language="SFX">
+					<ShortName>ui_navegacao_movimentacao_v1.wav</ShortName>
+					<Path>SFX\ui_navegacao_movimentacao_v1_FA9104C6.wem</Path>
+				</File>
 				<File Id="266125518" Language="SFX">
 					<ShortName>ui_robozinho_fala04.wav</ShortName>
 					<Path>SFX\ui_robozinho_fala04_10C4C929.wem</Path>
@@ -418,10 +422,6 @@
 				<File Id="291343424" Language="SFX">
 					<ShortName>ggs_nave_pula.wav</ShortName>
 					<Path>SFX\ggs_nave_pula_10C4C929.wem</Path>
-				</File>
-				<File Id="308703843" Language="SFX">
-					<ShortName>ui_navegacao_movimentacao.wav</ShortName>
-					<Path>SFX\ui_navegacao_movimentacao_22982C27.wem</Path>
 				</File>
 				<File Id="309486934" Language="SFX">
 					<ShortName>gameplay_portal_entra.wav</ShortName>
@@ -483,10 +483,6 @@
 					<ShortName>gameplay_buyk_beamdown.wav</ShortName>
 					<Path>SFX\gameplay_buyk_beamdown_10C4C929.wem</Path>
 				</File>
-				<File Id="479823860" Language="SFX">
-					<ShortName>ui_navegacao_movimentacao.wav</ShortName>
-					<Path>SFX\ui_navegacao_movimentacao_E0BD6A57.wem</Path>
-				</File>
 				<File Id="489584710" Language="SFX">
 					<ShortName>ui_pager_chama_nave.wav</ShortName>
 					<Path>SFX\ui_pager_chama_nave_10C4C929.wem</Path>
@@ -506,6 +502,10 @@
 				<File Id="536965891" Language="SFX">
 					<ShortName>gameplay_buyk_anda_04.wav</ShortName>
 					<Path>SFX\gameplay_buyk_anda_04_10C4C929.wem</Path>
+				</File>
+				<File Id="552334925" Language="SFX">
+					<ShortName>ui_navegacao_movimentacao_feedback.wav</ShortName>
+					<Path>SFX\ui_navegacao_movimentacao_feedback_3802DCF3.wem</Path>
 				</File>
 				<File Id="565043529" Language="SFX">
 					<ShortName>gameplay_buyk_stuck_02.wav</ShortName>
@@ -551,10 +551,6 @@
 					<ShortName>ui_nave_fala_03.wav</ShortName>
 					<Path>SFX\ui_nave_fala_03_10C4C929.wem</Path>
 				</File>
-				<File Id="699273201" Language="SFX">
-					<ShortName>ui_navegacao_movimentacao_outro.wav</ShortName>
-					<Path>SFX\ui_navegacao_movimentacao_outro_3AFFCC8A.wem</Path>
-				</File>
 				<File Id="712872889" Language="SFX">
 					<ShortName>ui_marombot_fala_01_v1.wav</ShortName>
 					<Path>SFX\ui_marombot_fala_01_v1_10C4C929.wem</Path>
@@ -590,6 +586,14 @@
 				<File Id="808241402" Language="SFX">
 					<ShortName>ui_transicao_levels.wav</ShortName>
 					<Path>SFX\ui_transicao_levels_C15DF0AE.wem</Path>
+				</File>
+				<File Id="828193275" Language="SFX">
+					<ShortName>ui_navegacao_movimentacao_v1.wav</ShortName>
+					<Path>SFX\ui_navegacao_movimentacao_v1_8645FCD4.wem</Path>
+				</File>
+				<File Id="832655373" Language="SFX">
+					<ShortName>ui_navegacao_movimentacao_outro_v1.wav</ShortName>
+					<Path>SFX\ui_navegacao_movimentacao_outro_v1_10C4C929.wem</Path>
 				</File>
 				<File Id="833521607" Language="SFX">
 					<ShortName>ui_robozinho_fala03.wav</ShortName>
