@@ -202,8 +202,8 @@ public class SetSceneNavigationObject : NavigationObject
     {
         var s = DOTween.Sequence();
 
-        if (MakePathAKEvent != null)
-            MakePathAKEvent.Post(gameObject);
+        if (OnSelectAKEvent != null)
+            OnSelectAKEvent.Post(gameObject);
 
         float c = count;
         
@@ -215,8 +215,10 @@ public class SetSceneNavigationObject : NavigationObject
                 var pos = animationBezier.GetNormalizedPoint(index / c);
                 var dot = dotsParent.GetChild(index);
                 dot.position = pos;
-                if (OnSelectAKEvent != null)
-                    OnSelectAKEvent.Post(gameObject);
+                
+                if (MakePathAKEvent != null)
+                    MakePathAKEvent.Post(gameObject);
+                
             }));
         }
 
