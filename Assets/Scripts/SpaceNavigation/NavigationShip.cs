@@ -30,8 +30,13 @@ public class NavigationShip : MonoBehaviour
     [SerializeField] AK.Wwise.Event flightStepsAKEvent;
     //[SerializeField] AK.Wwise.Event flightAmbienceAKEvent;
 
+    public bool OverrideMode = false;
+    public Vector2 OverridenControls = Vector2.zero; // -- Macetagem pra manter o som ativo no auto-pilot
+
     NavigationShipSoundController movementSoundController; 
     Coroutine flightStepsRoutine;
+
+    bool playingFlightStepsSound;
 
     private void Awake() 
     {
@@ -95,6 +100,22 @@ public class NavigationShip : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (OverrideMode)
+        {
+            if (OverridenControls != Vector2.zero)
+            {
+                if (movementSoundController)
+                    movementSoundController.ReadInput(OverridenControls.normalized, intensity: 1.84f);
+            }
+            else
+            {
+                if (movementSoundController)
+                    movementSoundController.ReadInput(Vector2.zero, intensity: 0f);
+            }
+
+            return;
+        }
+    
         previousPostion = transform.position;
         if (ControlsLocked) return;
         
@@ -125,6 +146,7 @@ public class NavigationShip : MonoBehaviour
         transform.Translate(movDirection * speed);
     }
 
+
     private void TrailParticleLogic (bool activate)
     {
         if (!smokeTrailPS)
@@ -133,31 +155,38 @@ public class NavigationShip : MonoBehaviour
         if (activate)
         {
             if (!smokeTrailPS.isPlaying)
-            {
                 smokeTrailPS.Play();
 
-                if (flightStepsRoutine != null)
-                    StopAllCoroutines();
-
-                flightStepsRoutine = StartCoroutine( FlightStepsLoop() );
-            }
-
-            //if (flightAmbienceAKEvent != null && !flightAmbienceAKEvent.IsPlaying(gameObject))
-            //    flightAmbienceAKEvent.Post(gameObject);
+            SetFlightStepsSound (true);
         }
         else
         {
             if (smokeTrailPS.isPlaying)
-            {
                 smokeTrailPS.Stop();
-                
+
+            SetFlightStepsSound (false);
+        }
+    }
+
+    public void SetFlightStepsSound (bool value)
+    {
+        if (value)
+        {
+            if (!playingFlightStepsSound)
+            { 
                 if (flightStepsRoutine != null)
                     StopAllCoroutines();
+
+                flightStepsRoutine = StartCoroutine( FlightStepsLoop() );
+                
+                playingFlightStepsSound = true;
             }
-
-
-            //if (flightAmbienceAKEvent != null && flightAmbienceAKEvent.IsPlaying(gameObject))
-            //    flightAmbienceAKEvent.Stop(gameObject);
+        }
+        else
+        {
+            if (flightStepsRoutine != null)
+                StopAllCoroutines();
+            playingFlightStepsSound = false;
         }
     }
 

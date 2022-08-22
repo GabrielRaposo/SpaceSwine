@@ -25,20 +25,15 @@ public class NavigationShipSoundController : MonoBehaviour
 
     public void ReadInput (Vector2 input, float intensity)
     {
-
         if (movementRTPC != null)
         {
-        //Debug.Log("intensity: " + intensity);
-            // 0 -> 100  :  100 -> 0
+            //Debug.Log("intensity: " + intensity);
             parameterVolume = (intensity / 1.84f) * 100;
             movementRTPC.SetGlobalValue(parameterVolume);
         }
 
         if (input != Vector2.zero)
         {
-            //parameterVolume    
-
-
             PlaySoundLogic();
         }
         else
@@ -62,7 +57,7 @@ public class NavigationShipSoundController : MonoBehaviour
                 // -- Inicia parâmetro
                 startMovementAKEvent.Post(gameObject);
                 state = State.Intro;
-                Debug.Log("Inicia");
+                //Debug.Log("Inicia");
                 break;
 
             case State.Intro:
@@ -71,7 +66,7 @@ public class NavigationShipSoundController : MonoBehaviour
                 {
                     loopMovementAKEvent.Post(gameObject);
                     state = State.Loop;
-                    Debug.Log("Troca pro loop");
+                    //Debug.Log("Troca pro loop");
                 }
                 break;
 
@@ -80,7 +75,7 @@ public class NavigationShipSoundController : MonoBehaviour
                 {
                     loopMovementAKEvent.Post(gameObject);
                     state = State.Loop;
-                    Debug.Log("Mantendo o loop");
+                    //Debug.Log("Mantendo o loop");
                 }
                 break;
         }

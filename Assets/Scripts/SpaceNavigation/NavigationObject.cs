@@ -55,7 +55,7 @@ public class NavigationObject : MonoBehaviour
 
     public void OnInteract(NavigationShip ship = null)
     {
-        Debug.Log("OnInteract()");
+        //Debug.Log("OnInteract()");
         interactAction?.Invoke(ship);
     }
 

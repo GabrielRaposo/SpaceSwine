@@ -10,6 +10,7 @@ public class PlayerTransitionState : MonoBehaviour
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event teleportInAKEvent;
     [SerializeField] AK.Wwise.Event teleportOutAKEvent;
+    [SerializeField] AK.Wwise.Event dangerPortalAKEvent;
 
     PlayerCharacter playerCharacter;
     PlayerInput playerInput;
@@ -123,8 +124,8 @@ public class PlayerTransitionState : MonoBehaviour
 
         StartCoroutine( WaitForBlock (frames: 3, action: () => 
         {
-            //if (teleportInAKEvent != null)
-            //    teleportInAKEvent.Post(gameObject);    
+            if (dangerPortalAKEvent != null)
+                dangerPortalAKEvent.Post(gameObject);    
 
             //Debug.Log("-- Call spawn portal --");
             spawnPortal.Call();

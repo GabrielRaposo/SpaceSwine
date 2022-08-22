@@ -547,8 +547,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4585204731604839609}
-  - component: {fileID: 4585204731604839608}
   - component: {fileID: 4585204731604839615}
+  - component: {fileID: 4585204731604839608}
   m_Layer: 0
   m_Name: NavigationObject
   m_TagString: Untagged
@@ -573,22 +573,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &4585204731604839608
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4585204731604839614}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2
 --- !u!114 &4585204731604839615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,10 +601,10 @@ MonoBehaviour:
   debugShip: {fileID: 0}
   navigationDot: {fileID: 5677901982723320466, guid: 97eb3763f8e71d94c88f6affdc813367, type: 3}
   dotsParent: {fileID: 0}
-  lineDotAKEvent:
+  OnHoverAKEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: ece5c268e4e34234fa8bab36b31e00cb, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: 18213819c28e3ae489aa62a9c1146f15, type: 2}
   OnSelectAKEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -629,6 +613,26 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: ece5c268e4e34234fa8bab36b31e00cb, type: 2}
+  OnReachDestinationAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 12a68a06e673de84e8f660824c09268c, type: 2}
+--- !u!58 &4585204731604839608
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4585204731604839614}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
 --- !u!1 &4585204731782769150
 GameObject:
   m_ObjectHideFlags: 0
