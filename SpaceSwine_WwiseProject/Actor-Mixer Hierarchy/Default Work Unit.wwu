@@ -2706,7 +2706,7 @@
 										<Property Name="OverrideOutput" Type="bool" Value="True"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-15</Value>
+												<Value>-13</Value>
 											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{070735BE-51BF-47DE-B8BB-83367E191478}" ShortID="270359602">
@@ -2778,7 +2778,7 @@
 										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-15</Value>
+												<Value>-13</Value>
 											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{B9EA1064-D761-4348-909C-1866D34817EC}" ShortID="820070763">
@@ -2855,7 +2855,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-15</Value>
+												<Value>-13</Value>
 											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{2E618FCE-71DF-4DEA-A6D2-FE45C1E5831B}" ShortID="963851768">
@@ -2999,7 +2999,7 @@
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
@@ -3014,6 +3014,232 @@
 									<ObjectLists/>
 									<ActiveSourceList>
 										<ActiveSource Name="ui_navegacao__planeta_selecao" ID="{080D4A94-E8A4-4651-915D-8BFB4283ED2C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ui_navegacao__autopilot" ID="{72ACF649-1F44-45BA-B3E8-A76EED1C9FE8}" ShortID="166643638">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>15</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_navegacao__autopilot" ID="{E5442B83-C76F-458E-A90E-2285E2B756DA}">
+											<Language>SFX</Language>
+											<AudioFile>ui_navegacao__autopilot.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="282270724"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_navegacao__autopilot" ID="{E5442B83-C76F-458E-A90E-2285E2B756DA}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ui_navegacao__planeta_hover" ID="{5D51EAC6-167E-484C-AFD4-DD9071F57083}" ShortID="297678089">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<RTPCList>
+												<RTPC Name="" ID="{7BA46133-3387-45CB-A9CC-51AB106D4C09}" ShortID="405428777">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{5E1EF528-6540-42CC-A883-03365DF04091}" ShortID="544670909">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{F0F14C32-AA04-4DF6-8A73-CE65AAC376F7}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>24</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<RTPCList>
+												<RTPC Name="" ID="{AB78BBB8-00C5-4EE7-ADFB-71A385903FA6}" ShortID="69067722">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{C71488B9-B568-4C33-B401-BA6D13C2D549}" ShortID="285805223">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{6E3051C8-C09A-4C15-A834-F97A7500403F}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>-100</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_navegacao__planeta_selecao" ID="{45DAD865-102F-4D06-9421-42DFDD521012}">
+											<Language>SFX</Language>
+											<AudioFile>ui_navegacao__planeta_selecao.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="374803507"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_navegacao__planeta_selecao" ID="{45DAD865-102F-4D06-9421-42DFDD521012}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ui_navegacao__planeta_land" ID="{73ED3AB1-EBCF-4E96-8645-3EC7205B0C7B}" ShortID="496616367">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<RTPCList>
+												<RTPC Name="" ID="{ED92E9A0-33F8-4CD2-BFDE-40342F4D7DA0}" ShortID="910475485">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{90BA073B-09B6-4EAE-8690-9922005CE2D7}" ShortID="537224931">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{40253F2C-FA97-4C68-AA4F-E2692856EC02}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>24</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<RTPCList>
+												<RTPC Name="" ID="{2055A42E-92F1-45EF-9736-A7F555921F4F}" ShortID="529797400">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{CD76464B-F2B8-409A-B359-692BE3B558B9}" ShortID="8836646">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{DD56CD83-F1C0-4CC3-B769-4143D3AF15B0}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>-100</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_navegacao__planeta_selecao" ID="{F2DE5E28-BF41-45D5-9C56-2EE3450F3B9A}">
+											<Language>SFX</Language>
+											<AudioFile>ui_navegacao__planeta_selecao.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="374803507"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_navegacao__planeta_selecao" ID="{F2DE5E28-BF41-45D5-9C56-2EE3450F3B9A}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -5461,33 +5687,6 @@
 					<ObjectLists/>
 					<ActiveSourceList>
 						<ActiveSource Name="cenario_nave_bip_tv" ID="{CAAE39F5-5E4A-4EBA-833A-2ABC74F040EF}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="ui_navegacao__autopilot" ID="{72ACF649-1F44-45BA-B3E8-A76EED1C9FE8}" ShortID="166643638">
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="cenario_nave_bip_tv" ID="{7B5A1F96-DCB6-480A-895E-3B84DDB70178}">
-							<PropertyList>
-								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-								<Property Name="TrimEnd" Type="Real64" Value="0.0660320081789928"/>
-							</PropertyList>
-							<Language>SFX</Language>
-							<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="626021311"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="cenario_nave_bip_tv" ID="{7B5A1F96-DCB6-480A-895E-3B84DDB70178}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 				<Sound Name="cenario_buyk_chuta_copo" ID="{D7135217-DF92-420D-B214-71892044022F}" ShortID="381202433">

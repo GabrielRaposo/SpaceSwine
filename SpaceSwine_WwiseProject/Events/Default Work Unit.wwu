@@ -390,13 +390,54 @@
 								</Event>
 								<Event Name="ui_navegacao__planeta_selecao" ID="{8CFE9C20-67CD-42F6-BE54-33500208926A}">
 									<ChildrenList>
-										<Action Name="" ID="{E71CB09E-84ED-42F8-B925-B40DD1DAF33E}" ShortID="651936716">
-											<PropertyList>
-												<Property Name="ActionType" Type="int16" Value="36"/>
-											</PropertyList>
+										<Action Name="" ID="{959B0162-C947-46FF-82B5-1B1AE8BA1DE3}" ShortID="686785388">
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="ui_navegacao__planeta_selecao" ID="{C046F7D8-8134-4835-8141-F3A25572AD2F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_navegacao__autopilot" ID="{27F0E96C-9FF5-4806-B60B-2E7EFC511BF8}">
+									<ChildrenList>
+										<Action Name="" ID="{D2DFF74F-82EE-4A4C-ACAF-A080EC0A6623}" ShortID="291241953">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_navegacao__autopilot" ID="{72ACF649-1F44-45BA-B3E8-A76EED1C9FE8}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_navegacao_movimentacao_feedback" ID="{50C135D5-EE14-4236-B33D-54E07A5F6867}">
+									<ChildrenList>
+										<Action Name="" ID="{4711D293-08CA-4B67-A093-DB9295E9BBD3}" ShortID="268167444">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_navegacao_movimentacao_feedback" ID="{C910BAED-808E-46E3-9DC1-A9577DEF7967}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_navegacao__planeta_hover" ID="{C2ABD984-9DA9-42D6-92B3-93880FE08B51}">
+									<ChildrenList>
+										<Action Name="" ID="{CC6A22E5-D568-449C-BB92-3AC316D840DF}" ShortID="409340307">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_navegacao__planeta_hover" ID="{5D51EAC6-167E-484C-AFD4-DD9071F57083}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_navegacao__planeta_land" ID="{53722244-C9C5-4E26-861E-8886B128E858}">
+									<ChildrenList>
+										<Action Name="" ID="{2AD94F11-2E1E-4E59-88B2-58B6984A07B4}" ShortID="560934096">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_navegacao__planeta_land" ID="{73ED3AB1-EBCF-4E96-8645-3EC7205B0C7B}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -864,28 +905,6 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
-				<Event Name="ui_navegacao__autopilot" ID="{27F0E96C-9FF5-4806-B60B-2E7EFC511BF8}">
-					<ChildrenList>
-						<Action Name="" ID="{D2DFF74F-82EE-4A4C-ACAF-A080EC0A6623}" ShortID="291241953">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="ui_navegacao__autopilot" ID="{72ACF649-1F44-45BA-B3E8-A76EED1C9FE8}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
-				<Event Name="ui_navegacao_movimentacao_ambiencia" ID="{50C135D5-EE14-4236-B33D-54E07A5F6867}">
-					<ChildrenList>
-						<Action Name="" ID="{4711D293-08CA-4B67-A093-DB9295E9BBD3}" ShortID="268167444">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="ui_navegacao_movimentacao_feedback" ID="{C910BAED-808E-46E3-9DC1-A9577DEF7967}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
 				<Event Name="gameplay_portal_fimdafase" ID="{69BB6EB7-EABC-4D34-84B0-FB051F111775}">
 					<ChildrenList>
 						<Action Name="" ID="{955E0435-7C5B-4960-A62F-3B0327A50FD9}" ShortID="568398822">
