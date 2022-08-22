@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GroundControlType { Dynamic, Absolute }
 
 public class PlatformerCharacter : SidewaysCharacter
 {
@@ -13,7 +14,8 @@ public class PlatformerCharacter : SidewaysCharacter
     [SerializeField] float jumpForce;
 
     [Header("Dynamic Input Values")]
-    [SerializeField] bool dynamicControls;
+    //[SerializeField] PlayerControlType controlType;
+    //[SerializeField] bool dynamicControls;
     [SerializeField] [Range(0f, 1f)] float dynamicInputThreshold;
     [SerializeField] [Range(0, 30)] int holdAnchorDuration;
 
@@ -52,6 +54,8 @@ public class PlatformerCharacter : SidewaysCharacter
     CheckWall checkWall;
     PlayerAnimations playerAnimations;
     Rigidbody2D rb;
+
+    public static GroundControlType OnGroundControlType = GroundControlType.Dynamic; 
 
     void Awake()
     {
@@ -109,7 +113,7 @@ public class PlatformerCharacter : SidewaysCharacter
     {
         float horizontalInput = axisInput.x;
 
-        if (dynamicControls) 
+        if (OnGroundControlType == GroundControlType.Dynamic) 
         {
             axisInput = ConvertAxisInput( axisInput );
             horizontalInput = axisInput.x;
@@ -177,6 +181,7 @@ public class PlatformerCharacter : SidewaysCharacter
         else
         {
             heldInput = Vector2.zero;
+            holdAnchorCount--;
         }
 
         Vector2 output = FilterThroughAnchor(rawInput, anchor);

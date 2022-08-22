@@ -447,6 +447,7 @@ public class PagerInteractionManager : MonoBehaviour
                 break;
 
             case 3: // -- Menu de Opções (Áudio)
+            case 4: // -- Menu de Opções (Controles)
                 GoToScreen (2);
                 break;
         }
