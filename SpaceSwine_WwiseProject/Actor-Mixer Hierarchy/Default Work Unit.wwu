@@ -1346,6 +1346,36 @@
 								<ActiveSource Name="gameplay_flor_energiza" ID="{41C13723-9ACF-4A94-B153-8964959B991B}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="gameplay_portal_iniciodafase" ID="{AD0CD9D9-F71A-4864-A06F-C5CCF23B5A23}" ShortID="780264444">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>9</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="gameplay_portal_fimdafase" ID="{94B4A72E-F0DD-46EE-99EB-BE6F62036A36}">
+									<Language>SFX</Language>
+									<AudioFile>gameplay_portal_fimdafase.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="150857145"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="gameplay_portal_fimdafase" ID="{94B4A72E-F0DD-46EE-99EB-BE6F62036A36}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{9B1ED146-6719-4B81-AE3D-F5B877AC7C1A}" ShortID="507530770">
@@ -5568,6 +5598,43 @@
 								</Sound>
 							</ChildrenList>
 						</Folder>
+						<Sound Name="cenario_buyk_chuta_copo" ID="{D7135217-DF92-420D-B214-71892044022F}" ShortID="381202433">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>17</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="cenario_buyk_chuta_copo" ID="{CAB54232-DDA6-4F11-9C1A-C308CA88F0D2}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.139734983424264"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.964400459370739"/>
+										<Property Name="FadeOutShape" Type="int16" Value="1"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="1.04228553209902"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>cenario_buyk_chuta_copo.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="878438960"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="cenario_buyk_chuta_copo" ID="{CAB54232-DDA6-4F11-9C1A-C308CA88F0D2}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="z_menor prioridade" ID="{FABFE171-3A83-4BBD-AFD0-4AAA8D23CEF6}" ShortID="797183350">
@@ -5655,67 +5722,6 @@
 						</Sound>
 					</ChildrenList>
 				</Folder>
-				<Sound Name="gameplay_portal_fimdafase" ID="{AD0CD9D9-F71A-4864-A06F-C5CCF23B5A23}" ShortID="780264444">
-					<PropertyList>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>9</Value>
-							</ValueList>
-						</Property>
-					</PropertyList>
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="cenario_nave_bip_tv" ID="{CAAE39F5-5E4A-4EBA-833A-2ABC74F040EF}">
-							<PropertyList>
-								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-								<Property Name="TrimEnd" Type="Real64" Value="0.0660320081789928"/>
-							</PropertyList>
-							<Language>SFX</Language>
-							<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="626021311"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="cenario_nave_bip_tv" ID="{CAAE39F5-5E4A-4EBA-833A-2ABC74F040EF}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="cenario_buyk_chuta_copo" ID="{D7135217-DF92-420D-B214-71892044022F}" ShortID="381202433">
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="cenario_nave_bip_tv" ID="{9D9F74E8-CA36-4AA4-B148-0083541B0971}">
-							<PropertyList>
-								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-								<Property Name="TrimEnd" Type="Real64" Value="0.0660320081789928"/>
-							</PropertyList>
-							<Language>SFX</Language>
-							<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="626021311"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="cenario_nave_bip_tv" ID="{9D9F74E8-CA36-4AA4-B148-0083541B0971}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

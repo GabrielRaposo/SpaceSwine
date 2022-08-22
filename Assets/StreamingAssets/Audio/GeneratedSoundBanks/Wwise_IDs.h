@@ -47,7 +47,7 @@ namespace AK
         static const AkUniqueID GAMEPLAY_ITEM_GOL_ESPIRAL = 1400340877U;
         static const AkUniqueID GAMEPLAY_PORTAL_ABRE = 1386742035U;
         static const AkUniqueID GAMEPLAY_PORTAL_ENTRA = 2559851891U;
-        static const AkUniqueID GAMEPLAY_PORTAL_FIMDAFASE = 3223678633U;
+        static const AkUniqueID GAMEPLAY_PORTAL_INICIODAFASE = 1461777538U;
         static const AkUniqueID GAMEPLAY_SPACEBOOSTER = 2825424422U;
         static const AkUniqueID GAMEPLAY_TERMINAL_BIPE = 2112164229U;
         static const AkUniqueID GAMEPLAY_TERMINAL_GIRA_PLANETA = 1679981074U;
