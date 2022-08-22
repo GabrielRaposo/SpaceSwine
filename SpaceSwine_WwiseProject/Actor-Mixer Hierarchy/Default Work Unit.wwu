@@ -2592,7 +2592,432 @@
 								</Folder>
 							</ChildrenList>
 						</Folder>
-						<Folder Name="Nave" ID="{BEB9D8B9-E7A4-4D6B-94E5-B010025CE221}" ShortID="949162329"/>
+						<Folder Name="Nave" ID="{BEB9D8B9-E7A4-4D6B-94E5-B010025CE221}" ShortID="949162329">
+							<ChildrenList>
+								<Sound Name="ui_navegacao_movimentacao_feedback" ID="{C910BAED-808E-46E3-9DC1-A9577DEF7967}" ShortID="695702738">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<RTPCList>
+												<RTPC Name="" ID="{D2FB3C94-D7D7-4129-94ED-5D0CEC4A04CB}" ShortID="563785144">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{CC82703C-23C6-4C11-BD70-52C85BCA7B0C}" ShortID="959952231">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{7A9FCC45-2A2F-429A-B21E-1C37DC3615BE}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>24</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-1200</Value>
+											</ValueList>
+											<RTPCList>
+												<RTPC Name="" ID="{B008465F-44D8-459C-9B8B-C7553A407BC7}" ShortID="139899820">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{CD9F78AA-2A9E-459F-9619-8BB772249D46}" ShortID="450475818">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{D531E549-27FB-4DC9-A7CF-FEEC80EDFA13}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>-100</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_navegacao_movimentacao_feedback" ID="{F412A929-3BFA-4C48-B0BA-5876BF7A9659}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0193436162444286"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.0205742871377017"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.0304196542838857"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ui_navegacao_movimentacao_feedback.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="552334925"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_navegacao_movimentacao_feedback" ID="{F412A929-3BFA-4C48-B0BA-5876BF7A9659}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ui_navegacao_movimentacao_intro" ID="{D24FDAD1-8444-4E57-A8F4-396DB2A7E43A}" ShortID="190640591">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-15</Value>
+											</ValueList>
+											<RTPCList>
+												<RTPC Name="" ID="{070735BE-51BF-47DE-B8BB-83367E191478}" ShortID="270359602">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Volume_navegacao" ID="{BE88603E-3E1E-4F6C-8156-8B5A3AA35503}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{97126A21-0EDA-487A-BADE-BE3FEE403843}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_navegacao_movimentacao" ID="{B5EA83CF-4653-4EDF-9920-8F10DF039319}">
+											<PropertyList>
+												<Property Name="TrimEnd" Type="Real64" Value="1.8296"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ui_navegacao_movimentacao.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="308703843"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="ui_navegacao_movimentacao_v1" ID="{F0A4EAD0-199E-49B5-8F35-7605E337D39C}">
+											<PropertyList>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.360262947585911"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.95035"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ui_navegacao_movimentacao_v1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="265878812"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_navegacao_movimentacao_v1" ID="{F0A4EAD0-199E-49B5-8F35-7605E337D39C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ui_navegacao_movimentacao_loop" ID="{09B238EF-737D-4F76-9749-9C8AA80EB250}" ShortID="181425326">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-15</Value>
+											</ValueList>
+											<RTPCList>
+												<RTPC Name="" ID="{B9EA1064-D761-4348-909C-1866D34817EC}" ShortID="820070763">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Volume_navegacao" ID="{BE88603E-3E1E-4F6C-8156-8B5A3AA35503}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{73AE0C16-A736-4551-98C1-32BA35D32A1B}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_navegacao_movimentacao" ID="{E17B1210-2E8B-475D-A056-3285629BBB24}">
+											<PropertyList>
+												<Property Name="FadeInShape" Type="int16" Value="0"/>
+												<Property Name="FadeOutShape" Type="int16" Value="9"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="1.8296"/>
+												<Property Name="TrimEnd" Type="Real64" Value="4.19100018856132"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ui_navegacao_movimentacao.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="479823860"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="ui_navegacao_movimentacao_v1" ID="{587B218E-E822-48A0-978C-BC5F371B8A54}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.021"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.021"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.95035"/>
+												<Property Name="TrimEnd" Type="Real64" Value="2.97657454601341"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ui_navegacao_movimentacao_v1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="828193275"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_navegacao_movimentacao_v1" ID="{587B218E-E822-48A0-978C-BC5F371B8A54}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ui_navegacao_movimentacao_outro" ID="{23CF85D8-433C-4B37-A80D-0FCE335A847B}" ShortID="81857576">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-15</Value>
+											</ValueList>
+											<RTPCList>
+												<RTPC Name="" ID="{2E618FCE-71DF-4DEA-A6D2-FE45C1E5831B}" ShortID="963851768">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Volume_navegacao" ID="{BE88603E-3E1E-4F6C-8156-8B5A3AA35503}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{A0095F7C-C543-4863-AF7B-7C8CAD16D056}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_navegacao_movimentacao_outro" ID="{A3F02C0C-43F2-41BB-8EA0-AADC652A3DB1}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.041533004338537"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ui_navegacao_movimentacao_outro.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="699273201"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="ui_navegacao_movimentacao_outro_v1" ID="{82ED7467-0011-4FA5-928C-B865BC8DC27D}">
+											<Language>SFX</Language>
+											<AudioFile>ui_navegacao_movimentacao_outro_v1.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="832655373"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_navegacao_movimentacao_outro_v1" ID="{82ED7467-0011-4FA5-928C-B865BC8DC27D}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ui_navegacao__planeta_selecao" ID="{C046F7D8-8134-4835-8141-F3A25572AD2F}" ShortID="1059684201">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<RTPCList>
+												<RTPC Name="" ID="{7995F489-F7A9-480B-B142-2C5DF1448FE4}" ShortID="596371274">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{52E865F1-C2A7-47E4-AEF1-A919195332CA}" ShortID="547581279">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{DBECF542-09D6-4FFC-9288-4E72204CBB36}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>24</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<RTPCList>
+												<RTPC Name="" ID="{8B536F33-4C76-4973-B2FE-73EC98E41363}" ShortID="690363349">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{9EC75B96-1BDA-4AEC-8D18-CA1D5373B548}" ShortID="400592646">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{5234BF1A-C628-46A4-9EA1-CD83D8070BC3}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>-100</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_navegacao__planeta_selecao" ID="{080D4A94-E8A4-4651-915D-8BFB4283ED2C}">
+											<Language>SFX</Language>
+											<AudioFile>ui_navegacao__planeta_selecao.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="374803507"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_navegacao__planeta_selecao" ID="{080D4A94-E8A4-4651-915D-8BFB4283ED2C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Personagens" ID="{6B6FD2D5-A395-4FC4-B4A5-F1BEFF327038}" ShortID="476870456">
@@ -4948,33 +5373,6 @@
 								<ActiveSource Name="cenario_nave_bip_tv" ID="{3839F7C1-E51A-4349-9E6D-8A278935D372}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="cenario_buyk_chuta_copo" ID="{D7135217-DF92-420D-B214-71892044022F}" ShortID="381202433">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="cenario_nave_bip_tv" ID="{9D9F74E8-CA36-4AA4-B148-0083541B0971}">
-									<PropertyList>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.0660320081789928"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="626021311"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="cenario_nave_bip_tv" ID="{9D9F74E8-CA36-4AA4-B148-0083541B0971}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 						<Sound Name="cenario_buyk_chuta_bolinha" ID="{B655D9B4-89F6-4334-85B5-2B1073E3E6FE}" ShortID="61500179">
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -5092,114 +5490,7 @@
 						<ActiveSource Name="cenario_nave_bip_tv" ID="{7B5A1F96-DCB6-480A-895E-3B84DDB70178}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
-				<Sound Name="ui_navegacao_movimentacao_feedback" ID="{C910BAED-808E-46E3-9DC1-A9577DEF7967}" ShortID="695702738">
-					<PropertyList>
-						<Property Name="Lowpass" Type="int16">
-							<RTPCList>
-								<RTPC Name="" ID="{D2FB3C94-D7D7-4129-94ED-5D0CEC4A04CB}" ShortID="563785144">
-									<ReferenceList>
-										<Reference Name="ControlInput">
-											<Custom>
-												<ModulatorLfo Name="Modulator LFO (Custom)" ID="{CC82703C-23C6-4C11-BD70-52C85BCA7B0C}" ShortID="959952231">
-													<PropertyList>
-														<Property Name="LfoWaveform" Type="int32" Value="5"/>
-													</PropertyList>
-												</ModulatorLfo>
-											</Custom>
-										</Reference>
-									</ReferenceList>
-									<Curve Name="" ID="{7A9FCC45-2A2F-429A-B21E-1C37DC3615BE}">
-										<PropertyList>
-											<Property Name="Flags" Type="int32" Value="65537"/>
-										</PropertyList>
-										<PointList>
-											<Point>
-												<XPos>0</XPos>
-												<YPos>24</YPos>
-												<Flags>21</Flags>
-											</Point>
-											<Point>
-												<XPos>1</XPos>
-												<YPos>0</YPos>
-												<Flags>53</Flags>
-											</Point>
-										</PointList>
-									</Curve>
-								</RTPC>
-							</RTPCList>
-						</Property>
-						<Property Name="Pitch" Type="int32">
-							<ValueList>
-								<Value>-1200</Value>
-							</ValueList>
-							<RTPCList>
-								<RTPC Name="" ID="{B008465F-44D8-459C-9B8B-C7553A407BC7}" ShortID="139899820">
-									<ReferenceList>
-										<Reference Name="ControlInput">
-											<Custom>
-												<ModulatorLfo Name="Modulator LFO (Custom)" ID="{CD9F78AA-2A9E-459F-9619-8BB772249D46}" ShortID="450475818">
-													<PropertyList>
-														<Property Name="LfoWaveform" Type="int32" Value="5"/>
-													</PropertyList>
-												</ModulatorLfo>
-											</Custom>
-										</Reference>
-									</ReferenceList>
-									<Curve Name="" ID="{D531E549-27FB-4DC9-A7CF-FEEC80EDFA13}">
-										<PropertyList>
-											<Property Name="Flags" Type="int32" Value="65537"/>
-										</PropertyList>
-										<PointList>
-											<Point>
-												<XPos>0</XPos>
-												<YPos>0</YPos>
-												<Flags>21</Flags>
-											</Point>
-											<Point>
-												<XPos>1</XPos>
-												<YPos>-100</YPos>
-												<Flags>53</Flags>
-											</Point>
-										</PointList>
-									</Curve>
-								</RTPC>
-							</RTPCList>
-						</Property>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>7</Value>
-							</ValueList>
-						</Property>
-					</PropertyList>
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="ui_navegacao_movimentacao_feedback" ID="{F412A929-3BFA-4C48-B0BA-5876BF7A9659}">
-							<PropertyList>
-								<Property Name="FadeInDuration" Type="Real64" Value="0.0193436162444286"/>
-								<Property Name="FadeOutDuration" Type="Real64" Value="0.0205742871377017"/>
-								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-								<Property Name="TrimEnd" Type="Real64" Value="0.0304196542838857"/>
-							</PropertyList>
-							<Language>SFX</Language>
-							<AudioFile>ui_navegacao_movimentacao_feedback.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="552334925"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="ui_navegacao_movimentacao_feedback" ID="{F412A929-3BFA-4C48-B0BA-5876BF7A9659}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="ui_navegacao__planeta_selecao" ID="{C046F7D8-8134-4835-8141-F3A25572AD2F}" ShortID="1059684201">
+				<Sound Name="cenario_buyk_chuta_copo" ID="{D7135217-DF92-420D-B214-71892044022F}" ShortID="381202433">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5209,7 +5500,7 @@
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<AudioFileSource Name="cenario_nave_bip_tv" ID="{53492BD9-D253-44B3-BDEC-D942CDB7074A}">
+						<AudioFileSource Name="cenario_nave_bip_tv" ID="{9D9F74E8-CA36-4AA4-B148-0083541B0971}">
 							<PropertyList>
 								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
 								<Property Name="TrimEnd" Type="Real64" Value="0.0660320081789928"/>
@@ -5223,225 +5514,7 @@
 					</ChildrenList>
 					<ObjectLists/>
 					<ActiveSourceList>
-						<ActiveSource Name="cenario_nave_bip_tv" ID="{53492BD9-D253-44B3-BDEC-D942CDB7074A}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="ui_navegacao_movimentacao_intro" ID="{D24FDAD1-8444-4E57-A8F4-396DB2A7E43A}" ShortID="190640591">
-					<PropertyList>
-						<Property Name="OverrideOutput" Type="bool" Value="True"/>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-10</Value>
-							</ValueList>
-							<RTPCList>
-								<RTPC Name="" ID="{070735BE-51BF-47DE-B8BB-83367E191478}" ShortID="270359602">
-									<ReferenceList>
-										<Reference Name="ControlInput">
-											<ObjectRef Name="Volume_navegacao" ID="{BE88603E-3E1E-4F6C-8156-8B5A3AA35503}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
-										</Reference>
-									</ReferenceList>
-									<Curve Name="" ID="{97126A21-0EDA-487A-BADE-BE3FEE403843}">
-										<PropertyList>
-											<Property Name="Flags" Type="int32" Value="3"/>
-										</PropertyList>
-										<PointList>
-											<Point>
-												<XPos>0</XPos>
-												<YPos>-200</YPos>
-												<Flags>5</Flags>
-											</Point>
-											<Point>
-												<XPos>100</XPos>
-												<YPos>0</YPos>
-												<Flags>37</Flags>
-											</Point>
-										</PointList>
-									</Curve>
-								</RTPC>
-							</RTPCList>
-						</Property>
-					</PropertyList>
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="ui_navegacao_movimentacao" ID="{B5EA83CF-4653-4EDF-9920-8F10DF039319}">
-							<PropertyList>
-								<Property Name="TrimEnd" Type="Real64" Value="1.8296"/>
-							</PropertyList>
-							<Language>SFX</Language>
-							<AudioFile>ui_navegacao_movimentacao.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="308703843"/>
-							</MediaIDList>
-						</AudioFileSource>
-						<AudioFileSource Name="ui_navegacao_movimentacao_v1" ID="{F0A4EAD0-199E-49B5-8F35-7605E337D39C}">
-							<PropertyList>
-								<Property Name="FadeOutDuration" Type="Real64" Value="0.0248457205231664"/>
-								<Property Name="LoopBegin" Type="Real64" Value="0"/>
-								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-								<Property Name="TrimEnd" Type="Real64" Value="0.95035"/>
-							</PropertyList>
-							<Language>SFX</Language>
-							<AudioFile>ui_navegacao_movimentacao_v1.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="265878812"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="ui_navegacao_movimentacao_v1" ID="{F0A4EAD0-199E-49B5-8F35-7605E337D39C}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="ui_navegacao_movimentacao_loop" ID="{09B238EF-737D-4F76-9749-9C8AA80EB250}" ShortID="181425326">
-					<PropertyList>
-						<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-10</Value>
-							</ValueList>
-							<RTPCList>
-								<RTPC Name="" ID="{B9EA1064-D761-4348-909C-1866D34817EC}" ShortID="820070763">
-									<ReferenceList>
-										<Reference Name="ControlInput">
-											<ObjectRef Name="Volume_navegacao" ID="{BE88603E-3E1E-4F6C-8156-8B5A3AA35503}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
-										</Reference>
-									</ReferenceList>
-									<Curve Name="" ID="{73AE0C16-A736-4551-98C1-32BA35D32A1B}">
-										<PropertyList>
-											<Property Name="Flags" Type="int32" Value="3"/>
-										</PropertyList>
-										<PointList>
-											<Point>
-												<XPos>0</XPos>
-												<YPos>-200</YPos>
-												<Flags>5</Flags>
-											</Point>
-											<Point>
-												<XPos>100</XPos>
-												<YPos>0</YPos>
-												<Flags>37</Flags>
-											</Point>
-										</PointList>
-									</Curve>
-								</RTPC>
-							</RTPCList>
-						</Property>
-					</PropertyList>
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="ui_navegacao_movimentacao" ID="{E17B1210-2E8B-475D-A056-3285629BBB24}">
-							<PropertyList>
-								<Property Name="FadeInShape" Type="int16" Value="0"/>
-								<Property Name="FadeOutShape" Type="int16" Value="9"/>
-								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-								<Property Name="TrimBegin" Type="Real64" Value="1.8296"/>
-								<Property Name="TrimEnd" Type="Real64" Value="4.19100018856132"/>
-							</PropertyList>
-							<Language>SFX</Language>
-							<AudioFile>ui_navegacao_movimentacao.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="479823860"/>
-							</MediaIDList>
-						</AudioFileSource>
-						<AudioFileSource Name="ui_navegacao_movimentacao_v1" ID="{587B218E-E822-48A0-978C-BC5F371B8A54}">
-							<PropertyList>
-								<Property Name="FadeInDuration" Type="Real64" Value="0.021"/>
-								<Property Name="FadeOutDuration" Type="Real64" Value="0.021"/>
-								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-								<Property Name="TrimBegin" Type="Real64" Value="0.95035"/>
-								<Property Name="TrimEnd" Type="Real64" Value="2.97657454601341"/>
-							</PropertyList>
-							<Language>SFX</Language>
-							<AudioFile>ui_navegacao_movimentacao_v1.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="828193275"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="ui_navegacao_movimentacao_v1" ID="{587B218E-E822-48A0-978C-BC5F371B8A54}" Platform="Linked"/>
-					</ActiveSourceList>
-				</Sound>
-				<Sound Name="ui_navegacao_movimentacao_outro" ID="{23CF85D8-433C-4B37-A80D-0FCE335A847B}" ShortID="81857576">
-					<PropertyList>
-						<Property Name="Volume" Type="Real64">
-							<ValueList>
-								<Value>-10</Value>
-							</ValueList>
-							<RTPCList>
-								<RTPC Name="" ID="{2E618FCE-71DF-4DEA-A6D2-FE45C1E5831B}" ShortID="963851768">
-									<ReferenceList>
-										<Reference Name="ControlInput">
-											<ObjectRef Name="Volume_navegacao" ID="{BE88603E-3E1E-4F6C-8156-8B5A3AA35503}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
-										</Reference>
-									</ReferenceList>
-									<Curve Name="" ID="{A0095F7C-C543-4863-AF7B-7C8CAD16D056}">
-										<PropertyList>
-											<Property Name="Flags" Type="int32" Value="3"/>
-										</PropertyList>
-										<PointList>
-											<Point>
-												<XPos>0</XPos>
-												<YPos>-200</YPos>
-												<Flags>5</Flags>
-											</Point>
-											<Point>
-												<XPos>100</XPos>
-												<YPos>0</YPos>
-												<Flags>37</Flags>
-											</Point>
-										</PointList>
-									</Curve>
-								</RTPC>
-							</RTPCList>
-						</Property>
-					</PropertyList>
-					<ReferenceList>
-						<Reference Name="Conversion">
-							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-						</Reference>
-						<Reference Name="OutputBus">
-							<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-						</Reference>
-					</ReferenceList>
-					<ChildrenList>
-						<AudioFileSource Name="ui_navegacao_movimentacao_outro" ID="{A3F02C0C-43F2-41BB-8EA0-AADC652A3DB1}">
-							<PropertyList>
-								<Property Name="FadeInDuration" Type="Real64" Value="0.041533004338537"/>
-								<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-							</PropertyList>
-							<Language>SFX</Language>
-							<AudioFile>ui_navegacao_movimentacao_outro.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="699273201"/>
-							</MediaIDList>
-						</AudioFileSource>
-						<AudioFileSource Name="ui_navegacao_movimentacao_outro_v1" ID="{82ED7467-0011-4FA5-928C-B865BC8DC27D}">
-							<Language>SFX</Language>
-							<AudioFile>ui_navegacao_movimentacao_outro_v1.wav</AudioFile>
-							<MediaIDList>
-								<MediaID ID="832655373"/>
-							</MediaIDList>
-						</AudioFileSource>
-					</ChildrenList>
-					<ObjectLists/>
-					<ActiveSourceList>
-						<ActiveSource Name="ui_navegacao_movimentacao_outro_v1" ID="{82ED7467-0011-4FA5-928C-B865BC8DC27D}" Platform="Linked"/>
+						<ActiveSource Name="cenario_nave_bip_tv" ID="{9D9F74E8-CA36-4AA4-B148-0083541B0971}" Platform="Linked"/>
 					</ActiveSourceList>
 				</Sound>
 			</ChildrenList>
