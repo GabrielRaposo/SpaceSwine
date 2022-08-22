@@ -24,7 +24,7 @@ public class SetSceneNavigationObject : NavigationObject
     private NavigationSceneManager navSceneManager;
 
     [SerializeField] private Transform dotsParent;
-    [SerializeField] private AK.Wwise.Event sound; 
+    [SerializeField] private AK.Wwise.Event lineDotAKEvent; 
     
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event OnSelectAKEvent;
@@ -71,7 +71,8 @@ public class SetSceneNavigationObject : NavigationObject
 
         sprite.color = Color.white;
 
-        sound.Post(gameObject);
+        if (lineDotAKEvent != null)
+            lineDotAKEvent.Post(gameObject);
         
         //Feedback de seleção e UI de autopilot         
         sequence.Append(selector.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.22f).OnComplete(()=>navSceneManager.BlinkAutoPilot()));
@@ -175,7 +176,8 @@ public class SetSceneNavigationObject : NavigationObject
                 var pos = animationBezier.GetNormalizedPoint(index / c);
                 var dot = dotsParent.GetChild(index);
                 dot.position = pos;
-                sound.Post(gameObject);
+                if (lineDotAKEvent != null)
+                    lineDotAKEvent.Post(gameObject);
             }));
         }
 
