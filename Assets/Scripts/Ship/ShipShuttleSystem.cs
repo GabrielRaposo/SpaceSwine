@@ -78,7 +78,7 @@ public class ShipShuttleSystem : MonoBehaviour
 
         RaposUtil.WaitSeconds(this, duration: .55f, () => 
         {
-            if (reachingAKEvent != null)
+            if (reachingAKEvent != null && playerObject.activeSelf)
                 reachingAKEvent.Post(gameObject);
         });
 
