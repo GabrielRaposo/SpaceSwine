@@ -80,7 +80,7 @@ public class ShipDialogueBox : MonoBehaviour
 
     private void OnDisable() 
     {
-        Debug.Log("OnDisable");
+        //Debug.Log("OnDisable");
         inputActions.UI.Confirm.Disable();
     }
 

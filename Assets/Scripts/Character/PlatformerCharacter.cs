@@ -174,7 +174,7 @@ public class PlatformerCharacter : SidewaysCharacter
 
             if ( (heldInput == Vector2.zero || !IsCloseEnough(heldInput, rawInput)) && holdAnchorCount < 1)
             {
-                Debug.Log("trocou aqui");
+                //Debug.Log("trocou aqui");
                 moveInputRotationAnchor = transform.eulerAngles.z;
             }
             if (heldInput != Vector2.zero && heldInput != rawInput && IsCloseEnough(heldInput, rawInput))
