@@ -37,7 +37,7 @@ public class NavigationConsole : MonoBehaviour
     //public static bool TurnedOn { get; private set; }
     public static NavigationConsole Instance;
 
-    public static int ShipTeleportSceneIndex;
+    public static int ShipTeleportSceneIndex = (int) BuildIndex.World1Exploration;
 
     private void Awake() 
     {
@@ -47,7 +47,7 @@ public class NavigationConsole : MonoBehaviour
         canvasGroup.alpha = 0;
 
         // -- Temp
-        ShipTeleportSceneIndex = (int) BuildIndex.World1Exploration;
+        //ShipTeleportSceneIndex = (int) BuildIndex.World1Exploration;
     }
 
     private void OnEnable() 
