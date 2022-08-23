@@ -635,6 +635,17 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Event Name="splash_screen" ID="{D417CF69-3AA4-4795-9053-00BAB05370E6}">
+							<ChildrenList>
+								<Action Name="" ID="{1A8978C1-51D7-4702-9CAA-80317A6076BC}" ShortID="625406478">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="splash_screen" ID="{D26C9E43-ABF4-45C3-8155-C300DA130534}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Música" ID="{B161416B-3C8F-40B2-951B-9CE5F66A24CE}" ShortID="710658385">
@@ -1153,39 +1164,43 @@
 						</Event>
 					</ChildrenList>
 				</Folder>
-				<Event Name="gameplay_buyk_senta_GGS" ID="{E33124DE-7E9E-4F1A-8B62-0B47EDFCF33E}">
+				<Folder Name="z_depois" ID="{D409761D-AB2C-488D-8196-3D397D3728EF}" ShortID="382020020">
 					<ChildrenList>
-						<Action Name="" ID="{1C7B8CE2-CA18-46F3-9985-40C70684C8E7}" ShortID="647075686">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="gameplay_buyk_senta_GGS" ID="{76D9B596-6415-472A-AB32-443A7531B069}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
+						<Event Name="gameplay_buyk_senta_GGS" ID="{E33124DE-7E9E-4F1A-8B62-0B47EDFCF33E}">
+							<ChildrenList>
+								<Action Name="" ID="{1C7B8CE2-CA18-46F3-9985-40C70684C8E7}" ShortID="647075686">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="gameplay_buyk_senta_GGS" ID="{76D9B596-6415-472A-AB32-443A7531B069}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="cenario_buyk_chuta_bolinha" ID="{887A75C3-325D-4AFE-A3F8-704FBB2F28EC}">
+							<ChildrenList>
+								<Action Name="" ID="{036E6D97-E207-4C5B-BF77-A2532C599B42}" ShortID="589307520">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="cenario_buyk_chuta_bolinha" ID="{B655D9B4-89F6-4334-85B5-2B1073E3E6FE}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="gameplay_buyk_senta_cama" ID="{5C970CBD-7B98-43A1-B6D7-B7131DD61CFF}">
+							<ChildrenList>
+								<Action Name="" ID="{97171FB1-0F26-4AA0-8E45-347BB36AA75A}" ShortID="902000006">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="gameplay_buyk_senta_cama" ID="{FA7547E3-2988-4CD8-9B47-96CEFBA60A69}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
-				</Event>
-				<Event Name="gameplay_buyk_senta_cama" ID="{5C970CBD-7B98-43A1-B6D7-B7131DD61CFF}">
-					<ChildrenList>
-						<Action Name="" ID="{97171FB1-0F26-4AA0-8E45-347BB36AA75A}" ShortID="902000006">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="gameplay_buyk_senta_cama" ID="{FA7547E3-2988-4CD8-9B47-96CEFBA60A69}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
-				<Event Name="cenario_buyk_chuta_bolinha" ID="{887A75C3-325D-4AFE-A3F8-704FBB2F28EC}">
-					<ChildrenList>
-						<Action Name="" ID="{036E6D97-E207-4C5B-BF77-A2532C599B42}" ShortID="589307520">
-							<ReferenceList>
-								<Reference Name="Target">
-									<ObjectRef Name="cenario_buyk_chuta_bolinha" ID="{B655D9B4-89F6-4334-85B5-2B1073E3E6FE}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-								</Reference>
-							</ReferenceList>
-						</Action>
-					</ChildrenList>
-				</Event>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
