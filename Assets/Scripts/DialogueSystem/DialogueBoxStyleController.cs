@@ -12,6 +12,7 @@ public class DialogueBoxStyleController : MonoBehaviour
     [SerializeField] Image patternImage;
     [SerializeField] Image bgImage;
     [SerializeField] Image borderImage;
+    [SerializeField] Image skipIconImage;
     [SerializeField] TextMeshProUGUI textDisplay;
     [SerializeField] GameObject nameBoxObject;
 
@@ -46,8 +47,13 @@ public class DialogueBoxStyleController : MonoBehaviour
         }
 
         bgImage.color = style.BGColor;
+        
         borderImage.sprite = style.borderSprite;
         borderImage.color = style.borderColor;
+
+        if (style.skipIconSprite != null)
+            skipIconImage.sprite = style.skipIconSprite;
+        skipIconImage.color = style.skipIconColor;
 
         textDisplay.color = style.textColor;
         textDisplay.fontSize = style.fontSize;
@@ -63,7 +69,15 @@ public class DialogueBoxStyleController : MonoBehaviour
         if (style.customLeftOffset > -1)
             left = style.customLeftOffset;
 
-        textDisplay.margin = new Vector4( left, top, textDisplay.margin.z, textDisplay.margin.w);
+        float botom = 40;
+        if (style.customBottomOffset > -1)
+            botom = style.customBottomOffset;
+
+        float right = 70;
+        if (style.customRightOffset > -1)
+            right = style.customRightOffset;
+
+        textDisplay.margin = new Vector4( left, top, right, botom);
         
         // -- Alignment
         textDisplay.horizontalAlignment = style.horizontalAlignment;
