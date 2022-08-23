@@ -9,10 +9,13 @@ public class RoundTransition : MonoBehaviour
 {
     [SerializeField] RectTransform fillAnchor;
 
-    //[Header("Values")]
+    [Header("Values")]
     [SerializeField] float duration;
     [SerializeField] float topY;
     [SerializeField] float botY;
+
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event transitionAKEvent;
 
     Sequence mainSequence;
     CanvasGroup canvasGroup;
@@ -62,7 +65,10 @@ public class RoundTransition : MonoBehaviour
         fillAnchor.MoveY(botY);
         canvasGroup.alpha = 1;
 
-        // Mostra transição
+        if (transitionAKEvent != null)
+            transitionAKEvent.Post(gameObject);
+
+        // -- Mostra transição
         mainSequence = DOTween.Sequence();
         mainSequence.Append
         ( 
@@ -78,11 +84,11 @@ public class RoundTransition : MonoBehaviour
         yield return new WaitUntil( () => done );
         done = false;
 
-        // Chamada de action 
+        // -- Chamada de action 
         action?.Invoke();
         yield return new WaitForEndOfFrame();
 
-        // Some com transição
+        // -- Some com transição
         mainSequence = DOTween.Sequence();
         mainSequence.Append
         ( 

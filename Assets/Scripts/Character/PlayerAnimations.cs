@@ -9,8 +9,8 @@ public class PlayerAnimations : MonoBehaviour
 {
     [SerializeField] AnimatorOverrideController shipOverrideController;
     [SerializeField] bool forceOverride;
-
     Animator animator;
+
     string currentState;
 
     [HideInInspector] public bool landedOnGround;
@@ -27,7 +27,7 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Awake() 
     {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
 
         if (shipOverrideController && (forceOverride || GameManager.IsOnScene(BuildIndex.Ship)) ) 
         {
@@ -120,7 +120,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void SetTransitionState (string animationState)
     {
-        Debug.Log("SetTransitionState");
+        //Debug.Log("SetTransitionState");
         ChangeAnimationState(animationState);
         onTransition = true;
     }

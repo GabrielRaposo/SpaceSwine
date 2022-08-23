@@ -47,7 +47,7 @@ public class NavigationObject : MonoBehaviour
         OpenDisplay();
     }
 
-    public virtual void OnDisselect()
+    public virtual void OnDeselect()
     {
         sprite.color = unselectedColor;
         CloseDisplay();
@@ -55,7 +55,7 @@ public class NavigationObject : MonoBehaviour
 
     public void OnInteract(NavigationShip ship = null)
     {
-        Debug.Log("OnInteract()");
+        //Debug.Log("OnInteract()");
         interactAction?.Invoke(ship);
     }
 

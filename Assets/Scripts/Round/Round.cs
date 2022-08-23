@@ -48,6 +48,13 @@ public class Round : MonoBehaviour
                     {
                         player.transform.SetParent(transform);
                         player.gameObject.SetActive(true);
+
+                        PlayerTransitionState playerTransitionState = player.GetComponent<PlayerTransitionState>();
+                        if (playerTransitionState)
+                        {
+                            PlayerTransitionState.EnterState = PlayerTransitionState.State.OutOfPortal;
+                            playerTransitionState.CallOnStartSpawn();
+                        }
                     }
                 ) 
             );

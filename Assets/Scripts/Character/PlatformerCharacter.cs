@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GroundControlType 
+{ 
+    Dynamic_1, // -- Dinâmico, com hold anchor frames
+    Dynamic_2, // -- Dinâmico, remapeia sempre que para
+    Absolute  
+}
+
 
 public class PlatformerCharacter : SidewaysCharacter
 {
@@ -12,9 +19,8 @@ public class PlatformerCharacter : SidewaysCharacter
     [SerializeField] float acceleration;
     [SerializeField] float jumpForce;
 
-
     [Header("Dynamic Input Values")]
-    [SerializeField] bool dynamicControls;
+    //[SerializeField] GroundControlType startingGroundControlType;
     [SerializeField] [Range(0f, 1f)] float dynamicInputThreshold;
     [SerializeField] [Range(0, 30)] int holdAnchorDuration;
 
@@ -35,7 +41,7 @@ public class PlatformerCharacter : SidewaysCharacter
     [SerializeField] Vector2 autoClimbCheckPoint;
     [SerializeField] Vector2 autoClimbCheckSize;
 
-
+    [HideInInspector] public bool BlockLandFeedback; 
     bool onGround;
 
     Vector2 heldInput;
@@ -53,6 +59,8 @@ public class PlatformerCharacter : SidewaysCharacter
     CheckWall checkWall;
     PlayerAnimations playerAnimations;
     Rigidbody2D rb;
+
+    public static GroundControlType OnGroundControlType = GroundControlType.Dynamic_1; 
 
     void Awake()
     {
@@ -93,6 +101,7 @@ public class PlatformerCharacter : SidewaysCharacter
     protected override void SetFacingRight(bool value) 
     {
         if (!enabled) return;
+
         base.SetFacingRight(value);
         visualAnchor.localEulerAngles = new Vector3 (visualAnchor.localEulerAngles.x, value ? 0 : 180, visualAnchor.localEulerAngles.z);
         //directionArrow.flipY = !value;
@@ -110,7 +119,7 @@ public class PlatformerCharacter : SidewaysCharacter
     {
         float horizontalInput = axisInput.x;
 
-        if (dynamicControls) 
+        if (OnGroundControlType != GroundControlType.Absolute) 
         {
             axisInput = ConvertAxisInput( axisInput );
             horizontalInput = axisInput.x;
@@ -162,12 +171,19 @@ public class PlatformerCharacter : SidewaysCharacter
                     IsTooClose(heldInput, rawInput)
                )
             **/
+
             if ( (heldInput == Vector2.zero || !IsCloseEnough(heldInput, rawInput)) && holdAnchorCount < 1)
             {
+                //Debug.Log("trocou aqui");
                 moveInputRotationAnchor = transform.eulerAngles.z;
             }
-            if (heldInput != rawInput && IsCloseEnough(heldInput, rawInput))
+            if (heldInput != Vector2.zero && heldInput != rawInput && IsCloseEnough(heldInput, rawInput))
             {
+                Debug.Log
+                (
+                    $"IsCloseEnough: {IsCloseEnough(heldInput, rawInput)}, " +
+                    $"heldInput: {heldInput.To8Directions()}, rawInput: {rawInput.To8Normalized()}"
+                );
                 moveInputRotationAnchor = transform.eulerAngles.z;
             }
             anchor = moveInputRotationAnchor;
@@ -178,10 +194,13 @@ public class PlatformerCharacter : SidewaysCharacter
         else
         {
             heldInput = Vector2.zero;
-
+            
             if (holdAnchorCount > 0)
                 holdAnchorCount--;
         }
+
+        if (OnGroundControlType == GroundControlType.Dynamic_2)
+            holdAnchorCount = 0;
 
         Vector2 output = FilterThroughAnchor(rawInput, anchor);
 
@@ -234,9 +253,13 @@ public class PlatformerCharacter : SidewaysCharacter
     {
         A = A.To8Directions();
         B = B.To8Directions();
+        //Debug.Log($"after >> A: {A}, B: {B}");
 
-        if (A.x == -B.x || A.y == -B.y)
+        if ( (A.x != 0 && B.x != 0 && A.x == -B.x) || (A.y != 0 && B.y != 0 && A.y == -B.y))
+        {
+            //Debug.Log("not close enough");
             return false;
+        }
 
         //float angleA = Vector2.SignedAngle(Vector2.up, A);
         //if (angleA < 360) angleA += 360;
@@ -249,6 +272,7 @@ public class PlatformerCharacter : SidewaysCharacter
         //if (Mathf.Abs(angleA - angleB) > 90)
         //    return false;
 
+        //Debug.Log("close enough");
         return true;
     }
 
@@ -319,8 +343,11 @@ public class PlatformerCharacter : SidewaysCharacter
         {
             if (!previousState) 
             {
-                shortLandingAKEvent?.Post(gameObject);
-                shortLandingVFX?.Play();
+                if (!BlockLandFeedback)
+                {
+                    shortLandingAKEvent?.Post(gameObject);
+                    shortLandingVFX?.Play();
+                }
             }
             playerAnimations.SetLandedState();
         }
@@ -390,6 +417,9 @@ public class PlatformerCharacter : SidewaysCharacter
 
         horizontalSpeed = verticalSpeed = 0;
         playerAnimations.horizontalInput = 0;
+
+        heldInput = Vector2.zero;    
+        moveInputRotationAnchor = lastValidAnchor = holdAnchorCount = 0;
     }
 
     public Vector2 LocalSpeed()

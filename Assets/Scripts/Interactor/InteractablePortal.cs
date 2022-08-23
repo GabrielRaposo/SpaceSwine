@@ -58,7 +58,7 @@ public class InteractablePortal : Interactable
         {
             //Debug.Log("Session Done! ");
             Debug.Log("LoadSceneAction");
-            SpawnManager.Index = data.spawnIndex;
+            SpawnManager.Index = data.OutroSpawnIndex;
         };
         RoundsManager.SessionData = data;
             

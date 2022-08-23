@@ -16,7 +16,10 @@ public class ShipShuttleSystem : MonoBehaviour
     [SerializeField] GameObject playerObject;
     [SerializeField] float duration;
     [SerializeField] ShipScreensOverlay screensOverlay;
-    //[SerializeField] BuildIndex targetIndex;
+    
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event reachingAKEvent;
+    [SerializeField] AK.Wwise.Event leavingAKEvent;
 
     PlayerCharacter playerCharacter;
     PlayerInput playerInput;
@@ -73,6 +76,12 @@ public class ShipShuttleSystem : MonoBehaviour
         Vector2 targetPosition 
             = transform.position + (Vector3.up * UPPER_ANCHOR_Y); 
 
+        RaposUtil.WaitSeconds(this, duration: .55f, () => 
+        {
+            if (reachingAKEvent != null && playerObject.activeSelf)
+                reachingAKEvent.Post(gameObject);
+        });
+
         sequence = DOTween.Sequence();
         sequence.Append( playerObject.transform.DOMoveY( targetPosition.y, duration ).SetEase(Ease.Linear) );
         sequence.OnComplete
@@ -116,6 +125,9 @@ public class ShipShuttleSystem : MonoBehaviour
             = transform.position + (Vector3.up * UPPER_ANCHOR_Y); 
         Vector2 targetPosition 
             = transform.position + (Vector3.up * LOWER_ANCHOR_Y); 
+
+        if (leavingAKEvent != null)
+            leavingAKEvent.Post(gameObject);
 
         sequence = DOTween.Sequence();
         sequence.Append( playerObject.transform.DOMoveY( targetPosition.y, duration ).SetEase(Ease.Linear) );

@@ -27,7 +27,7 @@ public class SplashScreenManager : MonoBehaviour
         if (!videoPlayer)
             return;
 
-        if(fadeImage)
+        if (fadeImage)
         {
             fadeImage.DOFade(0, fadeDuration);
         }

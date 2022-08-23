@@ -49,7 +49,7 @@ public class LocationDisplay : MonoBehaviour
         if (animator)
             animator.SetBool("Open", true);
 
-        yield return new WaitForSeconds(holdDuration);
+        yield return new WaitForSecondsRealtime (holdDuration);
 
         if (animator)
             animator.SetBool("Open", false);

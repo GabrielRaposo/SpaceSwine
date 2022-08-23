@@ -6,6 +6,7 @@ public class BuddingFlowerGroup : MonoBehaviour
 {
     [SerializeField] Door door;
     [SerializeField] float activationDelay;
+    [SerializeField] AK.Wwise.Event activationAKEvent;
 
     int activeCount;
     List<BuddingFlower> flowers;
@@ -52,6 +53,9 @@ public class BuddingFlowerGroup : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
 
+        if (activationAKEvent != null)
+            activationAKEvent.Post(gameObject);
+        
         foreach(BuddingFlower bf in flowers)
             bf.PreLightUp();
 

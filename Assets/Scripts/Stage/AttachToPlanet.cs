@@ -5,7 +5,8 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class AttachToPlanet : MonoBehaviour
 {
-    [SerializeField] float angle;
+    [SerializeField] protected float angle;
+    [SerializeField] float heightOffset;
     
     bool attached;
     GravitationalPlanet planet;
@@ -15,17 +16,17 @@ public class AttachToPlanet : MonoBehaviour
         Attach();
     }
 
-    #if UNITY_EDITOR
-    private void Update() 
+    protected virtual void Update() 
     {
+        #if UNITY_EDITOR
         if (Application.isPlaying)
             return;
 
         Attach();
+        #endif
     }
-    #endif
 
-    private void Attach()
+    protected void Attach()
     {
         planet = GetComponentInParent<GravitationalPlanet>();
         if (!planet) 
@@ -51,7 +52,7 @@ public class AttachToPlanet : MonoBehaviour
             localAngle = angle;
         }
         
-        transform.localPosition = direction * radius.planet;
+        transform.localPosition = direction * (radius.planet + heightOffset);
         transform.localEulerAngles = Vector3.forward * localAngle;
 
         attached = true;

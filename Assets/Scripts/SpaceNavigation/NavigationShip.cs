@@ -25,6 +25,24 @@ public class NavigationShip : MonoBehaviour
 
     private static Vector2 previousPostion = new Vector2(0f, 330f-1.28f);
 
+    [Header("Audio")]
+    [SerializeField] float flightStepsDelay;
+    [SerializeField] AK.Wwise.Event flightStepsAKEvent;
+    //[SerializeField] AK.Wwise.Event flightAmbienceAKEvent;
+
+    public bool OverrideMode = false;
+    public Vector2 OverridenControls = Vector2.zero; // -- Macetagem pra manter o som ativo no auto-pilot
+
+    NavigationShipSoundController movementSoundController; 
+    Coroutine flightStepsRoutine;
+
+    bool playingFlightStepsSound;
+
+    private void Awake() 
+    {
+        movementSoundController = GetComponent<NavigationShipSoundController>();    
+    }
+
     private void OnEnable()
     {
         transform.position = previousPostion;
@@ -62,7 +80,7 @@ public class NavigationShip : MonoBehaviour
         if(navObject == null) return;
         
         if(selectedObject != null)
-            selectedObject.OnDisselect();
+            selectedObject.OnDeselect();
         
         navObject.OnSelect();
         selectedObject = navObject;
@@ -74,7 +92,7 @@ public class NavigationShip : MonoBehaviour
         if(navObject == null)
             return;
         
-        navObject.OnDisselect();
+        navObject.OnDeselect();
 
         if (navObject == selectedObject)
             selectedObject = null;
@@ -82,11 +100,29 @@ public class NavigationShip : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (OverrideMode)
+        {
+            if (OverridenControls != Vector2.zero)
+            {
+                if (movementSoundController)
+                    movementSoundController.ReadInput(OverridenControls.normalized, intensity: 1.84f);
+            }
+            else
+            {
+                if (movementSoundController)
+                    movementSoundController.ReadInput(Vector2.zero, intensity: 0f);
+            }
+
+            return;
+        }
+    
         previousPostion = transform.position;
-        if(ControlsLocked) return;
+        if (ControlsLocked) return;
         
         Vector2 input = movementInputAction.ReadValue<Vector2>();
         movDirection += input * aceleration;
+        if (movementSoundController)
+            movementSoundController.ReadInput(input.normalized, movDirection.magnitude);
         TrailParticleLogic(activate: input != Vector2.zero);
 
         if (movDirection.magnitude > movmentCap)
@@ -107,8 +143,9 @@ public class NavigationShip : MonoBehaviour
         if(NavigationParalaxAnchor.Instance)
             NavigationParalaxAnchor.Instance.transform.Translate(movDirection*speed*20f);
         
-        transform.Translate(movDirection*speed);
+        transform.Translate(movDirection * speed);
     }
+
 
     private void TrailParticleLogic (bool activate)
     {
@@ -119,11 +156,51 @@ public class NavigationShip : MonoBehaviour
         {
             if (!smokeTrailPS.isPlaying)
                 smokeTrailPS.Play();
+
+            SetFlightStepsSound (true);
         }
         else
         {
             if (smokeTrailPS.isPlaying)
                 smokeTrailPS.Stop();
+
+            SetFlightStepsSound (false);
+        }
+    }
+
+    public void SetFlightStepsSound (bool value)
+    {
+        if (value)
+        {
+            if (!playingFlightStepsSound)
+            { 
+                if (flightStepsRoutine != null)
+                    StopAllCoroutines();
+
+                flightStepsRoutine = StartCoroutine( FlightStepsLoop() );
+                
+                playingFlightStepsSound = true;
+            }
+        }
+        else
+        {
+            if (flightStepsRoutine != null)
+                StopAllCoroutines();
+            playingFlightStepsSound = false;
+        }
+    }
+
+    private IEnumerator FlightStepsLoop()
+    {
+        if (flightStepsAKEvent == null)
+            yield break;
+
+        while (true) 
+        {
+            yield return new WaitForSeconds(flightStepsDelay);
+            //Debug.Log("step");
+            
+            flightStepsAKEvent.Post(gameObject);
         }
     }
 

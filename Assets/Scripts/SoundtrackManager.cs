@@ -13,6 +13,7 @@ public class SoundtrackManager : MonoBehaviour
     [SerializeField] AK.Wwise.RTPC masterParameter;
     [SerializeField] AK.Wwise.RTPC musicParameter;
     [SerializeField] AK.Wwise.RTPC sfxParameter;
+    [SerializeField] AK.Wwise.RTPC placeholderParameter;
 
     [Header("Test Inputs")]
     [SerializeField] InputAction playMusicTestInput;
@@ -48,6 +49,14 @@ public class SoundtrackManager : MonoBehaviour
         {
             playlist = fullPlaylist; 
             MakePlaylistPlayOrder();
+        }
+
+        if (!Application.isEditor)
+        {
+            if (placeholderParameter != null) 
+            {
+                placeholderParameter.SetGlobalValue(0);
+            }
         }
     }
 

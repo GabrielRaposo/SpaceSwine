@@ -8,6 +8,7 @@ using DG.Tweening;
 public class PlaylistPlayer : MonoBehaviour
 {
     [Header("Values")]
+    [SerializeField] float holdCooldown;
     [SerializeField] PlaylistScriptableObject playlist;
     [SerializeField] float offscreenX;
     [SerializeField] float slideDuration;
@@ -28,6 +29,7 @@ public class PlaylistPlayer : MonoBehaviour
 
     [HideInInspector] public bool OnFocus;
 
+    float holdCount;
     float timerCount;
     bool visible;
     bool playerMode;
@@ -57,6 +59,7 @@ public class PlaylistPlayer : MonoBehaviour
         playerInputActions = new PlayerInputActions();    
     
         navigationInput = playerInputActions.UI.Navigation;
+        /**
         navigationInput.performed += (ctx) => 
         { 
             if (!OnFocus || SceneTransition.OnTransition)
@@ -81,6 +84,7 @@ public class PlaylistPlayer : MonoBehaviour
                     SkipMusic(-1);
             }
         };
+        **/
         navigationInput.Enable();
 
         centerInput = playerInputActions.UI.Confirm;
@@ -167,7 +171,6 @@ public class PlaylistPlayer : MonoBehaviour
         {
             soundtrackManager.SetPlaylist(playlist);
         }
-        CutsceneMode = false;
 
         var data = soundtrackManager.GetTrackData();
         SetupOnTrackEvent(data.fileName, data.currentIndex);
@@ -218,7 +221,7 @@ public class PlaylistPlayer : MonoBehaviour
             textSequence.SetLoops(-1);
         }
 
-        if (playerMode)
+        if (playerMode && !CutsceneMode)
             SlideIn(extraTime: stepsCount * textStepDuration);
     }
 
@@ -230,19 +233,53 @@ public class PlaylistPlayer : MonoBehaviour
 
     private void Update() 
     {
-        if (!visible)
+        if (visible)
+        {
+            ButtonsVisualInteractions();
+
+            timerCount -= Time.deltaTime;
+            if (timerCount <= 0)
+                SlideOut();
+        }
+        
+        Vector2 axis = navigationInput.ReadValue<Vector2>();
+        if (axis == Vector2.zero)
+            holdCount = 0;
+        else
+            holdCount -= Time.deltaTime;
+
+        if (holdCount < 0)
+            holdCount = 0;
+
+        if (!OnFocus || SceneTransition.OnTransition)
             return;
 
-        ButtonsVisualInteractions();
+        if (holdCount > 0)
+            return;
 
-        timerCount -= Time.deltaTime;
-        if (timerCount <= 0)
-            SlideOut();
+        if (Mathf.Abs( axis.y ) > .9f)
+        {
+            ExitState();
+            return;
+        }
+
+        if (!playerMode)
+            return;
+
+        if (Mathf.Abs( axis.x ) != 0)
+        {
+            if (axis.x > .5f)
+                SkipMusic(1);
+            else if (axis.x < .5f)
+                SkipMusic(-1);
+        }
     }
 
     private void ButtonsVisualInteractions()
     {
         Vector2 axis = navigationInput.ReadValue<Vector2>();
+        if (!playerMode || !OnFocus || SceneTransition.OnTransition)
+            axis = Vector2.zero;
         backButton?.SetActive (axis.x > -.5f);
         forwardButton?.SetActive (axis.x < .5f);
 
@@ -296,6 +333,7 @@ public class PlaylistPlayer : MonoBehaviour
 
     public void SkipMusic (int direction)
     {
+        holdCount = holdCooldown;
         soundtrackManager.SkipTrack(direction);
     }
 
@@ -314,6 +352,9 @@ public class PlaylistPlayer : MonoBehaviour
         centerInput.Disable();
         playerInputActions.UI.Cancel.Disable();
         playerInputActions.UI.Other.Disable();
+
+        if (CutsceneMode)
+            CutsceneMode = false;
     }
 
 }

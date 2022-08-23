@@ -14,8 +14,14 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] List<PagerScreen> screens;
     [SerializeField] GameObject callScreen;
     [SerializeField] Image callCountFillDisplay;
+
+    [Header("Exclusive Buttons")]
     [SerializeField] GameObject resetRoundButton;
+    [SerializeField] GameObject exitZoneButton;
+
+    [Header(" ")]
     [SerializeField] UnityEvent backOnMainEvent;
+    [SerializeField] float maxScreenDelay = .4f;
 
     [Header("Keychain Interaction")]
     [SerializeField] GameObject keychainObject;
@@ -33,11 +39,18 @@ public class PagerInteractionManager : MonoBehaviour
     [SerializeField] bool optionsMode;
     [SerializeField] PagerInteractableButton optionsBackButton;
 
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event appearAKEvent;
+    [SerializeField] AK.Wwise.Event vanishAKEvent;
+    [SerializeField] AK.Wwise.Event callShipAKEvent;
+    [SerializeField] AK.Wwise.Event keychainButtonAKEvent;
+    [SerializeField] AK.Wwise.Event keychainShakeAKEvent;
+
     [HideInInspector] public bool OnFocus;
 
     int current;
-    float delay;
-    float holdCount; 
+    float screenDelay;
+    float shipCallCount; 
     bool keychainState;
     bool callingShip;
     Sequence s;
@@ -107,11 +120,14 @@ public class PagerInteractionManager : MonoBehaviour
 
         if (keychainBanner)
             keychainBanner.Show();
+
+        if (keychainState && keychainShakeAKEvent != null)
+            keychainShakeAKEvent.Post(gameObject);
     }
 
     private bool CheckInputBlock
     {
-        get { return !OnFocus || SceneTransition.OnTransition || holdCount > 0; }
+        get { return !OnFocus || SceneTransition.OnTransition || shipCallCount > 0; }
     }
 
     public void CustomActivation (UnityAction backCall)
@@ -147,7 +163,11 @@ public class PagerInteractionManager : MonoBehaviour
 
         if (resetRoundButton)
             resetRoundButton.SetActive (RoundsManager.Instance);
-        
+        if (exitZoneButton)
+            exitZoneButton.SetActive(RoundsManager.Instance);
+
+        if (appearAKEvent != null)
+            appearAKEvent.Post(gameObject);
 
         animator.SetTrigger("Reset");
         animator.SetInteger("Slide", 1);
@@ -183,6 +203,9 @@ public class PagerInteractionManager : MonoBehaviour
         if (keychainBanner)
             keychainBanner.Hide();
 
+        if (vanishAKEvent != null)
+            vanishAKEvent.Post(gameObject);
+
         animator.SetTrigger("Reset");
         animator.SetInteger("Slide", -1);
 
@@ -214,20 +237,39 @@ public class PagerInteractionManager : MonoBehaviour
         bool shipInput = shipInputAction.ReadValue<float>() > .5f;
         keychainSwapper.SetSpriteState(shipInput ? 1 : 0);
 
+        // -- Som de chamada da Nave
+        if (callShipAKEvent != null)
+        {
+            if (shipInput && !callShipAKEvent.IsPlaying(gameObject))
+            {
+                if (keychainButtonAKEvent != null)
+                    keychainButtonAKEvent.Post(gameObject);
+
+                callShipAKEvent.Post(gameObject);
+            } else
+            if (!shipInput && callShipAKEvent.IsPlaying(gameObject))
+            {
+                callShipAKEvent.FadeOut(gameObject, duration: .1f);
+            }
+        }
+        
         // -- Contagem de tempo do timer
         if (!shipInput)
-            holdCount = 0;
+            shipCallCount = 0;
         else
         {
-            if (holdCount > holdDuration)
+            if (shipCallCount > holdDuration)
             {
+                if (callShipAKEvent != null)
+                    callShipAKEvent.Stop(gameObject);
+
                 callShipEvent?.Invoke();
                 return;
             }
-            holdCount += Time.unscaledDeltaTime;    
+            shipCallCount += Time.unscaledDeltaTime;    
         }
         if (callCountFillDisplay)
-            callCountFillDisplay.fillAmount = holdCount / holdDuration;
+            callCountFillDisplay.fillAmount = shipCallCount / holdDuration;
 
         // -- Mostra a tela certa
         callScreen.SetActive(shipInput);
@@ -246,6 +288,10 @@ public class PagerInteractionManager : MonoBehaviour
 
     private void Update() 
     {
+        Vector2 axis = Vector2.zero;
+        if (navigationAction != null)
+            axis = navigationAction.ReadValue<Vector2>();
+
         if (!OnFocus || SceneTransition.OnTransition)
             return;
 
@@ -254,51 +300,52 @@ public class PagerInteractionManager : MonoBehaviour
         if (CheckInputBlock || callingShip)
             return;
 
-        Vector2 navigationInput = navigationAction.ReadValue<Vector2>();
-        if (confirmAction.ReadValue<float>() > .5f)
-            navigationInput = Vector2.right;
+        if (confirmAction.ReadValue<float>() > .75f)
+            axis = Vector2.right;
         
-        pagerAxisButtonsVisual.SetAxisButtons(navigationInput);
+        pagerAxisButtonsVisual.SetAxisButtons(axis);
 
-        if (navigationInput == Vector2.zero)
-            delay = 0;
+        if (axis == Vector2.zero)
+            screenDelay = 0;
 
-        if (delay > 0)
+        if (screenDelay > 0)
         {
-            delay -= Time.deltaTime;
+            screenDelay -= Time.unscaledDeltaTime;
             return;
         }
 
-        float maxDelay = 1.0f;
-
-        if (navigationInput.y != 0)
+        if (axis.y != 0)
         {
-            if (navigationInput.y > .5f)
+            if (axis.y > .5f)
+            {
                 CurrentScreen.ChangeIndex(-1);
-            else if (navigationInput.y < .5f)
+            }
+            else if (axis.y < .5f)
+            {
                 CurrentScreen.ChangeIndex(+1);
+            }
 
-            delay = maxDelay;
+            screenDelay = maxScreenDelay;
             return;
         }
             
-        if (navigationInput.x != 0)
+        if (axis.x != 0)
         {
-            if (CurrentScreen.HorizontalInput (navigationInput.x))
+            if (CurrentScreen.HorizontalInput (axis.x))
             {
-                delay = maxDelay;
+                screenDelay = maxScreenDelay;
             }
             else 
             {
-                if (navigationInput.x < .75f) // -- Custom back input
+                if (axis.x < .75f) // -- Custom back input
                 {
                     BackInput();
-                    delay = maxDelay;
+                    screenDelay = maxScreenDelay;
                 }
-                else if (navigationInput.x > .75f) // -- Custom forward input
+                else if (axis.x > .75f) // -- Custom forward input
                 {
                     CurrentScreen.ClickInput();
-                    delay = maxDelay;
+                    screenDelay = maxScreenDelay;
                 }
             }
         }
@@ -315,6 +362,43 @@ public class PagerInteractionManager : MonoBehaviour
     private PagerScreen CurrentScreen
     {
         get {  return screens[current % screens.Count]; }
+    }
+
+    
+    public void SetExitZoneConfirmation()
+    {
+        if (!confirmationScreen)
+            return;
+
+        RoundsManager roundsManager = RoundsManager.Instance;
+        if (!roundsManager)
+            return;
+
+        BuildIndex buildIndex = BuildIndex.World0Exploration; 
+        if (RoundsManager.SessionData != null)
+            buildIndex = RoundsManager.SessionData.outroScene;
+
+        int previousScreen = current;
+
+        confirmationScreen.SetScreen
+        (
+            title: "Exit zone?",
+            description: "Progress will be lost.",
+            ConfirmEvent: () => 
+            {
+                if (RoundsManager.SessionData)
+                    SpawnManager.Index = RoundsManager.SessionData.AbandonSpawnIndex;
+                PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
+                GameManager.GoToScene(buildIndex);
+            }, 
+            CancelEvent: () => 
+            { 
+                current = previousScreen; 
+                ActivateCurrent(); 
+            }
+        );
+
+        GoToScreen(0);
     }
 
     public void SetQuitConfirmation()
@@ -363,6 +447,7 @@ public class PagerInteractionManager : MonoBehaviour
                 break;
 
             case 3: // -- Menu de Opções (Áudio)
+            case 4: // -- Menu de Opções (Controles)
                 GoToScreen (2);
                 break;
         }
@@ -370,6 +455,9 @@ public class PagerInteractionManager : MonoBehaviour
 
     private void OnDisable() 
     {
+        if (callShipAKEvent != null)
+            callShipAKEvent.Stop(gameObject);
+
         navigationAction.Disable();
         confirmAction.Disable();
         playerInputActions.UI.Cancel.Disable();

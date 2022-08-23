@@ -68,7 +68,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void DisableAllInteractions()
     { 
-        Debug.Log("DisableAllInteractions()");
+        //Debug.Log("DisableAllInteractions()");
 
         if (playerInput) playerInput.enabled = false;
 
@@ -137,6 +137,12 @@ public class PlayerCharacter : MonoBehaviour
             //Debug.Log("spriteRenderer.name: " + spriteRenderer.name);
             spriteRenderer.enabled = !value;
         }
+
+    }
+
+    public void BlockSpawnEffects (bool value)
+    {
+        platformerCharacter.BlockLandFeedback = value;
     }
 
     public void SetDeathEvent (UnityAction roundAction)

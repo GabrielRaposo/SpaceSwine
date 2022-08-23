@@ -15,8 +15,12 @@ public class TitleScreenBGEffects : MonoBehaviour
     [SerializeField] Animator topPlantPart2;
     [SerializeField] List<Animator> lights;
 
+    private List<float> timigOffset;
+
     void Start()
     {
+        timigOffset = new List<float>();
+        
         if (!titleMenuNavigation)
             return;
 
@@ -25,7 +29,9 @@ public class TitleScreenBGEffects : MonoBehaviour
 
         for (int i = 0; i < lights.Count; i++)
         {
-            lights[i].Play("ColoredLght-Idle", layer: 0, normalizedTime: Random.Range(0.0f, 1.0f) );
+            float t = Random.Range(0.0f, 1.0f);
+            lights[i].Play("ColoredLght-Idle", layer: 0, normalizedTime:  t);
+            timigOffset.Add(t);
         }
 
         titleMenuNavigation.OnEnterMenuEvent += () => 
@@ -51,8 +57,14 @@ public class TitleScreenBGEffects : MonoBehaviour
 
             int local = i;
             lights[local].SetTrigger("Flail");
-
+            StartCoroutine(ResetAnimator(lights[local], timigOffset[i]));
             yield return new WaitForSeconds(delayBetweenSteps);
         }
+    }
+
+    private IEnumerator ResetAnimator(Animator a, float timing)
+    {
+        yield return new WaitForSeconds(timing);
+        a.SetTrigger("Reset");
     }
 }

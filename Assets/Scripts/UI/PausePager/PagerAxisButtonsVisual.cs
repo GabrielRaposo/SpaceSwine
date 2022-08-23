@@ -25,6 +25,8 @@ public class PagerAxisButtonsVisual : MonoBehaviour
 
     public void SetAxisButtons (Vector2 axis)
     {
+        axis = axis.To8Normalized();
+
         topButton.SetActive (axis.y <= 0);
         lowerButton.SetActive (axis.y >= 0);
         rightButton.SetActive (axis.x <= 0);
@@ -32,7 +34,7 @@ public class PagerAxisButtonsVisual : MonoBehaviour
         
         if (axis != Vector2.zero && axis != previous && clickAKEvent != null)
         {
-            clickAKEvent.Post(gameObject);
+            clickAKEvent.Post(gameObject); // tirar daqui
         }
         previous = axis;
     }

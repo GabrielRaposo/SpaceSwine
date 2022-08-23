@@ -30,6 +30,8 @@ public class DialogueBoxStyle : ScriptableObject
     public bool autoSize = false;
     public TMP_FontAsset fontAsset;
     public bool instantText = false;
+    public float customLeftOffset = -1;
+    public float customTopOffset = -1;
     public HorizontalAlignmentOptions horizontalAlignment = HorizontalAlignmentOptions.Center;
     public VerticalAlignmentOptions verticalAlignment = VerticalAlignmentOptions.Top;
 }

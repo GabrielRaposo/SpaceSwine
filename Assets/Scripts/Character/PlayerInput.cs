@@ -150,6 +150,7 @@ public class PlayerInput : MonoBehaviour
             return;
 
         Vector2 movementInput = movement.ReadValue<Vector2>();
+        movementInput = movementInput.To8Normalized();
 
         platformerCharacter.HorizontalInput(movementInput);
         collectableInteraction.AxisInput(movementInput);

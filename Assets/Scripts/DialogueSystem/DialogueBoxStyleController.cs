@@ -53,9 +53,21 @@ public class DialogueBoxStyleController : MonoBehaviour
         textDisplay.fontSize = style.fontSize;
         textDisplay.enableAutoSizing = style.autoSize;
         textDisplay.font = style.fontAsset;
+        
+        // -- Margins
+        float top = 30;
+        if (style.customTopOffset > -1)
+            top = style.customTopOffset;
+        
+        float left = 70;
+        if (style.customLeftOffset > -1)
+            left = style.customLeftOffset;
+
+        textDisplay.margin = new Vector4( left, top, textDisplay.margin.z, textDisplay.margin.w);
+        
+        // -- Alignment
         textDisplay.horizontalAlignment = style.horizontalAlignment;
         textDisplay.verticalAlignment = style.verticalAlignment;
-        
 
         nameBoxObject.SetActive(style.showNameBox);
 

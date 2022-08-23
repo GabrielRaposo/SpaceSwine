@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SetSceneNavigationObject : NavigationObject
 {
@@ -23,9 +24,15 @@ public class SetSceneNavigationObject : NavigationObject
     private NavigationSceneManager navSceneManager;
 
     [SerializeField] private Transform dotsParent;
-
-    [SerializeField] private AK.Wwise.Event sound; 
     
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event OnHoverAKEvent;
+    [SerializeField] AK.Wwise.Event OnSelectAKEvent; 
+    [SerializeField] AK.Wwise.Event MakePathAKEvent;
+    [SerializeField] AK.Wwise.Event OnReachDestinationAKEvent;
+
+    public UnityAction OnSelectAction;
+
     private void OnEnable()
     {
         interactAction += ShipAnimation;
@@ -37,11 +44,17 @@ public class SetSceneNavigationObject : NavigationObject
     {
         base.OnSelect();
         selector.enabled = true;
+
+        if (OnHoverAKEvent != null)
+            OnHoverAKEvent.Post(gameObject);
+
+        if (OnSelectAction != null)
+            OnSelectAction.Invoke();
     }
 
-    public override void OnDisselect()
+    public override void OnDeselect()
     {
-        base.OnDisselect();
+        base.OnDeselect();
         selector.enabled = false;
     }
 
@@ -59,9 +72,10 @@ public class SetSceneNavigationObject : NavigationObject
 
         sprite.color = Color.white;
 
-        sound.Post(gameObject);
+        if (OnSelectAKEvent != null)
+            OnSelectAKEvent.Post(gameObject);
         
-        //Feedback de seleção e UI de autopilot         
+        // -- Feedback de seleção e UI de autopilot         
         sequence.Append(selector.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.22f).OnComplete(()=>navSceneManager.BlinkAutoPilot()));
         sequence.AppendInterval(0.1f);
         
@@ -69,18 +83,43 @@ public class SetSceneNavigationObject : NavigationObject
         float shipStartRotation = navigationShip.spritesTransform.eulerAngles.z + 90f;
         Vector2 startPos = navigationShip.transform.position;
 
-        //Animação curta ou longa
+        NavigationShipSoundController shipSoundController = navigationShip.GetComponent<NavigationShipSoundController>();
+        
+        sequence.AppendCallback( () => 
+        {
+            if (shipSoundController)
+            {
+                navigationShip.SetFlightStepsSound(true);
+                navigationShip.OverridenControls = Vector2.up;
+                navigationShip.OverrideMode = true;
+            }
+        } );
+
+        // -- Animação curta ou longa
         if (Vector2.Distance(startPos, transform.position) < 0.7f)
         {
-            var angle = Mathg.AngleOfTheLineBetweenTwoPoints(new Vector2(transform.position.x, transform.position.y), startPos)-180f;
-            sequence.Append(
-                navigationShip.spritesTransform.DORotate(new Vector3(0f,0f, angle),1.3f));
+            var angle = Mathg.AngleOfTheLineBetweenTwoPoints(new Vector2(transform.position.x, transform.position.y), startPos) - 180f;
+            sequence.AppendCallback( () => 
+            {
+                navigationShip.SetFlightStepsSound(true);
+                if (shipSoundController)
+                {
+                    this.WaitSeconds(.1f, () => shipSoundController.ReadInput(Vector2.up, intensity: 1.84f) );
+                }
+            });
+            sequence.Append( navigationShip.spritesTransform.DORotate(new Vector3(0f,0f, angle),1.3f));
             sequence.Join(navigationShip.transform.DOMove(transform.position, 1.3f).OnComplete(
                 () =>
                 {
-                    //Mostra UI de aterrisagem no final
+                    // -- Mostra UI de aterrisagem no final
                     navSceneManager.StopBlinkAutoPilot();
                     navSceneManager.DisplayLandingSign();    
+
+                    navigationShip.SetFlightStepsSound(false);
+                    navigationShip.OverridenControls = Vector2.zero;
+                    
+                    if (OnReachDestinationAKEvent != null)
+                        OnReachDestinationAKEvent.Post(gameObject);
                 }));
         }
         else
@@ -91,7 +130,16 @@ public class SetSceneNavigationObject : NavigationObject
 
             sequence.AppendInterval(0.35f);
         
-            //Tween da movimentação e rotação
+            sequence.AppendCallback( () => 
+            {
+                navigationShip.SetFlightStepsSound(true);
+                if (shipSoundController)
+                {
+                    this.WaitSeconds(.1f, () => shipSoundController.ReadInput(Vector2.up, intensity: 1.84f) );
+                }
+            });
+
+            // -- Tween da movimentação e rotação
             sequence.Append(DOVirtual.Float(0f, 1f, 2.75f, value =>
                 {
                     navigationShip.transform.position = animationBezier.GetPoint(value);
@@ -100,14 +148,18 @@ public class SetSceneNavigationObject : NavigationObject
                 }).SetEase(Ease.OutFlash)
                 .OnComplete(() =>
                 {
-                    //Mostra UI de aterrisagem no final
+                    // -- Mostra UI de aterrisagem no final
                     navSceneManager.StopBlinkAutoPilot();
                     navSceneManager.DisplayLandingSign();
+
+                    navigationShip.SetFlightStepsSound(false);
+                    navigationShip.OverridenControls = Vector2.zero;
+
+                    if (OnReachDestinationAKEvent != null)
+                        OnReachDestinationAKEvent.Post(gameObject);
                 })
             );    
         }
-        
-        
         
         sequence.AppendInterval(2.5f);
 
@@ -150,6 +202,9 @@ public class SetSceneNavigationObject : NavigationObject
     {
         var s = DOTween.Sequence();
 
+        if (OnSelectAKEvent != null)
+            OnSelectAKEvent.Post(gameObject);
+
         float c = count;
         
         for (int i = 0; i < count; i++)
@@ -160,7 +215,10 @@ public class SetSceneNavigationObject : NavigationObject
                 var pos = animationBezier.GetNormalizedPoint(index / c);
                 var dot = dotsParent.GetChild(index);
                 dot.position = pos;
-                sound.Post(gameObject);
+                
+                if (MakePathAKEvent != null)
+                    MakePathAKEvent.Post(gameObject);
+                
             }));
         }
 

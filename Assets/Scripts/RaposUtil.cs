@@ -91,6 +91,24 @@ public class RaposUtil
     }
 }
 
+public static class MonobehaviourExtension
+{
+    public static void Wait (this MonoBehaviour m, int frames, UnityAction action)
+    {
+        RaposUtil.Wait(m, frames, action);
+    }
+
+    public static void WaitSeconds (this MonoBehaviour m, float duration, UnityAction action)
+    {
+        RaposUtil.WaitSeconds(m, duration, action);
+    }
+
+    public static void WaitSecondsRealtime (this MonoBehaviour m, float duration, UnityAction action)
+    {
+        RaposUtil.WaitSecondsRealtime(m, duration, action);
+    }
+}
+
 public static class Vector2Extension
 {
     public static Vector2 SetX (this Vector2 v, float x)
@@ -123,8 +141,19 @@ public static class Vector2Extension
         }
         return result;
     } 
-}
 
+    public static Vector2 To8Normalized(this Vector2 v)
+    {
+        return v.To8Directions().normalized;
+    }
+}
+public static class Vector4Extension
+{
+    public static Vector4 SetAlpha (this Vector4 v, float a)
+    {
+        return new Vector4 (v.x, v.y, v.z, a);        
+    }
+}
 public static class ShaderExtensions
 {
     public static Tween DOFloat(this Material m, string code, float to, float duration)

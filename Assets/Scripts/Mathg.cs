@@ -10,6 +10,11 @@ public static class Mathg
         return ((Vector3) (Quaternion.Euler(0, 0, angle) * Vector2.right)).normalized;
     }
     
+    public static Vector2 AngleToDirection2(float angle)
+    {
+        return ((Vector2) (Quaternion.Euler(0, 0, angle) * Vector2.right)).normalized;
+    }
+    
     public static Vector3 AngleToDirection(float angle, Vector2 forward, bool invertRotation)
     {
         return ((Vector3) (Quaternion.Euler(0, 0, angle*(invertRotation?-1:1)) * forward.normalized)).normalized;
