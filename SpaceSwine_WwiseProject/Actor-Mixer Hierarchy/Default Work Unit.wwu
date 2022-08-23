@@ -3171,74 +3171,6 @@
 								</Sound>
 								<Sound Name="ui_navegacao__planeta_land" ID="{73ED3AB1-EBCF-4E96-8645-3EC7205B0C7B}" ShortID="496616367">
 									<PropertyList>
-										<Property Name="Lowpass" Type="int16">
-											<RTPCList>
-												<RTPC Name="" ID="{ED92E9A0-33F8-4CD2-BFDE-40342F4D7DA0}" ShortID="910475485">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<Custom>
-																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{90BA073B-09B6-4EAE-8690-9922005CE2D7}" ShortID="537224931">
-																	<PropertyList>
-																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
-																	</PropertyList>
-																</ModulatorLfo>
-															</Custom>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{40253F2C-FA97-4C68-AA4F-E2692856EC02}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="65537"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>24</YPos>
-																<Flags>21</Flags>
-															</Point>
-															<Point>
-																<XPos>1</XPos>
-																<YPos>0</YPos>
-																<Flags>53</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
-										<Property Name="Pitch" Type="int32">
-											<RTPCList>
-												<RTPC Name="" ID="{2055A42E-92F1-45EF-9736-A7F555921F4F}" ShortID="529797400">
-													<ReferenceList>
-														<Reference Name="ControlInput">
-															<Custom>
-																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{CD76464B-F2B8-409A-B359-692BE3B558B9}" ShortID="8836646">
-																	<PropertyList>
-																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
-																	</PropertyList>
-																</ModulatorLfo>
-															</Custom>
-														</Reference>
-													</ReferenceList>
-													<Curve Name="" ID="{DD56CD83-F1C0-4CC3-B769-4143D3AF15B0}">
-														<PropertyList>
-															<Property Name="Flags" Type="int32" Value="65537"/>
-														</PropertyList>
-														<PointList>
-															<Point>
-																<XPos>0</XPos>
-																<YPos>0</YPos>
-																<Flags>21</Flags>
-															</Point>
-															<Point>
-																<XPos>1</XPos>
-																<YPos>-100</YPos>
-																<Flags>53</Flags>
-															</Point>
-														</PointList>
-													</Curve>
-												</RTPC>
-											</RTPCList>
-										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>7</Value>
@@ -3254,21 +3186,17 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="cenario_nave_bip_tv" ID="{48B445B7-D35F-4323-A78F-134E247C59DE}">
-											<PropertyList>
-												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimEnd" Type="Real64" Value="0.0660320081789928"/>
-											</PropertyList>
+										<AudioFileSource Name="ui_navegacao__planeta_land" ID="{1981B892-09E2-4D39-BB41-D07AD5E8E46D}">
 											<Language>SFX</Language>
-											<AudioFile>cenario_nave_bip_tv.wav</AudioFile>
+											<AudioFile>ui_navegacao__planeta_land.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="626021311"/>
+												<MediaID ID="928375704"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="cenario_nave_bip_tv" ID="{48B445B7-D35F-4323-A78F-134E247C59DE}" Platform="Linked"/>
+										<ActiveSource Name="ui_navegacao__planeta_land" ID="{1981B892-09E2-4D39-BB41-D07AD5E8E46D}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
