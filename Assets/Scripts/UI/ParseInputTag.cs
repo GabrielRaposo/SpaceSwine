@@ -16,6 +16,7 @@ public class ParseInputTag : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Start");
         ParseTexts();
     }
 
@@ -31,6 +32,8 @@ public class ParseInputTag : MonoBehaviour
 
     public void ParseList(List<string> localTexts)
     {
+        return; // -- TO-DO: reativar mais tarde
+
         texts = localTexts;
 
         if (!textDisplay)
@@ -46,11 +49,17 @@ public class ParseInputTag : MonoBehaviour
         foreach (string text in localTexts)
         {
             if (!text.Contains(separator))
-                return;
+            {
+                output += text + "\n";
+                continue;
+            }
 
             int len = text.Length;
             if (len < 3)
-                return;
+            {
+                output += text + "\n";
+                continue;
+            }
 
             int first = text.IndexOf(separator);
             int last = text.LastIndexOf(separator);
@@ -65,6 +74,7 @@ public class ParseInputTag : MonoBehaviour
             output += firstPart + middlePart + lastPart + "\n";
         }
 
+        //Debug.Log("output: " + output);
         textDisplay.text = output;
     }
 
