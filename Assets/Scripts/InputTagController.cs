@@ -13,10 +13,10 @@ public static class InputTagController
 
     public static void SetControllerType(ControllerType controllerType)
     {
+        CurrentControllerType = controllerType;
+        
         if (OnInputTypeChanged != null)
             OnInputTypeChanged.Invoke();
-
-        CurrentControllerType = controllerType;
     }
 
     public static string GetInput(string tag)
@@ -25,6 +25,9 @@ public static class InputTagController
         {
             case "movement": 
                 return Movement;
+            
+            case "movement2": 
+                return Movement2;
 
             case "jump": 
                 return Jump;
@@ -55,6 +58,19 @@ public static class InputTagController
         }
     }
 
+    public static string Movement2
+    {
+        get 
+        {
+            switch (CurrentControllerType)
+            {
+                default:
+                case ControllerType.Keyboard:       return "Directional Arrows";
+                case ControllerType.XboxJoystick:   return "Left Stick";
+            }
+        }
+    }
+
     public static string Jump
     {
         get 
@@ -63,7 +79,7 @@ public static class InputTagController
             {
                 default:
                 case ControllerType.Keyboard:       return "Space Bar";
-                case ControllerType.XboxJoystick:   return "(A)";
+                case ControllerType.XboxJoystick:   /*return "(A)";*/ return "<sprite=0>";
             }
         }
     }
@@ -76,7 +92,7 @@ public static class InputTagController
             {
                 default:
                 case ControllerType.Keyboard:       return "X";
-                case ControllerType.XboxJoystick:   return "(X)";
+                case ControllerType.XboxJoystick:   /*return "(X)";*/ return "<sprite=2>";
             }
         }
     }
@@ -89,7 +105,7 @@ public static class InputTagController
             {
                 default:
                 case ControllerType.Keyboard:       return "C";
-                case ControllerType.XboxJoystick:   return "(Y)";
+                case ControllerType.XboxJoystick:   /*return "(Y)";*/ return "<sprite=3>";
             }
         }
     }
@@ -102,7 +118,7 @@ public static class InputTagController
             {
                 default:
                 case ControllerType.Keyboard:       return "Escape";
-                case ControllerType.XboxJoystick:   return "(Start)";
+                case ControllerType.XboxJoystick:   return "<sprite=5>Start";
             }
         }
     }

@@ -5,36 +5,33 @@ using TMPro;
 
 public class ParseInputTag : MonoBehaviour
 {
-    [SerializeField] [TextArea(2,4)] List<string> texts;
+    [SerializeField] [TextArea(2,4)] string text;
     [SerializeField] string separator;
     [SerializeField] TMP_Text textDisplay;
 
     private void OnEnable() 
     {
-        InputTagController.OnInputTypeChanged += ParseTexts;
-    }
-
-    void Start()
-    {
-        Debug.Log("Start");
-        ParseTexts();
+        InputTagController.OnInputTypeChanged += ParseText;
     }
 
     private void OnDisable() 
     {
-        InputTagController.OnInputTypeChanged -= ParseTexts;
+        InputTagController.OnInputTypeChanged -= ParseText;
     }
 
-    private void ParseTexts()
+    void Start()
     {
-        ParseList(texts);
+        DisplayParsedText(text);
     }
 
-    public void ParseList(List<string> localTexts)
+    private void ParseText()
     {
-        return; // -- TO-DO: reativar mais tarde
+        DisplayParsedText(text);
+    }
 
-        texts = localTexts;
+    public void DisplayParsedText( string  localText )
+    {
+        text = localText;
 
         if (!textDisplay)
             textDisplay = GetComponentInChildren<TMP_Text>();
@@ -42,10 +39,10 @@ public class ParseInputTag : MonoBehaviour
         if (!textDisplay)
             return;
 
-        if (texts.Count < 1)
-            return;
-
         string output = string.Empty;
+
+        // -- Método que só funciona pra um tag por frase
+        /**
         foreach (string text in localTexts)
         {
             if (!text.Contains(separator))
@@ -55,7 +52,7 @@ public class ParseInputTag : MonoBehaviour
             }
 
             int len = text.Length;
-            if (len < 3)
+            if (len < 3) 
             {
                 output += text + "\n";
                 continue;
@@ -68,14 +65,63 @@ public class ParseInputTag : MonoBehaviour
             string firstPart  = text.Substring (0, first);
             string middlePart = text.Substring (first + 1, last - (first + 1) );
             string lastPart   = text.Substring (last  + 1, (text.Length - 1) - last );
-        
+
             middlePart = InputTagController.GetInput(middlePart);
 
             output += firstPart + middlePart + lastPart + "\n";
         }
+        **/
 
-        //Debug.Log("output: " + output);
-        textDisplay.text = output;
+        textDisplay.text = ParsedOutput( text, separator );
+    }
+
+    public static string ParsedOutput (string localText, string separator)
+    {
+        string output = string.Empty;
+
+        int len = localText.Length;
+        if (len < 3) 
+        {
+            return localText;
+        }
+
+        string subString = localText;
+        while ( subString.Contains(separator) )
+        {
+            // -- Pega o primeiro separator
+            int first = subString.IndexOf(separator);
+            string firstPart  = subString.Substring (0, first);
+            output += firstPart;
+            
+            if (first == subString.Length - 1)
+                break;
+
+            subString = subString.Substring(first + 1);
+            if ( !subString.Contains(separator) )
+            {
+                output += subString;
+                break;
+            }
+
+            // -- Pega o segundo separator
+            int second = subString.IndexOf(separator);
+            string secondPart = subString.Substring (0, second);
+
+            output += InputTagController.GetInput(secondPart);
+
+            subString = subString.Substring(second + 1);
+
+            if (!subString.Contains(separator))
+            {
+                output += subString;
+                break;
+            }
+        }
+
+        if (output == string.Empty)
+            return localText;
+
+        return output;
     }
 
 }
