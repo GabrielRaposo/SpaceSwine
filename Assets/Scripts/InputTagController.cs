@@ -9,7 +9,7 @@ public static class InputTagController
 {
     public static UnityAction OnInputTypeChanged;
 
-    public static ControllerType CurrentControllerType = ControllerType.XboxJoystick;
+    public static ControllerType CurrentControllerType = ControllerType.Keyboard;
 
     public static void SetControllerType(ControllerType controllerType)
     {
