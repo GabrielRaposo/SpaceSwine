@@ -12,6 +12,8 @@ public class DialogueBoxStyleController : MonoBehaviour
     [SerializeField] Image patternImage;
     [SerializeField] Image bgImage;
     [SerializeField] Image borderImage;
+    [SerializeField] Image skipIconImage;
+    [SerializeField] RectTransform skipIconAnchor;
     [SerializeField] TextMeshProUGUI textDisplay;
     [SerializeField] GameObject nameBoxObject;
 
@@ -46,14 +48,35 @@ public class DialogueBoxStyleController : MonoBehaviour
         }
 
         bgImage.color = style.BGColor;
+        
         borderImage.sprite = style.borderSprite;
         borderImage.color = style.borderColor;
+
+        if (style.skipIconSprite != null)
+            skipIconImage.sprite = style.skipIconSprite;
+        skipIconImage.color = style.skipIconColor;
+        
+        RectTransform iconAnchorRT = skipIconAnchor.GetComponent<RectTransform>();
+        if (iconAnchorRT)
+        {
+            float X = 510;
+            if (style.skipIconPosX != -1)
+                X = style.skipIconPosX;
+
+            float Y = -54;
+            if (style.skipIconPosY != -1)
+                Y = style.skipIconPosY;
+
+            iconAnchorRT.anchoredPosition = new Vector2 (X, Y);
+        }
 
         textDisplay.color = style.textColor;
         textDisplay.fontSize = style.fontSize;
         textDisplay.enableAutoSizing = style.autoSize;
         textDisplay.font = style.fontAsset;
         
+        // -- Text Area
+
         // -- Margins
         float top = 30;
         if (style.customTopOffset > -1)
@@ -63,7 +86,15 @@ public class DialogueBoxStyleController : MonoBehaviour
         if (style.customLeftOffset > -1)
             left = style.customLeftOffset;
 
-        textDisplay.margin = new Vector4( left, top, textDisplay.margin.z, textDisplay.margin.w);
+        float botom = 40;
+        if (style.customBottomOffset > -1)
+            botom = style.customBottomOffset;
+
+        float right = 70;
+        if (style.customRightOffset > -1)
+            right = style.customRightOffset;
+
+        textDisplay.margin = new Vector4( left, top, right, botom );
         
         // -- Alignment
         textDisplay.horizontalAlignment = style.horizontalAlignment;
