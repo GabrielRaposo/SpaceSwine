@@ -29,9 +29,13 @@ public class LocalizationEditor : EditorWindow
             GUILayout.Space(20);
             GUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
-            GUILayout.Label("Loading files...");
+            GUILayout.Label("Loading files...\n\nLembra de salvar depois");
             GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
+
+            if (GUILayout.Button("Force editor reset"))
+                locked = false;
+            
             return;
         }
         
