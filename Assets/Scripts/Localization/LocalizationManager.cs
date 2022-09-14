@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using GoogleSheetsToUnity;
 using UnityEditor;
@@ -138,54 +139,63 @@ public static class LocalizationManager
         return file;
     }
     
-    public static void CallUpdate(LocalizedTextTypes textType)
+    public static async Task CallUpdate(LocalizedTextTypes textType, Action OnComplete)
     {
         GSTU_Search sheet;
         
         int zoneCount = 3;
 
+        var completionSource = new TaskCompletionSource<int>();
+        
         switch (textType)
         {
             case LocalizedTextTypes.Story:
                 
                 storyFile = GetLocalizationFile(LocalizedTextTypes.Story);
                 storyFile.dic = new CodeToDictionary();
-                
+
                 for (int i = -1; i < zoneCount; i++)
                 {
+                    var storyPageCompletionSource = new TaskCompletionSource<int>();
                     Debug.Log("Zona"+(i+1));
                     sheet = new GSTU_Search(sheetId, "Zona"+(i+1));
-                    SpreadsheetManager.Read(sheet, UpdateStoryDictionary);    
+                    SpreadsheetManager.Read(sheet, x=>{UpdateStoryDictionary(x);storyPageCompletionSource.SetResult(123);});
+                    await storyPageCompletionSource.Task;
                 }
                 break;
             
             case LocalizedTextTypes.UI:
                 
                 sheet = new GSTU_Search(sheetId, uiSheetName);
-                SpreadsheetManager.Read(sheet, UpdateUIDictionary);
-                
+                SpreadsheetManager.Read(sheet, x=>{UpdateUIDictionary(x);completionSource.SetResult(123);});
+                await completionSource.Task;
                 break;
             
             case LocalizedTextTypes.Achievement:
                 
                 sheet = new GSTU_Search(sheetId, achievementSheetName);
-                SpreadsheetManager.Read(sheet, UpdateAchievementDictionary);
-                
+                SpreadsheetManager.Read(sheet, x=>{UpdateAchievementDictionary(x);completionSource.SetResult(123);});
+                await completionSource.Task;
                 break;
+            
             case LocalizedTextTypes.Music:
                 
                 sheet = new GSTU_Search(sheetId, musicSheetName);
-                SpreadsheetManager.Read(sheet, UpdateMusicDictionary);
-                
+                SpreadsheetManager.Read(sheet, x=>{UpdateMusicDictionary(x);completionSource.SetResult(123);});
+                await completionSource.Task;
                 break;
             
             case LocalizedTextTypes.Nave:
 
                 sheet = new GSTU_Search(sheetId, naveSheetName);
-                SpreadsheetManager.Read(sheet, UpdateNaveDictionary);
+                SpreadsheetManager.Read(sheet, x=>{UpdateNaveDictionary(x);completionSource.SetResult(123);});
+                await completionSource.Task;
                 break;
         }
+        
+        OnComplete.Invoke();
     }
+    
     
     private static void UpdateStoryDictionary(GstuSpreadSheet ss)
     {
