@@ -179,11 +179,11 @@ public class PlatformerCharacter : SidewaysCharacter
             }
             if (heldInput != Vector2.zero && heldInput != rawInput && IsCloseEnough(heldInput, rawInput))
             {
-                Debug.Log
-                (
-                    $"IsCloseEnough: {IsCloseEnough(heldInput, rawInput)}, " +
-                    $"heldInput: {heldInput.To8Directions()}, rawInput: {rawInput.To8Normalized()}"
-                );
+                //Debug.Log
+                //(
+                //    $"IsCloseEnough: {IsCloseEnough(heldInput, rawInput)}, " +
+                //    $"heldInput: {heldInput.To8Directions()}, rawInput: {rawInput.To8Normalized()}"
+                //);
                 moveInputRotationAnchor = transform.eulerAngles.z;
             }
             anchor = moveInputRotationAnchor;
