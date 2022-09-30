@@ -9,12 +9,11 @@ public class InteractableDoor : Interactable
     //[SerializeField] InputAction testInput;
 
     [Header("Door References")]
-    [SerializeField] Collider2D entrancePlatform;
     [SerializeField] SpriteRenderer frontVisuals;
     [SerializeField] ClosedSpaceInner backComponent;
     [SerializeField] GameObject inputHelper;
 
-    bool closedSpaceIsActive;
+    bool closedSpaceIsActive; 
 
     private void Start() 
     {
@@ -47,11 +46,8 @@ public class InteractableDoor : Interactable
         if (value == closedSpaceIsActive)
             return;
 
-        if (entrancePlatform)
-            entrancePlatform.enabled = !value;
-
-        if (frontVisuals)
-            frontVisuals.enabled = !value;
+        //if (frontVisuals)
+        //    frontVisuals.enabled = !value;
 
         // -- Desativação do backComponent DEVE ocorrer antes do "SetOverrideGravitationalBody"
         // -- Se precisar botar pra depois, então dividir a função em cases de "true" e casos de "false" ocorrendo em tempos diferentes
