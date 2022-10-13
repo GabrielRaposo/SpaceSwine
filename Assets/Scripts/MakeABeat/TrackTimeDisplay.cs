@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace MakeABeat
 {
@@ -9,17 +10,19 @@ namespace MakeABeat
     {
         [SerializeField] Image fillDisplay; 
 
+        Sequence pulseSequence;
+
         void Start()
         {
-            BeatMaker beatMaker = GetComponentInParent<BeatMaker>();
-            if (!beatMaker)
+            BeatMaster beatMaster = GetComponentInParent<BeatMaster>();
+            if (!beatMaster)
             {
                 gameObject.SetActive(false);
                 return;
             }
 
-            beatMaker.UpdateDisplayAction  += UpdateDisplay;
-            beatMaker.SignaturePulseAction += PulseImage;
+            beatMaster.UpdateDisplay_Action  += UpdateDisplay;
+            beatMaster.SignaturePulse_Action += PulseImage;
         }
 
         void UpdateDisplay (float fillAmount)
@@ -32,8 +35,23 @@ namespace MakeABeat
 
         void PulseImage(int step)
         {
-            
+            if (!fillDisplay)
+                return;
+
+            if (pulseSequence != null)
+                pulseSequence.Kill();
+
+            RectTransform rt = fillDisplay.rectTransform;
+            rt.localScale = Vector3.one; 
+
+            pulseSequence = DOTween.Sequence();
+            pulseSequence.Append( rt.DOPunchScale(Vector3.one * -.15f, duration: .25f, vibrato: 1, elasticity: 1 ) );
         }
-        
+
+        private void OnDisable() 
+        {
+            if (pulseSequence != null)
+                pulseSequence.Kill();
+        }
     }
 }

@@ -664,6 +664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 227884859}
+  - component: {fileID: 227884861}
   - component: {fileID: 227884860}
   m_Layer: 0
   m_Name: Tape Player (3)
@@ -738,6 +739,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &227884861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227884858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7744684e7ec00dc438ff0dbb2cf465a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatTape: {fileID: 0}
 --- !u!1001 &309938817
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2237,6 +2251,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 966545748}
+  - component: {fileID: 966545750}
   - component: {fileID: 966545749}
   m_Layer: 0
   m_Name: Tape Player (5)
@@ -2311,6 +2326,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &966545750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966545747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7744684e7ec00dc438ff0dbb2cf465a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatTape: {fileID: 0}
 --- !u!1 &992845180
 GameObject:
   m_ObjectHideFlags: 0
@@ -2334,7 +2362,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992845180}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2345,8 +2373,8 @@ Transform:
   - {fileID: 966545748}
   - {fileID: 2032357375}
   - {fileID: 317715582}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1445295263}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1069553778
 GameObject:
@@ -2566,6 +2594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1230068246}
+  - component: {fileID: 1230068248}
   - component: {fileID: 1230068247}
   m_Layer: 0
   m_Name: Tape Player (2)
@@ -2640,6 +2669,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1230068248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230068245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7744684e7ec00dc438ff0dbb2cf465a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatTape: {fileID: 0}
 --- !u!1 &1246924590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2967,6 +3009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1437701287}
+  - component: {fileID: 1437701289}
   - component: {fileID: 1437701288}
   m_Layer: 0
   m_Name: Tape Player (4)
@@ -3041,6 +3084,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1437701289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437701286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7744684e7ec00dc438ff0dbb2cf465a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatTape: {fileID: 0}
 --- !u!1 &1445295262
 GameObject:
   m_ObjectHideFlags: 0
@@ -3070,8 +3126,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1691820030}
+  - {fileID: 992845181}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1445295264
 MonoBehaviour:
@@ -3082,15 +3139,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1445295262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b01382d239fab04ea791d5e6f45a79c, type: 3}
+  m_Script: {fileID: 11500000, guid: 499e7ae5042619e4cab11e99e3882de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BPM: 115
-  quantTracks: 1
-  testAkEvent:
+  BPM: 80
+  testCycleAkEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: dd79c9714ddc5ad4aa4d36eac4ff6354, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: 28e90d0da6c871247ba2eef4838a0287, type: 2}
+  testTickAkEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 574c82b4ae73c064a9def70fea7ad1cf, type: 2}
 --- !u!1 &1535953674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3382,6 +3442,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1816051569}
+  - component: {fileID: 1816051571}
   - component: {fileID: 1816051570}
   m_Layer: 0
   m_Name: Tape Player (1)
@@ -3456,6 +3517,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1816051571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816051568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7744684e7ec00dc438ff0dbb2cf465a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatTape: {fileID: 11400000, guid: 0dd808b4bf567954fac64acdc29fd45d, type: 2}
 --- !u!1 &1886185317
 GameObject:
   m_ObjectHideFlags: 0
@@ -4114,6 +4188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2032357375}
+  - component: {fileID: 2032357377}
   - component: {fileID: 2032357376}
   m_Layer: 0
   m_Name: Tape Player (6)
@@ -4188,6 +4263,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2032357377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032357374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7744684e7ec00dc438ff0dbb2cf465a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatTape: {fileID: 0}
 --- !u!1 &2056120221
 GameObject:
   m_ObjectHideFlags: 0
