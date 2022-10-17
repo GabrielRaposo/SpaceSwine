@@ -39,7 +39,6 @@ namespace MakeABeat
 
             if (currentBeatTape != null && currentBeatTape.sampleAKEvent != null)
             {
-                Debug.Log("stop previous sound");
                 gameObject.StopAllEvents();
             }
 
