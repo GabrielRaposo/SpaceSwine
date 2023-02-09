@@ -26,13 +26,19 @@ public class LocalizedTextEditor : Editor
 
         if (obj.textMesh == null)
         {
+            GUILayout.BeginHorizontal();
             EditorGUILayout.HelpBox("TextComponent not found!", MessageType.Error);
+            if (GUILayout.Button("Get TextComponent"))
+                obj.TryGetTextComponent();
+            GUILayout.EndHorizontal();
             return;
         }
 
         obj.textType =(LocalizedTextTypes)EditorGUILayout.EnumPopup("Text type", obj.textType);
 
         SetLocalizationCodeEnum(obj);
+
+        obj.textStyle = EditorGUILayout.TextField("Style", obj.textStyle);
 
         GUILayout.Space(18);
         

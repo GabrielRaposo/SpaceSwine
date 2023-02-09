@@ -31,6 +31,7 @@ public class LocalizedText : MonoBehaviour
     // private string universalFontAdress = "Fonts/NotoSansMonoCJKjp_Universal";
     // static TMP_FontAsset universalFont;
 
+    public string textStyle;
     public LocalizedTextTypes textType;
     
     [SerializeField] public TMP_Text textMesh;
@@ -101,6 +102,8 @@ public class LocalizedText : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+        if (!string.IsNullOrEmpty(textStyle))
+            textMesh.text = textStyle.Replace("{s}", textMesh.text);
         
         // if (useUniversalFont)
         //     textMesh.font = universalFont;
@@ -117,5 +120,12 @@ public class LocalizedText : MonoBehaviour
     {
         this.localizationCode = localizationCode;
         SetText();
+    }
+
+    public void TryGetTextComponent()
+    {
+        textMesh = GetComponent<TMP_Text>();
+        if (textMesh == null)
+            textMesh.GetComponentInChildren<TMP_Text>();
     }
 }

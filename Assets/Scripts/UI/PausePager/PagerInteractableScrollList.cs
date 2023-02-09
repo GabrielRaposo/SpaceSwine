@@ -84,7 +84,7 @@ public class PagerInteractableScrollList : PagerInteractable
             return;
 
         string text = list[current % list.Count];
-        textDisplay.text = text;
+        textDisplay.text = LocalizationManager.GetUiText(text, "error");
 
         if (OnValueChanged != null)
             OnValueChanged.Invoke( current % list.Count );
