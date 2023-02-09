@@ -12,15 +12,17 @@ public class LocalizedTextEditor : Editor
     
     public override void OnInspectorGUI()
     {
-        
         // baseToggle = GUILayout.Toggle(baseToggle, "", EditorStyles.foldoutPreDrop);
-         if(baseToggle)
-             base.OnInspectorGUI();
+         //if(baseToggle)
+         
+        //base.OnInspectorGUI();
+        
+        GUILayout.Space(20);
+            
 
         LocalizedText obj = target as LocalizedText;
 
         obj.textMesh = (TMP_Text)EditorGUILayout.ObjectField("TextMesh",obj.textMesh, typeof(TMP_Text));
-        
 
         if (obj.textMesh == null)
         {
@@ -35,7 +37,8 @@ public class LocalizedTextEditor : Editor
         GUILayout.Space(18);
         
         obj.fallbackText = EditorGUILayout.TextField("Fallback Text", obj.fallbackText);
-
+        
+        EditorUtility.SetDirty(obj);
     }
 
     private void SetLocalizationCodeEnum(LocalizedText localizedText)

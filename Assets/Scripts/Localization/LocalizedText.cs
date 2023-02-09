@@ -61,6 +61,10 @@ public class LocalizedText : MonoBehaviour
         SetText();
     }
 
+    private void Update()
+    {
+    }
+
     protected virtual void OnDisable()
     {
         LocalizationManager.RemoveFromList(this);
