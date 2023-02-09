@@ -52,8 +52,8 @@ public static class InputTagController
             switch (CurrentControllerType)
             {
                 default:
-                case ControllerType.Keyboard:       return "Arrows";
-                case ControllerType.XboxJoystick:   return "Left Stick";
+                case ControllerType.Keyboard: return LocalizationManager.GetInputText("movement_keyboard");
+                case ControllerType.XboxJoystick:   return LocalizationManager.GetInputText("movement_joystick");
             }
         }
     }
@@ -65,8 +65,8 @@ public static class InputTagController
             switch (CurrentControllerType)
             {
                 default:
-                case ControllerType.Keyboard:       return "Directional Arrows";
-                case ControllerType.XboxJoystick:   return "Left Stick";
+                case ControllerType.Keyboard:       return LocalizationManager.GetInputText("movement2_keyboard");
+                case ControllerType.XboxJoystick:   return LocalizationManager.GetInputText("movement2_joystick");
             }
         }
     }
@@ -78,8 +78,8 @@ public static class InputTagController
             switch (CurrentControllerType)
             {
                 default:
-                case ControllerType.Keyboard:       return "Space Bar";
-                case ControllerType.XboxJoystick:   /*return "(A)";*/ return "<sprite=0>";
+                case ControllerType.Keyboard:       return LocalizationManager.GetInputText("jump_keyboard");
+                case ControllerType.XboxJoystick:   return LocalizationManager.GetInputText("jump_joystick");
             }
         }
     }
@@ -91,8 +91,8 @@ public static class InputTagController
             switch (CurrentControllerType)
             {
                 default:
-                case ControllerType.Keyboard:       return "X";
-                case ControllerType.XboxJoystick:   /*return "(X)";*/ return "<sprite=2>";
+                case ControllerType.Keyboard:       return LocalizationManager.GetInputText("throw_keyboard");
+                case ControllerType.XboxJoystick:   return LocalizationManager.GetInputText("throw_joystick");
             }
         }
     }
@@ -104,8 +104,8 @@ public static class InputTagController
             switch (CurrentControllerType)
             {
                 default:
-                case ControllerType.Keyboard:       return "C";
-                case ControllerType.XboxJoystick:   /*return "(Y)";*/ return "<sprite=3>";
+                case ControllerType.Keyboard:       return LocalizationManager.GetInputText("interact_keyboard");
+                case ControllerType.XboxJoystick:   return LocalizationManager.GetInputText("interact_joystick");
             }
         }
     }
@@ -117,8 +117,8 @@ public static class InputTagController
             switch (CurrentControllerType)
             {
                 default:
-                case ControllerType.Keyboard:       return "Escape";
-                case ControllerType.XboxJoystick:   return "<sprite=5>Start";
+                case ControllerType.Keyboard:       return LocalizationManager.GetInputText("pause_keyboard");
+                case ControllerType.XboxJoystick:   return LocalizationManager.GetInputText("pause_joystick");
             }
         }
     }

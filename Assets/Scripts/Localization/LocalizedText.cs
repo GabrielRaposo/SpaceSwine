@@ -7,7 +7,8 @@ using UnityEngine;
 
 public enum LocalizedTextTypes
 {
-    UI,
+    UI0,
+    Inputs,
     Story,
     Achievement,
     Music,
@@ -30,24 +31,22 @@ public class LocalizedText : MonoBehaviour
     // private string universalFontAdress = "Fonts/NotoSansMonoCJKjp_Universal";
     // static TMP_FontAsset universalFont;
 
-    public string textStyle;
-    
-    //public bool isStory;
     public LocalizedTextTypes textType;
     
-    //[SerializeField] public TextMeshProUGUI textMesh;
     [SerializeField] public TMP_Text textMesh;
 
     
     //EDITOR
     public bool editor_manualCode;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
+        LocalizationManager.CurrentLanguage = GameLocalizationCode.BR;
         textMesh = GetComponent<TMP_Text>();
         
         if(textMesh == null) return;
         
+        //Funções para implementação de fontes de alfabetos diferentes
         // if (standardFont == null)
         //     standardFont = Resources.Load<TMP_FontAsset>(standardFontAdress);
         
@@ -62,20 +61,25 @@ public class LocalizedText : MonoBehaviour
         SetText();
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         LocalizationManager.RemoveFromList(this);
     }
 
-    public void SetText()
+    public virtual void SetText()
     {
         if(textMesh == null) return;
 
         switch (textType)
         {
-            case LocalizedTextTypes.UI:
+            case LocalizedTextTypes.UI0:
                 textMesh.text = LocalizationManager.GetUiText(localizationCode, fallbackText);
                 break;
+            
+            case LocalizedTextTypes.Inputs:
+                textMesh.text = LocalizationManager.GetInputText(localizationCode);
+                break;
+            
             case LocalizedTextTypes.Story:
                 (bool valid, string text) story = LocalizationManager.GetStoryText(localizationCode);
                 textMesh.text = story.text;
@@ -94,18 +98,15 @@ public class LocalizedText : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
         
-        if (!string.IsNullOrEmpty(textStyle))
-            textMesh.text = textStyle.Replace("{s}", textMesh.text);
-
         // if (useUniversalFont)
         //     textMesh.font = universalFont;
-        else
-        {
+//        else
+  //      {
             // if (LocalizationManager.CurrentLanguage == GameLocalizationCode.JP)
             //     textMesh.font = japaneseFont;
             // else
             //    textMesh.font = standardFont;    
-        }
+    //    }
     }
 
     public void SetText(string localizationCode)

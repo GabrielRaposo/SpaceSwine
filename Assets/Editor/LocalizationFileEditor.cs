@@ -42,9 +42,15 @@ public class LocalizationEditor : EditorWindow
         if (GUILayout.Button("UI"))
         {
             locked = true;
-            LocalizationManager.CallUpdate(LocalizedTextTypes.UI, ()=>SetDirtyAndUnlock(LocalizationManager.UiFile));
+            LocalizationManager.CallUpdate(LocalizedTextTypes.UI0, ()=>SetDirtyAndUnlock(LocalizationManager.UiFile));
         }
 
+        if (GUILayout.Button("Inputs"))
+        {
+            locked = true;
+            LocalizationManager.CallUpdate(LocalizedTextTypes.Inputs, () => SetDirtyAndUnlock(LocalizationManager.InputFile));
+        }
+        
         if (GUILayout.Button("Story"))
         {
             locked = true;
