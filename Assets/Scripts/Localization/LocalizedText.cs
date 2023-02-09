@@ -7,7 +7,7 @@ using UnityEngine;
 
 public enum LocalizedTextTypes
 {
-    UI0,
+    UI,
     Inputs,
     Story,
     Achievement,
@@ -72,7 +72,7 @@ public class LocalizedText : MonoBehaviour
 
         switch (textType)
         {
-            case LocalizedTextTypes.UI0:
+            case LocalizedTextTypes.UI:
                 textMesh.text = LocalizationManager.GetUiText(localizationCode, fallbackText);
                 break;
             

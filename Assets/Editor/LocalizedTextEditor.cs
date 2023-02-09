@@ -55,8 +55,8 @@ public class LocalizedTextEditor : Editor
 
             switch (localizedText.textType)
             {
-                case LocalizedTextTypes.UI0:
-                    keys = LocalizationManager.LocalizationFile(LocalizedTextTypes.UI0).dic.Keys;
+                case LocalizedTextTypes.UI:
+                    keys = LocalizationManager.LocalizationFile(LocalizedTextTypes.UI).dic.Keys;
 
                     foreach (string key in keys)
                     {

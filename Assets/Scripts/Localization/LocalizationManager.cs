@@ -41,7 +41,7 @@ public static class LocalizationManager
 
     public static AstroPigLocalizationFile StoryFile => GetLocalizationFile(LocalizedTextTypes.Story);
 
-    public static AstroPigLocalizationFile UiFile => GetLocalizationFile(LocalizedTextTypes.UI0);
+    public static AstroPigLocalizationFile UiFile => GetLocalizationFile(LocalizedTextTypes.UI);
 
     public static AstroPigLocalizationFile InputFile => GetLocalizationFile(LocalizedTextTypes.Inputs);
     public static AstroPigLocalizationFile MusicFile => GetLocalizationFile(LocalizedTextTypes.Music);
@@ -66,7 +66,7 @@ public static class LocalizationManager
     static char[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
     private static AstroPigLocalizationFile storyFile;
-    private static AstroPigLocalizationFile uiFile0;
+    private static AstroPigLocalizationFile uiFile;
     private static AstroPigLocalizationFile inputFile;
     private static AstroPigLocalizationFile musicFile;
     private static AstroPigLocalizationFile achievementsFile;
@@ -79,8 +79,8 @@ public static class LocalizationManager
 
         switch (textType)
         {
-            case LocalizedTextTypes.UI0:
-                if (uiFile0 != null) return uiFile0;
+            case LocalizedTextTypes.UI:
+                if (uiFile != null) return uiFile;
                 localizationDataAddress += "_UI";
                 break;
             
@@ -117,9 +117,9 @@ public static class LocalizationManager
         
         switch (textType)
         {
-            case LocalizedTextTypes.UI0:
-                uiFile0 = file;
-                return uiFile0;
+            case LocalizedTextTypes.UI:
+                uiFile = file;
+                return uiFile;
                 
             case LocalizedTextTypes.Inputs:
                 inputFile = file;
@@ -178,7 +178,7 @@ public static class LocalizationManager
                 }
                 break;
             
-            case LocalizedTextTypes.UI0:
+            case LocalizedTextTypes.UI:
                 
                 sheet = new GSTU_Search(sheetId, uiSheetName);
                 SpreadsheetManager.Read(sheet, x=>{UpdateUIDictionary(x);completionSource.SetResult(123);});
@@ -256,8 +256,8 @@ public static class LocalizationManager
         
         var languageCodeList = Enum.GetValues(typeof(GameLocalizationCode)) as GameLocalizationCode[];
 
-        uiFile0 = GetLocalizationFile(LocalizedTextTypes.UI0);
-        uiFile0.dic = new CodeToDictionary();
+        uiFile = GetLocalizationFile(LocalizedTextTypes.UI);
+        uiFile.dic = new CodeToDictionary();
 
         
         for (int i = 2; i < lines.Count+1; i++)
@@ -277,7 +277,7 @@ public static class LocalizationManager
                 languageToStringDictionary.Add(glc, line[columnNumber].value);
             }
             
-            uiFile0.dic.Add(code, languageToStringDictionary);
+            uiFile.dic.Add(code, languageToStringDictionary);
         }
         
         Debug.Log("Finished loading from GoogleSheets");
@@ -457,7 +457,7 @@ public static class LocalizationManager
 
     public static string GetUiText(string code, string fallback)
     {
-        if (!GetLocalizationFile(LocalizedTextTypes.UI0).dic.TryGetValue(code, out LanguageToString languageToString))
+        if (!GetLocalizationFile(LocalizedTextTypes.UI).dic.TryGetValue(code, out LanguageToString languageToString))
         {
             //Debug.Log($"UI fallback {code}");
             return fallback;
