@@ -57,7 +57,7 @@ public class LocalizedText : MonoBehaviour
         // if (universalFont == null)
         //     universalFont = Resources.Load<TMP_FontAsset>(universalFontAdress);
 
-        LocalizationManager.AddToList(this);
+        LocalizationManager.AddToActiveTextList(this);
         
         SetText();
     }
@@ -68,7 +68,7 @@ public class LocalizedText : MonoBehaviour
 
     protected virtual void OnDisable()
     {
-        LocalizationManager.RemoveFromList(this);
+        LocalizationManager.RemoveFromActiveTextList(this);
     }
 
     public virtual void SetText()

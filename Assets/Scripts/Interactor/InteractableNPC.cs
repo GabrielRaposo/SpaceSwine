@@ -22,7 +22,9 @@ public class InteractableNPC : Interactable
             DialogueSystem dialogSystem = DialogueSystem.Instance;
             DialogueGroup dialogueGroup = data.GetAtIndex();
 
-            dialogSystem?.SetDialogue(this, data.npcName, dialogueGroup.tags, OnDialogueEnd, customDialogueStyle, talkSoundAKEvent);
+            string npcName = LocalizationManager.GetStoryText(data.npcNameCode).Item2;
+            
+            dialogSystem?.SetDialogue(this, npcName, dialogueGroup.tags, OnDialogueEnd, customDialogueStyle, talkSoundAKEvent);
 
             if (interactor)
             {

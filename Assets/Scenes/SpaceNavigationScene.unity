@@ -242,6 +242,14 @@ PrefabInstance:
       propertyPath: coordinates.z
       value: 4860.1
       objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: nameCode
+      value: 00?
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: descriptionCode
+      value: 00?.X
+      objectReference: {fileID: 0}
     - target: {fileID: 4585204731782769151, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
@@ -1653,6 +1661,14 @@ PrefabInstance:
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: scene
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: nameCode
+      value: 002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: descriptionCode
+      value: 002.X
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731782769151, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_LocalRotation.z
@@ -3350,6 +3366,14 @@ PrefabInstance:
       propertyPath: scene
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: nameCode
+      value: 003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: descriptionCode
+      value: 003.X
+      objectReference: {fileID: 0}
     - target: {fileID: 4585204731782769151, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.9704391
@@ -4184,6 +4208,7 @@ GameObject:
   - component: {fileID: 1638671507}
   - component: {fileID: 1638671506}
   - component: {fileID: 1638671505}
+  - component: {fileID: 1638671510}
   m_Layer: 0
   m_Name: 'New Warning '
   m_TagString: Untagged
@@ -4266,7 +4291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'NEW '
+  m_text: new
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1542f3cf19a2c47499a828495415c1f2, type: 2}
   m_sharedMaterial: {fileID: 2162613833742998111, guid: 1542f3cf19a2c47499a828495415c1f2, type: 2}
@@ -4299,7 +4324,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
   m_fontSizeMax: 0.2
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4355,6 +4380,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638671503}
   m_CullTransparentMesh: 0
+--- !u!114 &1638671510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638671503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec31e196c6f201409888905b6dcc173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationCode: new
+  fallbackText: NEW
+  textStyle: 
+  textType: 0
+  textMesh: {fileID: 1638671507}
+  editor_manualCode: 0
 --- !u!1 &1666731605
 GameObject:
   m_ObjectHideFlags: 0
@@ -5763,6 +5806,18 @@ PrefabInstance:
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: scene
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: nameCode
+      value: 001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: descriptionCode
+      value: 001.X
+      objectReference: {fileID: 0}
+    - target: {fileID: 5739569840260570604, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: localizationCode
+      value: 001
       objectReference: {fileID: 0}
     - target: {fileID: 7011332826307732594, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_Enabled

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using GoogleSheetsToUnity;
 using UnityEditor;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public enum GameLocalizationCode{EN, BR}; //Na mesma ordem da planilha
@@ -54,7 +55,8 @@ public static class LocalizationManager
     private static GameLocalizationCode currentLanguage;
 
     private static List<LocalizedText> activeTexts;
-    
+    private static List<UnityAction> onChangeLanguage;
+
     private static string sheetId = "1QHeZTAjHJxGhne9n63u-3B0Hmj0otwlVK8CM4czC2f8";
     
     private static string uiSheetName = "UI";
@@ -419,7 +421,7 @@ public static class LocalizationManager
         Debug.Log("Finished loading from GoogleSheets");
     }
 
-    public static void AddToList(LocalizedText localizedText)
+    public static void AddToActiveTextList(LocalizedText localizedText)
     {
         if(activeTexts == null)
             activeTexts = new List<LocalizedText>();
@@ -427,19 +429,44 @@ public static class LocalizationManager
         activeTexts.Add(localizedText);
     }
 
-    public static void RemoveFromList(LocalizedText localizedText)
+    public static void RemoveFromActiveTextList(LocalizedText localizedText)
     {
         if(activeTexts == null) return;
 
         activeTexts.Remove(localizedText);
     }
+
+    public static void AddToLanguageChangeActionList(UnityAction a)
+    {
+        if (onChangeLanguage == null)
+            onChangeLanguage = new List<UnityAction>();
+        
+        onChangeLanguage.Add(a);
+    }
+
+    public static void RemoveFromLanguageChangeActionList(UnityAction a)
+    {
+        if(onChangeLanguage == null)
+            return;
+
+        onChangeLanguage.Remove(a);
+    }
     
     private static void OnLanguageChange()
     {
-        if(activeTexts == null) return;
+        if (activeTexts != null)
+        {
+            foreach (LocalizedText text in activeTexts)
+                text.SetText();    
+        }
 
-        foreach (LocalizedText text in activeTexts)
-            text.SetText();
+        if (onChangeLanguage != null)
+        {
+            foreach (UnityAction action in onChangeLanguage)
+                action?.Invoke();
+        }
+
+        
     }
     
     /////////

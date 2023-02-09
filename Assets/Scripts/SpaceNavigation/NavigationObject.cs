@@ -24,8 +24,11 @@ public class NavigationObject : MonoBehaviour
     [SerializeField] private Image displayLine;
 
     [Header("Object Info")]
-    [SerializeField] private string displayName;
-    [SerializeField] private string description;
+    //[SerializeField] private string displayName;
+    //[SerializeField] private string description;
+    [SerializeField] private string nameCode;
+    [SerializeField] private string descriptionCode;
+    
     [SerializeField] private Vector3 coordinates;
 
     private Coroutine nameRoutine;
@@ -39,6 +42,16 @@ public class NavigationObject : MonoBehaviour
     private void Awake()
     {
         CloseDisplay();
+    }
+
+    private void OnEnable()
+    {
+        LocalizationManager.AddToLanguageChangeActionList(QuickForceText);
+    }
+
+    private void OnDisable()
+    {
+        LocalizationManager.RemoveFromLanguageChangeActionList(QuickForceText);
     }
 
     public virtual void OnSelect()
@@ -96,7 +109,7 @@ public class NavigationObject : MonoBehaviour
             typer.Skip();
 
         nameField.text = "";
-        typer.TypeText( displayName );
+        typer.TypeText( LocalizationManager.GetUiText(nameCode, "???") );
 
         //int count = displayName.Length;
         //int i = 0;
@@ -119,7 +132,7 @@ public class NavigationObject : MonoBehaviour
             typer.Skip();
 
         descriptionField.text = "";
-        typer.TypeText( description );
+        typer.TypeText( LocalizationManager.GetUiText(descriptionCode, "???") );
 
         //int count = description.Length;
         //int i = 0;
@@ -162,6 +175,18 @@ public class NavigationObject : MonoBehaviour
     {
         coordnatesField.text = $"X {value.x:0000.00};Y {value.y:0000.00};Z {value.z:0000.00}";
     }
+
+    private void QuickForceText()
+    {
+        StopAllCoroutines();
+        
+        if(!string.IsNullOrEmpty(nameField.text))
+            nameField.text = LocalizationManager.GetUiText(nameCode, "???");
+        
+        if(!string.IsNullOrEmpty(descriptionField.text))
+            descriptionField.text = LocalizationManager.GetUiText(descriptionCode, "???");
+    }
+    
     
     
 }

@@ -18,24 +18,55 @@ MonoBehaviour:
     - options
     - quit
     - chill
+    - talk
+    - navigate
+    - play
+    - customize
+    - leave
     - paused
     - master
     - music
     - sfx
     - audio
     - video
+    - back
+    - resume
+    - confirm
+    - cancel
+    - reset_stage
+    - exit_zone
+    - lose_progress
+    - quit_game
+    - are_you_sure
     - controls
+    - system
     - on_ground
     - dynamic1
     - dynamic2
     - absolute
     - see_readme
-    - back
     - space_to_jump
     - press_to_move
     - press_to_start
+    - press_to_open_pda
+    - press_to_call_ship
+    - calling
     - transporter_notification
     - ggs_notification
+    - skip_scene
+    - new
+    - nav_move
+    - nav_land
+    - nav_exit
+    - 001
+    - 001.X
+    - 001.1
+    - 002
+    - 002.X
+    - 003
+    - 003.X
+    - 00?
+    - 00?.X
     m_values:
     - m_keys: 0000000001000000
       m_values:
@@ -53,6 +84,26 @@ MonoBehaviour:
       m_values:
       - Chill
       - Relexar
+    - m_keys: 0000000001000000
+      m_values:
+      - Talk
+      - Conversar
+    - m_keys: 0000000001000000
+      m_values:
+      - Navigate
+      - Navegar
+    - m_keys: 0000000001000000
+      m_values:
+      - Play
+      - Jogar
+    - m_keys: 0000000001000000
+      m_values:
+      - ???
+      - ???
+    - m_keys: 0000000001000000
+      m_values:
+      - Leave
+      - Sair
     - m_keys: 0000000001000000
       m_values:
       - Paused
@@ -79,8 +130,48 @@ MonoBehaviour:
       - "V\xEDdeo"
     - m_keys: 0000000001000000
       m_values:
+      - Back
+      - Voltar
+    - m_keys: 0000000001000000
+      m_values:
+      - Resume
+      - Retornar
+    - m_keys: 0000000001000000
+      m_values:
+      - Confirm
+      - Confirmar
+    - m_keys: 0000000001000000
+      m_values:
+      - Cancel
+      - Cancelar
+    - m_keys: 0000000001000000
+      m_values:
+      - Reset Stage
+      - "Recome\xE7ar"
+    - m_keys: 0000000001000000
+      m_values:
+      - Exit Zone
+      - "Deixar \xC1rea"
+    - m_keys: 0000000001000000
+      m_values:
+      - Progress will be lost.
+      - "Progresso ser\xE1 perdido"
+    - m_keys: 0000000001000000
+      m_values:
+      - Quit game?
+      - Sair do jogo?
+    - m_keys: 0000000001000000
+      m_values:
+      - Are you Sure?
+      - Tem certeza?
+    - m_keys: 0000000001000000
+      m_values:
       - Controls
       - Controles
+    - m_keys: 0000000001000000
+      m_values:
+      - System
+      - Sistema
     - m_keys: 0000000001000000
       m_values:
       - On Ground
@@ -103,10 +194,6 @@ MonoBehaviour:
       - "Leia o \nreadme.txt \npara mais informa\xE7\xF5es"
     - m_keys: 0000000001000000
       m_values:
-      - Back
-      - Voltar
-    - m_keys: 0000000001000000
-      m_values:
       - Press 'Space' to jump.
       - "Aperte 'Espa\xE7o' para pular."
     - m_keys: 0000000001000000
@@ -119,6 +206,18 @@ MonoBehaviour:
       - 'Aperte <color=yellow>:jump:</color> ou <color=yellow>:pause:'
     - m_keys: 0000000001000000
       m_values:
+      - Press <color=yellow>:pause:</color> to open your <color=yellow>PDA</color>
+      - Aperte <color=yellow>:pause:</color> para abrir o seu <color=yellow>PDA</color>
+    - m_keys: 0000000001000000
+      m_values:
+      - Hold ':interact:' to call ship
+      - Segure ':interact:' para chamar a nave
+    - m_keys: 0000000001000000
+      m_values:
+      - calling ship
+      - chamando nave
+    - m_keys: 0000000001000000
+      m_values:
       - You got a Transporter. You can use it while on the pause menu to return to
         your ship.
       - Aperte start para jogar
@@ -126,3 +225,59 @@ MonoBehaviour:
       m_values:
       - You got a vintage GGS. You can open it on the pause menu to play some games.
       - Aperte start para jogar
+    - m_keys: 0000000001000000
+      m_values:
+      - Skiping scene
+      - Pulando cena
+    - m_keys: 0000000001000000
+      m_values:
+      - new
+      - novo
+    - m_keys: 0000000001000000
+      m_values:
+      - 'Move - :movement:'
+      - 'Mover - :movement:'
+    - m_keys: 0000000001000000
+      m_values:
+      - 'Land - :interact:'
+      - 'Aterrissar - :interact:'
+    - m_keys: 0000000001000000
+      m_values:
+      - 'Exit - :pause:'
+      - 'Sair - :pause:'
+    - m_keys: 0000000001000000
+      m_values:
+      - The Scrapgarten
+      - O Jardim
+    - m_keys: 0000000001000000
+      m_values:
+      - An abandoned system
+      - Um sistema abandonado
+    - m_keys: 0000000001000000
+      m_values:
+      - '1: The backyard'
+      - '1: O Quintal'
+    - m_keys: 0000000001000000
+      m_values:
+      - The Nilmines
+      - As Naominas
+    - m_keys: 0000000001000000
+      m_values:
+      - An uncharted frontierland
+      - "Uma fronteira n\xE3o mapeada"
+    - m_keys: 0000000001000000
+      m_values:
+      - The Urbs
+      - "Os B\xFArbios"
+    - m_keys: 0000000001000000
+      m_values:
+      - A busy construction site
+      - "Uma \xE1rea de constru\xE7\xE3o"
+    - m_keys: 0000000001000000
+      m_values:
+      - ???
+      - ???
+    - m_keys: 0000000001000000
+      m_values:
+      - Something glimmers from afar
+      - Tem algo brilhando ao longe
