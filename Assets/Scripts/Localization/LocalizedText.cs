@@ -42,7 +42,7 @@ public class LocalizedText : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        LocalizationManager.CurrentLanguage = GameLocalizationCode.BR;
+        //LocalizationManager.CurrentLanguage = GameLocalizationCode.BR;
         textMesh = GetComponent<TMP_Text>();
         
         if(textMesh == null) return;

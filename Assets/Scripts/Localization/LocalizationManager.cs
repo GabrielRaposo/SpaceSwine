@@ -25,6 +25,7 @@ public static class LocalizationManager
         get => currentLanguage;
         set
         {
+            Debug.Log("Change language to " + value);
             if(value == currentLanguage) return;
             currentLanguage = value;
 
