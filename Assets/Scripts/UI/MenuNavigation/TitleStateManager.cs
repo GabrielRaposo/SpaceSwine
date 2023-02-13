@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class TitleStateManager : MonoBehaviour
 {
+    [SerializeField] bool startOnLanguageSelect;
     [SerializeField] State initialState;
 
     [Header("References")]
     [SerializeField] PlaylistPlayer playlistPlayer;
     [SerializeField] TitleMenuNavigation titleMenuNavigation;
+    [SerializeField] LanguageScreenFunctions languageScreen;
     [SerializeField] PauseSystem pauseSystem;
     [SerializeField] CanvasGroup menuCanvasGroup;
 
-    enum State { Intro, Menu, Options, ChillLoop }
+    enum State { Intro, Menu, Options, ChillLoop, LanguageSelect }
     State state;
 
     void Start()
     {
-        SetState(State.Intro);
+        SetState ( startOnLanguageSelect ? State.LanguageSelect : State.Intro );
     }
 
     private void SetState (State newState)
@@ -82,10 +84,23 @@ public class TitleStateManager : MonoBehaviour
                     }
                 }
             }
-                
+        }
+
+        if (languageScreen)
+        {
+            languageScreen.enabled = (newState == State.LanguageSelect);  
+            languageScreen.OnFocus = (newState == State.LanguageSelect);
         }
 
         state = newState;
+    }
+
+    public void SetIntroState()
+    {
+        if (state == State.Intro)
+            return;
+
+        SetState(State.Intro);
     }
 
     public void SetMenuState()
