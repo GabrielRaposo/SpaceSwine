@@ -52,7 +52,7 @@ public static class InputTagController
             switch (CurrentControllerType)
             {
                 default:
-                case ControllerType.Keyboard: return LocalizationManager.GetInputText("movement_keyboard");
+                case ControllerType.Keyboard:       return LocalizationManager.GetInputText("movement_keyboard");
                 case ControllerType.XboxJoystick:   return LocalizationManager.GetInputText("movement_joystick");
             }
         }

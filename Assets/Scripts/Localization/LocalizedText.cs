@@ -102,18 +102,23 @@ public class LocalizedText : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
+        textMesh.text = ParsedText(textMesh.text);
+
         if (!string.IsNullOrEmpty(textStyle))
             textMesh.text = textStyle.Replace("{s}", textMesh.text);
+
+
         
         // if (useUniversalFont)
         //     textMesh.font = universalFont;
-//        else
-  //      {
-            // if (LocalizationManager.CurrentLanguage == GameLocalizationCode.JP)
-            //     textMesh.font = japaneseFont;
-            // else
-            //    textMesh.font = standardFont;    
-    //    }
+        // else
+        // {
+        //     if (LocalizationManager.CurrentLanguage == GameLocalizationCode.JP)
+        //         textMesh.font = japaneseFont;
+        //     else
+        //         textMesh.font = standardFont;    
+        // }
     }
 
     public void SetText(string localizationCode)
@@ -127,5 +132,11 @@ public class LocalizedText : MonoBehaviour
         textMesh = GetComponent<TMP_Text>();
         if (textMesh == null)
             textMesh.GetComponentInChildren<TMP_Text>();
+    }
+
+    protected virtual string ParsedText(string text)
+    {
+        // Esse função é sobreescrita em ParsedLocalizedText
+        return text;
     }
 }

@@ -9,12 +9,12 @@ public class HoldToSkipScene : MonoBehaviour
 {
     [SerializeField] float holdDuration;
     [SerializeField] string baseText;
+    [SerializeField] string localizationCode;
     [SerializeField] TextMeshProUGUI warningDisplay;
     [SerializeField] UnityEvent OnCallEvent;
 
     PlayerInputActions playerInputActions;
     InputAction startInput;
-
 
     private void OnEnable() 
     {
@@ -55,7 +55,11 @@ public class HoldToSkipScene : MonoBehaviour
     {
         float stepDuration = holdDuration / 5;
 
-        warningDisplay.text = baseText;
+        string localizedText = baseText;
+        if (localizationCode != string.Empty) 
+            localizedText = LocalizationManager.GetUiText(localizationCode, "Skipping scene");
+
+        warningDisplay.text = localizedText;
         yield return new WaitForSeconds(stepDuration);
 
         warningDisplay.text += ".";
