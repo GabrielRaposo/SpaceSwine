@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SetTerminalActivationOnTheFirstTime : MonoBehaviour
 {
-    static bool FirstTime = true;
+    public static bool FirstTime = true;
 
     void OnEnable()
     {
