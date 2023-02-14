@@ -14,6 +14,9 @@ namespace WhitethornBuild
         [Header("Values")]
         [SerializeField] float fadeInDuration;
         [SerializeField] float inputDelayDuration;
+        [SerializeField] string thanksTextCode;
+        [SerializeField] string inputTextCode;
+        [SerializeField] string parseSeparator;
 
         [Header("References")]
         [SerializeField] CanvasGroup canvasGroup;
@@ -37,10 +40,28 @@ namespace WhitethornBuild
 
             canvasGroup.alpha = 0;
         
+            // -- Thanks Text
             string originalText = textDisplay.text;
-            textDisplay.text = string.Empty;
-            textDisplay.enabled = true;
-            inputTextDisplay.enabled = false;
+            { 
+                (bool isValid, string output) data = LocalizationManager.GetStoryText(thanksTextCode);
+                if (data.isValid)
+                    originalText = data.output;
+
+                textDisplay.text = string.Empty;
+                textDisplay.enabled = true;
+            }
+
+            // -- Input Text
+            {
+                string inputText = inputTextDisplay.text;
+                (bool isValid, string output) data = LocalizationManager.GetStoryText(inputTextCode);
+                if (data.isValid)
+                    inputText = data.output;
+                inputText = ParseInputTag.ParsedOutput(inputText, parseSeparator);
+
+                inputTextDisplay.text = inputText;
+                inputTextDisplay.enabled = false;
+            }
 
             Sequence s = DOTween.Sequence();
             s.Append( canvasGroup.DOFade( 1, fadeInDuration ) );

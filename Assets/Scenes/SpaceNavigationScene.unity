@@ -1253,8 +1253,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1862641652}
-  - {fileID: 1196387586}
   - {fileID: 1178382154}
+  - {fileID: 1196387586}
   m_Father: {fileID: 1208026654}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1669,6 +1669,10 @@ PrefabInstance:
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: descriptionCode
       value: 002.X
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: blockInteraction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731782769151, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2677,8 +2681,9 @@ GameObject:
   - component: {fileID: 1178382154}
   - component: {fileID: 1178382156}
   - component: {fileID: 1178382155}
+  - component: {fileID: 1178382157}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Orbiting Destination (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2696,7 +2701,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 576846656}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2800,6 +2805,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178382153}
   m_CullTransparentMesh: 0
+--- !u!114 &1178382157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178382153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aec31e196c6f201409888905b6dcc173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationCode: orbiting_destination
+  fallbackText: ORBITING DESTINATION
+  textStyle: 
+  textType: 5
+  textMesh: {fileID: 1178382155}
+  editor_manualCode: 0
 --- !u!1 &1196387585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2812,7 +2835,7 @@ GameObject:
   - component: {fileID: 1196387588}
   - component: {fileID: 1196387587}
   m_Layer: 0
-  m_Name: Image (1)
+  m_Name: Lower Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2830,7 +2853,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 576846656}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -3392,6 +3415,10 @@ PrefabInstance:
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: descriptionCode
       value: 003.X
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: blockInteraction
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731782769151, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_LocalRotation.z
@@ -3958,7 +3985,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1430119869}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e715e9b994cc81429a9cda5b836e31c, type: 3}
   m_Name: 
@@ -5312,7 +5339,7 @@ GameObject:
   - component: {fileID: 1862641654}
   - component: {fileID: 1862641653}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Upper Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

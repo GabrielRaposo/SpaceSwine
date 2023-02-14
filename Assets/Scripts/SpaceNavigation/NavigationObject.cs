@@ -11,9 +11,13 @@ using RedBlueGames.Tools.TextTyper;
 
 public class NavigationObject : MonoBehaviour
 {
+    [SerializeField] private bool blockInteraction;
+    
+    [Header(" ")]
     [SerializeField] protected SpriteRenderer sprite;
-    [FormerlySerializedAs("selectionColor")] [SerializeField] private Color unselectedColor;
-    [FormerlySerializedAs("selectionColor")] [SerializeField] private Color selectedColor;
+    [SerializeField] private Color unselectedColor;
+    [SerializeField] private Color selectedColor;
+    [SerializeField] private Color unavailableColor;
 
 
     [SerializeField] private Canvas _canvas;
@@ -26,6 +30,8 @@ public class NavigationObject : MonoBehaviour
     [Header("Object Info")]
     //[SerializeField] private string displayName;
     //[SerializeField] private string description;
+    [SerializeField] private string unavailableNameCode;
+    [SerializeField] private string unavailableDescriptionCode;
     [SerializeField] private string nameCode;
     [SerializeField] private string descriptionCode;
     
@@ -56,7 +62,7 @@ public class NavigationObject : MonoBehaviour
 
     public virtual void OnSelect()
     {
-        sprite.color = selectedColor;
+        sprite.color = blockInteraction ? unavailableColor : selectedColor;
         OpenDisplay();
     }
 
@@ -68,6 +74,9 @@ public class NavigationObject : MonoBehaviour
 
     public void OnInteract(NavigationShip ship = null)
     {
+        if (blockInteraction)
+            return;
+
         //Debug.Log("OnInteract()");
         interactAction?.Invoke(ship);
     }
@@ -109,7 +118,7 @@ public class NavigationObject : MonoBehaviour
             typer.Skip();
 
         nameField.text = "";
-        typer.TypeText( LocalizationManager.GetUiText(nameCode, "???") );
+        typer.TypeText( LocalizationManager.GetUiText(blockInteraction ? unavailableNameCode : nameCode, "???") );
 
         //int count = displayName.Length;
         //int i = 0;
@@ -132,7 +141,7 @@ public class NavigationObject : MonoBehaviour
             typer.Skip();
 
         descriptionField.text = "";
-        typer.TypeText( LocalizationManager.GetUiText(descriptionCode, "???") );
+        typer.TypeText( LocalizationManager.GetUiText(blockInteraction ? unavailableDescriptionCode : descriptionCode, "???") );
 
         //int count = description.Length;
         //int i = 0;
