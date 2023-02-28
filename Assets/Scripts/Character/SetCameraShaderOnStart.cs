@@ -6,7 +6,7 @@ public class SetCameraShaderOnStart : MonoBehaviour
 {
     [SerializeField] LocalGameplayState gameplayState;
 
-    void Start()
+    void Awake()
     {
         if (!gameplayState)
             return;
