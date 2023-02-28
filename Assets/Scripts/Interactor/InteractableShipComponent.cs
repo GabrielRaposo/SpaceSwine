@@ -41,12 +41,19 @@ public class InteractableShipComponent : Interactable
 
     private void OnEnable()
     {
-        LocalizationManager.AddToLanguageChangeActionList(()=>interactionBalloon.SetTextDisplay(shipAction));
+        Debug.Log("Enable");
+        LocalizationManager.AddToLanguageChangeActionList(SetShipActionTextDisplay);
     }
 
     private void OnDisable()
     {
-        LocalizationManager.RemoveFromLanguageChangeActionList(()=>interactionBalloon.SetTextDisplay(shipAction));
+        Debug.Log("Disable");
+        LocalizationManager.RemoveFromLanguageChangeActionList(SetShipActionTextDisplay);
+    }
+
+    private void SetShipActionTextDisplay()
+    {
+        interactionBalloon.SetTextDisplay(shipAction);
     }
 
     public override void Interaction (PlayerInteractor interactor) 
