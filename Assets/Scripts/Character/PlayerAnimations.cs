@@ -52,7 +52,8 @@ public class PlayerAnimations : MonoBehaviour
         if (onTransition)
             return;
 
-        CustomIdleLogic();   
+        if (!GameManager.IsOnScene(BuildIndex.Ship))
+            CustomIdleLogic();
 
         switch (state)
         {
