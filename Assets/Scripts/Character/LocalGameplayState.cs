@@ -10,7 +10,6 @@ public class LocalGameplayState : MonoBehaviour
     private void Start()
     {
         SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
-        CameraShaderManager cameraShaderManager = CameraShaderManager.Instance;
         
         if (!soundtrackManager)
             return;
@@ -26,11 +25,5 @@ public class LocalGameplayState : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        
-        if(!cameraShaderManager)
-            return;
-        
-        cameraShaderManager.SetDangerAreaShader(state == GameplayState.Danger);
-        
     }
 }
