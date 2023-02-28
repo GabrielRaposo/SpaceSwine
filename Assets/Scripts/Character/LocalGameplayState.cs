@@ -10,9 +10,7 @@ public class LocalGameplayState : MonoBehaviour
     private void Start()
     {
         SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
-        
         CameraShaderManager cameraShaderManager = CameraShaderManager.Instance;
-        
         
         if (!soundtrackManager)
             return;

@@ -30,7 +30,7 @@ public class FPSCounterDisplay : MonoBehaviour
         if (display == null)
             return;
 
-         deltaTime += (Time.deltaTime - deltaTime) * 0.1f;
+         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
          float fps = 1.0f / deltaTime;
          display.text = "FPS ";
          display.text += ceilValue ? Mathf.Ceil(fps).ToString() : fps.ToString ("0.0");
