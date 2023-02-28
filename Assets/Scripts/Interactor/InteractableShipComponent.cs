@@ -41,13 +41,13 @@ public class InteractableShipComponent : Interactable
 
     private void OnEnable()
     {
-        Debug.Log("Enable");
+        //Debug.Log("Enable");
         LocalizationManager.AddToLanguageChangeActionList(SetShipActionTextDisplay);
     }
 
     private void OnDisable()
     {
-        Debug.Log("Disable");
+        //Debug.Log("Disable");
         LocalizationManager.RemoveFromLanguageChangeActionList(SetShipActionTextDisplay);
     }
 
