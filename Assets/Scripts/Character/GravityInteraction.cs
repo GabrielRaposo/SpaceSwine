@@ -19,12 +19,46 @@ public class GravityInteraction : MonoBehaviour
     bool jumpHeld;
     bool lockIntoAngle;
 
-    GravityArea gravityArea;
-    PlanetPlatform platform;
-    GravitationalBody planet;
-
     Rigidbody2D rb;
     CheckGround checkGround;
+
+    GravityArea gravityArea;
+    PlanetPlatform platform;
+    GravitationalBody gravitationalBody;
+
+    // -- Usado para fazer a transição entre Planetas e Closed Spaces
+    GravitationalBody overrideGravitationalBody; 
+
+    GravitationalBody GBody
+    {
+        get 
+        {
+            if (overrideGravitationalBody)
+                return overrideGravitationalBody;
+
+            return gravitationalBody;
+        }
+    }
+
+    public GravitationalBody SetOverrideGravitationalBody
+    {
+        set 
+        {
+            if (value == null)
+            {
+                gravityArea = null;
+
+                // -- "Pisca" o collider para atualizar a gravityArea
+                Collider2D coll = GetComponentInChildren<Collider2D>();
+                if (coll)
+                {
+                    coll.enabled = false;
+                    coll.enabled = true;
+                }
+            }
+            overrideGravitationalBody = value;
+        }
+    }
 
     public UnityAction<Transform> OnChangeGravityAnchor;
 
@@ -36,8 +70,9 @@ public class GravityInteraction : MonoBehaviour
 
     private void OnEnable() 
     {
-        planet = null;
         platform = null;
+        gravitationalBody = null;
+        overrideGravitationalBody = null;
 
         playerFocusInput.Enable();
         planetFocusInput.Enable();
@@ -90,7 +125,18 @@ public class GravityInteraction : MonoBehaviour
         if (checkGround)
         {
             platform = checkGround.OnPlatform;
-            planet = checkGround.OnPlanet;
+            //gravitationalBody = checkGround.OnPlanet;
+
+            GravitationalBody gBody = checkGround.OnPlanet;
+            if (overrideGravitationalBody == null)
+            {
+                gravitationalBody = gBody;
+            }
+            //else
+            //{
+            //    if (gBody != overrideGravitationalBody && gBody != null)
+            //        gravitationalBody = gBody;    
+            //}
         }
 
         UpdateParent ();
@@ -101,7 +147,7 @@ public class GravityInteraction : MonoBehaviour
         {
             angle = AlignWithPlatform();
         } 
-        else if (planet)
+        else if (GBody)
         {
             angle = AlignWithPlanet();
         }
@@ -137,12 +183,12 @@ public class GravityInteraction : MonoBehaviour
             transform.SetParent (platform.transform);
             //OnChangeGravityAnchor?.Invoke(platform.transform);
         }
-        else if (planet)
+        else if (GBody)
         {
-            if (transform.parent == planet.transform)
+            if (transform.parent == GBody.transform)
                 return;
 
-            transform.SetParent (planet.transform);
+            transform.SetParent (GBody.transform);
             //Debug.Log("Set Parent: " + planet.name);
             //OnChangeGravityAnchor?.Invoke(planet.transform);
         }
@@ -215,14 +261,16 @@ public class GravityInteraction : MonoBehaviour
     public void DettachFromSurfaces()
     {
         platform = null;
-        planet = null;
+        gravitationalBody = null;
+        overrideGravitationalBody = null;
         UpdateParent();
     }
 
     private void OnDisable() 
     {
         platform = null;
-        planet = null;
+        gravitationalBody = null;
+        overrideGravitationalBody = null;
         
         playerFocusInput.Disable();
         planetFocusInput.Disable();

@@ -6,7 +6,8 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "NPC Data", menuName = "ScriptableObjects/NPC Data")]
 public class NPCData : ScriptableObject, ISerializationCallbackReceiver
 {
-    public string npcName;
+    //public string npcName;
+    public string npcNameCode;
     public int startingIndex = 0;
     public List<DialogueGroup> dialogueGroups;
     public UnityAction OnDialogueEnd;

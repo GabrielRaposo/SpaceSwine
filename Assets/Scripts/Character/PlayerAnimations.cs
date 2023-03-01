@@ -9,9 +9,7 @@ public class PlayerAnimations : MonoBehaviour
 {
     [SerializeField] AnimatorOverrideController shipOverrideController;
     [SerializeField] bool forceOverride;
-    Animator animator;
-
-    string currentState;
+    [SerializeField] float customIdleDuration;
 
     [HideInInspector] public bool landedOnGround;
     [HideInInspector] public bool holding;
@@ -19,6 +17,11 @@ public class PlayerAnimations : MonoBehaviour
     [HideInInspector] public bool airStall;
     [HideInInspector] public float horizontalInput;
     [HideInInspector] public float verticalSpeed;
+    
+    float customIdleCount;
+    string currentState;
+
+    Animator animator;
 
     enum State  { Landed, Jumping, Flying, Dead }
     State state;
@@ -38,6 +41,7 @@ public class PlayerAnimations : MonoBehaviour
     private void OnEnable() 
     {
         holding = throwing = airStall = false;  
+        customIdleCount = 0;
     }
 
     private void Update() 
@@ -48,40 +52,42 @@ public class PlayerAnimations : MonoBehaviour
         if (onTransition)
             return;
 
+        if (!GameManager.IsOnScene(BuildIndex.Ship))
+            CustomIdleLogic();
+
         switch (state)
         {
             case State.Landed:
                 if (throwing)
                 {
-                    ChangeAnimationState(AnimationState.THROW_GROUND);
+                    ChangeAnimationState( AnimationState.THROW_GROUND );
                 }
                 else if (!landedOnGround)
                 {
-                    ChangeAnimationState(!holding ? AnimationState.FALL : AnimationState.FALL_HOLD );
+                    ChangeAnimationState( !holding ? AnimationState.FALL : AnimationState.FALL_HOLD );
                 } 
                 else if (horizontalInput == 0)
                 {
-                    ChangeAnimationState(!holding ? AnimationState.IDLE : AnimationState.IDLE_HOLD );
+                    ChangeAnimationState( !holding ? AnimationState.IDLE : AnimationState.IDLE_HOLD );
                 }
                 else
                 {
-                    ChangeAnimationState(!holding ? AnimationState.WALK : AnimationState.WALK_HOLD );
+                    ChangeAnimationState( !holding ? AnimationState.WALK : AnimationState.WALK_HOLD );
                 }            
                 break;
 
             case State.Jumping:
                 if (verticalSpeed > 0)
                 {
-                    ChangeAnimationState(!holding ? AnimationState.JUMP : AnimationState.JUMP_HOLD );
+                    ChangeAnimationState( !holding ? AnimationState.JUMP : AnimationState.JUMP_HOLD );
                 }
                 else
                 {
-                    ChangeAnimationState(!holding ? AnimationState.FALL : AnimationState.FALL_HOLD );
+                    ChangeAnimationState( !holding ? AnimationState.FALL : AnimationState.FALL_HOLD );
                 }
                 break;
 
             case State.Flying:
-                //Debug.Log("Flying, airStall: " + airStall);
                 if (airStall) 
                 {
                     ChangeAnimationState(AnimationState.AIR_STALL);
@@ -93,6 +99,29 @@ public class PlayerAnimations : MonoBehaviour
             case State.Dead:
                 ChangeAnimationState( AnimationState.DEATH );
                 break;
+        }
+    }
+
+    public void CustomIdleLogic()
+    {
+        //Debug.Log("customIdleCount: " + customIdleCount);
+
+        float customCountSave = customIdleCount;
+        customIdleCount = 0;
+
+        if (customCountSave == 100 || state != State.Landed || !landedOnGround || holding || throwing || horizontalInput != 0)
+        {
+            animator.SetBool(AnimationState.TRIGGER_CUSTOMIDLE_0, false);
+            return;
+        }
+
+        customIdleCount = customCountSave;
+        customIdleCount += Time.deltaTime;
+
+        if (customIdleCount >= customIdleDuration)
+        {
+            customIdleCount = 100;
+            animator.SetTrigger(AnimationState.TRIGGER_CUSTOMIDLE_0);
         }
     }
 
@@ -174,4 +203,8 @@ public class AnimationState
 
     public static string TRANSITION_TELEPORT_IN = "Player-Transition-TeleportIn";
     public static string TRANSITION_TELEPORT_OUT = "Player-Transition-TeleportOut";
+
+
+
+    public static string TRIGGER_CUSTOMIDLE_0 = "CustomIdle0";
 }

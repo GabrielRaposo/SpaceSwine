@@ -100,7 +100,6 @@ public class TitleMenuNavigation : MonoBehaviour
             else if (axis.y < -.75f)
                 MoveCursor(1);
         }
-
     }
 
     public void FadeInSequence()

@@ -95,6 +95,9 @@ public class SoundtrackManager : MonoBehaviour
 
     private void Start() 
     {
+        if (!Application.isEditor)
+            return;
+
         playMusicTestInput.performed += (ctx) => SkipTrack(1);
         playMusicTestInput.Enable();
 

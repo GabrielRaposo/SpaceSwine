@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dic:
     m_keys:
+    - TUTORIAL_000
     - TUTORIAL_001
     - TUTORIAL_002
     - Z0_PLACA_001.01
@@ -25,6 +26,9 @@ MonoBehaviour:
     - TUTORIAL_004
     - TUTORIAL_005
     - TUTORIAL_006
+    - NAME_PLACA
+    - build_end_thanks
+    - build_end_input
     - Z1_NPC_ROBOZAO_001.01
     - Z1_NPC_ROBOZAO_001.02
     - Z1_NPC_ROBOZAO_001.03
@@ -84,6 +88,27 @@ MonoBehaviour:
     - Z1_PLACA_005.01
     - Z1_PLACA_005.02
     - Z1_PLACA_005.03
+    - NAME_ROBOZAO
+    - NAME_TREE
+    - NAME_LEG
+    - NAME_SAM
+    - NAME_TOM
+    - NAME_PLANK
+    - Z1_NPC_LABORBOT_001.01
+    - Z1_NPC_LABORBOT_001.02
+    - Z1_NPC_LABORBOT_002.01
+    - Z1_NPC_LABORBOT_003.01
+    - Z1_NPC_LABORBOT_004.01
+    - Z1_NPC_MAROMBOT_001.01
+    - Z1_NPC_MAROMBOT_001.02
+    - Z1_NPC_MAROMBOT_002.01
+    - Z1_NPC_MAROMBOT_003.01
+    - Z1_NPC_MAROMBOT_004.01
+    - Z1_NPC_MAROMBOT_005.01
+    - Z2_PLACA_001.01
+    - Z2_PLACA_001.02
+    - NAME_LABORBOT
+    - NAME_MAROMBOT
     - Z3_NPC_BEAR_001.01
     - Z3_NPC_BEAR_002.01
     - Z3_NPC_BEAR_003.01
@@ -103,347 +128,521 @@ MonoBehaviour:
     - Z3_NPC_BUNNY_014.01
     - Z3_PLACA_001.01
     - Z3_PLACA_001.02
-    - Z1_NPC_LABORBOT_001.01
-    - Z1_NPC_LABORBOT_001.02
-    - Z1_NPC_LABORBOT_002.01
-    - Z1_NPC_LABORBOT_003.01
-    - Z1_NPC_LABORBOT_004.01
-    - Z1_NPC_MAROMBOT_001.01
-    - Z1_NPC_MAROMBOT_001.02
-    - Z1_NPC_MAROMBOT_002.01
-    - Z1_NPC_MAROMBOT_003.01
-    - Z1_NPC_MAROMBOT_004.01
-    - Z1_NPC_MAROMBOT_005.01
-    - Z2_PLACA_001.01
-    - Z2_PLACA_001.02
+    - Z3_PLACA_001.CAR
+    - Z3_PLACA_002.CAR
+    - NAME_BEAR
+    - NAME_BUNNY
     m_values:
     - m_keys: 0000000001000000
       m_values:
-      - Press <color=yellow>directional arrows</color> to walk
-      - Cuidado com pedras rolantes
+      - 'Press <color=yellow>:jump:</color> to
+
+        jump out'
+      - 'Aperte <color=yellow>:jump:</color> para
+
+        se soltar'
     - m_keys: 0000000001000000
       m_values:
-      - Press <color=yellow>'C'</color> to interact with the world around you
-      - Cuidado com pedras rolantes
+      - Press <color=yellow>:movement2:</color> to walk
+      - Use <color=yellow>:movement2:</color> para andar
+    - m_keys: 0000000001000000
+      m_values:
+      - Press <color=yellow>:interact:</color> to interact with the world around
+        you
+      - Aperte <color=yellow>:interact:</color> para interagir com o mundo
     - m_keys: 0000000001000000
       m_values:
       - "Remember: jumping over the stumps won't make you escape the planet's gravity
         field!\n\u2013 <i>Plank</i>"
-      - Cuidado com pedras rolantes
+      - "Lembrete: pular os tocos de \xE1rvore n\xE3o vai te fazer escapar o campo
+        gravitacional do planeta!\n\u2013 <i>T\xE1bua</i>"
     - m_keys: 0000000001000000
       m_values:
       - "We ask of all workers to please keep the elevators in working conditions
         for next month's inspection!\n\u2013 <i>Plank</i>"
-      - Cuidado com pedras rolantes
+      - "Pedimos para todos os trabalhadores que mantenham os elevadores em boa condi\xE7\xE3o
+        para a inspe\xE7\xE3o do m\xEAs que vem!\n\u2013 <i>T\xE1bua</i>"
     - m_keys: 0000000001000000
       m_values:
       - 'We already cleared up this area, please stop putting up these signs and
         wasting resources. Nobody is going to read them.
 
         Dearly, <i>Tree</i>.'
-      - Cuidado com pedras rolantes
+      - "J\xE1 limpamos essa \xE1rea. Por favor pare de gastar recursos colocando
+        placas. Ningu\xE9m vai ler isto.\nSinceramente, <i>\xC1rvore</i>."
     - m_keys: 0000000001000000
       m_values:
       - "You read it.\n\u2013 <i>Plank</i>"
-      - Cuidado com pedras rolantes
+      - "Voc\xEA leu.\n\u2013 <i>T\xE1bua</i>"
     - m_keys: 0000000001000000
       m_values:
       - "Long jump ahead!\n\u2013 <i>Plank</i>"
-      - Cuidado com pedras rolantes
+      - "Salto longo adiante!\n\u2013 <i>T\xE1bua</i>"
     - m_keys: 0000000001000000
       m_values:
-      - 'Press the <color=yellow>Space bar</color=yellow>
+      - 'Press the <color=yellow>:jump:</color=yellow>
 
-        or <color=yellow>''Z''</color>
         to jump'
-      - Cuidado com pedras rolantes
+      - 'Aperte <color=yellow>:jump:</color=yellow>
+
+        para pular'
     - m_keys: 0000000001000000
       m_values:
-      - Press <color=yellow>'X'</color> to throw
-      - Cuidado com pedras rolantes
+      - Press <color=yellow>:throw:</color> to throw
+      - Aperte <color=yellow>:throw:</color> para arremessar
     - m_keys: 0000000001000000
       m_values:
-      - Press <color=yellow>'X' while airborne</color> to throw the key mid-air
-      - Cuidado com pedras rolantes
+      - 'Press <color=yellow>:throw: while airborne</color> to throw the key mid-air'
+      - "Aperte <color=yellow>:throw: durante o v\xF4o</color> para arremessar a
+        chave no ar"
     - m_keys: 0000000001000000
       m_values:
-      - Change direction mid-air with <color=yellow>directional arrows</color>
-      - Cuidado com pedras rolantes
+      - Change direction mid-air with <color=yellow>:movement2:</color>
+      - "Mude dire\xE7\xE3o no ar com <color=yellow>:movement2:</color>"
+    - m_keys: 0000000001000000
+      m_values:
+      - Board
+      - Placa
+    - m_keys: 0000000001000000
+      m_values:
+      - "Thanks for playing!\n\nThis is a development build and some elements \nmay
+        differ from the final game."
+      - "Obrigado por jogar!\n\nEsta ainda \xE9 um build em desenvolvimento,\nent\xE3o
+        alguns elementos podem ser diferentes no jogo final."
+    - m_keys: 0000000001000000
+      m_values:
+      - Press <color=yellow>:jump:</color> to return to the title screen
+      - Aperte <color=yellow>:jump:</color> para voltar ao menu principal
     - m_keys: 0000000001000000
       m_values:
       - Oh my, that was a frightful fall you just had! Are all your systems operational?
-      - "Ol\xE1 Buyk"
+      - "Minha nossa, que queda terr\xEDvel voc\xEA teve? Todos os seus sistemas
+        est\xE3o operacionais?"
     - m_keys: 0000000001000000
       m_values:
       - Wait... That uniform! You are one of those patroller fellows!
-      - "Ol\xE1 Buyk"
+      - "Espera a\xED... Esse uniforme! Voc\xEA \xE9 um daqueles jovens patrulheiros!"
     - m_keys: 0000000001000000
       m_values:
       - It has been almost [18.14 * 10^9 EPHEMERIS SECONDS] since I've last paroled
         with such a distinguished individual! How can I help you, little one?
-      - "Ol\xE1 Buyk"
+      - "Faz quase [18.14 * 10^9 SEGUNDOS EPHEMERIS] desde a \xFAltima vez que pude
+        conversar com um indiv\xEDduo t\xE3o distinto! Como posso te ajudar, pequenino?"
     - m_keys: 0000000001000000
       m_values:
       - ... Oh my. Your ship malfunctioned due to an abnormal fluctuation in gravitational
         radiation and ejected you? Can you not return through your <color=yellow>teleporter</color=yellow>?
-      - "Ol\xE1 Buyk"
+      - "... Minha nossa. Sua nave teve uma pane devido \xE0 uma flutua\xE7\xE3o
+        anormal na radia\xE7\xE3o gravitacional e o ejetou? Voc\xEA n\xE3o consegue
+        retornar com o seu  <color=yellow>teleportador</color=yellow>?"
     - m_keys: 0000000001000000
       m_values:
       - Oh no! Your <color=yellow>teleporter</color=yellow> is broken due to the
         fall! What a complication!
-      - "Ol\xE1 Buyk"
+      - "Que horror! O seu <color=yellow>teleportador</color=yellow> se quebrou devido
+        \xE0 queda! Que complica\xE7\xE3o!"
     - m_keys: 0000000001000000
       m_values:
       - I'm jesting, of course. Nothing is a problem when we have friends and <color=yellow>spare
         parts</color=yellow>. I just happen to have many, myself!
-      - "Ol\xE1 Buyk"
+      - "Brincadeira! Nada \xE9 um problema quando se tem amigos e <color=yellow>pe\xE7as
+        sobressalentes</color=yellow>. Por sorte posso dizer que tenho ambos!"
     - m_keys: 0000000001000000
       m_values:
       - That said, I can repair your device, but, as you can see, I'm not one for
         hopping around. If you could fetch me some scrap, I could make it new again!
-      - "Ol\xE1 Buyk"
+      - "Dito isto, posso consertar o seu dispositivo, mas, como pode ver, n\xE3o
+        sou muito de ficar dando volta por a\xED. Se voc\xEA puder me trazer umas
+        partes, consigo deixar novinho em folha!"
     - m_keys: 0000000001000000
       m_values:
       - One of my assistants may have something useful in their possession. They
         are right over that next system. Can you see it?
-      - "Ol\xE1 Buyk"
+      - "Um dos meus assistentes deve estar em posse de alguma coisa \xFAtil. Eles
+        est\xE3o ali, no sistema ao lado. Consegue ver?"
     - m_keys: 0000000001000000
       m_values:
       - Here, let me assess if the <color=yellow>elevator</color=yellow> still works...
         Looks like it's ok!
-      - "Ol\xE1 Buyk"
+      - Aqui, deixa eu verificar se o <color=yellow>elevador</color=yellow> ainda
+        funciona... Parece que  sim!
     - m_keys: 0000000001000000
       m_values:
       - I'll be here if you require any assistance! I'll also be here if you do not.
-      - "Ol\xE1 Buyk"
+      - "Vou estar aqui se voc\xEA requisitar qualquer aux\xEDlio adicional!\nE tamb\xE9m
+        vou estar aqui se n\xE3o."
     - m_keys: 0000000001000000
       m_values:
       - Something wrong with the <color=yellow>elevator</color=yellow>? It should
         work simply by standing on it and activating it.
-      - "Ol\xE1 Buyk"
+      - "Algo de errado com o elevador? Deveria funcionar simplesmente ficando de
+        p\xE9 sobre a plataforma e o acionando."
     - m_keys: 0000000001000000
       m_values:
       - You can do it. If no one else has believed in you so far, know that I do.
-      - "Ol\xE1 Buyk"
+      - "Voc\xEA consegue. Se ningu\xE9m acreditou em voc\xEA at\xE9 agora, saiba
+        que eu acredito."
     - m_keys: 0000000001000000
       m_values:
       - Take your time. I appreciate the company.
-      - "Ol\xE1 Buyk"
+      - Tome seu tempo. Eu aprecio uma boa companhia.
     - m_keys: 0000000001000000
       m_values:
       - Here comes the little one! You got some nice <color=yellow>parts</color=yellow>
         for me there?
-      - "Ol\xE1 Buyk"
+      - "E volta o pequenino! Voc\xEA conseguiu umas <color=yellow>pe\xE7as</color=yellow>
+        boas pra mim a\xED?"
     - m_keys: 0000000001000000
       m_values:
       - Oh yes, this is perfect. It will take just a second, and... It's done!
-      - "Ol\xE1 Buyk"
+      - Ah, perfeito. Vai levar apenas um segundo... pronto!
     - m_keys: 0000000001000000
       m_values:
       - "\xA7instant text\xA7 <color=yellow>Your teleporter is fixed! A new button
         was added to your pause menu."
-      - "Ol\xE1 Buyk"
+      - "\xA7instant text\xA7 <color=yellow>Seu teleportador foi consertado! Um bot\xE3o
+        novo foi adicionado ao menu de pausa."
     - m_keys: 0000000001000000
       m_values:
       - Here you go. You should be able to return to your <color=yellow>ship</color=yellow>
         now, but know that you are always welcome to stick around! I sure do enjoy
         our pleasant chats.
-      - "Ol\xE1 Buyk"
+      - "Aqui est\xE1. Voc\xEA deve conseguir voltar \xE0 sua <color=yellow>nave</color=yellow>
+        agora, mas saiba que \xE9 sempre bem-vindo pra passar um tempo! Eu gosto
+        bastante das nossas conversas."
     - m_keys: 0000000001000000
       m_values:
       - So what brings you around here, little one? Are you lost as well?
-      - "Ol\xE1 Buyk"
+      - "E o que te traz por esses lados, pequenino? Voc\xEA tamb\xE9m est\xE1 perdido?"
     - m_keys: 0000000001000000
       m_values:
       - "Don\u2019t you think the stars look lovely tonight?"
-      - "Ol\xE1 Buyk"
+      - "Voc\xEA n\xE3o acha que as estrelas est\xE3o lindas hoje?"
     - m_keys: 0000000001000000
       m_values:
       - "The bugs and the flowers are very lazy today, it\u2019s making me dozy as
         well."
-      - "Ol\xE1 Buyk"
+      - "Os insetos e as flores est\xE3o muito pregui\xE7osos hoje, est\xE3o me deixando
+        sonolento tamb\xE9m."
     - m_keys: 0000000001000000
       m_values:
       - "Don\u2019t be staying too long or you will find it hard to leave!"
-      - "Ol\xE1 Buyk"
+      - "N\xE3o v\xE1 ficando muito \xE0 vontade sen\xE3o vai ver que \xE9 dif\xEDcil
+        ir embora!"
     - m_keys: 0000000001000000
       m_values:
       - Where do we belong, you ask me? We belong nowhere. And that's why we belong
         wherever we are.
-      - "Ol\xE1 Buyk"
+      - "Qual o nosso lugar, voc\xEA pergunta? N\xF3s n\xE3o pertencemos a lugar
+        algum. E \xE9 por isso que n\xF3s pertencemos onde quer que estamos."
     - m_keys: 0000000001000000
       m_values:
       - I haven't seen <color=yellow>Tom</color=yellow> in a while. We used to have
         such amusing discussions.
-      - "Ol\xE1 Buyk"
+      - "N\xE3o vejo o <color=yellow>Tom</color=yellow> faz um tempo. N\xF3s t\xEDnhamos
+        discuss\xF5es t\xE3o interessantes."
     - m_keys: 0000000001000000
       m_values:
       - '*cheerful whistling*'
-      - "Ol\xE1 Buyk"
+      - '*assovio alegre*'
     - m_keys: 0000000001000000
       m_values:
       - LEG?
-      - "Ol\xE1 Buyk"
+      - PERNA?
     - m_keys: 0000000001000000
       m_values:
       - LEG!
-      - "Ol\xE1 Buyk"
+      - PERNA!
     - m_keys: 0000000001000000
       m_values:
       - 'Let me guess, you think I can only say LEG, because I am a former leg. '
-      - "Ol\xE1 Buyk"
+      - "Deixa eu adivinhar, voc\xEA acha que eu s\xF3 consigo dizer PERNA, porque
+        eu sou uma ex-perna."
     - m_keys: 0000000001000000
       m_values:
       - 'Let me get this straight into your head, kid: our past doesn''t define us.
         It''s the choices we make everyday that shape up who we are.'
-      - "Ol\xE1 Buyk"
+      - "Deixa eu te explicar, moleque: nosso passado n\xE3o nos define. S\xE3o as
+        escolhas que fazemos todos os dias que d\xE3o molde a quem somos."
     - m_keys: 0000000001000000
       m_values:
       - LEGgo of your preconceived notions.
-      - "Ol\xE1 Buyk"
+      - "Se desapegue de suas no\xE7\xF5es preconcebidas."
     - m_keys: 0000000001000000
       m_values:
       - '<color=yellow>Parts</color=yellow>? What do you want <color=yellow>parts</color=yellow>
         for, fleshy one? '
-      - "Ol\xE1 Buyk"
+      - "<color=yellow>Pe\xE7as</color=yellow>? Pra que voc\xEA quer <color=yellow>pe\xE7as</color=yellow>
+        ser de carne?"
     - m_keys: 0000000001000000
       m_values:
       - Are you one of those hoodlums that stick up <color=yellow>parts</color=yellow>
         inside their bodies? I expect you don't need me to tell you how incredibly
         appropriative that is.
-      - "Ol\xE1 Buyk"
+      - "Voc\xEA \xE9 um daqueles folgados que fica enfiando <color=yellow>pe\xE7as</color=yellow>
+        dentro do pr\xF3prio corpo? Espero que voc\xEA saiba que isso \xE9 incrivelmente
+        apropriativo."
     - m_keys: 0000000001000000
       m_values:
       - LEG.
-      - "Ol\xE1 Buyk"
+      - PERNA.
     - m_keys: 0000000001000000
       m_values:
       - "Everything's out of schedule; No parts anywhere to be found; \n<color=yellow>Leg</color=yellow>
         is putting up his leg act again; Pigs are running around with space suits\u2013"
-      - "Ol\xE1 Buyk"
+      - "Tudo est\xE1 fora do prazo; N\xE3o h\xE1 pe\xE7as em lugar algum;\n<color=yellow>Perna</color=yellow>
+        est\xE1 bancando a perna de novo; Porcos est\xE3o correndo por a\xED com
+        trajes de astronauta\u2013"
     - m_keys: 0000000001000000
       m_values:
       - Lastly, a new tear in space has opened up and sequestered <color=yellow>Tom</color=yellow>.
         How are we supposed to keep up morale like this?
-      - "Ol\xE1 Buyk"
+      - "Por fim, um novo rasgo espacial surgiu e abduziu o <color=yellow>Tom</color=yellow>.
+        Como esperam que a gente mantenha o entusiasmo dos funcion\xE1rios desse
+        jeito?"
     - m_keys: 0000000001000000
       m_values:
       - What? You want <color=yellow>parts</color=yellow>? So do I. Unfortunately
         <color=yellow>Tom</color=yellow> had our best scrap with him, and now everyone's
         "mourning" or something as an excuse not to work.
-      - "Ol\xE1 Buyk"
+      - "O qu\xEA? Voc\xEA quer <color=yellow>pe\xE7as</color=yellow>? Eu tamb\xE9m.
+        Infelizmente <color=yellow>Tom</color=yellow> estava com as nossas melhores
+        pe\xE7as, e agora todos est\xE3o \"de luto\" como desculpa pra n\xE3o trabalhar."
     - m_keys: 0000000001000000
       m_values:
       - Hey there. What can I get you, pink one?
-      - "Ol\xE1 Buyk"
+      - "E a\xED. O que posso fazer por voc\xEA, rosadinho?"
     - m_keys: 0000000001000000
       m_values:
       - <color=yellow>Parts</color=yellow>? Well, we are all pretending to be sad
         due to <color=yellow>Tom's</color=yellow> demise, so I don't think anyone
         has <color=yellow>parts</color=yellow> on them right now.
-      - "Ol\xE1 Buyk"
+      - "<color=yellow>Pe\xE7as</color=yellow>? Bom, estamos todos fingindo estar
+        tristes devido \xE0 morte precoce do <color=yellow>Tom</color=yellow>, ent\xE3o
+        n\xE3o acho que ningu\xE9m est\xE1 com <color=yellow>pe\xE7as</color=yellow>
+        agora."
     - m_keys: 0000000001000000
       m_values:
       - ... Actually, there is one who might still have hold on to their <color=yellow>parts</color=yellow>.
-      - "Ol\xE1 Buyk"
+      - "... Na verdade, tem algu\xE9m que ainda pode ter umas <color=yellow>pe\xE7as</color=yellow>."
     - m_keys: 0000000001000000
       m_values:
       - The problem is that you'd have to reach that planet on the top-right and
         enter its <color=yellow>portal</color=yellow>.
-      - "Ol\xE1 Buyk"
+      - "O problema \xE9 que voc\xEA precisa chegar no planeta pra cima e \xE0 direita
+        e entrar no <color=yellow>portal</color=yellow> que tem l\xE1."
     - m_keys: 0000000001000000
       m_values:
       - Go with you? Sorry, my self-preservation circuits are still intact.
-      - "Ol\xE1 Buyk"
+      - "Ir com voc\xEA? Desculpa, mas meus circuitos de autopreserva\xE7\xE3o continuam
+        intactos."
     - m_keys: 0000000001000000
       m_values:
       - You will be remembered. I strongly think so.
-      - "Ol\xE1 Buyk"
+      - "Voc\xEA ser\xE1 lembrado. Eu acredito fortemente."
     - m_keys: 0000000001000000
       m_values:
       - Oh my! How long it's been since I've last seen an organic!
-      - "Ol\xE1 Buyk"
+      - "Caraca! Quanto tempo que n\xE3o vejo um org\xE2nico!"
     - m_keys: 0000000001000000
       m_values:
       - Pray tell, did you also come from the Urbs? Did you also crave freedom and
         solitude?
-      - "Ol\xE1 Buyk"
+      - "Diz a\xED, voc\xEA tamb\xE9m veio dos B\xFArbios? Voc\xEA tamb\xE9m estava
+        procurando por liberdade e isolamento?"
     - m_keys: 0000000001000000
       m_values:
       - ... were you also disappointed to find out this place was filled with scrappy
         bots?
-      - "Ol\xE1 Buyk"
+      - "... voc\xEA tamb\xE9m ficou desapontado quando descobriu que esse lugar
+        estava cheio de rob\xF4s enferrujados?"
     - m_keys: 0000000001000000
       m_values:
       - Lay low or else the tall one will start giving us more ungrateful tasks.
-      - "Ol\xE1 Buyk"
+      - "Fica na moita sen\xE3o o alto l\xE1 vai come\xE7ar a dar mais tarefas sem
+        sentido pra gente."
     - m_keys: 0000000001000000
       m_values:
       - ... unnaceptable.
-      - "Ol\xE1 Buyk"
+      - "... inaceit\xE1vel."
     - m_keys: 0000000001000000
       m_values:
       - Another one, claimed by the unremitting void... So young...
-      - "Ol\xE1 Buyk"
+      - "Mais um, clamado pelo vazio insaci\xE1vel... T\xE3o jovem..."
     - m_keys: 0000000001000000
       m_values:
       - Welcome to the afterlife, comrade. It doesn't have much, but at least now
         we'll have each other...
-      - "Ol\xE1 Buyk"
+      - "Bem-vindo ao p\xF3s-vida, camarada. N\xE3o temos muito, mas pelo menos agora
+        temos um ao outro..."
     - m_keys: 0000000001000000
       m_values:
       - Oh, <color=yellow>parts</color=yellow>? Yeah, we have that too!
-      - "Ol\xE1 Buyk"
+      - "Ah, <color=yellow>pe\xE7as</color=yellow>? Temos tamb\xE9m!"
     - m_keys: 0000000001000000
       m_values:
       - "\xA7instant text\xA7 \xA7award sound\xA7 <color=yellow>You've acquired the
-        missing parts!"
-      - "Ol\xE1 Buyk"
+        spare parts!"
+      - "\xA7instant text\xA7 \xA7award sound\xA7 <color=yellow>Voc\xEA conseguiu
+        as pe\xE7as sobressalentes!"
     - m_keys: 0000000001000000
       m_values:
-      - 'Best perks of afterlife: never having to work again and not being told off
-        by your friends when you try to be amiable with the dark cold entropy of
-        the universe.'
-      - "Ol\xE1 Buyk"
+      - 'Best perks of afterlife: never having to work again, and not being told
+        off by your friends when you try to be amiable with the dark cold entropy
+        of the universe.'
+      - "Melhor benef\xEDcio do p\xF3s vida: Nunca mais ter que trabalhar, e n\xE3o
+        levar esporro dos seus amigos quando voc\xEA tenta fazer amizade com a entropia
+        fria e escura do Universo."
     - m_keys: 0000000001000000
       m_values:
       - And so he passes on... Life is a miracle, and death is what binds us all.
-      - "Ol\xE1 Buyk"
+      - "Ele segue sua jornada... A vida \xE9 um milagre, e a vida \xE9 o que une
+        n\xF3s todos."
     - m_keys: 0000000001000000
       m_values:
-      - "Boss, I've installed a rotation mechanism in order to save on elevators.
+      - "Guys, I've installed a rotation mechanism in order to save on elevators.
         Just make sure you are aligned to where you want to go before jumping.\n\u2013
         Leg"
-      - Cuidado com pedras rolantes
+      - "Galera, instalei um mecanismo de rota\xE7\xE3o pra economizar nos elevadores.
+        S\xF3 se certifiquem de alinhar o salto antes de acionar.\n\u2013 Perna"
     - m_keys: 0000000001000000
       m_values:
       - "Hey, I found something strange on the planets above. I'm going to take a
         look.\n\u2013 Tom"
-      - Cuidado com pedras rolantes
+      - "Encontrei uma coisa estranha nos planetas acima. Vou dar uma olhada.\n\u2013
+        Tom"
     - m_keys: 0000000001000000
       m_values:
       - "Warning: There appears to be a low-gravity zone beyond this passage. And
         I haven't seen Tom in a few hours.\n\u2013 Plank"
-      - Cuidado com pedras rolantes
+      - "Aten\xE7\xE3o: Parece ter uma zona de baixa gravidade al\xE9m dessa passagem.
+        E o Tom est\xE1 sumido h\xE1 algumas horas.\n\u2013 T\xE1bua"
     - m_keys: 0000000001000000
       m_values:
       - If you miss your throw, press <b>'R'</b> to restart the round quickly!
-      - Cuidado com pedras rolantes
+      - "Se voc\xEA errar o arremesso, aperte <b>'R'</b> para reiniciar o n\xEDvel
+        rapidamente!"
     - m_keys: 0000000001000000
       m_values:
       - Hello! From this level onwards we'll be exploring some slightly more demanding
         obstacles and showing a few of the game's mechanics.
-      - Cuidado com pedras rolantes
+      - "Ol\xE1! A partir dessa fase n\xF3s vamos explorar uns obst\xE1culos um pouco
+        mais desafiadores e mostrar algumas outras mec\xE2nicas do jogo."
     - m_keys: 0000000001000000
       m_values:
       - If at any time you feel stuck or just want to see the rest, press <b>'T'</b>
         to advance and <b>'E'</b> to return to the previous level.
-      - Cuidado com pedras rolantes
+      - "Se em algum momento voc\xEA se sentir travado ou s\xF3 quiser ver o restante,
+        aperte <b>'T'</b> para avan\xE7ar e <b>'E'</b> para voltar ao n\xEDvel anterior."
     - m_keys: 0000000001000000
       m_values:
       - "So it's: \n<b>E</b> \u2013 Previous round; <b>R</b> \u2013 Restart round;
         <b>T</b> \u2013 Next round."
-      - Cuidado com pedras rolantes
+      - "Ent\xE3o temos:\n<b>E</b> \u2013 N\xEDvel anterior; <b>R</b> \u2013 Reiniciar
+        n\xEDvel; <b>T</b> \u2013 Pr\xF3ximo n\xEDvel."
+    - m_keys: 0000000001000000
+      m_values:
+      - Big Robot
+      - "Roboz\xE3o"
+    - m_keys: 0000000001000000
+      m_values:
+      - Tree
+      - "\xC1rvore"
+    - m_keys: 0000000001000000
+      m_values:
+      - Leg
+      - Perna
+    - m_keys: 0000000001000000
+      m_values:
+      - Sam
+      - Sam
+    - m_keys: 0000000001000000
+      m_values:
+      - Tom
+      - Tom
+    - m_keys: 0000000001000000
+      m_values:
+      - Plank
+      - "T\xE1bua"
+    - m_keys: 0000000001000000
+      m_values:
+      - <color=yellow>Parts</color>? I do not have <color=yellow>parts</color>, my
+        friend. But I believe that <color=yellow>odd fellow</color> had something
+        with him when he fell through the portal.
+      - "<color=yellow>Pe\xE7as</color>? N\xE3o tenho <color=yellow>pe\xE7as</color>,
+        companheiro. Mas acho que aquele <color=yellow>sujeito doido</color> l\xE1
+        tinha alguma coisa com ele quando ele caiu no portal."
+    - m_keys: 0000000001000000
+      m_values:
+      - But if you plan on entering the <color=yellow>low-gravity zone</color>, please
+        try not to interrupt the workers. We're trying to leave early for the weekend.
+      - "Mas se voc\xEA pensa em entrar na <color=yellow>zona de baixa gravidade</color>,
+        por favor tente n\xE3o interromper os trabalhadores. Estamos tentando sair
+        mais cedo pro fim de semana."
+    - m_keys: 0000000001000000
+      m_values:
+      - 'The lock and key traversal system <i>should</i> be fully operational.  '
+      - O sistema de travessia de chave-e-fecho <i>deveria</i> estar totalmente operacional.
+    - m_keys: 0000000001000000
+      m_values:
+      - Please direct any complaints you may have to our branch manager.
+      - "Por favor direcione quaisquer reclama\xE7\xF5es para o nosso gerente."
+    - m_keys: 0000000001000000
+      m_values:
+      - To enter the <color=yellow>low-gravity zone</color>, just enter the <color=yellow>portal</color>
+        on this planet.
+      - "Para acessar a <color=yellow>zona de baixa gravidade</color>, s\xF3 entrar
+        no <color=yellow>portal</color> neste planeta."
+    - m_keys: 0000000001000000
+      m_values:
+      - Hey. Are you a friend of that <color=yellow>lad</color> that flew through
+        here screaming and rotating at an alarming speed?
+      - "Opa. Voc\xEA \xE9 amigo daquele <color=yellow>rapaz</color> que voou por
+        aqui recentemente, gritando e girando a uma velocidade preocupante?"
+    - m_keys: 0000000001000000
+      m_values:
+      - If so, tell him that we thought it was pretty cool.
+      - Se sim, diga a ele que achamos muito maneiro.
+    - m_keys: 0000000001000000
+      m_values:
+      - 'To get arms like these? Proper dieting, proper rest, and never forgetting
+        from where you came from. '
+      - "Pra ter bra\xE7os assim? Dieta, descanso, e jamais se esque\xE7a das suas
+        origens."
+    - m_keys: 0000000001000000
+      m_values:
+      - Others focus too much on the upper arms, but real power is all about that
+        grip strength.
+      - "Outros focam demais em b\xEDceps e tr\xEDceps, mas a verdadeira for\xE7a
+        \xE9 tudo grip."
+    - m_keys: 0000000001000000
+      m_values:
+      - Are you admiring me, brother?
+      - "Est\xE1 admirando o tamanho do pai?"
+    - m_keys: 0000000001000000
+      m_values:
+      - See you soon, friend. Never stop believing in your potential.
+      - "At\xE9 logo, amigo. Nunca deixe de acreditar no seu potencial."
+    - m_keys: 0000000001000000
+      m_values:
+      - You are at the Nilmines. This area of the game will feature more mechanics
+        for Buyk to play with, as well as the elusive Shadow as a main NPC.
+      - "Voc\xEA est\xE1 nas Nilminas. Esta \xE1rea do jogo vai apresentar mais mec\xE2nicas
+        para Buyk, assim como a elusiva Sombra como NPC principal."
+    - m_keys: 0000000001000000
+      m_values:
+      - There are no functioning portals for now, but feel free to look around! When
+        you're done, you can return to your ship through the menu.
+      - "N\xE3o h\xE1 portais funcionais por enquanto, mas sinta-se livre pra dar
+        uma olhada! Quando estiver satisfeito, retorne \xE0 sua nave pelo menu."
+    - m_keys: 0000000001000000
+      m_values:
+      - Work-o-matic
+      - "Tramp-o-m\xE1tico"
+    - m_keys: 0000000001000000
+      m_values:
+      - Work-o-matic
+      - "Tramp-o-m\xE1tico"
     - m_keys: 0000000001000000
       m_values:
       - "Nice ship you\u2019ve got there. Real piece of engineering. Not the most
@@ -533,62 +732,17 @@ MonoBehaviour:
       - Cuidado com pedras rolantes
     - m_keys: 0000000001000000
       m_values:
-      - <color=yellow>Parts</color>? I do not have <color=yellow>parts</color>, my
-        friend. But I believe that <color=yellow>odd fellow</color> had something
-        with him when he fell through the portal.
-      - Ola Buyk
+      - "Sa\xEDmos pro carnaval, voltamos na quarta"
+      - "Sa\xEDmos pro carnaval, voltamos na quarta"
     - m_keys: 0000000001000000
       m_values:
-      - But if you plan on entering the <color=yellow>low-gravity zone</color>, please
-        try not to interrupt the workers. We're trying to leave early for the weekend.
-      - Ola Buyk
+      - "bjs, bebam \xE1gua!"
+      - "bjs, bebam \xE1gua!"
     - m_keys: 0000000001000000
       m_values:
-      - 'The lock and key traversal system <i>should</i> be fully operational.  '
-      - Ola Buyk
+      - Bear
+      - Urso
     - m_keys: 0000000001000000
       m_values:
-      - Please direct any complaints you may have to our branch manager.
-      - Ola Buyk
-    - m_keys: 0000000001000000
-      m_values:
-      - To enter the <color=yellow>low-gravity zone</color>, just enter the <color=yellow>portal</color>
-        on this planet.
-      - Ola Buyk
-    - m_keys: 0000000001000000
-      m_values:
-      - Hey. Are you a friend of that <color=yellow>lad</color> that flew through
-        here screaming and rotating at an alarming speed?
-      - Ola Buyk
-    - m_keys: 0000000001000000
-      m_values:
-      - If so, tell him that it was pretty cool.
-      - Ola Buyk
-    - m_keys: 0000000001000000
-      m_values:
-      - 'To get arms like these? Proper dieting, proper rest, and never forgetting
-        from where you came from. '
-      - Ola Buyk
-    - m_keys: 0000000001000000
-      m_values:
-      - Others focus too much on the upper arms, but real power is all about that
-        grip strength.
-      - Ola Buyk
-    - m_keys: 0000000001000000
-      m_values:
-      - Are you admiring me, brother?
-      - Ola Buyk
-    - m_keys: 0000000001000000
-      m_values:
-      - See you soon, friend. Never stop believing in your potential.
-      - Ola Buyk
-    - m_keys: 0000000001000000
-      m_values:
-      - "You are at the Nilmines. This area of the game will feature more mechanics
-        for B\xFCyk to play with, as well as the elusive Shadow as a main NPC."
-      - Cuidado com pedras rolantes
-    - m_keys: 0000000001000000
-      m_values:
-      - There are no functioning portals for now, but feel free to look around! When
-        you're done, you can return to your ship through the menu.
-      - Cuidado com pedras rolantes
+      - Bunny
+      - Coelho

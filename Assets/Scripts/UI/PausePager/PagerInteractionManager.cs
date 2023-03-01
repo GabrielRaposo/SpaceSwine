@@ -382,8 +382,8 @@ public class PagerInteractionManager : MonoBehaviour
 
         confirmationScreen.SetScreen
         (
-            title: "Exit zone?",
-            description: "Progress will be lost.",
+            title: LocalizationManager.GetUiText("exit_zone", "sair")+'?',
+            description: LocalizationManager.GetUiText("lose_progress", "progress will be lost"),
             ConfirmEvent: () => 
             {
                 if (RoundsManager.SessionData)
@@ -410,8 +410,8 @@ public class PagerInteractionManager : MonoBehaviour
 
         confirmationScreen.SetScreen
         (
-            title: "Quit game",
-            description: "Are you sure?",
+            title: LocalizationManager.GetUiText("quit_game", "Quit?"),
+            description: LocalizationManager.GetUiText("are_you_sure","Sure?"),
             ConfirmEvent: () => GameManager.GoToScene(BuildIndex.Title),
             CancelEvent: () => 
             { 
@@ -448,6 +448,7 @@ public class PagerInteractionManager : MonoBehaviour
 
             case 3: // -- Menu de Opções (Áudio)
             case 4: // -- Menu de Opções (Controles)
+            case 5: // -- Menu de Opções (Outros)
                 GoToScreen (2);
                 break;
         }

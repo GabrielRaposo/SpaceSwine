@@ -3,79 +3,75 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ParseInputTag : MonoBehaviour
+public class ParseInputTag : LocalizedText
 {
-    [SerializeField] [TextArea(2,4)] List<string> texts;
-    [SerializeField] string separator;
-    [SerializeField] TMP_Text textDisplay;
+    public string separator;
 
-    private void OnEnable() 
+    protected override void OnEnable() 
     {
-        InputTagController.OnInputTypeChanged += ParseTexts;
+        base.OnEnable();
+        InputTagController.OnInputTypeChanged += SetText;
     }
 
-    void Start()
+    protected override void OnDisable()
     {
-        Debug.Log("Start");
-        ParseTexts();
+        base.OnDisable();
+        InputTagController.OnInputTypeChanged -= SetText;
     }
 
-    private void OnDisable() 
+    public override void SetText()
     {
-        InputTagController.OnInputTypeChanged -= ParseTexts;
+        base.SetText();
+        textMesh.text = ParsedOutput(textMesh.text, separator);
     }
 
-    private void ParseTexts()
+    public static string ParsedOutput (string localText, string separator)
     {
-        ParseList(texts);
-    }
-
-    public void ParseList(List<string> localTexts)
-    {
-        return; // -- TO-DO: reativar mais tarde
-
-        texts = localTexts;
-
-        if (!textDisplay)
-            textDisplay = GetComponentInChildren<TMP_Text>();
-
-        if (!textDisplay)
-            return;
-
-        if (texts.Count < 1)
-            return;
-
         string output = string.Empty;
-        foreach (string text in localTexts)
+
+        int len = localText.Length;
+        if (len < 3) 
         {
-            if (!text.Contains(separator))
-            {
-                output += text + "\n";
-                continue;
-            }
-
-            int len = text.Length;
-            if (len < 3)
-            {
-                output += text + "\n";
-                continue;
-            }
-
-            int first = text.IndexOf(separator);
-            int last = text.LastIndexOf(separator);
-            //Debug.Log($"first {first}, last {last}");
-
-            string firstPart  = text.Substring (0, first);
-            string middlePart = text.Substring (first + 1, last - (first + 1) );
-            string lastPart   = text.Substring (last  + 1, (text.Length - 1) - last );
-        
-            middlePart = InputTagController.GetInput(middlePart);
-
-            output += firstPart + middlePart + lastPart + "\n";
+            return localText;
         }
 
-        //Debug.Log("output: " + output);
-        textDisplay.text = output;
+        string subString = localText;
+        while ( subString.Contains(separator) )
+        {
+            // -- Pega o primeiro separator
+            int first = subString.IndexOf(separator);
+            string firstPart  = subString.Substring (0, first);
+            output += firstPart;
+            
+            if (first == subString.Length - 1)
+                break;
+
+            subString = subString.Substring(first + 1);
+            if ( !subString.Contains(separator) )
+            {
+                output += subString;
+                break;
+            }
+
+            // -- Pega o segundo separator
+            int second = subString.IndexOf(separator);
+            string secondPart = subString.Substring (0, second);
+
+            output += InputTagController.GetInput(secondPart);
+
+            subString = subString.Substring(second + 1);
+
+            if (!subString.Contains(separator))
+            {
+                output += subString;
+                break;
+            }
+        }
+
+        if (output == string.Empty)
+            return localText;
+
+        return output;
     }
 
 }

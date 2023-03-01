@@ -17,14 +17,67 @@ MonoBehaviour:
     - start
     - options
     - quit
+    - chill
+    - talk
+    - navigate
+    - play
+    - customize
+    - leave
     - paused
-    - master_volume
-    - music_volume
-    - sfx_volume
+    - master
+    - music
+    - sfx
+    - audio
+    - video
+    - others
+    - back
+    - resume
+    - confirm
+    - cancel
+    - reset_stage
+    - exit_zone
+    - lose_progress
+    - quit_game
+    - are_you_sure
+    - controls
+    - system
+    - on_ground
+    - type
+    - dynamic1
+    - dynamic2
+    - language
+    - language_en
+    - language_br
+    - absolute
+    - see_readme
     - space_to_jump
     - press_to_move
+    - press_to_start
+    - press_to_open_pda
+    - press_to_call_ship
+    - calling
     - transporter_notification
     - ggs_notification
+    - skip_scene
+    - new
+    - nav_move
+    - nav_land
+    - nav_exit
+    - 000
+    - 000.X
+    - 001
+    - 001.X
+    - 001.1
+    - 002
+    - 002.X
+    - 003
+    - 003.X
+    - 00?
+    - 00?.X
+    - mj_new_record
+    - mj_best_score
+    - mj_title_tutorial
+    - mj_your_best
     m_values:
     - m_keys: 0000000001000000
       m_values:
@@ -33,10 +86,34 @@ MonoBehaviour:
     - m_keys: 0000000001000000
       m_values:
       - Options
-      - "Op\xE7\xF5es"
+      - Config
     - m_keys: 0000000001000000
       m_values:
       - Quit
+      - Sair
+    - m_keys: 0000000001000000
+      m_values:
+      - Chill
+      - Relaxar
+    - m_keys: 0000000001000000
+      m_values:
+      - Talk
+      - Conversar
+    - m_keys: 0000000001000000
+      m_values:
+      - Navigate
+      - Navegar
+    - m_keys: 0000000001000000
+      m_values:
+      - Play
+      - Jogar
+    - m_keys: 0000000001000000
+      m_values:
+      - ???
+      - ???
+    - m_keys: 0000000001000000
+      m_values:
+      - Leave
       - Sair
     - m_keys: 0000000001000000
       m_values:
@@ -44,16 +121,108 @@ MonoBehaviour:
       - Pausado
     - m_keys: 0000000001000000
       m_values:
-      - Master volume
-      - Volume global
+      - Master
+      - Global
     - m_keys: 0000000001000000
       m_values:
-      - Music volume
-      - "Volume da m\xFAsica"
+      - Music
+      - "M\xFAsica"
     - m_keys: 0000000001000000
       m_values:
-      - SFX volume
-      - Volume dos efeitos
+      - Effect
+      - Efeitos
+    - m_keys: 0000000001000000
+      m_values:
+      - Audio
+      - "\xC1udio"
+    - m_keys: 0000000001000000
+      m_values:
+      - Video
+      - "V\xEDdeo"
+    - m_keys: 0000000001000000
+      m_values:
+      - Others
+      - Outros
+    - m_keys: 0000000001000000
+      m_values:
+      - Back
+      - Voltar
+    - m_keys: 0000000001000000
+      m_values:
+      - Resume
+      - Retornar
+    - m_keys: 0000000001000000
+      m_values:
+      - Confirm
+      - Confirmar
+    - m_keys: 0000000001000000
+      m_values:
+      - Cancel
+      - Cancelar
+    - m_keys: 0000000001000000
+      m_values:
+      - Reset Stage
+      - "Recome\xE7ar"
+    - m_keys: 0000000001000000
+      m_values:
+      - Exit Zone
+      - "Deixar \xC1rea"
+    - m_keys: 0000000001000000
+      m_values:
+      - Progress will be lost.
+      - "Progresso ser\xE1 perdido."
+    - m_keys: 0000000001000000
+      m_values:
+      - Quit game?
+      - Sair do jogo?
+    - m_keys: 0000000001000000
+      m_values:
+      - Are you sure?
+      - Tem certeza?
+    - m_keys: 0000000001000000
+      m_values:
+      - Controls
+      - Controles
+    - m_keys: 0000000001000000
+      m_values:
+      - System
+      - Sistema
+    - m_keys: 0000000001000000
+      m_values:
+      - On Ground
+      - No Solo
+    - m_keys: 0000000001000000
+      m_values:
+      - Type
+      - Tipo
+    - m_keys: 0000000001000000
+      m_values:
+      - Dynamic 1
+      - Dinamico 1
+    - m_keys: 0000000001000000
+      m_values:
+      - Dynamic 2
+      - Dinamico 2
+    - m_keys: 0000000001000000
+      m_values:
+      - Language
+      - "L\xEDngua"
+    - m_keys: 0000000001000000
+      m_values:
+      - English
+      - English
+    - m_keys: 0000000001000000
+      m_values:
+      - Brasileiro
+      - Brasileiro
+    - m_keys: 0000000001000000
+      m_values:
+      - Absolute
+      - Absoluto
+    - m_keys: 0000000001000000
+      m_values:
+      - "See the \nreadme.txt \nfor details"
+      - "Leia o \nreadme.txt \npara mais informa\xE7\xF5es"
     - m_keys: 0000000001000000
       m_values:
       - Press 'Space' to jump.
@@ -64,6 +233,22 @@ MonoBehaviour:
       - Aperte 'WD' ou setas de esquerda e direita para andar.
     - m_keys: 0000000001000000
       m_values:
+      - 'Press <color=yellow>:jump:</color> or <color=yellow>:pause:'
+      - 'Aperte <color=yellow>:jump:</color> ou <color=yellow>:pause:'
+    - m_keys: 0000000001000000
+      m_values:
+      - Press <color=yellow>:pause:</color> to open your <color=yellow>PDA</color>
+      - Aperte <color=yellow>:pause:</color> para abrir o seu <color=yellow>Palmtop</color>
+    - m_keys: 0000000001000000
+      m_values:
+      - Hold ':interact:' to call ship
+      - Segure ':interact:' para chamar a nave
+    - m_keys: 0000000001000000
+      m_values:
+      - calling ship
+      - chamando nave
+    - m_keys: 0000000001000000
+      m_values:
       - You got a Transporter. You can use it while on the pause menu to return to
         your ship.
       - Aperte start para jogar
@@ -71,3 +256,85 @@ MonoBehaviour:
       m_values:
       - You got a vintage GGS. You can open it on the pause menu to play some games.
       - Aperte start para jogar
+    - m_keys: 0000000001000000
+      m_values:
+      - Skipping scene
+      - Pulando cena
+    - m_keys: 0000000001000000
+      m_values:
+      - new
+      - novo
+    - m_keys: 0000000001000000
+      m_values:
+      - 'Move - :movement:'
+      - 'Mover - :movement:'
+    - m_keys: 0000000001000000
+      m_values:
+      - 'Land - :interact:'
+      - 'Aterrissar - :interact:'
+    - m_keys: 0000000001000000
+      m_values:
+      - 'Exit - :pause:'
+      - 'Sair - :pause:'
+    - m_keys: 0000000001000000
+      m_values:
+      - Unavailable
+      - Indisponivel
+    - m_keys: 0000000001000000
+      m_values:
+      - ...
+      - ...
+    - m_keys: 0000000001000000
+      m_values:
+      - The Scrapgarten
+      - O Jardim
+    - m_keys: 0000000001000000
+      m_values:
+      - An abandoned system
+      - Um sistema abandonado
+    - m_keys: 0000000001000000
+      m_values:
+      - '1: The backyard'
+      - '1: O Quintal'
+    - m_keys: 0000000001000000
+      m_values:
+      - The Nilmines
+      - As Nilminas
+    - m_keys: 0000000001000000
+      m_values:
+      - An uncharted frontierland
+      - "Uma fronteira n\xE3o mapeada"
+    - m_keys: 0000000001000000
+      m_values:
+      - The Urbs
+      - "Os B\xFArbios"
+    - m_keys: 0000000001000000
+      m_values:
+      - A busy construction site
+      - Um canteiro de obras
+    - m_keys: 0000000001000000
+      m_values:
+      - ???
+      - ???
+    - m_keys: 0000000001000000
+      m_values:
+      - Something glimmers from afar
+      - Algo brilha ao longe
+    - m_keys: 0000000001000000
+      m_values:
+      - NEW RECORD
+      - NOVO RECORDE
+    - m_keys: 0000000001000000
+      m_values:
+      - BEST
+      - MELHOR
+    - m_keys: 0000000001000000
+      m_values:
+      - 'PRESS -SPACE- TO TAKE OFF
+
+        PRESS -ESC- TO QUIT'
+      - "APERTE -ESPA\xC7O- PARA LAN\xC7AR\nAPERTE -ESC- PARA SAIR"
+    - m_keys: 0000000001000000
+      m_values:
+      - YOUR BEST
+      - SEU MELHOR

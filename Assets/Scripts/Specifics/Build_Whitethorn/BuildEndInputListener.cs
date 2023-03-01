@@ -12,14 +12,18 @@ public class BuildEndInputListener : MonoBehaviour
 
         inputActions.UI.Confirm.performed += (ctx) => 
         {
-            GameManager.QuitGame();
+            if (SceneTransition.OnTransition || GameManager.OnTransition)
+                return;
+
+            //GameManager.QuitGame();
+            GameManager.GoToScene(BuildIndex.Title);
         };
         inputActions.UI.Confirm.Enable();
     }
 
     private void OnDisable() 
     {
-        if (inputActions != null)
+        if (inputActions == null)
             return;
 
         inputActions.UI.Confirm.Disable();

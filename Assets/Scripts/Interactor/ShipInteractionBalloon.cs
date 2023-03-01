@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -23,32 +24,32 @@ public class ShipInteractionBalloon : MonoBehaviour
         textDisplay.enabled = value;
     }
 
-    public void SetTextDisplay (ShipAction shipAction) 
+    public void SetTextDisplay (ShipAction shipAction)
     {
         switch(shipAction)
         {
             case ShipAction.Talk:
-                textDisplay.text = "Talk";
+                textDisplay.text = LocalizationManager.GetUiText("talk", "Talk--");
                 break;
 
             case ShipAction.Navigate:
-                textDisplay.text = "Navigate";
+                textDisplay.text = LocalizationManager.GetUiText("navigate", "navigate--");
                 break;
 
             case ShipAction.Chill:
-                textDisplay.text = "Chill";
+                textDisplay.text = LocalizationManager.GetUiText("chill", "chill--");
                 break;
 
             case ShipAction.GGS:
-                textDisplay.text = "Play";
+                textDisplay.text = LocalizationManager.GetUiText("play", "play--");
                 break;
 
             case ShipAction.Customize:
-                textDisplay.text = "???";
+                textDisplay.text = LocalizationManager.GetUiText("customize", "customize--");
                 break;
                 
             case ShipAction.Leave:
-                textDisplay.text = "Leave";
+                textDisplay.text = LocalizationManager.GetUiText("leave", "Leave");
                 break;
 
             default:

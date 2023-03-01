@@ -38,6 +38,7 @@ public class CheckGround : MonoBehaviour
         float angle = Vector2.SignedAngle(Vector2.up, transform.up);
         if (Physics2D.OverlapBox(transform.position + (transform.up * offset.y), size, angle, contactFilter2D, results) > 0)
         {
+            //Debug.Log("update, results: " + results.Count);
             onGround = true;
             SetPlatform( results );
             SetPlanet( results );

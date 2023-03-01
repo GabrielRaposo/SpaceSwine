@@ -5,7 +5,7 @@ using TMPro;
 
 public class PagerCallScreen : MonoBehaviour
 {
-    [SerializeField] string baseText;
+    [SerializeField] string textCode;
     [SerializeField] float updateDelay;
 
     [Header("References")]
@@ -25,7 +25,7 @@ public class PagerCallScreen : MonoBehaviour
         {
             for (int i = 0; i < 4; i++)
             {
-                callDisplay.text = baseText;
+                callDisplay.text = LocalizationManager.GetUiText(textCode, "calling");
 
                 for (int j = 0; j < i; j++) 
                     callDisplay.text += ".";

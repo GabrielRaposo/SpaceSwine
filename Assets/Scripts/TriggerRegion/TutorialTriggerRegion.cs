@@ -9,6 +9,16 @@ public class TutorialTriggerRegion : MonoBehaviour
     bool showing;
     TutorialTextBox tutorialTextBox;
 
+    private void OnEnable() 
+    {
+        InputTagController.OnInputTypeChanged += UpdateText;    
+    }
+
+    private void OnDisable() 
+    {
+        InputTagController.OnInputTypeChanged -= UpdateText;
+    }
+
     void Start()
     {
         tutorialTextBox = TutorialTextBox.Instance;
@@ -24,14 +34,24 @@ public class TutorialTriggerRegion : MonoBehaviour
 
         if (tutorialTextBox)
         {
-            (bool valid, string text) localizedData = LocalizationManager.GetStoryText(textID);
-
-            if (!localizedData.valid)
-                return;
-
-            tutorialTextBox.ShowText(localizedData.text);
             showing = true;
+            UpdateText(); 
         }
+    }
+
+    private void UpdateText()
+    {
+        if (!showing)
+            return;
+
+        (bool valid, string text) localizedData = LocalizationManager.GetStoryText(textID);
+
+        if (!localizedData.valid)
+            return;
+
+        string text = ParseInputTag.ParsedOutput (localizedData.text, ":");
+
+        tutorialTextBox.ShowText(text);
     }
 
     private void OnTriggerExit2D (Collider2D collision) 
