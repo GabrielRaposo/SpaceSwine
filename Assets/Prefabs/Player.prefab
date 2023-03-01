@@ -24589,11 +24589,12 @@ GameObject:
   - component: {fileID: 8208643761033348304}
   - component: {fileID: 2748334819975081919}
   - component: {fileID: 1858426351066712083}
+  - component: {fileID: 1915003406240830659}
+  - component: {fileID: 7748246666447426391}
   - component: {fileID: 5639081803221880886}
   - component: {fileID: 5639081803221880844}
   - component: {fileID: 975378138}
   - component: {fileID: 3869235018891947834}
-  - component: {fileID: 1915003406240830659}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -24929,7 +24930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipOverrideController: {fileID: 22100000, guid: e2a23902f32279c47b5a0d28496fcfb5, type: 2}
   forceOverride: 0
-  customIdleDuration: 15
+  customIdleDuration: 35
   landedOnGround: 0
   holding: 0
   throwing: 0
@@ -24965,6 +24966,32 @@ MonoBehaviour:
   onlyOnChange: 1
   offset: {x: 0, y: -0.1, z: 0}
   minDistance: 0.01
+--- !u!114 &1915003406240830659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5639081803221880847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de8c76a7aa3a264581ffadfb7cb3752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 5639081803719366887}
+--- !u!114 &7748246666447426391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5639081803221880847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336aca1a4426cbd4c80f7ba2801e5d36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameplayState: {fileID: 5639081803221880883}
 --- !u!61 &5639081803221880886
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25073,19 +25100,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1915003406240830659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5639081803221880847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6de8c76a7aa3a264581ffadfb7cb3752, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 5639081803719366887}
 --- !u!1 &5639081803377138992
 GameObject:
   m_ObjectHideFlags: 0
@@ -25237,7 +25251,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -543194987
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4b54c5fd7dd27b54cba9a8020089c8c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.48235294}

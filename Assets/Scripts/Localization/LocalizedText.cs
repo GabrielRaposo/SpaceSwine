@@ -8,6 +8,7 @@ using UnityEngine;
 public enum LocalizedTextTypes
 {
     UI,
+    Inputs,
     Story,
     Achievement,
     Music,
@@ -31,23 +32,22 @@ public class LocalizedText : MonoBehaviour
     // static TMP_FontAsset universalFont;
 
     public string textStyle;
-    
-    //public bool isStory;
     public LocalizedTextTypes textType;
     
-    //[SerializeField] public TextMeshProUGUI textMesh;
     [SerializeField] public TMP_Text textMesh;
 
     
     //EDITOR
     public bool editor_manualCode;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
+        //LocalizationManager.CurrentLanguage = GameLocalizationCode.BR;
         textMesh = GetComponent<TMP_Text>();
         
         if(textMesh == null) return;
         
+        //Funções para implementação de fontes de alfabetos diferentes
         // if (standardFont == null)
         //     standardFont = Resources.Load<TMP_FontAsset>(standardFontAdress);
         
@@ -57,17 +57,21 @@ public class LocalizedText : MonoBehaviour
         // if (universalFont == null)
         //     universalFont = Resources.Load<TMP_FontAsset>(universalFontAdress);
 
-        LocalizationManager.AddToList(this);
+        LocalizationManager.AddToActiveTextList(this);
         
         SetText();
     }
 
-    private void OnDisable()
+    private void Update()
     {
-        LocalizationManager.RemoveFromList(this);
     }
 
-    public void SetText()
+    protected virtual void OnDisable()
+    {
+        LocalizationManager.RemoveFromActiveTextList(this);
+    }
+
+    public virtual void SetText()
     {
         if(textMesh == null) return;
 
@@ -76,6 +80,11 @@ public class LocalizedText : MonoBehaviour
             case LocalizedTextTypes.UI:
                 textMesh.text = LocalizationManager.GetUiText(localizationCode, fallbackText);
                 break;
+            
+            case LocalizedTextTypes.Inputs:
+                textMesh.text = LocalizationManager.GetInputText(localizationCode);
+                break;
+            
             case LocalizedTextTypes.Story:
                 (bool valid, string text) story = LocalizationManager.GetStoryText(localizationCode);
                 textMesh.text = story.text;
@@ -93,24 +102,41 @@ public class LocalizedText : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        
+
+        textMesh.text = ParsedText(textMesh.text);
+
         if (!string.IsNullOrEmpty(textStyle))
             textMesh.text = textStyle.Replace("{s}", textMesh.text);
 
+
+        
         // if (useUniversalFont)
         //     textMesh.font = universalFont;
-        else
-        {
-            // if (LocalizationManager.CurrentLanguage == GameLocalizationCode.JP)
-            //     textMesh.font = japaneseFont;
-            // else
-            //    textMesh.font = standardFont;    
-        }
+        // else
+        // {
+        //     if (LocalizationManager.CurrentLanguage == GameLocalizationCode.JP)
+        //         textMesh.font = japaneseFont;
+        //     else
+        //         textMesh.font = standardFont;    
+        // }
     }
 
     public void SetText(string localizationCode)
     {
         this.localizationCode = localizationCode;
         SetText();
+    }
+
+    public void TryGetTextComponent()
+    {
+        textMesh = GetComponent<TMP_Text>();
+        if (textMesh == null)
+            textMesh.GetComponentInChildren<TMP_Text>();
+    }
+
+    protected virtual string ParsedText(string text)
+    {
+        // Esse função é sobreescrita em ParsedLocalizedText
+        return text;
     }
 }

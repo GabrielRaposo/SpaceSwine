@@ -12,19 +12,25 @@ public class LocalizedTextEditor : Editor
     
     public override void OnInspectorGUI()
     {
-        
         // baseToggle = GUILayout.Toggle(baseToggle, "", EditorStyles.foldoutPreDrop);
-        // if(baseToggle)
-        //     base.OnInspectorGUI();
+         //if(baseToggle)
+         
+        //base.OnInspectorGUI();
+        
+        GUILayout.Space(20);
+            
 
         LocalizedText obj = target as LocalizedText;
 
         obj.textMesh = (TMP_Text)EditorGUILayout.ObjectField("TextMesh",obj.textMesh, typeof(TMP_Text));
-        
 
         if (obj.textMesh == null)
         {
+            GUILayout.BeginHorizontal();
             EditorGUILayout.HelpBox("TextComponent not found!", MessageType.Error);
+            if (GUILayout.Button("Get TextComponent"))
+                obj.TryGetTextComponent();
+            GUILayout.EndHorizontal();
             return;
         }
 
@@ -32,11 +38,13 @@ public class LocalizedTextEditor : Editor
 
         SetLocalizationCodeEnum(obj);
 
+        obj.textStyle = EditorGUILayout.TextField("Style", obj.textStyle);
+
         GUILayout.Space(18);
         
         obj.fallbackText = EditorGUILayout.TextField("Fallback Text", obj.fallbackText);
-        obj.textStyle = EditorGUILayout.TextField("Fallback Text", obj.textStyle);
-
+        
+        EditorUtility.SetDirty(obj);
     }
 
     private void SetLocalizationCodeEnum(LocalizedText localizedText)
@@ -71,9 +79,8 @@ public class LocalizedTextEditor : Editor
                         displayList.Add($"{key} - {preview}");
                         codeList.Add(key);
                     }
-                        
-                    
                     break;
+                
                 case LocalizedTextTypes.Story:
                     keys = LocalizationManager.LocalizationFile(LocalizedTextTypes.Story).dic.Keys;
 
@@ -85,6 +92,18 @@ public class LocalizedTextEditor : Editor
                         
                     
                     break;
+                
+                case LocalizedTextTypes.Inputs:
+                    keys = LocalizationManager.LocalizationFile(LocalizedTextTypes.Inputs).dic.Keys;
+
+                    foreach (string key in keys)
+                    {
+                        displayList.Add($"{key} - {LocalizationManager.GetInputText(key)}");
+                        codeList.Add(key);
+                    }
+                    
+                    break;
+                
                 case LocalizedTextTypes.Achievement:
                     keys = LocalizationManager.LocalizationFile(LocalizedTextTypes.Achievement).dic.Keys;
 

@@ -5,25 +5,13 @@ using UnityEngine;
 public class PagerControlsManager : MonoBehaviour
 {
     [SerializeField] List<GroundControlType> controlTypes;
+    [SerializeField] List<string> controlTypesLocalizationCodes;
     [SerializeField] PagerInteractableScrollList controlTypeScrollList; 
 
     void Start()
     {
         if (controlTypes.Count < 1)
             return;
-
-        List <string> stringValues = new List<string>();
-        for (int i = 0; i < controlTypes.Count; i++)
-        {
-            string[] subString = controlTypes[i].ToString().Split('_');
-            if (subString.Length < 2)
-                stringValues.Add ( controlTypes[i].ToString() );
-            else
-            {
-                string s = subString[0] + " " + subString[1];
-                stringValues.Add (s);
-            }
-        }
 
         if (controlTypeScrollList == null)
             return;
@@ -34,7 +22,7 @@ public class PagerControlsManager : MonoBehaviour
         if (controlTypes.Contains( groundControlType ))
             startingIndex = controlTypes.FindIndex( (c) => c == groundControlType );
 
-        controlTypeScrollList.InitList( stringValues, startingIndex );
+        controlTypeScrollList.InitList(controlTypesLocalizationCodes, startingIndex );
     }
 
     public void UpdateOnGroundControl (int index)

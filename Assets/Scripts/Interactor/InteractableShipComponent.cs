@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -36,6 +37,23 @@ public class InteractableShipComponent : Interactable
         interactionBalloon.SetTextDisplay(shipAction);
 
         _coll2D.enabled = true;
+    }
+
+    private void OnEnable()
+    {
+        //Debug.Log("Enable");
+        LocalizationManager.AddToLanguageChangeActionList(SetShipActionTextDisplay);
+    }
+
+    private void OnDisable()
+    {
+        //Debug.Log("Disable");
+        LocalizationManager.RemoveFromLanguageChangeActionList(SetShipActionTextDisplay);
+    }
+
+    private void SetShipActionTextDisplay()
+    {
+        interactionBalloon.SetTextDisplay(shipAction);
     }
 
     public override void Interaction (PlayerInteractor interactor) 

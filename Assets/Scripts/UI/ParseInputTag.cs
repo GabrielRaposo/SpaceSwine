@@ -3,76 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ParseInputTag : MonoBehaviour
+public class ParseInputTag : LocalizedText
 {
-    [SerializeField] [TextArea(2,4)] string text;
-    [SerializeField] string separator;
-    [SerializeField] TMP_Text textDisplay;
+    public string separator;
 
-    private void OnEnable() 
+    protected override void OnEnable() 
     {
-        InputTagController.OnInputTypeChanged += ParseText;
+        base.OnEnable();
+        InputTagController.OnInputTypeChanged += SetText;
     }
 
-    private void OnDisable() 
+    protected override void OnDisable()
     {
-        InputTagController.OnInputTypeChanged -= ParseText;
+        base.OnDisable();
+        InputTagController.OnInputTypeChanged -= SetText;
     }
 
-    void Start()
+    public override void SetText()
     {
-        DisplayParsedText(text);
-    }
-
-    private void ParseText()
-    {
-        DisplayParsedText(text);
-    }
-
-    public void DisplayParsedText( string  localText )
-    {
-        text = localText;
-
-        if (!textDisplay)
-            textDisplay = GetComponentInChildren<TMP_Text>();
-
-        if (!textDisplay)
-            return;
-
-        string output = string.Empty;
-
-        // -- Método que só funciona pra um tag por frase
-        /**
-        foreach (string text in localTexts)
-        {
-            if (!text.Contains(separator))
-            {
-                output += text + "\n";
-                continue;
-            }
-
-            int len = text.Length;
-            if (len < 3) 
-            {
-                output += text + "\n";
-                continue;
-            }
-
-            int first = text.IndexOf(separator);
-            int last = text.LastIndexOf(separator);
-            //Debug.Log($"first {first}, last {last}");
-
-            string firstPart  = text.Substring (0, first);
-            string middlePart = text.Substring (first + 1, last - (first + 1) );
-            string lastPart   = text.Substring (last  + 1, (text.Length - 1) - last );
-
-            middlePart = InputTagController.GetInput(middlePart);
-
-            output += firstPart + middlePart + lastPart + "\n";
-        }
-        **/
-
-        textDisplay.text = ParsedOutput( text, separator );
+        base.SetText();
+        textMesh.text = ParsedOutput(textMesh.text, separator);
     }
 
     public static string ParsedOutput (string localText, string separator)

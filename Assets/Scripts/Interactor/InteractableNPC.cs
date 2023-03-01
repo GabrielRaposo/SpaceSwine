@@ -15,14 +15,28 @@ public class InteractableNPC : Interactable
 
     public override void Interaction (PlayerInteractor interactor) 
     {
+        Debug.Log($"Interaction - name: {name}");
+
         base.Interaction(interactor);
 
         if (data)
         {
+            Debug.Log("data:  " + data);
+
             DialogueSystem dialogSystem = DialogueSystem.Instance;
             DialogueGroup dialogueGroup = data.GetAtIndex();
 
-            dialogSystem?.SetDialogue(this, data.npcName, dialogueGroup.tags, OnDialogueEnd, customDialogueStyle, talkSoundAKEvent);
+            Debug.Log("data.npcNameCode: " + data.npcNameCode);
+            string npcName = string.Empty;
+            if (!string.IsNullOrEmpty (data.npcNameCode) )
+            {
+                (bool isValid, string text) nameData = LocalizationManager.GetStoryText(data.npcNameCode);
+                if (nameData.isValid)
+                    npcName = nameData.text;
+            }
+            
+            Debug.Log("b");
+            dialogSystem?.SetDialogue(this, npcName, dialogueGroup.tags, OnDialogueEnd, customDialogueStyle, talkSoundAKEvent);
 
             if (interactor)
             {
