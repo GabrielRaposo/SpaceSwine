@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using DG.Tweening;
 using Minigame;
+
 
 public enum ShipAction
 {
@@ -12,19 +14,36 @@ public enum ShipAction
     Chill,
     GGS,
     Customize,
-    Navigate
+    Navigate,
+    MakeABeat
 }
 
 public class InteractableShipComponent : Interactable
 {
-    [SerializeField] ShipAction shipAction;
-    [SerializeField] SpriteSwapper iconSwapper;
+    [SerializeField] List<ShipAction> shipActions;
+    
+    [Header("References")]
     [SerializeField] ShipInteractionBalloon interactionBalloon;
+    [SerializeField] SpriteRenderer arrowUp;
+    [SerializeField] SpriteRenderer arrowDown;
+
+    [Header("Icon")]
+    [SerializeField] SpriteSwapper iconSwapper;
     [SerializeField] Color iconColorOff;
     [SerializeField] Color iconColorOn;
 
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event cursorMoveAKEvent;
+    [SerializeField] AK.Wwise.Event cursorSelectAKEvent;
+
+    int index;
+    InputAction verticalAxis;
+    PlayerInputActions inputActions;
+    
     bool highlighted;
     Sequence highlightSequence;
+
+    private ShipAction CurrentShipAction { get { return shipActions[index % shipActions.Count]; } }
 
     private void Awake() 
     {
@@ -32,35 +51,42 @@ public class InteractableShipComponent : Interactable
         _coll2D.enabled = false;
 
         iconSwapper.SetSpriteState(0);
+        
+        index = 0;
+        
         interactionBalloon.SetInstantState(false);
-
-        interactionBalloon.SetTextDisplay(shipAction);
+        UpdateTextDisplay();
 
         _coll2D.enabled = true;
     }
 
+
+    private void UpdateTextDisplay()
+    {
+        interactionBalloon.SetTextDisplay(CurrentShipAction);
+        
+        if (arrowUp)
+            arrowUp.enabled = index > 0;
+        
+        if (arrowDown)
+            arrowDown.enabled = index < shipActions.Count - 1;
+    }
+
     private void OnEnable()
     {
-        //Debug.Log("Enable");
-        LocalizationManager.AddToLanguageChangeActionList(SetShipActionTextDisplay);
+        LocalizationManager.AddToLanguageChangeActionList(UpdateTextDisplay);
     }
 
     private void OnDisable()
     {
-        //Debug.Log("Disable");
-        LocalizationManager.RemoveFromLanguageChangeActionList(SetShipActionTextDisplay);
-    }
-
-    private void SetShipActionTextDisplay()
-    {
-        interactionBalloon.SetTextDisplay(shipAction);
+        LocalizationManager.RemoveFromLanguageChangeActionList(UpdateTextDisplay);
     }
 
     public override void Interaction (PlayerInteractor interactor) 
     {
         base.Interaction(interactor);
 
-        switch (shipAction)
+        switch (CurrentShipAction)
         {
             case ShipAction.GGS:
 
@@ -91,6 +117,9 @@ public class InteractableShipComponent : Interactable
                 
                 break;
         }
+
+        if (cursorSelectAKEvent != null)
+            cursorSelectAKEvent.Post(gameObject);
     }
 
     protected override void HighlightState (bool value) 
@@ -120,5 +149,54 @@ public class InteractableShipComponent : Interactable
         ); 
 
         interactionBalloon.SetHighlight(value);
+
+        if (value)
+            EnableInputs();
+        else
+            DisableInputs();
+    }
+
+    private void EnableInputs()
+    {
+        inputActions = new PlayerInputActions();
+        inputActions.Player.Movement.performed += (ctx) => 
+        {
+            if (PauseSystem.OnPause || GameManager.BlockCharacterInput)
+                return;
+
+            Vector2 input = ctx.ReadValue<Vector2>();
+            float threshold = .9f;
+            if (Mathf.Abs (input.normalized.y) > threshold)
+                MoveIndex (input.y > 0 ? -1 : 1);
+        }; 
+        inputActions.Player.Movement.Enable();
+
+        inputActions.Enable();
+    }
+
+    private void MoveIndex(int direction)
+    {
+        int previousIndex = index;
+        index += direction;
+
+        if (index < 0)
+            index = 0;
+
+        if (index > shipActions.Count - 1)
+            index = shipActions.Count - 1;
+
+        if (cursorMoveAKEvent != null && previousIndex != index)
+            cursorMoveAKEvent.Post(gameObject);
+
+        UpdateTextDisplay();
+    }
+
+    private void DisableInputs()
+    {
+        if (inputActions == null)
+            return;
+
+        inputActions.Player.Movement.Disable();
+        inputActions.Disable();
     }
 }
