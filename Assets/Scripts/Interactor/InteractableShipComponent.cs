@@ -103,9 +103,11 @@ public class InteractableShipComponent : Interactable
 
             case ShipAction.MakeABeat:
                 
+                if (PlayerCharacter.Instance)
+                    PlayerCharacter.Instance.DisableAllInteractions();
                 if (SoundtrackManager.Instance)
                     SoundtrackManager.Instance.FadeOutMusic(1.0f);
-                    GameManager.GoToScene(BuildIndex.MakeABeat);
+                GameManager.GoToScene(BuildIndex.MakeABeat);
                 break;
         }
 
