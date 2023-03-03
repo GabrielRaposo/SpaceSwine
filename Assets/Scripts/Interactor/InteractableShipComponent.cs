@@ -37,7 +37,6 @@ public class InteractableShipComponent : Interactable
     [SerializeField] AK.Wwise.Event cursorSelectAKEvent;
 
     int index;
-    InputAction verticalAxis;
     PlayerInputActions inputActions;
     
     bool highlighted;
@@ -72,16 +71,6 @@ public class InteractableShipComponent : Interactable
             arrowDown.enabled = index < shipActions.Count - 1;
     }
 
-    private void OnEnable()
-    {
-        LocalizationManager.AddToLanguageChangeActionList(UpdateTextDisplay);
-    }
-
-    private void OnDisable()
-    {
-        LocalizationManager.RemoveFromLanguageChangeActionList(UpdateTextDisplay);
-    }
-
     public override void Interaction (PlayerInteractor interactor) 
     {
         base.Interaction(interactor);
@@ -92,29 +81,31 @@ public class InteractableShipComponent : Interactable
 
                 if (GGSConsole.Instance)
                     GGSConsole.Instance.ToggleConsoleState();
-
                 break;
-
 
             case ShipAction.Leave:
 
                 if (ShipShuttleSystem.Instance)
                     ShipShuttleSystem.Instance.ExitOnShuttle();
-
                 break;
 
             case ShipAction.Chill:
 
                 if (RestLoopManager.Instance)
                     RestLoopManager.Instance.TurnOn();
-
                 break;
             
             case ShipAction.Navigate:
 
                 if (NavigationConsole.Instance)
                     NavigationConsole.Instance.ToggleConsoleState();
+                break;
+
+            case ShipAction.MakeABeat:
                 
+                if (SoundtrackManager.Instance)
+                    SoundtrackManager.Instance.FadeOutMusic(1.0f);
+                    GameManager.GoToScene(BuildIndex.MakeABeat);
                 break;
         }
 
@@ -196,7 +187,18 @@ public class InteractableShipComponent : Interactable
         if (inputActions == null)
             return;
 
-        inputActions.Player.Movement.Disable();
         inputActions.Disable();
+        inputActions.Player.Movement.Disable();
+    }
+
+    private void OnEnable()
+    {
+        LocalizationManager.AddToLanguageChangeActionList(UpdateTextDisplay);
+    }
+
+    private void OnDisable()
+    {
+        LocalizationManager.RemoveFromLanguageChangeActionList(UpdateTextDisplay);
+        DisableInputs();
     }
 }
