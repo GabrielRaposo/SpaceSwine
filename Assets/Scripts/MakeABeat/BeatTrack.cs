@@ -22,7 +22,7 @@ namespace MakeABeat
                 return;
             }
 
-            beatMaster.CyclePulse_Action += CyclePulse;
+            beatMaster.CyclePulse_Action += CyclePulse; 
         }
 
         private void CyclePulse()
@@ -50,6 +50,11 @@ namespace MakeABeat
 
             if (currentBeatTape.sampleAKEvent != null)
                 currentBeatTape.sampleAKEvent.Post(gameObject);
+        }
+
+        private void OnDisable() 
+        {
+             gameObject.StopAllEvents();
         }
     }
 }
