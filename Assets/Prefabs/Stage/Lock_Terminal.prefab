@@ -12,10 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605d4339af5d5404ca0fb87349232456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingHealth: 1
   visualComponent: {fileID: 5691535883151682032}
-  particles: {fileID: 7815175900997212088}
+  circleAura: {fileID: 1201285849908947111}
+  idleParticles: {fileID: 7815175900997212088}
+  burstParticles: {fileID: 3376023555717426115}
   col: {fileID: 5691535883411734314}
   lockGravityField: {fileID: 7396957542857604476}
+  collectAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
   terminalEventObjects: []
 --- !u!1001 &5342863188289172734
 PrefabInstance:
@@ -136,10 +143,14 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.53333336
       objectReference: {fileID: 0}
+    - target: {fileID: 6446463147646808581, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8290250150028108917, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
       propertyPath: _lock
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4416753837783519623}
     - target: {fileID: 9036550219597066729, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -162,9 +173,9 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 349535262282980622, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
   m_PrefabInstance: {fileID: 5342863188289172734}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7815175900997212088 stripped
+--- !u!1 &1201285849908947111 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 2760914174616625990, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6525288006976937049, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
   m_PrefabInstance: {fileID: 5342863188289172734}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7396957542857604476 stripped
@@ -178,3 +189,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34edbe648640c7443a8d3deae8339974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7815175900997212088 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2760914174616625990, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
+  m_PrefabInstance: {fileID: 5342863188289172734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3376023555717426115 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7277713963219935037, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
+  m_PrefabInstance: {fileID: 5342863188289172734}
+  m_PrefabAsset: {fileID: 0}
