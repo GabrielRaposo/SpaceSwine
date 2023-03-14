@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 
-public class ShipShuttleSystem : MonoBehaviour
+public class ShipInitializerSystem : MonoBehaviour
 {
-    const float UPPER_ANCHOR_Y =  .6f; //-1.46
+    const float UPPER_ANCHOR_Y =  .6f; //-1.46 
     const float LOWER_ANCHOR_Y = -.5f;
 
     [SerializeField] bool alwaysStartPlayerOnShuttle;
@@ -16,7 +16,8 @@ public class ShipShuttleSystem : MonoBehaviour
     [SerializeField] GameObject playerObject;
     [SerializeField] float duration;
     [SerializeField] ShipScreensOverlay screensOverlay;
-    
+    [SerializeField] Vector2 makeABeatSpawnPoint;
+      
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event reachingAKEvent;
     [SerializeField] AK.Wwise.Event leavingAKEvent;
@@ -27,9 +28,10 @@ public class ShipShuttleSystem : MonoBehaviour
 
     Sequence sequence;
 
+    public static bool MakeABeatSpawnTrigger;
     public UnityAction AfterStartAction = null;
 
-    public static ShipShuttleSystem Instance;
+    public static ShipInitializerSystem Instance;
 
     private void Awake()
     {
@@ -56,10 +58,24 @@ public class ShipShuttleSystem : MonoBehaviour
 
     private void Start() 
     {
+        if (MakeABeatSpawnTrigger)
+        {
+            SpawnFromMakeABeat();
+            MakeABeatSpawnTrigger = false;
+            return;
+        }
+
         if (!alwaysStartPlayerOnShuttle)
             return;
 
         StartOnShuttle();        
+    }
+
+    private void SpawnFromMakeABeat()
+    {
+        playerCharacter.transform.position = makeABeatSpawnPoint;
+        if (screensOverlay)
+            screensOverlay.InstantTurnOn();
     }
 
     private void StartOnShuttle()
@@ -140,5 +156,11 @@ public class ShipShuttleSystem : MonoBehaviour
                 SceneTransition.LoadScene( targetIndex, SceneTransition.TransitionType.BlackFade );
             }
         );
+    }
+
+    private void OnDrawGizmosSelected() 
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere (makeABeatSpawnPoint, .1f);    
     }
 }

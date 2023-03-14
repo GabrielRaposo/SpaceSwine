@@ -13,6 +13,14 @@ public class ShipScreensOverlay : MonoBehaviour
         animator = GetComponentInChildren<Animator>();    
     }
 
+    public void InstantTurnOn ()
+    {
+        if (!animator)
+            return;
+
+        animator.SetTrigger("InstantTurnOn");
+    }
+
     public void TurnOn ()
     {
         if (!animator)

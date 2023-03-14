@@ -29,6 +29,7 @@ namespace MakeABeat
             if (beatMaster)
                 beatMaster.StopCycle();
 
+            ShipInitializerSystem.MakeABeatSpawnTrigger = true;
             GameManager.GoToScene(BuildIndex.Ship);
             
             enabled = this;

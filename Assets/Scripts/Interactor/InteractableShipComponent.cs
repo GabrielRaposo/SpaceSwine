@@ -85,8 +85,8 @@ public class InteractableShipComponent : Interactable
 
             case ShipAction.Leave:
 
-                if (ShipShuttleSystem.Instance)
-                    ShipShuttleSystem.Instance.ExitOnShuttle();
+                if (ShipInitializerSystem.Instance)
+                    ShipInitializerSystem.Instance.ExitOnShuttle();
                 break;
 
             case ShipAction.Chill:
