@@ -7,11 +7,21 @@ namespace MakeABeat
     public class BeatTrack : MonoBehaviour
     {
         [SerializeField] BeatTapeScriptableObject beatTape;
+        [SerializeField] BeatTapeCursor cursor;
         
+        SpriteSwapper lidSwapper;
+
         BeatTapeScriptableObject currentBeatTape;
 
         int signatureCount;
         bool isRunning;
+
+        bool isSelected;
+
+        private void Awake() 
+        {
+            lidSwapper = GetComponentInChildren<SpriteSwapper>();
+        }
 
         void Start()
         {
@@ -23,6 +33,18 @@ namespace MakeABeat
             }
 
             beatMaster.CyclePulse_Action += CyclePulse; 
+        }
+
+        public void SetSelected (bool value)
+        {
+            cursor.SetState(value);
+            isSelected = value;
+        }
+
+        public void Install (BeatTapeScriptableObject beatTape)
+        {
+            // if one is playing, add to tape queue
+            this.beatTape = beatTape;
         }
 
         private void CyclePulse()
@@ -41,7 +63,6 @@ namespace MakeABeat
             {
                 gameObject.StopAllEvents();
             }
-
 
             currentBeatTape = beatTape;
 

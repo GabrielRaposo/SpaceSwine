@@ -8,6 +8,7 @@ namespace MakeABeat
     public class BeatMenuController : MonoBehaviour
     {
         [SerializeField] BeatMaster beatMaster;
+        [SerializeField] BeatTrackNavigation trackNavigation;
 
         PlayerInputActions inputActions;
 
@@ -15,6 +16,21 @@ namespace MakeABeat
         {
             inputActions = new PlayerInputActions();
             inputActions.Enable();
+
+            inputActions.UI.Navigation.performed += (ctx) =>
+            {
+                Vector2 input = ctx.ReadValue<Vector2>();
+
+                int direction = 0;
+
+                if (input.x > 0 || input.y < 0)
+                    direction = 1;
+                else 
+                    direction = -1;
+
+                if (trackNavigation)
+                    trackNavigation.MoveCursor(direction);
+            };
 
             inputActions.UI.Start.performed += (ctx) => 
             {

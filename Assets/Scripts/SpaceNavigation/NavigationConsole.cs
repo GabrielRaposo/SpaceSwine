@@ -122,7 +122,7 @@ public class NavigationConsole : MonoBehaviour
 
     private void SetupNavigationScene()
     {
-        Debug.Log("SetupNavigationScene()");
+        //Debug.Log("SetupNavigationScene()");
         buildIndex = BuildIndex.NavigationScene;
         StartCoroutine( AsyncLoadRoutine( (int) buildIndex) );
     }
@@ -165,7 +165,7 @@ public class NavigationConsole : MonoBehaviour
 
     private IEnumerator AsyncLoadRoutine(int index)
     {
-        Debug.Log("AsyncLoadRoutine(int index)");
+        //Debug.Log("AsyncLoadRoutine(int index)");
         asyncSceneLoad = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
         while (!asyncSceneLoad.isDone)
             yield return new WaitForEndOfFrame();
