@@ -6,8 +6,10 @@ namespace MakeABeat
 {
     public class BeatTrackNavigation : MonoBehaviour
     {
+        [SerializeField] BeatTrack initialSelection;
+
         BeatTrack[] tracks;
-        int index;
+        BeatTrack CurrentTrack;
 
         void Start()
         {
@@ -15,7 +17,7 @@ namespace MakeABeat
             foreach(BeatTrack track in tracks)
                 track.SetSelected(false);
 
-            index = 0;
+            CurrentTrack = initialSelection;
             UpdateSelection();
         }
 
@@ -23,19 +25,22 @@ namespace MakeABeat
         {
             for (int i = 0; i < tracks.Length; i++)
             {
-                tracks[ i % tracks.Length ].SetSelected( i == index );
+                BeatTrack track = tracks[ i % tracks.Length ];
+                track.SetSelected( track == CurrentTrack );
             }
         }
 
-        public void MoveCursor(int value)
-        {
-            index += value;
+        public void MoveCursor (Vector2 direction)
+        {    
+            BeatNavigationItem navigationItem = CurrentTrack.GetComponent<BeatNavigationItem>();
+            if (!navigationItem)
+                return;
 
-            if (index < 0)
-                index = tracks.Length - 1;
-            else 
-                index %= tracks.Length;
+            BeatNavigationItem output = navigationItem.FindItemOnDirection(direction);
+            if (output == null)
+                return;
 
+            CurrentTrack = output.GetComponent<BeatTrack>();
             UpdateSelection();
         }
     }
