@@ -9,6 +9,7 @@ namespace MakeABeat
     {
         [SerializeField] BeatTapeScriptableObject beatTapeData;
         [SerializeField] BeatTapeDisplay tapeDisplay;
+        [SerializeField] BeatTapeDisplay queuedTapeDisplay;
         [SerializeField] BeatTapeCursor cursor;
         //[SerializeField] SpriteRenderer tapeRenderer;
 
@@ -131,6 +132,15 @@ namespace MakeABeat
             tapeDisplay.SetState( sprite == null ? BeatTapeDisplay.State.Off : BeatTapeDisplay.State.Preview );
         }
 
+        public void SetQueuedTapeState (Sprite sprite)
+        {
+            if (!queuedTapeDisplay)
+                return;
+
+            queuedTapeDisplay.SetSprite(sprite);
+            queuedTapeDisplay.SetState( sprite == null ? BeatTapeDisplay.State.Off : BeatTapeDisplay.State.Preview );
+        }
+
         public void RestoreVisualState()
         {
             if (beatTapeData != null)
@@ -146,6 +156,11 @@ namespace MakeABeat
 
                 SetLidState(false);
             }
+        }
+
+        public bool IsEmpty
+        {
+            get { return beatTapeData == null; }
         }
 
         private void OnDisable() 

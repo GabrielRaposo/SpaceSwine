@@ -141,7 +141,12 @@ namespace MakeABeat
                     labelDisplay.text = item.BeatTape.title;
 
                 if (selectedTrack)
-                    selectedTrack.SetTapePreviewState(item.BeatTape.frontalSprite);
+                {
+                    if (selectedTrack.IsEmpty)
+                        selectedTrack.SetTapePreviewState(item.BeatTape.frontalSprite);
+                    else 
+                        selectedTrack.SetQueuedTapeState(item.BeatTape.frontalSprite);
+                }
             }
             else
             {
@@ -181,6 +186,7 @@ namespace MakeABeat
                 availableItems.Remove(item);
             }
             
+            selectedTrack.SetQueuedTapeState(null); // -- Botar isso em uma UnityAction depois
             UpdateAvailables();
             current = 0;
 

@@ -47,19 +47,22 @@ public class BeatTapeDisplay : MonoBehaviour
         switch (state)
         {
             case State.Off:
-                fitNode?.SetActive(false);
+                if (fitNode) 
+                    fitNode.SetActive(false);
                 spriteRenderer.enabled = false;
                 break;
 
             case State.Preview:
-                fitNode?.SetActive(false);
+                if (fitNode)
+                    fitNode.SetActive(false);
                 spriteRenderer.enabled = true;
                 spriteRenderer.color = Color.clear;
                 t = 0;
                 break;
 
             case State.On:
-                fitNode?.SetActive(true);
+                if (fitNode)
+                    fitNode.SetActive(true);
                 spriteRenderer.enabled = true;
                 spriteRenderer.color = Color.white;
                 break;
