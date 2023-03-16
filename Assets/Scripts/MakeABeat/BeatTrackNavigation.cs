@@ -63,12 +63,12 @@ namespace MakeABeat
             CurrentTrack.SetArrowsVisibility(value);
         }
 
-        public void OnCancelInput()
+        public void OnCancelInput(TapeBox tapeBox)
         {
             if (!CurrentTrack)
                 return;
 
-            CurrentTrack.InstantUninstall();
+            CurrentTrack.InstantUninstall(tapeBox);
         }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class BeatTapeScriptableObject : ScriptableObject
 {
     public string title;
+    public bool silent;
     public AK.Wwise.Event sampleAKEvent;
     public int signatureDuration;
     public Sprite frontalSprite;

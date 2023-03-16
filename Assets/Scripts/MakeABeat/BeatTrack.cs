@@ -46,19 +46,15 @@ namespace MakeABeat
             isSelected = value;
         }
 
-        public void Install (BeatTapeScriptableObject beatTapeData)
+        public void Install (BeatTapeScriptableObject beatTapeData, TapeBox tapeBox)
         {
             // if one is playing, add to tape queue
+            if (this.beatTapeData != null)
+                tapeBox.RestoreToAvailables(this.beatTapeData);
+
             this.beatTapeData = beatTapeData;
 
-            if (tapeDisplay) 
-            { 
-                // ligar animação de peças centrais rodando
-                tapeDisplay.SetSprite (beatTapeData.frontalSprite);
-                tapeDisplay.SetState (BeatTapeDisplay.State.On);
-            }
-
-            SetLidState(true);
+            RestoreVisualState();
 
             if (sequence != null)
                 sequence.Kill();
@@ -67,18 +63,21 @@ namespace MakeABeat
             sequence.Append( transform.DOPunchScale(Vector3.one * .05f, duration: .2f, vibrato: 0) );
         }
 
-        public void InstantUninstall()
+        public void InstantUninstall(TapeBox tapeBox)
         {
             if (currentBeatTape != null && currentBeatTape.sampleAKEvent != null)
             {
                 gameObject.StopAllEvents();
             }
 
+            tapeBox.RestoreToAvailables(beatTapeData);
+
             beatTapeData = null;
             currentBeatTape = null;
 
             SetLidState(false);
             tapeDisplay.SetState(BeatTapeDisplay.State.Off);
+
         }
 
         public void SetLidState(bool value)
@@ -134,11 +133,8 @@ namespace MakeABeat
 
         public void RestoreVisualState()
         {
-            Debug.Log("Hi");
-
             if (beatTapeData != null)
             {
-                Debug.Log("A");
                 tapeDisplay.SetSprite(beatTapeData.frontalSprite);
                 tapeDisplay.SetState(BeatTapeDisplay.State.On);
 
@@ -146,7 +142,6 @@ namespace MakeABeat
             }
             else
             {
-                Debug.Log("B");
                 tapeDisplay.SetState(BeatTapeDisplay.State.Off);
 
                 SetLidState(false);

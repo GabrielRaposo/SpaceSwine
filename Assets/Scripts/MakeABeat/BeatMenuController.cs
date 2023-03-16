@@ -133,7 +133,7 @@ namespace MakeABeat
             switch (Focus)
             {
                 case MakeABeatFocus.Tapes:
-                    trackNavigation.OnCancelInput();
+                    trackNavigation.OnCancelInput(tapeBox);
                     break;
 
                 case MakeABeatFocus.Box:

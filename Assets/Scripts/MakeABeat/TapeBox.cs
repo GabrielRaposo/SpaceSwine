@@ -24,12 +24,14 @@ namespace MakeABeat
 
         BeatTrack selectedTrack;
         List<TapeBoxItem> items;
+        List<TapeBoxItem> availableItems;
 
         Sequence sequence;
 
         void Start()
         {
             SetupTapes();
+            SetupAvailableTapes();
             SetShownPosition(false);
             UpdateSelected(-1);
         }
@@ -52,10 +54,37 @@ namespace MakeABeat
                     tape.Setup(beatTapes[i]);
                     items.Add(tape);
                 }
-
             }
 
             boxTapePrefab.SetActive(false);
+        }
+
+        private void SetupAvailableTapes()
+        {
+            // TO-DO: Adicionar interção com fitas desbloquedas
+            
+            availableItems = new List<TapeBoxItem>();
+
+            foreach (TapeBoxItem item in items)
+                availableItems.Add(item);
+        }
+
+        private void UpdateAvailables()
+        {
+            // -- Sort Availables
+            List<TapeBoxItem> aux = new List<TapeBoxItem>();
+            foreach (TapeBoxItem item in items)
+            {
+                if (availableItems.Contains(item))
+                    aux.Add(item);
+            }
+            availableItems = aux;
+
+            foreach (TapeBoxItem item in items)
+            {
+                item.SetHighlighted(false);
+                item.gameObject.SetActive( availableItems.Contains(item) );
+            }
         }
 
         private void SetShownPosition (bool value)
@@ -91,9 +120,9 @@ namespace MakeABeat
 
         public void UpdateSelected (int index)
         {
-            for (int i = 0; i < items.Count; i++)
+            for (int i = 0; i < availableItems.Count; i++)
             {
-                items[i].SetHighlighted( i == index );
+                availableItems[i].SetHighlighted( i == index );
             }
             
             if (!cursor)
@@ -104,7 +133,7 @@ namespace MakeABeat
             
             if (value)
             {
-                TapeBoxItem item = items[index % items.Count];
+                TapeBoxItem item = availableItems[index % availableItems.Count];
                 cursor.SetParent(item.transform);
                 cursor.position = item.transform.position + (Vector3.up * .5f);
             
@@ -119,15 +148,18 @@ namespace MakeABeat
                 if (labelDisplay)
                     labelDisplay.text = string.Empty;
             }
-            
         }
 
         public void MoveCursor (int direction)
         {
+            if (availableItems.Count < 1)
+                return;
+
+            int availableIndex = current;
             current += direction;
             if (current < 0)
-                current = items.Count - 1;
-            current %= items.Count;
+                current = availableItems.Count - 1;
+            current %= availableItems.Count;
 
             UpdateSelected(current);
         }
@@ -137,11 +169,37 @@ namespace MakeABeat
             if (selectedTrack == null)
                 return;
 
-            TapeBoxItem item = items[current % items.Count];
-            selectedTrack.Install( item.BeatTape );
+            TapeBoxItem item = availableItems[current % availableItems.Count];
+            
+            if (item.BeatTape.silent)
+            {
+                selectedTrack.Install( null, this );
+            }
+            else
+            {
+                selectedTrack.Install( item.BeatTape, this );
+                availableItems.Remove(item);
+            }
+            
+            UpdateAvailables();
+            current = 0;
 
             Show (null, false);
             BeatMenuController.Focus = MakeABeatFocus.Tapes;
+        }
+
+        public void RestoreToAvailables (BeatTapeScriptableObject beatTapeData)
+        {
+            TapeBoxItem item = items.Find( (i) => i.BeatTape == beatTapeData ); 
+            if (item == null)
+                return;
+
+            bool alreadyHas = availableItems.Contains( item );
+            if (alreadyHas)
+                return;
+
+            availableItems.Add(item);
+            UpdateAvailables();
         }
     }
 }
