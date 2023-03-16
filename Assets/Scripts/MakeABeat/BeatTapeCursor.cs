@@ -53,8 +53,20 @@ public class BeatTapeCursor : MonoBehaviour
 
     public void SetState (bool value)
     {
-        //Debug.Log($"SetState ({value}) - {name}");
         display.enabled = value;
+        SetArrowsVisibility(value);
+
+        if (!value)
+        {
+            display.size = startSize;
+            display.color = gradient.Evaluate(0);
+        }
+
+        highlighted = value;
+    }
+
+    public void SetArrowsVisibility(bool value)
+    {
         if (arrows.Count > 0)
         {
             foreach (var arrow in arrows)
@@ -64,14 +76,6 @@ public class BeatTapeCursor : MonoBehaviour
                     arrow.renderer.color = gradient.Evaluate(0);
             }
         }
-
-        if (!value)
-        {
-            display.size = startSize;
-            display.color = gradient.Evaluate(0);
-        }
-
-        highlighted = value;
     }
 
     void Update()

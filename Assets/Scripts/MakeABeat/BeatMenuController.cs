@@ -5,6 +5,13 @@ using UnityEngine.InputSystem;
 
 namespace MakeABeat
 {
+    public enum MakeABeatFocus 
+    {
+        Tapes,
+        Box,
+        Menu
+    }
+
     public class BeatMenuController : MonoBehaviour
     {
         [SerializeField] float navigationCooldown;
@@ -12,11 +19,14 @@ namespace MakeABeat
         [Header("References")]
         [SerializeField] BeatMaster beatMaster;
         [SerializeField] BeatTrackNavigation trackNavigation;
+        [SerializeField] TapeBox tapeBox;
 
         float t;
 
         PlayerInputActions inputActions;
         InputAction navigationInput;
+
+        public static MakeABeatFocus Focus;
 
         private void OnEnable() 
         {
@@ -26,20 +36,17 @@ namespace MakeABeat
             navigationInput = inputActions.UI.Navigation;
             navigationInput.Enable();
 
-            //inputActions.UI.Navigation.performed += (ctx) =>
-            //{
-            //    Vector2 input = ctx.ReadValue<Vector2>();
+            inputActions.UI.Confirm.performed += (ctx) => 
+            {
+                ConfirmLogic();
+            };
+            inputActions.UI.Confirm.Enable();
 
-            //    //int direction = 0;
-
-            //    //if (input.x > 0 || input.y < 0)
-            //    //    direction = 1;
-            //    //else 
-            //    //    direction = -1;
-
-            //    if (trackNavigation)
-            //        trackNavigation.MoveCursor(input.normalized);
-            //};
+            inputActions.UI.Cancel.performed += (ctx) =>
+            {
+                CancelLogic();
+            };
+            inputActions.UI.Cancel.Enable();
 
             inputActions.UI.Start.performed += (ctx) => 
             {
@@ -62,6 +69,11 @@ namespace MakeABeat
 
         private void Update() 
         {
+            NavigationLogic();
+        }
+
+        private void NavigationLogic()
+        {
             Vector2 direction = navigationInput.ReadValue<Vector2>();
             if (direction == Vector2.zero) 
             {
@@ -78,8 +90,61 @@ namespace MakeABeat
             if (!trackNavigation)
                 return;
 
-            trackNavigation.MoveCursor(direction.normalized);          
+            switch (Focus)
+            {
+                case MakeABeatFocus.Tapes:
+                    trackNavigation.MoveCursor(direction.normalized);          
+                    break;
+
+
+                case MakeABeatFocus.Box:
+                    tapeBox.MoveCursor (direction.x > 0 ? 1 : -1);
+                    break;
+
+                default:
+                    return;
+            }
+
             t = navigationCooldown;
+        }
+        
+        private void ConfirmLogic()
+        {
+            switch (Focus)
+            {
+                case MakeABeatFocus.Tapes:
+                    BeatTrack track = trackNavigation.GetSelectedTrack();
+                    if (track == null)
+                        return;
+
+                    track.SetLidState(false);
+                    trackNavigation.SetArrowsVisibility(false);
+                    tapeBox.Show(track, true);
+                    break;
+
+                case MakeABeatFocus.Box:
+                    tapeBox.OnSelectInput();
+                    break;
+            }
+        }
+
+        private void CancelLogic()
+        {
+            switch (Focus)
+            {
+                case MakeABeatFocus.Tapes:
+                    trackNavigation.OnCancelInput();
+                    break;
+
+                case MakeABeatFocus.Box:
+                    trackNavigation.SetArrowsVisibility(true);
+                    BeatTrack track = trackNavigation.GetSelectedTrack();
+                    if (track)
+                        track.RestoreVisualState();
+
+                    tapeBox.Show(null, false);
+                    break;
+            }
         }
 
         private void OnDisable() 
@@ -87,6 +152,8 @@ namespace MakeABeat
             inputActions.Disable();
             
             navigationInput.Disable();
+            inputActions.UI.Confirm.Disable();
+            inputActions.UI.Cancel.Disable();
             inputActions.UI.Start.Disable();
         }
     }

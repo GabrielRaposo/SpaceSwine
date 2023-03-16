@@ -32,7 +32,7 @@ public class BeatNavigationItem : MonoBehaviour
     [SerializeField] List <NavigationData> datas;
     [SerializeField] BeatTapeCursor cursor;
 
-    void Start()
+    public void Setup()
     {
         if (datas.Count < 1)
             return;

@@ -15,7 +15,13 @@ namespace MakeABeat
         {
             tracks = GetComponentsInChildren<BeatTrack>();
             foreach(BeatTrack track in tracks)
+            {
+                BeatNavigationItem navigationItem = track.GetComponent<BeatNavigationItem>();
+                if (navigationItem)
+                    navigationItem.Setup();
+
                 track.SetSelected(false);
+            }
 
             CurrentTrack = initialSelection;
             UpdateSelection();
@@ -42,6 +48,27 @@ namespace MakeABeat
 
             CurrentTrack = output.GetComponent<BeatTrack>();
             UpdateSelection();
+        }
+
+        public BeatTrack GetSelectedTrack()
+        {
+            return CurrentTrack;
+        }
+
+        public void SetArrowsVisibility(bool value)
+        {
+            if (!CurrentTrack)
+                return;
+
+            CurrentTrack.SetArrowsVisibility(value);
+        }
+
+        public void OnCancelInput()
+        {
+            if (!CurrentTrack)
+                return;
+
+            CurrentTrack.InstantUninstall();
         }
     }
 }

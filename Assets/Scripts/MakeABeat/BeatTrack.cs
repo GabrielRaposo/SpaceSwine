@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace MakeABeat
 {
     public class BeatTrack : MonoBehaviour
     {
-        [SerializeField] BeatTapeScriptableObject beatTape;
+        [SerializeField] BeatTapeScriptableObject beatTapeData;
+        [SerializeField] BeatTapeDisplay tapeDisplay;
         [SerializeField] BeatTapeCursor cursor;
-        
+        //[SerializeField] SpriteRenderer tapeRenderer;
+
         SpriteSwapper lidSwapper;
 
         BeatTapeScriptableObject currentBeatTape;
@@ -17,6 +20,8 @@ namespace MakeABeat
         bool isRunning;
 
         bool isSelected;
+
+        Sequence sequence;
 
         private void Awake() 
         {
@@ -41,10 +46,47 @@ namespace MakeABeat
             isSelected = value;
         }
 
-        public void Install (BeatTapeScriptableObject beatTape)
+        public void Install (BeatTapeScriptableObject beatTapeData)
         {
             // if one is playing, add to tape queue
-            this.beatTape = beatTape;
+            this.beatTapeData = beatTapeData;
+
+            if (tapeDisplay) 
+            { 
+                // ligar animação de peças centrais rodando
+                tapeDisplay.SetSprite (beatTapeData.frontalSprite);
+                tapeDisplay.SetState (BeatTapeDisplay.State.On);
+            }
+
+            SetLidState(true);
+
+            if (sequence != null)
+                sequence.Kill();
+
+            sequence = DOTween.Sequence();
+            sequence.Append( transform.DOPunchScale(Vector3.one * .05f, duration: .2f, vibrato: 0) );
+        }
+
+        public void InstantUninstall()
+        {
+            if (currentBeatTape != null && currentBeatTape.sampleAKEvent != null)
+            {
+                gameObject.StopAllEvents();
+            }
+
+            beatTapeData = null;
+            currentBeatTape = null;
+
+            SetLidState(false);
+            tapeDisplay.SetState(BeatTapeDisplay.State.Off);
+        }
+
+        public void SetLidState(bool value)
+        {
+            if (!lidSwapper)
+                return;
+
+            lidSwapper.SetSpriteState(value ? 1 : 0);   
         }
 
         private void CyclePulse()
@@ -64,13 +106,51 @@ namespace MakeABeat
                 gameObject.StopAllEvents();
             }
 
-            currentBeatTape = beatTape;
+            currentBeatTape = beatTapeData;
 
             if (currentBeatTape == null)
                 return;
 
             if (currentBeatTape.sampleAKEvent != null)
                 currentBeatTape.sampleAKEvent.Post(gameObject);
+        }
+
+        public void SetArrowsVisibility (bool value)
+        {
+            if (!cursor)
+                return;
+
+            cursor.SetArrowsVisibility(value);
+        }
+
+        public void SetTapePreviewState (Sprite sprite)
+        {
+            if (!tapeDisplay)
+                return;
+
+            tapeDisplay.SetSprite(sprite);
+            tapeDisplay.SetState( sprite == null ? BeatTapeDisplay.State.Off : BeatTapeDisplay.State.Preview );
+        }
+
+        public void RestoreVisualState()
+        {
+            Debug.Log("Hi");
+
+            if (beatTapeData != null)
+            {
+                Debug.Log("A");
+                tapeDisplay.SetSprite(beatTapeData.frontalSprite);
+                tapeDisplay.SetState(BeatTapeDisplay.State.On);
+
+                SetLidState(true);
+            }
+            else
+            {
+                Debug.Log("B");
+                tapeDisplay.SetState(BeatTapeDisplay.State.Off);
+
+                SetLidState(false);
+            }
         }
 
         private void OnDisable() 
