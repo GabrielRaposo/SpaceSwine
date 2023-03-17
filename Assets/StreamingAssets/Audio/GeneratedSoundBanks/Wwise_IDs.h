@@ -164,6 +164,7 @@ namespace AK
         static const AkUniqueID LOFI_12 = 65705089U;
         static const AkUniqueID LOFI_13 = 65705088U;
         static const AkUniqueID LOFI_14 = 65705095U;
+        static const AkUniqueID MAKE_A_BEAT = 2500044626U;
     } // namespace BANKS
 
     namespace BUSSES
