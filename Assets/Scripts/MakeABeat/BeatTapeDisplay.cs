@@ -10,7 +10,14 @@ public class BeatTapeDisplay : MonoBehaviour
     public float gradientScrollDuration;
     public GameObject fitNode;
     
-    float t;
+    [Header("Preview Movement")]
+    public Transform target;
+    public float moveTowardsDuration;
+    
+    float color_t;
+    float move_t;
+
+    Vector3 startingPosition;
 
     State state;
     SpriteRenderer spriteRenderer;
@@ -18,6 +25,7 @@ public class BeatTapeDisplay : MonoBehaviour
     private void Awake() 
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        startingPosition = transform.position;
     }
 
     void Start()
@@ -27,18 +35,40 @@ public class BeatTapeDisplay : MonoBehaviour
 
     private void Update() 
     {
+        ColorizeRenderer();
+        MoveToTarget();
+    }
+
+    private void MoveToTarget()
+    {
         if (state != State.Preview)
             return;
 
-        t += Time.deltaTime;
-        if (t > gradientScrollDuration)
-            t = 0;
+        if (target == null)
+            return;
 
-        spriteRenderer.color = previewGradient.Evaluate( t / gradientScrollDuration );
+        move_t += Time.deltaTime;
+        if (move_t > moveTowardsDuration * .5f)
+            move_t = 0;
+
+        transform.position = Vector3.Lerp(startingPosition, target.position, move_t / moveTowardsDuration);
+    }
+
+    private void ColorizeRenderer()
+    {
+        if (state != State.Preview)
+            return;
+
+        color_t += Time.deltaTime;
+        if (color_t > gradientScrollDuration)
+            color_t = 0;
+
+        spriteRenderer.color = previewGradient.Evaluate( color_t / gradientScrollDuration );
     }
 
     public void SetSprite (Sprite sprite)
     {
+        Debug.Log("Update sprite: " + sprite);
         spriteRenderer.sprite = sprite;
     }
 
@@ -50,6 +80,7 @@ public class BeatTapeDisplay : MonoBehaviour
                 if (fitNode) 
                     fitNode.SetActive(false);
                 spriteRenderer.enabled = false;
+                transform.position = startingPosition;
                 break;
 
             case State.Preview:
@@ -57,7 +88,9 @@ public class BeatTapeDisplay : MonoBehaviour
                     fitNode.SetActive(false);
                 spriteRenderer.enabled = true;
                 spriteRenderer.color = Color.clear;
-                t = 0;
+                transform.position = startingPosition;
+                move_t = 0;
+                color_t = 0;
                 break;
 
             case State.On:
@@ -65,6 +98,7 @@ public class BeatTapeDisplay : MonoBehaviour
                     fitNode.SetActive(true);
                 spriteRenderer.enabled = true;
                 spriteRenderer.color = Color.white;
+                transform.position = startingPosition;
                 break;
         }
 

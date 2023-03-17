@@ -99,6 +99,9 @@ namespace MakeABeat
                 sequence.Kill();
 
             {
+                //if (this.selectedTrack)
+                //    this.selectedTrack.SetQueuedTapeState(null);
+
                 this.selectedTrack = selectedTrack;
 
                 if (value)
@@ -142,10 +145,8 @@ namespace MakeABeat
 
                 if (selectedTrack)
                 {
-                    if (selectedTrack.IsEmpty)
-                        selectedTrack.SetTapePreviewState(item.BeatTape.frontalSprite);
-                    else 
-                        selectedTrack.SetQueuedTapeState(item.BeatTape.frontalSprite);
+                    selectedTrack.SetBoxPreviewState(item.BeatTape.frontalSprite);
+                    selectedTrack.SetQueuedTapeState(item.BeatTape.frontalSprite);
                 }
             }
             else
@@ -176,17 +177,13 @@ namespace MakeABeat
 
             TapeBoxItem item = availableItems[current % availableItems.Count];
             
-            if (item.BeatTape.silent)
+            selectedTrack.SetQueuedState( item.BeatTape, this );
+            if (!item.BeatTape.silent)
             {
-                selectedTrack.Install( null, this );
-            }
-            else
-            {
-                selectedTrack.Install( item.BeatTape, this );
                 availableItems.Remove(item);
             }
             
-            selectedTrack.SetQueuedTapeState(null); // -- Botar isso em uma UnityAction depois
+            //selectedTrack.SetQueuedTapeState(null); // -- Botar isso em uma UnityAction depois
             UpdateAvailables();
             current = 0;
 

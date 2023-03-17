@@ -117,7 +117,7 @@ namespace MakeABeat
                     if (track == null)
                         return;
 
-                    track.SetLidState(false);
+                    track.CloseTheLid(false);
                     trackNavigation.SetArrowsVisibility(false);
                     tapeBox.Show(track, true);
                     break;
@@ -140,7 +140,10 @@ namespace MakeABeat
                     trackNavigation.SetArrowsVisibility(true);
                     BeatTrack track = trackNavigation.GetSelectedTrack();
                     if (track)
+                    {
+                        track.SetBoxPreviewState(null);
                         track.RestoreVisualState();
+                    }
 
                     tapeBox.Show(null, false);
                     break;

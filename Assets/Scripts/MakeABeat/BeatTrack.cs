@@ -13,9 +13,11 @@ namespace MakeABeat
         [SerializeField] BeatTapeCursor cursor;
         //[SerializeField] SpriteRenderer tapeRenderer;
 
+        Sprite boxPreviewState;
         SpriteSwapper lidSwapper;
 
         BeatTapeScriptableObject currentBeatTape;
+        TapeBox tapeBox;
 
         int signatureCount;
         bool isRunning;
@@ -47,15 +49,29 @@ namespace MakeABeat
             isSelected = value;
         }
 
-        public void Install (BeatTapeScriptableObject beatTapeData, TapeBox tapeBox)
+        public void SetQueuedState (BeatTapeScriptableObject beatTapeData, TapeBox tapeBox)
         {
-            // if one is playing, add to tape queue
-            if (this.beatTapeData != null)
-                tapeBox.RestoreToAvailables(this.beatTapeData);
-
+            this.tapeBox = tapeBox;
             this.beatTapeData = beatTapeData;
+        }
+
+        public void Install ()
+        {   
+            if (currentBeatTape != null && currentBeatTape != beatTapeData)
+                tapeBox.RestoreToAvailables(currentBeatTape);
+
+            if (beatTapeData)
+                currentBeatTape = beatTapeData.silent ? null : beatTapeData;
+            else 
+                currentBeatTape = null;
+
+            if (currentBeatTape == null && beatTapeData == null)
+                return;
 
             RestoreVisualState();
+
+            if (beatTapeData && beatTapeData.silent)
+                beatTapeData = null;
 
             if (sequence != null)
                 sequence.Kill();
@@ -71,17 +87,29 @@ namespace MakeABeat
                 gameObject.StopAllEvents();
             }
 
-            tapeBox.RestoreToAvailables(beatTapeData);
+            if (currentBeatTape != null)
+            {
+                tapeBox.RestoreToAvailables(currentBeatTape);
+                if (beatTapeData == currentBeatTape)
+                {
+                    beatTapeData = null;
+                    SetQueuedTapeState(null);
+                }
+                currentBeatTape = null;
+                tapeDisplay.SetState(BeatTapeDisplay.State.Off);
+            }
+            else
+            {
+                tapeBox.RestoreToAvailables(beatTapeData);
+                beatTapeData = null;
+                SetQueuedTapeState(null);
+            }
 
-            beatTapeData = null;
-            currentBeatTape = null;
-
-            SetLidState(false);
-            tapeDisplay.SetState(BeatTapeDisplay.State.Off);
+            CloseTheLid(false);
 
         }
 
-        public void SetLidState(bool value)
+        public void CloseTheLid(bool value)
         {
             if (!lidSwapper)
                 return;
@@ -106,7 +134,7 @@ namespace MakeABeat
                 gameObject.StopAllEvents();
             }
 
-            currentBeatTape = beatTapeData;
+            Install();
 
             if (currentBeatTape == null)
                 return;
@@ -132,29 +160,49 @@ namespace MakeABeat
             tapeDisplay.SetState( sprite == null ? BeatTapeDisplay.State.Off : BeatTapeDisplay.State.Preview );
         }
 
+        public void SetBoxPreviewState(Sprite sprite)
+        {
+            boxPreviewState = sprite;
+        }
+
         public void SetQueuedTapeState (Sprite sprite)
         {
             if (!queuedTapeDisplay)
                 return;
 
-            queuedTapeDisplay.SetSprite(sprite);
+            queuedTapeDisplay.SetSprite( boxPreviewState == null ? sprite : boxPreviewState);
             queuedTapeDisplay.SetState( sprite == null ? BeatTapeDisplay.State.Off : BeatTapeDisplay.State.Preview );
         }
 
         public void RestoreVisualState()
         {
-            if (beatTapeData != null)
+            if (currentBeatTape == null && beatTapeData == null)
             {
-                tapeDisplay.SetSprite(beatTapeData.frontalSprite);
-                tapeDisplay.SetState(BeatTapeDisplay.State.On);
-
-                SetLidState(true);
-            }
-            else
-            {
+                Debug.Log("A");
+                tapeDisplay.SetSprite(null);
                 tapeDisplay.SetState(BeatTapeDisplay.State.Off);
+                SetQueuedTapeState(null);
+                CloseTheLid(false);
+                return;
+            }
 
-                SetLidState(false);
+            if (currentBeatTape == beatTapeData)
+            {
+                Debug.Log("B: " + currentBeatTape.name);
+                tapeDisplay.SetSprite(currentBeatTape.frontalSprite);
+                tapeDisplay.SetState(BeatTapeDisplay.State.On);
+                SetQueuedTapeState(null);
+                CloseTheLid(true);
+                return;
+            }
+
+            if (beatTapeData.silent)
+            {
+                Debug.Log("C");
+                tapeDisplay.SetSprite(currentBeatTape != null ? currentBeatTape.frontalSprite : null);
+                tapeDisplay.SetState(currentBeatTape != null ? BeatTapeDisplay.State.On : BeatTapeDisplay.State.Off);
+                SetQueuedTapeState(null);
+                CloseTheLid(false);
             }
         }
 
