@@ -13,6 +13,10 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID AMBIENCE_01 = 1671483493U;
+        static const AkUniqueID ASMR_01 = 419243222U;
+        static const AkUniqueID BASS_01 = 2197579062U;
+        static const AkUniqueID BUMBOCAIXA_01 = 883042108U;
         static const AkUniqueID CENARIO_BUYK_CHUTA_BOLINHA = 2035115204U;
         static const AkUniqueID CENARIO_BUYK_CHUTA_COPO = 223749984U;
         static const AkUniqueID CENARIO_NAVE_BIP_PERIGO = 3298760050U;
@@ -24,6 +28,7 @@ namespace AK
         static const AkUniqueID CENARIO_TRANSICAO = 3223415371U;
         static const AkUniqueID CENARIO_TUTORIAL_SOUNDSCAPE = 1243364701U;
         static const AkUniqueID CENARIO_VITORIA = 3655190725U;
+        static const AkUniqueID CHORDS_01 = 522712106U;
         static const AkUniqueID GAMEPLAY_BUYK_ANDA = 2274976510U;
         static const AkUniqueID GAMEPLAY_BUYK_BEAMDOWN = 294436755U;
         static const AkUniqueID GAMEPLAY_BUYK_BEAMUP = 3509944340U;
@@ -62,6 +67,7 @@ namespace AK
         static const AkUniqueID GGS_UI_DESLIGA = 3509273191U;
         static const AkUniqueID GGS_UI_LIGA = 4113901743U;
         static const AkUniqueID GGS_UI_RECORDE_FANFARRA = 1270516008U;
+        static const AkUniqueID HIHAT_01 = 2036806543U;
         static const AkUniqueID LOFI_01 = 48927505U;
         static const AkUniqueID LOFI_02 = 48927506U;
         static const AkUniqueID LOFI_03 = 48927507U;
@@ -77,6 +83,8 @@ namespace AK
         static const AkUniqueID LOFI_13 = 65705088U;
         static const AkUniqueID LOFI_14 = 65705095U;
         static const AkUniqueID SPLASH_SCREEN = 3514087899U;
+        static const AkUniqueID TREBLE_01 = 2489791123U;
+        static const AkUniqueID TREBLE_02 = 2489791120U;
         static const AkUniqueID UI_LABORBOT_FALA = 1076532240U;
         static const AkUniqueID UI_MAROMBOT_FALA = 1293565034U;
         static const AkUniqueID UI_NAVE_FALA = 1320095827U;
