@@ -7,7 +7,7 @@ namespace MakeABeat
 {
     public class BeatMaster : MonoBehaviour
     {
-        const int TIME_SIGNATURE = 4;
+        const int TIME_SIGNATURE = 8;
 
         [SerializeField] float BPM;
 
@@ -51,8 +51,8 @@ namespace MakeABeat
 
         private void ResetCycle()
         {
-            if (testCycleAkEvent != null)
-                testCycleAkEvent.Post(gameObject);
+            //if (testCycleAkEvent != null)
+            //    testCycleAkEvent.Post(gameObject);
 
             // -- chama eventos de som
             if (CyclePulse_Action != null)
@@ -85,8 +85,8 @@ namespace MakeABeat
                 if (SignaturePulse_Action != null)
                     SignaturePulse_Action.Invoke(signatureCount - 1);
 
-                if (testTickAkEvent != null)
-                    testTickAkEvent.Post(gameObject);
+                //if (testTickAkEvent != null)
+                //    testTickAkEvent.Post(gameObject);
 
                 signatureCount++;
                 if(signatureCount > TIME_SIGNATURE)
