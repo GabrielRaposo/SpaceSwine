@@ -61,7 +61,7 @@ namespace MakeABeat
 
         private void SetupAvailableTapes()
         {
-            // TO-DO: Adicionar interção com fitas desbloquedas
+            // TO-DO: Adicionar interção com fitas desbloqueadas
             
             availableItems = new List<TapeBoxItem>();
 
@@ -71,7 +71,6 @@ namespace MakeABeat
 
         private void UpdateAvailables()
         {
-            // -- Sort Availables
             List<TapeBoxItem> aux = new List<TapeBoxItem>();
             foreach (TapeBoxItem item in items)
             {
@@ -104,11 +103,6 @@ namespace MakeABeat
 
                 this.selectedTrack = selectedTrack;
 
-                if (value)
-                    BeatMenuController.Focus = MakeABeatFocus.Box;
-                else
-                    BeatMenuController.Focus = MakeABeatFocus.Tapes;
-
                 UpdateSelected( value ? current : -1 );
             }
 
@@ -127,27 +121,15 @@ namespace MakeABeat
             {
                 availableItems[i].SetHighlighted( i == index );
             }
-            
-            if (!cursor)
-                return;
 
             bool value = index > -1;
-            cursor.gameObject.SetActive( value );
-            
+
             if (value)
             {
                 TapeBoxItem item = availableItems[index % availableItems.Count];
-                cursor.SetParent(item.transform);
-                cursor.position = item.transform.position + (Vector3.up * .5f);
-            
+
                 if (labelDisplay)
                     labelDisplay.text = item.BeatTape.title;
-
-                if (selectedTrack)
-                {
-                    selectedTrack.SetBoxPreviewState(item.BeatTape.frontalSprite);
-                    selectedTrack.SetQueuedTapeState(item.BeatTape.frontalSprite);
-                }
             }
             else
             {
@@ -176,19 +158,14 @@ namespace MakeABeat
                 return;
 
             TapeBoxItem item = availableItems[current % availableItems.Count];
-            
-            selectedTrack.SetQueuedState( item.BeatTape, this );
+            selectedTrack.EnqueueTape(item.BeatTape, this);
+
             if (!item.BeatTape.silent)
-            {
                 availableItems.Remove(item);
-            }
-            
-            //selectedTrack.SetQueuedTapeState(null); // -- Botar isso em uma UnityAction depois
             UpdateAvailables();
             current = 0;
 
             Show (null, false);
-            BeatMenuController.Focus = MakeABeatFocus.Tapes;
         }
 
         public void RestoreToAvailables (BeatTapeScriptableObject beatTapeData)

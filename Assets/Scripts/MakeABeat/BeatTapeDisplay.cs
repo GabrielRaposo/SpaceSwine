@@ -68,7 +68,6 @@ public class BeatTapeDisplay : MonoBehaviour
 
     public void SetSprite (Sprite sprite)
     {
-        Debug.Log("Update sprite: " + sprite);
         spriteRenderer.sprite = sprite;
     }
 

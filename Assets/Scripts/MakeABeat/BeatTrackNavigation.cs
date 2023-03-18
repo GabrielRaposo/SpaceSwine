@@ -32,7 +32,7 @@ namespace MakeABeat
             for (int i = 0; i < tracks.Length; i++)
             {
                 BeatTrack track = tracks[ i % tracks.Length ];
-                track.SetSelected( track == CurrentTrack );
+                track.SetSelected( track == CurrentTrack ); 
             }
         }
 
@@ -61,6 +61,11 @@ namespace MakeABeat
                 return;
 
             CurrentTrack.SetArrowsVisibility(value);
+        }
+
+        public void OnConfirmInput() 
+        {
+            SetArrowsVisibility(false);
         }
 
         public void OnCancelInput(TapeBox tapeBox)

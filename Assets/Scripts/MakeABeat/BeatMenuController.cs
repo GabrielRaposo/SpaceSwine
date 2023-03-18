@@ -93,7 +93,7 @@ namespace MakeABeat
             switch (Focus)
             {
                 case MakeABeatFocus.Tapes:
-                    trackNavigation.MoveCursor(direction.normalized);          
+                    trackNavigation.MoveCursor(direction.normalized);
                     break;
 
 
@@ -113,17 +113,18 @@ namespace MakeABeat
             switch (Focus)
             {
                 case MakeABeatFocus.Tapes:
-                    BeatTrack track = trackNavigation.GetSelectedTrack();
-                    if (track == null)
+                    BeatTrack selectedTrack = trackNavigation.GetSelectedTrack();
+                    if (!selectedTrack)
                         return;
-
-                    track.CloseTheLid(false);
-                    trackNavigation.SetArrowsVisibility(false);
-                    tapeBox.Show(track, true);
+                    
+                    trackNavigation.OnConfirmInput();
+                    tapeBox.Show(selectedTrack, true);
+                    Focus = MakeABeatFocus.Box;
                     break;
 
                 case MakeABeatFocus.Box:
                     tapeBox.OnSelectInput();
+                    Focus = MakeABeatFocus.Tapes;
                     break;
             }
         }
@@ -138,14 +139,8 @@ namespace MakeABeat
 
                 case MakeABeatFocus.Box:
                     trackNavigation.SetArrowsVisibility(true);
-                    BeatTrack track = trackNavigation.GetSelectedTrack();
-                    if (track)
-                    {
-                        track.SetBoxPreviewState(null);
-                        track.RestoreVisualState();
-                    }
-
                     tapeBox.Show(null, false);
+                    Focus = MakeABeatFocus.Tapes;
                     break;
             }
         }
