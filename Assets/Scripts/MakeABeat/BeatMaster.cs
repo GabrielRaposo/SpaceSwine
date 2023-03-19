@@ -15,6 +15,7 @@ namespace MakeABeat
         [SerializeField] AK.Wwise.Event testCycleAkEvent;
         [SerializeField] AK.Wwise.Event testTickAkEvent;
 
+        [HideInInspector] public UnityAction        StopAll_Action; 
         [HideInInspector] public UnityAction        CyclePulse_Action; 
         [HideInInspector] public UnityAction<int>   SignaturePulse_Action; 
         [HideInInspector] public UnityAction<float> UpdateDisplay_Action; 
@@ -40,13 +41,18 @@ namespace MakeABeat
             if (UpdateDisplay_Action != null)
                 UpdateDisplay_Action.Invoke(0);
 
-            this.WaitSeconds( 3, StartCycle );
+            //this.WaitSeconds( 3, StartCycle );
         }
 
-        private void StartCycle()
+        public bool StartCycle()
         {
+            if (isRunning)
+                return false;
+
             timeCount = 0;
             ResetCycle();
+
+            return true;
         }
 
         private void ResetCycle()
@@ -67,7 +73,8 @@ namespace MakeABeat
 
         public void StopCycle()
         {
-            // -- cancela eventos de som
+            if (StopAll_Action != null)
+                StopAll_Action.Invoke();
 
             timeCount = 0;
             signatureCount = 1;

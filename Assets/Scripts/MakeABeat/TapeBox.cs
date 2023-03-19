@@ -14,10 +14,11 @@ namespace MakeABeat
         [SerializeField] float itemSpacing;
         
         [Header("References")]
-        [SerializeField] List<BeatTapeScriptableObject> beatTapes;
         [SerializeField] Transform cursor;
         [SerializeField] GameObject boxTapePrefab;
         [SerializeField] TextMeshPro labelDisplay;
+        [SerializeField] SpriteRenderer tapePreviewDisplay;
+        [SerializeField] List<BeatTapeScriptableObject> beatTapes;
 
         bool isShown;
         int current;
@@ -130,11 +131,17 @@ namespace MakeABeat
 
                 if (labelDisplay)
                     labelDisplay.text = item.BeatTape.title;
+
+                if (tapePreviewDisplay)
+                    tapePreviewDisplay.sprite = item.BeatTape.frontalSprite;
             }
             else
             {
                 if (labelDisplay)
                     labelDisplay.text = string.Empty;
+
+                if (tapePreviewDisplay)
+                    tapePreviewDisplay.sprite = null;
             }
         }
 

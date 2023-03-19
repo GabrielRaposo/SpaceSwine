@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 namespace MakeABeat
 {
@@ -11,6 +12,7 @@ namespace MakeABeat
         [SerializeField] BeatTapeDisplay tapeDisplay;
         [SerializeField] BeatTapeDisplay queuedTapeDisplay;
         [SerializeField] BeatTapeCursor cursor;
+        [SerializeField] TextMeshPro labelDisplay;
 
         Sprite boxPreviewState;
         SpriteSwapper lidSwapper;
@@ -22,22 +24,27 @@ namespace MakeABeat
         bool isRunning;
 
         Sequence sequence;
+        BeatMaster beatMaster;
 
         private void Awake() 
         {
             lidSwapper = GetComponentInChildren<SpriteSwapper>();
-        }
-
-        void Start()
-        {
-            BeatMaster beatMaster = GetComponentInParent<BeatMaster>();
+            
+            beatMaster = GetComponentInParent<BeatMaster>();
             if (!beatMaster)
             {
                 gameObject.SetActive(false);
                 return;
             }
+        }
 
+        void Start()
+        {
             beatMaster.CyclePulse_Action += CyclePulse; 
+            beatMaster.StopAll_Action    += () => 
+            {
+                gameObject.StopAllEvents();
+            };
 
             UpdateQueuedTapeVisual();
             UpdatePlayingTapeVisual();
@@ -47,6 +54,9 @@ namespace MakeABeat
         {
             cursor.SetState(value);
             //isSelected = value;
+
+            if (labelDisplay)
+                labelDisplay.enabled = value;
         }
 
         public void EnqueueTape (BeatTapeScriptableObject beatTapeData, TapeBox tapeBox)
@@ -62,12 +72,17 @@ namespace MakeABeat
 
             this.queuedBeatTape = beatTapeData;
             UpdateQueuedTapeVisual();
+
+            if (beatMaster && beatMaster.StartCycle())
+                Install();
         }
 
         public void Install ()
-        {   
-            if (currentBeatTape != null && currentBeatTape != queuedBeatTape && tapeBox)
+        {
+            if (currentBeatTape != null && currentBeatTape != queuedBeatTape && tapeBox) 
+            {
                 tapeBox.RestoreToAvailables(currentBeatTape);
+            }
 
             if (queuedBeatTape && queuedBeatTape.silent)
                 queuedBeatTape = null;
@@ -98,13 +113,14 @@ namespace MakeABeat
             {
                 if (tapeBox)
                     tapeBox.RestoreToAvailables(currentBeatTape);
-
+                
                 if (currentBeatTape == queuedBeatTape)
                     queuedBeatTape = null;
                 currentBeatTape = null;
 
                 UpdatePlayingTapeVisual();
                 UpdateQueuedTapeVisual();
+
             }
             else if (queuedBeatTape != null)
             {
@@ -182,11 +198,17 @@ namespace MakeABeat
             {
                 tapeDisplay.SetSprite(null);
                 tapeDisplay.SetState(BeatTapeDisplay.State.Off);
+                
+                if (labelDisplay)
+                    labelDisplay.text = null;
             }
             else
             {
                 tapeDisplay.SetSprite(currentBeatTape.frontalSprite);
                 tapeDisplay.SetState(BeatTapeDisplay.State.On);
+
+                if (labelDisplay)
+                    labelDisplay.text = currentBeatTape.title;
             }
         }
 
