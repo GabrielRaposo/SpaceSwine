@@ -52,7 +52,6 @@ namespace MakeABeat
 
         public void SetSelected (bool value)
         {
-            cursor.SetState(value);
             //isSelected = value;
 
             if (labelDisplay)
@@ -164,14 +163,6 @@ namespace MakeABeat
 
             if (currentBeatTape.sampleAKEvent != null)
                 currentBeatTape.sampleAKEvent.Post(gameObject);
-        }
-
-        public void SetArrowsVisibility (bool value)
-        {
-            if (!cursor)
-                return;
-
-            cursor.SetArrowsVisibility(value);
         }
 
         private void UpdateQueuedTapeVisual()

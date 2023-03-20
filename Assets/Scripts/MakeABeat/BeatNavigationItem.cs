@@ -75,4 +75,19 @@ public class BeatNavigationItem : MonoBehaviour
 
         return output.item;
     }
+
+    public void SetSelected (bool value) 
+    {
+        if (cursor)
+            cursor.SetState(value);
+    }
+
+
+    public void SetArrowsVisibility (bool value)
+    {
+        if (!cursor)
+            return;
+
+        cursor.SetArrowsVisibility(value);
+    }
 }

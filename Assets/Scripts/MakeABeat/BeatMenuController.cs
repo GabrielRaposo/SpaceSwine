@@ -113,13 +113,7 @@ namespace MakeABeat
             switch (Focus)
             {
                 case MakeABeatFocus.Tapes:
-                    BeatTrack selectedTrack = trackNavigation.GetSelectedTrack();
-                    if (!selectedTrack)
-                        return;
-                    
-                    trackNavigation.OnConfirmInput();
-                    tapeBox.Show(selectedTrack, true);
-                    Focus = MakeABeatFocus.Box;
+                    trackNavigation.OnConfirmInput(tapeBox);
                     break;
 
                 case MakeABeatFocus.Box:

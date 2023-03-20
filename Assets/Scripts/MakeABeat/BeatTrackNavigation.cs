@@ -6,74 +6,99 @@ namespace MakeABeat
 {
     public class BeatTrackNavigation : MonoBehaviour
     {
-        [SerializeField] BeatTrack initialSelection;
+        [SerializeField] BeatNavigationItem initialSelection;
 
-        BeatTrack[] tracks;
-        BeatTrack CurrentTrack;
+        BeatNavigationItem[] items;
+
+        BeatNavigationItem CurrentSelection;
 
         void Start()
         {
-            tracks = GetComponentsInChildren<BeatTrack>();
-            foreach(BeatTrack track in tracks)
+            items = GetComponentsInChildren<BeatNavigationItem>();
+            foreach (BeatNavigationItem item in items)
             {
-                BeatNavigationItem navigationItem = track.GetComponent<BeatNavigationItem>();
-                if (navigationItem)
-                    navigationItem.Setup();
+                item.Setup();
 
-                track.SetSelected(false);
+                item.SetSelected(false);
+
+                BeatTrack track = item.GetComponent<BeatTrack>();
+                if (track)
+                    track.SetSelected(false);
             }
 
-            CurrentTrack = initialSelection;
+            CurrentSelection = initialSelection;
+
             UpdateSelection();
         }
 
         private void UpdateSelection()
         {
-            for (int i = 0; i < tracks.Length; i++)
+            for (int i = 0; i < items.Length; i++)
             {
-                BeatTrack track = tracks[ i % tracks.Length ];
-                track.SetSelected( track == CurrentTrack ); 
+                BeatNavigationItem item = items[ i % items.Length ];
+                bool isSelected = item == CurrentSelection;
+
+                item.SetSelected( isSelected );
+
+                BeatTrack track = item.GetComponent<BeatTrack>();
+                if (track)
+                    track.SetSelected( isSelected ); 
             }
         }
 
         public void MoveCursor (Vector2 direction)
         {    
-            BeatNavigationItem navigationItem = CurrentTrack.GetComponent<BeatNavigationItem>();
-            if (!navigationItem)
+            if (CurrentSelection == null)
                 return;
 
-            BeatNavigationItem output = navigationItem.FindItemOnDirection(direction);
+            BeatNavigationItem output = CurrentSelection.FindItemOnDirection(direction);
             if (output == null)
                 return;
 
-            CurrentTrack = output.GetComponent<BeatTrack>();
+            CurrentSelection = output;
             UpdateSelection();
         }
 
         public BeatTrack GetSelectedTrack()
         {
-            return CurrentTrack;
+            return CurrentSelection.GetComponent<BeatTrack>();
         }
 
         public void SetArrowsVisibility(bool value)
         {
-            if (!CurrentTrack)
+            if (!CurrentSelection)
                 return;
 
-            CurrentTrack.SetArrowsVisibility(value);
+            CurrentSelection.SetArrowsVisibility(value);
         }
 
-        public void OnConfirmInput() 
+        public void OnConfirmInput(TapeBox tapeBox) 
         {
-            SetArrowsVisibility(false);
+            BeatTrack selectedTrack = GetSelectedTrack();
+            if (selectedTrack)
+            {
+                SetArrowsVisibility(false);
+                tapeBox.Show(selectedTrack, true);
+                BeatMenuController.Focus = MakeABeatFocus.Box;
+                return;
+            }
+
+            BeatMetronome metronome = CurrentSelection.GetComponent<BeatMetronome>();
+            if (metronome)
+            {
+                metronome.OnConfirmInput();
+                return;
+            }
         }
 
         public void OnCancelInput(TapeBox tapeBox)
         {
-            if (!CurrentTrack)
+            if (!CurrentSelection)
                 return;
 
-            CurrentTrack.InstantUninstall(tapeBox);
+            BeatTrack track = CurrentSelection.GetComponent<BeatTrack>();
+            if (track)
+                track.InstantUninstall(tapeBox);
         }
     }
 }

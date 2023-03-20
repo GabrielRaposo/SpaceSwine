@@ -26,7 +26,7 @@ namespace MakeABeat
         float timeCount;
         int signatureCount;
 
-        bool isRunning;
+        public bool IsRunning { get; private set; }
 
         void Awake()
         {
@@ -46,7 +46,7 @@ namespace MakeABeat
 
         public bool StartCycle()
         {
-            if (isRunning)
+            if (IsRunning)
                 return false;
 
             timeCount = 0;
@@ -68,7 +68,7 @@ namespace MakeABeat
                 UpdateDisplay_Action.Invoke(timeCount / totalTime);
 
             signatureCount = 1;
-            isRunning = true;
+            IsRunning = true;
         }
 
         public void StopCycle()
@@ -77,13 +77,16 @@ namespace MakeABeat
                 StopAll_Action.Invoke();
 
             timeCount = 0;
+            if (UpdateDisplay_Action != null)
+                UpdateDisplay_Action.Invoke(timeCount / totalTime);
+
             signatureCount = 1;
-            isRunning = false;
+            IsRunning = false;
         }
 
         void Update()
         {
-            if (!isRunning)
+            if (!IsRunning)
                 return;
 
             // -- Chama pulso de tween no display a cada TIME_SIGNATURE tempos
@@ -96,7 +99,7 @@ namespace MakeABeat
                 //    testTickAkEvent.Post(gameObject);
 
                 signatureCount++;
-                if(signatureCount > TIME_SIGNATURE)
+                if (signatureCount > TIME_SIGNATURE)
                     signatureCount = 1;
             }
 
@@ -112,6 +115,15 @@ namespace MakeABeat
 
             if (UpdateDisplay_Action != null)
                 UpdateDisplay_Action.Invoke(timeCount / totalTime);
+        }
+
+        public void TogglePlayingState()
+        {
+            if (IsRunning)
+                StopCycle();
+            else
+                StartCycle();
+            //isRunning = !isRunning;
         }
     }
 }
