@@ -61,6 +61,7 @@ namespace MakeABeat
             if (beatMaster)
                 beatMaster.StopCycle();
 
+            ResumePlaylistOnStart.Trigger = true;
             ShipInitializerSystem.MakeABeatSpawnTrigger = true;
             GameManager.GoToScene(BuildIndex.Ship);
             
