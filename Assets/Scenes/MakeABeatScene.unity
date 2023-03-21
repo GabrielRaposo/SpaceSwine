@@ -761,7 +761,7 @@ MonoBehaviour:
   onToggleStateAKEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 1ba88f76309f50146a55b2f7189efac6, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: 297425a9730661d408d281aaa5adab8e, type: 2}
   knob: {fileID: 1761960282}
   sideButton: {fileID: 506121201}
   leftLED: {fileID: 1506254399}
@@ -1328,15 +1328,15 @@ MonoBehaviour:
   slideInAKEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 81ec72da91fd55b48bbca1b48a892b06, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: 35ae3fe7ef1a81e47bbbf342c9e13ef8, type: 2}
   slideOutAKEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 29209e243a7f4e0439a63e5dfa5dc756, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: ac664a063cbaf8d478aad9580fde5563, type: 2}
   navigationAKEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 2c82b39eac09bab49895a039ace20b31, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: 850119a50884bb54580b219594bda1cf, type: 2}
   cursor: {fileID: 62536805}
   boxTapePrefab: {fileID: 892588980}
   labelDisplay: {fileID: 162664617}
@@ -1888,7 +1888,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -2552,6 +2552,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697211623}
   m_CullTransparentMesh: 0
+--- !u!1 &701198330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701198332}
+  - component: {fileID: 701198331}
+  m_Layer: 0
+  m_Name: Make-a-Beat Post-Process
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &701198331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701198330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 37207928009ec73479f36812393c8610, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 1
+--- !u!4 &701198332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701198330}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &709703222
 GameObject:
   m_ObjectHideFlags: 0
@@ -3743,11 +3791,11 @@ MonoBehaviour:
   navigationAKEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 8ae6ec1197d8e2341a32a0b2e06c027e, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: 6b63bd1687d816c43afbf699fa2c8e3e, type: 2}
   onSelectAKEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: dd79c9714ddc5ad4aa4d36eac4ff6354, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: c8048f4e16bd91742a4d15396ab8e2b4, type: 2}
 --- !u!1 &1069553778
 GameObject:
   m_ObjectHideFlags: 0

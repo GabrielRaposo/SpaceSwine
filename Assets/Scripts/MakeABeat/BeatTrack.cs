@@ -17,6 +17,8 @@ namespace MakeABeat
         [Header("Audio")]
         [SerializeField] AK.Wwise.Event instalationAKEvent;
         [SerializeField] AK.Wwise.Event unnistallAKEvent;
+        [SerializeField] AK.Wwise.Event enqueueAKEvent;
+        [SerializeField] AK.Wwise.Event removeFromQueueAKEvent;
 
         Sprite boxPreviewState;
         SpriteSwapper lidSwapper;
@@ -75,7 +77,12 @@ namespace MakeABeat
             if (currentBeatTape == null && beatTapeData.silent)
                 queuedBeatTape = null;
             else
+            {
+                if (enqueueAKEvent != null)
+                    enqueueAKEvent.Post(gameObject);
+
                 queuedBeatTape = beatTapeData;
+            }
 
             UpdateQueuedTapeVisual();
             CloseTheLid(queuedBeatTape == null && !beatTapeData.silent);
@@ -88,18 +95,22 @@ namespace MakeABeat
         {
             if (currentBeatTape != queuedBeatTape)
             {
-                if (instalationAKEvent != null)
-                    instalationAKEvent.Post(gameObject);
 
                 if (currentBeatTape != null && tapeBox) 
                 {
+                    if (unnistallAKEvent != null)
+                        unnistallAKEvent.Post(gameObject);
                     tapeBox.RestoreToAvailables(currentBeatTape);
+                }
+                else
+                {
+                    if (instalationAKEvent != null)
+                        instalationAKEvent.Post(gameObject);
                 }
             }
 
             if (queuedBeatTape && queuedBeatTape.silent)
                 queuedBeatTape = null;
-            
 
             currentBeatTape = queuedBeatTape;
 
@@ -143,6 +154,9 @@ namespace MakeABeat
             {
                 if (tapeBox)
                     tapeBox.RestoreToAvailables(queuedBeatTape);
+
+                if (removeFromQueueAKEvent == null)
+                    removeFromQueueAKEvent.Post(gameObject);
 
                 queuedBeatTape = null;
                 UpdateQueuedTapeVisual();

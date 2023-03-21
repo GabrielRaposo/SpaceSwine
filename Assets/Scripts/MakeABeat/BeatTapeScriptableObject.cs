@@ -8,6 +8,7 @@ public class BeatTapeScriptableObject : ScriptableObject
     public string title;
     public bool silent;
     public AK.Wwise.Event sampleAKEvent;
+    public AK.Wwise.RTPC volumeAKParam;
     public int signatureDuration;
     public Sprite frontalSprite;
     public Sprite sidewaysSprite;

@@ -48,8 +48,17 @@ namespace MakeABeat
             };
             inputActions.UI.Cancel.Enable();
 
+            inputActions.UI.Other.performed += (ctx) => 
+            {
+                OtherLogic();
+            };
+            inputActions.UI.Other.Enable();
+
             inputActions.UI.Start.performed += (ctx) => 
             {
+                if (Focus != MakeABeatFocus.Tapes)
+                    return;
+
                 // TO-DO: Abre menu lateral e dá fade out 40% na tela
                 ExitScreen();
             };
@@ -63,9 +72,10 @@ namespace MakeABeat
 
             ResumePlaylistOnStart.Trigger = true;
             ShipInitializerSystem.MakeABeatSpawnTrigger = true;
+            Focus = MakeABeatFocus.Tapes;
             GameManager.GoToScene(BuildIndex.Ship);
             
-            enabled = this;
+            enabled = false;
         }
 
         private void Update() 
@@ -140,6 +150,16 @@ namespace MakeABeat
             }
         }
 
+        private void OtherLogic()
+        {
+            switch (Focus)
+            {
+                case MakeABeatFocus.Tapes:
+                    // -- 
+                    break;
+            }
+        }
+
         private void OnDisable() 
         {
             inputActions.Disable();
@@ -147,6 +167,7 @@ namespace MakeABeat
             navigationInput.Disable();
             inputActions.UI.Confirm.Disable();
             inputActions.UI.Cancel.Disable();
+            inputActions.UI.Other.Disable();
             inputActions.UI.Start.Disable();
         }
     }
