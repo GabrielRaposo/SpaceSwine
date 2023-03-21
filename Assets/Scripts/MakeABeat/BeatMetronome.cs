@@ -76,7 +76,7 @@ namespace MakeABeat
             sideButton.flipY = beatMaster.IsRunning;
         }
 
-        public void ToggleMuted()
+        public void ToggleMute()
         {
             isMuted = !isMuted;
 

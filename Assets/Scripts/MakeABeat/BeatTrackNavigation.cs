@@ -124,7 +124,7 @@ namespace MakeABeat
             BeatMetronome metronome = CurrentSelection.GetComponent<BeatMetronome>();
             if (metronome)
             {
-                metronome.ToggleMuted();
+                metronome.ToggleMute();
                 return;
             }
         }
