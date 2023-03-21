@@ -14,6 +14,9 @@ namespace MakeABeat
         [SerializeField] float itemSpacing;
         
         [Header("References")]
+        [SerializeField] AK.Wwise.Event slideInAKEvent;
+        [SerializeField] AK.Wwise.Event slideOutAKEvent;
+        [SerializeField] AK.Wwise.Event navigationAKEvent;
         [SerializeField] Transform cursor;
         [SerializeField] GameObject boxTapePrefab;
         [SerializeField] DuctTapeLabel labelDisplay;
@@ -99,10 +102,12 @@ namespace MakeABeat
                 sequence.Kill();
 
             {
-                //if (this.selectedTrack)
-                //    this.selectedTrack.SetQueuedTapeState(null);
-
                 this.selectedTrack = selectedTrack;
+                
+                if (value)
+                    slideInAKEvent?.Post(gameObject);
+                else
+                    slideOutAKEvent?.Post(gameObject);
 
                 UpdateSelected( value ? current : -1 );
             }
@@ -153,11 +158,13 @@ namespace MakeABeat
             if (availableItems.Count < 1)
                 return;
 
-            int availableIndex = current;
             current += direction;
             if (current < 0)
                 current = availableItems.Count - 1;
             current %= availableItems.Count;
+
+            if (navigationAKEvent != null)
+                navigationAKEvent.Post(gameObject);
 
             UpdateSelected(current);
         }

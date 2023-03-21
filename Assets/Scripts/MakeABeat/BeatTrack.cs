@@ -14,6 +14,10 @@ namespace MakeABeat
         [SerializeField] BeatTapeCursor cursor;
         [SerializeField] DuctTapeLabel labelDisplay;
 
+        [Header("Audio")]
+        [SerializeField] AK.Wwise.Event instalationAKEvent;
+        [SerializeField] AK.Wwise.Event unnistallAKEvent;
+
         Sprite boxPreviewState;
         SpriteSwapper lidSwapper;
 
@@ -82,13 +86,20 @@ namespace MakeABeat
 
         public void Install ()
         {
-            if (currentBeatTape != null && currentBeatTape != queuedBeatTape && tapeBox) 
+            if (currentBeatTape != queuedBeatTape)
             {
-                tapeBox.RestoreToAvailables(currentBeatTape);
+                if (instalationAKEvent != null)
+                    instalationAKEvent.Post(gameObject);
+
+                if (currentBeatTape != null && tapeBox) 
+                {
+                    tapeBox.RestoreToAvailables(currentBeatTape);
+                }
             }
 
             if (queuedBeatTape && queuedBeatTape.silent)
                 queuedBeatTape = null;
+            
 
             currentBeatTape = queuedBeatTape;
 
@@ -103,6 +114,7 @@ namespace MakeABeat
 
             sequence = DOTween.Sequence();
             sequence.Append( transform.DOPunchScale(Vector3.one * .05f, duration: .2f, vibrato: 0) );
+
         }
 
         public void InstantUninstall(TapeBox tapeBox)
@@ -121,9 +133,11 @@ namespace MakeABeat
                     queuedBeatTape = null;
                 currentBeatTape = null;
 
+                if (unnistallAKEvent != null)
+                    unnistallAKEvent.Post(gameObject);
+
                 UpdatePlayingTapeVisual();
                 UpdateQueuedTapeVisual();
-
             }
             else if (queuedBeatTape != null)
             {

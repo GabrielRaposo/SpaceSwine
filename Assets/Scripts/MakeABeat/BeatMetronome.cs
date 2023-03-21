@@ -9,6 +9,9 @@ namespace MakeABeat
     {
         const float BLINK_DURATION = 0.1f;
 
+        [SerializeField] AK.Wwise.Event onToggleStateAKEvent;
+
+        [Header("References")]
         [SerializeField] Transform knob;    
         [SerializeField] SpriteRenderer sideButton;
         [SerializeField] SpriteRenderer leftLED;
@@ -64,6 +67,9 @@ namespace MakeABeat
             if (!beatMaster)
                 return;
             
+            if (onToggleStateAKEvent != null)
+                onToggleStateAKEvent.Post(gameObject);
+
             beatMaster.TogglePlayingState();
             sideButton.flipY = beatMaster.IsRunning;
         }

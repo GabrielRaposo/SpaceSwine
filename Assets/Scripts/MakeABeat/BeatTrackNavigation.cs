@@ -7,6 +7,8 @@ namespace MakeABeat
     public class BeatTrackNavigation : MonoBehaviour
     {
         [SerializeField] BeatNavigationItem initialSelection;
+        [SerializeField] AK.Wwise.Event navigationAKEvent;
+        [SerializeField] AK.Wwise.Event onSelectAKEvent;
 
         BeatNavigationItem[] items;
 
@@ -55,6 +57,9 @@ namespace MakeABeat
             if (output == null)
                 return;
 
+            if (navigationAKEvent != null)
+                navigationAKEvent.Post(gameObject);
+
             CurrentSelection = output;
             UpdateSelection();
         }
@@ -77,6 +82,9 @@ namespace MakeABeat
             BeatTrack selectedTrack = GetSelectedTrack();
             if (selectedTrack)
             {
+                if (onSelectAKEvent != null)
+                    onSelectAKEvent.Post(gameObject);
+
                 SetArrowsVisibility(false);
                 tapeBox.Show(selectedTrack, true);
                 BeatMenuController.Focus = MakeABeatFocus.Box;
