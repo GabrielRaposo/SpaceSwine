@@ -155,7 +155,7 @@ namespace MakeABeat
                 if (tapeBox)
                     tapeBox.RestoreToAvailables(queuedBeatTape);
 
-                if (removeFromQueueAKEvent == null)
+                if (removeFromQueueAKEvent != null)
                     removeFromQueueAKEvent.Post(gameObject);
 
                 queuedBeatTape = null;
