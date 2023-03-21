@@ -82,6 +82,16 @@ namespace AK
         static const AkUniqueID LOFI_12 = 65705089U;
         static const AkUniqueID LOFI_13 = 65705088U;
         static const AkUniqueID LOFI_14 = 65705095U;
+        static const AkUniqueID MAKEABEAT_APARELHOS_NAVEGACAO = 1887497970U;
+        static const AkUniqueID MAKEABEAT_APARELHOS_SELECAO = 2771531893U;
+        static const AkUniqueID MAKEABEAT_CAIXA_ESCONDE = 1649118717U;
+        static const AkUniqueID MAKEABEAT_CAIXA_MOSTRA = 2606624850U;
+        static const AkUniqueID MAKEABEAT_FITA_DESINSTALAR = 459210550U;
+        static const AkUniqueID MAKEABEAT_FITA_ENFILEIRAR = 2792426251U;
+        static const AkUniqueID MAKEABEAT_FITA_HOVER = 1176787742U;
+        static const AkUniqueID MAKEABEAT_FITA_INSTALAR = 772756318U;
+        static const AkUniqueID MAKEABEAT_FITA_TIRAR_FILA = 2316358293U;
+        static const AkUniqueID MAKEABEAT_METRONOMO_ONOFF = 1638799112U;
         static const AkUniqueID SPLASH_SCREEN = 3514087899U;
         static const AkUniqueID TREBLE_01 = 2489791123U;
         static const AkUniqueID TREBLE_02 = 2489791120U;
@@ -174,6 +184,7 @@ namespace AK
         static const AkUniqueID MUSIC = 3991942870U;
         static const AkUniqueID MUSIC_PLACEHOLDER = 2342674260U;
         static const AkUniqueID SFX = 393239870U;
+        static const AkUniqueID SFX_MAKEABEAT = 3530778344U;
         static const AkUniqueID SFX_PLACEHOLDER = 891914060U;
     } // namespace BUSSES
 

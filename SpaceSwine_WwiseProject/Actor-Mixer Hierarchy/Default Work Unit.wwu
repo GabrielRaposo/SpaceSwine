@@ -1263,6 +1263,7 @@
 											</ValueList>
 										</Property>
 									</PropertyList>
+									<ReferenceList/>
 									<Language>SFX</Language>
 									<AudioFile>gameplay_portal_abre.wav</AudioFile>
 									<MediaIDList>
@@ -3542,6 +3543,7 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="ui_robozinho_fala02" ID="{CAAD6007-ED12-4ED7-B957-9A352E6B9D72}">
+											<ReferenceList/>
 											<Language>SFX</Language>
 											<AudioFile>ui_robozinho_fala02.wav</AudioFile>
 											<MediaIDList>
@@ -3679,6 +3681,7 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="ui_robozao_fala01" ID="{19A629FD-ADB9-46B9-8D4F-6D06AD8C9872}">
+											<ReferenceList/>
 											<Language>SFX</Language>
 											<AudioFile>ui_robozao_fala01.wav</AudioFile>
 											<MediaIDList>
@@ -5668,6 +5671,275 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="cenario_nave_bip_tv" ID="{97E520F9-583A-4892-8347-ECE1CF732507}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Make-a-Beat" ID="{0165BCC6-9375-4165-B0EE-F584DF2D45FA}" ShortID="820645988">
+					<ChildrenList>
+						<Sound Name="makeabeat_aparelhos_navegacao" ID="{26BC2319-7F37-420E-BFC8-4900E00F13C9}" ShortID="808867048">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_pager_aparece" ID="{E004224C-CAF2-4DE9-8632-85C501178EB6}">
+									<Language>SFX</Language>
+									<AudioFile>ui_pager_aparece.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="462690976"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_pager_aparece" ID="{E004224C-CAF2-4DE9-8632-85C501178EB6}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_metronomo_onoff" ID="{B94BDBB5-FB33-4258-8CC0-95B363F61DBD}" ShortID="946231072">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="gameplay_buyk_pega_item" ID="{EC5B5A7B-70E3-4170-8832-37B7AA0E974F}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.0192281729647543"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0363951296283649"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.115"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>gameplay_buyk_pega_item.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="765363558"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="gameplay_buyk_pega_item" ID="{EC5B5A7B-70E3-4170-8832-37B7AA0E974F}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_aparelhos_selecao" ID="{15C36785-EE85-41FB-9146-F21ECA1A2F77}" ShortID="54885313">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_pager_some-1" ID="{A4E7F5B1-F1FA-44A4-82B1-A9A9D072C80D}">
+									<Language>SFX</Language>
+									<AudioFile>ui_pager_some-1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="46249905"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_pager_some-1" ID="{A4E7F5B1-F1FA-44A4-82B1-A9A9D072C80D}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_caixa_mostra" ID="{D4B2B41A-1852-463E-81EE-ECB3D7CCDF01}" ShortID="5252225">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_laborbot_fala_01" ID="{CAFAFA98-5CFD-4799-9FCE-C075C810BDC7}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.0336846106457998"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.102683732452519"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.145061145845621"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>ui_laborbot_fala_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="925209900"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_laborbot_fala_01" ID="{CAFAFA98-5CFD-4799-9FCE-C075C810BDC7}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_caixa_esconde" ID="{34693C10-34B7-42CF-81C0-8190B54C021D}" ShortID="242354947">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_pager_keychain" ID="{76112EE2-E477-4B83-8117-F4A6619D3DEB}">
+									<PropertyList>
+										<Property Name="CrossfadeShape" Type="int16" Value="7"/>
+										<Property Name="FadeInShape" Type="int16" Value="7"/>
+										<Property Name="FadeOutShape" Type="int16" Value="1"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.68913638865951"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>ui_pager_keychain.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="944636448"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_pager_keychain" ID="{76112EE2-E477-4B83-8117-F4A6619D3DEB}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_fita_hover" ID="{CDEC445B-A0C3-4662-9217-9B44C1597C73}" ShortID="364366187">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_nave_fala_01" ID="{89419F10-805F-4B66-93C3-D341EE13C0EA}">
+									<Language>SFX</Language>
+									<AudioFile>ui_nave_fala_01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1069278590"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_nave_fala_01" ID="{89419F10-805F-4B66-93C3-D341EE13C0EA}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_fita_enfileirar" ID="{0BA35BDA-94BC-49C4-9FD1-A5F8B929D8D4}" ShortID="881130400">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="gameplay_portal_abre" ID="{C2A9C974-F373-4469-93C7-97B937E6C550}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.162152491054225"/>
+										<Property Name="FadeInShape" Type="int16" Value="2"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="VolumeOffset" Type="Real64">
+											<ValueList>
+												<Value>6</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList/>
+									<Language>SFX</Language>
+									<AudioFile>gameplay_portal_abre.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="586969306"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="gameplay_portal_abre" ID="{C2A9C974-F373-4469-93C7-97B937E6C550}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_fita_instalar" ID="{5B14CC4E-0F13-4CDA-9362-C5DDE7940CF6}" ShortID="30871695">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_robozinho_fala01" ID="{CC8E854B-1D9E-4201-9582-FEDB2DB8FB29}">
+									<PropertyList>
+										<Property Name="LoopBegin" Type="Real64" Value="0"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>ui_robozinho_fala01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="184829572"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_robozinho_fala01" ID="{CC8E854B-1D9E-4201-9582-FEDB2DB8FB29}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_fita_desinstalar" ID="{007A7F31-BADB-472B-8504-23AA8230D7C2}" ShortID="64127065">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_marombot_fala_01_v1" ID="{4EEAD7C5-F6AD-415C-A63A-92D194CECB29}">
+									<Language>SFX</Language>
+									<AudioFile>ui_marombot_fala_01_v1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="712872889"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_marombot_fala_01_v1" ID="{4EEAD7C5-F6AD-415C-A63A-92D194CECB29}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_fita_tirar_fila" ID="{CE999B99-A0D8-497E-A25D-5FE0CB9AA5A9}" ShortID="466091891">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_robozao_fala01" ID="{7AB4EDED-7CF7-4983-95A2-18819089DB81}">
+									<ReferenceList/>
+									<Language>SFX</Language>
+									<AudioFile>ui_robozao_fala01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="973780960"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_robozao_fala01" ID="{7AB4EDED-7CF7-4983-95A2-18819089DB81}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
