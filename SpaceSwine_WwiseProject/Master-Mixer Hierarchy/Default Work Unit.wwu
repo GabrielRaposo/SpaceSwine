@@ -105,6 +105,39 @@
 									</PropertyList>
 									<ObjectLists/>
 								</Bus>
+								<Bus Name="MakeABeat_Samples" ID="{8439CE07-6276-4ADD-8C2C-393B02485E0A}">
+									<PropertyList>
+										<Property Name="BusVolume" Type="Real64">
+											<RTPCList>
+												<RTPC Name="" ID="{44B79B84-6E2C-4588-9E93-604A795A94E4}" ShortID="335549275">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="___METRONOMO" ID="{7FA5C015-1CDB-4149-BF90-160AD815847E}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{46C41DE9-3450-4B9E-ABED-80604690A34B}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="3"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-200</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>0</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+									</PropertyList>
+									<ObjectLists/>
+								</Bus>
 							</ChildrenList>
 							<ObjectLists/>
 						</Bus>
@@ -180,7 +213,7 @@
 												<RTPC Name="" ID="{282761F2-0571-43BC-8D28-5BCD1FA1E776}" ShortID="521710127">
 													<ReferenceList>
 														<Reference Name="ControlInput">
-															<ObjectRef Name="volume_makeabeat" ID="{DA7E6537-4017-4B7C-82F6-E47EA0AE0529}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+															<ObjectRef Name="volume_SFXmakeabeat" ID="{DA7E6537-4017-4B7C-82F6-E47EA0AE0529}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
 														</Reference>
 													</ReferenceList>
 													<Curve Name="" ID="{AD7CF0A2-034A-4FD5-9E62-AEA283916450}">

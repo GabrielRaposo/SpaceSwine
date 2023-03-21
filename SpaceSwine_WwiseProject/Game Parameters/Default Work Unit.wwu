@@ -30,38 +30,13 @@
 								<Property Name="InitialValue" Type="Real64" Value="80"/>
 							</PropertyList>
 						</GameParameter>
-						<GameParameter Name="volume_makeabeat" ID="{DA7E6537-4017-4B7C-82F6-E47EA0AE0529}">
+						<GameParameter Name="volume_SFXmakeabeat" ID="{DA7E6537-4017-4B7C-82F6-E47EA0AE0529}">
 							<PropertyList>
 								<Property Name="InitialValue" Type="Real64" Value="80"/>
 							</PropertyList>
 						</GameParameter>
 					</ChildrenList>
 				</Folder>
-				<GameParameter Name="Buyk_stuck" ID="{5B505BE2-1954-444D-B7A5-9760DCB2E701}">
-					<PropertyList>
-						<Property Name="InitialValue" Type="Real64" Value="0"/>
-					</PropertyList>
-				</GameParameter>
-				<GameParameter Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}">
-					<PropertyList>
-						<Property Name="InitialValue" Type="Real64" Value="0"/>
-					</PropertyList>
-				</GameParameter>
-				<GameParameter Name="Tutorial_final_pulo_fadeout" ID="{C099BEC3-29DB-45EB-A1AD-59DDDC56B176}">
-					<PropertyList>
-						<Property Name="InitialValue" Type="Real64" Value="0"/>
-					</PropertyList>
-				</GameParameter>
-				<GameParameter Name="Tutorial_inicio_fadein" ID="{AF3E9602-6B09-4B65-B317-15A88D787DAB}">
-					<PropertyList>
-						<Property Name="InitialValue" Type="Real64" Value="0"/>
-					</PropertyList>
-				</GameParameter>
-				<GameParameter Name="Volume_navegacao" ID="{BE88603E-3E1E-4F6C-8156-8B5A3AA35503}">
-					<PropertyList>
-						<Property Name="InitialValue" Type="Real64" Value="0"/>
-					</PropertyList>
-				</GameParameter>
 				<Folder Name="Volumes Make a Beat" ID="{508CACF5-4796-43D3-97FD-D2A222A30990}" ShortID="253813111">
 					<ChildrenList>
 						<GameParameter Name="AMBIENCE_01" ID="{60044F73-714E-471A-BDDC-DE1732139E71}">
@@ -99,7 +74,46 @@
 								<Property Name="InitialValue" Type="Real64" Value="80"/>
 							</PropertyList>
 						</GameParameter>
-						<GameParameter Name="TREBLE_02" ID="{5DC42617-3037-480F-9801-3836D1EFC4BA}"/>
+						<GameParameter Name="TREBLE_02" ID="{5DC42617-3037-480F-9801-3836D1EFC4BA}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="80"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="___METRONOMO" ID="{7FA5C015-1CDB-4149-BF90-160AD815847E}">
+							<Comment>Controla o volume de TODOS OS SAMPLES (bus Music&gt;MakeABeat_Samples), serve pra mutar o Make-a-Beat todo quando vc aperta C no metrônomo.</Comment>
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="80"/>
+							</PropertyList>
+						</GameParameter>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="Outros" ID="{DEF4433F-0C07-4D16-B295-3D4D357005C6}" ShortID="950189060">
+					<ChildrenList>
+						<GameParameter Name="Buyk_stuck" ID="{5B505BE2-1954-444D-B7A5-9760DCB2E701}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Tutorial_final_pulo_fadeout" ID="{C099BEC3-29DB-45EB-A1AD-59DDDC56B176}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Volume_navegacao" ID="{BE88603E-3E1E-4F6C-8156-8B5A3AA35503}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+							</PropertyList>
+						</GameParameter>
+						<GameParameter Name="Tutorial_inicio_fadein" ID="{AF3E9602-6B09-4B65-B317-15A88D787DAB}">
+							<PropertyList>
+								<Property Name="InitialValue" Type="Real64" Value="0"/>
+							</PropertyList>
+						</GameParameter>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>
