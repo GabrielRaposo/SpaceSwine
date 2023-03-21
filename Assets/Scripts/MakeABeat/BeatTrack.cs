@@ -69,11 +69,12 @@ namespace MakeABeat
                 tapeBox.RestoreToAvailables(queuedBeatTape);
 
             if (currentBeatTape == null && beatTapeData.silent)
-                beatTapeData = null;
+                queuedBeatTape = null;
+            else
+                queuedBeatTape = beatTapeData;
 
-            this.queuedBeatTape = beatTapeData;
             UpdateQueuedTapeVisual();
-            CloseTheLid(queuedBeatTape == null);
+            CloseTheLid(queuedBeatTape == null && !beatTapeData.silent);
 
             if (beatMaster && beatMaster.StartCycle())
                 Install();
