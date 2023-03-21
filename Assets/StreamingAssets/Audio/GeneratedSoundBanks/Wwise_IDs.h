@@ -144,11 +144,20 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
+        static const AkUniqueID AMBIENCE_01 = 1671483493U;
+        static const AkUniqueID ASMR_01 = 419243222U;
+        static const AkUniqueID BASS_01 = 2197579062U;
+        static const AkUniqueID BUMBOCAIXA_01 = 883042108U;
         static const AkUniqueID BUYK_STUCK = 363529975U;
+        static const AkUniqueID CHORDS_01 = 522712106U;
         static const AkUniqueID CUTSCENE_INICIO = 1171258525U;
+        static const AkUniqueID HIHAT_01 = 2036806543U;
+        static const AkUniqueID TREBLE_01 = 2489791123U;
+        static const AkUniqueID TREBLE_02 = 2489791120U;
         static const AkUniqueID TUTORIAL_FINAL_PULO_FADEOUT = 2164391380U;
         static const AkUniqueID TUTORIAL_INICIO_FADEIN = 4133059913U;
         static const AkUniqueID VOLUME_CUTSCENE = 2340947590U;
+        static const AkUniqueID VOLUME_MAKEABEAT = 2623635909U;
         static const AkUniqueID VOLUME_MASTER = 3695994288U;
         static const AkUniqueID VOLUME_MUSIC = 3891337659U;
         static const AkUniqueID VOLUME_NAVEGACAO = 2864841961U;
