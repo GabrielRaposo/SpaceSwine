@@ -16,7 +16,7 @@ namespace MakeABeat
         [Header("References")]
         [SerializeField] Transform cursor;
         [SerializeField] GameObject boxTapePrefab;
-        [SerializeField] TextMeshPro labelDisplay;
+        [SerializeField] DuctTapeLabel labelDisplay;
         [SerializeField] SpriteRenderer tapePreviewDisplay;
         [SerializeField] List<BeatTapeScriptableObject> beatTapes;
 
@@ -130,7 +130,10 @@ namespace MakeABeat
                 TapeBoxItem item = availableItems[index % availableItems.Count];
 
                 if (labelDisplay)
-                    labelDisplay.text = item.BeatTape.title;
+                {
+                    labelDisplay.SetText(item.BeatTape.title);
+                    labelDisplay.Show();
+                }
 
                 if (tapePreviewDisplay)
                     tapePreviewDisplay.sprite = item.BeatTape.frontalSprite;
@@ -138,7 +141,7 @@ namespace MakeABeat
             else
             {
                 if (labelDisplay)
-                    labelDisplay.text = string.Empty;
+                    labelDisplay.Hide();
 
                 if (tapePreviewDisplay)
                     tapePreviewDisplay.sprite = null;

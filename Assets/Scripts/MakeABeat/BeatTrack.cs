@@ -12,7 +12,7 @@ namespace MakeABeat
         [SerializeField] BeatTapeDisplay tapeDisplay;
         [SerializeField] BeatTapeDisplay queuedTapeDisplay;
         [SerializeField] BeatTapeCursor cursor;
-        [SerializeField] TextMeshPro labelDisplay;
+        [SerializeField] DuctTapeLabel labelDisplay;
 
         Sprite boxPreviewState;
         SpriteSwapper lidSwapper;
@@ -24,6 +24,7 @@ namespace MakeABeat
         bool isRunning;
 
         Sequence sequence;
+        BeatTrackNavigation navigation;
         BeatMaster beatMaster;
 
         private void Awake() 
@@ -31,7 +32,8 @@ namespace MakeABeat
             lidSwapper = GetComponentInChildren<SpriteSwapper>();
             
             beatMaster = GetComponentInParent<BeatMaster>();
-            if (!beatMaster)
+            navigation = GetComponentInParent<BeatTrackNavigation>();
+            if (!beatMaster || !navigation)
             {
                 gameObject.SetActive(false);
                 return;
@@ -52,10 +54,10 @@ namespace MakeABeat
 
         public void SetSelected (bool value)
         {
-            //isSelected = value;
+            if (!labelDisplay)
+                return;
 
-            if (labelDisplay)
-                labelDisplay.enabled = value;
+            labelDisplay.SetVisibility( value );
         }
 
         public void EnqueueTape (BeatTapeScriptableObject beatTapeData, TapeBox tapeBox)
@@ -71,6 +73,7 @@ namespace MakeABeat
 
             this.queuedBeatTape = beatTapeData;
             UpdateQueuedTapeVisual();
+            CloseTheLid(queuedBeatTape == null);
 
             if (beatMaster && beatMaster.StartCycle())
                 Install();
@@ -183,7 +186,7 @@ namespace MakeABeat
 
         private void UpdatePlayingTapeVisual()
         {
-            CloseTheLid (currentBeatTape != null);
+            CloseTheLid (currentBeatTape != null && currentBeatTape == queuedBeatTape);
 
             if (currentBeatTape == null)
             {
@@ -191,7 +194,7 @@ namespace MakeABeat
                 tapeDisplay.SetState(BeatTapeDisplay.State.Off);
                 
                 if (labelDisplay)
-                    labelDisplay.text = null;
+                    labelDisplay.Hide();
             }
             else
             {
@@ -199,7 +202,11 @@ namespace MakeABeat
                 tapeDisplay.SetState(BeatTapeDisplay.State.On);
 
                 if (labelDisplay)
-                    labelDisplay.text = currentBeatTape.title;
+                {
+                    labelDisplay.SetText(currentBeatTape.title);
+                    if (this == navigation.GetSelectedTrack())
+                        labelDisplay.Show();
+                }
             }
         }
 
