@@ -20,6 +20,10 @@ namespace MakeABeat
         [SerializeField] AK.Wwise.Event enqueueAKEvent;
         [SerializeField] AK.Wwise.Event removeFromQueueAKEvent;
 
+        [Header("Visual")]
+        [SerializeField] Color mutedColor;
+        [SerializeField] SpriteRenderer[] renderers;
+
         SpriteSwapper lidSwapper;
 
         BeatTapeScriptableObject currentBeatTape;
@@ -115,6 +119,9 @@ namespace MakeABeat
 
             UpdateQueuedTapeVisual();
             UpdatePlayingTapeVisual();
+
+            if (currentBeatTape != null)
+                UpdateMutedState();
 
             if (currentBeatTape == null && queuedBeatTape == null)
                 return;
@@ -240,7 +247,21 @@ namespace MakeABeat
 
         public void ToggleMute()
         {
-            isMuted = !isMuted;
+            SetMutedState (!isMuted);
+        }
+
+        public void SetMutedState(bool value)
+        {
+            isMuted = value;
+            UpdateMutedState();
+        }
+
+        private void UpdateMutedState()
+        {
+            foreach (SpriteRenderer r in renderers)
+            {
+                r.color = isMuted ? mutedColor : Color.white;
+            }
 
             if (!currentBeatTape || currentBeatTape.volumeAKParam == null)
                 return;

@@ -128,5 +128,17 @@ namespace MakeABeat
                 return;
             }
         }
+
+        public void SetAllMutedStates(bool value)
+        {
+            foreach (BeatNavigationItem item in items)
+            {
+                BeatTrack track = item.GetComponent<BeatTrack>();
+                if (!track)
+                    continue;
+
+                track.SetMutedState(value);
+            }
+        }
     }
 }

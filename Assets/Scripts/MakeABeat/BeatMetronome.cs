@@ -11,18 +11,25 @@ namespace MakeABeat
 
         [SerializeField] AK.Wwise.Event onToggleStateAKEvent;
         [SerializeField] AK.Wwise.RTPC volumeAKParam;
+
+        [Header("Muted Visuals")]
+        [SerializeField] SpriteRenderer[] renderers;
+        [SerializeField] Color mutedMainColor;
+        [SerializeField] Color mutedLightsColor;
  
         [Header("References")]
-        [SerializeField] Transform knob;    
+        [SerializeField] Transform knob;
         [SerializeField] SpriteRenderer sideButton;
         [SerializeField] SpriteRenderer leftLED;
         [SerializeField] SpriteRenderer rightLED;
 
+        BeatTrackNavigation navigation;
         BeatMaster beatMaster;
         bool isMuted;
 
         void Start()
         {
+            navigation = GetComponentInParent<BeatTrackNavigation>();
             beatMaster = GetComponentInParent<BeatMaster>();
             if (!beatMaster)
             {
@@ -80,8 +87,18 @@ namespace MakeABeat
         {
             isMuted = !isMuted;
 
-            if (volumeAKParam != null)
-                volumeAKParam.SetGlobalValue(isMuted ? 0 : 100);           
+            //if (volumeAKParam != null)
+            //    volumeAKParam.SetGlobalValue(isMuted ? 0 : 100);      
+                
+            foreach (SpriteRenderer r in renderers)
+                r.color = isMuted ? mutedMainColor : Color.white;
+
+            if (leftLED && rightLED)
+                leftLED.color = rightLED.color = isMuted ? mutedLightsColor : Color.white;
+
+            // Se All States
+            if (navigation)
+                navigation.SetAllMutedStates(isMuted);
         }
     }
 }
