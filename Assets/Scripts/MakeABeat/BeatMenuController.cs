@@ -155,7 +155,7 @@ namespace MakeABeat
             switch (Focus)
             {
                 case MakeABeatFocus.Tapes:
-                    // -- 
+                    trackNavigation.OnOtherInput();
                     break;
             }
         }

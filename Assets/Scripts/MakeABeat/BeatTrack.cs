@@ -20,14 +20,13 @@ namespace MakeABeat
         [SerializeField] AK.Wwise.Event enqueueAKEvent;
         [SerializeField] AK.Wwise.Event removeFromQueueAKEvent;
 
-        Sprite boxPreviewState;
         SpriteSwapper lidSwapper;
 
         BeatTapeScriptableObject currentBeatTape;
         TapeBox tapeBox;
 
         int signatureCount;
-        bool isRunning;
+        bool isMuted;
 
         Sequence sequence;
         BeatTrackNavigation navigation;
@@ -237,6 +236,16 @@ namespace MakeABeat
                         labelDisplay.Show();
                 }
             }
+        }
+
+        public void ToggleMute()
+        {
+            isMuted = !isMuted;
+
+            if (!currentBeatTape || currentBeatTape.volumeAKParam == null)
+                return;
+
+            currentBeatTape.volumeAKParam.SetGlobalValue( isMuted ? 0 : 100 );
         }
 
         private void OnDisable() 

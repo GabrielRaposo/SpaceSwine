@@ -10,7 +10,8 @@ namespace MakeABeat
         const float BLINK_DURATION = 0.1f;
 
         [SerializeField] AK.Wwise.Event onToggleStateAKEvent;
-
+        [SerializeField] AK.Wwise.RTPC volumeAKParam;
+ 
         [Header("References")]
         [SerializeField] Transform knob;    
         [SerializeField] SpriteRenderer sideButton;
@@ -18,6 +19,7 @@ namespace MakeABeat
         [SerializeField] SpriteRenderer rightLED;
 
         BeatMaster beatMaster;
+        bool isMuted;
 
         void Start()
         {
@@ -72,6 +74,14 @@ namespace MakeABeat
 
             beatMaster.TogglePlayingState();
             sideButton.flipY = beatMaster.IsRunning;
+        }
+
+        public void ToggleMuted()
+        {
+            isMuted = !isMuted;
+
+            if (volumeAKParam != null)
+                volumeAKParam.SetGlobalValue(isMuted ? 0 : 100);           
         }
     }
 }

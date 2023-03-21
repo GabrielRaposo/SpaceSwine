@@ -108,5 +108,25 @@ namespace MakeABeat
             if (track)
                 track.InstantUninstall(tapeBox);
         }
+
+        public void OnOtherInput()
+        {
+            if (!CurrentSelection)
+                return;
+
+            BeatTrack track = CurrentSelection.GetComponent<BeatTrack>();
+            if (track) 
+            { 
+                track.ToggleMute();
+                return;
+            }
+
+            BeatMetronome metronome = CurrentSelection.GetComponent<BeatMetronome>();
+            if (metronome)
+            {
+                metronome.ToggleMuted();
+                return;
+            }
+        }
     }
 }
