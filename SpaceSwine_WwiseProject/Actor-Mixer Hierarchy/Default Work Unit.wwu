@@ -5697,7 +5697,7 @@
 								<ActiveSource Name="ui_pager_aparece" ID="{E004224C-CAF2-4DE9-8632-85C501178EB6}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="makeabeat_metronomo_onoff" ID="{B94BDBB5-FB33-4258-8CC0-95B363F61DBD}" ShortID="946231072">
+						<Sound Name="makeabeat_metronomo_on" ID="{B94BDBB5-FB33-4258-8CC0-95B363F61DBD}" ShortID="946231072">
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5935,6 +5935,35 @@
 							<ObjectLists/>
 							<ActiveSourceList>
 								<ActiveSource Name="ui_robozao_fala01" ID="{7AB4EDED-7CF7-4983-95A2-18819089DB81}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_metronomo_off" ID="{27B402CD-8FCF-4171-84B2-CD52C2352B8A}" ShortID="141995375">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="gameplay_buyk_pega_item" ID="{53A194A3-0C60-42D8-8F6D-4E0D33E8F603}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.0192281729647543"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0363951296283649"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.115"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>gameplay_buyk_pega_item.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="765363558"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="gameplay_buyk_pega_item" ID="{53A194A3-0C60-42D8-8F6D-4E0D33E8F603}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>

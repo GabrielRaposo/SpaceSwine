@@ -91,7 +91,8 @@ namespace AK
         static const AkUniqueID MAKEABEAT_FITA_HOVER = 1176787742U;
         static const AkUniqueID MAKEABEAT_FITA_INSTALAR = 772756318U;
         static const AkUniqueID MAKEABEAT_FITA_TIRAR_FILA = 2316358293U;
-        static const AkUniqueID MAKEABEAT_METRONOMO_ONOFF = 1638799112U;
+        static const AkUniqueID MAKEABEAT_METRONOMO_OFF = 482400517U;
+        static const AkUniqueID MAKEABEAT_METRONOMO_ON = 2580933369U;
         static const AkUniqueID SPLASH_SCREEN = 3514087899U;
         static const AkUniqueID TREBLE_01 = 2489791123U;
         static const AkUniqueID TREBLE_02 = 2489791120U;
