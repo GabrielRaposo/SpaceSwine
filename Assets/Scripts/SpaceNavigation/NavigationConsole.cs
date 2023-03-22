@@ -53,6 +53,16 @@ public class NavigationConsole : MonoBehaviour
     private void OnEnable() 
     {
         playerInputActions = new PlayerInputActions();
+        playerInputActions.Enable();
+
+        playerInputActions.UI.Cancel.performed += (ctx) =>
+        {
+            if (!turnedOn || NavigationShip.ControlsLocked)
+                return;
+
+            ToggleConsoleState();
+        };
+        playerInputActions.UI.Cancel.Enable();
 
         playerInputActions.UI.Start.performed += (ctx) =>
         {
@@ -189,6 +199,9 @@ public class NavigationConsole : MonoBehaviour
 
     private void OnDisable() 
     {
+        playerInputActions.Disable();
+
+        playerInputActions.UI.Cancel.Disable();
         playerInputActions.UI.Start.Disable();
     }
 }

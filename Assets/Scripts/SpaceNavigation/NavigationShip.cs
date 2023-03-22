@@ -50,11 +50,11 @@ public class NavigationShip : MonoBehaviour
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Movement.Enable();
         _playerInputActions.Player.Jump.Enable();
-        _playerInputActions.Player.Throw.Enable();
+        _playerInputActions.Player.Interact.Enable();
 
         movementInputAction = _playerInputActions.Player.Movement;
         _playerInputActions.Player.Jump.performed += ctx => { ConfirmAction();};
-        _playerInputActions.Player.Throw.performed += ctx => { ConfirmAction();};
+        _playerInputActions.Player.Interact.performed += ctx => { ConfirmAction();};
 
         ControlsLocked = false;
     }
@@ -63,7 +63,7 @@ public class NavigationShip : MonoBehaviour
     {
         _playerInputActions.Player.Movement.Disable();
         _playerInputActions.Player.Jump.Disable();
-        _playerInputActions.Player.Throw.Disable();
+        _playerInputActions.Player.Interact.Disable();
 
         ControlsLocked = true;
     }

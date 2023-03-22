@@ -151,7 +151,7 @@ public class PlayerCharacter : MonoBehaviour
         if (!health)
             return;
 
-        health.OnDeathEvent = (deathFromDamage) => DeathSequence(deathFromDamage, roundAction);
+        health.OnDeathEvent += (deathFromDamage) => DeathSequence(deathFromDamage, roundAction);
     }
 
     private void DeathSequence (bool deathFromDamage, UnityAction roundAction)
