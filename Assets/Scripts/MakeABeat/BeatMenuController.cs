@@ -109,7 +109,13 @@ namespace MakeABeat
 
 
                 case MakeABeatFocus.Box:
-                    tapeBox.MoveCursor (direction.x > 0 ? 1 : -1);
+                    int input = 1;
+                    if (direction.x != 0) 
+                        input = direction.x > 0 ? 1 : -1;
+                    if (direction.y != 0)
+                        input = direction.y < 0 ? 1 : -1;
+
+                    tapeBox.MoveCursor (input);
                     break;
 
                 default:
