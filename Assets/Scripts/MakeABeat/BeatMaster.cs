@@ -21,7 +21,7 @@ namespace MakeABeat
         [HideInInspector] public UnityAction<float> UpdateDisplay_Action; 
 
         float totalTime;
-        float loopTime;
+        float beatTime;
 
         float timeCount;
         int signatureCount;
@@ -33,10 +33,10 @@ namespace MakeABeat
             Application.targetFrameRate = 120;
 
             if (BPM > 0)
-                loopTime = 60 / BPM;
+                beatTime = 60 / BPM;
 
-            if (loopTime > 0)
-                totalTime = loopTime * TIME_SIGNATURE;
+            if (beatTime > 0)
+                totalTime = beatTime * TIME_SIGNATURE;
 
             if (UpdateDisplay_Action != null)
                 UpdateDisplay_Action.Invoke(0);
@@ -90,7 +90,7 @@ namespace MakeABeat
                 return;
 
             // -- Chama pulso de tween no display a cada TIME_SIGNATURE tempos
-            if (timeCount > loopTime * signatureCount)
+            if (timeCount > beatTime * signatureCount)
             {
                 if (SignaturePulse_Action != null)
                     SignaturePulse_Action.Invoke(signatureCount - 1);
@@ -123,7 +123,14 @@ namespace MakeABeat
                 StopCycle();
             else
                 StartCycle();
-            //isRunning = !isRunning;
+        }
+
+        public float GetTimePerBeat()
+        {
+            if (beatTime <= 0)
+                return -1;
+
+            return (timeCount % beatTime) / beatTime;
         }
     }
 }

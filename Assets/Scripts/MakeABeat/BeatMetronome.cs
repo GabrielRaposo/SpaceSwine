@@ -9,7 +9,8 @@ namespace MakeABeat
     {
         const float BLINK_DURATION = 0.1f;
 
-        [SerializeField] AK.Wwise.Event onToggleStateAKEvent;
+        [SerializeField] AK.Wwise.Event turnOnAKEvent;
+        [SerializeField] AK.Wwise.Event turnOffAKEvent;
         [SerializeField] AK.Wwise.RTPC volumeAKParam;
 
         [Header("Muted Visuals")]
@@ -76,10 +77,17 @@ namespace MakeABeat
             if (!beatMaster)
                 return;
             
-            if (onToggleStateAKEvent != null)
-                onToggleStateAKEvent.Post(gameObject);
-
             beatMaster.TogglePlayingState();
+            
+            if (beatMaster.IsRunning && turnOnAKEvent != null)
+            {
+                turnOnAKEvent.Post(gameObject);
+            }
+            else if (!beatMaster.IsRunning && turnOffAKEvent != null)
+            {
+                turnOffAKEvent.Post(gameObject);
+            }
+
             sideButton.flipY = beatMaster.IsRunning;
         }
 
