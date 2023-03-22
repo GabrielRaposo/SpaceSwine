@@ -34,8 +34,11 @@ public class TapeBoxItem : MonoBehaviour
         transform.localPosition = new Vector2(transform.localPosition.x, hiddenY); 
     }
 
-    public void SetHighlighted(bool value) 
+    public void SetHighlighted(bool value, bool dontOverride = false) 
     {
+        if (dontOverride && highlighted && !value)
+            return;
+
         if (highlighted != value)
             t = 0;
         highlighted = value;

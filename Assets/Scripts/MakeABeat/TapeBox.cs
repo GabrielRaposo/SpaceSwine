@@ -65,7 +65,7 @@ namespace MakeABeat
 
         private void SetupAvailableTapes()
         {
-            // TO-DO: Adicionar interção com fitas desbloqueadas
+            // TO-DO: Adicionar interação com fitas desbloqueadas
             
             availableItems = new List<TapeBoxItem>();
 
@@ -73,7 +73,7 @@ namespace MakeABeat
                 availableItems.Add(item);
         }
 
-        private void UpdateAvailables()
+        private void UpdateAvailables (TapeBoxItem currentItem)
         {
             List<TapeBoxItem> aux = new List<TapeBoxItem>();
             foreach (TapeBoxItem item in items)
@@ -85,8 +85,20 @@ namespace MakeABeat
 
             foreach (TapeBoxItem item in items)
             {
-                item.SetHighlighted(false);
+                item.SetHighlighted(false, dontOverride: true);
                 item.gameObject.SetActive( availableItems.Contains(item) );
+            }
+
+            {
+                if (currentItem == null)
+                    return;
+
+                int index = 0;
+                if (availableItems.Contains(currentItem))
+                {
+                    index = availableItems.FindIndex( (item) => currentItem == item);
+                }
+                current = index;
             }
         }
 
@@ -109,6 +121,7 @@ namespace MakeABeat
                 else
                     slideOutAKEvent?.Post(gameObject);
 
+                UpdateValidCurrent();
                 UpdateSelected( value ? current : -1 );
             }
 
@@ -119,6 +132,11 @@ namespace MakeABeat
             {
                 SetShownPosition(value);
             });
+        }
+
+        private void UpdateValidCurrent()
+        {
+            current %= availableItems.Count;
         }
 
         public void UpdateSelected (int index)
@@ -177,10 +195,15 @@ namespace MakeABeat
             TapeBoxItem item = availableItems[current % availableItems.Count];
             selectedTrack.EnqueueTape(item.BeatTape, this);
 
+            UpdateValidCurrent();
+
             if (!item.BeatTape.silent)
+            {
+                item.SetHighlighted(false);
                 availableItems.Remove(item);
-            UpdateAvailables();
-            current = 0;
+            }
+
+            UpdateAvailables(null);
 
             Show (null, false);
         }
@@ -195,8 +218,12 @@ namespace MakeABeat
             if (alreadyHas)
                 return;
 
+            UpdateValidCurrent();
+            TapeBoxItem currentItem = availableItems[current];
+
             availableItems.Add(item);
-            UpdateAvailables();
+
+            UpdateAvailables(currentItem);
         }
     }
 }
