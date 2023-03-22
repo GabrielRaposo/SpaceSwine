@@ -20,8 +20,13 @@ namespace MakeABeat
         [SerializeField] BeatMaster beatMaster;
         [SerializeField] BeatTrackNavigation trackNavigation;
         [SerializeField] TapeBox tapeBox;
+        [SerializeField] AK.Wwise.RTPC sfxAKParam;
+
+        [Header("Temp")]
+        [SerializeField] InputAction toggleSFXsAction;
 
         float t;
+        bool mutedSFX;
 
         PlayerInputActions inputActions;
         InputAction navigationInput;
@@ -63,6 +68,16 @@ namespace MakeABeat
                 ExitScreen();
             };
             inputActions.UI.Start.Enable();
+
+            toggleSFXsAction.performed += (ctx) => 
+            {
+                if (sfxAKParam == null)
+                    return;
+
+                mutedSFX = !mutedSFX;
+                sfxAKParam.SetGlobalValue(mutedSFX ? 0 : 100);
+            };
+            toggleSFXsAction.Enable();
         }
 
         private void ExitScreen()
@@ -175,6 +190,8 @@ namespace MakeABeat
             inputActions.UI.Cancel.Disable();
             inputActions.UI.Other.Disable();
             inputActions.UI.Start.Disable();
+
+            toggleSFXsAction.Disable();
         }
     }
 }
