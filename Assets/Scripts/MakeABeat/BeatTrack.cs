@@ -11,8 +11,8 @@ namespace MakeABeat
         [SerializeField] BeatTapeScriptableObject queuedBeatTape;
         [SerializeField] BeatTapeDisplay tapeDisplay;
         [SerializeField] BeatTapeDisplay queuedTapeDisplay;
-        [SerializeField] BeatTapeCursor cursor;
         [SerializeField] DuctTapeLabel labelDisplay;
+        [SerializeField] ParticleSystem pulsePS;
 
         [Header("Audio")]
         [SerializeField] AK.Wwise.Event instalationAKEvent;
@@ -38,19 +38,27 @@ namespace MakeABeat
 
         private void Awake() 
         {
-            lidSwapper = GetComponentInChildren<SpriteSwapper>();
-            
             beatMaster = GetComponentInParent<BeatMaster>();
             navigation = GetComponentInParent<BeatTrackNavigation>();
+
             if (!beatMaster || !navigation)
             {
                 gameObject.SetActive(false);
                 return;
             }
+
+            lidSwapper = GetComponentInChildren<SpriteSwapper>();
         }
 
         void Start()
         {
+            beatMaster.SignaturePulse_Action += (f) => 
+            {
+                if (!pulsePS || isMuted || !currentBeatTape)
+                    return;
+
+                pulsePS.Play();
+            };
             beatMaster.CyclePulse_Action += CyclePulse; 
             beatMaster.StopAll_Action    += () => 
             {
@@ -90,6 +98,9 @@ namespace MakeABeat
             UpdateQueuedTapeVisual();
             CloseTheLid(queuedBeatTape == null && !beatTapeData.silent);
 
+            if (beatTapeData.silent)
+                return;
+
             if (beatMaster && beatMaster.StartCycle())
                 Install();
         }
@@ -98,7 +109,6 @@ namespace MakeABeat
         {
             if (currentBeatTape != queuedBeatTape)
             {
-
                 if (currentBeatTape != null && tapeBox) 
                 {
                     if (unnistallAKEvent != null)

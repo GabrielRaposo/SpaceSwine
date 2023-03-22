@@ -125,12 +125,13 @@ namespace MakeABeat
                 StartCycle();
         }
 
-        public float GetTimePerBeat()
+        public float GetTimePerBeat( float speed = 1 )
         {
             if (beatTime <= 0)
                 return -1;
 
-            return (timeCount % beatTime) / beatTime;
+            float modifiedTime = beatTime / speed;
+            return (timeCount % modifiedTime) / modifiedTime;
         }
     }
 }

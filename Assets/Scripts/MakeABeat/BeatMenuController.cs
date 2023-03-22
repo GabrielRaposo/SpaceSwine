@@ -150,6 +150,7 @@ namespace MakeABeat
 
                 case MakeABeatFocus.Box:
                     tapeBox.OnSelectInput();
+                    trackNavigation.SetArrowsVisibility(true);
                     Focus = MakeABeatFocus.Tapes;
                     break;
             }
