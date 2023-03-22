@@ -740,10 +740,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d00704ff196ea5b4082e2a339b1ea66f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  absoluteDatas:
+  - targetItem: {fileID: 670351772}
+    direction: {x: -1, y: 0}
   datas:
   - targetItem: {fileID: 5739691119714482513}
+    distanceModifier: 0
     anchor: {fileID: 0}
   - targetItem: {fileID: 851140093}
+    distanceModifier: 0
     anchor: {fileID: 0}
   cursor: {fileID: 987478063}
 --- !u!114 &248837482
@@ -855,6 +860,10 @@ PrefabInstance:
       propertyPath: datas.Array.data[2].targetItem
       value: 
       objectReference: {fileID: 670351772}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: datas.Array.data[1].distanceModifier
+      value: -0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4162152798288727426, guid: d6a2e5726a729d741a68117152286718, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.86251366
@@ -2284,6 +2293,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: absoluteDatas.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
       propertyPath: datas.Array.data[0].targetItem
       value: 
       objectReference: {fileID: 849162983}
@@ -2291,6 +2304,26 @@ PrefabInstance:
       propertyPath: datas.Array.data[1].targetItem
       value: 
       objectReference: {fileID: 849162983}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: absoluteDatas.Array.data[0].targetItem
+      value: 
+      objectReference: {fileID: 248837481}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: absoluteDatas.Array.data[0].direction.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: absoluteDatas.Array.data[1].targetItem
+      value: 
+      objectReference: {fileID: 5739691119714482513}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: absoluteDatas.Array.data[1].direction.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: absoluteDatas.Array.data[1].direction.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5739691119247427104, guid: d6a2e5726a729d741a68117152286718, type: 3}
       propertyPath: m_Name
       value: Tape Player (6)
@@ -3093,6 +3126,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: absoluteDatas.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
       propertyPath: datas.Array.data[2].targetItem
       value: 
       objectReference: {fileID: 670351772}
@@ -3104,6 +3141,22 @@ PrefabInstance:
       propertyPath: datas.Array.data[0].targetItem
       value: 
       objectReference: {fileID: 851140093}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: absoluteDatas.Array.data[0].targetItem
+      value: 
+      objectReference: {fileID: 248837481}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: absoluteDatas.Array.data[0].direction.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: datas.Array.data[2].distanceModifier
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: datas.Array.data[0].distanceModifier
+      value: -0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4162152798288727426, guid: d6a2e5726a729d741a68117152286718, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.66065705
@@ -3301,6 +3354,10 @@ PrefabInstance:
       propertyPath: datas.Array.data[3].targetItem
       value: 
       objectReference: {fileID: 248837481}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: datas.Array.data[1].distanceModifier
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4162152798288727426, guid: d6a2e5726a729d741a68117152286718, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.639439
@@ -4462,6 +4519,10 @@ PrefabInstance:
       propertyPath: datas.Array.data[2].targetItem
       value: 
       objectReference: {fileID: 253801289}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: datas.Array.data[1].distanceModifier
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4162152798288727426, guid: d6a2e5726a729d741a68117152286718, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.23429382
@@ -6647,6 +6708,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: absoluteDatas.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
       propertyPath: datas.Array.data[0].angle
       value: -120
       objectReference: {fileID: 0}
@@ -6662,6 +6727,18 @@ PrefabInstance:
       propertyPath: datas.Array.data[2].targetItem
       value: 
       objectReference: {fileID: 248837481}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: absoluteDatas.Array.data[0].targetItem
+      value: 
+      objectReference: {fileID: 670351772}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: absoluteDatas.Array.data[0].direction.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338601788489176460, guid: d6a2e5726a729d741a68117152286718, type: 3}
+      propertyPath: datas.Array.data[2].distanceModifier
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4162152798288727426, guid: d6a2e5726a729d741a68117152286718, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.1409013

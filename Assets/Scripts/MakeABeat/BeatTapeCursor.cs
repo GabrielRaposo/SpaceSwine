@@ -42,7 +42,7 @@ public class BeatTapeCursor : MonoBehaviour
                 Vector2 origin = transform.position;
                 float angle = Vector2.SignedAngle(Vector2.up, data.Direction(origin));
                 arrowObj.transform.eulerAngles = Vector3.forward * ( angle + 90 );
-                arrowObj.transform.position = transform.position + ( data.Direction(origin) * arrowDistance );
+                arrowObj.transform.position = transform.position + ( data.Direction(origin) * (arrowDistance + data.distanceModifier) );
             }
             
             SpriteRenderer arrowRenderer = arrowObj.GetComponentInChildren<SpriteRenderer>();

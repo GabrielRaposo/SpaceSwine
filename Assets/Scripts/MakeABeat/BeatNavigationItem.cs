@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class BeatNavigationItem : MonoBehaviour
 {
+    const float ABS_THRESHOLD = 25f;
     const float MAX_THRESHOLD = 80f;
+
+    [System.Serializable]
+    public class AbsoluteNavigationData
+    {
+        public BeatNavigationItem targetItem;
+        public Vector2 direction;
+
+        public Vector3 Direction ()
+        {
+            return direction;
+        }
+    }
 
     [System.Serializable]
     public class NavigationData
     {
         public BeatNavigationItem targetItem;
+        public float distanceModifier;
         public Transform anchor;
 
         public Vector3 Direction (Vector3 origin)
@@ -29,6 +43,7 @@ public class BeatNavigationItem : MonoBehaviour
         }
     }
 
+    [SerializeField] List <AbsoluteNavigationData> absoluteDatas;
     [SerializeField] List <NavigationData> datas;
     [SerializeField] BeatTapeCursor cursor;
 
@@ -58,6 +73,18 @@ public class BeatNavigationItem : MonoBehaviour
     public BeatNavigationItem FindItemOnDirection (Vector2 direction)
     {
         (BeatNavigationItem item, float difference) output = (null, Mathf.Infinity);
+
+        foreach (AbsoluteNavigationData data in absoluteDatas)
+        {
+            float angle = Vector2.SignedAngle( direction, data.Direction() );
+            angle = Mathf.Abs(angle);
+
+            if (angle > ABS_THRESHOLD)
+                continue;
+
+            return data.targetItem;
+        }
+
         foreach (NavigationData data in datas)
         {
             float angle = Vector2.SignedAngle( direction, data.AnchoredDirection(transform.position) );
