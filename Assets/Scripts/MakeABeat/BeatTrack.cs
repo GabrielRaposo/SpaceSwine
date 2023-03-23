@@ -144,15 +144,29 @@ namespace MakeABeat
 
         }
 
-        public void InstantUninstall(TapeBox tapeBox)
-        {
-            if (currentBeatTape != null && currentBeatTape.sampleAKEvent != null)
-            {
-                gameObject.StopAllEvents();
-            }
+        private bool TheQueuedTapeIsNew => queuedBeatTape != null && queuedBeatTape != currentBeatTape;
 
-            if (currentBeatTape != null)
+        public void InstantUninstall (TapeBox tapeBox)
+        {
+            if (TheQueuedTapeIsNew)
             {
+                if (tapeBox)
+                    tapeBox.RestoreToAvailables(queuedBeatTape);
+
+                if (removeFromQueueAKEvent != null)
+                    removeFromQueueAKEvent.Post(gameObject);
+
+                queuedBeatTape = null;
+                UpdateQueuedTapeVisual();
+
+                queuedBeatTape = currentBeatTape;
+                CloseTheLid (currentBeatTape != null);
+            }
+            else if (currentBeatTape != null)
+            {
+                if (currentBeatTape != null && currentBeatTape.sampleAKEvent != null)
+                    gameObject.StopAllEvents();
+                
                 if (tapeBox)
                     tapeBox.RestoreToAvailables(currentBeatTape);
                 
@@ -164,17 +178,6 @@ namespace MakeABeat
                     unnistallAKEvent.Post(gameObject);
 
                 UpdatePlayingTapeVisual();
-                UpdateQueuedTapeVisual();
-            }
-            else if (queuedBeatTape != null)
-            {
-                if (tapeBox)
-                    tapeBox.RestoreToAvailables(queuedBeatTape);
-
-                if (removeFromQueueAKEvent != null)
-                    removeFromQueueAKEvent.Post(gameObject);
-
-                queuedBeatTape = null;
                 UpdateQueuedTapeVisual();
             }
         }
