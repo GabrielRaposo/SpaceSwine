@@ -1204,6 +1204,10 @@
 				<Folder Name="Make a Beat" ID="{9BA5DB5E-A5D8-4070-B4FD-CA3E39D8D3C6}" ShortID="167758072">
 					<ChildrenList>
 						<Folder Name="Samples Make A Beat" ID="{A64D30AE-A66C-45E6-B590-84989199AF32}" ShortID="1008232782">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="24"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Event Name="AMBIENCE_01" ID="{B6B8FB1A-1134-49F4-A875-E76574BA0C28}">
 									<ChildrenList>
@@ -1293,9 +1297,90 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="CHORDS_02" ID="{129C7D7F-0609-449B-9113-29336A8405D6}">
+									<ChildrenList>
+										<Action Name="" ID="{34E76BE8-407D-4C93-BD08-3D9718B9B366}" ShortID="584813422">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="CHORDS_02" ID="{3984CDAD-4B24-4BB0-9181-9E059A3877DA}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="HIHAT_02" ID="{104C8585-84B6-493D-ACD5-81E73FC5C827}">
+									<ChildrenList>
+										<Action Name="" ID="{15DD5CB1-5DCD-4D4E-BD0E-FAE5316EE8C9}" ShortID="424875847">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="HIHAT_02" ID="{DC290312-961A-4AE7-ABAE-FA0C02D2D628}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="TREBLE_03" ID="{0ABDBA39-10ED-4228-8693-59E249AA2FF0}">
+									<ChildrenList>
+										<Action Name="" ID="{AABA10CD-B645-420A-BAD9-1CC76FFF0E47}" ShortID="518367841">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="TREBLE_03" ID="{F3DA9CC4-5E1D-4FF1-BC39-910CA0B1DF2E}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="TREBLE_04" ID="{13861A18-141B-4270-8D5A-2F64820458BC}">
+									<ChildrenList>
+										<Action Name="" ID="{9C6900D0-5C08-456A-A947-6B0C6F74C132}" ShortID="387511048">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="TREBLE_04" ID="{A504F518-FD54-4678-BDDC-3E25C91B209E}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="AMBIENCE_02" ID="{872FE9EA-B0F6-46DC-9E8C-F2D00E50DC50}">
+									<ChildrenList>
+										<Action Name="" ID="{D3CD81BF-7390-4097-88EA-3598BC046629}" ShortID="925965456">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="AMBIENCE_02" ID="{5D6A80B7-2A46-4F4B-AEAF-81B2B8F37AC6}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="BASS_02" ID="{C653329E-A16C-4D4D-95FE-8D7E211D2FC8}">
+									<ChildrenList>
+										<Action Name="" ID="{3C96DE2E-5560-47FD-B009-C030240F68A4}" ShortID="81095427">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BASS_02" ID="{1E552D25-2ACA-45B0-A0E3-A8DF2AFDCEFA}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="BUMBOCAIXA_02" ID="{93B1411B-35D2-4F46-8EDC-11974EB5121A}">
+									<ChildrenList>
+										<Action Name="" ID="{4B106CF8-DFD6-4C10-A2A9-F9229539B1FA}" ShortID="202052744">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BUMBOCAIXA_02" ID="{B14057E5-22E3-4703-96CC-88D5D9A4B1FB}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="SFX Make a Beat" ID="{60E2DB56-CA7D-43C6-ACD5-F53E4FD0FD5E}" ShortID="122733472">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="8"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
 								<Event Name="makeabeat_caixa_esconde" ID="{A3FF5FA4-1DDD-49AA-87BA-25D239180385}">
 									<ChildrenList>
