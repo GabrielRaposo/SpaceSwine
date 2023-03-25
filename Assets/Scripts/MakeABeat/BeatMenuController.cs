@@ -133,6 +133,7 @@ namespace MakeABeat
                     tapeBox.MoveCursor (input);
                     break;
 
+
                 default:
                     return;
             }
