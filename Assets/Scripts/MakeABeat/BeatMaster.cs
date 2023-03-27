@@ -65,7 +65,7 @@ namespace MakeABeat
             isRunning = true;
         }
 
-        private void StopCycle()
+        public void StopCycle()
         {
             // -- cancela eventos de som
 
