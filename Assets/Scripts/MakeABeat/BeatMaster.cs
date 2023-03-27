@@ -7,7 +7,7 @@ namespace MakeABeat
 {
     public class BeatMaster : MonoBehaviour
     {
-        const int TIME_SIGNATURE = 4;
+        const int TIME_SIGNATURE = 8;
 
         [SerializeField] float BPM;
 
@@ -15,44 +15,50 @@ namespace MakeABeat
         [SerializeField] AK.Wwise.Event testCycleAkEvent;
         [SerializeField] AK.Wwise.Event testTickAkEvent;
 
+        [HideInInspector] public UnityAction        StopAll_Action; 
         [HideInInspector] public UnityAction        CyclePulse_Action; 
         [HideInInspector] public UnityAction<int>   SignaturePulse_Action; 
         [HideInInspector] public UnityAction<float> UpdateDisplay_Action; 
 
         float totalTime;
-        float loopTime;
+        float beatTime;
 
         float timeCount;
         int signatureCount;
 
-        bool isRunning;
+        public bool IsRunning { get; private set; }
 
         void Awake()
         {
             Application.targetFrameRate = 120;
 
             if (BPM > 0)
-                loopTime = 60 / BPM;
+                beatTime = 60 / BPM;
 
-            if (loopTime > 0)
-                totalTime = loopTime * TIME_SIGNATURE;
+            if (beatTime > 0)
+                totalTime = beatTime * TIME_SIGNATURE;
 
             if (UpdateDisplay_Action != null)
                 UpdateDisplay_Action.Invoke(0);
 
-            this.WaitSeconds( 3, StartCycle );
+            //this.WaitSeconds( 3, StartCycle );
         }
 
-        private void StartCycle()
+        public bool StartCycle()
         {
+            if (IsRunning)
+                return false;
+
             timeCount = 0;
             ResetCycle();
+
+            return true;
         }
 
         private void ResetCycle()
         {
-            if (testCycleAkEvent != null)
-                testCycleAkEvent.Post(gameObject);
+            //if (testCycleAkEvent != null)
+            //    testCycleAkEvent.Post(gameObject);
 
             // -- chama eventos de som
             if (CyclePulse_Action != null)
@@ -62,34 +68,38 @@ namespace MakeABeat
                 UpdateDisplay_Action.Invoke(timeCount / totalTime);
 
             signatureCount = 1;
-            isRunning = true;
+            IsRunning = true;
         }
 
-        private void StopCycle()
+        public void StopCycle()
         {
-            // -- cancela eventos de som
+            if (StopAll_Action != null)
+                StopAll_Action.Invoke();
 
             timeCount = 0;
+            if (UpdateDisplay_Action != null)
+                UpdateDisplay_Action.Invoke(timeCount / totalTime);
+
             signatureCount = 1;
-            isRunning = false;
+            IsRunning = false;
         }
 
         void Update()
         {
-            if (!isRunning)
+            if (!IsRunning)
                 return;
 
             // -- Chama pulso de tween no display a cada TIME_SIGNATURE tempos
-            if (timeCount > loopTime * signatureCount)
+            if (timeCount > beatTime * signatureCount)
             {
                 if (SignaturePulse_Action != null)
                     SignaturePulse_Action.Invoke(signatureCount - 1);
 
-                if (testTickAkEvent != null)
-                    testTickAkEvent.Post(gameObject);
+                //if (testTickAkEvent != null)
+                //    testTickAkEvent.Post(gameObject);
 
                 signatureCount++;
-                if(signatureCount > TIME_SIGNATURE)
+                if (signatureCount > TIME_SIGNATURE)
                     signatureCount = 1;
             }
 
@@ -105,6 +115,23 @@ namespace MakeABeat
 
             if (UpdateDisplay_Action != null)
                 UpdateDisplay_Action.Invoke(timeCount / totalTime);
+        }
+
+        public void TogglePlayingState()
+        {
+            if (IsRunning)
+                StopCycle();
+            else
+                StartCycle();
+        }
+
+        public float GetTimePerBeat( float speed = 1 )
+        {
+            if (beatTime <= 0)
+                return -1;
+
+            float modifiedTime = beatTime / speed;
+            return (timeCount % modifiedTime) / modifiedTime;
         }
     }
 }

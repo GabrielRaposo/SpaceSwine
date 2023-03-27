@@ -22,6 +22,11 @@ namespace WhitethornBuild
             buildOutroCardDisplay = GetComponentInChildren<BuildOutroCardDisplay>();
         }
 
+        private void Start() 
+        {
+            ResumePlaylistOnStart.Trigger = true;    
+        }
+
         public void SetEndBuildOutro (PlayerInteractor interactor)
         {
             PlayerCharacter player = interactor.GetComponent<PlayerCharacter>();
@@ -29,6 +34,7 @@ namespace WhitethornBuild
             if (!player)
                 return;
 
+            ResumePlaylistOnStart.Trigger = false;
             GameManager.BlockCharacterInput = true;
             player.DisableAllInteractions();
 

@@ -165,7 +165,7 @@ public class SpaceJumper : MonoBehaviour
         rb.velocity = Vector2.zero;
     } 
 
-    public void LaunchIntoDirection (Vector2 direction, float multiplier = 1.0f, bool playLongJumpSound = true)
+    public void LaunchIntoDirection (Vector2 direction, float multiplier = 1.0f, bool playLongJumpSound = true) 
     {
         SetLaunchState(true, playLongJumpSound);
 

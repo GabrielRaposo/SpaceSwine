@@ -10,13 +10,13 @@ public class PersistentGroup : MonoBehaviour
     {
         if (Instance)
         {
-            Destroy( gameObject );
+            Destroy (gameObject);
             return;
         }
 
         Application.targetFrameRate = 60;
 
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad (gameObject);
         Instance = this;
     }
 }

@@ -124,28 +124,6 @@ public class SoundtrackManager : MonoBehaviour
         applicationIsPaused = pause;
     }
 
-    //public void PlayMusic(bool skipPlay = false)
-    //{
-    //    if (!play && !skipPlay)
-    //        return;
-
-    //    Stop();
-
-    //    if (currentIndex < 0)
-    //        currentIndex = Random.Range(0, randomPlaylist.Count);
-    //    else
-    //        currentIndex = (currentIndex + 1) % randomPlaylist.Count;
-
-    //    soundtrackEvent = randomPlaylist[currentIndex];
-
-    //    if (soundtrackEvent != null)
-    //        soundtrackEvent.Post(gameObject);
-
-    //    IsPlaying = true;
-
-    //    StopAllCoroutines();
-    //}
-
     public void SetPlaylist (PlaylistScriptableObject playlist)
     {
         if (this.playlist == playlist && this.playlist != fullPlaylist)
@@ -206,6 +184,14 @@ public class SoundtrackManager : MonoBehaviour
 
         MusicDataScriptableObject musicData = playlist[orderedIndex];
         return (musicData.fileName, currentIndex);
+    }
+
+    public void Resume()
+    {
+        if (IsPlaying)
+            return;
+
+        PlayTrack();
     }
 
     public void SkipTrack(int direction)
