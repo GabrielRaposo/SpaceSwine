@@ -44,7 +44,17 @@ namespace MakeABeat
 
                 BeatTrack track = item.GetComponent<BeatTrack>();
                 if (track)
+                {
                     track.SetSelected( isSelected ); 
+                    continue;
+                }
+
+                BeatToy beatToy = item.GetComponent<BeatToy>();
+                if (beatToy)
+                {
+                    beatToy.Show( isSelected );
+                    continue;
+                }
             }
         }
 
@@ -97,6 +107,13 @@ namespace MakeABeat
                 metronome.OnConfirmInput();
                 return;
             }
+
+            BeatToy beatToy = CurrentSelection.GetComponent<BeatToy>();
+            if (beatToy)
+            {
+                beatToy.CallHitSound(1);
+                return;
+            }
         }
 
         public void OnCancelInput(TapeBox tapeBox)
@@ -106,7 +123,17 @@ namespace MakeABeat
 
             BeatTrack track = CurrentSelection.GetComponent<BeatTrack>();
             if (track)
+            {
                 track.InstantUninstall(tapeBox);
+                return;
+            }
+
+            BeatToy beatToy = CurrentSelection.GetComponent<BeatToy>();
+            if (beatToy)
+            {
+                beatToy.CallHitSound(2);
+                return;
+            }
         }
 
         public void OnOtherInput()
@@ -125,6 +152,13 @@ namespace MakeABeat
             if (metronome)
             {
                 metronome.ToggleMute();
+                return;
+            }
+
+            BeatToy beatToy = CurrentSelection.GetComponent<BeatToy>();
+            if (beatToy)
+            {
+                beatToy.CallHitSound(3);
                 return;
             }
         }

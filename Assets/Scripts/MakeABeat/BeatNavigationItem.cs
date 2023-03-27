@@ -62,7 +62,7 @@ namespace MakeABeat
 
         private void OnDrawGizmosSelected () 
         {
-            if (datas.Count < 1)
+            if (datas != null)
                 return;
 
             foreach (NavigationData data in datas)
