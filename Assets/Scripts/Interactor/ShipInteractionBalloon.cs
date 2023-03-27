@@ -22,6 +22,7 @@ public class ShipInteractionBalloon : MonoBehaviour
         boxOutlineRenderer.enabled = value;
         boxShapeRenderer.enabled = value;
         textDisplay.enabled = value;
+        transform.localScale = !value ? Vector3.zero : Vector3.one * 1.5f; 
     }
 
     public void SetTextDisplay (ShipAction shipAction)
@@ -52,12 +53,17 @@ public class ShipInteractionBalloon : MonoBehaviour
                 textDisplay.text = LocalizationManager.GetUiText("leave", "Leave");
                 break;
 
+            case ShipAction.MakeABeat:
+                textDisplay.text = LocalizationManager.GetUiText("make_a_beat", "Make-a-Beat");
+                break;
+
             default:
                 break;
         }
 
         float boxLenght = .4f + (textDisplay.text.Length * .15f);
         boxOutlineRenderer.size = boxShapeRenderer.size = new Vector2(boxLenght, .5f);
+        textDisplay.rectTransform.sizeDelta = new Vector2(boxLenght, .3f);
     }
 
     public void SetHighlight (bool value)

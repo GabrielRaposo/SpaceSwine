@@ -53,6 +53,16 @@ public class NavigationConsole : MonoBehaviour
     private void OnEnable() 
     {
         playerInputActions = new PlayerInputActions();
+        playerInputActions.Enable();
+
+        playerInputActions.UI.Cancel.performed += (ctx) =>
+        {
+            if (!turnedOn || NavigationShip.ControlsLocked)
+                return;
+
+            ToggleConsoleState();
+        };
+        playerInputActions.UI.Cancel.Enable();
 
         playerInputActions.UI.Start.performed += (ctx) =>
         {
@@ -122,7 +132,7 @@ public class NavigationConsole : MonoBehaviour
 
     private void SetupNavigationScene()
     {
-        Debug.Log("SetupNavigationScene()");
+        //Debug.Log("SetupNavigationScene()");
         buildIndex = BuildIndex.NavigationScene;
         StartCoroutine( AsyncLoadRoutine( (int) buildIndex) );
     }
@@ -165,7 +175,7 @@ public class NavigationConsole : MonoBehaviour
 
     private IEnumerator AsyncLoadRoutine(int index)
     {
-        Debug.Log("AsyncLoadRoutine(int index)");
+        //Debug.Log("AsyncLoadRoutine(int index)");
         asyncSceneLoad = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
         while (!asyncSceneLoad.isDone)
             yield return new WaitForEndOfFrame();
@@ -189,6 +199,9 @@ public class NavigationConsole : MonoBehaviour
 
     private void OnDisable() 
     {
+        playerInputActions.Disable();
+
+        playerInputActions.UI.Cancel.Disable();
         playerInputActions.UI.Start.Disable();
     }
 }
