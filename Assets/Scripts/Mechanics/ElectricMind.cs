@@ -12,6 +12,7 @@ public class ElectricMind : MonoBehaviour
 
     bool active;
 
+    ElectricLock[] electricLocks;
     ElectricBall[] electricballs;
     List<ElectricLine> electricLines;
 
@@ -30,6 +31,9 @@ public class ElectricMind : MonoBehaviour
             return;    
         }
 
+        electricLocks = GetComponentsInChildren<ElectricLock>();
+
+        SetupLocks();
         SetupChain();
 
         active = startActive;
@@ -66,6 +70,17 @@ public class ElectricMind : MonoBehaviour
         electricLine.gameObject.SetActive(false);
     }
 
+    private void SetupLocks()
+    {
+        if (electricLocks == null || electricLocks.Length < 1)
+            return;
+
+        foreach (ElectricLock l in electricLocks)
+        {
+            l.Setup(this);
+        }
+    }
+
     ElectricBall BallAt (int index)
     {
         return electricballs[index % electricballs.Length];
@@ -78,11 +93,23 @@ public class ElectricMind : MonoBehaviour
 
         foreach (ElectricBall b in electricballs)
             b.SetActivation(active);
+
+        if (electricLocks != null)
+        {
+            foreach (ElectricLock l in electricLocks)
+                l.SetState(active);
+        }
     }
 
     public void ToggleActivation()
     {
         active = !active;
+        UpdateActivation();
+    }
+
+    public void SetActivation(bool value)
+    {
+        active = value;
         UpdateActivation();
     }
 }
