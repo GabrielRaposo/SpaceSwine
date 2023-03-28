@@ -67,7 +67,7 @@ public class ElectricMind : MonoBehaviour
             {
                 if (l.transform.GetSiblingIndex() - 2 == i)
                 {
-                    t = l.transform;
+                    t = l.GetConnectionPoint();
                     break;
                 }
             }
@@ -90,19 +90,6 @@ public class ElectricMind : MonoBehaviour
             }
         }
 
-        //int max = electricballs.Length - (loop ? 0 : 1); 
-        //for (int i = 0; i < max; i++) 
-        //{
-        //    GameObject lineObject = Instantiate (electricLine.gameObject, linesGroup);
-            
-        //    ElectricLine lineScript = lineObject.GetComponent<ElectricLine>();
-        //    if (lineScript) 
-        //    {
-        //        lineScript.Setup(autoUpdate, BallAt(i+1), BallAt(i));
-        //        electricLines.Add(lineScript);
-        //    }
-        //}
-
         electricLine.gameObject.SetActive(false);
     }
 
@@ -115,11 +102,6 @@ public class ElectricMind : MonoBehaviour
         {
             l.Setup(this);
         }
-    }
-
-    Transform BallAt (int index)
-    {
-        return electricballs[index % electricballs.Length].transform;
     }
 
     private void UpdateActivation()
@@ -139,12 +121,14 @@ public class ElectricMind : MonoBehaviour
 
     public void ToggleActivation()
     {
-        active = !active;
-        UpdateActivation();
+        SetActivation(!active);
     }
 
     public void SetActivation(bool value)
     {
+        if (value == active)
+            return;
+
         active = value;
         UpdateActivation();
     }

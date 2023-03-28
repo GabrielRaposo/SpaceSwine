@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ElectricLine : MonoBehaviour
 {   
+    [SerializeField] ParticleSystem burst1PS;
+    [SerializeField] ParticleSystem burst2PS;
+
     bool autoUpdate;
 
     Transform start; 
@@ -20,7 +23,6 @@ public class ElectricLine : MonoBehaviour
 
     public void Setup (bool autoUpdate, Transform start, Transform end)
     {
-
         this.autoUpdate = autoUpdate;
 
         this.start = start;
@@ -39,7 +41,9 @@ public class ElectricLine : MonoBehaviour
 
     private void UpdateLine()
     {
-        transform.position = start.transform.position;
+        //transform.position = start.transform.position;
+        Vector3 distance = end.transform.position - start.transform.position;
+        transform.position = start.transform.position + (distance / 2f);
         
         Vector2 direction = end.position - start.position;
         foreach(SpriteRenderer sr in srs)
@@ -52,8 +56,33 @@ public class ElectricLine : MonoBehaviour
         transform.eulerAngles = Vector3.forward * (Vector2.SignedAngle(Vector2.right, direction.normalized));
     }
 
-    public void SetActivation(bool value)
+    public void SetActivation (bool value)
     {
-        gameObject.SetActive(value);
+        //gameObject.SetActive (value);
+        
+        coll.enabled = value;
+
+        foreach (SpriteRenderer sr in srs)
+            sr.enabled = value;
+
+        if (!value)
+        {
+            if (start == null || end == null)
+                return;
+            
+            PlayBurst (burst1PS, end.position,   (end.position - start.position).normalized);
+            PlayBurst (burst2PS, start.position, (start.position - end.position).normalized);
+        }
+    }
+
+    private void PlayBurst (ParticleSystem particleSystem, Vector3 origin, Vector3 direction)
+    {
+        if (particleSystem == null)
+            return;
+
+        particleSystem.transform.position = origin;
+        particleSystem.transform.eulerAngles = Vector3.forward * (Vector2.SignedAngle (Vector3.left, direction) - 15f);
+
+        particleSystem.Play();
     }
 }

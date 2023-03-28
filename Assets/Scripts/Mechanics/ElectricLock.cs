@@ -6,6 +6,7 @@ public class ElectricLock : Lock
 {
     [Header("Electric Lock")]
     [SerializeField] ElectricMind mind;
+    [SerializeField] Transform connectionTransform;
 
     [Header("Animator")]
     [SerializeField] Animator baseAnimator;
@@ -71,5 +72,13 @@ public class ElectricLock : Lock
 
         if (mind)
             mind.SetActivation(false);
+    }
+
+    public Transform GetConnectionPoint()
+    {
+        if (connectionTransform != null)
+            return connectionTransform;
+
+        return transform;
     }
 }
