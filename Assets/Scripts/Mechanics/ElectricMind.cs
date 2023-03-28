@@ -54,18 +54,54 @@ public class ElectricMind : MonoBehaviour
     {
         electricLines = new List<ElectricLine>();
 
-        int max = electricballs.Length - (loop ? 0 : 1); 
-        for (int i = 0; i < max; i++) 
+        List<Transform> targets = new List<Transform>();
+        for (int i = 0; i < electricballs.Length; i++)
+        {
+            targets.Add( electricballs[i].transform );
+
+            if (electricLocks == null || electricLocks.Length < 1)
+                continue;
+
+            Transform t = null;
+            foreach (ElectricLock l in electricLocks)
+            {
+                if (l.transform.GetSiblingIndex() - 2 == i)
+                {
+                    t = l.transform;
+                    break;
+                }
+            }
+
+            if (t != null)
+                targets.Add(t);
+        }
+        if (loop && targets.Count > 0)
+            targets.Add(targets[0]);
+
+        for (int i = 0; i < targets.Count - 1; i++)
         {
             GameObject lineObject = Instantiate (electricLine.gameObject, linesGroup);
-            
+
             ElectricLine lineScript = lineObject.GetComponent<ElectricLine>();
             if (lineScript) 
             {
-                lineScript.Setup(autoUpdate, BallAt(i+1).transform, BallAt(i).transform);
+                lineScript.Setup(autoUpdate, targets[i + 1], targets[i]);
                 electricLines.Add(lineScript);
             }
         }
+
+        //int max = electricballs.Length - (loop ? 0 : 1); 
+        //for (int i = 0; i < max; i++) 
+        //{
+        //    GameObject lineObject = Instantiate (electricLine.gameObject, linesGroup);
+            
+        //    ElectricLine lineScript = lineObject.GetComponent<ElectricLine>();
+        //    if (lineScript) 
+        //    {
+        //        lineScript.Setup(autoUpdate, BallAt(i+1), BallAt(i));
+        //        electricLines.Add(lineScript);
+        //    }
+        //}
 
         electricLine.gameObject.SetActive(false);
     }
@@ -81,9 +117,9 @@ public class ElectricMind : MonoBehaviour
         }
     }
 
-    ElectricBall BallAt (int index)
+    Transform BallAt (int index)
     {
-        return electricballs[index % electricballs.Length];
+        return electricballs[index % electricballs.Length].transform;
     }
 
     private void UpdateActivation()
