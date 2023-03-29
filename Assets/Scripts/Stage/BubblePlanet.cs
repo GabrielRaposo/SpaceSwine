@@ -5,10 +5,33 @@ using UnityEngine;
 [RequireComponent(typeof(GravitationalPlanet))]
 public class BubblePlanet : MonoBehaviour, ConcealingBody
 {
-    [SerializeField] List<SpriteRenderer> renderers;
     [SerializeField] Collectable concealedCollectable;
 
+    [Space(5)]
+    [SerializeField] float feedbackDuration;
+
+    [Header("Land Feedback")]
+    [SerializeField] float landPushback;
+    [SerializeField] AnimationCurve pushbackCurve;
+
+    [Header("Tremble Feedback")]
+    [SerializeField] float trembleMultiplier;
+    [SerializeField] AnimationCurve trembleCurve;
+    
+    [Header("Soft Floating")]
+    [SerializeField] float softFloatMultiplier;
+    [SerializeField] float softFloatDuration;
+    [SerializeField] AnimationCurve softFloatCurve;
+
+    [Header("References")]
+    [SerializeField] Collider2D gravityCollider;
+    [SerializeField] Transform distortionAnchor;
+    [SerializeField] List<SpriteRenderer> renderers;
+
     bool isActive;
+    float floatTime;
+    float feedbackTime;
+    Transform player;
 
     CircleCollider2D coll2D;
     GravitationalPlanet gravitationalPlanet;
@@ -21,9 +44,10 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody
 
     private void Start() 
     {
-        gravitationalPlanet.OnPlayerExitAction += Burst;
-
         Initiate();
+
+        gravitationalPlanet.OnLandAction += OnPlayerLand;
+        gravitationalPlanet.OnPlayerExitAction += Burst;
 
         Round round = GetComponentInParent<Round>();
         if (!round)
@@ -37,15 +61,33 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody
         if (concealedCollectable)
         {
             concealedCollectable.transform.position = transform.position;
+            concealedCollectable.transform.SetParent(transform);
             concealedCollectable.SetConcealingBody(this);
         }
 
+        player = null;
         SetState(true);
+    }
+
+    private void OnValidate() 
+    {
+        transform.localPosition = Vector2.zero;
+        if (concealedCollectable)
+            concealedCollectable.transform.position = transform.position;
     }
 
     public void Burst()
     {
+        player = null;
+
         SetState(false);
+    }
+
+    public void OnPlayerLand (Transform player)
+    {
+        this.player = player;
+
+        feedbackTime = feedbackDuration;
     }
 
     private void SetState (bool value)
@@ -54,8 +96,78 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody
             renderer.enabled = value;
 
         coll2D.enabled = value;
+        gravityCollider.enabled = value;
 
         isActive = value;
+    }
+    private void FixedUpdate() 
+    {
+        AllignDistortionAnchor();
+
+        if (feedbackTime > 0)
+        {
+            feedbackTime -= Time.fixedDeltaTime;
+
+            Tremble();
+            Pushback();
+
+            if (feedbackTime <= 0)
+            {
+                distortionAnchor.localScale = Vector3.one;
+                SetComponentsPosition(Vector2.zero);
+
+                floatTime = 0;
+            }
+            return;
+        }
+
+        // TO-DO: Soft float
+        transform.localPosition = distortionAnchor.up * softFloatCurve.Evaluate(floatTime/softFloatDuration); 
+
+        floatTime += Time.fixedDeltaTime;
+
+        if (floatTime > softFloatDuration)
+            floatTime = 0;
+    }
+
+    private void AllignDistortionAnchor()
+    {
+        if (player == null)
+            return;
+
+        Vector2 direction = (player.position - transform.position).normalized;
+        float angle = Vector2.SignedAngle(Vector2.up, direction);
+
+        distortionAnchor.eulerAngles = Vector3.forward * angle;
+        foreach (SpriteRenderer r in renderers)
+            r.transform.eulerAngles = Vector3.zero;
+    }
+
+    private void Tremble()
+    {
+        float t = 1 - (feedbackTime / feedbackDuration);
+
+        float y = trembleCurve.Evaluate(t);
+        float yy = 1f + ((y - 1f) * trembleMultiplier);
+        distortionAnchor.localScale = new Vector2(2f - yy, yy);
+    }
+
+    private void Pushback()
+    {
+        if (player == null)
+            return;
+
+        float t = 1 - (feedbackTime / feedbackDuration);
+
+        Vector2 direction = (transform.position - player.position).normalized;
+        float intensity = pushbackCurve.Evaluate(t) * landPushback;
+        
+        SetComponentsPosition(direction * intensity);
+    }
+
+    private void SetComponentsPosition (Vector2 localPosition)
+    {
+        transform.localPosition = localPosition;
     }
 
     public bool IsActive() 

@@ -27,7 +27,7 @@ public class CollectableThrowable : Collectable
     {
         indestructible = false;
         
-        if(rotationRoutine!=null)
+        if (rotationRoutine != null)
             StopCoroutine(rotationRoutine);
         
         Collider2D collider2D = GetComponent<Collider2D>();

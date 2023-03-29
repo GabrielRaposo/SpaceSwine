@@ -125,18 +125,12 @@ public class GravityInteraction : MonoBehaviour
         if (checkGround)
         {
             platform = checkGround.OnPlatform;
-            //gravitationalBody = checkGround.OnPlanet;
 
             GravitationalBody gBody = checkGround.OnPlanet;
             if (overrideGravitationalBody == null)
             {
                 gravitationalBody = gBody;
             }
-            //else
-            //{
-            //    if (gBody != overrideGravitationalBody && gBody != null)
-            //        gravitationalBody = gBody;    
-            //}
         }
 
         UpdateParent ();
@@ -181,7 +175,6 @@ public class GravityInteraction : MonoBehaviour
                 return;
 
             transform.SetParent (platform.transform);
-            //OnChangeGravityAnchor?.Invoke(platform.transform);
         }
         else if (GBody)
         {
@@ -189,8 +182,7 @@ public class GravityInteraction : MonoBehaviour
                 return;
 
             transform.SetParent (GBody.transform);
-            //Debug.Log("Set Parent: " + planet.name);
-            //OnChangeGravityAnchor?.Invoke(planet.transform);
+            GBody.OnLandAction?.Invoke(transform);
         }
         else
         {
@@ -199,7 +191,6 @@ public class GravityInteraction : MonoBehaviour
 
             transform.SetParent (null);
             transform.localScale = Vector3.one;
-            //OnChangeGravityAnchor?.Invoke(null);
         }
     }
 

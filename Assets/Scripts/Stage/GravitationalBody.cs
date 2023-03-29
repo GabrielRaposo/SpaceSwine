@@ -5,5 +5,6 @@ using UnityEngine.Events;
 
 public class GravitationalBody : MonoBehaviour
 {
+    [HideInInspector] public UnityAction<Transform> OnLandAction;
     [HideInInspector] public UnityAction OnPlayerExitAction;
 }

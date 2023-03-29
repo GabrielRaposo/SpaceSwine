@@ -91,7 +91,6 @@ public class SpaceJumper : MonoBehaviour
 
         if (value) 
         {
-
             flightLoopAKEvent?.Post(gameObject);
             if (playLongJumpSound) longJumpAKEvent?.Post(gameObject);
             playerAnimations.throwing = false;
