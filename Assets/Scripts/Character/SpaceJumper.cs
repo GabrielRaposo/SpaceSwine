@@ -91,10 +91,15 @@ public class SpaceJumper : MonoBehaviour
 
         if (value) 
         {
+
             flightLoopAKEvent?.Post(gameObject);
             if (playLongJumpSound) longJumpAKEvent?.Post(gameObject);
             playerAnimations.throwing = false;
             playerAnimations.SetLaunchedState();
+            
+            if (gravityInteraction.GBody != null)
+                gravityInteraction.GBody.OnPlayerExitAction?.Invoke();
+            
             gravityInteraction.DettachFromSurfaces();
         }
         else       
@@ -168,8 +173,6 @@ public class SpaceJumper : MonoBehaviour
     public void LaunchIntoDirection (Vector2 direction, float multiplier = 1.0f, bool playLongJumpSound = true) 
     {
         SetLaunchState(true, playLongJumpSound);
-
-        //direction = new Vector2(Mathf.RoundToInt(direction.x), Mathf.RoundToInt(direction.y) );
 
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
         //Debug.Log("direction: " + direction);

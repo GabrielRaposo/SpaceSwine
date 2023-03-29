@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(CircleCollider2D))]
 public class GravitationalPlanet : GravitationalBody
 {
-
     [Header("Values")]
     [SerializeField] float planetRadius = 1f;
     [SerializeField] float gravityRadius = 1f;
@@ -50,7 +49,6 @@ public class GravitationalPlanet : GravitationalBody
             {
                 insideVisualComponent.transform.localScale *= 1.15f;
             }
-
         }
 
         if (gravityArea && gravityRadius > 0f)

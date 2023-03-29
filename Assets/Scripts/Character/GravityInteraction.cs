@@ -24,16 +24,16 @@ public class GravityInteraction : MonoBehaviour
 
     GravityArea gravityArea;
     PlanetPlatform platform;
+
     GravitationalBody gravitationalBody;
-
-    // -- Usado para fazer a transição entre Planetas e Closed Spaces
     GravitationalBody overrideGravitationalBody; 
+    // -- Usado para fazer a transição entre Planetas e Closed Spaces
 
-    GravitationalBody GBody
+    public GravitationalBody GBody
     {
         get 
         {
-            if (overrideGravitationalBody)
+            if (overrideGravitationalBody != null)
                 return overrideGravitationalBody;
 
             return gravitationalBody;

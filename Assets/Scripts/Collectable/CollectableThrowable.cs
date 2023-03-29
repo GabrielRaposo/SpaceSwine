@@ -123,7 +123,7 @@ public class CollectableThrowable : Collectable
         {
             if (hb.damage > 0) 
             {
-                DestroyKey();
+                DestroyCollectable();
             }
         }
 
@@ -148,7 +148,7 @@ public class CollectableThrowable : Collectable
         intenseTrailParticle?.Stop();
     }
 
-    private void DestroyKey()
+    private void DestroyCollectable()
     {
         return;
 

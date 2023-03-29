@@ -8,6 +8,7 @@ public class Collectable : MonoBehaviour
     [SerializeField] AK.Wwise.Event OnCollectAKEvent;
 
     GameObject previousHolder;
+    ConcealingBody concealingBody;
 
     private void Start() 
     {
@@ -35,6 +36,9 @@ public class Collectable : MonoBehaviour
     
     public virtual void TriggerEvent(Collider2D collision)
     {
+        if (concealingBody != null && concealingBody.IsActive())
+            return;
+
         CollectableInteraction interaction = collision.GetComponent<CollectableInteraction>();
         if (interaction)
         {
@@ -74,5 +78,10 @@ public class Collectable : MonoBehaviour
     public void NullifyPreviousHolder()
     {
         previousHolder = null;
+    }
+
+    public void SetConcealingBody (ConcealingBody concealingBody)
+    {
+        this.concealingBody = concealingBody;
     }
 }
