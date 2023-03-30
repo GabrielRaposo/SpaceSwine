@@ -48,7 +48,7 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
         _round.OnReset += OnReset;
     }
 
-    public void Activate (InteractableTerminal terminal, PlayerInteractor player)
+    public virtual void Activate (InteractableTerminal terminal, PlayerInteractor player)
     {
         index = (index + 1) % targetPositions.Count;
 

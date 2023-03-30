@@ -75,6 +75,19 @@ public class SpaceBooster : MonoBehaviour
         rotationAnchor.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.right, GetLaunchDirection().normalized);
     }
 
+    public void SetFirstLaunchDirection(float x, float y)
+    {
+        if (launchDirections.Length == 0)
+        {
+            launchDirections = new[] { new Vector2(x,y) };
+            return;
+        }
+
+        launchDirections[0] = new Vector2(x, y);
+        
+        OnValidate();
+    }
+
     private void OnTriggerStay2D (Collider2D collision) 
     {
         if (!interactable)
