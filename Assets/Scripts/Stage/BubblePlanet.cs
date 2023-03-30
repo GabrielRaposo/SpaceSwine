@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(GravitationalPlanet))]
-public class BubblePlanet : MonoBehaviour, ConcealingBody
+public class BubblePlanet : MonoBehaviour, ConcealingBody, CustomSurface
 {
     [SerializeField] Collectable concealedCollectable;
 
@@ -27,6 +27,7 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody
     [SerializeField] Collider2D gravityCollider;
     [SerializeField] Transform distortionAnchor;
     [SerializeField] List<SpriteRenderer> renderers;
+    [SerializeField] ParticleSystem onLandPS;
 
     bool isActive;
     float floatTime;
@@ -66,6 +67,10 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody
         }
 
         player = null;
+
+        floatTime = feedbackTime = 0;
+        distortionAnchor.eulerAngles = Vector3.zero;
+
         SetState(true);
     }
 
@@ -88,6 +93,8 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody
         this.player = player;
 
         feedbackTime = feedbackDuration;
+
+        onLandPS.Play();
     }
 
     private void SetState (bool value)
