@@ -102,8 +102,6 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SpawnAt (Vector2 position, float rotation = 0)
     {
-        //Debug.Log("PlayerCharacter.SpawnAt()");
-
         ResetStates();
 
         transform.SetParent(null); // -- Mudança recente

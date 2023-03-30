@@ -150,6 +150,10 @@ public class SpaceJumper : MonoBehaviour
         Vector2 direction = (transform.position - planet.transform.position).normalized;
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
 
+        GravityArea gravityArea = planet.GetComponentInChildren<GravityArea>();
+        if (gravityArea)
+            gravityInteraction.HardSetGravityArea (gravityArea);
+
         if (collision.gameObject.GetComponent<CustomSurface>() == null)
         {
             longLandVFX?.Play();

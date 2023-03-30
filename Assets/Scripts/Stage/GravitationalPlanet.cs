@@ -6,7 +6,7 @@ using UnityEngine;
 public class GravitationalPlanet : GravitationalBody
 {
     [Header("Values")]
-    [SerializeField] float planetRadius = 1f;
+    [SerializeField] float planetRadius  = 1f;
     [SerializeField] float gravityRadius = 1f;
     [SerializeField] bool useCustomRadiusSize;
 
