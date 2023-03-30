@@ -106,6 +106,8 @@ public class PlayerCharacter : MonoBehaviour
 
         ResetStates();
 
+        transform.SetParent(null); // -- Mudança recente
+
         transform.position = position;
         transform.eulerAngles = rotation * Vector3.forward;
 

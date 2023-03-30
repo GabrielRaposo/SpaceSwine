@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(GravitationalPlanet))]
-public class BubblePlanet : MonoBehaviour, ConcealingBody, CustomSurface
+public class BubblePlanet : CustomSurface, ConcealingBody
 {
+    [Space(10)]
     [SerializeField] Collectable concealedCollectable;
 
     [Space(5)]
@@ -72,14 +73,21 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody, CustomSurface
         player = null;
 
         floatTime = feedbackTime = 0;
+
         distortionAnchor.eulerAngles = Vector3.zero;
+        foreach (SpriteRenderer r in renderers)
+            r.transform.eulerAngles = Vector3.zero;
 
         SetState(true);
     }
 
     private void OnValidate() 
     {
+        if (Application.isPlaying)
+            return;
+
         transform.localPosition = Vector2.zero;
+
         if (concealedCollectable)
             concealedCollectable.transform.position = transform.position;
     }
@@ -87,6 +95,9 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody, CustomSurface
     public void Burst()
     {
         player = null;
+
+        if (concealedCollectable && concealedCollectable.transform.parent == transform)
+            concealedCollectable.transform.SetParent (null);
 
         burstPS?.Play();
 
@@ -104,6 +115,13 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody, CustomSurface
 
     private void SetState (bool value)
     {
+        if (!value && transform.parent != null)
+        {
+            CustomMove customMove = transform.parent.GetComponent<CustomMove>();
+            if (customMove)
+                customMove.PauseMovement();
+        }
+
         foreach (SpriteRenderer renderer in renderers)
             renderer.enabled = value;
 
@@ -133,13 +151,7 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody, CustomSurface
             return;
         }
 
-        // TO-DO: Soft float
-        transform.localPosition = distortionAnchor.up * softFloatCurve.Evaluate(floatTime/softFloatDuration); 
-
-        floatTime += Time.fixedDeltaTime;
-
-        if (floatTime > softFloatDuration)
-            floatTime = 0;
+        SoftFloat();
     }
 
     private void AllignDistortionAnchor()
@@ -177,9 +189,27 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody, CustomSurface
         SetComponentsPosition(direction * intensity);
     }
 
+    private void SoftFloat()
+    {
+        transform.localPosition = distortionAnchor.up * softFloatCurve.Evaluate(floatTime/softFloatDuration); 
+
+        floatTime += Time.fixedDeltaTime;
+
+        if (floatTime > softFloatDuration)
+            floatTime = 0;
+    }
+
     private void SetComponentsPosition (Vector2 localPosition)
     {
         transform.localPosition = localPosition;
+    }
+
+    public void CollectableContactInteraction (Collectable collectable)
+    {
+        if (concealedCollectable == collectable)
+            return;
+
+        Burst();
     }
 
     public bool IsActive() 
