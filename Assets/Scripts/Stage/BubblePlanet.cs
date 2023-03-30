@@ -23,11 +23,14 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody, CustomSurface
     [SerializeField] float softFloatDuration;
     [SerializeField] AnimationCurve softFloatCurve;
 
+    [Header("Effects")]
+    [SerializeField] ParticleSystem onLandPS;
+    [SerializeField] ParticleSystem burstPS;
+
     [Header("References")]
     [SerializeField] Collider2D gravityCollider;
     [SerializeField] Transform distortionAnchor;
     [SerializeField] List<SpriteRenderer> renderers;
-    [SerializeField] ParticleSystem onLandPS;
 
     bool isActive;
     float floatTime;
@@ -84,6 +87,8 @@ public class BubblePlanet : MonoBehaviour, ConcealingBody, CustomSurface
     public void Burst()
     {
         player = null;
+
+        burstPS?.Play();
 
         SetState(false);
     }

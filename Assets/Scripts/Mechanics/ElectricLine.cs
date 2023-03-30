@@ -42,18 +42,17 @@ public class ElectricLine : MonoBehaviour
     private void UpdateLine()
     {
         //transform.position = start.transform.position;
-        Vector3 distance = end.transform.position - start.transform.position;
+        Vector3 distance = end.position - start.position;
         transform.position = start.transform.position + (distance / 2f);
         
-        Vector2 direction = end.position - start.position;
         foreach(SpriteRenderer sr in srs)
-            sr.size = new Vector2(direction.magnitude, sr.size.y);
+            sr.size = new Vector2(distance.magnitude, sr.size.y);
         if (coll)
         {
-            coll.offset = new Vector2(direction.magnitude/2, 0);
-            coll.size = new Vector2(direction.magnitude, coll.size.y);
+            coll.offset = new Vector2(0, 0);
+            coll.size = new Vector2(distance.magnitude, coll.size.y);
         }
-        transform.eulerAngles = Vector3.forward * (Vector2.SignedAngle(Vector2.right, direction.normalized));
+        transform.eulerAngles = Vector3.forward * (Vector2.SignedAngle(Vector2.right, distance.normalized));
     }
 
     public void SetActivation (bool value)
