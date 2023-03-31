@@ -80,6 +80,12 @@ public class GravityInteraction : MonoBehaviour
         planetFocusInput.Enable();
     }
 
+    public void ResetGravityAreas()
+    {
+        gravityArea = null;
+        overlappingGravities = new List<GravityArea>();
+    }
+
     void Start()
     {
         overlappingGravities = new List<GravityArea>();
@@ -110,7 +116,6 @@ public class GravityInteraction : MonoBehaviour
                 //    if (gravityArea) cameraFocusController.SetPlanetFocus(gravityArea.transform);
                 //    break;
             }
-
         }
     }
 

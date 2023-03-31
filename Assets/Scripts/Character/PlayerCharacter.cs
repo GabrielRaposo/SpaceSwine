@@ -102,6 +102,9 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SpawnAt (Vector2 position, float rotation = 0)
     {
+        if (gravityInteraction)
+            gravityInteraction.ResetGravityAreas();
+
         ResetStates();
 
         transform.SetParent(null); // -- Mudança recente
