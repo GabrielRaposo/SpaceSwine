@@ -59,6 +59,7 @@ public class PlayerCharacter : MonoBehaviour
         //Debug.Log("PlayerCharacter.ResetStates();");
         if (coll) coll.enabled = true;
         if (playerInput) playerInput.enabled = true;
+        if (spaceJumper) spaceJumper.BlockCollision = false;
 
         platformerCharacter?.KillInputs();
         collectableInteraction?.ResetStates();
@@ -102,9 +103,15 @@ public class PlayerCharacter : MonoBehaviour
 
     public void SpawnAt (Vector2 position, float rotation = 0)
     {
-        //Debug.Log("PlayerCharacter.SpawnAt()");
+        if (gravityInteraction)
+            gravityInteraction.ResetGravityAreas();
+
+        if (spaceJumper)
+            spaceJumper.BlockCollision = false;
 
         ResetStates();
+
+        transform.SetParent(null); // -- Mudança recente
 
         transform.position = position;
         transform.eulerAngles = rotation * Vector3.forward;
@@ -165,6 +172,8 @@ public class PlayerCharacter : MonoBehaviour
             
             if (coll) coll.enabled = false;
             if (playerInput) playerInput.enabled = false;
+            if (spaceJumper) spaceJumper.BlockCollision = true;
+            Debug.Log("LOL");
 
             playerAnimations.SetDeathState();
 

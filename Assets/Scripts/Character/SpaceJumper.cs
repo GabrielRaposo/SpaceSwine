@@ -27,6 +27,10 @@ public class SpaceJumper : MonoBehaviour
     PlayerAnimations playerAnimations;
     Rigidbody2D rb;
 
+    bool blockCollision;
+
+    public bool BlockCollision { set { blockCollision = value; } }
+
     void Awake()
     {
         platformerCharacter = GetComponent<PlatformerCharacter>();
@@ -95,6 +99,10 @@ public class SpaceJumper : MonoBehaviour
             if (playLongJumpSound) longJumpAKEvent?.Post(gameObject);
             playerAnimations.throwing = false;
             playerAnimations.SetLaunchedState();
+            
+            if (gravityInteraction.GBody != null)
+                gravityInteraction.GBody.OnPlayerExitAction?.Invoke();
+            
             gravityInteraction.DettachFromSurfaces();
         }
         else       
@@ -109,7 +117,7 @@ public class SpaceJumper : MonoBehaviour
 
     private void OnCollisionEnter2D (Collision2D collision) 
     {
-        if (!onLaunch)
+        if (!onLaunch || blockCollision)
             return;
 
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
@@ -143,20 +151,49 @@ public class SpaceJumper : MonoBehaviour
             return;
         }
 
+        GravitationalPlatform gravitationalPlatform = planet.GetComponent<GravitationalPlatform>();
+        if (gravitationalPlatform)
+            SnapIntoPlatform(gravitationalPlatform);
+
         Vector2 direction = (transform.position - planet.transform.position).normalized;
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
 
-        longLandVFX?.Play();
-        longLandAKEvent?.Post(gameObject);
+        GravityArea gravityArea = planet.GetComponentInChildren<GravityArea>();
+        if (gravityArea)
+            gravityInteraction.HardSetGravityArea (gravityArea);
+
+        if (collision.gameObject.GetComponent<CustomSurface>() == null)
+        {
+            longLandVFX?.Play();
+            longLandAKEvent?.Post(gameObject);
+        }
 
         SetLaunchState(false);
-        //Debug.Log("Long land VFX");
     }
 
     private IEnumerator DelayCollisionInteraction(Collision2D collision)
     {
         yield return new WaitWhile( () => collectableInteraction.OnAirStall );
         OnCollisionEnter2D(collision);
+    }
+
+    private void SnapIntoPlatform (GravitationalPlatform platform)
+    {
+        (bool left, Transform t) anchor = platform.ClosestAnchor(transform.position);
+        if (anchor.t == null)
+            return;
+
+        Vector3 positionOffset = transform.position - anchor.t.position;
+        //Debug.DrawLine(anchor.t.position, anchor.t.position + positionOffset, Color.red, 2f);
+
+        positionOffset = RaposUtil.RotateVector(positionOffset, -platform.transform.eulerAngles.z);
+        //Debug.DrawLine(anchor.t.position, anchor.t.position + positionOffset, Color.blue, 2f);
+
+        if ( (anchor.left && positionOffset.x > 0) || (!anchor.left && positionOffset.x < 0) )
+            return;
+
+        transform.position = anchor.t.position;
+        Debug.Log("SNAPPED!");
     }
 
     public void PointAndHoldIntoDirection (Vector2 direction)
@@ -168,8 +205,6 @@ public class SpaceJumper : MonoBehaviour
     public void LaunchIntoDirection (Vector2 direction, float multiplier = 1.0f, bool playLongJumpSound = true) 
     {
         SetLaunchState(true, playLongJumpSound);
-
-        //direction = new Vector2(Mathf.RoundToInt(direction.x), Mathf.RoundToInt(direction.y) );
 
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
         //Debug.Log("direction: " + direction);
