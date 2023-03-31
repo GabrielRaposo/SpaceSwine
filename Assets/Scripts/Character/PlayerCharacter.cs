@@ -173,7 +173,6 @@ public class PlayerCharacter : MonoBehaviour
             if (coll) coll.enabled = false;
             if (playerInput) playerInput.enabled = false;
             if (spaceJumper) spaceJumper.BlockCollision = true;
-            Debug.Log("LOL");
 
             playerAnimations.SetDeathState();
 

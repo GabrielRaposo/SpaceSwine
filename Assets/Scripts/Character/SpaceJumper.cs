@@ -153,10 +153,15 @@ public class SpaceJumper : MonoBehaviour
 
         GravitationalPlatform gravitationalPlatform = planet.GetComponent<GravitationalPlatform>();
         if (gravitationalPlatform)
+        {
             SnapIntoPlatform(gravitationalPlatform);
-
-        Vector2 direction = (transform.position - planet.transform.position).normalized;
-        transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
+            transform.eulerAngles = gravitationalPlatform.transform.eulerAngles;
+        }
+        else
+        {
+            Vector2 direction = (transform.position - planet.transform.position).normalized;
+            transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
+        }
 
         GravityArea gravityArea = planet.GetComponentInChildren<GravityArea>();
         if (gravityArea)
@@ -184,16 +189,12 @@ public class SpaceJumper : MonoBehaviour
             return;
 
         Vector3 positionOffset = transform.position - anchor.t.position;
-        //Debug.DrawLine(anchor.t.position, anchor.t.position + positionOffset, Color.red, 2f);
-
-        positionOffset = RaposUtil.RotateVector(positionOffset, -platform.transform.eulerAngles.z);
-        //Debug.DrawLine(anchor.t.position, anchor.t.position + positionOffset, Color.blue, 2f);
+        positionOffset = RaposUtil.RotateVector(positionOffset, - platform.transform.eulerAngles.z);
 
         if ( (anchor.left && positionOffset.x > 0) || (!anchor.left && positionOffset.x < 0) )
             return;
 
         transform.position = anchor.t.position;
-        Debug.Log("SNAPPED!");
     }
 
     public void PointAndHoldIntoDirection (Vector2 direction)
