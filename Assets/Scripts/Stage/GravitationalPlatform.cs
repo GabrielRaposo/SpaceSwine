@@ -25,10 +25,11 @@ public class GravitationalPlatform : GravitationalBody
         UpdateAttributes();
     }
 
-    //public (float planetRadius, float gravityRadius) GetAttributes()
-    //{
-    //    return (planetRadius, gravityRadius);
-    //}
+    public void UpdateLength (float length)
+    {
+        platformSize = new Vector2(length, platformSize.y);
+        UpdateAttributes();
+    }
 
     private void UpdateAttributes() 
     {
