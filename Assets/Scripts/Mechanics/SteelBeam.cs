@@ -7,6 +7,16 @@ public class SteelBeam : MonoBehaviour
     const float PLATFORM_OFFSET = .11f;
 
     [SerializeField] float length;
+    
+    [Header("Land")]
+    [SerializeField] float landFeedbackDuration;
+    [SerializeField] float landPushbackMultiplier;
+    [SerializeField] AnimationCurve landPushbackCurve;
+
+    [Header("Exit")]
+    [SerializeField] float exitFeedbackDuration;
+    [SerializeField] float exitFeedbackMultiplier;
+    [SerializeField] AnimationCurve exitWiggleCurve;
 
     [Header("References")]
     [SerializeField] CustomRotate customRotate;
@@ -15,6 +25,13 @@ public class SteelBeam : MonoBehaviour
     [SerializeField] Transform leftHitbox;
     [SerializeField] Transform rightHitbox;
     [SerializeField] List<GravitationalPlatform> platforms;
+
+    float landFeedbackTime;
+    float exitFeedbackTime;
+
+    float contactPointModifier;
+    float savedRotation;
+    Transform player;
 
     private void OnValidate() 
     {
@@ -55,16 +72,101 @@ public class SteelBeam : MonoBehaviour
         }
 
         UpdateAttributes();
+
+        Round round = GetComponentInParent<Round>();
+        if (round)
+        {
+            round.OnReset += () => 
+            {
+                exitFeedbackTime = landFeedbackTime = 0;
+            };
+        }
+    }
+
+    private void UpdateContactPointModifier()
+    {
+        if (player == null)
+            return;
+
+        contactPointModifier = 1f;
+        Vector3 positionOffset = player.position - transform.position;
+        positionOffset = RaposUtil.RotateVector(positionOffset, - transform.eulerAngles.z);
+
+        if (positionOffset.y > 0)
+            contactPointModifier = -1f;
     }
 
     private void OnLandAction (Transform player)
     {
-        //Debug.Log("On land plat");
+        this.player = player;
+        UpdateContactPointModifier();
+
+        landFeedbackTime = landFeedbackDuration;
+        exitFeedbackTime = 0;
     }
 
     private void OnPlayerExitAction()
     {
-        Debug.Log("On exit plat");
+        customRotate.PauseRotation();
+
+        UpdateContactPointModifier();
+        player = null;
+
+        savedRotation = transform.eulerAngles.z;
+        exitFeedbackTime = exitFeedbackDuration;
+        landFeedbackTime = 0;
+    }
+
+    private void FixedUpdate() 
+    {
+        if (landFeedbackTime > 0)
+        {
+            landFeedbackTime -= Time.fixedDeltaTime;
+            LandFeedback();
+
+            if (landFeedbackTime  <= 0)
+                transform.localPosition = Vector3.zero;
+
+            return;
+        }
+
+        if (exitFeedbackTime > 0)
+        {
+            exitFeedbackTime -= Time.fixedDeltaTime;
+
+            ExitFeedback();
+            
+            if (exitFeedbackTime <= 0)
+            {
+                transform.eulerAngles = Vector3.forward * savedRotation;
+                customRotate.ResumeRotation();
+            }
+        }
+    }
+
+    private void LandFeedback()
+    {
+        if (player == null)
+            return;
+
+        transform.localPosition = 
+            transform.up * 
+            contactPointModifier * 
+            landPushbackMultiplier * 
+            landPushbackCurve.Evaluate( 1 - landFeedbackTime/landFeedbackDuration ); 
+    }
+
+    private void ExitFeedback()
+    {
+        //float angle = exitWiggleCurve.Evaluate(1 - exitFeedbackTime/exitFeedbackDuration) * exitFeedbackMultiplier;
+        //transform.eulerAngles = Vector3.forward * (savedRotation + angle);
+
+        transform.localPosition = 
+            1.5f *
+            transform.up * 
+            contactPointModifier * 
+            landPushbackMultiplier * 
+            landPushbackCurve.Evaluate( 1 - exitFeedbackTime/exitFeedbackDuration); 
     }
 
     private void OnDrawGizmos() 
