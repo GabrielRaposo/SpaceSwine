@@ -27,6 +27,10 @@ public class SpaceJumper : MonoBehaviour
     PlayerAnimations playerAnimations;
     Rigidbody2D rb;
 
+    bool blockCollision;
+
+    public bool BlockCollision { set { blockCollision = value; } }
+
     void Awake()
     {
         platformerCharacter = GetComponent<PlatformerCharacter>();
@@ -113,7 +117,7 @@ public class SpaceJumper : MonoBehaviour
 
     private void OnCollisionEnter2D (Collision2D collision) 
     {
-        if (!onLaunch)
+        if (!onLaunch || blockCollision)
             return;
 
         if (collision.gameObject.layer != LayerMask.NameToLayer("Ground"))
@@ -147,6 +151,10 @@ public class SpaceJumper : MonoBehaviour
             return;
         }
 
+        GravitationalPlatform gravitationalPlatform = planet.GetComponent<GravitationalPlatform>();
+        if (gravitationalPlatform)
+            SnapIntoPlatform(gravitationalPlatform);
+
         Vector2 direction = (transform.position - planet.transform.position).normalized;
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
 
@@ -167,6 +175,25 @@ public class SpaceJumper : MonoBehaviour
     {
         yield return new WaitWhile( () => collectableInteraction.OnAirStall );
         OnCollisionEnter2D(collision);
+    }
+
+    private void SnapIntoPlatform (GravitationalPlatform platform)
+    {
+        (bool left, Transform t) anchor = platform.ClosestAnchor(transform.position);
+        if (anchor.t == null)
+            return;
+
+        Vector3 positionOffset = transform.position - anchor.t.position;
+        //Debug.DrawLine(anchor.t.position, anchor.t.position + positionOffset, Color.red, 2f);
+
+        positionOffset = RaposUtil.RotateVector(positionOffset, -platform.transform.eulerAngles.z);
+        //Debug.DrawLine(anchor.t.position, anchor.t.position + positionOffset, Color.blue, 2f);
+
+        if ( (anchor.left && positionOffset.x > 0) || (!anchor.left && positionOffset.x < 0) )
+            return;
+
+        transform.position = anchor.t.position;
+        Debug.Log("SNAPPED!");
     }
 
     public void PointAndHoldIntoDirection (Vector2 direction)
