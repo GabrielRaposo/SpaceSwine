@@ -48,7 +48,23 @@ public class SteelBeam : MonoBehaviour
                 sr.enabled = false;
         }
 
+        foreach (GravitationalPlatform p in platforms)
+        {
+            p.OnLandAction += OnLandAction;
+            p.OnPlayerExitAction += OnPlayerExitAction;
+        }
+
         UpdateAttributes();
+    }
+
+    private void OnLandAction (Transform player)
+    {
+        //Debug.Log("On land plat");
+    }
+
+    private void OnPlayerExitAction()
+    {
+        Debug.Log("On exit plat");
     }
 
     private void OnDrawGizmos() 
