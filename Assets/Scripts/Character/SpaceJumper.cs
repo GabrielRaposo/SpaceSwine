@@ -161,7 +161,6 @@ public class SpaceJumper : MonoBehaviour
         }
 
         SetLaunchState(false);
-        //Debug.Log("Long land VFX");
     }
 
     private IEnumerator DelayCollisionInteraction(Collision2D collision)
