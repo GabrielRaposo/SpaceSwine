@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -107,6 +108,21 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
             {
                 transform.GetChild(i).localPosition = childrenPos[i];
             }
+        }
+        
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if(targetPositions.Count <2)
+            return;
+
+        Gizmos.color = Color.red;
+        
+        for (int i = 0; i < targetPositions.Count-1; i++)
+        {
+            Gizmos.DrawLine(targetPositions[i], targetPositions[i+1]);
+            Gizmos.DrawSphere(targetPositions[i+1], 0.2f);
         }
         
     }
