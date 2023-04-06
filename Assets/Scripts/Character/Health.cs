@@ -71,8 +71,8 @@ public class Health : MonoBehaviour
 
         Vector2 pos = ((Vector2) transform.position)
             .Remap(new Vector2(-10f, -6f), new Vector2(10f, 6f),Vector2.zero, Vector2.one);
-        
         //CameraShaderManager.Instance.StartDeathSentence(pos, OnDeathEvent);
-        OnDeathEvent.Invoke(deathFromDamage);
+
+        OnDeathEvent?.Invoke(deathFromDamage);
     }
 }

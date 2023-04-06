@@ -55,7 +55,7 @@ public class Lock : MonoBehaviour
         {
             Unlock();
 
-            if(_door)
+            if (_door)
                 _door.TakeHealth();
         }
 
@@ -79,6 +79,7 @@ public class Lock : MonoBehaviour
         collectAKEvent?.Post(gameObject);
     }
 
+    // -- Chamado por animação
     public void CallParticleTrigger()
     {
         if (burstParticles)

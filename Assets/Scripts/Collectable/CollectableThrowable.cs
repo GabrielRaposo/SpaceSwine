@@ -27,7 +27,7 @@ public class CollectableThrowable : Collectable
     {
         indestructible = false;
         
-        if(rotationRoutine!=null)
+        if (rotationRoutine != null)
             StopCoroutine(rotationRoutine);
         
         Collider2D collider2D = GetComponent<Collider2D>();
@@ -119,18 +119,17 @@ public class CollectableThrowable : Collectable
         }
 
         Hitbox hb = collision.GetComponent<Hitbox>();
-        if (hb) 
-        {
-            if (hb.damage > 0) 
-            {
-                DestroyKey();
-            }
-        }
+        if (hb && hb.damage > 0) 
+            DestroyCollectable();
 
         GravitationalBody gravitationalBody = collision.GetComponent<GravitationalBody>();
         if (gravitationalBody)
         {
             ResetToCollectableState(gravitationalBody);
+            
+            BubblePlanet bubblePlanet = gravitationalBody.GetComponent<BubblePlanet>();
+            if (bubblePlanet)
+                bubblePlanet.CollectableContactInteraction(this);
         }
     }
 
@@ -148,7 +147,7 @@ public class CollectableThrowable : Collectable
         intenseTrailParticle?.Stop();
     }
 
-    private void DestroyKey()
+    private void DestroyCollectable()
     {
         return;
 

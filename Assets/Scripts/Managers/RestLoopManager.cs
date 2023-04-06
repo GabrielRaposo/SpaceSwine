@@ -39,7 +39,7 @@ public class RestLoopManager : MonoBehaviour
         if (playlistPlayer)
         {
             playlistPlayer.SetPlayerState(true);
-            playlistPlayer.OnFocus = true;
+            this.Wait(1, () => { playlistPlayer.OnFocus = true; });
         }
     }
 

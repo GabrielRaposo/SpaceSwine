@@ -9,6 +9,8 @@ public class GravitationalPlatform : GravitationalBody
     [SerializeField] float gravityHeight = 1f;
 
     [Header("References")]
+    [SerializeField] Transform leftAnchor; 
+    [SerializeField] Transform rightAnchor;
     [SerializeField] BoxCollider2D mainCollider;
     [SerializeField] SpriteRenderer outlineVisualComponent;
     [SerializeField] SpriteRenderer insideVisualComponent;
@@ -16,15 +18,18 @@ public class GravitationalPlatform : GravitationalBody
     [SerializeField] GameObject leftWall;
     [SerializeField] GameObject rightWall;
 
+    public Vector2 Size { get { return platformSize; } }
+
     private void OnValidate() 
     {
         UpdateAttributes();
     }
 
-    //public (float planetRadius, float gravityRadius) GetAttributes()
-    //{
-    //    return (planetRadius, gravityRadius);
-    //}
+    public void UpdateLength (float length)
+    {
+        platformSize = new Vector2(length, platformSize.y);
+        UpdateAttributes();
+    }
 
     private void UpdateAttributes() 
     {
@@ -54,6 +59,23 @@ public class GravitationalPlatform : GravitationalBody
             rightWall.transform.localPosition = new Vector2 ((platformSize.x * .5f) + .4f, .5f * gravityHeight);
             rightWall.transform.localScale = new Vector2(.25f, gravityHeight);
         }
+
+        if (leftAnchor)
+            leftAnchor.transform.localPosition = new Vector2(platformSize.x * -.5f, .5f);
+        
+        if (rightAnchor)
+            rightAnchor.transform.localPosition = new Vector2(platformSize.x * .5f, .5f);
+    }
+
+    public (bool left, Transform t) ClosestAnchor (Vector3 position)
+    {
+        if (!leftAnchor || !rightAnchor)
+            return (false, null);
+
+        if (Vector2.Distance(leftAnchor.position, position) < Vector2.Distance(rightAnchor.position, position))
+            return (true, leftAnchor);
+        else 
+            return (false, rightAnchor);
     }
 
     private void OnDrawGizmosSelected() 
