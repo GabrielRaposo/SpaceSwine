@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,13 @@ public class MultiterminalMoveAction : TerminalMoveAction
     {
         activatedCount++;
         if(activatedCount<terminalCount)
-            return;
+            return;        
         base.Activate(terminal, player);
+    }
+
+    protected override void OnReset()
+    {
+        activatedCount = 0;
+        base.OnReset();
     }
 }

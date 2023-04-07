@@ -102,8 +102,10 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
         }
     }
 
-    private void OnReset()
+    protected virtual void OnReset()
     {
+        sequence.Kill();
+    
         index = 0;
         transform.position = targetPositions[0];
 
