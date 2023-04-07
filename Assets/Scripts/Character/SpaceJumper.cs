@@ -91,6 +91,7 @@ public class SpaceJumper : MonoBehaviour
 
     private void SetLaunchState (bool value, bool playLongJumpSound = true)
     {
+        onLaunch = value;
         KillFlightSound();
 
         if (value) 
@@ -112,7 +113,6 @@ public class SpaceJumper : MonoBehaviour
 
         platformerCharacter.enabled = !value;
         gravityInteraction.enabled = !value;
-        onLaunch = value;
     }
 
     private void OnCollisionEnter2D (Collision2D collision) 
@@ -202,6 +202,14 @@ public class SpaceJumper : MonoBehaviour
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
         rb.velocity = Vector2.zero;
     } 
+
+    public void TryLaunchIntoDirection(Vector2 direction)
+    {
+        if (onLaunch)
+            return;
+
+        LaunchIntoDirection(direction);
+    }
 
     public void LaunchIntoDirection (Vector2 direction, float multiplier = 1.0f, bool playLongJumpSound = true) 
     {

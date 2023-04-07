@@ -25,6 +25,33 @@ public class GravitationalPlatform : GravitationalBody
         UpdateAttributes();
     }
 
+    private void Start() 
+    {
+        OnLandAction += (player) =>
+        {
+            SetWalls(true);
+        };
+        
+        OnPlayerExitAction += () => 
+        {
+            SetWalls(false);
+        };    
+
+        SetWalls(false);
+
+        Round round = GetComponentInParent<Round>();
+        if (round)
+        {
+            round.OnReset += () => SetWalls(false);
+        }
+    }
+
+    private void SetWalls(bool value)
+    {
+        leftWall.SetActive(value);
+        rightWall.SetActive(value);
+    }
+
     public void UpdateLength (float length)
     {
         platformSize = new Vector2(length, platformSize.y);
