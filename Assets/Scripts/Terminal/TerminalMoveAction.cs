@@ -9,6 +9,8 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
     [SerializeField] List <Vector2> targetPositions;
     [SerializeField] float duration;
 
+    [SerializeField] private bool lockPlayer;
+
     //TEMP
     //Solução temporária para os filhos do objeto que se move não resetando corretamente
     private bool keepTrackOfChildren;
@@ -56,12 +58,15 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
         if (sequence != null)
             sequence.Kill();
 
-        BeforeSequence(player);
+        if(lockPlayer)
+            BeforeSequence(player);
 
         sequence = DOTween.Sequence();
         //sequence.Append( transform.DORotate(targetPositions[index] * Vector3.forward, duration, RotateMode.FastBeyond360) );
         sequence.Append(transform.DOMove(targetPositions[index], duration));
-        sequence.OnComplete(() => AfterSequence(player));
+        
+        if(lockPlayer)
+            sequence.OnComplete(() => AfterSequence(player));
     }
 
     private void BeforeSequence(PlayerInteractor player)
