@@ -23,6 +23,7 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 0}
+  animator: {fileID: 3985104368401843479}
   terminalEventObjects: []
 --- !u!1001 &5342863188289172734
 PrefabInstance:
@@ -153,8 +154,12 @@ PrefabInstance:
       objectReference: {fileID: 4416753837783519623}
     - target: {fileID: 9036550219597066729, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9036550219597066729, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2a4b15ade0c706a47be66755356bf1ee, type: 2}
     m_RemovedComponents:
     - {fileID: 2287363526354893251, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
@@ -166,6 +171,11 @@ GameObject:
 --- !u!58 &5691535883411734314 stripped
 CircleCollider2D:
   m_CorrespondingSourceObject: {fileID: 349535262006152148, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
+  m_PrefabInstance: {fileID: 5342863188289172734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3985104368401843479 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9036550219597066729, guid: 249afbc2fdbfd2b4482124a7ee9daf72, type: 3}
   m_PrefabInstance: {fileID: 5342863188289172734}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &5691535883151682032 stripped

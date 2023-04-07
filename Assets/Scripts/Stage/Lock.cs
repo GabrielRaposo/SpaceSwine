@@ -20,11 +20,13 @@ public class Lock : MonoBehaviour
 
     private Door _door;
     private Round _round;
-    private Animator animator;
+    [SerializeField]private Animator animator;
 
     public void Init (Door s, bool isInternal)
     {
-        animator = GetComponent<Animator>();
+        if(animator == null)
+            animator = GetComponent<Animator>();
+        
         _door = s;
 
         health = startingHealth;
