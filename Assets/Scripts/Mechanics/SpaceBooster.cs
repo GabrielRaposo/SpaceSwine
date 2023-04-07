@@ -143,6 +143,10 @@ public class SpaceBooster : MonoBehaviour
         index++;
         index %= launchDirections.Length;
 
+        float angle = Vector2.SignedAngle(Vector2.right, GetLaunchDirection().normalized);
+        if (angle < 0)
+            angle += 360;
+
         if (sequence != null)
             sequence.Kill();
         sequence = DOTween.Sequence();
@@ -151,9 +155,9 @@ public class SpaceBooster : MonoBehaviour
         (
             rotationAnchor.DORotate
             (
-                Vector2.SignedAngle(Vector2.right, GetLaunchDirection().normalized) * Vector3.forward, 
+                angle * Vector3.forward, 
                 duration, 
-                RotateMode.FastBeyond360
+                RotateMode.Fast
             )    
         );
         
