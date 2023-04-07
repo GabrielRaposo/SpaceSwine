@@ -14,10 +14,12 @@ public class ElectricMindEffect : MonoBehaviour
 
     bool active;
 
+    SpriteRenderer spriteRenderer;
     Animator animator;
 
     private void Awake() 
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
@@ -33,8 +35,9 @@ public class ElectricMindEffect : MonoBehaviour
 
     private void RandomizeState()
     {
-        int index = 0;
-        //index = Random.Range(0, 3);
+        spriteRenderer.flipY = Random.Range(0, 2) == 0;
+
+        int index = Random.Range(0, 3);
         animator.SetInteger("State", index);
         animationDuration = GetClipDuration(index);
     }
@@ -55,7 +58,8 @@ public class ElectricMindEffect : MonoBehaviour
 
     private void RandomizeCooldown()
     {
-        cooldown = 1f;
+        //cooldown = 1f;
+        cooldown = Random.Range (1f, 4f);
     }
 
     void Update()
@@ -79,8 +83,8 @@ public class ElectricMindEffect : MonoBehaviour
             if (t < animationDuration)
                 return;
 
+            t = 0;
             active = false; 
-            Debug.Log("Switch off");    
         }
         else
         {
@@ -94,7 +98,12 @@ public class ElectricMindEffect : MonoBehaviour
             animator.SetTrigger("Activate");
 
             active = true;
-            Debug.Log("Switch on");
         }
+    }
+
+    public void SetVisibility(bool value)
+    {
+        if (spriteRenderer)
+            spriteRenderer.enabled = value;
     }
 }
