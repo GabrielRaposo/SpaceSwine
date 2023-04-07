@@ -9,6 +9,7 @@ public class ElectricMind : MonoBehaviour
     [SerializeField] bool autoUpdate;
     [SerializeField] ElectricLine electricLine;
     [SerializeField] Transform linesGroup;
+    [SerializeField] ElectricMindEffect lightningEffect;
 
     bool active;
 
@@ -35,6 +36,7 @@ public class ElectricMind : MonoBehaviour
 
         SetupLocks();
         SetupChain();
+        SetupEffects();
 
         active = startActive;
         UpdateActivation();
@@ -102,6 +104,14 @@ public class ElectricMind : MonoBehaviour
         {
             l.Setup(this);
         }
+    }
+
+    private void SetupEffects()
+    {
+        if (electricballs.Length < 4)
+            return;
+
+        lightningEffect.Setup (electricballs[2].transform, electricballs[3].transform);
     }
 
     private void UpdateActivation()
