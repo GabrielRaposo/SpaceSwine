@@ -8,6 +8,10 @@ public class InteractableDoor : Interactable
 {
     //[SerializeField] InputAction testInput;
 
+    [Header("Value")]
+    [SerializeField] float doorAnimationDuration;
+    [SerializeField] float fadeAnimationDuration;
+
     [Header("Door")]
     [SerializeField] Animator doorAnimator;
     [SerializeField] SpriteRenderer frontVisuals;
@@ -56,18 +60,18 @@ public class InteractableDoor : Interactable
         if (value)
         {
             doorAnimator.SetBool("Open", value);
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds (doorAnimationDuration);
 
             backComponent.SetState(value);
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds (fadeAnimationDuration);
         }
         else
         {
             backComponent.SetState(value);
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds (fadeAnimationDuration);
             
             doorAnimator.SetBool("Open", value);
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds (doorAnimationDuration);
         }
 
         GravityInteraction gravityInteraction = interactor.GetComponent<GravityInteraction>();
@@ -92,16 +96,17 @@ public class InteractableDoor : Interactable
         //        i.SetInteraction(false);
         //}
 
+        GameManager.BlockCharacterInput = true;
+
         if (player)
         {
-            PlayerInput playerInput = player.GetComponent<PlayerInput>();
-            if (playerInput) playerInput.enabled = false;
+            //PlayerInput playerInput = player.GetComponent<PlayerInput>();
+            //if (playerInput) playerInput.enabled = false;
 
             PlatformerCharacter platformer = player.GetComponent<PlatformerCharacter>();
             if (platformer) platformer.KillInputs();
         }
 
-        GameManager.BlockCharacterInput = true;
     }
 
     private void AfterSequence (PlayerInteractor player)
