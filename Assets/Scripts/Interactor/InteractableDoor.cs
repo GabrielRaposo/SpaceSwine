@@ -8,8 +8,11 @@ public class InteractableDoor : Interactable
 {
     //[SerializeField] InputAction testInput;
 
-    [Header("Door References")]
+    [Header("Door")]
+    [SerializeField] Animator doorAnimator;
     [SerializeField] SpriteRenderer frontVisuals;
+
+    [Header("Closed Space")]
     [SerializeField] ClosedSpaceInner backComponent;
     [SerializeField] GameObject inputHelper;
 
@@ -35,34 +38,87 @@ public class InteractableDoor : Interactable
     {
         base.Interaction(interactor);
 
-        SetState (interactor, !closedSpaceIsActive);
+        StartCoroutine( SetState (interactor, !closedSpaceIsActive) );
     }
 
-    private void SetState (PlayerInteractor interactor, bool value)
+    private IEnumerator SetState (PlayerInteractor interactor, bool value)
     {
         if (!interactor || !backComponent)
-            return;
+            yield break;
 
         if (value == closedSpaceIsActive)
-            return;
+            yield break;
 
-        //if (frontVisuals)
-        //    frontVisuals.enabled = !value;
+        BeforeSequence (interactor);
 
-        // -- Desativação do backComponent DEVE ocorrer antes do "SetOverrideGravitationalBody"
+        // -- Desativação do backComponent DEVE ocorrer antes do "BlinkCollider"
         // -- Se precisar botar pra depois, então dividir a função em cases de "true" e casos de "false" ocorrendo em tempos diferentes
-        backComponent.SetState(value);
+        if (value)
+        {
+            doorAnimator.SetBool("Open", value);
+            yield return new WaitForSeconds(.5f);
+
+            backComponent.SetState(value);
+            yield return new WaitForSeconds(.2f);
+        }
+        else
+        {
+            backComponent.SetState(value);
+            yield return new WaitForSeconds(.2f);
+            
+            doorAnimator.SetBool("Open", value);
+            yield return new WaitForSeconds(.5f);
+        }
 
         GravityInteraction gravityInteraction = interactor.GetComponent<GravityInteraction>();
         if (gravityInteraction)
         {
-            gravityInteraction.SetOverrideGravitationalBody = 
-                value ? 
-                    backComponent.GetGravitationalBody : 
-                    null;
+            if (value)
+                gravityInteraction.HardSetGravityArea(backComponent.GetGravitationalBody.GetComponentInChildren<GravityArea>());
+            else
+                gravityInteraction.BlinkCollider();
         }
 
         closedSpaceIsActive = value;
+
+        AfterSequence (interactor);
+    }
+
+    private void BeforeSequence (PlayerInteractor player)
+    {
+        //if (interactableChildren != null && interactableChildren.Count > 0)
+        //{
+        //    foreach (Interactable i in interactableChildren)
+        //        i.SetInteraction(false);
+        //}
+
+        if (player)
+        {
+            PlayerInput playerInput = player.GetComponent<PlayerInput>();
+            if (playerInput) playerInput.enabled = false;
+
+            PlatformerCharacter platformer = player.GetComponent<PlatformerCharacter>();
+            if (platformer) platformer.KillInputs();
+        }
+
+        GameManager.BlockCharacterInput = true;
+    }
+
+    private void AfterSequence (PlayerInteractor player)
+    {
+        //if (interactableChildren != null && interactableChildren.Count > 0)
+        //{
+        //    foreach (Interactable i in interactableChildren)
+        //        i.SetInteraction(true);
+        //}
+
+        if (player)
+        {
+            PlayerInput playerInput = player.GetComponent<PlayerInput>();
+            if (playerInput) playerInput.enabled = true;
+        }
+
+        GameManager.BlockCharacterInput = false;
     }
 
     protected override void HighlightState (bool value) 
