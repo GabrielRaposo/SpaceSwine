@@ -343,7 +343,7 @@ public class PlatformerCharacter : SidewaysCharacter
         {
             if (!previousState) 
             {
-                if (!BlockLandFeedback)
+                if (!BlockLandFeedback && !checkGround.OnCustomSurface)
                 {
                     shortLandingAKEvent?.Post(gameObject);
                     shortLandingVFX?.Play();

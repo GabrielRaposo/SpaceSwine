@@ -9,11 +9,15 @@ public class ElectricMind : MonoBehaviour
     [SerializeField] bool autoUpdate;
     [SerializeField] ElectricLine electricLine;
     [SerializeField] Transform linesGroup;
+    [SerializeField] ElectricMindEffect lightningEffect;
 
     bool active;
 
+    ElectricLock[] electricLocks;
     ElectricBall[] electricballs;
-    List<ElectricLine> electricLines;
+    List <ElectricLine> electricLines;
+    List <ElectricMindEffect> electricEffects;
+    List <Transform> targets;
 
     private void Start() 
     {
@@ -30,7 +34,11 @@ public class ElectricMind : MonoBehaviour
             return;    
         }
 
+        electricLocks = GetComponentsInChildren<ElectricLock>();
+
+        SetupLocks();
         SetupChain();
+        SetupEffects();
 
         active = startActive;
         UpdateActivation();
@@ -50,15 +58,38 @@ public class ElectricMind : MonoBehaviour
     {
         electricLines = new List<ElectricLine>();
 
-        int max = electricballs.Length - (loop ? 0 : 1); 
-        for (int i = 0; i < max; i++) 
+        targets = new List<Transform>();
+        for (int i = 0; i < electricballs.Length; i++)
+        {
+            targets.Add( electricballs[i].transform );
+
+            if (electricLocks == null || electricLocks.Length < 1)
+                continue;
+
+            Transform t = null;
+            foreach (ElectricLock l in electricLocks)
+            {
+                if (l.transform.GetSiblingIndex() - 2 == i)
+                {
+                    t = l.GetConnectionPoint();
+                    break;
+                }
+            }
+
+            if (t != null)
+                targets.Add(t);
+        }
+        if (loop && targets.Count > 0)
+            targets.Add(targets[0]);
+
+        for (int i = 0; i < targets.Count - 1; i++)
         {
             GameObject lineObject = Instantiate (electricLine.gameObject, linesGroup);
-            
+
             ElectricLine lineScript = lineObject.GetComponent<ElectricLine>();
             if (lineScript) 
             {
-                lineScript.Setup(autoUpdate, BallAt(i+1).transform, BallAt(i).transform);
+                lineScript.Setup(autoUpdate, targets[i + 1], targets[i]);
                 electricLines.Add(lineScript);
             }
         }
@@ -66,9 +97,44 @@ public class ElectricMind : MonoBehaviour
         electricLine.gameObject.SetActive(false);
     }
 
-    ElectricBall BallAt (int index)
+    private void SetupLocks()
     {
-        return electricballs[index % electricballs.Length];
+        if (electricLocks == null || electricLocks.Length < 1)
+            return;
+
+        foreach (ElectricLock l in electricLocks)
+        {
+            l.Setup(this);
+        }
+    }
+
+    private void SetupEffects()
+    {
+        if (!lightningEffect)
+            return;
+
+        electricEffects = new List<ElectricMindEffect>();
+        
+        if (targets.Count < 2)
+            return;
+
+        for (int i = 0; i < targets.Count - 1; i++)
+        {
+            GameObject effectObj = Instantiate(lightningEffect.gameObject, linesGroup);
+            effectObj.SetActive(true);
+
+            ElectricMindEffect effectScript = effectObj.GetComponent<ElectricMindEffect>();
+            effectScript.Setup(targets[i+1], targets[i]);
+
+            electricEffects.Add (effectScript);
+        }
+
+        lightningEffect.gameObject.SetActive(false);
+
+        //if (electricballs.Length < 4)
+        //    return;
+
+        //lightningEffect.Setup (electricballs[2].transform, electricballs[3].transform);
     }
 
     private void UpdateActivation()
@@ -78,11 +144,28 @@ public class ElectricMind : MonoBehaviour
 
         foreach (ElectricBall b in electricballs)
             b.SetActivation(active);
+
+        foreach (ElectricMindEffect e in electricEffects)
+            e.SetVisibility(active);
+
+        if (electricLocks != null)
+        {
+            foreach (ElectricLock l in electricLocks)
+                l.SetState(active);
+        }
     }
 
     public void ToggleActivation()
     {
-        active = !active;
+        SetActivation(!active);
+    }
+
+    public void SetActivation(bool value)
+    {
+        if (value == active)
+            return;
+
+        active = value;
         UpdateActivation();
     }
 }

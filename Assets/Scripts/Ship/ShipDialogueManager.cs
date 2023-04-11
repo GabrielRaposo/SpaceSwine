@@ -15,7 +15,7 @@ public class ShipDialogueManager : MonoBehaviour
     [Header("References")]
     [SerializeField] PlayerCharacter playerCharacter;
     [SerializeField] ShipDialogueBox dialogueBox;
-    [SerializeField] ShipShuttleSystem shuttleSystem;
+    [SerializeField] ShipInitializerSystem shipInitializer;
 
     public static int StartDialogueIndex = -1; // -- Chama "-1" se não tiver diálogo no início
 
@@ -23,7 +23,7 @@ public class ShipDialogueManager : MonoBehaviour
 
     void Start()
     {
-        if (!playerCharacter || !dialogueBox || !shuttleSystem || TrailerSceneCaller.AutoStart)
+        if (!playerCharacter || !dialogueBox || !shipInitializer || TrailerSceneCaller.AutoStart)
         {
             enabled = false;
             return;
@@ -42,7 +42,7 @@ public class ShipDialogueManager : MonoBehaviour
 
         GameManager.OnDialogue = true;
 
-        shuttleSystem.AfterStartAction = () => 
+        shipInitializer.AfterStartAction = () => 
         {
             CallDialogueOnStart();
         };
@@ -143,7 +143,7 @@ public class ShipDialogueManager : MonoBehaviour
         switch (data.sceneType)
         {
             case ShipSceneType.TurnOnScreensAndTalk:
-                shuttleSystem.RestorePlayerControls();
+                shipInitializer.RestorePlayerControls();
                 break;
         }
     }

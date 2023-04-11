@@ -45,6 +45,19 @@ public class CollectableInteraction : MonoBehaviour
         platformerCharacter = GetComponent<PlatformerCharacter>();
     }
 
+    private void Start() 
+    {
+        Health health = GetComponent<Health>();
+        if (health)
+        {
+            health.OnDeathEvent += (f) => 
+            { 
+                StopAllCoroutines(); 
+                //Debug.Log("ded");
+            };
+        }
+    }
+
     private void FixedUpdate() 
     {
         QueueCooldown();
@@ -90,7 +103,7 @@ public class CollectableInteraction : MonoBehaviour
 
     private void StartCooldownCount()
     {
-        Debug.Log("StartCooldownCount");
+        //Debug.Log("StartCooldownCount");
         cooldownCount = cooldownDuration;
     }
 
@@ -170,6 +183,8 @@ public class CollectableInteraction : MonoBehaviour
         spaceJumper.PointAndHoldIntoDirection(-direction.normalized);
 
         yield return new WaitForSeconds(airHoldDuration);
+        
+        // TO-DO: verificar se morreu
 
         airThrowEffect?.Play();
 

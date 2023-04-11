@@ -13,6 +13,13 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID AMBIENCE_01 = 1671483493U;
+        static const AkUniqueID AMBIENCE_02 = 1671483494U;
+        static const AkUniqueID ASMR_01 = 419243222U;
+        static const AkUniqueID BASS_01 = 2197579062U;
+        static const AkUniqueID BASS_02 = 2197579061U;
+        static const AkUniqueID BUMBOCAIXA_01 = 883042108U;
+        static const AkUniqueID BUMBOCAIXA_02 = 883042111U;
         static const AkUniqueID CENARIO_BUYK_CHUTA_BOLINHA = 2035115204U;
         static const AkUniqueID CENARIO_BUYK_CHUTA_COPO = 223749984U;
         static const AkUniqueID CENARIO_NAVE_BIP_PERIGO = 3298760050U;
@@ -24,6 +31,8 @@ namespace AK
         static const AkUniqueID CENARIO_TRANSICAO = 3223415371U;
         static const AkUniqueID CENARIO_TUTORIAL_SOUNDSCAPE = 1243364701U;
         static const AkUniqueID CENARIO_VITORIA = 3655190725U;
+        static const AkUniqueID CHORDS_01 = 522712106U;
+        static const AkUniqueID CHORDS_02 = 522712105U;
         static const AkUniqueID GAMEPLAY_BUYK_ANDA = 2274976510U;
         static const AkUniqueID GAMEPLAY_BUYK_BEAMDOWN = 294436755U;
         static const AkUniqueID GAMEPLAY_BUYK_BEAMUP = 3509944340U;
@@ -62,6 +71,8 @@ namespace AK
         static const AkUniqueID GGS_UI_DESLIGA = 3509273191U;
         static const AkUniqueID GGS_UI_LIGA = 4113901743U;
         static const AkUniqueID GGS_UI_RECORDE_FANFARRA = 1270516008U;
+        static const AkUniqueID HIHAT_01 = 2036806543U;
+        static const AkUniqueID HIHAT_02 = 2036806540U;
         static const AkUniqueID LOFI_01 = 48927505U;
         static const AkUniqueID LOFI_02 = 48927506U;
         static const AkUniqueID LOFI_03 = 48927507U;
@@ -76,7 +87,22 @@ namespace AK
         static const AkUniqueID LOFI_12 = 65705089U;
         static const AkUniqueID LOFI_13 = 65705088U;
         static const AkUniqueID LOFI_14 = 65705095U;
+        static const AkUniqueID MAKEABEAT_APARELHOS_NAVEGACAO = 1887497970U;
+        static const AkUniqueID MAKEABEAT_APARELHOS_SELECAO = 2771531893U;
+        static const AkUniqueID MAKEABEAT_CAIXA_ESCONDE = 1649118717U;
+        static const AkUniqueID MAKEABEAT_CAIXA_MOSTRA = 2606624850U;
+        static const AkUniqueID MAKEABEAT_FITA_DESINSTALAR = 459210550U;
+        static const AkUniqueID MAKEABEAT_FITA_ENFILEIRAR = 2792426251U;
+        static const AkUniqueID MAKEABEAT_FITA_HOVER = 1176787742U;
+        static const AkUniqueID MAKEABEAT_FITA_INSTALAR = 772756318U;
+        static const AkUniqueID MAKEABEAT_FITA_TIRAR_FILA = 2316358293U;
+        static const AkUniqueID MAKEABEAT_METRONOMO_OFF = 482400517U;
+        static const AkUniqueID MAKEABEAT_METRONOMO_ON = 2580933369U;
         static const AkUniqueID SPLASH_SCREEN = 3514087899U;
+        static const AkUniqueID TREBLE_01 = 2489791123U;
+        static const AkUniqueID TREBLE_02 = 2489791120U;
+        static const AkUniqueID TREBLE_03 = 2489791121U;
+        static const AkUniqueID TREBLE_04 = 2489791126U;
         static const AkUniqueID UI_LABORBOT_FALA = 1076532240U;
         static const AkUniqueID UI_MAROMBOT_FALA = 1293565034U;
         static const AkUniqueID UI_NAVE_FALA = 1320095827U;
@@ -126,8 +152,24 @@ namespace AK
 
     namespace GAME_PARAMETERS
     {
+        static const AkUniqueID ___METRONOMO = 3537513504U;
+        static const AkUniqueID AMBIENCE_01 = 1671483493U;
+        static const AkUniqueID AMBIENCE_02 = 1671483494U;
+        static const AkUniqueID ASMR_01 = 419243222U;
+        static const AkUniqueID BASS_01 = 2197579062U;
+        static const AkUniqueID BASS_02 = 2197579061U;
+        static const AkUniqueID BUMBOCAIXA_01 = 883042108U;
+        static const AkUniqueID BUMBOCAIXA_02 = 883042111U;
         static const AkUniqueID BUYK_STUCK = 363529975U;
+        static const AkUniqueID CHORDS_01 = 522712106U;
+        static const AkUniqueID CHORDS_02 = 522712105U;
         static const AkUniqueID CUTSCENE_INICIO = 1171258525U;
+        static const AkUniqueID HIHAT_01 = 2036806543U;
+        static const AkUniqueID HIHAT_02 = 2036806540U;
+        static const AkUniqueID TREBLE_01 = 2489791123U;
+        static const AkUniqueID TREBLE_02 = 2489791120U;
+        static const AkUniqueID TREBLE_03 = 2489791121U;
+        static const AkUniqueID TREBLE_04 = 2489791126U;
         static const AkUniqueID TUTORIAL_FINAL_PULO_FADEOUT = 2164391380U;
         static const AkUniqueID TUTORIAL_INICIO_FADEIN = 4133059913U;
         static const AkUniqueID VOLUME_CUTSCENE = 2340947590U;
@@ -136,6 +178,7 @@ namespace AK
         static const AkUniqueID VOLUME_NAVEGACAO = 2864841961U;
         static const AkUniqueID VOLUME_PLACEHOLDERS = 4083254980U;
         static const AkUniqueID VOLUME_SFX = 3673881719U;
+        static const AkUniqueID VOLUME_SFXMAKEABEAT = 1633207222U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS
@@ -156,15 +199,18 @@ namespace AK
         static const AkUniqueID LOFI_12 = 65705089U;
         static const AkUniqueID LOFI_13 = 65705088U;
         static const AkUniqueID LOFI_14 = 65705095U;
+        static const AkUniqueID MAKE_A_BEAT = 2500044626U;
     } // namespace BANKS
 
     namespace BUSSES
     {
         static const AkUniqueID CUTSCENE = 1182958561U;
+        static const AkUniqueID MAKEABEAT_SAMPLES = 540031604U;
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MUSIC = 3991942870U;
         static const AkUniqueID MUSIC_PLACEHOLDER = 2342674260U;
         static const AkUniqueID SFX = 393239870U;
+        static const AkUniqueID SFX_MAKEABEAT = 3530778344U;
         static const AkUniqueID SFX_PLACEHOLDER = 891914060U;
     } // namespace BUSSES
 
