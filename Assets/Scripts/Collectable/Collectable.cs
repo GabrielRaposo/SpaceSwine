@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {   
+    [SerializeField] protected Collider2D innerCollider;
+
     [Header("Wwise Events")]
     [SerializeField] AK.Wwise.Event OnCollectAKEvent;
 
@@ -66,6 +68,9 @@ public class Collectable : MonoBehaviour
         Collider2D coll = GetComponent<Collider2D>();
         if (coll)
             coll.enabled = value;
+
+        if (innerCollider)
+            innerCollider.enabled = value;
     }
 
     public virtual void UpdateSortingLayer(bool value)

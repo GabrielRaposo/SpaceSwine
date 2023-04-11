@@ -9,12 +9,15 @@ public class ElectricMind : MonoBehaviour
     [SerializeField] bool autoUpdate;
     [SerializeField] ElectricLine electricLine;
     [SerializeField] Transform linesGroup;
+    [SerializeField] ElectricMindEffect lightningEffect;
 
     bool active;
 
     ElectricLock[] electricLocks;
     ElectricBall[] electricballs;
-    List<ElectricLine> electricLines;
+    List <ElectricLine> electricLines;
+    List <ElectricMindEffect> electricEffects;
+    List <Transform> targets;
 
     private void Start() 
     {
@@ -35,6 +38,7 @@ public class ElectricMind : MonoBehaviour
 
         SetupLocks();
         SetupChain();
+        SetupEffects();
 
         active = startActive;
         UpdateActivation();
@@ -54,7 +58,7 @@ public class ElectricMind : MonoBehaviour
     {
         electricLines = new List<ElectricLine>();
 
-        List<Transform> targets = new List<Transform>();
+        targets = new List<Transform>();
         for (int i = 0; i < electricballs.Length; i++)
         {
             targets.Add( electricballs[i].transform );
@@ -104,6 +108,35 @@ public class ElectricMind : MonoBehaviour
         }
     }
 
+    private void SetupEffects()
+    {
+        if (!lightningEffect)
+            return;
+
+        electricEffects = new List<ElectricMindEffect>();
+        
+        if (targets.Count < 2)
+            return;
+
+        for (int i = 0; i < targets.Count - 1; i++)
+        {
+            GameObject effectObj = Instantiate(lightningEffect.gameObject, linesGroup);
+            effectObj.SetActive(true);
+
+            ElectricMindEffect effectScript = effectObj.GetComponent<ElectricMindEffect>();
+            effectScript.Setup(targets[i+1], targets[i]);
+
+            electricEffects.Add (effectScript);
+        }
+
+        lightningEffect.gameObject.SetActive(false);
+
+        //if (electricballs.Length < 4)
+        //    return;
+
+        //lightningEffect.Setup (electricballs[2].transform, electricballs[3].transform);
+    }
+
     private void UpdateActivation()
     {
         foreach (ElectricLine l in electricLines)
@@ -111,6 +144,9 @@ public class ElectricMind : MonoBehaviour
 
         foreach (ElectricBall b in electricballs)
             b.SetActivation(active);
+
+        foreach (ElectricMindEffect e in electricEffects)
+            e.SetVisibility(active);
 
         if (electricLocks != null)
         {

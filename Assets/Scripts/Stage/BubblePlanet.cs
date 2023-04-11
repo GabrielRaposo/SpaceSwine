@@ -94,6 +94,12 @@ public class BubblePlanet : CustomSurface, ConcealingBody
 
     public void Burst()
     {
+        if (player)
+        {
+            SpaceJumper spaceJumper = player.GetComponent<SpaceJumper>();
+            Vector2 direction = player.transform.position - transform.position;
+            spaceJumper.TryLaunchIntoDirection(direction);
+        }
         player = null;
 
         if (concealedCollectable && concealedCollectable.transform.parent == transform)
@@ -211,6 +217,8 @@ public class BubblePlanet : CustomSurface, ConcealingBody
 
         Burst();
     }
+
+    public bool IsConcealedCollectable (Collectable collectable) => concealedCollectable == collectable;
 
     public bool IsActive() 
     {

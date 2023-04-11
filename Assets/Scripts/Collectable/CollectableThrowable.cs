@@ -6,13 +6,23 @@ using UnityEngine;
 public class CollectableThrowable : Collectable
 {
     [SerializeField] AK.Wwise.Event OnThrowAKEvent;
+    [SerializeField] AK.Wwise.Event BounceBackAKEvent;
+
+    [Header("Throw Data")]
     [SerializeField] SpriteRenderer visualComponent;
-    
+    [SerializeField] float bounceBackDuration;
+    [SerializeField] float bounceBackMultiplier;
+    [SerializeField] AnimationCurve bounceBackCurve;
+
     [Header("Particles")]
     [SerializeField] ParticleSystem idleParticle;
     [SerializeField] ParticleSystem trailParticle;
     [SerializeField] ParticleSystem intenseTrailParticle;
+    [SerializeField] ParticleSystem bounceParticle;
     [SerializeField] GameObject destroyParticles;
+
+    float bounceBackCount;
+    Vector2 bounceBackDirection;
 
     private IEnumerator rotationRoutine;
     private bool indestructible;
@@ -34,6 +44,9 @@ public class CollectableThrowable : Collectable
         if (collider2D)
             collider2D.enabled = true;
 
+        if (innerCollider)
+            innerCollider.enabled = true;
+
         FloatEffect floatEffect = GetComponentInChildren<FloatEffect>();
         if (floatEffect)
             floatEffect.enabled = true;
@@ -42,6 +55,9 @@ public class CollectableThrowable : Collectable
 
         idleParticle.transform.position = trailParticle.transform.position = transform.position;
         
+        bounceBackDirection = Vector2.zero;
+        bounceBackCount = -1;
+
         if (clearParticles)
         {
             idleParticle?.Clear();
@@ -92,6 +108,8 @@ public class CollectableThrowable : Collectable
 
     public override void TriggerEvent(Collider2D collision) 
     {
+        //Debug.Log("vel: " + GetComponent<Rigidbody2D>().velocity);
+
         Lock l = collision.GetComponent<Lock>();
         if (l)
         {
@@ -125,11 +143,16 @@ public class CollectableThrowable : Collectable
         GravitationalBody gravitationalBody = collision.GetComponent<GravitationalBody>();
         if (gravitationalBody)
         {
-            ResetToCollectableState(gravitationalBody);
-            
             BubblePlanet bubblePlanet = gravitationalBody.GetComponent<BubblePlanet>();
             if (bubblePlanet)
+            {
+                if (bubblePlanet.IsConcealedCollectable(this))
+                    return;
+
                 bubblePlanet.CollectableContactInteraction(this);
+            }
+            
+            BounceBack (gravitationalBody);
         }
     }
 
@@ -142,6 +165,9 @@ public class CollectableThrowable : Collectable
 
         visualComponent.transform.localEulerAngles = Vector3.zero;
 
+        bounceBackDirection = Vector2.zero;
+        bounceBackCount = -1;
+
         idleParticle?.Stop();
         trailParticle?.Stop();
         intenseTrailParticle?.Stop();
@@ -153,16 +179,71 @@ public class CollectableThrowable : Collectable
         Instantiate(destroyParticles, transform.position, quaternion.identity);
     }
 
-    private void ResetToCollectableState(GravitationalBody gravitationalBody)
+    private void ResetToCollectableState ()
     {
         base.OnResetFunction();
 
         LocalReset(clearParticles: false);
+    }
+    
+    private void BounceBack (GravitationalBody gravitationalBody)
+    {
+        Debug.Log("Bounce back: " + gameObject.name);
 
-        Vector3 direction = (transform.position - gravitationalBody.transform.position).normalized;
-        transform.position += direction * .1f;
+        if (bounceParticle)
+        {
+            bounceParticle.transform.position = transform.position;
+            bounceParticle.Play();
+        }
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+        if (gravitationalBody.GetType() == typeof(GravitationalPlanet))
+            bounceBackDirection = (transform.position - gravitationalBody.transform.position).normalized;
+        else
+            bounceBackDirection = - rb.velocity.normalized;
+
+        bounceBackCount = bounceBackDuration;
+
+        //Debug.Log("rb.velocity: " + rb.velocity);
+        rb.velocity = Vector2.zero;
 
         transform.SetParent(gravitationalBody.transform);
+        
+        if (rotationRoutine != null)
+            StopCoroutine(rotationRoutine);
+
+
+        FloatEffect floatEffect = GetComponentInChildren<FloatEffect>();
+        if (floatEffect)
+        {
+            floatEffect.enabled = false;
+            floatEffect.enabled = true;
+        }
+
+        visualComponent.transform.localEulerAngles = Vector3.zero;
+
+        if (BounceBackAKEvent != null)
+            BounceBackAKEvent.Post(gameObject);
+    }
+
+    private void FixedUpdate() 
+    {
+        if (bounceBackCount <= 0 || bounceBackDirection == Vector2.zero)
+            return;
+
+        float curveValue = bounceBackCurve.Evaluate (bounceBackCount / bounceBackDuration);
+        transform.position += (Vector3) bounceBackDirection * curveValue * bounceBackMultiplier * Time.fixedDeltaTime;
+
+        bounceBackCount -= Time.fixedDeltaTime;
+
+        if (bounceBackCount <= 0)
+        {
+            bounceBackDirection = Vector2.zero;
+            bounceBackCount = -1;
+            
+            ResetToCollectableState ();
+        }
     }
 
     private void OnDisable() 
