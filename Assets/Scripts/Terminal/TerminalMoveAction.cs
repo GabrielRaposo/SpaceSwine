@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -7,6 +8,8 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
 {
     [SerializeField] List <Vector2> targetPositions;
     [SerializeField] float duration;
+
+    [SerializeField] private bool lockPlayer;
 
     //TEMP
     //Solução temporária para os filhos do objeto que se move não resetando corretamente
@@ -48,19 +51,22 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
         _round.OnReset += OnReset;
     }
 
-    public void Activate (InteractableTerminal terminal, PlayerInteractor player)
+    public virtual void Activate (InteractableTerminal terminal, PlayerInteractor player)
     {
         index = (index + 1) % targetPositions.Count;
 
         if (sequence != null)
             sequence.Kill();
 
-        BeforeSequence(player);
+        if(lockPlayer)
+            BeforeSequence(player);
 
         sequence = DOTween.Sequence();
         //sequence.Append( transform.DORotate(targetPositions[index] * Vector3.forward, duration, RotateMode.FastBeyond360) );
         sequence.Append(transform.DOMove(targetPositions[index], duration));
-        sequence.OnComplete(() => AfterSequence(player));
+        
+        if(lockPlayer)
+            sequence.OnComplete(() => AfterSequence(player));
     }
 
     private void BeforeSequence(PlayerInteractor player)
@@ -96,8 +102,10 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
         }
     }
 
-    private void OnReset()
+    protected virtual void OnReset()
     {
+        sequence.Kill();
+    
         index = 0;
         transform.position = targetPositions[0];
 
@@ -107,6 +115,21 @@ public class TerminalMoveAction : MonoBehaviour, ITerminalEvent
             {
                 transform.GetChild(i).localPosition = childrenPos[i];
             }
+        }
+        
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if(targetPositions.Count <2)
+            return;
+
+        Gizmos.color = Color.red;
+        
+        for (int i = 0; i < targetPositions.Count-1; i++)
+        {
+            Gizmos.DrawLine(targetPositions[i], targetPositions[i+1]);
+            Gizmos.DrawSphere(targetPositions[i+1], 0.2f);
         }
         
     }

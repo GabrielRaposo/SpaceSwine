@@ -175,8 +175,6 @@ public class CollectableThrowable : Collectable
 
     private void DestroyCollectable()
     {
-        return;
-
         gameObject.SetActive(false);
         Instantiate(destroyParticles, transform.position, quaternion.identity);
     }

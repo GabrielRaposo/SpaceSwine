@@ -51,6 +51,7 @@ public class SpaceBooster : MonoBehaviour
         }
 
         index = 0;
+        SetRotationAnchor();
         interactable = true;
         visualComponent.DOKill();
         visualComponent.localScale = Vector3.one;
@@ -75,6 +76,33 @@ public class SpaceBooster : MonoBehaviour
         rotationAnchor.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.right, GetLaunchDirection().normalized);
     }
 
+    private void SetRotationAnchorAnimated()
+    {
+        if(rotationAnchor == null)
+            return;
+
+        Vector3 rotation = Vector3.forward * Vector2.SignedAngle(Vector2.right, GetLaunchDirection().normalized);
+
+        rotationAnchor.DORotate(rotation, 0.35f);
+
+    }
+
+    public void SetFirstLaunchDirection(float x, float y)
+    {
+        if (launchDirections.Length == 0)
+        {
+            launchDirections = new[] { new Vector2(x,y) };
+            return;
+        }
+
+        launchDirections[0] = new Vector2(x, y);
+        
+        if(Application.isPlaying)
+            SetRotationAnchorAnimated();
+        else
+            OnValidate();
+    }
+
     private void OnTriggerStay2D (Collider2D collision) 
     {
         if (!interactable)
@@ -95,10 +123,7 @@ public class SpaceBooster : MonoBehaviour
             if (!spaceJumper)
                 return;
 
-            spaceJumper.transform.position = transform.position;
-            spaceJumper.RedirectIntoDirection (GetLaunchDirection().normalized);
-
-            StartCoroutine( CooldownRoutine() );
+            PlayerLaunch(spaceJumper);
 
             return;
         }
@@ -110,12 +135,25 @@ public class SpaceBooster : MonoBehaviour
             if (!rb)
                 return;
 
-            collectable.NullifyPreviousHolder();
-            collectable.transform.position = transform.position;
-            rb.velocity = GetLaunchDirection().normalized * rb.velocity.magnitude;
-
-            StartCoroutine( CooldownRoutine() );
+            CollectableLaunch(collectable, rb);
         }
+    }
+
+    protected virtual void CollectableLaunch(CollectableThrowable collectable, Rigidbody2D rb)
+    {
+        collectable.NullifyPreviousHolder();
+        collectable.transform.position = transform.position;
+        rb.velocity = GetLaunchDirection().normalized * rb.velocity.magnitude;
+
+        StartCoroutine(CooldownRoutine());
+    }
+
+    protected virtual void PlayerLaunch(SpaceJumper spaceJumper)
+    {
+        spaceJumper.transform.position = transform.position;
+        spaceJumper.RedirectIntoDirection(GetLaunchDirection().normalized);
+
+        StartCoroutine(CooldownRoutine());
     }
 
     IEnumerator CooldownRoutine()
