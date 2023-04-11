@@ -22,6 +22,15 @@ public class CircleRulerEditor : Editor
             obj.objects.Add(newChild);
             obj.OnValidate();
         }
+
+        if (GUILayout.Button("R", GUILayout.Width(30)))
+        {
+            for (int i = 0; i < obj.objects.Count; i++)
+            {
+                var t = obj.objects[i];
+                t.eulerAngles = new Vector3(0f, 0f, Random.Range(0f, 360f));
+            }
+        }
         
         GUILayout.EndHorizontal();
         
