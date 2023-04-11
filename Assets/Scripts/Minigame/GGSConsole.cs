@@ -54,7 +54,7 @@ namespace Minigame
             playerInputActions.UI.Start.performed += (ctx) =>
             {
                 if (!turnedOn)
-                    return;
+                    return; 
                 ToggleConsoleState();
             };
             playerInputActions.UI.Start.Enable();
@@ -85,41 +85,54 @@ namespace Minigame
 
         public void TurnConsoleOn()
         {
-            SetTurnedOn(true);
+            //SetTurnedOn(true);
+            GameManager.BlockCharacterInput = true;
 
-            consoleAnchor.DOKill();
-            consoleAnchor.MoveY(HIDDEN_Y);
-
-            if (mainSequence != null)
-                mainSequence.Kill();
-
-            mainSequence = DOTween.Sequence();
-            mainSequence.AppendCallback( () => {} );
-            mainSequence.AppendInterval( inDelay/2f );
-            mainSequence.Append( canvasGroup.DOFade(1, inDelay/2f) );
-            mainSequence.AppendCallback( () => slideInAKEvent?.Post(gameObject) );
-            mainSequence.Append
+            FadeCanvas.Call
             (
-                DOVirtual.Float(HIDDEN_Y, 0, duration, 
-                    (y) => 
-                    {
-                        consoleAnchor.MoveY(y);    
-                    }
-                ).SetEase(Ease.OutCirc)
-            );
+                midFadeAction: () => 
+                {
+                    turnedOn = true;
+                    OnStateChange?.Invoke(true);
+                },
+                afterFadeAction: () =>
+                {
+                    consoleAnchor.DOKill();
+                    consoleAnchor.MoveY(HIDDEN_Y);
 
-            mainSequence.OnComplete
-            (
-                () => splashScreen.Call
-                (
-                    () => SetupMinigame (GGSMinigame.Jumper)
-                )
+                    if (mainSequence != null)
+                        mainSequence.Kill();
+
+                    mainSequence = DOTween.Sequence();
+                    mainSequence.AppendCallback( () => {} );
+                    mainSequence.AppendInterval( inDelay/2f );
+                    mainSequence.Append( canvasGroup.DOFade(1, inDelay/2f) );
+                    mainSequence.AppendCallback( () => slideInAKEvent?.Post(gameObject) );
+                    mainSequence.Append
+                    (
+                        DOVirtual.Float(HIDDEN_Y, 0, duration, 
+                            (y) => 
+                            {
+                                consoleAnchor.MoveY(y);    
+                            }
+                        ).SetEase(Ease.OutCirc)
+                    );
+
+                    mainSequence.OnComplete
+                    (
+                        () => splashScreen.Call
+                        (
+                            () => SetupMinigame (GGSMinigame.Jumper)
+                        )
+                    );
+                }
             );
         }
 
         public void TurnConsoleOff()
         {
             splashScreen.SetVisibility(true);
+            UnloadMinigame();
             
             consoleAnchor.DOKill();
             consoleAnchor.MoveY(0);
@@ -140,9 +153,20 @@ namespace Minigame
             );
             //mainSequence.AppendInterval(outDelay);
             mainSequence.Append( canvasGroup.DOFade(0, outDelay) );
-            mainSequence.OnComplete( () => SetTurnedOn(false) );
+            mainSequence.OnComplete( () => 
+            {
+                FadeCanvas.Call
+                (
+                    midFadeAction: () =>
+                    {
+                        SetTurnedOn(false); 
+                    },
+                    afterFadeAction: () =>
+                    {
+                    }
+                );
+            });
 
-            UnloadMinigame();
         }
 
         private void SetupMinigame (GGSMinigame ggsMinigame)
