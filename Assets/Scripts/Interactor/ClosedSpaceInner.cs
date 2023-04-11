@@ -15,7 +15,10 @@ public class ClosedSpaceInner : MonoBehaviour
 
     void Start()
     {
-        SetState(false);
+        //SetState(false);
+
+        visualComponent.enabled = false;
+        gravitationalPlatform.gameObject.SetActive(false);        
     }
 
     public void SetState (bool value)
@@ -25,7 +28,7 @@ public class ClosedSpaceInner : MonoBehaviour
         if (sequence != null)
             sequence.Kill();
 
-        visualComponent.color = new Color(1, 1, 1, value ? 0 : 1);
+        visualComponent.color = new Color (1, 1, 1, value ? 0 : 1);
         if (value)
             visualComponent.enabled = true;
         

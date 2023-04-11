@@ -8,6 +8,10 @@ public class RestLoopManager : MonoBehaviour
     [SerializeField] GameObject restLoopAnimation;
     [SerializeField] PlayerCharacter playerCharacter;
     [SerializeField] PlaylistPlayer playlistPlayer;
+    
+    [Header("Custom Camera")]
+    [SerializeField] float zoomSize;
+    [SerializeField] CanvasGroup horizontalLetterboxes;
 
     bool isActive;
     PlayerInputActions playerInputActions;
@@ -27,20 +31,35 @@ public class RestLoopManager : MonoBehaviour
             playlistPlayer.SetPlayerMode(true);
             playlistPlayer.SetPlayerState(false);
         }
+
+        if (horizontalLetterboxes)
+            horizontalLetterboxes.alpha = 0;
     }
 
-    public void TurnOn()
+    public void TurnOn() 
     {
         GameManager.BlockCharacterInput = true;
-        restLoopAnimation.SetActive(true);
-        playerCharacter.SetHiddenState(true);
+
+        FadeCanvas.Call
+        (
+            midFadeAction: () => 
+            {
+                restLoopAnimation.SetActive(true);
+                playerCharacter.SetHiddenState(true);
+                SetCameraState(true);
+            },
+            afterFadeAction: () => 
+            {
+                if (playlistPlayer)
+                {
+                    playlistPlayer.SetPlayerState(true);
+                    this.Wait(1, () => { playlistPlayer.OnFocus = true; });
+                }
+            }
+        );
+
         //TurnControlsOn();
 
-        if (playlistPlayer)
-        {
-            playlistPlayer.SetPlayerState(true);
-            this.Wait(1, () => { playlistPlayer.OnFocus = true; });
-        }
     }
 
     public void TurnOff()
@@ -49,13 +68,23 @@ public class RestLoopManager : MonoBehaviour
         {
             playlistPlayer.OnFocus = false;
         }
-        restLoopAnimation.SetActive(false);
-        playerCharacter.SetHiddenState(false);
 
-        RaposUtil.Wait(this, frames: 2, () => 
-        {
-            GameManager.BlockCharacterInput = false;
-        });
+        FadeCanvas.Call
+        (
+            midFadeAction: () => 
+            {
+                restLoopAnimation.SetActive(false);
+                playerCharacter.SetHiddenState(false);
+                SetCameraState(false);
+            },
+            afterFadeAction: () => 
+            {
+                RaposUtil.Wait(this, frames: 2, () => 
+                {
+                    GameManager.BlockCharacterInput = false;
+                });
+            }
+        );
     }
 
     private void TurnControlsOn()
@@ -94,6 +123,25 @@ public class RestLoopManager : MonoBehaviour
             return;
 
         TurnOff();
+    }
+
+    private void SetCameraState (bool value)
+    {
+        Camera camera = Camera.main;
+        CustomShipCamera customShipCamera = camera.GetComponent<CustomShipCamera>();
+        if (customShipCamera)
+        {
+            // TO-DO: transicionar aos poucos pro estados
+            if (value)
+                customShipCamera.SetCustomZoom(zoomSize);
+            else
+                customShipCamera.ResetZoom();
+
+            customShipCamera.SetCustomRotation(value ? 2f : 0f);
+        }   
+
+        if (horizontalLetterboxes)
+            horizontalLetterboxes.alpha = value ? 1 : 0;
     }
 
     private void OnDisable() 

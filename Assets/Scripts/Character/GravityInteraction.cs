@@ -27,38 +27,12 @@ public class GravityInteraction : MonoBehaviour
     PlanetPlatform platform;
 
     GravitationalBody gravitationalBody;
-    GravitationalBody overrideGravitationalBody; 
-    // -- Usado para fazer a transição entre Planetas e Closed Spaces
 
     public GravitationalBody GBody
     {
         get 
         {
-            if (overrideGravitationalBody != null)
-                return overrideGravitationalBody;
-
             return gravitationalBody;
-        }
-    }
-
-    public GravitationalBody SetOverrideGravitationalBody
-    {
-        set 
-        {
-            if (value == null)
-            {
-                gravityArea = null;
-                overlappingGravities = new List<GravityArea>();
-
-                // -- "Pisca" o collider para atualizar a gravityArea
-                Collider2D coll = GetComponentInChildren<Collider2D>();
-                if (coll)
-                {
-                    coll.enabled = false;
-                    coll.enabled = true;
-                }
-            }
-            overrideGravitationalBody = value;
         }
     }
 
@@ -74,7 +48,6 @@ public class GravityInteraction : MonoBehaviour
     {
         platform = null;
         gravitationalBody = null;
-        overrideGravitationalBody = null;
 
         playerFocusInput.Enable();
         planetFocusInput.Enable();
@@ -136,10 +109,7 @@ public class GravityInteraction : MonoBehaviour
             platform = checkGround.OnPlatform;
 
             GravitationalBody gBody = checkGround.OnPlanet;
-            if (overrideGravitationalBody == null)
-            {
-                gravitationalBody = gBody;
-            }
+            gravitationalBody = gBody;
         }
 
         UpdateParent ();
@@ -234,6 +204,20 @@ public class GravityInteraction : MonoBehaviour
         OnChangeGravityAnchor?.Invoke(this.gravityArea.transform);
     }
 
+    public void BlinkCollider()
+    {
+        gravityArea = null;
+        overlappingGravities = new List<GravityArea>();
+
+        // -- "Pisca" o collider para atualizar a gravityArea
+        Collider2D coll = GetComponentInChildren<Collider2D>();
+        if (coll)
+        {
+            coll.enabled = false;
+            coll.enabled = true;
+        }
+    }
+
     private void OnTriggerEnter2D (Collider2D collision) 
     {
         GravityArea gravityArea = collision.GetComponent<GravityArea>();
@@ -302,7 +286,6 @@ public class GravityInteraction : MonoBehaviour
     {
         platform = null;
         gravitationalBody = null;
-        overrideGravitationalBody = null;
         UpdateParent();
     }
 
@@ -310,7 +293,6 @@ public class GravityInteraction : MonoBehaviour
     {
         platform = null;
         gravitationalBody = null;
-        overrideGravitationalBody = null;
         
         playerFocusInput.Disable();
         planetFocusInput.Disable();
