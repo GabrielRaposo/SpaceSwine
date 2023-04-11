@@ -11,7 +11,7 @@ public class CircleRuler : MonoBehaviour
     public float sector;
     public bool rotateRadial;
 
-    private void OnValidate()
+    public void OnValidate()
     {
         if (objects == null) objects = new List<Transform>();
         if(objects.Count==0) return;
