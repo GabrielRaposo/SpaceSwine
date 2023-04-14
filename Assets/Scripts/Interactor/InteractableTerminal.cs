@@ -23,6 +23,8 @@ public class InteractableTerminal : Interactable
             terminalEvent = GetComponentInParent<ITerminalEvent>();
         else
             terminalEvent = terminalEventObject.GetComponent<ITerminalEvent>();
+
+        SetCustomCallerInteraction();
         
         CapsuleCollider2D capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         PlanetBlock planetBlock = GetComponent<PlanetBlock>();
@@ -46,6 +48,21 @@ public class InteractableTerminal : Interactable
     {
         active = true;
         UpdateAnimationState();
+    }
+
+    private void SetCustomCallerInteraction()
+    {
+        if (!terminalEventObject)
+            return;
+
+        TerminalCustomCaller customCaller = terminalEventObject.GetComponent<TerminalCustomCaller>();
+        if (!customCaller)
+            return;
+
+        customCaller.SetInteractionAction += (value) => 
+        {
+            SetInteraction(value);
+        };
     }
 
     public override void Interaction (PlayerInteractor interactor) 
