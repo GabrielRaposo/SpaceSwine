@@ -17,12 +17,12 @@ public class TransitionFadeOut : MonoBehaviour
         
     }
 
-    public void CallTransition(int index)
+    public void CallTransition(string path)
     {
-        StartCoroutine( TransitionCoroutine(index) );
+        StartCoroutine( TransitionCoroutine(path) );
     }
 
-    private IEnumerator TransitionCoroutine(int index)
+    private IEnumerator TransitionCoroutine(string path)
     {
         SceneTransition.OnTransition = true;
         bool done = false;
@@ -47,7 +47,7 @@ public class TransitionFadeOut : MonoBehaviour
         DOTween.KillAll();
 
         // Carrega cena
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(index);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(path);
 
         while (!asyncOperation.isDone)
         {

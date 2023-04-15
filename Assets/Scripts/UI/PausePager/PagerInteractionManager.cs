@@ -374,9 +374,9 @@ public class PagerInteractionManager : MonoBehaviour
         if (!roundsManager)
             return;
 
-        BuildIndex buildIndex = BuildIndex.World0Exploration; 
+        string buildPath = string.Empty; 
         if (RoundsManager.SessionData != null)
-            buildIndex = RoundsManager.SessionData.outroScene;
+            buildPath = RoundsManager.SessionData.outroScene;
 
         int previousScreen = current;
 
@@ -389,7 +389,7 @@ public class PagerInteractionManager : MonoBehaviour
                 if (RoundsManager.SessionData)
                     SpawnManager.Index = RoundsManager.SessionData.AbandonSpawnIndex;
                 PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
-                GameManager.GoToScene(buildIndex);
+                GameManager.GoToScene(buildPath);
             }, 
             CancelEvent: () => 
             { 
@@ -412,7 +412,7 @@ public class PagerInteractionManager : MonoBehaviour
         (
             title: LocalizationManager.GetUiText("quit_game", "Quit?"),
             description: LocalizationManager.GetUiText("are_you_sure","Sure?"),
-            ConfirmEvent: () => GameManager.GoToScene(BuildIndex.Title),
+            ConfirmEvent: () => GameManager.GoToScene( "Assets/Scenes/TitleScene.unity" ),
             CancelEvent: () => 
             { 
                 current = previousScreen; 

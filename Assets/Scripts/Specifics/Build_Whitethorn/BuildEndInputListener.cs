@@ -16,7 +16,7 @@ public class BuildEndInputListener : MonoBehaviour
                 return;
 
             //GameManager.QuitGame();
-            GameManager.GoToScene(BuildIndex.Title);
+            GameManager.GoToScene( "Assets/Scenes/TitleScene.unity" );
         };
         inputActions.UI.Confirm.Enable();
     }

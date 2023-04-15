@@ -7,14 +7,20 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using DevLocker.Utils;
 
 public class NavigationConsole : MonoBehaviour
 {
     const int HIDDEN_Y = -1000;
     
+    [SerializeField] SceneReference navigationScene;
+
+    [Header("Values")]
     [SerializeField] float duration;
     [SerializeField] float inDelay;
     [SerializeField] float outDelay;
+    
+    [Header("References")]
     [SerializeField] RenderTexture navigationRenderTexture;
     [SerializeField] RectTransform consoleAnchor;
 
@@ -30,14 +36,12 @@ public class NavigationConsole : MonoBehaviour
     AsyncOperation asyncSceneLoad;
     PlayerInputActions playerInputActions;
 
-    private BuildIndex buildIndex;
-
     public UnityAction <bool> OnStateChange;
 
     //public static bool TurnedOn { get; private set; }
     public static NavigationConsole Instance;
 
-    public static int ShipTeleportSceneIndex = (int) BuildIndex.World1Exploration;
+    public static string ShipTeleportScenePath = "Assets/Scenes/World1/World1ExplorationScene.unity";
 
     private void Awake() 
     {
@@ -132,9 +136,7 @@ public class NavigationConsole : MonoBehaviour
 
     private void SetupNavigationScene()
     {
-        //Debug.Log("SetupNavigationScene()");
-        buildIndex = BuildIndex.NavigationScene;
-        StartCoroutine( AsyncLoadRoutine( (int) buildIndex) );
+        StartCoroutine( AsyncLoadRoutine( navigationScene.ScenePath ) );
     }
         
     private void UnloadNavigationScene()
@@ -142,7 +144,7 @@ public class NavigationConsole : MonoBehaviour
         if (asyncSceneLoad == null)
             return;
             
-        SceneManager.UnloadSceneAsync((int) buildIndex);
+        SceneManager.UnloadSceneAsync(navigationScene.ScenePath);
             
         loadedAndActive = false;
     }
@@ -173,10 +175,10 @@ public class NavigationConsole : MonoBehaviour
         UnloadNavigationScene();
     }
 
-    private IEnumerator AsyncLoadRoutine(int index)
+    private IEnumerator AsyncLoadRoutine(string path)
     {
         //Debug.Log("AsyncLoadRoutine(int index)");
-        asyncSceneLoad = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+        asyncSceneLoad = SceneManager.LoadSceneAsync(path, LoadSceneMode.Additive);
         while (!asyncSceneLoad.isDone)
             yield return new WaitForEndOfFrame();
 

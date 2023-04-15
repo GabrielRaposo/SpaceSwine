@@ -103,9 +103,9 @@ public class GameManager : MonoBehaviour
         soundtrackManager.SetPlaylist(CurrentPlaylist);
     }
 
-    public static void GoToScene (BuildIndex buildIndex)
+    public static void GoToScene (string path)
     {
-        SceneTransition.LoadScene((int) buildIndex, SceneTransition.TransitionType.BlackFade);
+        SceneTransition.LoadScene(path, SceneTransition.TransitionType.BlackFade);
     }
 
     public static void ResetScene()
@@ -130,6 +130,11 @@ public class GameManager : MonoBehaviour
     public static bool OnTransition
     {
         get { return SceneTransition.OnTransition || RoundTransition.OnTransition; }
+    }
+
+    public static string CurrentScene
+    {
+        get { return SceneManager.GetActiveScene().path; }
     }
 
     private void OnDisable() 

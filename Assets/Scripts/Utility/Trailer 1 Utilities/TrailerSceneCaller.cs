@@ -309,7 +309,7 @@ public class TrailerSceneCaller : MonoBehaviour
             SoundtrackManager.Instance.Stop();
 
         GameManager.BlockCharacterInput = false;
-        GameManager.GoToScene( BuildIndex.World0Exploration );
+        GameManager.GoToScene( "Assets/Scenes/World0TutorialScene.unity" );
     }
 
     #if UNITY_EDITOR

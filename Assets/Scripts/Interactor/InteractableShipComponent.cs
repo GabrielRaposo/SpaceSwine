@@ -107,7 +107,8 @@ public class InteractableShipComponent : Interactable
                     PlayerCharacter.Instance.DisableAllInteractions();
                 if (SoundtrackManager.Instance)
                     SoundtrackManager.Instance.FadeOutMusic(1.0f);
-                GameManager.GoToScene(BuildIndex.MakeABeat);
+                GameManager.GoToScene("Assets/Scenes/MakeABeatScene.unity");
+                Debug.Log("RETURN HERE!");
                 break;
         }
 

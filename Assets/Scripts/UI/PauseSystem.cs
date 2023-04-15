@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using DevLocker.Utils;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class PauseSystem : MonoBehaviour
@@ -11,6 +12,8 @@ public class PauseSystem : MonoBehaviour
     [SerializeField] float transitionDuration;
 
     [Header("References")]
+    [SerializeField] SceneReference titleScene;
+    [SerializeField] SceneReference shipScene;
     [SerializeField] PagerInteractionManager pagerInteractionManager;
 
     [SerializeField] GameObject shipButton;
@@ -119,13 +122,13 @@ public class PauseSystem : MonoBehaviour
             SetPauseState(false);
 
             PlayerTransitionState playerTransitionState = player.GetComponent<PlayerTransitionState>();
-            playerTransitionState.TeleportOut( () => GameManager.GoToScene(BuildIndex.Ship) );
+            playerTransitionState.TeleportOut( () => GameManager.GoToScene(shipScene.ScenePath) );
 
             return;
         }
         
         OnPause = false;
-        GameManager.GoToScene(BuildIndex.Ship);
+        GameManager.GoToScene(shipScene.ScenePath);
     }
 
     public void CallResetRound()
@@ -155,7 +158,10 @@ public class PauseSystem : MonoBehaviour
 
     public void QuitGame()
     {
-        GameManager.GoToScene(BuildIndex.Title);
+        if (titleScene == null)
+            return;
+
+        GameManager.GoToScene(titleScene.ScenePath);
     }
 
     private void OnDisable() 

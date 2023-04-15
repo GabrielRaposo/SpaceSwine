@@ -26,40 +26,40 @@ public class SceneTransition : MonoBehaviour
         Instance = this;
     }
 
-    public static void LoadScene(int index, TransitionType transitionType)
+    public static void LoadScene(string path, TransitionType transitionType)
     {
         SaveManager.Save();
 
         if (Instance)
         {
-            Instance.LocalLoadScene(index, transitionType);
+            Instance.LocalLoadScene(path, transitionType);
         }
         else
         {
-            SceneManager.LoadScene(index);
+            SceneManager.LoadScene(path);
         }
     }
 
     public static void ReloadScene()
     {
-        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        string currentScene = SceneManager.GetActiveScene().path;
         LoadScene(currentScene, TransitionType.BlackFade);
     }
 
-    private void LocalLoadScene(int index, TransitionType transitionType)
+    private void LocalLoadScene (string path, TransitionType transitionType)
     {
         switch (transitionType)
         {
             case TransitionType.SafetyToDanger:
-                transitionSafetyToDanger.CallTransition(index, safetyToDanger: true);
+                transitionSafetyToDanger.CallTransition(path, safetyToDanger: true);
                 break;
 
             case TransitionType.DangerToSafety:
-                transitionSafetyToDanger.CallTransition(index, safetyToDanger: false);
+                transitionSafetyToDanger.CallTransition(path, safetyToDanger: false);
                 break;
 
             case TransitionType.BlackFade:
-                transitionFadeOut.CallTransition(index);
+                transitionFadeOut.CallTransition(path);
                 break;
         }
     }
@@ -67,20 +67,9 @@ public class SceneTransition : MonoBehaviour
 
 public enum BuildIndex
 {
-    Splash                  = 0,
-    Title                   = 1,
-    Ship                    = 2,
-    NavigationScene         = 3,
-    MakeABeat               = 4,
-    World0Exploration       = 5,
-    World1Exploration       = 6,
-    World1Danger            = 7,
-    World2Exploration       = 8,
-    World2Danger            = 9,
-    World3Exploration       = 10,
-    World3Danger            = 11,
-    MinigameJumper          = 12,
-    TestExplorationStage    = 13,
-    TestDangerStage         = 14,
-    WorldXExploration       = 15
+    Splash = 0,
+    Title = 1,
+    Ship = 2,
+    NavigationScene = 3,
+    MakeABeat = 4
 }

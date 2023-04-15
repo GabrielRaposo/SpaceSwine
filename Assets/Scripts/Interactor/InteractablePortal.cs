@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DevLocker.Utils;
 
 public class InteractablePortal : Interactable
 {
-    [SerializeField] BuildIndex targetIndex;
+    [SerializeField] SceneReference targetScene;
     [SerializeField] RoundSessionData data;
     //[SerializeField] SpriteSwapper ballonSpriteSwapper;
     [SerializeField] DoorAnimation doorAnimation;
@@ -53,7 +54,8 @@ public class InteractablePortal : Interactable
 
     private void LoadSceneAction()
     {
-        data.outroScene = (BuildIndex) SceneManager.GetActiveScene().buildIndex;
+        data.outroScene = GameManager.CurrentScene;
+        Debug.Log("RETURN HERE!!");
         data.OnSessionCompleted += () => 
         {
             //Debug.Log("Session Done! ");
@@ -61,8 +63,11 @@ public class InteractablePortal : Interactable
             SpawnManager.Index = data.OutroSpawnIndex;
         };
         RoundsManager.SessionData = data;
-            
-        SceneTransition.LoadScene( (int) targetIndex, SceneTransition.TransitionType.SafetyToDanger );
+        
+        if (targetScene == null)
+            return;
+
+        SceneTransition.LoadScene( targetScene.ScenePath, SceneTransition.TransitionType.SafetyToDanger );
     }
 
     protected override void HighlightState (bool value) 
