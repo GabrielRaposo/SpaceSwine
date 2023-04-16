@@ -70,6 +70,6 @@ public enum BuildIndex
     Splash = 0,
     Title = 1,
     Ship = 2,
-    NavigationScene = 3,
-    MakeABeat = 4
+    MakeABeat = 3,
+    NavigationScene = 4
 }
