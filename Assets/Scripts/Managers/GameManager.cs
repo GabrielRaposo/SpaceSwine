@@ -108,6 +108,36 @@ public class GameManager : MonoBehaviour
         SceneTransition.LoadScene(path, SceneTransition.TransitionType.BlackFade);
     }
 
+    public static void GoToScene (BuildIndex index)
+    {   
+        string path = string.Empty;
+        switch (index)
+        {
+            default:
+            case BuildIndex.Splash:
+                path = "Assets/Scenes/SplashScene.unity";
+                break;
+
+            case BuildIndex.Title:
+                path = "Assets/Scenes/TitleScene.unity";
+                break;
+
+            case BuildIndex.Ship:
+                path = "Assets/Scenes/ShipScene.unity";
+                break;
+
+            case BuildIndex.NavigationScene:
+                path = "Assets/Scenes/NavigationScene.unity";
+                break;
+
+            case BuildIndex.MakeABeat:
+                path = "Assets/Scenes/MakeABeatScene.unity";
+                break;
+        }
+
+        SceneTransition.LoadScene(path, SceneTransition.TransitionType.BlackFade);
+    }
+
     public static void ResetScene()
     {
         SceneTransition.ReloadScene();

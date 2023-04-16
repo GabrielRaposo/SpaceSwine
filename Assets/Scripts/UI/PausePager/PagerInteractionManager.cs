@@ -412,7 +412,7 @@ public class PagerInteractionManager : MonoBehaviour
         (
             title: LocalizationManager.GetUiText("quit_game", "Quit?"),
             description: LocalizationManager.GetUiText("are_you_sure","Sure?"),
-            ConfirmEvent: () => GameManager.GoToScene( "Assets/Scenes/TitleScene.unity" ),
+            ConfirmEvent: () => GameManager.GoToScene( BuildIndex.Title ),
             CancelEvent: () => 
             { 
                 current = previousScreen; 
