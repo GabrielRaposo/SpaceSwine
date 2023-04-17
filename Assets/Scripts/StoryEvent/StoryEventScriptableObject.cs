@@ -9,11 +9,16 @@ public class StoryEventScriptableObject : ScriptableObject
     public bool state;
     public UnityAction<bool> OnStateChange;
 
-    public void SetState (bool value)
+    public bool State
     {
-        Debug.Log($"state { name } changed to { value }");
+        set 
+        {
+            Debug.Log($"state { name } changed to { value }");
 
-        state = value;
-        OnStateChange?.Invoke(value);
+            state = value;
+            OnStateChange?.Invoke(value);
+
+            SetDirty();
+        }
     }
 }

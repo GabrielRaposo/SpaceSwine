@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class NavigationObjectActivator : MonoBehaviour
 {
-    [SerializeField] NavigationObject navigationObject;
+    [SerializeField] List<StoryEventScriptableObject> criteriaEvents;
 
     void Start()
     {
-        if (!navigationObject)
+        if (criteriaEvents == null)
             return;
 
-        // -- TEMP PRA BUILD
-        navigationObject.gameObject.SetActive( SetShipDialogueOnEvent.AllDialoguesSet );
+        NavigationObject[] navigationObjects = GetComponentsInChildren<NavigationObject>();
+        if (navigationObjects == null)
+            return;
+
+        foreach (var criteria in criteriaEvents)
+        {
+            if (!criteria.state)
+            {
+                SetNavObjectsState (false, navigationObjects);
+                return;
+            }
+        }
+
+        SetNavObjectsState (true, navigationObjects);
     }
     
+    private void SetNavObjectsState (bool value, NavigationObject[] navigationObjects)
+    {
+        foreach (NavigationObject navigationObject in navigationObjects)
+            navigationObject.gameObject.SetActive(value);
+    }
 }

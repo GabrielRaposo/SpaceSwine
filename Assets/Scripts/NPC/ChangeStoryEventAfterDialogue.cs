@@ -24,7 +24,7 @@ public class ChangeStoryEventAfterDialogue : MonoBehaviour
                 return;    
             }
 
-            storyEvent.SetState (targetValue);
+            storyEvent.State = targetValue;
             SaveManager.SaveStoryEvent(storyEvent);
 
             //Debug.Log("Dialogue ended.");

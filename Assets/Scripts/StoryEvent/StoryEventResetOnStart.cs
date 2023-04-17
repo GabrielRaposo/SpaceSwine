@@ -19,7 +19,7 @@ public class StoryEventResetOnStart : MonoBehaviour
 
         foreach(StoryEventScriptableObject storyEvent in storyEvents)
         {
-            storyEvent.SetState(false);
+            storyEvent.State = false;
         }
     }
 }
