@@ -6,6 +6,8 @@ using UnityEngine.Events;
 [CreateAssetMenu (fileName = "StoryW0", menuName = "ScriptableObjects/StoryEvent") ]
 public class StoryEventScriptableObject : ScriptableObject
 {
+    public int goal = 1;
+
     public bool state;
     public UnityAction<bool> OnStateChange;
 
