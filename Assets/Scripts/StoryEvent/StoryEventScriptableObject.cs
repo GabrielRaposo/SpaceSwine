@@ -6,21 +6,6 @@ using UnityEngine.Events;
 [CreateAssetMenu (fileName = "StoryW0", menuName = "ScriptableObjects/StoryEvent") ]
 public class StoryEventScriptableObject : ScriptableObject
 {
-    public int goal = 1;
-
-    public bool state;
-    public UnityAction<bool> OnStateChange;
-
-    public bool State
-    {
-        set 
-        {
-            Debug.Log($"state { name } changed to { value }");
-
-            state = value;
-            OnStateChange?.Invoke(value);
-
-            SetDirty();
-        }
-    }
+    public bool StartingState;
+    public int Goal = 1;
 }

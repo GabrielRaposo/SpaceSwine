@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class SetTerminalActivationOnStoryEvent : MonoBehaviour
 {
+    [SerializeField] bool targetState;
     [SerializeField] StoryEventScriptableObject storyEvent;
 
     void OnEnable()
     {
+        SaveManager.IsSaveReady();
+
         if (!storyEvent)
             return;
 
-        storyEvent.OnStateChange += OnStateChange;
+        //storyEvent.OnStateChange += OnStateChange;
+        //OnStateChange (storyEvent.StartingState);
 
-        OnStateChange (storyEvent.state);
+        StoryEventsManager.AddListener(storyEvent, OnStateChange);
+        OnStateChange( StoryEventsManager.IsComplete(storyEvent) );
     }
 
     private void OnStateChange (bool state)
     {
+        if (state != targetState)
+            return;
+
         Interactable interactable = GetComponentInChildren<Interactable>();
         if (!interactable)
             return;
@@ -31,6 +39,8 @@ public class SetTerminalActivationOnStoryEvent : MonoBehaviour
         if (!storyEvent)
             return;
 
-        storyEvent.OnStateChange -= OnStateChange;
+        //storyEvent.OnStateChange -= OnStateChange;
+
+        StoryEventsManager.RemoveListener(storyEvent, OnStateChange);
     }
 }

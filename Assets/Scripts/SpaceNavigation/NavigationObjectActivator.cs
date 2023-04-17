@@ -8,6 +8,8 @@ public class NavigationObjectActivator : MonoBehaviour
 
     void Start()
     {
+        SaveManager.IsSaveReady();
+
         if (criteriaEvents == null)
             return;
 
@@ -17,7 +19,7 @@ public class NavigationObjectActivator : MonoBehaviour
 
         foreach (var criteria in criteriaEvents)
         {
-            if (!criteria.state)
+            if ( !StoryEventsManager.IsComplete(criteria) )
             {
                 SetNavObjectsState (false, navigationObjects);
                 return;

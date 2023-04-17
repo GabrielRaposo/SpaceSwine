@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class StoryEventsManager : MonoBehaviour
 {
     [System.Serializable]
     public class EventProgress
     {
-        public EventProgress (int goal)
+        public EventProgress (int progress, int goal)
         {
-            this.progress = 0;
-            this.goal = goal;
+            this.progress = progress;
+            this.goal = goal > 0 ? goal : 1;
             OnStateChangedEvent = new UnityEvent<bool>();
         }
 
@@ -66,11 +67,31 @@ public class StoryEventsManager : MonoBehaviour
         }
     }
 
+    [SerializeField] InputAction testInput;
     [SerializeField] List<StoryEventScriptableObject> storyEvents;
 
     static Dictionary<StoryEventScriptableObject, EventProgress> eventsDictionary;
 
     static StoryEventsManager Instance;
+
+    #region Debug
+    private void OnEnable() 
+    {
+        if (!Application.isEditor)
+            return;
+
+        testInput.performed += (ctx) => PrintEventStates();
+        testInput.Enable();
+    }
+
+    private void OnDisable() 
+    {
+        if (!Application.isEditor)
+            return;
+
+        testInput.Disable();
+    }
+    #endregion
 
     private void Awake() 
     {
@@ -87,12 +108,19 @@ public class StoryEventsManager : MonoBehaviour
 
     public void MakeEventsDictionary()
     {
-        Debug.Log("Make");
-
         eventsDictionary = new Dictionary<StoryEventScriptableObject, EventProgress>();
+
         foreach (var storyEvent in storyEvents)
         {
-            eventsDictionary.Add (storyEvent, new EventProgress(storyEvent.goal));
+            eventsDictionary.Add 
+            (
+                key: storyEvent, 
+                value: new EventProgress 
+                (
+                    progress: storyEvent.StartingState ? storyEvent.Goal : 0,
+                    goal:     storyEvent.Goal
+                )
+            );
         }
     }
 
@@ -114,6 +142,16 @@ public class StoryEventsManager : MonoBehaviour
             return;
 
         eventProgress.ChangeProgress(value);
+    }
+
+    public static void ClearProgress (StoryEventScriptableObject key)
+    {
+        EventProgress eventProgress = GetEventProgress(key);
+
+        if (eventProgress == null)
+            return;
+
+        eventProgress.Clear();
     }
 
     public static bool IsComplete (StoryEventScriptableObject key)
@@ -144,5 +182,22 @@ public class StoryEventsManager : MonoBehaviour
             return;
 
         eventProgress.RemoveOnStateChangeAction(action);
+    }
+
+    private void PrintEventStates()
+    {
+        if (eventsDictionary == null)
+            return;
+
+        string s = "Events States::: \n";
+        foreach (var key in storyEvents)
+        {
+            EventProgress progress = GetEventProgress(key);
+            if (progress == null)
+                continue;
+
+            s += $"{ (progress.Completion * 100).ToString("0") }% \t- { key.name } \n";
+        }
+        Debug.Log (s);
     }
 }

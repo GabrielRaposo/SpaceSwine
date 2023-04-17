@@ -109,8 +109,10 @@ public class PagerInteractionManager : MonoBehaviour
 
     private void KeychainInitiationLogic()
     {
+        SaveManager.IsSaveReady();
+
         if (unlockStoryEvent != null)
-            keychainState = unlockStoryEvent.state;
+            keychainState = StoryEventsManager.IsComplete (unlockStoryEvent);
 
         if (GameManager.IsOnScene(BuildIndex.Ship) || GameManager.IsOnScene(BuildIndex.Title))
             keychainState = false;

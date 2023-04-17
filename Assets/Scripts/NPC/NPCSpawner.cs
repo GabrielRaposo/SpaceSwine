@@ -20,13 +20,15 @@ public class NPCSpawner : MonoBehaviour
 
     private void OnEnable() 
     {
+        SaveManager.IsSaveReady();
+
         if (!activateInRuntime)
             return;
                     
         foreach (StoryEventScriptableObject se in storyEvents)
         {
             //Debug.Log("Add Events: " + name);
-            se.OnStateChange += ReactivationLogic;
+            StoryEventsManager.AddListener(se, ReactivationLogic);
         }
     }
 
@@ -38,12 +40,14 @@ public class NPCSpawner : MonoBehaviour
         foreach (StoryEventScriptableObject se in storyEvents)
         {
             //Debug.Log("Take Events: " + name);
-            se.OnStateChange -= ReactivationLogic;
+            StoryEventsManager.RemoveListener(se, ReactivationLogic);
         }
     }
 
     void Start()
     {
+        SaveManager.IsSaveReady();
+
         ActivationLogic();
     }
 
@@ -66,7 +70,7 @@ public class NPCSpawner : MonoBehaviour
             bool valid = true;
             for (int i = 0; i < rule.criteria.Length && i < storyEvents.Count; i++)
             {
-                if (rule.criteria[i] != storyEvents[i].state)
+                if (rule.criteria[i] != StoryEventsManager.IsComplete(storyEvents[i]))
                     valid = false;
             }
 

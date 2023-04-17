@@ -35,6 +35,7 @@ public class PauseSystem : MonoBehaviour
 
     void Start()
     {
+
         canvasGroup.alpha = 0;
 
         if (pagerInteractionManager)
@@ -45,9 +46,11 @@ public class PauseSystem : MonoBehaviour
             pagerInteractionManager.enabled = false;
         }
 
+        SaveManager.IsSaveReady();
+
         if (shipButton && shipButtonEventTrigger)
         {
-            shipButton.SetActive(shipButtonEventTrigger.state);
+            shipButton.SetActive( StoryEventsManager.IsComplete (shipButtonEventTrigger) );
         }
 
         OnPause = false; 
@@ -84,7 +87,7 @@ public class PauseSystem : MonoBehaviour
 
         if (shipButton && shipButtonEventTrigger)
         {
-            shipButton.SetActive(shipButtonEventTrigger.state);
+            shipButton.SetActive( StoryEventsManager.IsComplete (shipButtonEventTrigger) );
         }
         
         canvasGroup.DOKill();
