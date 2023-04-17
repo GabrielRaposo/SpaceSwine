@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class StoryEventsManager : MonoBehaviour
 {
@@ -70,13 +71,17 @@ public class StoryEventsManager : MonoBehaviour
     [SerializeField] InputAction testInput;
     [SerializeField] List<StoryEventScriptableObject> storyEvents;
 
-    static Dictionary<StoryEventScriptableObject, EventProgress> eventsDictionary;
+    TextMeshProUGUI listDisplay;
 
+    static Dictionary<StoryEventScriptableObject, EventProgress> eventsDictionary;
     static StoryEventsManager Instance;
 
     #region Debug
     private void OnEnable() 
     {
+        listDisplay = GetComponentInChildren<TextMeshProUGUI>();
+        listDisplay.text = string.Empty;
+
         if (!Application.isEditor)
             return;
 
@@ -126,6 +131,11 @@ public class StoryEventsManager : MonoBehaviour
 
     private static EventProgress GetEventProgress(StoryEventScriptableObject key)
     {
+        // temp --
+        if (eventsDictionary == null)
+            return null;
+        // --
+
         if (eventsDictionary.TryGetValue(key, out EventProgress value))
             return value;
 
@@ -184,6 +194,7 @@ public class StoryEventsManager : MonoBehaviour
         eventProgress.RemoveOnStateChangeAction(action);
     }
 
+    bool showing = false;
     private void PrintEventStates()
     {
         if (eventsDictionary == null)
@@ -196,8 +207,11 @@ public class StoryEventsManager : MonoBehaviour
             if (progress == null)
                 continue;
 
-            s += $"{ (progress.Completion * 100).ToString("0") }% \t- { key.name } \n";
+            s += $"{ (progress.Completion * 100).ToString("0") }% - { key.name } \n";
         }
         Debug.Log (s);
+
+        listDisplay.enabled = showing = !showing;
+        listDisplay.text = s;
     }
 }
