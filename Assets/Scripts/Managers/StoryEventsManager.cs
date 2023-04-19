@@ -76,28 +76,6 @@ public class StoryEventsManager : MonoBehaviour
     static Dictionary<StoryEventScriptableObject, EventProgress> eventsDictionary;
     static StoryEventsManager Instance;
 
-    #region Debug
-    private void OnEnable() 
-    {
-        listDisplay = GetComponentInChildren<TextMeshProUGUI>();
-        listDisplay.text = string.Empty;
-
-        if (!Application.isEditor)
-            return;
-
-        testInput.performed += (ctx) => PrintEventStates();
-        testInput.Enable();
-    }
-
-    private void OnDisable() 
-    {
-        if (!Application.isEditor)
-            return;
-
-        testInput.Disable();
-    }
-    #endregion
-
     private void Awake() 
     {
         if (Instance != null)
@@ -127,9 +105,9 @@ public class StoryEventsManager : MonoBehaviour
                 )
             );
         }
-    }
+    } 
 
-    private static EventProgress GetEventProgress(StoryEventScriptableObject key)
+    public static EventProgress GetEventProgress(StoryEventScriptableObject key)
     {
         // temp --
         if (eventsDictionary == null)
@@ -152,6 +130,8 @@ public class StoryEventsManager : MonoBehaviour
             return;
 
         eventProgress.ChangeProgress(value);
+
+        UpdatePrintedEventStates();
     }
 
     public static void ClearProgress (StoryEventScriptableObject key)
@@ -162,6 +142,8 @@ public class StoryEventsManager : MonoBehaviour
             return;
 
         eventProgress.Clear();
+
+        UpdatePrintedEventStates();
     }
 
     public static bool IsComplete (StoryEventScriptableObject key)
@@ -194,7 +176,42 @@ public class StoryEventsManager : MonoBehaviour
         eventProgress.RemoveOnStateChangeAction(action);
     }
 
+    #region Debug Display
+
     bool showing = false;
+
+    private void OnEnable() 
+    {
+        listDisplay = GetComponentInChildren<TextMeshProUGUI>();
+        listDisplay.text = string.Empty;
+
+        if (!Application.isEditor)
+            return;
+
+        testInput.performed += (ctx) => 
+        {
+            showing = !showing;
+            PrintEventStates();
+        };
+        testInput.Enable();
+    }
+
+    private void OnDisable() 
+    {
+        if (!Application.isEditor)
+            return;
+
+        testInput.Disable();
+    }
+
+    public static void UpdatePrintedEventStates()
+    {
+        if (Instance == null)
+            return;
+
+        Instance.PrintEventStates();
+    }
+
     private void PrintEventStates()
     {
         if (eventsDictionary == null)
@@ -207,11 +224,20 @@ public class StoryEventsManager : MonoBehaviour
             if (progress == null)
                 continue;
 
+            if (key.UpdatedState != progress.IsComplete)
+                key.SetUpdatedState(progress.IsComplete);
+
             s += $"{ (progress.Completion * 100).ToString("0") }% - { key.name } \n";
         }
-        Debug.Log (s);
 
-        listDisplay.enabled = showing = !showing;
+        #if UNITY_EDITOR
+            Debug.Log (s);
+        #endif
+
         listDisplay.text = s;
+        listDisplay.enabled = showing;
     }
+
+    #endregion
+
 }
