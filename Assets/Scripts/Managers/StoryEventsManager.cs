@@ -73,6 +73,8 @@ public class StoryEventsManager : MonoBehaviour
 
     TextMeshProUGUI listDisplay;
 
+    public static bool Initiated;
+    
     static Dictionary<StoryEventScriptableObject, EventProgress> eventsDictionary;
     static StoryEventsManager Instance;
 
@@ -82,7 +84,10 @@ public class StoryEventsManager : MonoBehaviour
             return;
 
         Instance = this;
+    }
 
+    private void Start() 
+    {
         if (storyEvents == null || storyEvents.Count < 1)
             return;
 
@@ -105,6 +110,8 @@ public class StoryEventsManager : MonoBehaviour
                 )
             );
         }
+
+        Initiated = true;
     } 
 
     public static EventProgress GetEventProgress(StoryEventScriptableObject key)

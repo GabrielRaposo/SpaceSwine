@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetTerminalActivationOnStoryEvent : MonoBehaviour
+public class SetTerminalActivationOnStoryEvent : StoryEventDependent
 {
     [SerializeField] bool targetState;
     [SerializeField] StoryEventScriptableObject storyEvent;
 
     void OnEnable()
     {
-        SaveManager.IsSaveReady();
+        CallDependentAction
+        (
+            action: () => 
+            {
+                if (!storyEvent)
+                    return;
 
-        if (!storyEvent)
-            return;
-
-        //storyEvent.OnStateChange += OnStateChange;
-        //OnStateChange (storyEvent.StartingState);
-
-        StoryEventsManager.AddListener(storyEvent, OnStateChange);
-        OnStateChange( StoryEventsManager.IsComplete(storyEvent) );
+                StoryEventsManager.AddListener(storyEvent, OnStateChange);
+                OnStateChange( StoryEventsManager.IsComplete(storyEvent) );
+            }
+        );
     }
 
     private void OnStateChange (bool state)
@@ -36,11 +37,16 @@ public class SetTerminalActivationOnStoryEvent : MonoBehaviour
 
     private void OnDisable() 
     {
-        if (!storyEvent)
-            return;
+        CallDependentAction
+        (
+            action: () => 
+            {
+                if (!storyEvent)
+                    return;
 
-        //storyEvent.OnStateChange -= OnStateChange;
-
-        StoryEventsManager.RemoveListener(storyEvent, OnStateChange);
+                StoryEventsManager.RemoveListener(storyEvent, OnStateChange);
+            },
+            extraFrames: 1
+        );
     }
 }
