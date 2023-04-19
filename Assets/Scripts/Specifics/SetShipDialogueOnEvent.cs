@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SetShipDialogueOnEvent : MonoBehaviour
+public class SetShipDialogueOnEvent : StoryEventDependent
 {
     [SerializeField] bool setOnStart;
 
@@ -28,13 +28,17 @@ public class SetShipDialogueOnEvent : MonoBehaviour
 
     void OnEnable()
     {
-        SaveManager.IsSaveReady();
+        CallDependentAction
+        (
+            action: () =>
+            {
+                if (storyEvent == null)
+                    return;
 
-        if (storyEvent == null)
-            return;
-
-        StoryEventsManager.AddListener(storyEvent, SubscribeToStoryEvent);
-        SubscribeToStoryEvent(StoryEventsManager.IsComplete (storyEvent) );
+                StoryEventsManager.AddListener(storyEvent, SubscribeToStoryEvent);
+                SubscribeToStoryEvent(StoryEventsManager.IsComplete (storyEvent) );
+            }
+        );
     }
 
     private void Start() 
@@ -92,9 +96,17 @@ public class SetShipDialogueOnEvent : MonoBehaviour
 
     private void OnDisable() 
     {
-        if (!storyEvent)
-            return;
+        CallDependentAction
+        (
+            action: () =>
+            {
+                if (!storyEvent)
+                    return;
 
-        StoryEventsManager.RemoveListener(storyEvent, SubscribeToStoryEvent);
+                StoryEventsManager.RemoveListener(storyEvent, SubscribeToStoryEvent);
+            },
+            extraFrames: 1
+        );
+
     }
 }

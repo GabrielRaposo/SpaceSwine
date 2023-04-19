@@ -16,8 +16,7 @@ public class PauseSystem : MonoBehaviour
     [SerializeField] SceneReference shipScene;
     [SerializeField] PagerInteractionManager pagerInteractionManager;
 
-    [SerializeField] GameObject shipButton;
-    [SerializeField] StoryEventScriptableObject shipButtonEventTrigger;
+    //[SerializeField] StoryEventScriptableObject shipButtonEventTrigger;
 
     CanvasGroup canvasGroup;
 
@@ -35,7 +34,6 @@ public class PauseSystem : MonoBehaviour
 
     void Start()
     {
-
         canvasGroup.alpha = 0;
 
         if (pagerInteractionManager)
@@ -46,12 +44,10 @@ public class PauseSystem : MonoBehaviour
             pagerInteractionManager.enabled = false;
         }
 
-        SaveManager.IsSaveReady();
-
-        if (shipButton && shipButtonEventTrigger)
-        {
-            shipButton.SetActive( StoryEventsManager.IsComplete (shipButtonEventTrigger) );
-        }
+        //if (shipButton && shipButtonEventTrigger)
+        //{
+        //    shipButton.SetActive( StoryEventsManager.IsComplete (shipButtonEventTrigger) );
+        //}
 
         OnPause = false; 
     }
@@ -85,10 +81,10 @@ public class PauseSystem : MonoBehaviour
             }
         }
 
-        if (shipButton && shipButtonEventTrigger)
-        {
-            shipButton.SetActive( StoryEventsManager.IsComplete (shipButtonEventTrigger) );
-        }
+        //if (shipButton && shipButtonEventTrigger)
+        //{
+        //    shipButton.SetActive( StoryEventsManager.IsComplete (shipButtonEventTrigger) );
+        //}
         
         canvasGroup.DOKill();
         canvasGroup.DOFade(value ? 1 : 0, transitionDuration)
@@ -107,10 +103,10 @@ public class PauseSystem : MonoBehaviour
             pagerInteractionManager.CustomActivation(backCall);
         }
 
-        if (shipButton)
-        {
-            shipButton.SetActive(false);
-        }
+        //if (shipButton)
+        //{
+        //    shipButton.SetActive(false);
+        //}
 
         canvasGroup.DOKill();
         canvasGroup.DOFade(1, transitionDuration)

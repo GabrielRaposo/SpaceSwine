@@ -7,15 +7,21 @@ public class StoryEventDependent : MonoBehaviour
 {
     protected void CallDependentAction (UnityAction action, int extraFrames = 0)
     {
-        StartCoroutine ( StoryEventDependentAction(action, extraFrames) );
+        if (gameObject.activeInHierarchy)
+            StartCoroutine ( StoryEventDependentAction(action, extraFrames) );
+        else
+            action.Invoke();
     }
 
     protected IEnumerator StoryEventDependentAction (UnityAction action, int extraFrames = 0)
     {
-        yield return new WaitUntil( () => StoryEventsManager.Initiated );
+        if (!StoryEventsManager.Initiated)
+        {
+            yield return new WaitUntil( () => StoryEventsManager.Initiated );
         
-        for (int i = 0; i < extraFrames; i++)
-            yield return new WaitForEndOfFrame();
+            for (int i = 0; i < extraFrames; i++)
+                yield return new WaitForEndOfFrame();
+        }
 
         action.Invoke();
     } 

@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 
-public class PagerInteractionManager : MonoBehaviour
+public class PagerInteractionManager : StoryEventDependent
 {
     [SerializeField] int initialIndex;
     [SerializeField] PagerAxisButtonsVisual pagerAxisButtonsVisual;
@@ -109,8 +109,6 @@ public class PagerInteractionManager : MonoBehaviour
 
     private void KeychainInitiationLogic()
     {
-        SaveManager.IsSaveReady();
-
         if (unlockStoryEvent != null)
             keychainState = StoryEventsManager.IsComplete (unlockStoryEvent);
 
@@ -160,8 +158,8 @@ public class PagerInteractionManager : MonoBehaviour
         if (optionsMode) i = 2;
         
         GoToScreen ( i );
-        callScreen.SetActive(false); 
-        KeychainInitiationLogic();
+        callScreen.SetActive(false);
+        CallDependentAction ( KeychainInitiationLogic );
 
         if (resetRoundButton)
             resetRoundButton.SetActive (RoundsManager.Instance);

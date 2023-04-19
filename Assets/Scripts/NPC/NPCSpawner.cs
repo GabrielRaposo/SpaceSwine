@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCSpawner : MonoBehaviour
+public class NPCSpawner : StoryEventDependent
 {
     [SerializeField] bool activateInRuntime;
 
@@ -20,35 +20,50 @@ public class NPCSpawner : MonoBehaviour
 
     private void OnEnable() 
     {
-        SaveManager.IsSaveReady();
-
-        if (!activateInRuntime)
-            return;
+        CallDependentAction
+        (
+            action: () =>
+            {
+                if (!activateInRuntime)
+                    return;
                     
-        foreach (StoryEventScriptableObject se in storyEvents)
-        {
-            //Debug.Log("Add Events: " + name);
-            StoryEventsManager.AddListener(se, ReactivationLogic);
-        }
+                foreach (StoryEventScriptableObject se in storyEvents)
+                {
+                    StoryEventsManager.AddListener(se, ReactivationLogic);
+                }
+            }
+        );
+
     }
 
     private void OnDisable() 
     {
-        if (!activateInRuntime)
-            return;
+        CallDependentAction
+        (
+            action: () =>
+            {
+                if (!activateInRuntime)
+                    return;
                     
-        foreach (StoryEventScriptableObject se in storyEvents)
-        {
-            //Debug.Log("Take Events: " + name);
-            StoryEventsManager.RemoveListener(se, ReactivationLogic);
-        }
+                foreach (StoryEventScriptableObject se in storyEvents)
+                {
+                    StoryEventsManager.RemoveListener(se, ReactivationLogic);
+                }
+            },
+            extraFrames: 2
+        );
     }
 
     void Start()
     {
-        SaveManager.IsSaveReady();
-
-        ActivationLogic();
+        CallDependentAction
+        (
+            action: () =>
+            {
+                ActivationLogic();
+            },
+            extraFrames: 1
+        );
     }
 
     private void ReactivationLogic(bool b)

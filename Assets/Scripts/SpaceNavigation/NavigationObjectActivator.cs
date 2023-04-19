@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NavigationObjectActivator : MonoBehaviour
+public class NavigationObjectActivator : StoryEventDependent
 {
     [SerializeField] List<StoryEventScriptableObject> criteriaEvents;
 
     void Start()
     {
-        SaveManager.IsSaveReady();
+        CallDependentAction ( Init );
+    }
 
+    private void Init()
+    {
         if (criteriaEvents == null)
             return;
 
