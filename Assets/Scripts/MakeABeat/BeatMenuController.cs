@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DevLocker.Utils;
 
 namespace MakeABeat
 {
@@ -21,6 +22,7 @@ namespace MakeABeat
         [SerializeField] BeatTrackNavigation trackNavigation;
         [SerializeField] TapeBox tapeBox;
         [SerializeField] AK.Wwise.RTPC sfxAKParam;
+        [SerializeField] SceneReference exitScene;
 
         [Header("Temp")]
         [SerializeField] InputAction toggleSFXsAction;
@@ -88,7 +90,8 @@ namespace MakeABeat
             ResumePlaylistOnStart.Trigger = true;
             ShipInitializerSystem.MakeABeatSpawnTrigger = true;
             Focus = MakeABeatFocus.Tapes;
-            GameManager.GoToScene(BuildIndex.Ship);
+
+            GameManager.GoToScene(exitScene.ScenePath);
             
             enabled = false;
         }

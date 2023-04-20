@@ -194,7 +194,7 @@ public class SaveManager : MonoBehaviour
     {
         return;
 
-        StoryEventData storyEventData = new StoryEventData( storyEvent.state, storyEvent.name );
+        StoryEventData storyEventData = new StoryEventData( StoryEventsManager.IsComplete(storyEvent), storyEvent.name );
 
         StoryEventData data = currentSave.storyEventsStates.Find((p) => p.name == storyEventData.name);
         if (data == null)
@@ -238,5 +238,10 @@ public class SaveManager : MonoBehaviour
     private static void SpecificAchievementsUpdate(SaveFile saveFile)
     {
 
+    }
+
+    public static void IsSaveReady()
+    {
+        Debug.Log("<- Change here");
     }
 }

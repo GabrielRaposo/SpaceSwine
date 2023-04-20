@@ -76,9 +76,10 @@ public class NavigationSceneManager : MonoBehaviour
     {
         _navigationConsole = nc;
     }
-    public void CloseAndSetScene(int sceneIndex)
+
+    public void CloseAndSetScene(string scenePath)
     {
-        SetShipTeleportScene(sceneIndex);
+        SetShipTeleportScene(scenePath);
         if (_navigationConsole)
             _navigationConsole.ToggleConsoleState();
 
@@ -87,13 +88,13 @@ public class NavigationSceneManager : MonoBehaviour
             _navigationConsole.SetTurnedOn(false);
 
         PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
-        GameManager.GoToScene((BuildIndex)sceneIndex);
+        GameManager.GoToScene(scenePath);
     }
 
     //TODO: mudar pra fazer por save
-    private void SetShipTeleportScene(int sceneIndex)
+    private void SetShipTeleportScene(string scenePath)
     {
-        NavigationConsole.ShipTeleportSceneIndex = sceneIndex;
+        NavigationConsole.ShipTeleportScenePath = scenePath;
         //Debug.Log($"Setting scene: {NavigationConsole.ShipTeleportSceneIndex}");
     }
     

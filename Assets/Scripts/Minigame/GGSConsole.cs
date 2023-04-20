@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using DevLocker.Utils;
 using Jumper;
 
 namespace Minigame
@@ -14,9 +15,14 @@ namespace Minigame
     {
         const int HIDDEN_Y = -1000;
     
+        [SerializeField] SceneReference jumperScene;
+
+        [Header("Values")]
         [SerializeField] float duration;
         [SerializeField] float inDelay;
         [SerializeField] float outDelay;
+        
+        [Header("References")]
         [SerializeField] RenderTexture minigameRenderTexture;
         [SerializeField] GGSSplashScreen splashScreen;
         [SerializeField] RectTransform consoleAnchor;
@@ -173,23 +179,23 @@ namespace Minigame
         {
             pluggedCard = ggsMinigame;
 
-            BuildIndex buildIndex = GetCardIndex();
-            StartCoroutine( AsyncLoadRoutine( (int) buildIndex) );
+            string cardPath = GetCardPath();
+            StartCoroutine( AsyncLoadRoutine( cardPath ) );
         }
 
-        private BuildIndex GetCardIndex()
+        private string GetCardPath()
         {
             switch (pluggedCard)
             {
                 default:
                 case GGSMinigame.Jumper:
-                    return BuildIndex.MinigameJumper;
+                    return jumperScene.ScenePath;
             }
         }
 
-        private IEnumerator AsyncLoadRoutine(int index)
+        private IEnumerator AsyncLoadRoutine(string path)
         {
-            asyncMinigameLoad = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+            asyncMinigameLoad = SceneManager.LoadSceneAsync(path, LoadSceneMode.Additive);
             while (!asyncMinigameLoad.isDone)
                 yield return new WaitForEndOfFrame();
 
@@ -216,8 +222,8 @@ namespace Minigame
             if (asyncMinigameLoad == null)
                 return;
 
-            BuildIndex buildIndex = GetCardIndex();
-            SceneManager.UnloadSceneAsync((int) buildIndex);
+            string cardPath = GetCardPath();
+            SceneManager.UnloadSceneAsync( cardPath );
             
             loadedAndActive = false;
         }
@@ -226,8 +232,8 @@ namespace Minigame
         {
             UnloadMinigame();
 
-            BuildIndex buildIndex = GetCardIndex();
-            StartCoroutine(AsyncLoadRoutine((int) buildIndex) );
+            string cardPath = GetCardPath();
+            StartCoroutine(AsyncLoadRoutine( cardPath ) );
         }
 
         private void OnDisable() 

@@ -5,9 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 using RedBlueGames.Tools.TextTyper;
+using DevLocker.Utils;
 
 public class TrailerSceneCaller : MonoBehaviour
 {
+    [SerializeField] SceneReference nextScene;
+
+    [Space(10)]
+
     [SerializeField] InputAction turnOnInput; // input para ligar
     [SerializeField] InputAction shakeInput;  // input para chamar o ScreenShake + Buyk Pulando + possíveis efeitos visuais
     [SerializeField] InputAction hideInput;
@@ -309,7 +314,11 @@ public class TrailerSceneCaller : MonoBehaviour
             SoundtrackManager.Instance.Stop();
 
         GameManager.BlockCharacterInput = false;
-        GameManager.GoToScene( BuildIndex.World0Exploration );
+        
+        if (nextScene == null)
+            return;
+
+        GameManager.GoToScene( nextScene.ScenePath );
     }
 
     #if UNITY_EDITOR

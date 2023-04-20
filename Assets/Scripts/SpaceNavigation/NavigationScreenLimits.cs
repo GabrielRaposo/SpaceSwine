@@ -39,4 +39,13 @@ public class NavigationScreenLimits : MonoBehaviour
             playerCollider.size = size;
         }
     }
+
+    private void OnDrawGizmos() 
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere (transform.position + new Vector3( size.x/2,  size.y/2), radius: .1f);
+        Gizmos.DrawWireSphere (transform.position + new Vector3(-size.x/2,  size.y/2), radius: .1f);
+        Gizmos.DrawWireSphere (transform.position + new Vector3( size.x/2, -size.y/2), radius: .1f);
+        Gizmos.DrawWireSphere (transform.position + new Vector3(-size.x/2, -size.y/2), radius: .1f);
+    }
 }

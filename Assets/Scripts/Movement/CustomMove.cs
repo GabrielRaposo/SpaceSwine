@@ -153,6 +153,7 @@ public class CustomMove : MonoBehaviour
 
         if (duration == 0)
         {
+            Debug.Log($"previous :{previous}, index : {index}");
             t = 0;
             MoveIndex();
             return;

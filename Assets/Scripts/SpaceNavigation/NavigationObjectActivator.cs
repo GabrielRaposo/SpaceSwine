@@ -2,17 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NavigationObjectActivator : MonoBehaviour
+public class NavigationObjectActivator : StoryEventDependent
 {
-    [SerializeField] NavigationObject navigationObject;
+    [SerializeField] List<StoryEventScriptableObject> criteriaEvents;
 
     void Start()
     {
-        if (!navigationObject)
+        CallDependentAction ( Init );
+    }
+
+    private void Init()
+    {
+        if (criteriaEvents == null)
             return;
 
-        // -- TEMP PRA BUILD
-        navigationObject.gameObject.SetActive( SetShipDialogueOnEvent.AllDialoguesSet );
+        NavigationObject[] navigationObjects = GetComponentsInChildren<NavigationObject>();
+        if (navigationObjects == null)
+            return;
+
+        foreach (var criteria in criteriaEvents)
+        {
+            if ( !StoryEventsManager.IsComplete(criteria) )
+            {
+                SetNavObjectsState (false, navigationObjects);
+                return;
+            }
+        }
+
+        SetNavObjectsState (true, navigationObjects);
     }
     
+    private void SetNavObjectsState (bool value, NavigationObject[] navigationObjects)
+    {
+        foreach (NavigationObject navigationObject in navigationObjects)
+            navigationObject.gameObject.SetActive(value);
+    }
 }

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using DevLocker.Utils;
 
 public class GoToSceneTriggerRegion : MonoBehaviour
 {
-    [SerializeField] BuildIndex targetScene;
+    [SerializeField] SceneReference targetScene;
     [SerializeField] int nextSceneSpawnPoint = -1;
 
     [HideInInspector] public UnityAction OnTriggerAction;
@@ -26,7 +27,7 @@ public class GoToSceneTriggerRegion : MonoBehaviour
         if (nextSceneSpawnPoint > -1)
             SpawnManager.Index = nextSceneSpawnPoint;
 
-        GameManager.GoToScene(targetScene);
+        GameManager.GoToScene(targetScene.ScenePath);
         activated = true;
     }
 }

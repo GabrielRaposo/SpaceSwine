@@ -5,10 +5,12 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using DevLocker.Utils;
 
 [RequireComponent(typeof(VideoPlayer))]
 public class SplashScreenManager : MonoBehaviour
 {
+    [SerializeField] SceneReference nextScene;
     [SerializeField] private RawImage fadeImage;
     [SerializeField] private float fadeDuration;
     [SerializeField] float delay;
@@ -36,9 +38,12 @@ public class SplashScreenManager : MonoBehaviour
         videoPlayer.loopPointReached += EndReached;
     }
 
-    private void EndReached(VideoPlayer vp)
+    private void EndReached (VideoPlayer vp)
     {
-        SceneTransition.LoadScene( (int) BuildIndex.Title, SceneTransition.TransitionType.BlackFade );
+        if (nextScene == null)
+            return;
+
+        SceneTransition.LoadScene( nextScene.ScenePath, SceneTransition.TransitionType.BlackFade );
     }
 
 }

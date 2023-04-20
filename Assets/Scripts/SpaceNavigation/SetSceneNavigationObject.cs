@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
+using DevLocker.Utils;
 
 public class SetSceneNavigationObject : NavigationObject
 {
     [Header("     ")]
-    public BuildIndex scene = BuildIndex.World1Exploration;
+    public SceneReference scene;
     public SpriteRenderer selector;
 
     [SerializeField] private Transform debugShip;
@@ -176,7 +177,7 @@ public class SetSceneNavigationObject : NavigationObject
             return;
         }
 
-        NavigationSceneManager.Instance.CloseAndSetScene((int)scene);
+        NavigationSceneManager.Instance.CloseAndSetScene( scene.ScenePath );
     }
 
     private void OnDrawGizmos()
