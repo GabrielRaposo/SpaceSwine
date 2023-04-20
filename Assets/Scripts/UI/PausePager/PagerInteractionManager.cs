@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 
-public class PagerInteractionManager : MonoBehaviour
+public class PagerInteractionManager : StoryEventDependent
 {
     [SerializeField] int initialIndex;
     [SerializeField] PagerAxisButtonsVisual pagerAxisButtonsVisual;
@@ -110,7 +110,7 @@ public class PagerInteractionManager : MonoBehaviour
     private void KeychainInitiationLogic()
     {
         if (unlockStoryEvent != null)
-            keychainState = unlockStoryEvent.state;
+            keychainState = StoryEventsManager.IsComplete (unlockStoryEvent);
 
         if (GameManager.IsOnScene(BuildIndex.Ship) || GameManager.IsOnScene(BuildIndex.Title))
             keychainState = false;
@@ -158,8 +158,8 @@ public class PagerInteractionManager : MonoBehaviour
         if (optionsMode) i = 2;
         
         GoToScreen ( i );
-        callScreen.SetActive(false); 
-        KeychainInitiationLogic();
+        callScreen.SetActive(false);
+        CallDependentAction ( KeychainInitiationLogic );
 
         if (resetRoundButton)
             resetRoundButton.SetActive (RoundsManager.Instance);
@@ -374,9 +374,9 @@ public class PagerInteractionManager : MonoBehaviour
         if (!roundsManager)
             return;
 
-        BuildIndex buildIndex = BuildIndex.World0Exploration; 
+        string buildPath = string.Empty; 
         if (RoundsManager.SessionData != null)
-            buildIndex = RoundsManager.SessionData.outroScene;
+            buildPath = RoundsManager.SessionData.outroScene;
 
         int previousScreen = current;
 
@@ -389,7 +389,7 @@ public class PagerInteractionManager : MonoBehaviour
                 if (RoundsManager.SessionData)
                     SpawnManager.Index = RoundsManager.SessionData.AbandonSpawnIndex;
                 PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
-                GameManager.GoToScene(buildIndex);
+                GameManager.GoToScene(buildPath);
             }, 
             CancelEvent: () => 
             { 
@@ -412,7 +412,7 @@ public class PagerInteractionManager : MonoBehaviour
         (
             title: LocalizationManager.GetUiText("quit_game", "Quit?"),
             description: LocalizationManager.GetUiText("are_you_sure","Sure?"),
-            ConfirmEvent: () => GameManager.GoToScene(BuildIndex.Title),
+            ConfirmEvent: () => GameManager.GoToScene( BuildIndex.Title ),
             CancelEvent: () => 
             { 
                 current = previousScreen; 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCSpawner : MonoBehaviour
+public class NPCSpawner : StoryEventDependent
 {
     [SerializeField] bool activateInRuntime;
 
@@ -20,31 +20,50 @@ public class NPCSpawner : MonoBehaviour
 
     private void OnEnable() 
     {
-        if (!activateInRuntime)
-            return;
+        CallDependentAction
+        (
+            action: () =>
+            {
+                if (!activateInRuntime)
+                    return;
                     
-        foreach (StoryEventScriptableObject se in storyEvents)
-        {
-            //Debug.Log("Add Events: " + name);
-            se.OnStateChange += ReactivationLogic;
-        }
+                foreach (StoryEventScriptableObject se in storyEvents)
+                {
+                    StoryEventsManager.AddListener(se, ReactivationLogic);
+                }
+            }
+        );
+
     }
 
     private void OnDisable() 
     {
-        if (!activateInRuntime)
-            return;
+        CallDependentAction
+        (
+            action: () =>
+            {
+                if (!activateInRuntime)
+                    return;
                     
-        foreach (StoryEventScriptableObject se in storyEvents)
-        {
-            //Debug.Log("Take Events: " + name);
-            se.OnStateChange -= ReactivationLogic;
-        }
+                foreach (StoryEventScriptableObject se in storyEvents)
+                {
+                    StoryEventsManager.RemoveListener(se, ReactivationLogic);
+                }
+            },
+            extraFrames: 2
+        );
     }
 
     void Start()
     {
-        ActivationLogic();
+        CallDependentAction
+        (
+            action: () =>
+            {
+                ActivationLogic();
+            },
+            extraFrames: 1
+        );
     }
 
     private void ReactivationLogic(bool b)
@@ -66,7 +85,7 @@ public class NPCSpawner : MonoBehaviour
             bool valid = true;
             for (int i = 0; i < rule.criteria.Length && i < storyEvents.Count; i++)
             {
-                if (rule.criteria[i] != storyEvents[i].state)
+                if (rule.criteria[i] != StoryEventsManager.IsComplete(storyEvents[i]))
                     valid = false;
             }
 

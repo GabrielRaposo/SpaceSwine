@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using DevLocker.Utils;
 
 [CreateAssetMenu(fileName = "Round Session", menuName = "ScriptableObjects/Round Session")]
 public class RoundSessionData : ScriptableObject
@@ -11,7 +12,7 @@ public class RoundSessionData : ScriptableObject
     public int lastIndex;
 
     [Space(10)]
-    public BuildIndex outroScene;
+    public string outroScene;
     public int AbandonSpawnIndex;
     public int OutroSpawnIndex;
     public UnityAction OnSessionCompleted;

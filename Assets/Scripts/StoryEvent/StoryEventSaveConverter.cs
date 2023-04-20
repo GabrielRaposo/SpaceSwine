@@ -42,37 +42,37 @@ public class StoryEventSaveConverter : MonoBehaviour
 
     public static void FromSaveToAssets()
     {
-        List<StoryEventData> storyEventDatas = SaveManager.GetStoryEvents();
-        if (storyEventDatas.Count < 1)
-            return;
+        //List<StoryEventData> storyEventDatas = SaveManager.GetStoryEvents();
+        //if (storyEventDatas.Count < 1)
+        //    return;
 
-        StoryEventScriptableObject[] storyEvents = GetStoryEventsFromResources();
-        if ( storyEvents.Length < 1 )
-            return;
+        //StoryEventScriptableObject[] storyEvents = GetStoryEventsFromResources();
+        //if ( storyEvents.Length < 1 )
+        //    return;
 
-        for (int i = 0; i < storyEvents.Length; i++) 
-        {
-            StoryEventData data = storyEventDatas.Find((d) => d.name == storyEvents[i].name);
-            if (data == null)
-                continue;
+        //for (int i = 0; i < storyEvents.Length; i++) 
+        //{
+        //    StoryEventData data = storyEventDatas.Find((d) => d.name == storyEvents[i].name);
+        //    if (data == null)
+        //        continue;
 
-            storyEvents[i].SetState( data.state );
-        }
+        //    storyEvents[i].State = data.state;
+        //}
     } 
 
     public static void FromAssetsToSave()
     {
-        var storyEvents = GetStoryEventsFromResources();
-        if (storyEvents.Length < 1)
-            return;
+        //var storyEvents = GetStoryEventsFromResources();
+        //if (storyEvents.Length < 1)
+        //    return;
 
-        List<StoryEventData> dataList = new List<StoryEventData>();
+        //List<StoryEventData> dataList = new List<StoryEventData>();
 
-        for (int i = 0; i < storyEvents.Length; i++)
-        {
-            dataList.Add( new StoryEventData( storyEvents[i].state, storyEvents[i].name ) );
-        }
+        //for (int i = 0; i < storyEvents.Length; i++)
+        //{
+        //    dataList.Add( new StoryEventData( storyEvents[i].state, storyEvents[i].name ) );
+        //}
 
-        SaveManager.SetAllStoryEvents(dataList);
+        //SaveManager.SetAllStoryEvents(dataList);
     }
 }

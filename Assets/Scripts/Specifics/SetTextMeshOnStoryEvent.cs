@@ -21,7 +21,7 @@ public class SetTextMeshOnStoryEvent : MonoBehaviour
         if (storyEvent == null)
             return;
  
-        storyEvent.OnStateChange  += OnStateChange;
+        StoryEventsManager.AddListener(storyEvent, OnStateChange);
         PauseSystem.OnPauseAction += OnPauseAction;
     }
 
@@ -45,7 +45,7 @@ public class SetTextMeshOnStoryEvent : MonoBehaviour
         if (storyEvent == null)
             return;
  
-        storyEvent.OnStateChange -= OnStateChange;
+        StoryEventsManager.RemoveListener(storyEvent, OnStateChange);
         PauseSystem.OnPauseAction -= OnPauseAction;
     }
 }

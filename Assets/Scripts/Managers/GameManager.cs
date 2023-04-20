@@ -103,9 +103,39 @@ public class GameManager : MonoBehaviour
         soundtrackManager.SetPlaylist(CurrentPlaylist);
     }
 
-    public static void GoToScene (BuildIndex buildIndex)
+    public static void GoToScene (string path)
     {
-        SceneTransition.LoadScene((int) buildIndex, SceneTransition.TransitionType.BlackFade);
+        SceneTransition.LoadScene(path, SceneTransition.TransitionType.BlackFade);
+    }
+
+    public static void GoToScene (BuildIndex index)
+    {   
+        string path = string.Empty;
+        switch (index)
+        {
+            default:
+            case BuildIndex.Splash:
+                path = "Assets/Scenes/SplashScene.unity";
+                break;
+
+            case BuildIndex.Title:
+                path = "Assets/Scenes/TitleScene.unity";
+                break;
+
+            case BuildIndex.Ship:
+                path = "Assets/Scenes/ShipScene.unity";
+                break;
+
+            case BuildIndex.NavigationScene:
+                path = "Assets/Scenes/NavigationScene.unity";
+                break;
+
+            case BuildIndex.MakeABeat:
+                path = "Assets/Scenes/MakeABeatScene.unity";
+                break;
+        }
+
+        SceneTransition.LoadScene(path, SceneTransition.TransitionType.BlackFade);
     }
 
     public static void ResetScene()
@@ -130,6 +160,11 @@ public class GameManager : MonoBehaviour
     public static bool OnTransition
     {
         get { return SceneTransition.OnTransition || RoundTransition.OnTransition; }
+    }
+
+    public static string CurrentScene
+    {
+        get { return SceneManager.GetActiveScene().path; }
     }
 
     private void OnDisable() 

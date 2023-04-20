@@ -22,7 +22,7 @@ public class TitleScreenFunctions : MonoBehaviour
         TrailerSceneCaller.AutoStart = true;
         PlaylistPlayer.CutsceneMode = true;
 
-        SceneTransition.LoadScene((int)BuildIndex.Ship, SceneTransition.TransitionType.BlackFade);
+        GameManager.GoToScene( BuildIndex.Ship );
 
         //SceneTransition.LoadScene((int)BuildIndex.World1Exploration, SceneTransition.TransitionType.WhiteFade);
     }

@@ -8,7 +8,6 @@ public class StoryEventResetOnStart : MonoBehaviour
 
     void Start()
     {
-        SetTerminalActivationOnTheFirstTime.FirstTime = true;
         SetShipDialogueOnEvent.World1ShipDialogueSet = false;
         SetShipDialogueOnEvent.World2ShipDialogueSet = false;
         SetShipDialogueOnEvent.World3ShipDialogueSet = false;
@@ -19,7 +18,8 @@ public class StoryEventResetOnStart : MonoBehaviour
 
         foreach(StoryEventScriptableObject storyEvent in storyEvents)
         {
-            storyEvent.SetState(false);
+            //storyEvent.State = false;
+            StoryEventsManager.ClearProgress (storyEvent);
         }
     }
 }

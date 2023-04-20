@@ -150,7 +150,7 @@ public class RoundsManager : MonoBehaviour
             {
                 if (SessionData.OnSessionCompleted != null)
                     SessionData.OnSessionCompleted();
-                SceneTransition.LoadScene( (int) SessionData.outroScene, SceneTransition.TransitionType.DangerToSafety );
+                SceneTransition.LoadScene( SessionData.outroScene, SceneTransition.TransitionType.DangerToSafety );
             }
 
             SessionData = null;
