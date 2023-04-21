@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NavigationObjectActivator : StoryEventDependent
 {
+    [SerializeField] List<string> notificationIDs;
     [SerializeField] List<StoryEventScriptableObject> criteriaEvents;
 
     void Start()
@@ -34,7 +35,18 @@ public class NavigationObjectActivator : StoryEventDependent
     
     private void SetNavObjectsState (bool value, NavigationObject[] navigationObjects)
     {
-        foreach (NavigationObject navigationObject in navigationObjects)
+        if (value == true && notificationIDs != null)
+        {
+            foreach (string id in notificationIDs)
+                UINotificationManager.Create( id );
+        }
+
+        foreach (NavigationObject navigationObject in navigationObjects) 
+        { 
             navigationObject.gameObject.SetActive(value);
+            if (value)
+                navigationObject.SetNotificationIcon();
+        }
+
     }
 }

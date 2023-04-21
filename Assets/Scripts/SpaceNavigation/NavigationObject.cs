@@ -196,6 +196,5 @@ public class NavigationObject : StoryEventDependent
             descriptionField.text = LocalizationManager.GetUiText(descriptionCode, "???");
     }
     
-    
-    
+    public virtual void SetNotificationIcon() { }
 }

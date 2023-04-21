@@ -20,6 +20,10 @@ public class SetSceneNavigationObject : NavigationObject
     [SerializeField] private StoryEventScriptableObject completionStoryEvent;
     [SerializeField] private SpriteRenderer[] completionDisplays;
     
+    [Header("Notification References")]
+    [SerializeField] string notificationID;
+    [SerializeField] GameObject exclamationIcon;
+
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event OnHoverAKEvent;
     [SerializeField] AK.Wwise.Event OnSelectAKEvent; 
@@ -44,6 +48,9 @@ public class SetSceneNavigationObject : NavigationObject
         interactAction += ShipAnimation;
         navSceneManager = FindObjectOfType<NavigationSceneManager>();
 
+        if (exclamationIcon != null)
+            exclamationIcon.gameObject.SetActive(false);
+
         CallDependentAction ( SetCompletionDisplay );
     }
 
@@ -65,6 +72,19 @@ public class SetSceneNavigationObject : NavigationObject
             sr.enabled = StoryEventsManager.IsComplete (completionStoryEvent);
             sr.gameObject.SetActive(false);
         }
+    }
+
+    public override void SetNotificationIcon()
+    {
+        if (exclamationIcon == null)
+            return;
+
+        bool value = false;
+
+        if (notificationID != string.Empty)
+            value = UINotificationManager.Check( notificationID );
+
+        exclamationIcon.SetActive (value);
     }
 
     public override void OnSelect()
@@ -211,6 +231,9 @@ public class SetSceneNavigationObject : NavigationObject
             Debug.Log("NAV SCENE MANAGER NOT FOUND");
             return;
         }
+
+        if (notificationID != string.Empty)
+            UINotificationManager.Use (notificationID);
 
         NavigationSceneManager.Instance.CloseAndSetScene( scene.ScenePath );
     }
