@@ -3004,8 +3004,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navigationScene:
     m_SceneAsset: {fileID: 102900000, guid: 93c512511da2a2e4998db8d84e98bdd2, type: 3}
-    m_IsDirty: 0
-    m_ScenePath: Assets/Scenes/NavigationScene.unity
+    m_IsDirty: 1
+    m_ScenePath: Assets/Scenes/World1NavigationScene.unity
   duration: 0.5
   inDelay: 1.5
   outDelay: 1
@@ -14667,8 +14667,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1434785721410276989}
   - component: {fileID: 7300553744001087062}
-  - component: {fileID: 6571996145625865578}
   - component: {fileID: 7382722458023239136}
+  - component: {fileID: 6571996145625865578}
   m_Layer: 0
   m_Name: Tutorial Inputs
   m_TagString: Untagged
@@ -14703,25 +14703,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7904308750986463789}
   m_CullTransparentMesh: 0
---- !u!114 &6571996145625865578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7904308750986463789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efb71de18513b714c997c27e55af1d31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localizationCode: 
-  fallbackText: 
-  textStyle: 
-  textType: 0
-  textMesh: {fileID: 0}
-  editor_manualCode: 0
-  separator: ':'
 --- !u!114 &7382722458023239136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14815,6 +14796,25 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6571996145625865578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904308750986463789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb71de18513b714c997c27e55af1d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizationCode: pause_inputs
+  fallbackText: 'Navigation - Arrows Confirm - Z Cancel - X '
+  textStyle: 
+  textType: 0
+  textMesh: {fileID: 7382722458023239136}
+  editor_manualCode: 0
+  separator: ':'
 --- !u!1 &7933059491281214707
 GameObject:
   m_ObjectHideFlags: 0
@@ -17292,8 +17292,6 @@ MonoBehaviour:
     m_IsDirty: 0
     m_ScenePath: Assets/Scenes/ShipScene.unity
   pagerInteractionManager: {fileID: 3422739090936278486}
-  shipButton: {fileID: 0}
-  shipButtonEventTrigger: {fileID: 11400000, guid: 61edce01a4ea0d74abc55e0cbf6dab9b, type: 2}
 --- !u!223 &9208051683818898757
 Canvas:
   m_ObjectHideFlags: 0
