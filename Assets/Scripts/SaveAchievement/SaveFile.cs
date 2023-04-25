@@ -8,16 +8,22 @@ public class SaveFile
 {
     public int version = 1;
 
-    public List<StoryEventData> storyEventsStates;
+    //public List<StoryEventData> storyEventsStates;
 
     //public List<MinigameHiscore> JumperHighscores;
 
     public List<AchievementLog> achievementLog;
+
     private float playtime;
+    public float Playtime
+    {
+        get => playtime;
+        set => playtime = value;
+    }
 
     public SaveFile ()
     {
-        storyEventsStates = new List<StoryEventData>();
+        //storyEventsStates = new List<StoryEventData>();
 
         var achievementList = AchievementsManager.GetNewAchievementList();
 
@@ -43,58 +49,17 @@ public class SaveFile
 
         return s;
     }
-    
-    public float Playtime
-    {
-        get => playtime;
-        set => playtime = value;
-    }
-    
-    public float GetPlaytime()
-    {
-        return Playtime;
-    }
-
-    public void AddPlaytime(float sessionTime)
-    {
-        Playtime += sessionTime;
-    }
 }
 
-[System.Serializable]
-public class ItemIndexer
-{
-    public ItemIndexer (float x, float y, float id)
-    {
-        this.x = x;
-        this.y = y;
-        this.id = id;
-    }
+//[System.Serializable]
+//public class StoryEventData
+//{
+//    public StoryEventData(bool state, string name)
+//    {
+//        this.state = state;
+//        this.name = name;
+//    }
 
-    public override string ToString()
-    {
-        return $"x: {x}, y: {y}, id: {id}";
-    }
-
-    public bool CompareTo(ItemIndexer item)
-    {
-        return (x == item.x) && (y == item.y) && (id == item.id);
-    }
-
-    [SerializeField] public float x;
-    [SerializeField] public float y;
-    [SerializeField] public float id;
-}
-
-[System.Serializable]
-public class StoryEventData
-{
-    public StoryEventData(bool state, string name)
-    {
-        this.state = state;
-        this.name = name;
-    }
-
-    [SerializeField] public bool state;
-    [SerializeField] public string name;
-}
+//    [SerializeField] public bool state;
+//    [SerializeField] public string name;
+//}

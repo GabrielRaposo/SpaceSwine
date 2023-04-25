@@ -136,53 +136,36 @@ public class SaveManager : MonoBehaviour
         Debug.Log("Update and save data");
 
         // Save events
-        StoryEventSaveConverter.FromAssetsToSave();
-
-        // Save ship states
 
         Save();
     }
 
-    public static List<StoryEventData> GetStoryEvents()
-    {
-        return currentSave.storyEventsStates;
-    }
+    //public static List<StoryEventData> GetStoryEvents()
+    //{
+    //    return currentSave.storyEventsStates;
+    //}
 
-    public static void SetAllStoryEvents(List<StoryEventData> storyEventDatas)
-    {
-        currentSave.storyEventsStates = storyEventDatas;
-        Save();
-    }
+    //public static void SetAllStoryEvents(List<StoryEventData> storyEventDatas)
+    //{
+    //    currentSave.storyEventsStates = storyEventDatas;
+    //    Save();
+    //}
 
     public static void SaveStoryEvent (StoryEventScriptableObject storyEvent)
     {
         return;
 
-        StoryEventData storyEventData = new StoryEventData( StoryEventsManager.IsComplete(storyEvent), storyEvent.name );
-
-        StoryEventData data = currentSave.storyEventsStates.Find((p) => p.name == storyEventData.name);
-        if (data == null)
-        {
-            currentSave.storyEventsStates.Add(data = new StoryEventData(storyEventData.state, storyEventData.name));
-        }
-        else
-        {
-            int index = currentSave.storyEventsStates.FindIndex(d => d.name == data.name);
-            currentSave.storyEventsStates[index].state = data.state; 
-        }
-        
-        StoryEventSaveConverter.FromAssetsToSave();
         //Save();
     }
 
     public static float GetPlaytime()
     {
-        return currentSave.GetPlaytime();
+        return currentSave.Playtime;
     }
 
-    public static void AddPlaytime(float sessionTime)
+    public static void AddPlaytime (float sessionTime)
     {
-        currentSave.AddPlaytime(sessionTime);
+        currentSave.Playtime += sessionTime;
         Save();
     }
 

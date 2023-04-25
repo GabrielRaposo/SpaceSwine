@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         //}
 
         #if UNITY_EDITOR
-        CustomEditorInicialization.Initialize();
+        //CustomEditorInicialization.Initialize();
         #endif
 
         pauseSystem = PauseSystem.Instance; 
