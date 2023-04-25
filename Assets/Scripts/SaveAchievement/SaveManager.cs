@@ -135,48 +135,12 @@ public class SaveManager : MonoBehaviour
     {
         Debug.Log("Update and save data");
 
-        // Save currency
-        currentSave.world1Currency = PlayerWallet.GetValueBy(1);
-
-        List<ItemIndexer> world1 = CurrencyInstanceList.GetWorldById(1);
-        currentSave.world1CurrencyIndexer = world1;
-
         // Save events
         StoryEventSaveConverter.FromAssetsToSave();
 
         // Save ship states
 
         Save();
-    }
-
-    public static float GetCurrency(int id) 
-    {
-        switch (id) {
-            default:
-            case 0:
-                return currentSave.digitalCurrency;
-
-            case 1:
-                return currentSave.world1Currency;
-            case 2:
-                return currentSave.world2Currency;
-            case 3:
-                return currentSave.world3Currency;
-        }
-    }
-
-    public static List<ItemIndexer> GetWorldHashSet(int id)
-    {
-        switch(id)
-        {
-            default:
-            case 1:
-                return currentSave.world1CurrencyIndexer;
-            case 2:
-                return currentSave.world2CurrencyIndexer;
-            case 3:
-                return currentSave.world3CurrencyIndexer;
-        }
     }
 
     public static List<StoryEventData> GetStoryEvents()

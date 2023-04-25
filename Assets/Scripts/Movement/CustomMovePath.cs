@@ -28,14 +28,14 @@ public class CustomMovePath : MonoBehaviour
     {
         for (int i = 0; i < customMove.Count; i++)
         {
-            GameObject dotObject = Instantiate(dotPrefab, transform);
+            GameObject dotObject = Instantiate (dotPrefab, transform);
             dotObject.transform.position = customMove.PosAtIndex(i);
-            dotObject.SetActive(true);
+            dotObject.SetActive (true);
 
             if (i + 1 >= customMove.Count)
                 continue;
             
-            GameObject lineObject = Instantiate(linePrefab, transform);
+            GameObject lineObject = Instantiate (linePrefab, transform);
             lineObject.transform.position = customMove.PosAtIndex(i);
 
             Vector2 direction = customMove.PosAtIndex(i + 1) - customMove.PosAtIndex(i);
@@ -45,7 +45,7 @@ public class CustomMovePath : MonoBehaviour
             if (lineRenderer)
                 lineRenderer.size = new Vector2 (lineRenderer.size.x, direction.magnitude);
 
-            lineObject.SetActive(true);
+            lineObject.SetActive (true);
         }
 
         dotPrefab.SetActive(false);

@@ -12,8 +12,6 @@ public class CustomEditorInicialization : MonoBehaviour
             return;
 
         StoryEventSaveConverter.FromSaveToAssets();
-        PlayerWallet.LoadSaveData();
-        CurrencyInstanceList.Init();
 
         initialized = true;
     }

@@ -8,29 +8,15 @@ public class SaveFile
 {
     public int version = 1;
 
-    public float digitalCurrency;
-    public float world1Currency;
-    public float world2Currency;
-    public float world3Currency;
-
-    public List<ItemIndexer> world1CurrencyIndexer;
-    public List<ItemIndexer> world2CurrencyIndexer;
-    public List<ItemIndexer> world3CurrencyIndexer;
-
     public List<StoryEventData> storyEventsStates;
 
-    // ship customization data
-    // ship bought items
+    //public List<MinigameHiscore> JumperHighscores;
 
     public List<AchievementLog> achievementLog;
     private float playtime;
 
     public SaveFile ()
     {
-        world1CurrencyIndexer = new List<ItemIndexer>();
-        world2CurrencyIndexer = new List<ItemIndexer>();
-        world3CurrencyIndexer = new List<ItemIndexer>();
-
         storyEventsStates = new List<StoryEventData>();
 
         var achievementList = AchievementsManager.GetNewAchievementList();
