@@ -18,6 +18,9 @@ public class CustomMovePath : MonoBehaviour
             return;
         }
 
+        if (transform.parent == customMove.transform)
+            transform.parent = customMove.transform.parent;
+
         SetPath();
     }
 
