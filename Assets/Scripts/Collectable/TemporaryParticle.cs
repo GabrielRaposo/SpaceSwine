@@ -9,13 +9,13 @@ public class TemporaryParticle : MonoBehaviour
     
     private void Start()
     {
-        Debug.Log("TemporaryParticle - Start()");
+        //Debug.Log("TemporaryParticle - Start()");
         StartCoroutine(RaposUtil.WaitSeconds(timeLimit, DestroySelf));
     }
 
     private void DestroySelf()
     {
-        Debug.Log("DestroySelf()");
+        //Debug.Log("DestroySelf()");
         Destroy(gameObject);
     }
     
