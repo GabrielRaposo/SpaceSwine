@@ -15,6 +15,7 @@ public class SaveFile
     public List<AchievementLog> achievementLog;
 
     private float playtime;
+
     public float Playtime
     {
         get => playtime;
@@ -50,16 +51,3 @@ public class SaveFile
         return s;
     }
 }
-
-//[System.Serializable]
-//public class StoryEventData
-//{
-//    public StoryEventData(bool state, string name)
-//    {
-//        this.state = state;
-//        this.name = name;
-//    }
-
-//    [SerializeField] public bool state;
-//    [SerializeField] public string name;
-//}

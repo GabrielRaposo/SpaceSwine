@@ -84,6 +84,9 @@ public class StoryEventsManager : MonoBehaviour
             return;
 
         Instance = this;
+
+        if (!SaveManager.Initiated)
+            SaveManager.Load();
     }
 
     private void Start() 
@@ -238,7 +241,7 @@ public class StoryEventsManager : MonoBehaviour
         }
 
         #if UNITY_EDITOR
-            Debug.Log (s);
+            //Debug.Log (s);
         #endif
 
         listDisplay.text = s;

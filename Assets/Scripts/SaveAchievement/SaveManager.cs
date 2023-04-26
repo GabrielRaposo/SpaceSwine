@@ -16,11 +16,11 @@ public class SaveManager : MonoBehaviour
 
     static SaveManager()
     {
-        //Debug.Log("Save Manager Initiated!");
+        Debug.Log("Save Manager Initiated!");
         //Debug.Log("Path: " + path);
 
-        currentSave = new SaveFile();
-        //currentSave = Load();
+        //currentSave = new SaveFile();
+        currentSave = Load();
 
         safety = 0;
 
@@ -30,7 +30,7 @@ public class SaveManager : MonoBehaviour
 
     public static SaveFile Load()
     {
-        SaveIcon.Show();
+        SaveIcon.Show(Color.red);
 
         safety++;
         if (safety > 50)
@@ -107,7 +107,7 @@ public class SaveManager : MonoBehaviour
 
     public static void Save() 
     {
-        SaveIcon.Show();
+        SaveIcon.Show(Color.white);
 
         FileStream file;
 
@@ -153,8 +153,6 @@ public class SaveManager : MonoBehaviour
 
     public static void SaveStoryEvent (StoryEventScriptableObject storyEvent)
     {
-        return;
-
         //Save();
     }
 

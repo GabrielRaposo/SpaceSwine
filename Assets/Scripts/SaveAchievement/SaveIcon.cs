@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SaveIcon : MonoBehaviour
 {
@@ -26,17 +27,21 @@ public class SaveIcon : MonoBehaviour
         SetLocalVisibility(false);    
     }
 
-    public static void Show () 
+    public static void Show (Color color) 
     { 
         if (!Instance)
             return;
 
-        Instance.SetActiveTemp();
+        Instance.SetActiveTemp(color);
     }
 
-    private void SetActiveTemp() // Por enquanto espera por um tempo arbitrário, depois tentar achar uma forma de fazer direito
+    private void SetActiveTemp (Color color) // Por enquanto espera por um tempo arbitrário, depois tentar achar uma forma de fazer direito
     {
         StopAllCoroutines();
+
+        Image image = GetComponentInChildren<Image>();
+        if (image)
+            image.color = color;
 
         SetLocalVisibility(true);
 
@@ -50,5 +55,7 @@ public class SaveIcon : MonoBehaviour
     { 
         gameObject.SetActive(state);
         canvasGroup.alpha = state ? 1 : 0;
+
+        //Debug.Log("SetLocalVisibility: " + state);
     }
 }

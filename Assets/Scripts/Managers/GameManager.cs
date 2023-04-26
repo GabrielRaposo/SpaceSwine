@@ -52,15 +52,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //if (!SaveManager.Initiated)
-        //{
-        //    SaveManager.Load();
-        //}
-
-        #if UNITY_EDITOR
-        //CustomEditorInicialization.Initialize();
-        #endif
-
         pauseSystem = PauseSystem.Instance; 
         ggsConsole = GGSConsole.Instance;
 
