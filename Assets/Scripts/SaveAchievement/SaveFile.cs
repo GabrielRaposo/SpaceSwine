@@ -8,9 +8,10 @@ public class SaveFile
 {
     public int version = 1;
 
-    //public List<StoryEventData> storyEventsStates;
+    public List<EventProgressData> eventProgressList;
 
     //public List<MinigameHiscore> JumperHighscores;
+    //public List<MinigameHiscore> ShooterHighscores;
 
     public List<AchievementLog> achievementLog;
 
@@ -24,30 +25,62 @@ public class SaveFile
 
     public SaveFile ()
     {
-        //storyEventsStates = new List<StoryEventData>();
+        PrepFile();
 
-        var achievementList = AchievementsManager.GetNewAchievementList();
-
-        achievementLog = new List<AchievementLog>();
-
-        foreach (Achievement achievement in achievementList)
+        // -- Achievement
         {
-            var aLog = new AchievementLog(achievement);
-            achievementLog.Add(aLog);
+            var achievementList = AchievementsManager.GetNewAchievementList();
+
+            achievementLog = new List<AchievementLog>();
+
+            foreach (Achievement achievement in achievementList)
+            {
+                var aLog = new AchievementLog(achievement);
+                achievementLog.Add(aLog);
+            }
         }
     }
 
-    private List<StageProgress> GetBaseLevelList()
+    // -- Classes geradas pela serialiazação podem não possuir a inicialização de novos componentes
+    public void PrepFile()
     {
-        //TEMP
-        
-        return new List<StageProgress>();
+        if (eventProgressList == null)
+            eventProgressList = new List<EventProgressData>();
+
+        if (achievementLog == null)
+            achievementLog = new List<AchievementLog>();
     }
   
     public string PrintStoredData()
     {
         string s = "Stored Data on Save: \n";
 
+        if (eventProgressList != null)
+        {   
+            s += $"\tStoryEventsProgress.Count: { eventProgressList.Count } \n";
+
+            for (int i = 0; i < eventProgressList.Count; i++)
+            {
+                EventProgressData progressData = eventProgressList[i];
+                s += $"\t [{ i }] - IsComplete: { progressData.progress >= progressData.goal } \n";
+            }
+        }
+
         return s;
     }
+}
+
+[System.Serializable]
+public class EventProgressData
+{
+    public EventProgressData (string id, int progress, int goal)
+    {
+        this.id = id;
+        this.progress = progress;
+        this.goal = goal;
+    }
+
+    public string id;
+    public int progress;
+    public int goal;
 }

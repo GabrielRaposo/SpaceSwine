@@ -17,20 +17,16 @@ public class SaveManager : MonoBehaviour
     static SaveManager()
     {
         Debug.Log("Save Manager Initiated!");
-        //Debug.Log("Path: " + path);
 
-        //currentSave = new SaveFile();
         currentSave = Load();
 
         safety = 0;
-
         Initiated = true;
-        //Debug.Log (currentSave.PrintStoredData());
     }
 
     public static SaveFile Load()
     {
-        SaveIcon.Show(Color.red);
+        SaveIcon.Show (Color.red);
 
         safety++;
         if (safety > 50)
@@ -39,13 +35,16 @@ public class SaveManager : MonoBehaviour
             Application.Quit();
         }
         
-        if (File.Exists(path)) 
+        if (File.Exists(path))
         {
-            //Debug.Log("File found!");
+            Debug.Log("File found!");
+            
             FileStream file = File.OpenRead(path);
             BinaryFormatter bf = new BinaryFormatter();
-            SaveFile loadedSaveFile = (SaveFile)bf.Deserialize(file);
+            SaveFile loadedSaveFile = (SaveFile) bf.Deserialize(file);
             file.Close();
+
+            loadedSaveFile.PrepFile();
 
             if (!IsSaveValid(loadedSaveFile))
             {
@@ -107,7 +106,7 @@ public class SaveManager : MonoBehaviour
 
     public static void Save() 
     {
-        SaveIcon.Show(Color.white);
+        SaveIcon.Show (Color.white);
 
         FileStream file;
 
@@ -121,6 +120,7 @@ public class SaveManager : MonoBehaviour
         bf.Serialize(file, currentSave);
         file.Close();
 
+        Debug.Log (currentSave.PrintStoredData());
     }
 
     public static void ResetSave()
@@ -150,11 +150,6 @@ public class SaveManager : MonoBehaviour
     //    currentSave.storyEventsStates = storyEventDatas;
     //    Save();
     //}
-
-    public static void SaveStoryEvent (StoryEventScriptableObject storyEvent)
-    {
-        //Save();
-    }
 
     public static float GetPlaytime()
     {

@@ -24,7 +24,7 @@ public class StoryEventScriptableObject : ScriptableObject
             return;
         }
         
-        StoryEventsManager.EventProgress eventProgress = StoryEventsManager.GetEventProgress(this);
+        EventProgress eventProgress = StoryEventsManager.GetEventProgress(this);
         if (eventProgress == null)
             return;
 
@@ -41,6 +41,8 @@ public class StoryEventScriptableObject : ScriptableObject
     public void SetUpdatedState (bool value)
     {
         UpdatedState = value;
-        this.SetDirty();
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(this);
+#endif
     }
 }
