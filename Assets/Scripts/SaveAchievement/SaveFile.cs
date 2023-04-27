@@ -62,7 +62,7 @@ public class SaveFile
             for (int i = 0; i < eventProgressList.Count; i++)
             {
                 EventProgressData progressData = eventProgressList[i];
-                s += $"\t [{ i }] - IsComplete: { progressData.progress >= progressData.goal } \n";
+                s += $"\t [{ i }] { progressData.id } - IsComplete: { progressData.progress >= progressData.goal } \n";
             }
         }
 

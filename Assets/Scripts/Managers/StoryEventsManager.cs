@@ -7,8 +7,9 @@ using TMPro;
 
 public class StoryEventsManager : MonoBehaviour
 {
-    [SerializeField] InputAction testInput;
     [SerializeField] bool loadEventsFromSave;
+    [SerializeField] InputAction testInput;
+
     [SerializeField] List<StoryEventScriptableObject> storyEvents;
 
     TextMeshProUGUI listDisplay;
@@ -49,24 +50,57 @@ public class StoryEventsManager : MonoBehaviour
 
         foreach (var storyEvent in storyEvents)
         {
-            if (!loadEventsFromSave ) // ou lista do save está vazia
+            //if (!loadEventsFromSave ) // ou lista do save está vazia
             
+            int progress = storyEvent.StartingState ? storyEvent.Goal : 0;
+            int goal = storyEvent.Goal;
+
+            if (loadEventsFromSave)
+            {
+                EventProgressData data = SaveManager.GetStoryEvents().Find ( (d) => d.id == storyEvent.name );
+                if (data != null)
+                {
+                    progress = data.progress;
+                    goal = data.goal;
+                }
+            }
 
             eventsDictionary.Add 
             (
                 key: storyEvent, 
-                value: new EventProgress 
-                (
-                    progress: storyEvent.StartingState ? storyEvent.Goal : 0,
-                    goal:     storyEvent.Goal
-                )
+                value: new EventProgress (progress, goal)
             );
         }
+
+        ParseToSaveFormat();
 
         Initiated = true;
     } 
 
-    public static EventProgress GetEventProgress(StoryEventScriptableObject key)
+    public static void ParseToSaveFormat()
+    {
+        if (!SaveManager.Initiated)
+            return;
+
+        List<EventProgressData> dataList = new List<EventProgressData>();
+
+        foreach (var pair in eventsDictionary)
+        {
+            dataList.Add 
+            (
+                new EventProgressData
+                (
+                    id: pair.Key.name,
+                    progress: pair.Value.Progress,
+                    goal: pair.Value.Goal
+                )
+            );
+        }
+
+        SaveManager.SetStoryEvents (dataList);
+    }
+
+    public static EventProgress GetEventProgress (StoryEventScriptableObject key)
     {
         // temp --
         if (eventsDictionary == null)
@@ -91,6 +125,8 @@ public class StoryEventsManager : MonoBehaviour
         eventProgress.ChangeProgress(value);
 
         UpdatePrintedEventStates();
+
+        ParseToSaveFormat();
     }
 
     public static void ClearProgress (StoryEventScriptableObject key)
@@ -214,6 +250,9 @@ public class EventProgress
     int progress;
     int goal;
     UnityEvent<bool> OnStateChangedEvent;
+
+    public int Progress => progress;
+    public int Goal => goal;
 
     public bool IsComplete => progress >= goal;
 

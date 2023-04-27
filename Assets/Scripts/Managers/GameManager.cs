@@ -56,9 +56,9 @@ public class GameManager : MonoBehaviour
         ggsConsole = GGSConsole.Instance;
 
         #if UNITY_EDITOR
-        //resetInputAction.performed += (ctx) => ResetScene();
-        saveInputAction.performed += (ctx) => SaveManager.SaveAllData();
-        resetSaveInputAction.performed += (ctx) => SaveManager.ResetSave();
+            //resetInputAction.performed += (ctx) => ResetScene();
+            saveInputAction.performed += (ctx) => SaveManager.SaveAllData();
+            resetSaveInputAction.performed += (ctx) => SaveManager.ResetSave();
         #endif
 
         SetupPlayer(); // Deve ocorrer no Start()

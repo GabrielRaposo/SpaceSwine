@@ -46,7 +46,7 @@ public class SaveManager : MonoBehaviour
 
             loadedSaveFile.PrepFile();
 
-            if (!IsSaveValid(loadedSaveFile))
+            if (!IsSaveValid(loadedSaveFile)) 
             {
                 Debug.LogWarning("Invalid save file!");
                 currentSave = new SaveFile();
@@ -144,12 +144,18 @@ public class SaveManager : MonoBehaviour
     //{
     //    return currentSave.storyEventsStates;
     //}
+    
+    public static List<EventProgressData> GetStoryEvents()
+    {
+        return currentSave.eventProgressList;
+    }
 
-    //public static void SetAllStoryEvents(List<StoryEventData> storyEventDatas)
-    //{
-    //    currentSave.storyEventsStates = storyEventDatas;
-    //    Save();
-    //}
+    public static void SetStoryEvents (List<EventProgressData> progressList)
+    {
+        currentSave.eventProgressList = progressList;
+
+        Save();
+    }
 
     public static float GetPlaytime()
     {
