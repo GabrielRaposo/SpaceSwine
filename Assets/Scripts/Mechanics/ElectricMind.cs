@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -167,5 +168,55 @@ public class ElectricMind : MonoBehaviour
 
         active = value;
         UpdateActivation();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+
+        var gizmosBallArray = GetComponentsInChildren<ElectricBall>();
+
+        if (gizmosBallArray == null || gizmosBallArray.Length < 2)
+            return;
+
+        var electrickLocksGizmo = GetComponentsInChildren<ElectricLock>();
+        
+        List<Transform> targets = new List<Transform>();
+        for (int i = 0; i < gizmosBallArray.Length; i++)
+        {
+            targets.Add(gizmosBallArray[i].transform);
+
+            if (electrickLocksGizmo == null || electrickLocksGizmo.Length < 1)
+                continue;
+
+            Transform t = null;
+            foreach (ElectricLock l in electrickLocksGizmo)
+            {
+                if (l.transform.GetSiblingIndex() - 2 == i)
+                {
+                    t = l.GetConnectionPoint();
+                    break;
+                }
+            }
+
+            if (t != null)
+                targets.Add(t);
+        }
+
+        if (loop && targets.Count > 0)
+        {
+            targets.Add(targets[0]);
+        }
+
+        Vector3[] positions = new Vector3[targets.Count];
+        for (int i = 0; i < targets.Count; i++)
+        {
+            positions[i] = targets[i].position;
+        }
+
+        for (int i = 0; i < positions.Length - 1; i++)
+        {
+            Gizmos.DrawLine(positions[i], positions[i + 1]);
+        }
     }
 }

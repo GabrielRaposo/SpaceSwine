@@ -34,6 +34,7 @@ public class PlanetMaterialCreator : MonoBehaviour
             SetPixelSize();
             
             _spriteRenderer.material = currentMaterial;
+
         }
             
     }
@@ -58,10 +59,15 @@ public class PlanetMaterialCreator : MonoBehaviour
         
     }
 
-    public void ClarMaterial()
+    public void ClearMaterial()
     {
         currentMaterial = null;
         OnValidate();
+    }
+
+    public void RotatePlanet()
+    {
+        _spriteRenderer.transform.eulerAngles = new Vector3(0f, 0f, Random.Range(0f, 360f));
     }
     
     private void TweakMaterial(Material mat)
