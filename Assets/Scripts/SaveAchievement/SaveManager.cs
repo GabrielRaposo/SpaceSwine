@@ -85,7 +85,7 @@ public class SaveManager : MonoBehaviour
                 // currentSave.Playtime = loadedSaveFile.Playtime;
                 
                 AchievementsManager.SetCurrentList(currentSave.achievementLog);
-                SpecificAchievementsUpdate(currentSave);
+                //SpecificAchievementsUpdate(currentSave);
                 
                 Save();
 
@@ -146,9 +146,9 @@ public class SaveManager : MonoBehaviour
         StoryEventsManager.ReloadEventsDictionary();
         StoryEventsManager.UpdatePrintedEventStates();
 
-        AchievementsManager.SetCurrentList(currentSave.achievementLog);
+        AchievementsManager.SetCurrentList (currentSave.achievementLog);
 
-        Debug.Log ("Save Reseted.");
+        Debug.Log ("Save reseted");
     }
 
     public static void SaveAllData()
@@ -156,6 +156,27 @@ public class SaveManager : MonoBehaviour
         Debug.Log ("Update and save data");
         Save();
     }
+
+    #region Spawn Data
+    public static (string scenePath, int spawnIndex) GetSpawnData ()
+    {
+        return (currentSave.spawnScenePath, currentSave.spawnIndex);
+    }
+
+    public static void SetSpawnPath (string scenePath)
+    {
+        currentSave.spawnScenePath = scenePath;
+
+        Save();
+    }
+
+    public static void SetSpawnIndex (int spawnIndex)
+    {
+        currentSave.spawnIndex = spawnIndex;
+
+        Save();
+    }
+    #endregion
 
     #region Story Events
     public static List<EventProgressData> GetStoryEvents()
@@ -197,9 +218,4 @@ public class SaveManager : MonoBehaviour
         Save();
     }
     #endregion
-
-    private static void SpecificAchievementsUpdate(SaveFile saveFile)
-    {
-
-    }
 }

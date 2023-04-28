@@ -27,7 +27,7 @@ public class GoToSceneTriggerRegion : MonoBehaviour
         if (nextSceneSpawnPoint > -1)
             SpawnManager.Index = nextSceneSpawnPoint;
 
-        GameManager.GoToScene(targetScene.ScenePath);
+        GameManager.GoToScene(targetScene.ScenePath, saveScenePath: true);
         activated = true;
     }
 }

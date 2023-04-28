@@ -8,6 +8,9 @@ public class SaveFile
 {
     public int version = 1;
 
+    public string spawnScenePath;
+    public int spawnIndex;
+
     public List<EventProgressData> eventProgressList;
     public List<UINotification> uiNotificationsList;
 

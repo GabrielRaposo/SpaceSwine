@@ -121,13 +121,13 @@ public class PauseSystem : MonoBehaviour
             SetPauseState(false);
 
             PlayerTransitionState playerTransitionState = player.GetComponent<PlayerTransitionState>();
-            playerTransitionState.TeleportOut( () => GameManager.GoToScene(shipScene.ScenePath) );
+            playerTransitionState.TeleportOut( () => GameManager.GoToScene(shipScene.ScenePath, saveScenePath: true) );
 
             return;
         }
         
         OnPause = false;
-        GameManager.GoToScene(shipScene.ScenePath);
+        GameManager.GoToScene(shipScene.ScenePath, saveScenePath: true);
     }
 
     public void CallResetRound()

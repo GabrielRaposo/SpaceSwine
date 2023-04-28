@@ -45360,6 +45360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 543fefddf55ea8c4cb9b727ba7f52cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  storyCheckEvent: {fileID: 11400000, guid: 0bcde44891d9fae45867548242645e14, type: 2}
   nextScene:
     m_SceneAsset: {fileID: 102900000, guid: 3b64a91c1c8088a49bac69bcc35daed0, type: 3}
     m_IsDirty: 0
@@ -48764,8 +48765,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1873885102}
   - component: {fileID: 1873885103}
+  - component: {fileID: 1873885104}
   m_Layer: 0
-  m_Name: Resume Playlist On Start
+  m_Name: -- On Start Calls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48797,6 +48799,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e277150ee6b5e1f4f83f803bdddb3686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1873885104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873885101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ecfa5f98f143cb409b21d1e8597e554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneData:
+    m_SceneAsset: {fileID: 102900000, guid: e68c488701d274849a95482586329861, type: 3}
+    m_IsDirty: 0
+    m_ScenePath: Assets/Scenes/ShipScene.unity
+  spawnIndex: 0
 --- !u!1 &1876902828
 GameObject:
   m_ObjectHideFlags: 0

@@ -94,8 +94,11 @@ public class GameManager : MonoBehaviour
         soundtrackManager.SetPlaylist(CurrentPlaylist);
     }
 
-    public static void GoToScene (string path)
+    public static void GoToScene (string path, bool saveScenePath = false)
     {
+        if (saveScenePath)
+            SaveManager.SetSpawnPath(path);
+        
         SceneTransition.LoadScene(path, SceneTransition.TransitionType.BlackFade);
     }
 

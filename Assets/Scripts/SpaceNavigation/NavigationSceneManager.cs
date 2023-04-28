@@ -88,7 +88,7 @@ public class NavigationSceneManager : MonoBehaviour
             _navigationConsole.SetTurnedOn(false);
 
         PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
-        GameManager.GoToScene(scenePath);
+        GameManager.GoToScene(scenePath, saveScenePath: true);
     }
 
     //TODO: mudar pra fazer por save

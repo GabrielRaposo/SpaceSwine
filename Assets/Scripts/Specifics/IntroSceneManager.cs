@@ -102,6 +102,10 @@ public class IntroSceneManager : MonoBehaviour
                     }
                 };
             }
+
+            SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
+            if (soundtrackManager)
+                soundtrackManager.Stop();
         }
 
         jumpTutorialGroup.alpha = 0;
