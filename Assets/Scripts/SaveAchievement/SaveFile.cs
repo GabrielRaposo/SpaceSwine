@@ -9,6 +9,7 @@ public class SaveFile
     public int version = 1;
 
     public List<EventProgressData> eventProgressList;
+    public List<UINotification> uiNotificationsList;
 
     //public List<MinigameHiscore> JumperHighscores;
     //public List<MinigameHiscore> ShooterHighscores;
@@ -46,6 +47,9 @@ public class SaveFile
     {
         if (eventProgressList == null)
             eventProgressList = new List<EventProgressData>();
+
+        if (uiNotificationsList == null)
+            uiNotificationsList = new List<UINotification>();
 
         if (achievementLog == null)
             achievementLog = new List<AchievementLog>();

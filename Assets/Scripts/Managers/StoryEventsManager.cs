@@ -41,10 +41,18 @@ public class StoryEventsManager : MonoBehaviour
     private IEnumerator WaitForSaveManager()
     {
         yield return new WaitUntil ( () => SaveManager.Initiated );
-        MakeEventsDictionary();
+        ReloadEventsDictionary();
     }
 
-    public void MakeEventsDictionary()
+    public static void ReloadEventsDictionary()
+    {
+        if (Instance == null)
+            return;
+
+        Instance.LoadEventsDictionary();
+    }
+
+    public void LoadEventsDictionary()
     {
         eventsDictionary = new Dictionary<StoryEventScriptableObject, EventProgress>();
 
@@ -180,8 +188,8 @@ public class StoryEventsManager : MonoBehaviour
         listDisplay = GetComponentInChildren<TextMeshProUGUI>();
         listDisplay.text = string.Empty;
 
-        if (!Application.isEditor)
-            return;
+        //if (!Application.isEditor)
+        //    return;
 
         testInput.performed += (ctx) => 
         {
@@ -193,8 +201,8 @@ public class StoryEventsManager : MonoBehaviour
 
     private void OnDisable() 
     {
-        if (!Application.isEditor)
-            return;
+        //if (!Application.isEditor)
+        //    return;
 
         testInput.Disable();
     }
@@ -224,10 +232,6 @@ public class StoryEventsManager : MonoBehaviour
 
             s += $"{ (progress.Completion * 100).ToString("0") }% - { key.name } \n";
         }
-
-        #if UNITY_EDITOR
-            //Debug.Log (s);
-        #endif
 
         listDisplay.text = s;
         listDisplay.enabled = showing;

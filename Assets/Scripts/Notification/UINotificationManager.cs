@@ -2,9 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class UINotificationManager
+public class UINotificationManager : MonoBehaviour
 {
     static List <UINotification> notificationsList = new List <UINotification>();
+
+    static UINotificationManager Instance;
+
+    public UINotificationManager()
+    {
+        if (Instance != null)
+            return;
+
+        Instance = this;
+    }
+
+    private void Start() 
+    {
+        StartCoroutine (WaitForSaveManager());
+    }
+
+    private IEnumerator WaitForSaveManager()
+    {
+        yield return new WaitUntil ( () => SaveManager.Initiated );
+        
+        LoadNotificationsList();
+    }
+
+    private static void LoadNotificationsList()
+    {
+        notificationsList = SaveManager.GetUINotifications();
+
+        PrintList();
+    }
 
     public static void UpdateListFromSave (List<UINotification> savedList)
     {
@@ -30,8 +59,11 @@ public static class UINotificationManager
         
         notificationsList.Add (new UINotification() { id = notificationID });
 
-        Debug.Log($"- Notification { notificationID } added.");
-        PrintList();
+        SaveManager.SetUINotifications (notificationsList);
+
+        #if UNITY_EDITOR
+            PrintList();
+        #endif
     }
 
     private static UINotification GetById (string notificationID)
@@ -73,10 +105,13 @@ public static class UINotificationManager
             return;
 
         notification.Use();
+
+        SaveManager.SetUINotifications (notificationsList);
     }
 
     private static void PrintList()
     {
+        Debug.Log("PrintList");
         if (notificationsList.Count < 1)
             return;
 

@@ -14,6 +14,7 @@ public class SaveManager : MonoBehaviour
     readonly static string path = Application.persistentDataPath + "/astropig_new_save.save";
     private static int safety;
 
+    #region Setup
     static SaveManager()
     {
         Debug.Log("Save Manager Initiated!");
@@ -104,6 +105,20 @@ public class SaveManager : MonoBehaviour
         return Load();
     }
 
+    private static bool IsSaveValid (SaveFile file)
+    {
+        if (file == null) return false;
+        if (file.version != new SaveFile().version) return false;
+        if (file.achievementLog == null) return false;
+
+        var systemAchievements = AchievementsManager.GetNewAchievementList();
+
+        if (file.achievementLog.Count != systemAchievements.Count) return false;
+
+        return true;
+    }
+    #endregion
+
     public static void Save() 
     {
         SaveIcon.Show (Color.white);
@@ -127,24 +142,22 @@ public class SaveManager : MonoBehaviour
     {
         currentSave = new SaveFile();   
         Save();
+
+        StoryEventsManager.ReloadEventsDictionary();
+        StoryEventsManager.UpdatePrintedEventStates();
+
         AchievementsManager.SetCurrentList(currentSave.achievementLog);
+
         Debug.Log ("Save Reseted.");
     }
 
     public static void SaveAllData()
     {
-        Debug.Log("Update and save data");
-
-        // Save events
-
+        Debug.Log ("Update and save data");
         Save();
     }
 
-    //public static List<StoryEventData> GetStoryEvents()
-    //{
-    //    return currentSave.storyEventsStates;
-    //}
-    
+    #region Story Events
     public static List<EventProgressData> GetStoryEvents()
     {
         return currentSave.eventProgressList;
@@ -156,7 +169,23 @@ public class SaveManager : MonoBehaviour
 
         Save();
     }
+    #endregion
 
+    #region UI Notifications
+    public static List<UINotification> GetUINotifications()
+    {
+        return currentSave.uiNotificationsList;
+    }
+
+    public static void SetUINotifications(List<UINotification> notificationsList)
+    {
+        currentSave.uiNotificationsList = notificationsList;
+
+        Save();
+    }
+    #endregion
+
+    #region Playtime
     public static float GetPlaytime()
     {
         return currentSave.Playtime;
@@ -167,27 +196,10 @@ public class SaveManager : MonoBehaviour
         currentSave.Playtime += sessionTime;
         Save();
     }
-
-    private static bool IsSaveValid(SaveFile file)
-    {
-        if (file == null) return false;
-        if (file.version != new SaveFile().version) return false;
-        if (file.achievementLog == null) return false;
-
-        var systemAchievements = AchievementsManager.GetNewAchievementList();
-
-        if (file.achievementLog.Count != systemAchievements.Count) return false;
-
-        return true;
-    }
+    #endregion
 
     private static void SpecificAchievementsUpdate(SaveFile saveFile)
     {
 
-    }
-
-    public static void IsSaveReady()
-    {
-        Debug.Log("<- Change here");
     }
 }
