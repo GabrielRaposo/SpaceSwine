@@ -8,7 +8,6 @@ using Minigame;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject playerObject;
-    [SerializeField] InputAction resetInputAction;
     [SerializeField] InputAction saveInputAction;
     [SerializeField] InputAction resetSaveInputAction;
 
@@ -43,11 +42,10 @@ public class GameManager : MonoBehaviour
         };
         playerInputActions.UI.Reset.Enable();
         
-        #if UNITY_EDITOR
-            resetInputAction.Enable();
+        //#if UNITY_EDITOR
             saveInputAction.Enable();
             resetSaveInputAction.Enable();
-        #endif
+        //#endif
     }
 
     void Start()
@@ -55,11 +53,18 @@ public class GameManager : MonoBehaviour
         pauseSystem = PauseSystem.Instance; 
         ggsConsole = GGSConsole.Instance;
 
-        #if UNITY_EDITOR
-            //resetInputAction.performed += (ctx) => ResetScene();
-            saveInputAction.performed += (ctx) => SaveManager.SaveAllData();
-            resetSaveInputAction.performed += (ctx) => SaveManager.ResetSave();
-        #endif
+        //#if UNITY_EDITOR
+            saveInputAction.performed += (ctx) => 
+            { 
+                SaveManager.Save();
+                DebugDisplay.Call ("Manual Save.");
+            };
+            resetSaveInputAction.performed += (ctx) => 
+            {
+                SaveManager.ResetSave();
+                DebugDisplay.Call ("Manual Save Reset.");
+            };
+        //#endif
 
         SetupPlayer(); // Deve ocorrer no Start()
         SetupPlaylist();
@@ -166,10 +171,9 @@ public class GameManager : MonoBehaviour
         playerInputActions.UI.Start.Disable();
         playerInputActions.UI.Reset.Disable();
 
-        #if UNITY_EDITOR
-            resetInputAction.Disable();    
+        //#if UNITY_EDITOR  
             saveInputAction.Disable();
             resetSaveInputAction.Disable();
-        #endif
+        //#endif
     }
 }

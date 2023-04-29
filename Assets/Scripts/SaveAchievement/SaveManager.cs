@@ -38,7 +38,7 @@ public class SaveManager : MonoBehaviour
         
         if (File.Exists(path))
         {
-            Debug.Log("File found!");
+            DebugDisplay.Call("File found!");
             
             FileStream file = File.OpenRead(path);
             BinaryFormatter bf = new BinaryFormatter();
@@ -49,7 +49,7 @@ public class SaveManager : MonoBehaviour
 
             if (!IsSaveValid(loadedSaveFile)) 
             {
-                Debug.LogWarning("Invalid save file!");
+                DebugDisplay.Call("Invalid save file!");
                 currentSave = new SaveFile();
 
                 if (loadedSaveFile.achievementLog != null)
@@ -98,7 +98,7 @@ public class SaveManager : MonoBehaviour
             return loadedSaveFile;
         }
 
-        Debug.Log("File not found, creating new.");
+        DebugDisplay.Call("File not found, creating new.");
         currentSave = new SaveFile();
         Save();
 
@@ -147,14 +147,6 @@ public class SaveManager : MonoBehaviour
         StoryEventsManager.UpdatePrintedEventStates();
 
         AchievementsManager.SetCurrentList (currentSave.achievementLog);
-
-        Debug.Log ("Save reseted");
-    }
-
-    public static void SaveAllData()
-    {
-        Debug.Log ("Update and save data");
-        Save();
     }
 
     #region Spawn Data

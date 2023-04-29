@@ -111,7 +111,6 @@ public class UINotificationManager : MonoBehaviour
 
     private static void PrintList()
     {
-        Debug.Log("PrintList");
         if (notificationsList.Count < 1)
             return;
 

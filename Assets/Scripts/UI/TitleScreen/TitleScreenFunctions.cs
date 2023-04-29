@@ -17,6 +17,7 @@ public class TitleScreenFunctions : MonoBehaviour
     public void NewGameInput()
     {
         SaveManager.ResetSave();
+        DebugDisplay.Call ("New Game: Save Reset.");
 
         TrailerSceneCaller.AutoStart = true;
         PlaylistPlayer.CutsceneMode = true;
