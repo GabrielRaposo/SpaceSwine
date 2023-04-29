@@ -47,7 +47,7 @@ public class SaveIcon : MonoBehaviour
 
         StartCoroutine
         (
-            RaposUtil.WaitSeconds(3, () => SetLocalVisibility(false))
+            RaposUtil.WaitSecondsRealtime(1, () => SetLocalVisibility(false))
         );
     }
 

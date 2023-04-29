@@ -17,8 +17,6 @@ public class SaveManager : MonoBehaviour
     #region Setup
     static SaveManager()
     {
-        Debug.Log("Save Manager Initiated!");
-
         currentSave = Load();
 
         safety = 0;

@@ -765,22 +765,6 @@ MonoBehaviour:
   showAtStart: 0
   ceilValue: 0
   display: {fileID: 6378151077545949549}
-  toggleInputAction:
-    m_Name: Toggle Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 7cb0baf4-dabb-4d65-8079-dfb22a3fb61a
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: b8bdede6-f91c-43f8-86db-8c53eb765dab
-      m_Path: <Keyboard>/pageUp
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Toggle Input
-      m_Flags: 0
 --- !u!114 &8005709023839253707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -913,38 +897,6 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: e3b0120eabb284c41be708b47bf91e4b, type: 2}
-  playMusicTestInput:
-    m_Name: Play Music Test Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: a5e7ccc1-7c2b-4d77-b8f4-5af2c54ed5a0
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 6192bce6-3eb9-4cab-99c4-0dfce16a2cef
-      m_Path: <Keyboard>/4
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Play Music Test Input
-      m_Flags: 0
-  stopMusicTestInput:
-    m_Name: Stop Music Test Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 934ed3a0-e979-4283-a08c-eeddbd847202
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 65e678ed-6331-42fc-bd36-0026a914f180
-      m_Path: <Keyboard>/5
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Stop Music Test Input
-      m_Flags: 0
 --- !u!1 &2479926269062887750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,9 +981,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8859486982507285968}
+  - component: {fileID: 1929144562909856283}
   - component: {fileID: 6370079310086080354}
   m_Layer: 0
-  m_Name: Debug Display
+  m_Name: Debug Functions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1052,6 +1005,99 @@ Transform:
   m_Father: {fileID: 636125615912779242}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1929144562909856283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234124924910997602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455416dd1a85daa4a808188ecc686a86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveInputAction:
+    m_Name: Save Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2fae1c6f-ecc6-4dcb-9ed5-86b40f9a71f1
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: cb4fbc08-60ea-4de9-8c90-7727f9025f4f
+      m_Path: <Keyboard>/0
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Save Input
+      m_Flags: 0
+  resetSaveInputAction:
+    m_Name: Reset Save Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0fd14b84-39d9-4239-ac1a-d8a5d20a42f6
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 02e12bdc-ba27-412e-8461-3ccf91e1295d
+      m_Path: <Keyboard>/minus
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Reset Save Input
+      m_Flags: 0
+  playMusicTestInput:
+    m_Name: Play Music Test Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 179bf9f4-0956-4da4-bd15-02527a9fbb90
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ebc4ac07-4336-470b-9587-52207542040d
+      m_Path: <Keyboard>/4
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Play Music Test Input
+      m_Flags: 0
+  stopMusicTestInput:
+    m_Name: Stop Music Test Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 37318870-cfc5-47cc-ac5e-2d97f6b2920a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: a5c8594e-e0c2-4894-94a1-28f696b0b50c
+      m_Path: <Keyboard>/5
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Stop Music Test Input
+      m_Flags: 0
+  fpsInputAction:
+    m_Name: Fps Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9b341ea6-754c-406d-bf87-120233f33ba3
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 81117ad1-c371-4040-ba5c-b25ef5cfc3b9
+      m_Path: <Keyboard>/pageUp
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Fps Input
+      m_Flags: 0
+  fpsDisplay: {fileID: 4782487747560594943}
 --- !u!114 &6370079310086080354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2550,7 +2596,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0949ccc6c63fea0408befd09ebf8aae0, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 

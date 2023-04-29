@@ -8,8 +8,6 @@ using Minigame;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject playerObject;
-    [SerializeField] InputAction saveInputAction;
-    [SerializeField] InputAction resetSaveInputAction;
 
     RoundsManager roundsManager;
     PauseSystem pauseSystem;
@@ -41,30 +39,12 @@ public class GameManager : MonoBehaviour
                 RoundsManager.Instance.CallReset();
         };
         playerInputActions.UI.Reset.Enable();
-        
-        //#if UNITY_EDITOR
-            saveInputAction.Enable();
-            resetSaveInputAction.Enable();
-        //#endif
     }
 
     void Start()
     {
         pauseSystem = PauseSystem.Instance; 
         ggsConsole = GGSConsole.Instance;
-
-        //#if UNITY_EDITOR
-            saveInputAction.performed += (ctx) => 
-            { 
-                SaveManager.Save();
-                DebugDisplay.Call ("Manual Save.");
-            };
-            resetSaveInputAction.performed += (ctx) => 
-            {
-                SaveManager.ResetSave();
-                DebugDisplay.Call ("Manual Save Reset.");
-            };
-        //#endif
 
         SetupPlayer(); // Deve ocorrer no Start()
         SetupPlaylist();
@@ -170,10 +150,5 @@ public class GameManager : MonoBehaviour
     {
         playerInputActions.UI.Start.Disable();
         playerInputActions.UI.Reset.Disable();
-
-        //#if UNITY_EDITOR  
-            saveInputAction.Disable();
-            resetSaveInputAction.Disable();
-        //#endif
     }
 }
