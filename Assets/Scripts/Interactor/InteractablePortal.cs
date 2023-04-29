@@ -54,18 +54,23 @@ public class InteractablePortal : Interactable
 
     private void LoadSceneAction()
     {
+        if (targetScene == null)
+            return;
+
         data.outroScene = GameManager.CurrentScene;
-        Debug.Log("RETURN HERE!!");
         data.OnSessionCompleted += () => 
         {
             //Debug.Log("Session Done! ");
-            Debug.Log("LoadSceneAction");
-            SpawnManager.Index = data.OutroSpawnIndex;
+            if (SaveManager.Initiated)
+                SaveManager.SetSpawnIndex (data.OutroSpawnIndex);
         };
         RoundsManager.SessionData = data;
-        
-        if (targetScene == null)
-            return;
+
+        if (SaveManager.Initiated) 
+        {
+            SaveManager.SetSpawnPath (GameManager.CurrentScene);
+            SaveManager.SetSpawnIndex (data.AbandonSpawnIndex);
+        }
 
         SceneTransition.LoadScene( targetScene.ScenePath, SceneTransition.TransitionType.SafetyToDanger );
     }

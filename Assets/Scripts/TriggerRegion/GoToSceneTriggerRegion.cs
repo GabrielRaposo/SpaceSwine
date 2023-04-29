@@ -24,8 +24,8 @@ public class GoToSceneTriggerRegion : MonoBehaviour
         if (OnTriggerAction != null)
             OnTriggerAction.Invoke();
 
-        if (nextSceneSpawnPoint > -1)
-            SpawnManager.Index = nextSceneSpawnPoint;
+        if (nextSceneSpawnPoint > -1 && SaveManager.Initiated)
+            SaveManager.SetSpawnIndex (nextSceneSpawnPoint);
 
         GameManager.GoToScene(targetScene.ScenePath, saveScenePath: true);
         activated = true;
