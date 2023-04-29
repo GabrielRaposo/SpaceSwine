@@ -116,7 +116,7 @@ public class UINotificationManager : MonoBehaviour
 
         string s = "Notifications ::: \n";
         foreach (UINotification n in notificationsList)
-            s += n.id + "\n";
+            s += $"{ n.id } - used? { Check(n.id) } \n";
 
         Debug.Log(s);
     }

@@ -24,6 +24,8 @@ public class SetTextMeshOnUINotification : MonoBehaviour
             return;
  
         PauseSystem.OnPauseAction += OnPauseAction;
+
+        Debug.Log("TO-DO: Checking UI Notification on Update");
     }
 
     private void Update() 
@@ -47,6 +49,9 @@ public class SetTextMeshOnUINotification : MonoBehaviour
 
     private void OnPauseAction()
     {
+        if (!shown)
+            return;
+
         UINotificationManager.Use(notificationID);
         gameObject.SetActive(false);
     }

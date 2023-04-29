@@ -19,7 +19,7 @@ public class SaveIcon : MonoBehaviour
 
     private void OnEnable() 
     {
-        canvasGroup = GetComponent<CanvasGroup>();    
+        canvasGroup = GetComponent<CanvasGroup>();
     }
 
     private void Start() 

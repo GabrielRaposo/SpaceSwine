@@ -133,7 +133,7 @@ public class SaveManager : MonoBehaviour
         bf.Serialize(file, currentSave);
         file.Close();
 
-        Debug.Log (currentSave.PrintStoredData());
+        //Debug.Log (currentSave.PrintStoredData());
     }
 
     public static void ResetSave()
