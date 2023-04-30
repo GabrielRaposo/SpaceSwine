@@ -8,12 +8,20 @@ public class SaveFile
 {
     public int version = 1;
 
+    // -- Spawn Data
     public string spawnScenePath;
     public int spawnIndex;
 
+    // -- Navigation Data
+    public int currentWorld;
+    public NavigationShipData navigationShipData;
+    public string shipLandedLocationPath;
+
+    // -- Events and UI Notifications
     public List<EventProgressData> eventProgressList;
     public List<UINotification> uiNotificationsList;
 
+    // -- Minigame Scores
     //public List<MinigameHiscore> JumperHighscores;
     //public List<MinigameHiscore> ShooterHighscores;
 
@@ -48,6 +56,9 @@ public class SaveFile
     // -- Classes geradas pela serialiazação podem não possuir a inicialização de novos componentes
     public void PrepFile()
     {
+        if (navigationShipData == null)
+            navigationShipData = new NavigationShipData();
+
         if (eventProgressList == null)
             eventProgressList = new List<EventProgressData>();
 
@@ -90,4 +101,29 @@ public class EventProgressData
     public string id;
     public int progress;
     public int goal;
+}
+
+[System.Serializable]
+public class NavigationShipData 
+{
+    public bool initiated;
+
+    public float posX;
+    public float posY;
+    public float angle;
+
+    public Vector2 Position
+    {
+        get 
+        {
+            return new Vector2 (posX, posY);
+        }
+        set
+        {
+            initiated = true;
+
+            posX = value.x;
+            posY = value.y;
+        }
+    }
 }

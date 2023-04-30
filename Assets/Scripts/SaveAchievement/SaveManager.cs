@@ -168,6 +168,28 @@ public class SaveManager : MonoBehaviour
     }
     #endregion
 
+    #region Navigation Data
+
+    public static int CurrentWorld
+    {
+        get { return currentSave.currentWorld; }
+        set { currentSave.currentWorld = value; }
+    }
+
+    public static (bool initiated, Vector2 position, float angle) GetNavigationData()
+    {
+        return (currentSave.navigationShipData.initiated, currentSave.navigationShipData.Position, currentSave.navigationShipData.angle);
+    }
+
+    public static void SetNavigationData (Vector2 position, float angle)
+    {
+        currentSave.navigationShipData.Position = position;
+        currentSave.navigationShipData.angle = angle;
+
+        Save();
+    }
+    #endregion
+
     #region Story Events
     public static List<EventProgressData> GetStoryEvents()
     {

@@ -151,7 +151,7 @@ public class ShipInitializerSystem : MonoBehaviour
         (
             () => 
             {   
-                // Troca pela última fase em que você estava antes de entrar na Nave ou região
+                // Trocar pela última fase em que você estava antes de entrar na Nave ou região
                 string targetPath = NavigationConsole.ShipTeleportScenePath;
                 SceneTransition.LoadScene( targetPath, SceneTransition.TransitionType.BlackFade );
             }

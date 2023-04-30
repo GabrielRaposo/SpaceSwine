@@ -80,12 +80,14 @@ public class NavigationSceneManager : MonoBehaviour
     public void CloseAndSetScene(string scenePath)
     {
         SetShipTeleportScene(scenePath);
+
         if (_navigationConsole)
             _navigationConsole.ToggleConsoleState();
 
         // -- TEMP
         if (_navigationConsole)
             _navigationConsole.SetTurnedOn(false);
+        // --
 
         PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
         GameManager.GoToScene(scenePath, saveScenePath: true);
