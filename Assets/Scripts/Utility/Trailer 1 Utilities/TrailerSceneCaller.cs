@@ -9,7 +9,6 @@ using DevLocker.Utils;
 
 public class TrailerSceneCaller : StoryEventDependent
 {
-    [SerializeField] StoryEventScriptableObject storyCheckEvent;
     [SerializeField] SceneReference nextScene;
 
     [Space(10)]
@@ -88,10 +87,6 @@ public class TrailerSceneCaller : StoryEventDependent
         }
 
         AutoStart = false;
-        if (storyCheckEvent)
-        {
-            StoryEventsManager.ChangeProgress(storyCheckEvent, 99);
-        }
 
         player.gameObject.SetActive(false);
         if (bedBuyk)

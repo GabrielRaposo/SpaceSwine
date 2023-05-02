@@ -141,6 +141,7 @@ public class SaveManager : MonoBehaviour
         currentSave = new SaveFile();   
         Save();
 
+        UINotificationManager.ResetList();
         StoryEventsManager.ReloadEventsDictionary();
         StoryEventsManager.UpdatePrintedEventStates();
 

@@ -21,6 +21,7 @@ public class PauseSystem : MonoBehaviour
     CanvasGroup canvasGroup;
 
     public static UnityAction OnPauseAction;
+    public static UnityAction OnUseTeleporterAction;
 
     public static bool OnPause {get; private set;}
     public static PauseSystem Instance;
@@ -120,6 +121,9 @@ public class PauseSystem : MonoBehaviour
         {
             SetPauseState(false);
 
+            if (OnUseTeleporterAction != null)
+                OnUseTeleporterAction.Invoke();
+
             PlayerTransitionState playerTransitionState = player.GetComponent<PlayerTransitionState>();
             playerTransitionState.TeleportOut( () => GameManager.GoToScene(shipScene.ScenePath, saveScenePath: true) );
 
@@ -147,7 +151,6 @@ public class PauseSystem : MonoBehaviour
             return;
 
         SetPauseState(false);
-
     }
 
     public void ResetScene()

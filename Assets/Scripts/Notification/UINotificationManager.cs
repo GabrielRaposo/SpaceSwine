@@ -32,7 +32,7 @@ public class UINotificationManager : MonoBehaviour
     {
         notificationsList = SaveManager.GetUINotifications();
 
-        PrintList();
+        Debug.Log(PrintList());
     }
 
     public static void UpdateListFromSave (List<UINotification> savedList)
@@ -61,9 +61,11 @@ public class UINotificationManager : MonoBehaviour
 
         SaveManager.SetUINotifications (notificationsList);
 
-        #if UNITY_EDITOR
-            PrintList();
-        #endif
+        StoryEventsManager.UpdatePrintedEventStates();
+
+        //#if UNITY_EDITOR
+        //    Debug.Log (PrintList());
+        //#endif
     }
 
     private static UINotification GetById (string notificationID)
@@ -107,17 +109,28 @@ public class UINotificationManager : MonoBehaviour
         notification.Use();
 
         SaveManager.SetUINotifications (notificationsList);
+
+        StoryEventsManager.UpdatePrintedEventStates();
     }
 
-    private static void PrintList()
+    public static void ResetList()
     {
-        if (notificationsList.Count < 1)
-            return;
+        notificationsList = new List<UINotification>();
+    }
 
+    public static string PrintList()
+    {
         string s = "Notifications ::: \n";
-        foreach (UINotification n in notificationsList)
-            s += $"{ n.id } - used? { Check(n.id) } \n";
 
-        Debug.Log(s);
+        if (notificationsList.Count < 1)
+            return s + "[Empty List]";;
+
+        foreach (UINotification n in notificationsList)
+        {
+            string value = Check(n.id) ? "        " : "Used";
+            s += $"State: { value } - { n.id }  \n";
+        }
+
+        return s;
     }
 }

@@ -41,6 +41,7 @@ public class StoryEventsManager : MonoBehaviour
     private IEnumerator WaitForSaveManager()
     {
         yield return new WaitUntil ( () => SaveManager.Initiated );
+
         ReloadEventsDictionary();
     }
 
@@ -232,6 +233,8 @@ public class StoryEventsManager : MonoBehaviour
 
             s += $"{ (progress.Completion * 100).ToString("0") }% - { key.name } \n";
         }
+
+        s += "\n\n" + UINotificationManager.PrintList();
 
         listDisplay.text = s;
         listDisplay.enabled = showing;

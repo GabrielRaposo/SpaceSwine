@@ -117,7 +117,9 @@ public class InteractableElevator : Interactable
                 return;
 
             if (activationAKEvent != null)
+            {
                 activationAKEvent.Post(gameObject);
+            }
 
             LaunchParticlesRoutine();
             spaceJumper.LaunchIntoDirection(transform.up, multiplier: 2.0f, playLongJumpSound: false);
