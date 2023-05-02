@@ -15,7 +15,7 @@ public class SaveFile
     // -- Navigation Data
     public int currentWorld;
     public NavigationShipData navigationShipData;
-    public string shipLandedLocationPath;
+    public string shuttleExitLocationPath;
 
     // -- Events and UI Notifications
     public List<EventProgressData> eventProgressList;

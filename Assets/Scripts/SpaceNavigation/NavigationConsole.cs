@@ -43,7 +43,7 @@ public class NavigationConsole : MonoBehaviour
     //public static bool TurnedOn { get; private set; }
     public static NavigationConsole Instance;
 
-    public static string ShipTeleportScenePath = "Assets/Scenes/World1/World1Exploration-0Hub-Scene.unity";
+    //public static string ShipTeleportScenePath = "Assets/Scenes/World1/World1Exploration-0Hub-Scene.unity";
 
     private void Awake() 
     {

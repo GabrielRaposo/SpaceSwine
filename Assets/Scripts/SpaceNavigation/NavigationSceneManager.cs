@@ -79,7 +79,7 @@ public class NavigationSceneManager : MonoBehaviour
 
     public void CloseAndSetScene(string scenePath)
     {
-        SetShipTeleportScene(scenePath);
+        SetShipTeleportScene (scenePath);
 
         if (_navigationConsole)
             _navigationConsole.ToggleConsoleState();
@@ -93,11 +93,13 @@ public class NavigationSceneManager : MonoBehaviour
         GameManager.GoToScene(scenePath, saveScenePath: true);
     }
 
-    //TODO: mudar pra fazer por save
-    private void SetShipTeleportScene(string scenePath)
+    private void SetShipTeleportScene (string scenePath)
     {
-        NavigationConsole.ShipTeleportScenePath = scenePath;
-        //Debug.Log($"Setting scene: {NavigationConsole.ShipTeleportSceneIndex}");
+        if (!SaveManager.Initiated)
+            return;
+
+        SaveManager.ShuttleExitLocationPath = scenePath;
+        DebugDisplay.Call("ShuttleExitLocationPath set as " + scenePath);
     }
     
 }

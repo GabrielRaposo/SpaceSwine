@@ -48,6 +48,8 @@ public class DebugDisplay : MonoBehaviour
         if (!textDisplay || !canvasGroup)
             return;
 
+        StopAllCoroutines();
+
         SetState(true);
         textDisplay.text = s;
 

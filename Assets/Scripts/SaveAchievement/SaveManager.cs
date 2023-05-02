@@ -172,7 +172,7 @@ public class SaveManager : MonoBehaviour
 
     public static int CurrentWorld
     {
-        get { return currentSave.currentWorld; }
+        get { return currentSave.currentWorld;  }
         set { currentSave.currentWorld = value; }
     }
 
@@ -187,6 +187,12 @@ public class SaveManager : MonoBehaviour
         currentSave.navigationShipData.angle = angle;
 
         Save();
+    }
+
+    public static string ShuttleExitLocationPath
+    {
+        get { return currentSave.shuttleExitLocationPath;  }
+        set { currentSave.shuttleExitLocationPath = value; }
     }
     #endregion
 
