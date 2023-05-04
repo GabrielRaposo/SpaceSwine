@@ -25,8 +25,6 @@ public class SetTextMeshOnUINotification : MonoBehaviour
  
         PauseSystem.OnPauseAction += OnPauseAction;
         PauseSystem.OnUseTeleporterAction += OnUseTeleporterAction;
-
-        Debug.Log("TO-DO: Checking UI Notification on Update");
     }
 
     private void Update() 
@@ -53,7 +51,10 @@ public class SetTextMeshOnUINotification : MonoBehaviour
         if (!shown)
             return;
 
-        gameObject.SetActive(false);
+        if (s != null && s.IsPlaying())
+            s.Complete();
+
+        canvasGroup.alpha = 0;
     }
 
     private void OnUseTeleporterAction()

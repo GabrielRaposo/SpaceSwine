@@ -37,8 +37,6 @@ public class SetNotificationOnStoryEvent : StoryEventDependent
 
     private void SetNotification (bool state)
     {
-        Debug.Log("SetNotification? " + state);
-
         if (!state)
             return;
 

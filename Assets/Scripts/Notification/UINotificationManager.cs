@@ -32,7 +32,7 @@ public class UINotificationManager : MonoBehaviour
     {
         notificationsList = SaveManager.GetUINotifications();
 
-        Debug.Log(PrintList());
+        //Debug.Log(PrintList());
     }
 
     public static void UpdateListFromSave (List<UINotification> savedList)

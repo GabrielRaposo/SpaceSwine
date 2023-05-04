@@ -119,10 +119,11 @@ public class PauseSystem : MonoBehaviour
         PlayerCharacter player = PlayerCharacter.Instance;
         if (player)
         {
-            SetPauseState(false);
-
+            Debug.Log("huh");
             if (OnUseTeleporterAction != null)
                 OnUseTeleporterAction.Invoke();
+
+            SetPauseState(false);
 
             PlayerTransitionState playerTransitionState = player.GetComponent<PlayerTransitionState>();
             playerTransitionState.TeleportOut( () => GameManager.GoToScene(shipScene.ScenePath, saveScenePath: true) );
