@@ -154,18 +154,20 @@ public class SaveManager : MonoBehaviour
         return (currentSave.spawnScenePath, currentSave.spawnIndex);
     }
 
-    public static void SetSpawnPath (string scenePath)
+    public static void SetSpawnPath (string scenePath, bool autoSave = true)
     {
         currentSave.spawnScenePath = scenePath;
 
-        Save();
+        if (autoSave)
+            Save();
     }
 
-    public static void SetSpawnIndex (int spawnIndex)
+    public static void SetSpawnIndex (int spawnIndex, bool autoSave = true)
     {
         currentSave.spawnIndex = spawnIndex;
 
-        Save();
+        if (autoSave)
+            Save();
     }
     #endregion
 
@@ -182,18 +184,23 @@ public class SaveManager : MonoBehaviour
         return (currentSave.navigationShipData.initiated, currentSave.navigationShipData.Position, currentSave.navigationShipData.angle);
     }
 
-    public static void SetNavigationData (Vector2 position, float angle)
+    public static void SetNavigationData (Vector2 position, float angle, bool autoSave = true)
     {
         currentSave.navigationShipData.Position = position;
         currentSave.navigationShipData.angle = angle;
 
-        Save();
+        if (autoSave)
+            Save();
     }
 
     public static string ShuttleExitLocationPath
     {
         get { return currentSave.shuttleExitLocationPath;  }
-        set { currentSave.shuttleExitLocationPath = value; }
+        set 
+        {   
+            currentSave.shuttleExitLocationPath = value; 
+            Save();
+        }
     }
     #endregion
 
@@ -203,11 +210,12 @@ public class SaveManager : MonoBehaviour
         return currentSave.eventProgressList;
     }
 
-    public static void SetStoryEvents (List<EventProgressData> progressList)
+    public static void SetStoryEvents (List<EventProgressData> progressList, bool autoSave = true)
     {
         currentSave.eventProgressList = progressList;
 
-        Save();
+        if (autoSave)
+            Save();
     }
     #endregion
 
@@ -217,11 +225,12 @@ public class SaveManager : MonoBehaviour
         return currentSave.uiNotificationsList;
     }
 
-    public static void SetUINotifications(List<UINotification> notificationsList)
+    public static void SetUINotifications(List<UINotification> notificationsList, bool autoSave = true)
     {
         currentSave.uiNotificationsList = notificationsList;
 
-        Save();
+        if (autoSave)
+            Save();
     }
     #endregion
 
@@ -231,10 +240,12 @@ public class SaveManager : MonoBehaviour
         return currentSave.Playtime;
     }
 
-    public static void AddPlaytime (float sessionTime)
+    public static void AddPlaytime (float sessionTime, bool autoSave = true)
     {
         currentSave.Playtime += sessionTime;
-        Save();
+
+        if (autoSave)
+            Save();
     }
     #endregion
 }
