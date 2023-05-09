@@ -63,6 +63,8 @@ public class PagerInteractionManager : StoryEventDependent
     InputAction confirmAction;
     InputAction shipInputAction;
 
+    public static string ExitScenePath;
+
     private void Awake() 
     {
         rt = GetComponent<RectTransform>();
@@ -374,10 +376,10 @@ public class PagerInteractionManager : StoryEventDependent
         if (!roundsManager)
             return;
 
-        string buildPath = string.Empty; 
-        if (RoundsManager.SessionData != null)
-            buildPath = RoundsManager.SessionData.outroScene;
+        if (string.IsNullOrEmpty(ExitScenePath))
+            return;
 
+        string buildPath = ExitScenePath;
         int previousScreen = current;
 
         confirmationScreen.SetScreen

@@ -57,10 +57,10 @@ public class InteractablePortal : Interactable
         if (targetScene == null)
             return;
 
-        data.outroScene = GameManager.CurrentScene;
-        data.OnSessionCompleted += () => 
+        PagerInteractionManager.ExitScenePath = GameManager.CurrentScene;
+        RoundsManager.OnSessionCompletedAction = () =>
         {
-            //Debug.Log("Session Done! ");
+            Debug.Log("Session Done! ");
             if (SaveManager.Initiated)
                 SaveManager.SetSpawnIndex (data.OutroSpawnIndex);
         };
