@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class DebugInputs : MonoBehaviour
 {
+    [Header("Display")]
+    [SerializeField] InputAction displayListAction;
+
     [Header("Save")]
     [SerializeField] InputAction saveInputAction;
     [SerializeField] InputAction resetSaveInputAction;
@@ -32,6 +35,14 @@ public class DebugInputs : MonoBehaviour
         if (Instance != this)
             return;
         
+        /* -- Display -- */ {
+            displayListAction.performed += (ctx) => 
+            {
+                StoryEventsManager.TogglePrintEventStates();
+            };
+            displayListAction.Enable();
+        }
+
         /* -- Save -- */ { 
             saveInputAction.performed += (ctx) => 
             { 
@@ -80,6 +91,8 @@ public class DebugInputs : MonoBehaviour
     {
         if (Instance != this)
             return;
+
+        displayListAction.Disable();
 
         saveInputAction.Disable();
         resetSaveInputAction.Disable();

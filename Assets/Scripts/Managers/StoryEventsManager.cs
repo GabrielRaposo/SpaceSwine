@@ -8,7 +8,6 @@ using TMPro;
 public class StoryEventsManager : MonoBehaviour
 {
     [SerializeField] bool loadEventsFromSave;
-    [SerializeField] InputAction testInput;
 
     [SerializeField] List<StoryEventScriptableObject> storyEvents;
 
@@ -188,24 +187,6 @@ public class StoryEventsManager : MonoBehaviour
     {
         listDisplay = GetComponentInChildren<TextMeshProUGUI>();
         listDisplay.text = string.Empty;
-
-        //if (!Application.isEditor)
-        //    return;
-
-        testInput.performed += (ctx) => 
-        {
-            showing = !showing;
-            PrintEventStates();
-        };
-        testInput.Enable();
-    }
-
-    private void OnDisable() 
-    {
-        //if (!Application.isEditor)
-        //    return;
-
-        testInput.Disable();
     }
 
     public static void UpdatePrintedEventStates()
@@ -213,6 +194,15 @@ public class StoryEventsManager : MonoBehaviour
         if (Instance == null)
             return;
 
+        Instance.PrintEventStates();
+    }
+
+    public static void TogglePrintEventStates()
+    {
+        if (!Instance)
+            return;
+
+        Instance.showing = !Instance.showing;
         Instance.PrintEventStates();
     }
 
