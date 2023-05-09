@@ -91,7 +91,7 @@ namespace MakeABeat
             ShipInitializerSystem.MakeABeatSpawnTrigger = true;
             Focus = MakeABeatFocus.Tapes;
 
-            GameManager.GoToScene(exitScene.ScenePath);
+            GameManager.GoToScene(exitScene.ScenePath, saveScenePath: true);
             
             enabled = false;
         }

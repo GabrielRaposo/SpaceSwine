@@ -13,7 +13,9 @@ public class NavigationConsole : MonoBehaviour
 {
     const int HIDDEN_Y = -1000;
     
-    [SerializeField] SceneReference navigationScene;
+    [SerializeField] SceneReference world1NavigationScene;
+    [SerializeField] SceneReference world2NavigationScene;
+    [SerializeField] SceneReference world3NavigationScene;
 
     [Header("Values")]
     [SerializeField] float duration;
@@ -41,7 +43,7 @@ public class NavigationConsole : MonoBehaviour
     //public static bool TurnedOn { get; private set; }
     public static NavigationConsole Instance;
 
-    public static string ShipTeleportScenePath = "Assets/Scenes/World1/World1ExplorationScene.unity";
+    //public static string ShipTeleportScenePath = "Assets/Scenes/World1/World1Exploration-0Hub-Scene.unity";
 
     private void Awake() 
     {
@@ -103,7 +105,6 @@ public class NavigationConsole : MonoBehaviour
 
     public void TurnConsoleOn()
     {
-        //Debug.Log("TurnConsoleOn()");
         SetTurnedOn(true);
         //canvasGroup.alpha = 1;
 
@@ -134,9 +135,35 @@ public class NavigationConsole : MonoBehaviour
         );
     }
 
+    private string GetNavigationScene ()
+    {
+        SceneReference outputScene = null;
+
+        switch (SaveManager.CurrentWorld)
+        {
+            default:
+            case 1:
+                outputScene = world1NavigationScene;
+                break;
+
+            case 2:
+                outputScene = world2NavigationScene;
+                break;
+
+            case 3:
+                outputScene = world3NavigationScene;
+                break;
+        }
+
+        if (outputScene == null)
+            return world1NavigationScene.ScenePath;
+
+        return outputScene.ScenePath;
+    }
+
     private void SetupNavigationScene()
     {
-        StartCoroutine( AsyncLoadRoutine( navigationScene.ScenePath ) );
+        StartCoroutine( AsyncLoadRoutine( GetNavigationScene() ) );
     }
         
     private void UnloadNavigationScene()
@@ -144,7 +171,7 @@ public class NavigationConsole : MonoBehaviour
         if (asyncSceneLoad == null)
             return;
             
-        SceneManager.UnloadSceneAsync(navigationScene.ScenePath);
+        SceneManager.UnloadSceneAsync( GetNavigationScene() );
             
         loadedAndActive = false;
     }
@@ -177,7 +204,6 @@ public class NavigationConsole : MonoBehaviour
 
     private IEnumerator AsyncLoadRoutine(string path)
     {
-        //Debug.Log("AsyncLoadRoutine(int index)");
         asyncSceneLoad = SceneManager.LoadSceneAsync(path, LoadSceneMode.Additive);
         while (!asyncSceneLoad.isDone)
             yield return new WaitForEndOfFrame();

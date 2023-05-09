@@ -14,23 +14,18 @@ public class SaveManager : MonoBehaviour
     readonly static string path = Application.persistentDataPath + "/astropig_new_save.save";
     private static int safety;
 
+    #region Setup
     static SaveManager()
     {
-        //Debug.Log("Save Manager Initiated!");
-        //Debug.Log("Path: " + path);
-
-        currentSave = new SaveFile();
-        //currentSave = Load();
+        currentSave = Load();
 
         safety = 0;
-
         Initiated = true;
-        //Debug.Log (currentSave.PrintStoredData());
     }
 
     public static SaveFile Load()
     {
-        SaveIcon.Show();
+        SaveIcon.Show (Color.red);
 
         safety++;
         if (safety > 50)
@@ -39,17 +34,20 @@ public class SaveManager : MonoBehaviour
             Application.Quit();
         }
         
-        if (File.Exists(path)) 
+        if (File.Exists(path))
         {
-            //Debug.Log("File found!");
+            DebugDisplay.Call("File found!");
+            
             FileStream file = File.OpenRead(path);
             BinaryFormatter bf = new BinaryFormatter();
-            SaveFile loadedSaveFile = (SaveFile)bf.Deserialize(file);
+            SaveFile loadedSaveFile = (SaveFile) bf.Deserialize(file);
             file.Close();
 
-            if (!IsSaveValid(loadedSaveFile))
+            loadedSaveFile.PrepFile();
+
+            if (!IsSaveValid(loadedSaveFile)) 
             {
-                Debug.LogWarning("Invalid save file!");
+                DebugDisplay.Call("Invalid save file!");
                 currentSave = new SaveFile();
 
                 if (loadedSaveFile.achievementLog != null)
@@ -85,7 +83,7 @@ public class SaveManager : MonoBehaviour
                 // currentSave.Playtime = loadedSaveFile.Playtime;
                 
                 AchievementsManager.SetCurrentList(currentSave.achievementLog);
-                SpecificAchievementsUpdate(currentSave);
+                //SpecificAchievementsUpdate(currentSave);
                 
                 Save();
 
@@ -98,16 +96,30 @@ public class SaveManager : MonoBehaviour
             return loadedSaveFile;
         }
 
-        Debug.Log("File not found, creating new.");
+        DebugDisplay.Call("File not found, creating new.");
         currentSave = new SaveFile();
         Save();
 
         return Load();
     }
 
+    private static bool IsSaveValid (SaveFile file)
+    {
+        if (file == null) return false;
+        if (file.version != new SaveFile().version) return false;
+        if (file.achievementLog == null) return false;
+
+        var systemAchievements = AchievementsManager.GetNewAchievementList();
+
+        if (file.achievementLog.Count != systemAchievements.Count) return false;
+
+        return true;
+    }
+    #endregion
+
     public static void Save() 
     {
-        SaveIcon.Show();
+        SaveIcon.Show (Color.white);
 
         FileStream file;
 
@@ -121,127 +133,119 @@ public class SaveManager : MonoBehaviour
         bf.Serialize(file, currentSave);
         file.Close();
 
+        //Debug.Log (currentSave.PrintStoredData());
     }
 
     public static void ResetSave()
     {
         currentSave = new SaveFile();   
         Save();
-        AchievementsManager.SetCurrentList(currentSave.achievementLog);
-        Debug.Log ("Save Reseted.");
+
+        UINotificationManager.ResetList();
+        StoryEventsManager.ReloadEventsDictionary();
+        StoryEventsManager.UpdatePrintedEventStates();
+
+        AchievementsManager.SetCurrentList (currentSave.achievementLog);
     }
 
-    public static void SaveAllData()
+    #region Spawn Data
+    public static (string scenePath, int spawnIndex) GetSpawnData ()
     {
-        Debug.Log("Update and save data");
-
-        // Save currency
-        currentSave.world1Currency = PlayerWallet.GetValueBy(1);
-
-        List<ItemIndexer> world1 = CurrencyInstanceList.GetWorldById(1);
-        currentSave.world1CurrencyIndexer = world1;
-
-        // Save events
-        StoryEventSaveConverter.FromAssetsToSave();
-
-        // Save ship states
-
-        Save();
+        return (currentSave.spawnScenePath, currentSave.spawnIndex);
     }
 
-    public static float GetCurrency(int id) 
+    public static void SetSpawnPath (string scenePath, bool autoSave = true)
     {
-        switch (id) {
-            default:
-            case 0:
-                return currentSave.digitalCurrency;
+        currentSave.spawnScenePath = scenePath;
 
-            case 1:
-                return currentSave.world1Currency;
-            case 2:
-                return currentSave.world2Currency;
-            case 3:
-                return currentSave.world3Currency;
+        if (autoSave)
+            Save();
+    }
+
+    public static void SetSpawnIndex (int spawnIndex, bool autoSave = true)
+    {
+        currentSave.spawnIndex = spawnIndex;
+
+        if (autoSave)
+            Save();
+    }
+    #endregion
+
+    #region Navigation Data
+
+    public static int CurrentWorld
+    {
+        get { return currentSave.currentWorld;  }
+        set { currentSave.currentWorld = value; }
+    }
+
+    public static (bool initiated, Vector2 position, float angle) GetNavigationData()
+    {
+        return (currentSave.navigationShipData.initiated, currentSave.navigationShipData.Position, currentSave.navigationShipData.angle);
+    }
+
+    public static void SetNavigationData (Vector2 position, float angle, bool autoSave = true)
+    {
+        currentSave.navigationShipData.Position = position;
+        currentSave.navigationShipData.angle = angle;
+
+        if (autoSave)
+            Save();
+    }
+
+    public static string ShuttleExitLocationPath
+    {
+        get { return currentSave.shuttleExitLocationPath;  }
+        set 
+        {   
+            currentSave.shuttleExitLocationPath = value; 
+            Save();
         }
     }
+    #endregion
 
-    public static List<ItemIndexer> GetWorldHashSet(int id)
+    #region Story Events
+    public static List<EventProgressData> GetStoryEvents()
     {
-        switch(id)
-        {
-            default:
-            case 1:
-                return currentSave.world1CurrencyIndexer;
-            case 2:
-                return currentSave.world2CurrencyIndexer;
-            case 3:
-                return currentSave.world3CurrencyIndexer;
-        }
+        return currentSave.eventProgressList;
     }
 
-    public static List<StoryEventData> GetStoryEvents()
+    public static void SetStoryEvents (List<EventProgressData> progressList, bool autoSave = true)
     {
-        return currentSave.storyEventsStates;
+        currentSave.eventProgressList = progressList;
+
+        if (autoSave)
+            Save();
+    }
+    #endregion
+
+    #region UI Notifications
+    public static List<UINotification> GetUINotifications()
+    {
+        return currentSave.uiNotificationsList;
     }
 
-    public static void SetAllStoryEvents(List<StoryEventData> storyEventDatas)
+    public static void SetUINotifications(List<UINotification> notificationsList, bool autoSave = true)
     {
-        currentSave.storyEventsStates = storyEventDatas;
-        Save();
+        currentSave.uiNotificationsList = notificationsList;
+
+        if (autoSave)
+            Save();
     }
+    #endregion
 
-    public static void SaveStoryEvent (StoryEventScriptableObject storyEvent)
-    {
-        return;
-
-        StoryEventData storyEventData = new StoryEventData( StoryEventsManager.IsComplete(storyEvent), storyEvent.name );
-
-        StoryEventData data = currentSave.storyEventsStates.Find((p) => p.name == storyEventData.name);
-        if (data == null)
-        {
-            currentSave.storyEventsStates.Add(data = new StoryEventData(storyEventData.state, storyEventData.name));
-        }
-        else
-        {
-            int index = currentSave.storyEventsStates.FindIndex(d => d.name == data.name);
-            currentSave.storyEventsStates[index].state = data.state; 
-        }
-        
-        StoryEventSaveConverter.FromAssetsToSave();
-        //Save();
-    }
-
+    #region Playtime
     public static float GetPlaytime()
     {
-        return currentSave.GetPlaytime();
+        return currentSave.Playtime;
     }
 
-    public static void AddPlaytime(float sessionTime)
+    public static void AddPlaytime (float sessionTime, bool autoSave = true)
     {
-        currentSave.AddPlaytime(sessionTime);
-        Save();
+        currentSave.Playtime += sessionTime;
+
+        if (autoSave)
+            Save();
     }
-
-    private static bool IsSaveValid(SaveFile file)
-    {
-        if (file == null) return false;
-        if (file.version != new SaveFile().version) return false;
-        if (file.achievementLog == null) return false;
-
-        var systemAchievements = AchievementsManager.GetNewAchievementList();
-
-        if (file.achievementLog.Count != systemAchievements.Count) return false;
-
-        return true;
-    }
-
-    private static void SpecificAchievementsUpdate(SaveFile saveFile)
-    {
-
-    }
-
-    public static void IsSaveReady()
-    {
-        Debug.Log("<- Change here");
-    }
+    #endregion
 }

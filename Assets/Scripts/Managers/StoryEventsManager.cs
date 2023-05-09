@@ -7,68 +7,8 @@ using TMPro;
 
 public class StoryEventsManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class EventProgress
-    {
-        public EventProgress (int progress, int goal)
-        {
-            this.progress = progress;
-            this.goal = goal > 0 ? goal : 1;
-            OnStateChangedEvent = new UnityEvent<bool>();
-        }
+    [SerializeField] bool loadEventsFromSave;
 
-        int progress;
-        int goal;
-        UnityEvent<bool> OnStateChangedEvent;
-
-        public bool IsComplete => progress >= goal;
-
-        public float Completion => (float) progress / goal;
-
-        public void ChangeProgress (int value)
-        {
-            bool previousState = IsComplete;
-
-            progress += value;
-
-            if (progress > goal)
-                progress = goal;
-
-            if (previousState != IsComplete)
-                OnStateChangedEvent.Invoke(IsComplete);
-        }
-
-        public void Complete()
-        {
-            ChangeProgress (+goal);
-        }
-
-        public void Clear()
-        {
-            bool previousState = IsComplete;
-            progress = 0;
-
-            if (previousState != IsComplete)
-                OnStateChangedEvent.Invoke(IsComplete);
-        }
-
-        public void AddOnStateChangeAction (UnityAction<bool> action)
-        {
-            OnStateChangedEvent.AddListener(action);
-        }
-
-        public void RemoveOnStateChangeAction (UnityAction<bool> action)
-        {
-            OnStateChangedEvent.RemoveListener(action);
-        }
-
-        public void ClearOnStateChangeListeners ()
-        {
-            OnStateChangedEvent.RemoveAllListeners();
-        }
-    }
-
-    [SerializeField] InputAction testInput;
     [SerializeField] List<StoryEventScriptableObject> storyEvents;
 
     TextMeshProUGUI listDisplay;
@@ -84,6 +24,9 @@ public class StoryEventsManager : MonoBehaviour
             return;
 
         Instance = this;
+
+        if (!SaveManager.Initiated)
+            SaveManager.Load();
     }
 
     private void Start() 
@@ -91,30 +34,81 @@ public class StoryEventsManager : MonoBehaviour
         if (storyEvents == null || storyEvents.Count < 1)
             return;
 
-        MakeEventsDictionary();
+        StartCoroutine (WaitForSaveManager());
     }
 
-    public void MakeEventsDictionary()
+    private IEnumerator WaitForSaveManager()
+    {
+        yield return new WaitUntil ( () => SaveManager.Initiated );
+
+        ReloadEventsDictionary();
+    }
+
+    public static void ReloadEventsDictionary()
+    {
+        if (Instance == null)
+            return;
+
+        Instance.LoadEventsDictionary();
+    }
+
+    public void LoadEventsDictionary()
     {
         eventsDictionary = new Dictionary<StoryEventScriptableObject, EventProgress>();
 
         foreach (var storyEvent in storyEvents)
         {
+            //if (!loadEventsFromSave ) // ou lista do save está vazia
+            
+            int progress = storyEvent.StartingState ? storyEvent.Goal : 0;
+            int goal = storyEvent.Goal;
+
+            if (loadEventsFromSave)
+            {
+                EventProgressData data = SaveManager.GetStoryEvents().Find ( (d) => d.id == storyEvent.name );
+                if (data != null)
+                {
+                    progress = data.progress;
+                    goal = data.goal;
+                }
+            }
+
             eventsDictionary.Add 
             (
                 key: storyEvent, 
-                value: new EventProgress 
-                (
-                    progress: storyEvent.StartingState ? storyEvent.Goal : 0,
-                    goal:     storyEvent.Goal
-                )
+                value: new EventProgress (progress, goal)
             );
         }
+
+        ParseToSaveFormat();
 
         Initiated = true;
     } 
 
-    public static EventProgress GetEventProgress(StoryEventScriptableObject key)
+    public static void ParseToSaveFormat()
+    {
+        if (!SaveManager.Initiated)
+            return;
+
+        List<EventProgressData> dataList = new List<EventProgressData>();
+
+        foreach (var pair in eventsDictionary)
+        {
+            dataList.Add 
+            (
+                new EventProgressData
+                (
+                    id: pair.Key.name,
+                    progress: pair.Value.Progress,
+                    goal: pair.Value.Goal
+                )
+            );
+        }
+
+        SaveManager.SetStoryEvents (dataList);
+    }
+
+    public static EventProgress GetEventProgress (StoryEventScriptableObject key)
     {
         // temp --
         if (eventsDictionary == null)
@@ -139,6 +133,8 @@ public class StoryEventsManager : MonoBehaviour
         eventProgress.ChangeProgress(value);
 
         UpdatePrintedEventStates();
+
+        ParseToSaveFormat();
     }
 
     public static void ClearProgress (StoryEventScriptableObject key)
@@ -191,24 +187,6 @@ public class StoryEventsManager : MonoBehaviour
     {
         listDisplay = GetComponentInChildren<TextMeshProUGUI>();
         listDisplay.text = string.Empty;
-
-        if (!Application.isEditor)
-            return;
-
-        testInput.performed += (ctx) => 
-        {
-            showing = !showing;
-            PrintEventStates();
-        };
-        testInput.Enable();
-    }
-
-    private void OnDisable() 
-    {
-        if (!Application.isEditor)
-            return;
-
-        testInput.Disable();
     }
 
     public static void UpdatePrintedEventStates()
@@ -216,6 +194,15 @@ public class StoryEventsManager : MonoBehaviour
         if (Instance == null)
             return;
 
+        Instance.PrintEventStates();
+    }
+
+    public static void TogglePrintEventStates()
+    {
+        if (!Instance)
+            return;
+
+        Instance.showing = !Instance.showing;
         Instance.PrintEventStates();
     }
 
@@ -237,9 +224,7 @@ public class StoryEventsManager : MonoBehaviour
             s += $"{ (progress.Completion * 100).ToString("0") }% - { key.name } \n";
         }
 
-        #if UNITY_EDITOR
-            Debug.Log (s);
-        #endif
+        s += "\n\n" + UINotificationManager.PrintList();
 
         listDisplay.text = s;
         listDisplay.enabled = showing;
@@ -247,4 +232,68 @@ public class StoryEventsManager : MonoBehaviour
 
     #endregion
 
+}
+
+[System.Serializable]
+public class EventProgress
+{
+    public EventProgress (int progress, int goal)
+    {
+        this.progress = progress;
+        this.goal = goal > 0 ? goal : 1;
+        OnStateChangedEvent = new UnityEvent<bool>();
+    }
+
+    int progress;
+    int goal;
+    UnityEvent<bool> OnStateChangedEvent;
+
+    public int Progress => progress;
+    public int Goal => goal;
+
+    public bool IsComplete => progress >= goal;
+
+    public float Completion => (float) progress / goal;
+
+    public void ChangeProgress (int value)
+    {
+        bool previousState = IsComplete;
+
+        progress += value;
+
+        if (progress > goal)
+            progress = goal;
+
+        if (previousState != IsComplete)
+            OnStateChangedEvent.Invoke(IsComplete);
+    }
+
+    public void Complete()
+    {
+        ChangeProgress (+goal);
+    }
+
+    public void Clear()
+    {
+        bool previousState = IsComplete;
+        progress = 0;
+
+        if (previousState != IsComplete)
+            OnStateChangedEvent.Invoke(IsComplete);
+    }
+
+    public void AddOnStateChangeAction (UnityAction<bool> action)
+    {
+        OnStateChangedEvent.AddListener(action);
+    }
+
+    public void RemoveOnStateChangeAction (UnityAction<bool> action)
+    {
+        OnStateChangedEvent.RemoveListener(action);
+    }
+
+    public void ClearOnStateChangeListeners ()
+    {
+        OnStateChangedEvent.RemoveAllListeners();
+    }
 }

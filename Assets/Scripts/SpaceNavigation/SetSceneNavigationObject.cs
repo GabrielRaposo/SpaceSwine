@@ -13,37 +13,87 @@ public class SetSceneNavigationObject : NavigationObject
     public SpriteRenderer selector;
 
     [SerializeField] private Transform debugShip;
+    [SerializeField] private GameObject navigationDot;
+    [SerializeField] private Transform dotsParent;
+
+    [Header("Completion Feedback")]
+    [SerializeField] private StoryEventScriptableObject completionStoryEvent;
+    [SerializeField] private SpriteRenderer[] completionDisplays;
+    
+    [Header("Notification References")]
+    [SerializeField] string notificationID;
+    [SerializeField] GameObject exclamationIcon;
+
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event OnHoverAKEvent;
+    [SerializeField] AK.Wwise.Event OnSelectAKEvent; 
+    [SerializeField] AK.Wwise.Event MakePathAKEvent;
+    [SerializeField] AK.Wwise.Event OnReachDestinationAKEvent;
+    
     private float p2Lenght = 1.5f;
     private float p3Lenght = 0.6f;
     private Curve animationBezier;
-    
-    [SerializeField] private GameObject navigationDot;
 
     private Vector2 p2Debug;
     private Vector2 p3Debug;
 
     private NavigationSceneManager navSceneManager;
 
-    [SerializeField] private Transform dotsParent;
-    
-    [Header("Audio")]
-    [SerializeField] AK.Wwise.Event OnHoverAKEvent;
-    [SerializeField] AK.Wwise.Event OnSelectAKEvent; 
-    [SerializeField] AK.Wwise.Event MakePathAKEvent;
-    [SerializeField] AK.Wwise.Event OnReachDestinationAKEvent;
-
     public UnityAction OnSelectAction;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        interactAction += ShipAnimation;
+        base.OnEnable();
 
+        interactAction += ShipAnimation;
         navSceneManager = FindObjectOfType<NavigationSceneManager>();
+
+        if (exclamationIcon != null)
+            exclamationIcon.gameObject.SetActive(false);
+
+        CallDependentAction ( SetCompletionDisplay );
+    }
+
+    private void SetCompletionDisplay()
+    {
+        if (completionDisplays == null)
+            return;
+
+        if (completionStoryEvent == null)
+        {
+            foreach (SpriteRenderer sr in completionDisplays)
+                sr.enabled = false;
+
+            return;
+        }
+
+        foreach (SpriteRenderer sr in completionDisplays)
+        {
+            sr.enabled = StoryEventsManager.IsComplete (completionStoryEvent);
+            sr.gameObject.SetActive(false);
+        }
+    }
+
+    public override void SetNotificationIcon()
+    {
+        if (exclamationIcon == null)
+            return;
+
+        bool value = false;
+
+        if (notificationID != string.Empty)
+            value = UINotificationManager.Check( notificationID );
+
+        exclamationIcon.SetActive (value);
     }
 
     public override void OnSelect()
     {
         base.OnSelect();
+
+        foreach (SpriteRenderer sr in completionDisplays)
+            sr.gameObject.SetActive(true);
+
         selector.enabled = true;
 
         if (OnHoverAKEvent != null)
@@ -56,6 +106,10 @@ public class SetSceneNavigationObject : NavigationObject
     public override void OnDeselect()
     {
         base.OnDeselect();
+
+        foreach (SpriteRenderer sr in completionDisplays)
+            sr.gameObject.SetActive(false);
+
         selector.enabled = false;
     }
 
@@ -77,7 +131,7 @@ public class SetSceneNavigationObject : NavigationObject
             OnSelectAKEvent.Post(gameObject);
         
         // -- Feedback de seleção e UI de autopilot         
-        sequence.Append(selector.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.22f).OnComplete(()=>navSceneManager.BlinkAutoPilot()));
+        sequence.Append(selector.transform.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.22f).OnComplete(() => navSceneManager.BlinkAutoPilot()));
         sequence.AppendInterval(0.1f);
         
         float x = 0f;
@@ -96,7 +150,7 @@ public class SetSceneNavigationObject : NavigationObject
             }
         } );
 
-        // -- Animação curta ou longa
+        // -- Animação curta
         if (Vector2.Distance(startPos, transform.position) < 0.7f)
         {
             var angle = Mathg.AngleOfTheLineBetweenTwoPoints(new Vector2(transform.position.x, transform.position.y), startPos) - 180f;
@@ -123,6 +177,7 @@ public class SetSceneNavigationObject : NavigationObject
                         OnReachDestinationAKEvent.Post(gameObject);
                 }));
         }
+        // -- Animação longa
         else
         {
             SetCurve(shipStartRotation, startPos, transform.position);
@@ -177,6 +232,9 @@ public class SetSceneNavigationObject : NavigationObject
             return;
         }
 
+        if (notificationID != string.Empty)
+            UINotificationManager.Use (notificationID);
+
         NavigationSceneManager.Instance.CloseAndSetScene( scene.ScenePath );
     }
 
@@ -196,7 +254,6 @@ public class SetSceneNavigationObject : NavigationObject
         
         Gizmos.DrawWireSphere(p2Debug, 0.1f);
         Gizmos.DrawWireSphere(p3Debug, 0.1f);
-
     }
 
     private Tween DrawDots(float duration, int count, float startRotation, Vector2 startPos, Vector2 endPos)

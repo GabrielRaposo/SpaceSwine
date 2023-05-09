@@ -25,7 +25,7 @@ public class ChangeStoryEventAfterDialogue : MonoBehaviour
             else
                 StoryEventsManager.ClearProgress(storyEvent);
 
-            SaveManager.SaveStoryEvent(storyEvent);
+            SaveManager.Save();
         };
     }
 }

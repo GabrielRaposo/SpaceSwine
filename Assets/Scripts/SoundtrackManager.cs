@@ -14,10 +14,6 @@ public class SoundtrackManager : MonoBehaviour
     [SerializeField] AK.Wwise.RTPC musicParameter;
     [SerializeField] AK.Wwise.RTPC sfxParameter;
     [SerializeField] AK.Wwise.RTPC placeholderParameter;
-
-    [Header("Test Inputs")]
-    [SerializeField] InputAction playMusicTestInput;
-    [SerializeField] InputAction stopMusicTestInput;
     
     PlaylistScriptableObject playlist;
     List<int> playOrder;
@@ -91,18 +87,6 @@ public class SoundtrackManager : MonoBehaviour
         }
 
         currentIndex = 0;
-    }
-
-    private void Start() 
-    {
-        if (!Application.isEditor)
-            return;
-
-        playMusicTestInput.performed += (ctx) => SkipTrack(1);
-        playMusicTestInput.Enable();
-
-        stopMusicTestInput.performed += (ctx) => Stop();
-        stopMusicTestInput.Enable();
     }
 
     private void Update() 
