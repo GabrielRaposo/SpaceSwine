@@ -418,7 +418,7 @@ public class PlatformerCharacter : SidewaysCharacter
         horizontalSpeed = verticalSpeed = 0;
         playerAnimations.horizontalInput = 0;
 
-        heldInput = Vector2.zero;    
+        heldInput = Vector2.zero;
         moveInputRotationAnchor = lastValidAnchor = holdAnchorCount = 0;
     }
 

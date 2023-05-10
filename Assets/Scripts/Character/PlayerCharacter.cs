@@ -168,13 +168,21 @@ public class PlayerCharacter : MonoBehaviour
             // TO-DO: Lockar inputs de menu
 
             Vector2 previousVelocity = rb.velocity.normalized;
-            rb.velocity = previousVelocity * -.5f;
-            
+
+            if (platformerCharacter) 
+            {
+                if (rb.velocity.normalized != (Vector2) transform.up.normalized )
+                    previousVelocity = (previousVelocity - (Vector2) (transform.up * .5f)).normalized; 
+                platformerCharacter.KillInputs();
+                platformerCharacter.enabled = false;
+            }
+            if (gravityInteraction) gravityInteraction.enabled = false;
             if (coll) coll.enabled = false;
             if (playerInput) playerInput.enabled = false;
             if (spaceJumper) spaceJumper.BlockCollision = true;
 
             playerAnimations.SetDeathState();
+            rb.velocity = previousVelocity * -.5f;
 
             RaposUtil.WaitSeconds(this, duration: 1.0f, () =>
             {
