@@ -137,8 +137,12 @@ public class CollectableThrowable : Collectable
         }
 
         Hitbox hb = collision.GetComponent<Hitbox>();
-        if (hb && hb.damage > 0) 
-            DestroyCollectable();
+        if (hb && hb.damage > 0)
+        {
+            if(hb.damageType!= DamageType.Electricity)
+                DestroyCollectable();
+        } 
+            
 
         GravitationalBody gravitationalBody = collision.GetComponent<GravitationalBody>();
         if (gravitationalBody)

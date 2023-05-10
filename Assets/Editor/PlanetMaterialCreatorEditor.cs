@@ -25,9 +25,13 @@ public class PlanetMaterialCreatorEditor : Editor
         myButtonStyle.hover.textColor = new Color(0.2f, 0.8f, 0.4f);
 
         myButtonStyle.fixedWidth = 40;
-        
-        if(GUILayout.Button("⇌", myButtonStyle))
-            obj.ClarMaterial();
+
+        if (GUILayout.Button("⇌", myButtonStyle))
+        {
+            obj.ClearMaterial();
+            obj.RotatePlanet();
+        }
+            
         
         GUILayout.EndHorizontal();
         

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ElectricMindToggler : MonoBehaviour
 {
+    [SerializeField] private float delay;
+    [Space]
     [SerializeField] float duration1;
     [SerializeField] float duration2;
 
@@ -34,6 +36,7 @@ public class ElectricMindToggler : MonoBehaviour
     {
         timingState = true;
         ResetDuration();
+        durationCount += delay;
     }
 
     private void FixedUpdate() 
