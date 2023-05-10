@@ -7,7 +7,7 @@ using DG.Tweening;
 using RedBlueGames.Tools.TextTyper;
 using DevLocker.Utils;
 
-public class TrailerSceneCaller : MonoBehaviour
+public class TrailerSceneCaller : StoryEventDependent
 {
     [SerializeField] SceneReference nextScene;
 
@@ -66,6 +66,11 @@ public class TrailerSceneCaller : MonoBehaviour
 
     private void Start() 
     {
+        CallDependentAction (Init);
+    }
+
+    private void Init()
+    {
         if (intensityAKEvent != null)
             intensityAKEvent.SetGlobalValue(0);
 
@@ -91,7 +96,7 @@ public class TrailerSceneCaller : MonoBehaviour
         if (blackImage)
             blackImage.enabled = false;
 
-        TurnOn( new InputAction.CallbackContext() );        
+        TurnOn( new InputAction.CallbackContext() );
     }
 
     private void TurnOn (InputAction.CallbackContext ctx)
@@ -318,7 +323,7 @@ public class TrailerSceneCaller : MonoBehaviour
         if (nextScene == null)
             return;
 
-        GameManager.GoToScene( nextScene.ScenePath );
+        GameManager.GoToScene( nextScene.ScenePath, saveScenePath: true );
     }
 
     #if UNITY_EDITOR

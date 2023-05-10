@@ -11,6 +11,10 @@ public class TitleMenuNavigation : MonoBehaviour
     [SerializeField] bool startOnFocus;
     [SerializeField] List<TitleMenuButton> titleButtons;
 
+    [Header("Dynamic Button")]
+    [SerializeField] TitleMenuButton continueButton;
+    [SerializeField] StoryEventScriptableObject newSaveCheckEvent;
+
     [Header("Input")]
     [SerializeField] float holdCooldown;
 
@@ -69,11 +73,26 @@ public class TitleMenuNavigation : MonoBehaviour
 
     private void Start() 
     {
-        current = 0;
-        SelectCurrent();
+        SetContinueButtonState();
         
         if (startOnFocus)
             OnFocus = true;
+    }
+
+    private void SetContinueButtonState()
+    {
+        if (StoryEventsManager.IsComplete(newSaveCheckEvent) )
+        {
+            continueButton.SetInteraction (true);
+            current = 0;
+        }
+        else
+        {
+            // remove da lista de scroll
+            continueButton.SetInteraction (false);
+            current = 1;
+        }
+        SelectCurrent();
     }
 
     private void Update() 
@@ -115,8 +134,7 @@ public class TitleMenuNavigation : MonoBehaviour
             if (canvasGroup)
                 canvasGroup.alpha = 0;
 
-            if (current < 0)
-                current = 0;
+            SetContinueButtonState();
 
             OnEnterMenuEvent?.Invoke();
             if (OnEnterMenuAKEvent != null && !OnEnterMenuAKEvent.IsPlaying(gameObject))
@@ -224,7 +242,6 @@ public class TitleMenuNavigation : MonoBehaviour
                 titleButtons[i].InstantSelect(false);
             else
                 titleButtons[i].Deselect();
-                
         }
 
         if (instant)
@@ -238,9 +255,13 @@ public class TitleMenuNavigation : MonoBehaviour
         holdCount = holdCooldown;
 
         current += direction;
+        if (current % titleButtons.Count == 0 && !StoryEventsManager.IsComplete( newSaveCheckEvent ))
+            current += direction;
+
         if (current < 0)
             current = titleButtons.Count - 1;
         current %= titleButtons.Count;
+
 
         SelectCurrent(instant: false, playSound: true);
     }

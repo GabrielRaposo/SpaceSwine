@@ -9,7 +9,7 @@ public class FPSCounterDisplay : MonoBehaviour
     [SerializeField] bool showAtStart;
     [SerializeField] bool ceilValue;
     [SerializeField] TextMeshProUGUI display;
-    [SerializeField] InputAction toggleInputAction;
+
 
     bool showing;
     float deltaTime;
@@ -17,9 +17,6 @@ public class FPSCounterDisplay : MonoBehaviour
     void Start()
     {
         SetVisibility (showAtStart);
-
-        toggleInputAction.performed += (ctx) => SetVisibility( !showing );
-        toggleInputAction.Enable();
     }
 
     private void Update() 
@@ -44,8 +41,9 @@ public class FPSCounterDisplay : MonoBehaviour
         display.enabled = value;
         showing = value;
     }
-    private void OnDisable() 
+
+    public void ToggleVisivility()
     {
-        toggleInputAction.Disable();    
+        SetVisibility (!showing);
     }
 }

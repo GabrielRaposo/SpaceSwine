@@ -8,9 +8,6 @@ using Minigame;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject playerObject;
-    [SerializeField] InputAction resetInputAction;
-    [SerializeField] InputAction saveInputAction;
-    [SerializeField] InputAction resetSaveInputAction;
 
     RoundsManager roundsManager;
     PauseSystem pauseSystem;
@@ -42,33 +39,12 @@ public class GameManager : MonoBehaviour
                 RoundsManager.Instance.CallReset();
         };
         playerInputActions.UI.Reset.Enable();
-        
-        #if UNITY_EDITOR
-            resetInputAction.Enable();
-            saveInputAction.Enable();
-            resetSaveInputAction.Enable();
-        #endif
     }
 
     void Start()
     {
-        //if (!SaveManager.Initiated)
-        //{
-        //    SaveManager.Load();
-        //}
-
-        #if UNITY_EDITOR
-        CustomEditorInicialization.Initialize();
-        #endif
-
         pauseSystem = PauseSystem.Instance; 
         ggsConsole = GGSConsole.Instance;
-
-        #if UNITY_EDITOR
-        //resetInputAction.performed += (ctx) => ResetScene();
-        saveInputAction.performed += (ctx) => SaveManager.SaveAllData();
-        resetSaveInputAction.performed += (ctx) => SaveManager.ResetSave();
-        #endif
 
         SetupPlayer(); // Deve ocorrer no Start()
         SetupPlaylist();
@@ -103,8 +79,11 @@ public class GameManager : MonoBehaviour
         soundtrackManager.SetPlaylist(CurrentPlaylist);
     }
 
-    public static void GoToScene (string path)
+    public static void GoToScene (string path, bool saveScenePath = false)
     {
+        if (saveScenePath)
+            SaveManager.SetSpawnPath(path);
+        
         SceneTransition.LoadScene(path, SceneTransition.TransitionType.BlackFade);
     }
 
@@ -171,11 +150,5 @@ public class GameManager : MonoBehaviour
     {
         playerInputActions.UI.Start.Disable();
         playerInputActions.UI.Reset.Disable();
-
-        #if UNITY_EDITOR
-            resetInputAction.Disable();    
-            saveInputAction.Disable();
-            resetSaveInputAction.Disable();
-        #endif
     }
 }

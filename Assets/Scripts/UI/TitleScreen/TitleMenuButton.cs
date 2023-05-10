@@ -25,6 +25,7 @@ public class TitleMenuButton : MonoBehaviour
     [SerializeField] Image tabLine;
     [SerializeField] Image sideSlot;
     [SerializeField] TextMeshProUGUI textDisplay;
+    [SerializeField] CanvasGroup canvasGroup;
 
     bool selected;
     
@@ -99,5 +100,11 @@ public class TitleMenuButton : MonoBehaviour
 
         if (textDisplay)
             textDisplay.color = value ? highlightColor : hiddenColor;
+    }
+
+    public void SetInteraction(bool value)
+    {
+        if (canvasGroup)
+            canvasGroup.alpha = value ? 1.0f : .4f;
     }
 }

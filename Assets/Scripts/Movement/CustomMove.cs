@@ -197,7 +197,7 @@ public class CustomMove : MonoBehaviour
         return (i < 0 || i >= positions.Count, j <= 0 || j + 1 >= positions.Count);
     }
 
-    private Vector2 PosAtIndex (int localIndex)
+    public Vector2 PosAtIndex (int localIndex)
     {
         if (localIndex < 0)
             return Vector2.zero;
@@ -274,6 +274,11 @@ public class CustomMove : MonoBehaviour
 
         index = i;
         MoveIndex();
+    }
+
+    public int Count
+    {
+        get { return positions.Count; } 
     }
 
     private void OnDisable() 

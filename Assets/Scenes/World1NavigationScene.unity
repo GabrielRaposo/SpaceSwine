@@ -2198,6 +2198,10 @@ PrefabInstance:
       propertyPath: scene.m_ScenePath
       value: Assets/Scenes/World1/World1Exploration-3Sub-Scene.unity
       objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: notificationID
+      value: w1sub3unlocked
+      objectReference: {fileID: 0}
     - target: {fileID: 5739569840260570604, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: localizationCode
       value: 001
@@ -2328,6 +2332,14 @@ PrefabInstance:
       propertyPath: scene.m_ScenePath
       value: Assets/Scenes/World1/World1Exploration-1Sub-Scene.unity
       objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: completionStoryEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: a2f1ca04d02cab947aa3c788cc9c0afa, type: 2}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: notificationID
+      value: w1sub1unlocked
+      objectReference: {fileID: 0}
     - target: {fileID: 5739569840260570604, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: localizationCode
       value: 001
@@ -2448,7 +2460,7 @@ GameObject:
   - component: {fileID: 1077069328}
   - component: {fileID: 1077069329}
   m_Layer: 0
-  m_Name: Sub Group 2 - Navigation Object Activator
+  m_Name: Group 2 - Navigation Object Activator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2481,6 +2493,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e715e9b994cc81429a9cda5b836e31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notificationIDs:
+  - w1sub3unlocked
   criteriaEvents:
   - {fileID: 11400000, guid: a2f1ca04d02cab947aa3c788cc9c0afa, type: 2}
   - {fileID: 11400000, guid: 7d7944e12f2138f4a976da17578800f9, type: 2}
@@ -3232,6 +3246,14 @@ PrefabInstance:
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: scene.m_ScenePath
       value: Assets/Scenes/World1/World1Exploration-2Sub-Scene.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: completionStoryEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 7d7944e12f2138f4a976da17578800f9, type: 2}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: notificationID
+      value: w1sub2unlocked
       objectReference: {fileID: 0}
     - target: {fileID: 5739569840260570604, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: localizationCode
@@ -4302,6 +4324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e715e9b994cc81429a9cda5b836e31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notificationIDs: []
   criteriaEvents:
   - {fileID: 11400000, guid: a2f1ca04d02cab947aa3c788cc9c0afa, type: 2}
   - {fileID: 11400000, guid: 7d7944e12f2138f4a976da17578800f9, type: 2}
@@ -6084,7 +6107,7 @@ GameObject:
   - component: {fileID: 2104419889}
   - component: {fileID: 2104419890}
   m_Layer: 0
-  m_Name: Sub Group 1 - Navigation Object Activator
+  m_Name: Group 1 - Navigation Object Activator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6118,6 +6141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e715e9b994cc81429a9cda5b836e31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notificationIDs:
+  - w1sub1unlocked
+  - w1sub2unlocked
   criteriaEvents:
   - {fileID: 11400000, guid: 61edce01a4ea0d74abc55e0cbf6dab9b, type: 2}
 --- !u!1001 &4585204730231007812
@@ -6223,6 +6249,10 @@ PrefabInstance:
       propertyPath: scene.m_ScenePath
       value: Assets/Scenes/World1/World1Exploration-0Hub-Scene.unity
       objectReference: {fileID: 0}
+    - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
+      propertyPath: completionStoryEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 61edce01a4ea0d74abc55e0cbf6dab9b, type: 2}
     - target: {fileID: 5739569840260570604, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: localizationCode
       value: 001

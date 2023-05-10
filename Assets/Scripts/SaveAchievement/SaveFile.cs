@@ -8,107 +8,122 @@ public class SaveFile
 {
     public int version = 1;
 
-    public float digitalCurrency;
-    public float world1Currency;
-    public float world2Currency;
-    public float world3Currency;
+    // -- Spawn Data
+    public string spawnScenePath;
+    public int spawnIndex;
 
-    public List<ItemIndexer> world1CurrencyIndexer;
-    public List<ItemIndexer> world2CurrencyIndexer;
-    public List<ItemIndexer> world3CurrencyIndexer;
+    // -- Navigation Data
+    public int currentWorld;
+    public NavigationShipData navigationShipData;
+    public string shuttleExitLocationPath;
 
-    public List<StoryEventData> storyEventsStates;
+    // -- Events and UI Notifications
+    public List<EventProgressData> eventProgressList;
+    public List<UINotification> uiNotificationsList;
 
-    // ship customization data
-    // ship bought items
+    // -- Minigame Scores
+    //public List<MinigameHiscore> JumperHighscores;
+    //public List<MinigameHiscore> ShooterHighscores;
 
     public List<AchievementLog> achievementLog;
+
     private float playtime;
+
+    public float Playtime
+    {
+        get => playtime;
+        set => playtime = value;
+    }
 
     public SaveFile ()
     {
-        world1CurrencyIndexer = new List<ItemIndexer>();
-        world2CurrencyIndexer = new List<ItemIndexer>();
-        world3CurrencyIndexer = new List<ItemIndexer>();
+        PrepFile();
 
-        storyEventsStates = new List<StoryEventData>();
-
-        var achievementList = AchievementsManager.GetNewAchievementList();
-
-        achievementLog = new List<AchievementLog>();
-
-        foreach (Achievement achievement in achievementList)
+        // -- Achievement
         {
-            var aLog = new AchievementLog(achievement);
-            achievementLog.Add(aLog);
+            var achievementList = AchievementsManager.GetNewAchievementList();
+
+            achievementLog = new List<AchievementLog>();
+
+            foreach (Achievement achievement in achievementList)
+            {
+                var aLog = new AchievementLog(achievement);
+                achievementLog.Add(aLog);
+            }
         }
     }
 
-    private List<StageProgress> GetBaseLevelList()
+    // -- Classes geradas pela serialiazação podem não possuir a inicialização de novos componentes
+    public void PrepFile()
     {
-        //TEMP
-        
-        return new List<StageProgress>();
+        if (navigationShipData == null)
+            navigationShipData = new NavigationShipData();
+
+        if (eventProgressList == null)
+            eventProgressList = new List<EventProgressData>();
+
+        if (uiNotificationsList == null)
+            uiNotificationsList = new List<UINotification>();
+
+        if (achievementLog == null)
+            achievementLog = new List<AchievementLog>();
     }
   
     public string PrintStoredData()
     {
         string s = "Stored Data on Save: \n";
 
+        if (eventProgressList != null)
+        {   
+            s += $"\tStoryEventsProgress.Count: { eventProgressList.Count } \n";
+
+            for (int i = 0; i < eventProgressList.Count; i++)
+            {
+                EventProgressData progressData = eventProgressList[i];
+                s += $"\t [{ i }] { progressData.id } - IsComplete: { progressData.progress >= progressData.goal } \n";
+            }
+        }
+
         return s;
     }
-    
-    public float Playtime
-    {
-        get => playtime;
-        set => playtime = value;
-    }
-    
-    public float GetPlaytime()
-    {
-        return Playtime;
-    }
-
-    public void AddPlaytime(float sessionTime)
-    {
-        Playtime += sessionTime;
-    }
 }
 
 [System.Serializable]
-public class ItemIndexer
+public class EventProgressData
 {
-    public ItemIndexer (float x, float y, float id)
+    public EventProgressData (string id, int progress, int goal)
     {
-        this.x = x;
-        this.y = y;
         this.id = id;
+        this.progress = progress;
+        this.goal = goal;
     }
 
-    public override string ToString()
-    {
-        return $"x: {x}, y: {y}, id: {id}";
-    }
-
-    public bool CompareTo(ItemIndexer item)
-    {
-        return (x == item.x) && (y == item.y) && (id == item.id);
-    }
-
-    [SerializeField] public float x;
-    [SerializeField] public float y;
-    [SerializeField] public float id;
+    public string id;
+    public int progress;
+    public int goal;
 }
 
 [System.Serializable]
-public class StoryEventData
+public class NavigationShipData 
 {
-    public StoryEventData(bool state, string name)
-    {
-        this.state = state;
-        this.name = name;
-    }
+    public bool initiated;
 
-    [SerializeField] public bool state;
-    [SerializeField] public string name;
+    public float posX;
+    public float posY;
+    public float angle;
+
+    public Vector2 Position
+    {
+        get 
+        {
+            return new Vector2 (posX, posY);
+        }
+        set
+        {
+            initiated = true;
+
+            posX = value.x;
+            posY = value.y;
+        }
+    }
 }

@@ -6,6 +6,15 @@ using DG.Tweening;
 
 public class ShipDialogueManager : MonoBehaviour
 {
+    [System.Serializable]
+    public struct DialogueIndexer
+    {
+        public string notificationID;
+        public int index;
+    }
+
+    [SerializeField] List<DialogueIndexer> dialogueIndexers;
+
     [Header("Start Scene")]
     [SerializeField] ShipNPCData startDialogueData;
     [SerializeField] float startUpDelay;
@@ -34,6 +43,20 @@ public class ShipDialogueManager : MonoBehaviour
 
     private void SetDialogueOnStart()
     {
+        if (dialogueIndexers == null)
+            return;
+
+        // Read notifications
+        foreach (DialogueIndexer dialogueIndexer in dialogueIndexers)
+        {
+            if (UINotificationManager.Check (dialogueIndexer.notificationID))
+            {
+                UINotificationManager.Use (dialogueIndexer.notificationID);
+                StartDialogueIndex = dialogueIndexer.index;
+                break;
+            }
+        }
+
         if (StartDialogueIndex < 0)
             return;
 
@@ -107,14 +130,14 @@ public class ShipDialogueManager : MonoBehaviour
             dialogueBox.SetShown(false, duration: .5f, forceOut: true);
 
         // -- TEMP PRA BUILD -------
-        if (SetShipDialogueOnEvent.AllDialoguesSet && StartDialogueIndex < 3)
-        {
-            StartDialogueIndex = 3;
-            //RaposUtil.WaitSeconds(this, duration: .5f,  );
-            dialogueBox.Type(" ", delay: .5f, instantText: true, afterInputAction: null);
-            CallDialogueOnStart();
-            return;
-        }
+        //if (SetShipDialogueOnNotification.AllDialoguesSet && StartDialogueIndex < 3)
+        //{
+        //    StartDialogueIndex = 3;
+        //    //RaposUtil.WaitSeconds(this, duration: .5f,  );
+        //    dialogueBox.Type(" ", delay: .5f, instantText: true, afterInputAction: null);
+        //    CallDialogueOnStart();
+        //    return;
+        //}
         // -- 
 
         ResumeOnScene(dialogueData);
