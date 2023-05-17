@@ -77,6 +77,9 @@ public class CollectableThrowable : Collectable
 
     public override void Interact (CollectableInteraction interactor) 
     {
+        if (innerCollider)
+            innerCollider.enabled = true;
+
         interactor.LaunchInput();
     }
 
@@ -192,7 +195,7 @@ public class CollectableThrowable : Collectable
     
     private void BounceBack (GravitationalBody gravitationalBody)
     {
-        Debug.Log("Bounce back: " + gameObject.name);
+        //Debug.Log("Bounce back: " + gameObject.name);
 
         if (bounceParticle)
         {
