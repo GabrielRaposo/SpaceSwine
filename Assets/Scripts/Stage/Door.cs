@@ -224,4 +224,16 @@ public class Door : MonoBehaviour
         if (mainCollider)
             mainCollider.enabled = value;
     }
+
+    public void SetOpenState (bool value, bool instant)
+    {
+        if (!animator)
+            return;
+
+        if (value && instant)
+        {
+            animator.SetTrigger("InstantOpen");
+        }
+        animator.SetBool("Open", value);
+    }
 }

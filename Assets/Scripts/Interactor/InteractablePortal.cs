@@ -15,7 +15,7 @@ public class InteractablePortal : Interactable
     private void Start()
     {
         if (inputHelper) 
-            inputHelper.SetActive(false);    
+            inputHelper.SetActive(false);
     }
 
     public override void Interaction (PlayerInteractor interactor) 
@@ -82,4 +82,15 @@ public class InteractablePortal : Interactable
     }
 
     public override void IconState (bool value) { }
+
+    public override void SetInteraction (bool value) 
+    {
+        base.SetInteraction(value);
+
+        Collider2D collider2D = GetComponent<Collider2D>();
+        if (!collider2D)
+            return;
+
+        collider2D.enabled = value;
+    }
 }
