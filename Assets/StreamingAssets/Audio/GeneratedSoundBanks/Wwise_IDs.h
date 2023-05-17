@@ -33,6 +33,8 @@ namespace AK
         static const AkUniqueID CENARIO_VITORIA = 3655190725U;
         static const AkUniqueID CHORDS_01 = 522712106U;
         static const AkUniqueID CHORDS_02 = 522712105U;
+        static const AkUniqueID GAMEPLAY_BOLHA_ESTOURA = 505437816U;
+        static const AkUniqueID GAMEPLAY_BOLHA_POUSAR = 39504875U;
         static const AkUniqueID GAMEPLAY_BUYK_ANDA = 2274976510U;
         static const AkUniqueID GAMEPLAY_BUYK_BEAMDOWN = 294436755U;
         static const AkUniqueID GAMEPLAY_BUYK_BEAMUP = 3509944340U;
@@ -50,6 +52,7 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_STUCK_FANFARRA = 1336538064U;
         static const AkUniqueID GAMEPLAY_BUYK_TACA_ITEM = 3851873763U;
         static const AkUniqueID GAMEPLAY_BUYK_VOA = 3132805884U;
+        static const AkUniqueID GAMEPLAY_ELETRICIDADE = 141290699U;
         static const AkUniqueID GAMEPLAY_FLOR_ENERGIZA = 3179447255U;
         static const AkUniqueID GAMEPLAY_FLOR_TRANSITION = 3272639445U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
