@@ -1377,6 +1377,65 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_bolha_pousar" ID="{0B24315F-428E-4EB7-8E33-FE0070812C0C}" ShortID="770179085">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="27"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="gameplay_bolha_pousar" ID="{998BAEEA-5D9F-4AD1-BB82-924D129FA2D8}">
+									<Language>SFX</Language>
+									<AudioFile>gameplay_bolha_pousar.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="301725432"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="gameplay_bolha_pousar" ID="{998BAEEA-5D9F-4AD1-BB82-924D129FA2D8}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="gameplay_bolha_estoura" ID="{3DC01F3F-8B1D-4EB0-BFF0-9B95C83F1724}" ShortID="372121111">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="27"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="gameplay_bolha_estoura" ID="{4949513B-3CE0-4CF2-997B-DF126E79C0CA}">
+									<Language>SFX</Language>
+									<AudioFile>gameplay_bolha_estoura.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="912331241"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="gameplay_bolha_estoura" ID="{4949513B-3CE0-4CF2-997B-DF126E79C0CA}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="gameplay_eletricidade" ID="{F885C2F5-9ED2-433F-948C-FD96651B5BE2}" ShortID="634750950">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="27"/>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1404,32 +1463,10 @@
 								<ActiveSource Name="Placeholder_01" ID="{BB3E1DA5-DCF4-403D-830C-05C56C97B172}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="gameplay_bolha_estoura" ID="{3DC01F3F-8B1D-4EB0-BFF0-9B95C83F1724}" ShortID="372121111">
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX_Placeholder" ID="{D02281D6-C21C-4CE0-8F5E-4AC195AAA27D}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Placeholder_02" ID="{9FC079C3-4729-493B-B934-243E5B438EE5}">
-									<Language>SFX</Language>
-									<AudioFile>Placeholder_02.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="261629688"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Placeholder_02" ID="{9FC079C3-4729-493B-B934-243E5B438EE5}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="gameplay_eletricidade" ID="{F885C2F5-9ED2-433F-948C-FD96651B5BE2}" ShortID="634750950">
+						<Sound Name="gameplay_bolha_andar" ID="{36E36C76-CA00-4905-A3CC-05AEBB174F81}" ShortID="240477010">
 							<PropertyList>
-								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Color" Type="int16" Value="27"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -1440,17 +1477,17 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="Placeholder_03" ID="{5A1814D7-7DBF-4F58-8906-306448F3F711}">
+								<AudioFileSource Name="gameplay_bolha_andar" ID="{FA49B3F5-13F0-499D-8BA8-0C0A70B0EF9E}">
 									<Language>SFX</Language>
-									<AudioFile>Placeholder_03.wav</AudioFile>
+									<AudioFile>gameplay_bolha_andar.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="629711312"/>
+										<MediaID ID="85766911"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="Placeholder_03" ID="{5A1814D7-7DBF-4F58-8906-306448F3F711}" Platform="Linked"/>
+								<ActiveSource Name="gameplay_bolha_andar" ID="{FA49B3F5-13F0-499D-8BA8-0C0A70B0EF9E}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
