@@ -27,6 +27,7 @@ public class BubblePlanet : CustomSurface, ConcealingBody
     [Header("Effects")]
     [SerializeField] ParticleSystem onLandPS;
     [SerializeField] ParticleSystem burstPS;
+    [SerializeField] AK.Wwise.Event burstAKEvent;
 
     [Header("References")]
     [SerializeField] Collider2D gravityCollider;
@@ -106,6 +107,8 @@ public class BubblePlanet : CustomSurface, ConcealingBody
             concealedCollectable.transform.SetParent (null);
 
         burstPS?.Play();
+        if (burstAKEvent != null)
+            burstAKEvent.Post(gameObject);
 
         SetState(false);
     }
