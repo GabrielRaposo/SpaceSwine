@@ -120,7 +120,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>8</Value>
+														<Value>3</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -302,7 +302,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>8</Value>
+														<Value>3</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -543,7 +543,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-1</Value>
+												<Value>-3</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -967,7 +967,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>4</Value>
+										<Value>3</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1126,7 +1126,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>5</Value>
+										<Value>3</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1163,7 +1163,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>4</Value>
+										<Value>1</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1350,7 +1350,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>12</Value>
+										<Value>8</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1379,6 +1379,11 @@
 						<Sound Name="gameplay_bolha_pousar" ID="{0B24315F-428E-4EB7-8E33-FE0070812C0C}" ShortID="770179085">
 							<PropertyList>
 								<Property Name="Color" Type="int16" Value="27"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -1405,6 +1410,11 @@
 						<Sound Name="gameplay_bolha_estoura" ID="{3DC01F3F-8B1D-4EB0-BFF0-9B95C83F1724}" ShortID="372121111">
 							<PropertyList>
 								<Property Name="Color" Type="int16" Value="27"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>10</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -1464,6 +1474,79 @@
 						<Sound Name="gameplay_bolha_andar" ID="{36E36C76-CA00-4905-A3CC-05AEBB174F81}" ShortID="240477010">
 							<PropertyList>
 								<Property Name="Color" Type="int16" Value="27"/>
+								<Property Name="Lowpass" Type="int16">
+									<RTPCList>
+										<RTPC Name="" ID="{04C742EA-24EF-4D4E-A127-A98E3B8E49D9}" ShortID="927494997">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<Custom>
+														<ModulatorLfo Name="Modulator LFO (Custom)" ID="{C73EDECB-7DC4-46F9-BA31-0F457295C115}" ShortID="121275760">
+															<PropertyList>
+																<Property Name="LfoWaveform" Type="int32" Value="5"/>
+															</PropertyList>
+														</ModulatorLfo>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{6A3E89B7-99B3-4624-9D64-3DB68F3A24D2}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>65</YPos>
+														<Flags>21</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>0</YPos>
+														<Flags>53</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<RTPCList>
+										<RTPC Name="" ID="{4BFAF10E-32D6-45E1-8CEB-BAA443428F63}" ShortID="233135939">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<Custom>
+														<ModulatorLfo Name="Modulator LFO (Custom)" ID="{D561201B-5653-4A53-A59C-A07B12F068D0}" ShortID="337345283">
+															<PropertyList>
+																<Property Name="LfoWaveform" Type="int32" Value="5"/>
+															</PropertyList>
+														</ModulatorLfo>
+													</Custom>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{1F908C78-F1D8-4994-883F-F5802596BF48}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="65537"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-100</YPos>
+														<Flags>21</Flags>
+													</Point>
+													<Point>
+														<XPos>1</XPos>
+														<YPos>100</YPos>
+														<Flags>53</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -1475,6 +1558,9 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="gameplay_bolha_andar" ID="{FA49B3F5-13F0-499D-8BA8-0C0A70B0EF9E}">
+									<PropertyList>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>gameplay_bolha_andar.wav</AudioFile>
 									<MediaIDList>
