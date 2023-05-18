@@ -428,7 +428,7 @@ public class PlatformerCharacter : SidewaysCharacter
 
     public Vector2 LocalSpeed()
     {
-        return new Vector2(horizontalSpeed, verticalSpeed);
+        return new Vector2 (horizontalSpeed, verticalSpeed);
     }
 
     public void PlayStepSound()
