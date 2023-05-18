@@ -14,7 +14,7 @@ public class InteractablePortalStoryEventInteraction : StoryEventDependent
     {
         interactablePortal = GetComponent<InteractablePortal>();
 
-        CallDependentAction ( Setup );
+        CallDependentAction ( Setup, extraFrames: 3 );
 
         Debug.Log("TO-FIX: Running on Update!");
     }
@@ -24,15 +24,26 @@ public class InteractablePortalStoryEventInteraction : StoryEventDependent
         if (storyEventData == null || door == null)
             return;
 
-        bool IsComplete = StoryEventsManager.IsComplete(storyEventData);
+        this.Wait 
+        (
+            frames: 3,
+            action: () => 
+            {
+                bool IsComplete = StoryEventsManager.IsComplete(storyEventData);
 
-        interactablePortal.SetInteraction(IsComplete);
-        door.SetOpenState(IsComplete, instant: true);
+                interactablePortal.SetInteraction(IsComplete);
+                door.SetOpenState(IsComplete, instant: true);
+                Debug.Log("Setup!: " + IsComplete);
+            }
+        );
     }
 
     private void Update() 
     {
         if (storyEventData == null || door == null)
+            return;
+
+        if (!StoryEventsManager.Initiated)
             return;
 
         bool IsComplete = StoryEventsManager.IsComplete(storyEventData);
