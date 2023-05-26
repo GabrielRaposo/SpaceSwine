@@ -33,6 +33,9 @@ namespace AK
         static const AkUniqueID CENARIO_VITORIA = 3655190725U;
         static const AkUniqueID CHORDS_01 = 522712106U;
         static const AkUniqueID CHORDS_02 = 522712105U;
+        static const AkUniqueID GAMEPLAY_BOLHA_ANDAR = 2398576381U;
+        static const AkUniqueID GAMEPLAY_BOLHA_ESTOURA = 505437816U;
+        static const AkUniqueID GAMEPLAY_BOLHA_POUSAR = 39504875U;
         static const AkUniqueID GAMEPLAY_BUYK_ANDA = 2274976510U;
         static const AkUniqueID GAMEPLAY_BUYK_BEAMDOWN = 294436755U;
         static const AkUniqueID GAMEPLAY_BUYK_BEAMUP = 3509944340U;
@@ -50,6 +53,7 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_STUCK_FANFARRA = 1336538064U;
         static const AkUniqueID GAMEPLAY_BUYK_TACA_ITEM = 3851873763U;
         static const AkUniqueID GAMEPLAY_BUYK_VOA = 3132805884U;
+        static const AkUniqueID GAMEPLAY_ELETRICIDADE = 141290699U;
         static const AkUniqueID GAMEPLAY_FLOR_ENERGIZA = 3179447255U;
         static const AkUniqueID GAMEPLAY_FLOR_TRANSITION = 3272639445U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
@@ -94,6 +98,10 @@ namespace AK
         static const AkUniqueID LOFI_19 = 65705098U;
         static const AkUniqueID LOFI_20 = 82482806U;
         static const AkUniqueID LOFI_21 = 82482807U;
+        static const AkUniqueID LOFI_22 = 82482804U;
+        static const AkUniqueID LOFI_23 = 82482805U;
+        static const AkUniqueID LOFI_24 = 82482802U;
+        static const AkUniqueID LOFI_25 = 82482803U;
         static const AkUniqueID MAKEABEAT_APARELHOS_NAVEGACAO = 1887497970U;
         static const AkUniqueID MAKEABEAT_APARELHOS_SELECAO = 2771531893U;
         static const AkUniqueID MAKEABEAT_CAIXA_ESCONDE = 1649118717U;
@@ -213,6 +221,10 @@ namespace AK
         static const AkUniqueID LOFI_19 = 65705098U;
         static const AkUniqueID LOFI_20 = 82482806U;
         static const AkUniqueID LOFI_21 = 82482807U;
+        static const AkUniqueID LOFI_22 = 82482804U;
+        static const AkUniqueID LOFI_23 = 82482805U;
+        static const AkUniqueID LOFI_24 = 82482802U;
+        static const AkUniqueID LOFI_25 = 82482803U;
         static const AkUniqueID MAKE_A_BEAT = 2500044626U;
     } // namespace BANKS
 

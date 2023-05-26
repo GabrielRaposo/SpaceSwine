@@ -167,10 +167,15 @@ public class SpaceJumper : MonoBehaviour
         if (gravityArea)
             gravityInteraction.HardSetGravityArea (gravityArea);
 
-        if (collision.gameObject.GetComponent<CustomSurface>() == null)
+        CustomSurface customSurface = collision.gameObject.GetComponent<CustomSurface>();
+        if (customSurface == null)
         {
             longLandVFX?.Play();
             longLandAKEvent?.Post(gameObject);
+        }
+        else
+        {
+            customSurface.PlayLandEffects();
         }
 
         SetLaunchState(false);

@@ -29,17 +29,17 @@ public class CheckGround : MonoBehaviour
         get { return planet; }
     }
 
-    public bool OnCustomSurface
+    public (bool value, CustomSurface customSurface) OnCustomSurface
     {
         get 
         {
             if (!onGround)
-                return false;
+                return (false, null);
 
             if (OnPlanet && OnPlanet.GetComponent<CustomSurface>() != null)
-                return true;
+                return (true, OnPlanet.GetComponent<CustomSurface>());
 
-            return false;
+            return (false, null);
         }
     }
 

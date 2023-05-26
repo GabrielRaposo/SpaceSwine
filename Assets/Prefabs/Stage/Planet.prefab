@@ -286,9 +286,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2888290609810881193}
   - component: {fileID: 2888290609810881194}
+  - component: {fileID: 1299124423796594016}
   - component: {fileID: 2888290609810881195}
   - component: {fileID: 2888290609810881196}
-  - component: {fileID: 1299124423796594016}
   m_Layer: 10
   m_Name: Planet
   m_TagString: Untagged
@@ -335,6 +335,22 @@ MonoBehaviour:
   outlineVisualComponent: {fileID: 2888290609148894899}
   insideVisualComponent: {fileID: 2888290608896806819}
   gravityArea: {fileID: 2888290610804836964}
+--- !u!114 &1299124423796594016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2888290609810881197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 926891a9072623a459d682d06ffe1ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMaterial: {fileID: 2100000, guid: 76fe127494e035d41b97b70073c6ef84, type: 2}
+  currentMaterial: {fileID: 0}
+  _spriteRenderer: {fileID: 2888290608896806819}
+  planet: {fileID: 2888290609810881194}
 --- !u!58 &2888290609810881195
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -372,22 +388,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 3
---- !u!114 &1299124423796594016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2888290609810881197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 926891a9072623a459d682d06ffe1ac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseMaterial: {fileID: 2100000, guid: 76fe127494e035d41b97b70073c6ef84, type: 2}
-  currentMaterial: {fileID: 0}
-  _spriteRenderer: {fileID: 2888290608896806819}
-  planet: {fileID: 2888290609810881194}
 --- !u!1 &2888290609935610372
 GameObject:
   m_ObjectHideFlags: 0
