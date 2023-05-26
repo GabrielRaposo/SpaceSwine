@@ -18,13 +18,13 @@ public class TerminalLock : Lock
         {
             var te = terminalEventObjects[i].GetComponent<ITerminalEvent>();
             
-            if(te!=null)
+            if (te != null)
                 terminalEvent.Add(te);
         }
             
     }
 
-    public override bool Collect(Collectable collectable)
+    public override bool Collect (Collectable collectable)
     {
         base.Collect(collectable);
         

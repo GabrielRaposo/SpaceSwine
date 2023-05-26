@@ -7,6 +7,9 @@ using TMPro;
 
 public class ShipInteractionBalloon : MonoBehaviour
 {
+    [SerializeField] Color enabledColor;
+    [SerializeField] Color disabledColor;
+
     [Header("References")]
     [SerializeField] SpriteRenderer boxOutlineRenderer;
     [SerializeField] SpriteRenderer boxShapeRenderer;
@@ -78,5 +81,10 @@ public class ShipInteractionBalloon : MonoBehaviour
         transform.localScale = value ? Vector3.zero : Vector3.one * 1.5f; 
 
         sequence.Append( transform.DOScale(value ? 1.5f : 0, duration) );
+    }
+
+    public void SetInteractableState (bool value)
+    {
+        textDisplay.color = value ? enabledColor : disabledColor;
     }
 }

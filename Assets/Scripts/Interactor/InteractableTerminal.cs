@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class InteractableTerminal : Interactable
 {
+    private Round _round;
+    
     [SerializeField] bool active;
     [SerializeField] Animator terminalAnimator;
     [SerializeField] GameObject lightComponent;
     [SerializeField] GameObject inputIcon;
     [SerializeField] AK.Wwise.Event terminalAKEvent;
+
+    public bool isSingleUse;
 
     public GameObject terminalEventObject;
     ITerminalEvent terminalEvent;
@@ -19,6 +23,8 @@ public class InteractableTerminal : Interactable
             terminalEvent = GetComponentInParent<ITerminalEvent>();
         else
             terminalEvent = terminalEventObject.GetComponent<ITerminalEvent>();
+
+        SetCustomCallerInteraction();
         
         CapsuleCollider2D capsuleCollider2D = GetComponent<CapsuleCollider2D>();
         PlanetBlock planetBlock = GetComponent<PlanetBlock>();
@@ -33,6 +39,30 @@ public class InteractableTerminal : Interactable
 
         UpdateAnimationState();
         HighlightState(false);
+        
+        _round = GetComponentInParent<Round>();
+        _round.OnReset += OnReset;
+    }
+
+    private void OnReset()
+    {
+        active = true;
+        UpdateAnimationState();
+    }
+
+    private void SetCustomCallerInteraction()
+    {
+        if (!terminalEventObject)
+            return;
+
+        TerminalCustomCaller customCaller = terminalEventObject.GetComponent<TerminalCustomCaller>();
+        if (!customCaller)
+            return;
+
+        customCaller.SetInteractionAction += (value) => 
+        {
+            SetInteraction(value);
+        };
     }
 
     public override void Interaction (PlayerInteractor interactor) 
@@ -40,7 +70,17 @@ public class InteractableTerminal : Interactable
         if (!active || !interactable)
             return;
 
+        if (isSingleUse)
+        {
+            active = false;
+            UpdateAnimationState();
+        }
+
         base.Interaction(interactor);
+        
+        if(terminalAnimator )
+            terminalAnimator.SetTrigger("interact");
+            
 
         if (terminalEvent == null)
             return;
@@ -72,8 +112,14 @@ public class InteractableTerminal : Interactable
         if (!terminalAnimator)
             return;
 
-        string animationName = active ? "PCTerminalOn1" : "PCTerminalOff";
-        terminalAnimator.Play(animationName);
+        //string animationName = active ? "PCTerminalOn1" : "PCTerminalOff";
+        //terminalAnimator.Play(animationName);
+        
+        terminalAnimator.SetBool("isOn", active);
+        
         lightComponent?.SetActive(active);
+        
+        if(!active)
+            inputIcon?.SetActive(false);
     }
 }

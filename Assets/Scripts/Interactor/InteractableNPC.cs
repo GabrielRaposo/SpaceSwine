@@ -15,18 +15,18 @@ public class InteractableNPC : Interactable
 
     public override void Interaction (PlayerInteractor interactor) 
     {
-        Debug.Log($"Interaction - name: {name}");
+        //Debug.Log($"Interaction - name: {name}");
 
         base.Interaction(interactor);
 
         if (data)
         {
-            Debug.Log("data:  " + data);
+            //Debug.Log("data:  " + data);
 
             DialogueSystem dialogSystem = DialogueSystem.Instance;
             DialogueGroup dialogueGroup = data.GetAtIndex();
 
-            Debug.Log("data.npcNameCode: " + data.npcNameCode);
+            //Debug.Log("data.npcNameCode: " + data.npcNameCode);
             string npcName = string.Empty;
             if (!string.IsNullOrEmpty (data.npcNameCode) )
             {
@@ -35,7 +35,6 @@ public class InteractableNPC : Interactable
                     npcName = nameData.text;
             }
             
-            Debug.Log("b");
             dialogSystem?.SetDialogue(this, npcName, dialogueGroup.tags, OnDialogueEnd, customDialogueStyle, talkSoundAKEvent);
 
             if (interactor)

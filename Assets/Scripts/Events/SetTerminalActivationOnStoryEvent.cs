@@ -2,22 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetTerminalActivationOnStoryEvent : MonoBehaviour
+public class SetTerminalActivationOnStoryEvent : StoryEventDependent
 {
+    [SerializeField] bool targetState;
     [SerializeField] StoryEventScriptableObject storyEvent;
 
     void OnEnable()
     {
-        if (!storyEvent)
-            return;
+        CallDependentAction
+        (
+            action: () => 
+            {
+                if (!storyEvent)
+                    return;
 
-        storyEvent.OnStateChange += OnStateChange;
-
-        OnStateChange (storyEvent.state);
+                StoryEventsManager.AddListener(storyEvent, OnStateChange);
+                OnStateChange( StoryEventsManager.IsComplete(storyEvent) );
+            }
+        );
     }
 
     private void OnStateChange (bool state)
     {
+        if (state != targetState)
+            return;
+
         Interactable interactable = GetComponentInChildren<Interactable>();
         if (!interactable)
             return;
@@ -28,9 +37,16 @@ public class SetTerminalActivationOnStoryEvent : MonoBehaviour
 
     private void OnDisable() 
     {
-        if (!storyEvent)
-            return;
+        CallDependentAction
+        (
+            action: () => 
+            {
+                if (!storyEvent)
+                    return;
 
-        storyEvent.OnStateChange -= OnStateChange;
+                StoryEventsManager.RemoveListener(storyEvent, OnStateChange);
+            },
+            extraFrames: 1
+        );
     }
 }

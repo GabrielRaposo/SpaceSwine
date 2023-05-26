@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using DevLocker.Utils;
 
 public class InteractablePortal : Interactable
 {
-    [SerializeField] BuildIndex targetIndex;
+    [SerializeField] SceneReference targetScene;
     [SerializeField] RoundSessionData data;
     //[SerializeField] SpriteSwapper ballonSpriteSwapper;
     [SerializeField] DoorAnimation doorAnimation;
@@ -14,7 +15,7 @@ public class InteractablePortal : Interactable
     private void Start()
     {
         if (inputHelper) 
-            inputHelper.SetActive(false);    
+            inputHelper.SetActive(false);
     }
 
     public override void Interaction (PlayerInteractor interactor) 
@@ -53,16 +54,25 @@ public class InteractablePortal : Interactable
 
     private void LoadSceneAction()
     {
-        data.outroScene = (BuildIndex) SceneManager.GetActiveScene().buildIndex;
-        data.OnSessionCompleted += () => 
+        if (targetScene == null)
+            return;
+
+        PagerInteractionManager.ExitScenePath = GameManager.CurrentScene;
+        RoundsManager.OnSessionCompletedAction = () =>
         {
-            //Debug.Log("Session Done! ");
-            Debug.Log("LoadSceneAction");
-            SpawnManager.Index = data.OutroSpawnIndex;
+            Debug.Log("Session Done! ");
+            if (SaveManager.Initiated)
+                SaveManager.SetSpawnIndex (data.OutroSpawnIndex);
         };
         RoundsManager.SessionData = data;
-            
-        SceneTransition.LoadScene( (int) targetIndex, SceneTransition.TransitionType.SafetyToDanger );
+
+        if (SaveManager.Initiated) 
+        {
+            SaveManager.SetSpawnPath (GameManager.CurrentScene);
+            SaveManager.SetSpawnIndex (data.AbandonSpawnIndex);
+        }
+
+        SceneTransition.LoadScene( targetScene.ScenePath, SceneTransition.TransitionType.SafetyToDanger );
     }
 
     protected override void HighlightState (bool value) 
@@ -72,4 +82,15 @@ public class InteractablePortal : Interactable
     }
 
     public override void IconState (bool value) { }
+
+    public override void SetInteraction (bool value) 
+    {
+        base.SetInteraction(value);
+
+        Collider2D collider2D = GetComponent<Collider2D>();
+        if (!collider2D)
+            return;
+
+        collider2D.enabled = value;
+    }
 }

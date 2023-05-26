@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 
-public class PagerInteractionManager : MonoBehaviour
+public class PagerInteractionManager : StoryEventDependent
 {
     [SerializeField] int initialIndex;
     [SerializeField] PagerAxisButtonsVisual pagerAxisButtonsVisual;
@@ -63,6 +63,8 @@ public class PagerInteractionManager : MonoBehaviour
     InputAction confirmAction;
     InputAction shipInputAction;
 
+    public static string ExitScenePath;
+
     private void Awake() 
     {
         rt = GetComponent<RectTransform>();
@@ -110,7 +112,7 @@ public class PagerInteractionManager : MonoBehaviour
     private void KeychainInitiationLogic()
     {
         if (unlockStoryEvent != null)
-            keychainState = unlockStoryEvent.state;
+            keychainState = StoryEventsManager.IsComplete (unlockStoryEvent);
 
         if (GameManager.IsOnScene(BuildIndex.Ship) || GameManager.IsOnScene(BuildIndex.Title))
             keychainState = false;
@@ -158,8 +160,8 @@ public class PagerInteractionManager : MonoBehaviour
         if (optionsMode) i = 2;
         
         GoToScreen ( i );
-        callScreen.SetActive(false); 
-        KeychainInitiationLogic();
+        callScreen.SetActive(false);
+        CallDependentAction ( KeychainInitiationLogic );
 
         if (resetRoundButton)
             resetRoundButton.SetActive (RoundsManager.Instance);
@@ -374,10 +376,10 @@ public class PagerInteractionManager : MonoBehaviour
         if (!roundsManager)
             return;
 
-        BuildIndex buildIndex = BuildIndex.World0Exploration; 
-        if (RoundsManager.SessionData != null)
-            buildIndex = RoundsManager.SessionData.outroScene;
+        if (string.IsNullOrEmpty(ExitScenePath))
+            return;
 
+        string buildPath = ExitScenePath;
         int previousScreen = current;
 
         confirmationScreen.SetScreen
@@ -386,10 +388,12 @@ public class PagerInteractionManager : MonoBehaviour
             description: LocalizationManager.GetUiText("lose_progress", "progress will be lost"),
             ConfirmEvent: () => 
             {
-                if (RoundsManager.SessionData)
-                    SpawnManager.Index = RoundsManager.SessionData.AbandonSpawnIndex;
+                if (RoundsManager.SessionData && SaveManager.Initiated) 
+                {
+                    SaveManager.SetSpawnIndex( RoundsManager.SessionData.AbandonSpawnIndex );
+                }
                 PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
-                GameManager.GoToScene(buildIndex);
+                GameManager.GoToScene(buildPath);
             }, 
             CancelEvent: () => 
             { 
@@ -412,7 +416,7 @@ public class PagerInteractionManager : MonoBehaviour
         (
             title: LocalizationManager.GetUiText("quit_game", "Quit?"),
             description: LocalizationManager.GetUiText("are_you_sure","Sure?"),
-            ConfirmEvent: () => GameManager.GoToScene(BuildIndex.Title),
+            ConfirmEvent: () => GameManager.GoToScene( BuildIndex.Title ),
             CancelEvent: () => 
             { 
                 current = previousScreen; 

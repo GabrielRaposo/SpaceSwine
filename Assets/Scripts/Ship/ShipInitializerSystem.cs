@@ -151,11 +151,34 @@ public class ShipInitializerSystem : MonoBehaviour
         (
             () => 
             {   
-                // Troca pela última fase em que você estava antes de entrar na Nave ou região
-                int targetIndex = NavigationConsole.ShipTeleportSceneIndex;
-                SceneTransition.LoadScene( targetIndex, SceneTransition.TransitionType.BlackFade );
+                string targetPath = ExitPath;
+
+                if ( string.IsNullOrEmpty(targetPath) )
+                    return;
+
+                SceneTransition.LoadScene( targetPath, SceneTransition.TransitionType.BlackFade );
             }
         );
+    }
+
+    public static string ExitPath
+    {
+        get
+        {
+            string targetPath = string.Empty;
+            if (SaveManager.Initiated)
+            {
+                targetPath = SaveManager.ShuttleExitLocationPath;
+            }
+
+            if ( string.IsNullOrEmpty(targetPath) )
+            {
+                DebugDisplay.Call("No targetPath assigned.");
+                return string.Empty;
+            }
+
+            return targetPath;
+        }
     }
 
     private void OnDrawGizmosSelected() 

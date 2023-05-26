@@ -9,7 +9,7 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using RedBlueGames.Tools.TextTyper;
 
-public class NavigationObject : MonoBehaviour
+public class NavigationObject : StoryEventDependent
 {
     [SerializeField] private bool blockInteraction;
     
@@ -50,7 +50,7 @@ public class NavigationObject : MonoBehaviour
         CloseDisplay();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         LocalizationManager.AddToLanguageChangeActionList(QuickForceText);
     }
@@ -196,6 +196,5 @@ public class NavigationObject : MonoBehaviour
             descriptionField.text = LocalizationManager.GetUiText(descriptionCode, "???");
     }
     
-    
-    
+    public virtual void SetNotificationIcon() { }
 }

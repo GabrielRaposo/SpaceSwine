@@ -19,16 +19,20 @@ public class FloatEffect : MonoBehaviour
     bool moving;
     bool queued;
 
+    private void Awake() 
+    {
+        t = .5f;
+        moveDirection = 1;
+        direction = Vector2.up;
+    }
+
     void OnEnable()
     {
-        moveDirection = 1;
-
         TurnOn();
     }
 
     public void TurnOn()
     {
-        direction = Vector2.up;
 
         //if (allignWithPlanet)
         //    AllignWithGravity();
@@ -37,7 +41,7 @@ public class FloatEffect : MonoBehaviour
 
         UpdateAnchorPoints();
 
-        t = .5f;
+        //t = .5f;
         moving = true;
     }
 

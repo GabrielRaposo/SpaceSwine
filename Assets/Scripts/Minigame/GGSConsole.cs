@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using DevLocker.Utils;
 using Jumper;
 
 namespace Minigame
@@ -14,9 +15,14 @@ namespace Minigame
     {
         const int HIDDEN_Y = -1000;
     
+        [SerializeField] SceneReference jumperScene;
+
+        [Header("Values")]
         [SerializeField] float duration;
         [SerializeField] float inDelay;
         [SerializeField] float outDelay;
+        
+        [Header("References")]
         [SerializeField] RenderTexture minigameRenderTexture;
         [SerializeField] GGSSplashScreen splashScreen;
         [SerializeField] RectTransform consoleAnchor;
@@ -54,7 +60,7 @@ namespace Minigame
             playerInputActions.UI.Start.performed += (ctx) =>
             {
                 if (!turnedOn)
-                    return;
+                    return; 
                 ToggleConsoleState();
             };
             playerInputActions.UI.Start.Enable();
@@ -85,41 +91,54 @@ namespace Minigame
 
         public void TurnConsoleOn()
         {
-            SetTurnedOn(true);
+            //SetTurnedOn(true);
+            GameManager.BlockCharacterInput = true;
 
-            consoleAnchor.DOKill();
-            consoleAnchor.MoveY(HIDDEN_Y);
-
-            if (mainSequence != null)
-                mainSequence.Kill();
-
-            mainSequence = DOTween.Sequence();
-            mainSequence.AppendCallback( () => {} );
-            mainSequence.AppendInterval( inDelay/2f );
-            mainSequence.Append( canvasGroup.DOFade(1, inDelay/2f) );
-            mainSequence.AppendCallback( () => slideInAKEvent?.Post(gameObject) );
-            mainSequence.Append
+            FadeCanvas.Call
             (
-                DOVirtual.Float(HIDDEN_Y, 0, duration, 
-                    (y) => 
-                    {
-                        consoleAnchor.MoveY(y);    
-                    }
-                ).SetEase(Ease.OutCirc)
-            );
+                midFadeAction: () => 
+                {
+                    turnedOn = true;
+                    OnStateChange?.Invoke(true);
+                },
+                afterFadeAction: () =>
+                {
+                    consoleAnchor.DOKill();
+                    consoleAnchor.MoveY(HIDDEN_Y);
 
-            mainSequence.OnComplete
-            (
-                () => splashScreen.Call
-                (
-                    () => SetupMinigame (GGSMinigame.Jumper)
-                )
+                    if (mainSequence != null)
+                        mainSequence.Kill();
+
+                    mainSequence = DOTween.Sequence();
+                    mainSequence.AppendCallback( () => {} );
+                    mainSequence.AppendInterval( inDelay/2f );
+                    mainSequence.Append( canvasGroup.DOFade(1, inDelay/2f) );
+                    mainSequence.AppendCallback( () => slideInAKEvent?.Post(gameObject) );
+                    mainSequence.Append
+                    (
+                        DOVirtual.Float(HIDDEN_Y, 0, duration, 
+                            (y) => 
+                            {
+                                consoleAnchor.MoveY(y);    
+                            }
+                        ).SetEase(Ease.OutCirc)
+                    );
+
+                    mainSequence.OnComplete
+                    (
+                        () => splashScreen.Call
+                        (
+                            () => SetupMinigame (GGSMinigame.Jumper)
+                        )
+                    );
+                }
             );
         }
 
         public void TurnConsoleOff()
         {
             splashScreen.SetVisibility(true);
+            UnloadMinigame();
             
             consoleAnchor.DOKill();
             consoleAnchor.MoveY(0);
@@ -140,32 +159,43 @@ namespace Minigame
             );
             //mainSequence.AppendInterval(outDelay);
             mainSequence.Append( canvasGroup.DOFade(0, outDelay) );
-            mainSequence.OnComplete( () => SetTurnedOn(false) );
+            mainSequence.OnComplete( () => 
+            {
+                FadeCanvas.Call
+                (
+                    midFadeAction: () =>
+                    {
+                        SetTurnedOn(false); 
+                    },
+                    afterFadeAction: () =>
+                    {
+                    }
+                );
+            });
 
-            UnloadMinigame();
         }
 
         private void SetupMinigame (GGSMinigame ggsMinigame)
         {
             pluggedCard = ggsMinigame;
 
-            BuildIndex buildIndex = GetCardIndex();
-            StartCoroutine( AsyncLoadRoutine( (int) buildIndex) );
+            string cardPath = GetCardPath();
+            StartCoroutine( AsyncLoadRoutine( cardPath ) );
         }
 
-        private BuildIndex GetCardIndex()
+        private string GetCardPath()
         {
             switch (pluggedCard)
             {
                 default:
                 case GGSMinigame.Jumper:
-                    return BuildIndex.MinigameJumper;
+                    return jumperScene.ScenePath;
             }
         }
 
-        private IEnumerator AsyncLoadRoutine(int index)
+        private IEnumerator AsyncLoadRoutine(string path)
         {
-            asyncMinigameLoad = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+            asyncMinigameLoad = SceneManager.LoadSceneAsync(path, LoadSceneMode.Additive);
             while (!asyncMinigameLoad.isDone)
                 yield return new WaitForEndOfFrame();
 
@@ -192,8 +222,8 @@ namespace Minigame
             if (asyncMinigameLoad == null)
                 return;
 
-            BuildIndex buildIndex = GetCardIndex();
-            SceneManager.UnloadSceneAsync((int) buildIndex);
+            string cardPath = GetCardPath();
+            SceneManager.UnloadSceneAsync( cardPath );
             
             loadedAndActive = false;
         }
@@ -202,8 +232,8 @@ namespace Minigame
         {
             UnloadMinigame();
 
-            BuildIndex buildIndex = GetCardIndex();
-            StartCoroutine(AsyncLoadRoutine((int) buildIndex) );
+            string cardPath = GetCardPath();
+            StartCoroutine(AsyncLoadRoutine( cardPath ) );
         }
 
         private void OnDisable() 

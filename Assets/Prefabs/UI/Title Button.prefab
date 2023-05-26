@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4434694824990149224}
   - component: {fileID: 4434694824990149225}
   - component: {fileID: 4434694824990149142}
+  - component: {fileID: 5473008218470270782}
   m_Layer: 0
   m_Name: Title Button
   m_TagString: Untagged
@@ -27,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 4434694824990149227}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4434694826798721870}
   - {fileID: 4434694825906213081}
@@ -78,6 +79,19 @@ MonoBehaviour:
   tabLine: {fileID: 4434694826798721871}
   sideSlot: {fileID: 4434694825906213062}
   textDisplay: {fileID: 4434694826414180283}
+  canvasGroup: {fileID: 5473008218470270782}
+--- !u!225 &5473008218470270782
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4434694824990149227}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4434694825906213080
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +357,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 131.25, y: 37.5}
+  m_SizeDelta: {x: 150, y: 37.5}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &4434694826798721868
 CanvasRenderer:

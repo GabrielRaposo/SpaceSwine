@@ -90,9 +90,9 @@ public class IntroSceneManager : MonoBehaviour
                     if (fadeOutRTPC != null)
                     {
                         fadeOutRTPC.SetGlobalValue(0);
-                        DOVirtual.Float(0, 100, duration, f => {
+                        DOVirtual.Float(0, 100, duration, f => 
+                        {
                             fadeOutRTPC.SetGlobalValue(f);
-                            Debug.Log("f: " + f);
                         });
                     }
 
@@ -102,6 +102,10 @@ public class IntroSceneManager : MonoBehaviour
                     }
                 };
             }
+
+            SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
+            if (soundtrackManager)
+                soundtrackManager.Stop();
         }
 
         jumpTutorialGroup.alpha = 0;

@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class GravityInteraction : MonoBehaviour
 {
-    [SerializeField] float defaultMultiplier = 1.0f;
-    [SerializeField] float lowGravityMultiplier = .8f; 
+    [SerializeField] float defaultMultiplier    = 1.0f;
+    [SerializeField] float lowGravityMultiplier =  .8f; 
     [SerializeField] float angleAdjustment;
 
     [Space(5)]
@@ -23,40 +23,16 @@ public class GravityInteraction : MonoBehaviour
     CheckGround checkGround;
 
     GravityArea gravityArea;
+    List<GravityArea> overlappingGravities;
     PlanetPlatform platform;
+
     GravitationalBody gravitationalBody;
 
-    // -- Usado para fazer a transição entre Planetas e Closed Spaces
-    GravitationalBody overrideGravitationalBody; 
-
-    GravitationalBody GBody
+    public GravitationalBody GBody
     {
         get 
         {
-            if (overrideGravitationalBody)
-                return overrideGravitationalBody;
-
             return gravitationalBody;
-        }
-    }
-
-    public GravitationalBody SetOverrideGravitationalBody
-    {
-        set 
-        {
-            if (value == null)
-            {
-                gravityArea = null;
-
-                // -- "Pisca" o collider para atualizar a gravityArea
-                Collider2D coll = GetComponentInChildren<Collider2D>();
-                if (coll)
-                {
-                    coll.enabled = false;
-                    coll.enabled = true;
-                }
-            }
-            overrideGravitationalBody = value;
         }
     }
 
@@ -72,14 +48,21 @@ public class GravityInteraction : MonoBehaviour
     {
         platform = null;
         gravitationalBody = null;
-        overrideGravitationalBody = null;
 
         playerFocusInput.Enable();
         planetFocusInput.Enable();
     }
 
+    public void ResetGravityAreas()
+    {
+        gravityArea = null;
+        overlappingGravities = new List<GravityArea>();
+    }
+
     void Start()
     {
+        overlappingGravities = new List<GravityArea>();
+
         CameraFocusController cameraFocusController = CameraFocusController.Instance;
 
         playerFocusInput.performed += (ctx) => 
@@ -106,7 +89,6 @@ public class GravityInteraction : MonoBehaviour
                 //    if (gravityArea) cameraFocusController.SetPlanetFocus(gravityArea.transform);
                 //    break;
             }
-
         }
     }
 
@@ -125,18 +107,9 @@ public class GravityInteraction : MonoBehaviour
         if (checkGround)
         {
             platform = checkGround.OnPlatform;
-            //gravitationalBody = checkGround.OnPlanet;
 
             GravitationalBody gBody = checkGround.OnPlanet;
-            if (overrideGravitationalBody == null)
-            {
-                gravitationalBody = gBody;
-            }
-            //else
-            //{
-            //    if (gBody != overrideGravitationalBody && gBody != null)
-            //        gravitationalBody = gBody;    
-            //}
+            gravitationalBody = gBody;
         }
 
         UpdateParent ();
@@ -181,7 +154,6 @@ public class GravityInteraction : MonoBehaviour
                 return;
 
             transform.SetParent (platform.transform);
-            //OnChangeGravityAnchor?.Invoke(platform.transform);
         }
         else if (GBody)
         {
@@ -189,8 +161,7 @@ public class GravityInteraction : MonoBehaviour
                 return;
 
             transform.SetParent (GBody.transform);
-            //Debug.Log("Set Parent: " + planet.name);
-            //OnChangeGravityAnchor?.Invoke(planet.transform);
+            GBody.OnLandAction?.Invoke(transform);
         }
         else
         {
@@ -199,7 +170,6 @@ public class GravityInteraction : MonoBehaviour
 
             transform.SetParent (null);
             transform.localScale = Vector3.one;
-            //OnChangeGravityAnchor?.Invoke(null);
         }
     }
 
@@ -220,27 +190,81 @@ public class GravityInteraction : MonoBehaviour
         return Vector2.SignedAngle(Vector2.up, platform.transform.up);
     }
 
+    public void HardSetGravityArea(GravityArea gravityArea)
+    {
+        // Remove da lista auxiliar
+        if (overlappingGravities.Contains(gravityArea))
+            overlappingGravities.Remove(gravityArea);
+
+        // Se tinha outro no slot, manda o que tava no slot pra lista auxiliar
+        if (this.gravityArea != null && this.gravityArea != gravityArea)
+            overlappingGravities.Add(this.gravityArea);
+
+        this.gravityArea = gravityArea;
+        OnChangeGravityAnchor?.Invoke(this.gravityArea.transform);
+    }
+
+    public void BlinkCollider()
+    {
+        gravityArea = null;
+        overlappingGravities = new List<GravityArea>();
+
+        // -- "Pisca" o collider para atualizar a gravityArea
+        Collider2D coll = GetComponentInChildren<Collider2D>();
+        if (coll)
+        {
+            coll.enabled = false;
+            coll.enabled = true;
+        }
+    }
+
     private void OnTriggerEnter2D (Collider2D collision) 
     {
         GravityArea gravityArea = collision.GetComponent<GravityArea>();
         if (!gravityArea)
             return;
 
-        this.gravityArea = gravityArea;
-        OnChangeGravityAnchor?.Invoke(gravityArea.transform);
+        if (this.gravityArea == null)
+        {
+            this.gravityArea = gravityArea;
+            OnChangeGravityAnchor?.Invoke(gravityArea.transform);
+        }
+        else
+        {
+            if (overlappingGravities.Contains(gravityArea))
+                return;
+
+            overlappingGravities.Add(gravityArea);
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D collision) 
+    private void OnTriggerExit2D (Collider2D collision) 
     {
-        if (!this.gravityArea)
+        if (!this.gravityArea && overlappingGravities.Count < 1)
             return;
 
         GravityArea gravityArea = collision.GetComponent<GravityArea>();
+        if (!gravityArea)
+            return;
+
         if (this.gravityArea == gravityArea)
         {
-            this.gravityArea = null;
-            OnChangeGravityAnchor?.Invoke(null);
-        } 
+            GravityArea g = null; 
+
+            if (overlappingGravities.Count > 0)
+            {
+                g = overlappingGravities[0];
+                overlappingGravities.Remove(g);
+            }
+
+            this.gravityArea = g;
+            OnChangeGravityAnchor?.Invoke(g ? g.transform : null);
+        }
+
+        if (overlappingGravities.Contains(gravityArea))
+        {
+            overlappingGravities.Remove(gravityArea);
+        }
     }
 
     public (bool isValid, GravityArea Area, float multiplier, bool onPlatform) GetGravityArea()
@@ -262,7 +286,6 @@ public class GravityInteraction : MonoBehaviour
     {
         platform = null;
         gravitationalBody = null;
-        overrideGravitationalBody = null;
         UpdateParent();
     }
 
@@ -270,7 +293,6 @@ public class GravityInteraction : MonoBehaviour
     {
         platform = null;
         gravitationalBody = null;
-        overrideGravitationalBody = null;
         
         playerFocusInput.Disable();
         planetFocusInput.Disable();

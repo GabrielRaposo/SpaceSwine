@@ -6,7 +6,7 @@ using UnityEngine;
 public class ChangeStoryEventAfterDialogue : MonoBehaviour
 {
     [SerializeField] StoryEventScriptableObject storyEvent;
-    [SerializeField] bool targetValue = true;
+    [SerializeField] int progressValue = 1;
     [SerializeField] int dialogueGroupIndex = -1;
 
     void Start()
@@ -17,17 +17,15 @@ public class ChangeStoryEventAfterDialogue : MonoBehaviour
         InteractableNPC interactableNPC = GetComponent<InteractableNPC>();
         interactableNPC.OnDialogueEnd += () => 
         {
-            //Debug.Log("interactableNPC.GetDialogueIndex(): " + interactableNPC.GetDialogueIndex());
-
             if (dialogueGroupIndex > -1 && dialogueGroupIndex != interactableNPC.GetDialogueIndex())
-            {
                 return;    
-            }
 
-            storyEvent.SetState (targetValue);
-            SaveManager.SaveStoryEvent(storyEvent);
+            if (progressValue > 0)
+                StoryEventsManager.ChangeProgress(storyEvent, progressValue);
+            else
+                StoryEventsManager.ClearProgress(storyEvent);
 
-            //Debug.Log("Dialogue ended.");
+            SaveManager.Save();
         };
     }
 }

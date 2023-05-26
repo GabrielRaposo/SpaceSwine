@@ -29,6 +29,20 @@ public class CheckGround : MonoBehaviour
         get { return planet; }
     }
 
+    public (bool value, CustomSurface customSurface) OnCustomSurface
+    {
+        get 
+        {
+            if (!onGround)
+                return (false, null);
+
+            if (OnPlanet && OnPlanet.GetComponent<CustomSurface>() != null)
+                return (true, OnPlanet.GetComponent<CustomSurface>());
+
+            return (false, null);
+        }
+    }
+
     void Update()
     {  
         List<Collider2D> results = new List<Collider2D>();

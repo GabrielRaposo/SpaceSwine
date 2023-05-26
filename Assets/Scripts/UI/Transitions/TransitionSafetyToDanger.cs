@@ -55,17 +55,17 @@ public class TransitionSafetyToDanger : MonoBehaviour
         dangerStripes.alpha =  danger ? 1 : 0;
     }
 
-    public void CallTransition (int index, bool safetyToDanger)
+    public void CallTransition (string path, bool safetyToDanger)
     {
         mainCanvasGroup.alpha = 0;
         assetsGroup.alpha = 0;
         SetState( danger: !safetyToDanger );
         gameObject.SetActive(true);
 
-        StartCoroutine( SafetyToDangerTransition(index, safetyToDanger) );
+        StartCoroutine( SafetyToDangerTransition(path, safetyToDanger) );
     }
 
-    private IEnumerator SafetyToDangerTransition(int index, bool safetyToDanger)
+    private IEnumerator SafetyToDangerTransition(string path, bool safetyToDanger)
     {
         SceneTransition.OnTransition = true;
         PlayerTransitionState.BlockSpawn = true;
@@ -102,7 +102,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
         fillImage.enabled = true;
 
         // -- Inicia carregamento de cena
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(index);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(path);
         while (!asyncOperation.isDone)
         {
             yield return new WaitForEndOfFrame();

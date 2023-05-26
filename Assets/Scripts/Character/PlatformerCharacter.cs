@@ -345,8 +345,12 @@ public class PlatformerCharacter : SidewaysCharacter
             {
                 if (!BlockLandFeedback)
                 {
-                    shortLandingAKEvent?.Post(gameObject);
-                    shortLandingVFX?.Play();
+                    var customSurfaceData = checkGround.OnCustomSurface;
+                    if (!customSurfaceData.value)
+                    {
+                        shortLandingAKEvent?.Post(gameObject);
+                        shortLandingVFX?.Play();
+                    }
                 }
             }
             playerAnimations.SetLandedState();
@@ -418,18 +422,26 @@ public class PlatformerCharacter : SidewaysCharacter
         horizontalSpeed = verticalSpeed = 0;
         playerAnimations.horizontalInput = 0;
 
-        heldInput = Vector2.zero;    
+        heldInput = Vector2.zero;
         moveInputRotationAnchor = lastValidAnchor = holdAnchorCount = 0;
     }
 
     public Vector2 LocalSpeed()
     {
-        return new Vector2(horizontalSpeed, verticalSpeed);
+        return new Vector2 (horizontalSpeed, verticalSpeed);
     }
 
     public void PlayStepSound()
     {
-        walkAKEvent?.Post(gameObject);
+        var customSurfaceData = checkGround.OnCustomSurface;
+        
+        if (!customSurfaceData.value)
+        {
+            walkAKEvent?.Post(gameObject);
+            return;
+        }
+
+        customSurfaceData.customSurface.PlayStepEffects();
     }
 
     private void SnapToPlatform() 

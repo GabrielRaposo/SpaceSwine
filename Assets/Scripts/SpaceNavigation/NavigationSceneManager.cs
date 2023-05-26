@@ -76,25 +76,30 @@ public class NavigationSceneManager : MonoBehaviour
     {
         _navigationConsole = nc;
     }
-    public void CloseAndSetScene(int sceneIndex)
+
+    public void CloseAndSetScene(string scenePath)
     {
-        SetShipTeleportScene(sceneIndex);
+        SetShipTeleportScene (scenePath);
+
         if (_navigationConsole)
             _navigationConsole.ToggleConsoleState();
 
         // -- TEMP
         if (_navigationConsole)
             _navigationConsole.SetTurnedOn(false);
+        // --
 
         PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
-        GameManager.GoToScene((BuildIndex)sceneIndex);
+        GameManager.GoToScene(scenePath, saveScenePath: true);
     }
 
-    //TODO: mudar pra fazer por save
-    private void SetShipTeleportScene(int sceneIndex)
+    private void SetShipTeleportScene (string scenePath)
     {
-        NavigationConsole.ShipTeleportSceneIndex = sceneIndex;
-        //Debug.Log($"Setting scene: {NavigationConsole.ShipTeleportSceneIndex}");
+        if (!SaveManager.Initiated)
+            return;
+
+        SaveManager.ShuttleExitLocationPath = scenePath;
+        DebugDisplay.Call("ShuttleExitLocationPath set as " + scenePath);
     }
     
 }

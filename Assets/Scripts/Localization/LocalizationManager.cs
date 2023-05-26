@@ -239,7 +239,7 @@ public static class LocalizationManager
 
             for (int j = 0; j < languageCodeList.Length; j++)
             {
-                int columnNumber = j + 1;
+                int columnNumber = j + 2;
 
                 GameLocalizationCode glc = languageCodeList[j];
                 languageToStringDictionary.Add(glc, line[columnNumber].value);
@@ -274,7 +274,7 @@ public static class LocalizationManager
 
             for (int j = 0; j < languageCodeList.Length; j++)
             {
-                int columnNumber = j + 1;
+                int columnNumber = j + 2;
 
                 GameLocalizationCode glc = languageCodeList[j];
                 languageToStringDictionary.Add(glc, line[columnNumber].value);
@@ -309,7 +309,7 @@ public static class LocalizationManager
 
             for (int j = 0; j < languageCodeList.Length; j++)
             {
-                int columnNumber = j + 1;
+                int columnNumber = j + 2;
 
                 GameLocalizationCode glc = languageCodeList[j];
                 languageToStringDictionary.Add(glc, line[columnNumber].value);
@@ -344,7 +344,7 @@ public static class LocalizationManager
 
             for (int j = 0; j < languageCodeList.Length; j++)
             {
-                int columnNumber = j + 1;
+                int columnNumber = j + 2;
 
                 GameLocalizationCode glc = languageCodeList[j];
                 languageToStringDictionary.Add(glc, line[columnNumber].value);
@@ -377,7 +377,7 @@ public static class LocalizationManager
 
             for (int j = 0; j < languageCodeList.Length; j++)
             {
-                int columnNumber = j + 1;
+                int columnNumber = j + 2;
 
                 GameLocalizationCode glc = languageCodeList[j];
                 languageToStringDictionary.Add(glc, line[columnNumber].value);
@@ -410,7 +410,7 @@ public static class LocalizationManager
 
             for (int j = 0; j < languageCodeList.Length; j++)
             {
-                int columnNumber = j + 1;
+                int columnNumber = j + 2;
 
                 GameLocalizationCode glc = languageCodeList[j];
                 languageToStringDictionary.Add(glc, line[columnNumber].value);

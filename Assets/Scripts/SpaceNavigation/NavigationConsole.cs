@@ -7,14 +7,22 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using DevLocker.Utils;
 
 public class NavigationConsole : MonoBehaviour
 {
     const int HIDDEN_Y = -1000;
     
+    [SerializeField] SceneReference world1NavigationScene;
+    [SerializeField] SceneReference world2NavigationScene;
+    [SerializeField] SceneReference world3NavigationScene;
+
+    [Header("Values")]
     [SerializeField] float duration;
     [SerializeField] float inDelay;
     [SerializeField] float outDelay;
+    
+    [Header("References")]
     [SerializeField] RenderTexture navigationRenderTexture;
     [SerializeField] RectTransform consoleAnchor;
 
@@ -30,14 +38,12 @@ public class NavigationConsole : MonoBehaviour
     AsyncOperation asyncSceneLoad;
     PlayerInputActions playerInputActions;
 
-    private BuildIndex buildIndex;
-
     public UnityAction <bool> OnStateChange;
 
     //public static bool TurnedOn { get; private set; }
     public static NavigationConsole Instance;
 
-    public static int ShipTeleportSceneIndex = (int) BuildIndex.World1Exploration;
+    //public static string ShipTeleportScenePath = "Assets/Scenes/World1/World1Exploration-0Hub-Scene.unity";
 
     private void Awake() 
     {
@@ -99,7 +105,6 @@ public class NavigationConsole : MonoBehaviour
 
     public void TurnConsoleOn()
     {
-        //Debug.Log("TurnConsoleOn()");
         SetTurnedOn(true);
         //canvasGroup.alpha = 1;
 
@@ -130,11 +135,35 @@ public class NavigationConsole : MonoBehaviour
         );
     }
 
+    private string GetNavigationScene ()
+    {
+        SceneReference outputScene = null;
+
+        switch (SaveManager.CurrentWorld)
+        {
+            default:
+            case 1:
+                outputScene = world1NavigationScene;
+                break;
+
+            case 2:
+                outputScene = world2NavigationScene;
+                break;
+
+            case 3:
+                outputScene = world3NavigationScene;
+                break;
+        }
+
+        if (outputScene == null)
+            return world1NavigationScene.ScenePath;
+
+        return outputScene.ScenePath;
+    }
+
     private void SetupNavigationScene()
     {
-        //Debug.Log("SetupNavigationScene()");
-        buildIndex = BuildIndex.NavigationScene;
-        StartCoroutine( AsyncLoadRoutine( (int) buildIndex) );
+        StartCoroutine( AsyncLoadRoutine( GetNavigationScene() ) );
     }
         
     private void UnloadNavigationScene()
@@ -142,7 +171,7 @@ public class NavigationConsole : MonoBehaviour
         if (asyncSceneLoad == null)
             return;
             
-        SceneManager.UnloadSceneAsync((int) buildIndex);
+        SceneManager.UnloadSceneAsync( GetNavigationScene() );
             
         loadedAndActive = false;
     }
@@ -173,10 +202,9 @@ public class NavigationConsole : MonoBehaviour
         UnloadNavigationScene();
     }
 
-    private IEnumerator AsyncLoadRoutine(int index)
+    private IEnumerator AsyncLoadRoutine(string path)
     {
-        //Debug.Log("AsyncLoadRoutine(int index)");
-        asyncSceneLoad = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
+        asyncSceneLoad = SceneManager.LoadSceneAsync(path, LoadSceneMode.Additive);
         while (!asyncSceneLoad.isDone)
             yield return new WaitForEndOfFrame();
 

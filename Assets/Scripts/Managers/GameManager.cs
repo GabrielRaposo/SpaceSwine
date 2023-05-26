@@ -8,9 +8,6 @@ using Minigame;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject playerObject;
-    [SerializeField] InputAction resetInputAction;
-    [SerializeField] InputAction saveInputAction;
-    [SerializeField] InputAction resetSaveInputAction;
 
     RoundsManager roundsManager;
     PauseSystem pauseSystem;
@@ -42,33 +39,12 @@ public class GameManager : MonoBehaviour
                 RoundsManager.Instance.CallReset();
         };
         playerInputActions.UI.Reset.Enable();
-        
-        #if UNITY_EDITOR
-            resetInputAction.Enable();
-            saveInputAction.Enable();
-            resetSaveInputAction.Enable();
-        #endif
     }
 
     void Start()
     {
-        //if (!SaveManager.Initiated)
-        //{
-        //    SaveManager.Load();
-        //}
-
-        #if UNITY_EDITOR
-        CustomEditorInicialization.Initialize();
-        #endif
-
         pauseSystem = PauseSystem.Instance; 
         ggsConsole = GGSConsole.Instance;
-
-        #if UNITY_EDITOR
-        //resetInputAction.performed += (ctx) => ResetScene();
-        saveInputAction.performed += (ctx) => SaveManager.SaveAllData();
-        resetSaveInputAction.performed += (ctx) => SaveManager.ResetSave();
-        #endif
 
         SetupPlayer(); // Deve ocorrer no Start()
         SetupPlaylist();
@@ -103,9 +79,42 @@ public class GameManager : MonoBehaviour
         soundtrackManager.SetPlaylist(CurrentPlaylist);
     }
 
-    public static void GoToScene (BuildIndex buildIndex)
+    public static void GoToScene (string path, bool saveScenePath = false)
     {
-        SceneTransition.LoadScene((int) buildIndex, SceneTransition.TransitionType.BlackFade);
+        if (saveScenePath)
+            SaveManager.SetSpawnPath(path);
+        
+        SceneTransition.LoadScene(path, SceneTransition.TransitionType.BlackFade);
+    }
+
+    public static void GoToScene (BuildIndex index)
+    {   
+        string path = string.Empty;
+        switch (index)
+        {
+            default:
+            case BuildIndex.Splash:
+                path = "Assets/Scenes/SplashScene.unity";
+                break;
+
+            case BuildIndex.Title:
+                path = "Assets/Scenes/TitleScene.unity";
+                break;
+
+            case BuildIndex.Ship:
+                path = "Assets/Scenes/ShipScene.unity";
+                break;
+
+            case BuildIndex.NavigationScene:
+                path = "Assets/Scenes/NavigationScene.unity";
+                break;
+
+            case BuildIndex.MakeABeat:
+                path = "Assets/Scenes/MakeABeatScene.unity";
+                break;
+        }
+
+        SceneTransition.LoadScene(path, SceneTransition.TransitionType.BlackFade);
     }
 
     public static void ResetScene()
@@ -132,15 +141,14 @@ public class GameManager : MonoBehaviour
         get { return SceneTransition.OnTransition || RoundTransition.OnTransition; }
     }
 
+    public static string CurrentScene
+    {
+        get { return SceneManager.GetActiveScene().path; }
+    }
+
     private void OnDisable() 
     {
         playerInputActions.UI.Start.Disable();
         playerInputActions.UI.Reset.Disable();
-
-        #if UNITY_EDITOR
-            resetInputAction.Disable();    
-            saveInputAction.Disable();
-            resetSaveInputAction.Disable();
-        #endif
     }
 }

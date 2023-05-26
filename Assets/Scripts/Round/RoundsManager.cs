@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class RoundsManager : MonoBehaviour
@@ -18,6 +19,7 @@ public class RoundsManager : MonoBehaviour
 
     public static bool BlockSpawn;
     public static RoundSessionData SessionData;
+    public static UnityAction OnSessionCompletedAction;
 
     public static RoundsManager Instance;
 
@@ -146,11 +148,13 @@ public class RoundsManager : MonoBehaviour
         } 
         else
         {
+            if (OnSessionCompletedAction != null)
+                OnSessionCompletedAction();
+
             if (SessionData != null)
             {
-                if (SessionData.OnSessionCompleted != null)
-                    SessionData.OnSessionCompleted();
-                SceneTransition.LoadScene( (int) SessionData.outroScene, SceneTransition.TransitionType.DangerToSafety );
+                SceneTransition.LoadScene( SessionData.outroScene.ScenePath, SceneTransition.TransitionType.DangerToSafety );
+                SaveManager.SetSpawnPath( SessionData.outroScene.ScenePath );
             }
 
             SessionData = null;

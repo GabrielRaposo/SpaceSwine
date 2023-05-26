@@ -61,7 +61,7 @@ public class Health : MonoBehaviour
             value = 0;
         
         if (value == 0)
-            Die(deathFromDamage: true);
+            Die (deathFromDamage: true);
     }
 
     public void Die (bool deathFromDamage)
@@ -69,10 +69,10 @@ public class Health : MonoBehaviour
         deathAKEvent?.Post(gameObject);
         //gameObject.SetActive(false);
 
-        Vector2 pos = ((Vector2) transform.position)
-            .Remap(new Vector2(-10f, -6f), new Vector2(10f, 6f),Vector2.zero, Vector2.one);
-        
+        //Vector2 pos = ((Vector2) transform.position)
+        //    .Remap(new Vector2(-10f, -6f), new Vector2(10f, 6f),Vector2.zero, Vector2.one);
         //CameraShaderManager.Instance.StartDeathSentence(pos, OnDeathEvent);
-        OnDeathEvent.Invoke(deathFromDamage);
+
+        OnDeathEvent?.Invoke(deathFromDamage);
     }
 }

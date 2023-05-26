@@ -8,7 +8,13 @@ public class ChangeSpawnPointOnStart : MonoBehaviour
 
     void Awake()
     {
-        //Debug.Log("-- ChangeSpawnPointOnStart");
-        SpawnManager.Index = index;
+        StartCoroutine( WaitForSaveInitiation() );
+    }
+
+    IEnumerator WaitForSaveInitiation()
+    {
+        yield return new WaitUntil ( () => SaveManager.Initiated );
+
+        SaveManager.SetSpawnIndex(index);
     }
 }

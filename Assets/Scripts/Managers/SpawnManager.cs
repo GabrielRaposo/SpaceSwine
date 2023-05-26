@@ -5,14 +5,6 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] List<Vector3> points;
-
-    private static int index = 0;
-    public static int Index
-    {
-        get { return index; }
-        set { index = value; /*Debug.Log("set index = " + index);*/ }
-    }
-    
     
     public static SpawnManager Instance;
 
@@ -27,6 +19,11 @@ public class SpawnManager : MonoBehaviour
 
         if (points != null && points.Count > 0)
         {
+            int index = 0;
+
+            if (SaveManager.Initiated)
+                index = SaveManager.GetSpawnData().spawnIndex;
+
             point = points[index % points.Count];
         }
 

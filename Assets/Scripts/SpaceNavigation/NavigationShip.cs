@@ -66,6 +66,25 @@ public class NavigationShip : MonoBehaviour
         _playerInputActions.Player.Interact.Disable();
 
         ControlsLocked = true;
+
+        if (!SaveManager.Initiated)
+            return;
+        
+        SaveManager.SetNavigationData(transform.position, spritesTransform ? spritesTransform.eulerAngles.z : 0);
+    }
+
+    private void Start() 
+    {
+        if (!SaveManager.Initiated)
+            return;
+
+        var data = SaveManager.GetNavigationData();
+        if (!data.initiated)
+            return;
+
+        transform.position = data.position;
+        if (spritesTransform)
+            spritesTransform.eulerAngles = Vector3.forward * data.angle;
     }
 
     public void LockControls()

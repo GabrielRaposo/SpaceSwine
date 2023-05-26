@@ -44,7 +44,7 @@ public class TerminalRotateAction : MonoBehaviour, ITerminalEvent
         sequence.OnComplete(() => AfterSequence(player));
     }
 
-    private void BeforeSequence(PlayerInteractor player)
+    private void BeforeSequence (PlayerInteractor player)
     {
         if (interactableChildren != null && interactableChildren.Count > 0)
         {

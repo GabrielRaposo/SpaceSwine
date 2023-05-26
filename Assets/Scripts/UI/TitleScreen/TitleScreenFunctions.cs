@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DevLocker.Utils;
 
 public class TitleScreenFunctions : MonoBehaviour
 {
+    [SerializeField] SceneReference newFileScene;
+
     TitleStateManager titleStateManager;
 
     private void Awake() 
@@ -11,43 +14,26 @@ public class TitleScreenFunctions : MonoBehaviour
         titleStateManager = GetComponentInParent<TitleStateManager>();
     }
 
-    void Start()
+    public void NewGameInput()
     {
-        //if (!SaveManager.Initiated)
-        //    SaveManager.Load();
-    }
+        SaveManager.ResetSave();
+        DebugDisplay.Call ("New Game: Save Reset.");
 
-    public void PlayInput()
-    {
         TrailerSceneCaller.AutoStart = true;
         PlaylistPlayer.CutsceneMode = true;
 
-        SceneTransition.LoadScene((int)BuildIndex.Ship, SceneTransition.TransitionType.BlackFade);
-
-        //SceneTransition.LoadScene((int)BuildIndex.World1Exploration, SceneTransition.TransitionType.WhiteFade);
+        ContinueInput();
     }
 
-    //public void OptionsInput()
-    //{
-    //    //Debug.Log("Options");
+    public void ContinueInput()
+    {
+        string scenePath = SaveManager.GetSpawnData().scenePath;
 
-    //    TitleStateManager titleStateManager = GetComponentInParent<TitleStateManager>();
-    //    if (titleStateManager)
-    //    {
-    //        titleStateManager.SetOptionsState();
-    //    }
-    //}
+        if ( string.IsNullOrEmpty(scenePath) )
+            scenePath = newFileScene.ScenePath;
 
-    //public void ChillInput()
-    //{
-    //    //Debug.Log("Options");
-
-    //    TitleStateManager titleStateManager = GetComponentInParent<TitleStateManager>();
-    //    if (titleStateManager)
-    //    {
-    //        titleStateManager.SetChillState();
-    //    }
-    //}
+        GameManager.GoToScene (scenePath, saveScenePath: true);
+    }
 
     public void QuitInput()
     {

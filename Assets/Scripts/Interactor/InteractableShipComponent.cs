@@ -20,6 +20,7 @@ public enum ShipAction
 
 public class InteractableShipComponent : Interactable
 {
+    [SerializeField] bool disableInteraction;
     [SerializeField] List<ShipAction> shipActions;
     
     [Header("References")]
@@ -57,6 +58,9 @@ public class InteractableShipComponent : Interactable
         UpdateTextDisplay();
 
         _coll2D.enabled = true;
+
+        if (disableInteraction)
+            SetInteraction(false);
     }
 
 
@@ -73,6 +77,12 @@ public class InteractableShipComponent : Interactable
 
     public override void Interaction (PlayerInteractor interactor) 
     {
+        if (!interactable)
+        {
+            DebugDisplay.Call("Cannot interact.");
+            return;
+        }
+
         base.Interaction(interactor);
 
         switch (CurrentShipAction)
@@ -191,6 +201,13 @@ public class InteractableShipComponent : Interactable
 
         inputActions.Disable();
         inputActions.Player.Movement.Disable();
+    }
+
+    public override void SetInteraction(bool value) 
+    {
+        base.SetInteraction(value);
+
+        interactionBalloon.SetInteractableState(value);
     }
 
     private void OnEnable()
