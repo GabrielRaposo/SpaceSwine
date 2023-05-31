@@ -3839,6 +3839,342 @@
 								</ObjectList>
 							</ObjectLists>
 						</MusicSegment>
+						<MusicSegment Name="makeabeat_brinquedo_conducao" ID="{28916649-2659-4B00-9606-A5A091DEF7EE}" ShortID="35770183">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="6857.14285714286"/>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{CBDFD036-9DE0-4F04-B7BE-CECFDFC37DCE}" ShortID="915100843">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="AMBIENCE_01" ID="{60044F73-714E-471A-BDDC-DE1732139E71}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{1D1EA6B5-CA05-4947-AD31-0FF73747B0D4}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MakeABeat_Samples" ID="{8439CE07-6276-4ADD-8C2C-393B02485E0A}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="AMBIENCE_01" ID="{028F057F-7F97-4AFD-90D8-363FFD2747CA}" ShortID="425307231">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMBIENCE_01" ID="{CDEFE6CF-29B5-4BBA-B442-AEF791C17F03}">
+											<Language>SFX</Language>
+											<AudioFile>AMBIENCE_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="589182777"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{43DB7AC0-7566-4DBE-A41E-BEA74D0B5F94}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{BDF3944F-375A-4D3A-88F2-3B85C49434A4}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="AMBIENCE_01" ID="{60A45196-3EE9-4126-920E-623F4A771FC4}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="6857.14285714286"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="AMBIENCE_01" ID="{CDEFE6CF-29B5-4BBA-B442-AEF791C17F03}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{0AE1FA66-BD80-41D9-B8F7-5A3F9004D698}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{8B639460-A047-44DB-BFAB-858F9F0EB204}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="6857.14285714286"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
+						<MusicSegment Name="makeabeat_brinquedo_tcha" ID="{4ECB289A-3C6B-44EA-9E1A-9A6CBED0254D}" ShortID="819005297">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="6857.14285714286"/>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{FA8ADB27-653E-4AD3-8720-32958146CAD2}" ShortID="187873150">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="AMBIENCE_01" ID="{60044F73-714E-471A-BDDC-DE1732139E71}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{FA2D5CA4-D619-41A4-B496-FBF59D424E37}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MakeABeat_Samples" ID="{8439CE07-6276-4ADD-8C2C-393B02485E0A}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="AMBIENCE_01" ID="{5A20527C-D190-4111-B5C5-40EBC0B80E8A}" ShortID="597775481">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMBIENCE_01" ID="{070ADBA4-FDAD-4079-815F-9D1FE73DC4DF}">
+											<Language>SFX</Language>
+											<AudioFile>AMBIENCE_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="589182777"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{AE95DF03-CA3E-4199-A89D-7EAB35F384C2}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{FC51FD5E-CE2C-421A-BF63-397DE819E022}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="AMBIENCE_01" ID="{0D1F2592-1D9D-43E4-A12B-2B12CE70BD63}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="6857.14285714286"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="AMBIENCE_01" ID="{070ADBA4-FDAD-4079-815F-9D1FE73DC4DF}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{7BF7D6D0-9361-4888-8E57-B5A6C2538E2E}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{B0D0061E-DD1E-4DE5-94E7-E1AE9083BCE7}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="6857.14285714286"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
+						<MusicSegment Name="makeabeat_brinquedo_tchum" ID="{00A3352C-3C3A-41BA-BCD5-5BF6306F529B}" ShortID="63753681">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="6857.14285714286"/>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{11928155-AC59-406B-81CF-AEB146FBCB5F}" ShortID="393487671">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="AMBIENCE_01" ID="{60044F73-714E-471A-BDDC-DE1732139E71}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{B2EE41DD-1823-4B06-B1EF-DC3F6F0A4F08}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MakeABeat_Samples" ID="{8439CE07-6276-4ADD-8C2C-393B02485E0A}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="AMBIENCE_01" ID="{A7D7AA2D-2843-4544-A443-B18A3EA58570}" ShortID="15176763">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="AMBIENCE_01" ID="{59CEF825-71D8-4D5A-BDF6-52666402289A}">
+											<Language>SFX</Language>
+											<AudioFile>AMBIENCE_01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="589182777"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{0E7100AF-AC66-456B-8106-AA7005E9ABFC}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{C84D7B5B-C369-4542-AE95-0A3CA2826AFA}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="AMBIENCE_01" ID="{B5ED1480-B000-43B5-875F-DFB262010C56}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="6857.14285714286"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="AMBIENCE_01" ID="{59CEF825-71D8-4D5A-BDF6-52666402289A}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{1ACD2F81-1EC5-4C88-868F-A03BF7CFDED2}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{C53E2031-CFD0-4693-AAEE-2E04728BDBA7}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="6857.14285714286"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

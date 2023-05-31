@@ -104,6 +104,9 @@ namespace AK
         static const AkUniqueID LOFI_25 = 82482803U;
         static const AkUniqueID MAKEABEAT_APARELHOS_NAVEGACAO = 1887497970U;
         static const AkUniqueID MAKEABEAT_APARELHOS_SELECAO = 2771531893U;
+        static const AkUniqueID MAKEABEAT_BRINQUEDO_CONDUCAO = 2489339849U;
+        static const AkUniqueID MAKEABEAT_BRINQUEDO_TCHA = 3507896435U;
+        static const AkUniqueID MAKEABEAT_BRINQUEDO_TCHUM = 2366071368U;
         static const AkUniqueID MAKEABEAT_CAIXA_ESCONDE = 1649118717U;
         static const AkUniqueID MAKEABEAT_CAIXA_MOSTRA = 2606624850U;
         static const AkUniqueID MAKEABEAT_FITA_DESINSTALAR = 459210550U;
