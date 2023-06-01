@@ -55,10 +55,10 @@ Event	ID	Name			Wwise Object Path	Notes
 	2290132137	ui_navegacao__planeta_hover			\Default Work Unit\UI\Nave\ui_navegacao__planeta_hover	
 	2316358293	makeabeat_fita_tirar_fila			\Default Work Unit\Make a Beat\SFX Make a Beat\makeabeat_fita_tirar_fila	
 	2331041427	ui_transicao_exploracao			\Default Work Unit\UI\Transições\ui_transicao_exploracao	
-	2366071368	makeabeat_brinquedo_tchum			\Default Work Unit\Make a Beat\SFX Make a Beat\makeabeat_brinquedo_tchum	
+	2366071368	makeabeat_brinquedo_tchum			\Default Work Unit\Make a Beat\Samples Make A Beat\makeabeat_brinquedo_tchum	
 	2398576381	gameplay_bolha_andar			\Default Work Unit\Level\gameplay_bolha_andar	
 	2418446987	gameplay_buyk_morre			\Default Work Unit\Buyk\gameplay_buyk_morre	
-	2489339849	makeabeat_brinquedo_conducao			\Default Work Unit\Make a Beat\SFX Make a Beat\makeabeat_brinquedo_conducao	
+	2489339849	makeabeat_brinquedo_conducao			\Default Work Unit\Make a Beat\Samples Make A Beat\makeabeat_brinquedo_conducao	
 	2524279794	ui_transicao_levels			\Default Work Unit\UI\Transições\ui_transicao_levels	
 	2555358239	ui_navegacao_movimentacao_feedback			\Default Work Unit\UI\Nave\ui_navegacao_movimentacao_feedback	
 	2559851891	gameplay_portal_entra			\Default Work Unit\Level\gameplay_portal_entra	
@@ -81,7 +81,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3361592752	ui_navegacao_movimentacao_intro			\Default Work Unit\UI\Nave\ui_navegacao_movimentacao_intro	
 	3402632736	ggs_nave_pousa			\Default Work Unit\Cenario\Minigame GGS\ggs_nave_pousa	
 	3434033334	gameplay_buyk_pula_curto			\Default Work Unit\Buyk\Movimentação\gameplay_buyk_pula_curto	
-	3507896435	makeabeat_brinquedo_tcha			\Default Work Unit\Make a Beat\SFX Make a Beat\makeabeat_brinquedo_tcha	
+	3507896435	makeabeat_brinquedo_tcha			\Default Work Unit\Make a Beat\Samples Make A Beat\makeabeat_brinquedo_tcha	
 	3509273191	ggs_ui_desliga			\Default Work Unit\Cenario\Minigame GGS\ggs_ui_desliga	
 	3509944340	gameplay_buyk_beamup			\Default Work Unit\Buyk\Cinematic\gameplay_buyk_beamup	
 	3514087899	splash_screen			\Default Work Unit\UI\splash_screen	
@@ -100,9 +100,10 @@ Event	ID	Name			Wwise Object Path	Notes
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	363529975	Buyk_stuck			\Default Work Unit\Outros\Buyk_stuck	
+	403384638	volume_makeabeatSFX			\Default Work Unit\Volume Bus\volume_makeabeatSFX	
 	1171258525	Cutscene_inicio			\Default Work Unit\Outros\Cutscene_inicio	
-	1633207222	volume_SFXmakeabeat			\Default Work Unit\Volume Bus\volume_SFXmakeabeat	
 	2164391380	Tutorial_final_pulo_fadeout			\Default Work Unit\Outros\Tutorial_final_pulo_fadeout	
+	2326127318	volume_makeabeatMUSIC			\Default Work Unit\Volume Bus\volume_makeabeatMUSIC	
 	2340947590	volume_cutscene			\Default Work Unit\Volume Bus\volume_cutscene	
 	2864841961	Volume_navegacao			\Default Work Unit\Outros\Volume_navegacao	
 	3537513504	___METRONOMO			\Default Work Unit\Volumes Make a Beat\___METRONOMO	Controla o volume de TODOS OS SAMPLES (bus Music>MakeABeat_Samples), serve pra mutar o Make-a-Beat todo quando vc aperta C no metrônomo.
@@ -157,12 +158,14 @@ Modulator LFO	ID	Name			Wwise Object Path	Notes
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	393239870	SFX			\Default Work Unit\Master Audio Bus\SFX	
-	540031604	MakeABeat_Samples			\Default Work Unit\Master Audio Bus\Music\MakeABeat_Samples	
+	540031604	MakeABeat_Samples			\Default Work Unit\Master Audio Bus\Music\MakeABeat_Music\MakeABeat_Samples	
 	891914060	SFX_Placeholder			\Default Work Unit\Master Audio Bus\SFX\SFX_Placeholder	
 	1182958561	Cutscene			\Default Work Unit\Master Audio Bus\Cutscene	
 	2342674260	Music_Placeholder			\Default Work Unit\Master Audio Bus\Music\Music_Placeholder	
+	3004766716	MakeABeat_Music			\Default Work Unit\Master Audio Bus\Music\MakeABeat_Music	
 	3530778344	SFX_MakeABeat			\Default Work Unit\Master Audio Bus\SFX\SFX_MakeABeat	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+	3895371517	MakeABeat_Toy			\Default Work Unit\Master Audio Bus\Music\MakeABeat_Music\MakeABeat_Toy	
 	3991942870	Music			\Default Work Unit\Master Audio Bus\Music	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
@@ -174,12 +177,10 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	18012663	makeabeat_fita_hover_03	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\makeabeat_fita_hover_03_4A70CDB2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_fita_hover\makeabeat_fita_hover_03		20048
 	31496269	cenario_nave_bip_perigo_reverb	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\cenario_nave_bip_perigo_reverb_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cenário\Cutscenes\cenario_nave_bip_perigo_reverb		249240
 	32135188	ui_nave_fala_02	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_nave_fala_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personagens\ui_nave_fala\ui_nave_fala_02		25056
-	33030683	makeabeat_brinquedo_tcha	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\Placeholder_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_brinquedo_tcha		41820
 	44880944	plank extra sound	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\cenario_nave_bip_tv_9EB700DF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personagens\plank extra sound		22996
 	46249905	ui_pager_some	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_pager_some-1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Pager\ui_pager_some		188492
 	56774829	makeabeat_fita_desinstalar_01	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\makeabeat_fita_desinstalar_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_fita_desinstalar\makeabeat_fita_desinstalar_01		126472
 	56959011	ui_pager_clique_04	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_pager_clique_04_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Pager\ui_pager_clique\ui_pager_clique_04		44164
-	69002428	makeabeat_brinquedo_tchum	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\Placeholder_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_brinquedo_tchum		37320
 	78398219	ui_pager_clique_08	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_pager_clique_04_41219684.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Pager\ui_pager_clique\ui_pager_clique_08		34924
 	85766911	gameplay_bolha_andar	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\gameplay_bolha_andar_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Level\gameplay_bolha_andar		160584
 	86972363	gameplay_buyk_pousa_longo	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\gameplay_buyk_pousa_longo_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Buyk\Movimentação\pulo e pouso\gameplay_buyk_pousa_longo		124216
@@ -225,11 +226,11 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	356637613	gameplay_buyk_pula_longo	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\gameplay_buyk_pula_longo_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Buyk\Movimentação\pulo e pouso\gameplay_buyk_pula_longo		182872
 	357011581	ui_robozinho_fala04	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_robozinho_fala04_96339C8B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personagens\ui_robozinho_fala_tree\ui_robozinho_fala04		13160
 	364620789	makeabeat_fita_desinstalar_04	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\makeabeat_fita_desinstalar_04_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_fita_desinstalar\makeabeat_fita_desinstalar_04		144084
+	371311758	makeabeat_brinquedo_tchum	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\makeabeat_brinquedo_tchum_CEB6CB84.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_brinquedo_tchum	AUMENTAR VOLUME	61544
 	374803507	ui_navegacao__planeta_selecao	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_navegacao__planeta_selecao_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Nave\ui_navegacao__planeta_selecao		186120
 	377969374	ui_robozinho_fala01	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_robozinho_fala01_0E61EC05.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personagens\ui_robozinho_fala_tree\ui_robozinho_fala01		12364
 	386417884	makeabeat_caixa_esconde_04	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\makeabeat_caixa_esconde_04_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_caixa_esconde\makeabeat_caixa_esconde_04		79836
 	387370001	gameplay_buyk_stuck_fanfarra	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\gameplay_buyk_stuck_fanfarra_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Buyk\Cinematic\gameplay_buyk_stuck_fanfarra		555336
-	388240387	makeabeat_brinquedo_conducao	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\Placeholder_03_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_brinquedo_conducao		36016
 	388759442	ui_pager_clique_01	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_pager_clique_01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Pager\ui_pager_clique\ui_pager_clique_01		44164
 	393854216	ui_pager_clique_05	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_pager_clique_01_82528F3A.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Pager\ui_pager_clique\ui_pager_clique_05		44164
 	399443744	makeabeat_fita_hover_02	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\makeabeat_fita_hover_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_fita_hover\makeabeat_fita_hover_02		47280
@@ -278,10 +279,12 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	781078286	ggs_gameplay_linha_milestone	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ggs_gameplay_linha_milestone_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Cenário\Minigame - GGS\ggs_gameplay_linha_milestone		36824
 	784349783	ui_marombot_fala_03_v1	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_marombot_fala_03_v1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personagens\ui_marombot_fala\ui_marombot_fala_03_v1		33812
 	808241402	ui_transicao_levels	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_transicao_levels_C15DF0AE.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Transições\ui_transicao_levels		109140
+	818614210	makeabeat_brinquedo_conducao	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\Placeholder_03_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_brinquedo_conducao	AUMENTAR VOLUME	36016
 	828193275	ui_navegacao_movimentacao_loop	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_navegacao_movimentacao_v1_ED813F15.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Nave\ui_navegacao_movimentacao_loop		357492
 	832655373	ui_navegacao_movimentacao_outro	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_navegacao_movimentacao_outro_v1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI\Nave\ui_navegacao_movimentacao_outro		570240
 	833521607	ui_robozinho_fala03	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_robozinho_fala03_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personagens\ui_robozinho_fala_leg\ui_robozinho_fala03		22116
 	845156714	ui_nave_fala_04	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_nave_fala_04_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personagens\ui_nave_fala\ui_nave_fala_04		25588
+	845561883	makeabeat_brinquedo_tcha	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\Placeholder_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_brinquedo_tcha	AUMENTAR VOLUME	41820
 	846687573	makeabeat_fita_desinstalar_02	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\makeabeat_fita_desinstalar_02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_fita_desinstalar\makeabeat_fita_desinstalar_02		106000
 	870184732	makeabeat_fita_hover_05	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\makeabeat_fita_hover_05_0CF4D94A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Make-a-Beat\makeabeat_fita_hover\makeabeat_fita_hover_05		14956
 	870443893	ui_robozao_fala03	C:\Users\hazuj\Documents\GitHub\SpaceSwine\SpaceSwine_WwiseProject\.cache\Mac\SFX\ui_robozao_fala03_06924BD0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Personagens\ui_robozao_fala\ui_robozao_fala03		28544
