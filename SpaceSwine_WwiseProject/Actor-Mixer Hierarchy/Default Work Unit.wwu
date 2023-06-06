@@ -6758,7 +6758,7 @@
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
@@ -6874,7 +6874,7 @@
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
@@ -6978,6 +6978,95 @@
 							</ChildrenList>
 							<ObjectLists/>
 						</RandomSequenceContainer>
+						<Sound Name="makeabeat_brinquedo_conducao" ID="{7B6AE55E-BC26-4F6D-8CC5-762C3B926DD3}" ShortID="745121964">
+							<Comment>AUMENTAR VOLUME</Comment>
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MakeABeat_Toy" ID="{3145308B-0DB6-4B0A-9DED-0E9AFFA06162}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Placeholder_03" ID="{C0BFAC69-0C70-446B-895D-051E5CD65B5B}">
+									<Language>SFX</Language>
+									<AudioFile>Placeholder_03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="818614210"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Placeholder_03" ID="{C0BFAC69-0C70-446B-895D-051E5CD65B5B}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_brinquedo_tchum" ID="{6CC71830-6B0F-4600-A8EC-3795E5867DBB}" ShortID="76681899">
+							<Comment>AUMENTAR VOLUME</Comment>
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MakeABeat_Toy" ID="{3145308B-0DB6-4B0A-9DED-0E9AFFA06162}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="makeabeat_brinquedo_tchum" ID="{4388797F-5297-45D3-AF1C-421868CA573E}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.082512315270936"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.348522167487685"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>makeabeat_brinquedo_tchum.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="371311758"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="makeabeat_brinquedo_tchum" ID="{4388797F-5297-45D3-AF1C-421868CA573E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_brinquedo_tcha" ID="{50B6B194-3780-4F3A-A9B0-3E32DE5A70EC}" ShortID="233431479">
+							<Comment>AUMENTAR VOLUME</Comment>
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MakeABeat_Toy" ID="{3145308B-0DB6-4B0A-9DED-0E9AFFA06162}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Placeholder_02" ID="{3D0DAF23-A924-4ED8-9F6A-815A97F50CF9}">
+									<Language>SFX</Language>
+									<AudioFile>Placeholder_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="845561883"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Placeholder_02" ID="{3D0DAF23-A924-4ED8-9F6A-815A97F50CF9}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

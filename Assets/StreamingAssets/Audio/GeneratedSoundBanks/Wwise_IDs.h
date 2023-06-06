@@ -102,8 +102,12 @@ namespace AK
         static const AkUniqueID LOFI_23 = 82482805U;
         static const AkUniqueID LOFI_24 = 82482802U;
         static const AkUniqueID LOFI_25 = 82482803U;
+        static const AkUniqueID LOFI_26 = 82482800U;
         static const AkUniqueID MAKEABEAT_APARELHOS_NAVEGACAO = 1887497970U;
         static const AkUniqueID MAKEABEAT_APARELHOS_SELECAO = 2771531893U;
+        static const AkUniqueID MAKEABEAT_BRINQUEDO_CONDUCAO = 2489339849U;
+        static const AkUniqueID MAKEABEAT_BRINQUEDO_TCHA = 3507896435U;
+        static const AkUniqueID MAKEABEAT_BRINQUEDO_TCHUM = 2366071368U;
         static const AkUniqueID MAKEABEAT_CAIXA_ESCONDE = 1649118717U;
         static const AkUniqueID MAKEABEAT_CAIXA_MOSTRA = 2606624850U;
         static const AkUniqueID MAKEABEAT_FITA_DESINSTALAR = 459210550U;
@@ -188,12 +192,13 @@ namespace AK
         static const AkUniqueID TUTORIAL_FINAL_PULO_FADEOUT = 2164391380U;
         static const AkUniqueID TUTORIAL_INICIO_FADEIN = 4133059913U;
         static const AkUniqueID VOLUME_CUTSCENE = 2340947590U;
+        static const AkUniqueID VOLUME_MAKEABEATMUSIC = 2326127318U;
+        static const AkUniqueID VOLUME_MAKEABEATSFX = 403384638U;
         static const AkUniqueID VOLUME_MASTER = 3695994288U;
         static const AkUniqueID VOLUME_MUSIC = 3891337659U;
         static const AkUniqueID VOLUME_NAVEGACAO = 2864841961U;
         static const AkUniqueID VOLUME_PLACEHOLDERS = 4083254980U;
         static const AkUniqueID VOLUME_SFX = 3673881719U;
-        static const AkUniqueID VOLUME_SFXMAKEABEAT = 1633207222U;
     } // namespace GAME_PARAMETERS
 
     namespace BANKS
@@ -225,13 +230,16 @@ namespace AK
         static const AkUniqueID LOFI_23 = 82482805U;
         static const AkUniqueID LOFI_24 = 82482802U;
         static const AkUniqueID LOFI_25 = 82482803U;
+        static const AkUniqueID LOFI_26 = 82482800U;
         static const AkUniqueID MAKE_A_BEAT = 2500044626U;
     } // namespace BANKS
 
     namespace BUSSES
     {
         static const AkUniqueID CUTSCENE = 1182958561U;
+        static const AkUniqueID MAKEABEAT_MUSIC = 3004766716U;
         static const AkUniqueID MAKEABEAT_SAMPLES = 540031604U;
+        static const AkUniqueID MAKEABEAT_TOY = 3895371517U;
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
         static const AkUniqueID MUSIC = 3991942870U;
         static const AkUniqueID MUSIC_PLACEHOLDER = 2342674260U;
