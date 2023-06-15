@@ -12,7 +12,7 @@ public class RandomizeSpriteFromPool : MonoBehaviour
 
     void OnValidate()
     {
-        //return;
+        return;
 
         if (hasBeenSetup)
             return;

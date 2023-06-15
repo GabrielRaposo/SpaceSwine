@@ -131,7 +131,7 @@ public class GrassPlacerEditor : Editor
                 
                     GUILayout.BeginHorizontal();
                 GUILayout.Label("^v", GUILayout.Width(16));
-                attach.heightOffset = GUILayout.HorizontalSlider(attach.heightOffset, 0f, 1f, GUILayout.Height(labelSize/2), GUILayout.ExpandWidth(true));
+                attach.heightOffset = GUILayout.HorizontalSlider(attach.heightOffset, -2f, 2f, GUILayout.Height(labelSize/2), GUILayout.ExpandWidth(true));
                     GUILayout.EndHorizontal();
                     
                     GUILayout.BeginHorizontal();
