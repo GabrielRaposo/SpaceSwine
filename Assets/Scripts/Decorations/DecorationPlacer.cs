@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrassPlacer : MonoBehaviour
+public class DecorationPlacer : MonoBehaviour
 {
     public GameObject grassReference;
     public List<GameObject> miscObjectsReference;

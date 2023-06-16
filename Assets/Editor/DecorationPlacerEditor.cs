@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(GrassPlacer))]
-public class GrassPlacerEditor : Editor
+[CustomEditor(typeof(DecorationPlacer))]
+public class DecorationPlacerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        var obj = target as GrassPlacer;
+        var obj = target as DecorationPlacer;
         int previousGrassAmount = obj.grassAmount;
         
         base.OnInspectorGUI();
@@ -36,7 +36,7 @@ public class GrassPlacerEditor : Editor
         EditorUtility.SetDirty(obj);
     }
 
-    private void MiscObjectsPlacer(GrassPlacer obj)
+    private void MiscObjectsPlacer(DecorationPlacer obj)
     {
         int labelheight = 48;
         
@@ -66,7 +66,7 @@ public class GrassPlacerEditor : Editor
         
     }
     
-    private void MiscObjects(GrassPlacer obj)
+    private void MiscObjects(DecorationPlacer obj)
     {
         int labelSize = 50;
         int objectToRemove = -1;
@@ -127,7 +127,7 @@ public class GrassPlacerEditor : Editor
             var attach = gameObject.GetComponent<AttachToPlanet>();
             if (attach != null)
             {
-                GUILayout.BeginVertical();
+                GUILayout.BeginVertical(GUILayout.ExpandWidth(true));
                 
                     GUILayout.BeginHorizontal();
                 GUILayout.Label("^v", GUILayout.Width(16));
@@ -136,16 +136,55 @@ public class GrassPlacerEditor : Editor
                     
                     GUILayout.BeginHorizontal();
                 GUILayout.Label("R", GUILayout.Width(16));
-                attach.angle = GUILayout.HorizontalSlider(attach.angle, 0f, 360f, GUILayout.Height(labelSize/2));
+                attach.angle = GUILayout.HorizontalSlider(attach.angle, 0f, 360f, GUILayout.Height(labelSize/2), GUILayout.ExpandWidth(true));
                     GUILayout.EndHorizontal();
                 GUILayout.EndVertical();
             }
 
+            //Depth
+            var visual = gameObject.GetComponentInChildren<SpriteRenderer>();
+            if (visual != null)
+            {
+                bool isForeground = visual.sortingLayerID >= SortingLayer.GetLayerValueFromName("Foreground");
+                
+                GUILayout.BeginHorizontal(GUILayout.MaxWidth(54));
+                
+                GUILayout.BeginVertical();
+                GUI.enabled = !isForeground;
+                if (GUILayout.Button("F", GUILayout.MaxWidth(28), GUILayout.ExpandHeight(true)))
+                {
+                    visual.sortingLayerID = SortingLayer.NameToID("Foreground");
+                    visual.sortingOrder = 0;
+                }
+                    
+                GUI.enabled = isForeground;
+                if (GUILayout.Button("B", GUILayout.MaxWidth(28), GUILayout.ExpandHeight(true)))
+                {
+                    visual.sortingLayerID = SortingLayer.NameToID("Default");
+                    visual.sortingOrder = 0;
+                }
+                    
+                GUILayout.EndVertical();
+
+                GUI.enabled = true;
+                
+                GUILayout.BeginVertical();
+                if (GUILayout.Button("^", GUILayout.MaxWidth(24), GUILayout.ExpandHeight(true)))
+                    visual.sortingOrder = visual.sortingOrder + 1;
+                GUILayout.Label((isForeground?"F":"B")+visual.sortingOrder);
+                if(GUILayout.Button("V",GUILayout.MaxWidth(24),GUILayout.ExpandHeight(true)))
+                    visual.sortingOrder = visual.sortingOrder - 1;
+                GUILayout.EndVertical();
+                
+                GUILayout.EndHorizontal();
+                
+            }
+            
             //Shuffle
             var rand = gameObject.GetComponent<RandomizeSpriteFromPool>();
             if (rand != null)
             {
-                GUILayout.BeginVertical();
+                GUILayout.BeginVertical(GUILayout.Width(125));
                 if(GUILayout.Button("Shuflle", GUILayout.ExpandHeight(true)))
                     rand.RandomizeSprite();
 
@@ -173,7 +212,7 @@ public class GrassPlacerEditor : Editor
         }
     }
 
-    private void ShuffleGrass(GrassPlacer obj)
+    private void ShuffleGrass(DecorationPlacer obj)
     {
         for (int i = 0; i < obj.grass.Count; i++)
         {
@@ -183,7 +222,7 @@ public class GrassPlacerEditor : Editor
         }
     }
 
-    private static void GrassAmountManager(int dif, GrassPlacer obj)
+    private static void GrassAmountManager(int dif, DecorationPlacer obj)
     {
         if (dif > 0)
         {
@@ -211,7 +250,7 @@ public class GrassPlacerEditor : Editor
         }
     }
 
-    private static void SetGrassSpacing(GrassPlacer obj)
+    private static void SetGrassSpacing(DecorationPlacer obj)
     {
         for (int i = 0; i < obj.grass.Count; i++)
         {
