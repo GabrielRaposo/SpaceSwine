@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class RandomizeSpriteFromPool : MonoBehaviour
 {
-    [SerializeField] List<Sprite> sprites;
+    [SerializeField] public List<Sprite> sprites;
     [SerializeField] SpriteRenderer spriteRenderer;
 
     [SerializeField] private bool hasBeenSetup;    
@@ -31,11 +31,23 @@ public class RandomizeSpriteFromPool : MonoBehaviour
         Setup();
     }
 
-    private void Setup()
+    protected void Setup()
     {
         int index = Random.Range(0, sprites.Count);
         spriteRenderer.sprite = sprites[index % sprites.Count];
 
         hasBeenSetup = true;
     }
+
+    public void RandomizeSprite()
+    {
+        int index = Random.Range(0, sprites.Count);
+        spriteRenderer.sprite = sprites[index % sprites.Count];
+    }
+
+    public void ForceSpecificSprite(int index)
+    {
+        spriteRenderer.sprite = sprites[index];
+    }
+    
 }
