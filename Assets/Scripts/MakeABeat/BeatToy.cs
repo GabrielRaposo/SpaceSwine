@@ -64,6 +64,7 @@ public class BeatToy : MonoBehaviour
 
     public void CallHitSound(int index)
     {
+        return;
         switch (index)
         {
             case 1:
