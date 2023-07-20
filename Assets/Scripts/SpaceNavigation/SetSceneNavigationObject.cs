@@ -16,6 +16,11 @@ public class SetSceneNavigationObject : NavigationObject
     [SerializeField] private GameObject navigationDot;
     [SerializeField] private Transform dotsParent;
 
+    [Header("Danger Data")]
+    [SerializeField] bool toDangerZone;
+    [SerializeField] SceneReference shipSceneReference;
+    [SerializeField] RoundSessionData data;
+
     [Header("Completion Feedback")]
     [SerializeField] private StoryEventScriptableObject completionStoryEvent;
     [SerializeField] private SpriteRenderer[] completionDisplays;
@@ -224,7 +229,7 @@ public class SetSceneNavigationObject : NavigationObject
 
     }
     
-    private void CloseAndSetScene()
+    protected virtual void CloseAndSetScene()
     {
         if (NavigationSceneManager.Instance == null)
         {
@@ -235,7 +240,10 @@ public class SetSceneNavigationObject : NavigationObject
         if (notificationID != string.Empty)
             UINotificationManager.Use (notificationID);
 
-        NavigationSceneManager.Instance.CloseAndSetScene( scene.ScenePath );
+        if (toDangerZone) 
+            InteractablePortal.PreCallSetups(shipSceneReference.ScenePath, data);
+
+        NavigationSceneManager.Instance.CloseAndSetScene( scene.ScenePath, callDangerTransition: toDangerZone );
     }
 
     private void OnDrawGizmos()
