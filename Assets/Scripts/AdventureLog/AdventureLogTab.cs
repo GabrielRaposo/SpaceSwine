@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AdventureLogTab : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] TextMeshProUGUI textDisplay;
+
+    public void Setup (string text)
     {
-        
+        if (textDisplay)
+            textDisplay.text = text;
+
+        SetActiveState(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetActiveState(bool value)
     {
-        
+        gameObject.SetActive(value);
     }
+
 }
