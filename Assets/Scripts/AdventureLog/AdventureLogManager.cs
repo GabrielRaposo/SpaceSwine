@@ -7,6 +7,7 @@ public class AdventureLogManager : StoryEventDependent
     [SerializeField] List<AdventureLogScriptableObject> adventureLogs;
     
     AdventureLogDisplay display;
+    bool initiated;
 
     public static AdventureLogManager Instance;
 
@@ -24,21 +25,60 @@ public class AdventureLogManager : StoryEventDependent
     public void CallForUpdate (AdventureLogDisplay display) 
     {
         this.display = display;
-        CallDependentAction ( PrepData );
+
+        CallDependentAction ( SendList, extraFrames: 1 );
+
+        if (!initiated)
+        {
+            initiated = true;
+            CallDependentAction ( SetListeners, extraFrames: 2 );
+        }
     }
 
-    private void PrepData()
+    private void SetListeners()
     {
-        List <string> logTexts = new List<string>();
+        if (adventureLogs.Count < 1)
+            return;
 
         foreach (AdventureLogScriptableObject log in adventureLogs)
         {
+            StoryEventsManager.AddListener (log.activationEventKey, (b) => AddToList      (b, log) );
+            StoryEventsManager.AddListener (log.completionEventKey, (b) => RemoveFromList (b, log) );
+        }
+    }
+
+    private void SendList()
+    {
+        List<AdventureLogScriptableObject> logsList = new List<AdventureLogScriptableObject>();
+
+        foreach (var log in adventureLogs)
+        {
             if (StoryEventsManager.IsComplete(log.activationEventKey) && !StoryEventsManager.IsComplete(log.completionEventKey))
-            {
-                logTexts.Add (log.fallbackText); // <<<<<<<<<<<<<< TO-DO: pegar da planilha aqui
-            }
+                logsList.Add (log);
         }
 
-        display.Setup (logTexts);
+        display.Setup (logsList);
+    }
+
+    private void AddToList (bool value, AdventureLogScriptableObject log)
+    {
+        if (!value)
+            return;
+
+        if (display == null)
+            return;
+
+        display.AddToList(log);
+    }
+
+    private void RemoveFromList (bool value, AdventureLogScriptableObject log)
+    {
+        if (!value)
+            return;
+
+        if (display == null)
+            return;
+
+        display.RemoveFromList(log);
     }
 }

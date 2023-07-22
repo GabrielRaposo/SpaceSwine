@@ -7,10 +7,14 @@ public class AdventureLogTab : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI textDisplay;
 
-    public void Setup (string text)
+    public AdventureLogScriptableObject data { get; private set; }
+
+    public void Setup (AdventureLogScriptableObject data)
     {
+        this.data = data;
+
         if (textDisplay)
-            textDisplay.text = text;
+            textDisplay.text = data.fallbackText; // -- pegar do localization text
 
         SetActiveState(true);
     }

@@ -31,7 +31,7 @@ public class AdventureLogDisplay : MonoBehaviour
             {
                 if (GameManager.IsOnScene(r.ScenePath))
                 {
-                    DebugDisplay.Call("Is on exception scene!");
+                    //DebugDisplay.Call ("Is on exception scene!");
                     return;
                 }
             }
@@ -44,7 +44,7 @@ public class AdventureLogDisplay : MonoBehaviour
         manager.CallForUpdate (this);   
     }
 
-    public void Setup ( List <string> logTexts )
+    public void Setup ( List <AdventureLogScriptableObject> logList )
     {
         if (!baseTab)
         {
@@ -62,23 +62,65 @@ public class AdventureLogDisplay : MonoBehaviour
         tabs = new List<AdventureLogTab>();
         baseTab.SetActiveState(false);
 
-        if (logTexts.Count < 1)
+        if (logList.Count < 1)
         {
             canvasGroup.alpha = 0;
             return;
         }
 
         // -- Monta a nova lista
-        for (int i = 0; i < logTexts.Count; i++)
+        for (int i = 0; i < logList.Count; i++)
         {
             GameObject newTab = Instantiate (baseTab.gameObject, logsParent);
             AdventureLogTab tabScript = newTab.GetComponent<AdventureLogTab>();
             
-            tabScript.Setup(logTexts[i]);
+            tabScript.Setup (logList[i]);
 
             tabs.Add(tabScript);
         }
         canvasGroup.alpha = 1;
     }
 
+    public void AddToList (AdventureLogScriptableObject log)
+    {
+        if (tabs.Count > 0)
+        {
+            foreach (AdventureLogTab tab in tabs)
+            {
+                if (tab.data == log)
+                {
+                    return;
+                }
+            }
+        }
+
+        GameObject newTab = Instantiate (baseTab.gameObject, logsParent);
+        AdventureLogTab tabScript = newTab.GetComponent<AdventureLogTab>();
+            
+        tabScript.Setup (log);
+
+        tabs.Add (tabScript);
+    }
+
+    public void RemoveFromList (AdventureLogScriptableObject log)
+    {
+        AdventureLogTab tabToRemove = null; 
+        if (tabs.Count > 0)
+        {
+            foreach (AdventureLogTab tab in tabs)
+            {
+                if (tab.data == log)
+                {
+                    tabToRemove = tab;
+                    continue;
+                }
+            }
+        }
+
+        if (tabToRemove == null)
+            return;
+
+        tabs.Remove(tabToRemove);
+        Destroy(tabToRemove.gameObject);
+    }
 }
