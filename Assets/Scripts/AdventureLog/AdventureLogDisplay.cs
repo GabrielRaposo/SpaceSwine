@@ -24,7 +24,18 @@ public class AdventureLogDisplay : MonoBehaviour
     {
         canvasGroup.alpha = 0;
 
-        // -- Esconde o Display se estiver em uma das cenas de exceção
+        if (IsOnExceptionScene())
+            return;
+
+        AdventureLogManager manager = AdventureLogManager.Instance;
+        if (!manager)
+            return;
+
+        manager.CallForUpdate (this);   
+    }
+
+    private bool IsOnExceptionScene()
+    {
         if (exceptionScenes.Count > 0)
         {
             foreach (SceneReference r in exceptionScenes)
@@ -32,16 +43,12 @@ public class AdventureLogDisplay : MonoBehaviour
                 if (GameManager.IsOnScene(r.ScenePath))
                 {
                     //DebugDisplay.Call ("Is on exception scene!");
-                    return;
+                    return true;
                 }
             }
         }
 
-        AdventureLogManager manager = AdventureLogManager.Instance;
-        if (!manager)
-            return;
-
-        manager.CallForUpdate (this);   
+        return false;
     }
 
     public void Setup ( List <AdventureLogScriptableObject> logList )
@@ -100,6 +107,9 @@ public class AdventureLogDisplay : MonoBehaviour
         tabScript.Setup (log);
 
         tabs.Add (tabScript);
+
+        if (!IsOnExceptionScene())
+            canvasGroup.alpha = 1;
     }
 
     public void RemoveFromList (AdventureLogScriptableObject log)
@@ -121,6 +131,9 @@ public class AdventureLogDisplay : MonoBehaviour
             return;
 
         tabs.Remove(tabToRemove);
+        if (tabs.Count < 1)
+            canvasGroup.alpha = 0;
+
         Destroy(tabToRemove.gameObject);
     }
 }
