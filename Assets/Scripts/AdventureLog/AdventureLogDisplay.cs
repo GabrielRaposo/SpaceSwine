@@ -130,10 +130,16 @@ public class AdventureLogDisplay : MonoBehaviour
         if (tabToRemove == null)
             return;
 
-        tabs.Remove(tabToRemove);
-        if (tabs.Count < 1)
-            canvasGroup.alpha = 0;
+        tabToRemove.StrikeAndVanish 
+        (
+            () => 
+            {
+                tabs.Remove(tabToRemove);
+                if (tabs.Count < 1)
+                    canvasGroup.alpha = 0;
 
-        Destroy(tabToRemove.gameObject);
+                Destroy(tabToRemove.gameObject);
+            }
+        );
     }
 }
