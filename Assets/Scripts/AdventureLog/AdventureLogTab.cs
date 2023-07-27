@@ -17,6 +17,8 @@ public class AdventureLogTab : MonoBehaviour
 
     Sequence sequence;
 
+    float OffPosX = 1000;
+
     public AdventureLogScriptableObject data { get; private set; }
 
     public void Setup (AdventureLogScriptableObject data)
@@ -35,6 +37,43 @@ public class AdventureLogTab : MonoBehaviour
     public void SetActiveState (bool value)
     {
         gameObject.SetActive(value);
+    }
+
+    public void SlideInAndStay(UnityAction afterAction)
+    {
+        if (sequence != null)
+            sequence.Kill();
+
+        sequence = DOTween.Sequence();
+
+        RectTransform rt = GetComponent<RectTransform>();
+        float startingHeight = rt.sizeDelta.y;
+
+        //rt.sizeDelta = new Vector2(rt.sizeDelta.x, 0);
+        textDisplay.rectTransform.MoveX (OffPosX);
+
+        sequence.AppendInterval(.1f);
+        sequence.Append 
+        (
+            DOVirtual.Float (OffPosX, 0, slideDuration,
+                (f) => 
+                {
+                    textDisplay.rectTransform.MoveX(f);
+                }).SetEase(Ease.OutCirc)
+        );
+        
+        //sequence.Append
+        //(
+        //    DOVirtual.Float (0, startingHeight, shrinkDuration,
+        //        (y) => 
+        //        {
+        //            rt.sizeDelta = new Vector2 ( rt.sizeDelta.x, y );
+        //        })
+        //);
+
+
+        sequence.SetUpdate(isIndependentUpdate: true);
+        sequence.OnComplete( () => afterAction.Invoke() );
     }
 
     public void StrikeAndVanish (UnityAction afterVanish)
@@ -63,7 +102,7 @@ public class AdventureLogTab : MonoBehaviour
 
         sequence.Append 
         (
-            DOVirtual.Float (0, 1000, slideDuration,
+            DOVirtual.Float (0, OffPosX, slideDuration,
                 (f) => 
                 {
                     textDisplay.rectTransform.MoveX(f);

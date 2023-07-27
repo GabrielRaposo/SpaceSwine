@@ -105,6 +105,7 @@ public class AdventureLogDisplay : MonoBehaviour
         AdventureLogTab tabScript = newTab.GetComponent<AdventureLogTab>();
             
         tabScript.Setup (log);
+        tabScript.SlideInAndStay( ()=>{} );
 
         tabs.Add (tabScript);
 
