@@ -1,11 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 
 public class ShipDialogueManager : MonoBehaviour
 {
+    string dialogOptionsRegex = @"^.*(<\d+>(.)+)+[^>]$";
+    string flowRedirectRegex = @"^.*->\d+$";
+    
     [System.Serializable]
     public struct DialogueIndexer
     {
@@ -95,12 +100,23 @@ public class ShipDialogueManager : MonoBehaviour
     private void SetDialogueGroup (ShipNPCData dialogueData, DialogueGroup dialogueGroup, int index = 0)
     {
         UnityAction afterInputAction = null;
+        (bool isValid, string text) shipTextInfo = LocalizationManager.GetShipText( dialogueGroup[index % dialogueGroup.Count] );
+
+        int nextMessageIndex = index + 1;
+
+        if (Regex.IsMatch(shipTextInfo.text, flowRedirectRegex))
+        {
+            string[] split = shipTextInfo.text.Split('>','-');
+            nextMessageIndex = Int32.Parse(split[2]) -1 ;
+            shipTextInfo.text = split[0];
+        }
+            
 
         if (index < dialogueGroup.Count) // -- Chama mais texto
         {
             afterInputAction = () =>
             {
-                SetDialogueGroup(dialogueData, dialogueGroup, index + 1);
+                SetDialogueGroup(dialogueData, dialogueGroup, nextMessageIndex);
             };
         }
         else // -- Termina a sessão de diálogos 
@@ -109,15 +125,14 @@ public class ShipDialogueManager : MonoBehaviour
             return;
         }
 
-        // -- Localiza o texto e manda para a DialogueBox
-        (bool isValid, string text) data = LocalizationManager.GetShipText( dialogueGroup[index % dialogueGroup.Count] );
-        if (!data.isValid)
+        // --Manda para a DialogueBox
+        if (!shipTextInfo.isValid)
         {
             EndDialogue (dialogueData, forceOut: true);
             return;
         }
 
-        dialogueBox.Type (data.text, delay: .5f, instantText: false, afterInputAction);
+        dialogueBox.Type (shipTextInfo.text, delay: .5f, instantText: false, afterInputAction);
     }
 
     private void EndDialogue (ShipNPCData dialogueData, bool forceOut = false)
