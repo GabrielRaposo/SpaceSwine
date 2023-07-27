@@ -169,7 +169,7 @@ public class PlaylistPlayer : MonoBehaviour
         soundtrackManager.OnTrackPlayedEvent += SetupOnTrackEvent;
         if (!CutsceneMode)
         {
-            Debug.Log("Here?");
+            //Debug.Log("Here?");
             soundtrackManager.SetPlaylist(playlist);
         }
 
