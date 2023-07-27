@@ -7,8 +7,8 @@ public class AdventureLogManager : StoryEventDependent
     [SerializeField] List<AdventureLogScriptableObject> adventureLogs;
     
     AdventureLogDisplay display;
-    bool initiated;
 
+    private static bool Initiated;
     public static AdventureLogManager Instance;
 
     private void Awake() 
@@ -22,15 +22,28 @@ public class AdventureLogManager : StoryEventDependent
         Instance = this;
     }
 
+    public static void ResetStates()
+    {
+        Initiated = false;
+        
+        if (!Instance)
+            return;
+       
+        if (Instance.display)
+        {
+            Instance.CallForUpdate (Instance.display);
+        }
+    }
+
     public void CallForUpdate (AdventureLogDisplay display) 
     {
         this.display = display;
 
-        CallDependentAction ( SendList, extraFrames: 1 );
+        CallDependentAction ( SetAndSendList, extraFrames: 1 );
 
-        if (!initiated)
+        if (!Initiated)
         {
-            initiated = true;
+            Initiated = true;
             CallDependentAction ( SetListeners, extraFrames: 2 );
         }
     }
@@ -42,19 +55,27 @@ public class AdventureLogManager : StoryEventDependent
 
         foreach (AdventureLogScriptableObject log in adventureLogs)
         {
-            StoryEventsManager.AddListener (log.activationEventKey, (b) => AddToList      (b, log) );
-            StoryEventsManager.AddListener (log.completionEventKey, (b) => RemoveFromList (b, log) );
+            if (log.activationEventKey != null)
+                StoryEventsManager.AddListener (log.activationEventKey, (b) => AddToList      (b, log) );
+            
+            if (log.completionEventKey != null)
+                StoryEventsManager.AddListener (log.completionEventKey, (b) => RemoveFromList (b, log) );
         }
     }
 
-    private void SendList()
+    private void SetAndSendList()
     {
         List<AdventureLogScriptableObject> logsList = new List<AdventureLogScriptableObject>();
 
         foreach (var log in adventureLogs)
         {
-            if (StoryEventsManager.IsComplete(log.activationEventKey) && !StoryEventsManager.IsComplete(log.completionEventKey))
+            if (log.activationEventKey != null && StoryEventsManager.IsComplete(log.activationEventKey))
+            {
+                if (log.completionEventKey != null && StoryEventsManager.IsComplete(log.completionEventKey))
+                    continue;
+
                 logsList.Add (log);
+            }
         }
 
         display.Setup (logsList);

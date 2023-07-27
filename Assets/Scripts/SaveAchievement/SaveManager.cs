@@ -144,6 +144,7 @@ public class SaveManager : MonoBehaviour
         UINotificationManager.ResetList();
         StoryEventsManager.ReloadEventsDictionary();
         StoryEventsManager.UpdatePrintedEventStates();
+        AdventureLogManager.ResetStates();
 
         AchievementsManager.SetCurrentList (currentSave.achievementLog);
     }
