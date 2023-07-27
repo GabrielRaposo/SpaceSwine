@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DevLocker.Utils;
+using DG.Tweening;
 
 public class AdventureLogDisplay : MonoBehaviour
 {
+    [SerializeField] float fadeDuration;
+
+    [Header("References")]
     [SerializeField] Transform logsParent;
     [SerializeField] TextMeshProUGUI labelDisplay;
     [SerializeField] AdventureLogTab baseTab;
@@ -14,6 +18,8 @@ public class AdventureLogDisplay : MonoBehaviour
 
     CanvasGroup canvasGroup;
     List<AdventureLogTab> tabs;
+
+    Sequence fadeSequence;
 
     private void Awake() 
     {
@@ -32,6 +38,23 @@ public class AdventureLogDisplay : MonoBehaviour
             return;
 
         manager.CallForUpdate (this);   
+    }
+
+    private void SetFadeAnimation (bool value)
+    {
+        if (!canvasGroup)
+            return;
+
+        if (fadeSequence != null)
+            fadeSequence.Kill();
+
+        fadeSequence = DOTween.Sequence();
+        fadeSequence.Append 
+        (
+            canvasGroup.DOFade(value ? 1f : 0f, fadeDuration)
+        );
+
+        fadeSequence.SetUpdate( isIndependentUpdate: true );
     }
 
     private bool IsOnExceptionScene()
@@ -85,7 +108,8 @@ public class AdventureLogDisplay : MonoBehaviour
 
             tabs.Add(tabScript);
         }
-        canvasGroup.alpha = 1;
+        //canvasGroup.alpha = 1;
+        SetFadeAnimation(true);
     }
 
     public void AddToList (AdventureLogScriptableObject log)
@@ -110,7 +134,8 @@ public class AdventureLogDisplay : MonoBehaviour
         tabs.Add (tabScript);
 
         if (!IsOnExceptionScene())
-            canvasGroup.alpha = 1;
+            //canvasGroup.alpha = 1;
+            SetFadeAnimation(true);
     }
 
     public void RemoveFromList (AdventureLogScriptableObject log)
@@ -137,7 +162,10 @@ public class AdventureLogDisplay : MonoBehaviour
             {
                 tabs.Remove(tabToRemove);
                 if (tabs.Count < 1)
-                    canvasGroup.alpha = 0;
+                {
+                    //canvasGroup.alpha = 0;
+                    SetFadeAnimation(false);
+                }
 
                 Destroy(tabToRemove.gameObject);
             }
