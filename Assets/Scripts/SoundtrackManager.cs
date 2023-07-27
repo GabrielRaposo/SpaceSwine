@@ -21,7 +21,8 @@ public class SoundtrackManager : MonoBehaviour
     static AK.Wwise.Event soundtrackEvent;
 
     public static SoundtrackManager Instance;
-    //static bool paused;
+    
+    public static bool OverrideChecksTrigger;
     public static bool IsPlaying;
     bool applicationIsPaused;
 
@@ -110,7 +111,9 @@ public class SoundtrackManager : MonoBehaviour
 
     public void SetPlaylist (PlaylistScriptableObject playlist)
     {
-        if (this.playlist == playlist && this.playlist != fullPlaylist)
+        if (OverrideChecksTrigger)
+            OverrideChecksTrigger = false;
+        else if (this.playlist == playlist && this.playlist != fullPlaylist)
             return;
 
         this.playlist = playlist;

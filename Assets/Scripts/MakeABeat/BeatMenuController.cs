@@ -23,6 +23,7 @@ namespace MakeABeat
         [SerializeField] TapeBox tapeBox;
         [SerializeField] AK.Wwise.RTPC sfxAKParam;
         [SerializeField] SceneReference exitScene;
+        [SerializeField] SceneReference titleScene;
 
         [Header("Temp")]
         [SerializeField] InputAction toggleSFXsAction;
@@ -34,6 +35,7 @@ namespace MakeABeat
         InputAction navigationInput;
 
         public static MakeABeatFocus Focus;
+        public static bool ExitToTitle;
 
         private void OnEnable() 
         {
@@ -91,7 +93,11 @@ namespace MakeABeat
             ShipInitializerSystem.MakeABeatSpawnTrigger = true;
             Focus = MakeABeatFocus.Tapes;
 
-            GameManager.GoToScene(exitScene.ScenePath, saveScenePath: true);
+            GameManager.GoToScene 
+            (
+                ExitToTitle ? titleScene.ScenePath : exitScene.ScenePath, 
+                saveScenePath: !ExitToTitle
+            );
             
             enabled = false;
         }

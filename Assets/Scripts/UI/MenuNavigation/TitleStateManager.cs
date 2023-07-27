@@ -80,7 +80,7 @@ public class TitleStateManager : MonoBehaviour
                     {
                         titleMenuNavigation.enabled = false;
                         titleMenuNavigation.OnFocus = false;
-                        menuCanvasGroup.alpha = 0;
+                        menuCanvasGroup.alpha = 0; 
                     }
                 }
             }

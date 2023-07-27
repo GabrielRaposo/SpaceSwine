@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DevLocker.Utils;
+using MakeABeat;
 
 public class TitleScreenFunctions : MonoBehaviour
 {
     [SerializeField] SceneReference newFileScene;
+    [SerializeField] SceneReference makeABeatScene;
 
     TitleStateManager titleStateManager;
 
     private void Awake() 
     {
         titleStateManager = GetComponentInParent<TitleStateManager>();
+    }
+
+    private void Start() 
+    {
+        BeatMenuController.ExitToTitle = false;
     }
 
     public void NewGameInput()
@@ -33,6 +40,21 @@ public class TitleScreenFunctions : MonoBehaviour
             scenePath = newFileScene.ScenePath;
 
         GameManager.GoToScene (scenePath, saveScenePath: true);
+    }
+
+    public void CallMakeABeat()
+    {
+        if (makeABeatScene == null)
+            return;
+
+        SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
+        if (soundtrackManager)
+            soundtrackManager.FadeOutMusic(1f);
+
+        BeatMenuController.ExitToTitle = true;
+        SoundtrackManager.OverrideChecksTrigger = true;
+
+        GameManager.GoToScene (makeABeatScene.ScenePath);
     }
 
     public void QuitInput()
