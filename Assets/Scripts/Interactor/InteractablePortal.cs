@@ -52,12 +52,10 @@ public class InteractablePortal : Interactable
         }
     }
 
-    private void LoadSceneAction()
+    // -- Passado para Static para que possa ser usado na cena de navegação também
+    public static void PreCallSetups (string exitScenePath, RoundSessionData data)
     {
-        if (targetScene == null)
-            return;
-
-        PagerInteractionManager.ExitScenePath = GameManager.CurrentScene;
+        PagerInteractionManager.ExitScenePath = exitScenePath;
         RoundsManager.OnSessionCompletedAction = () =>
         {
             Debug.Log("Session Done! ");
@@ -68,12 +66,21 @@ public class InteractablePortal : Interactable
 
         if (SaveManager.Initiated) 
         {
-            SaveManager.SetSpawnPath (GameManager.CurrentScene);
+            SaveManager.SetSpawnPath (exitScenePath);
             SaveManager.SetSpawnIndex (data.AbandonSpawnIndex);
         }
+    }
+
+    private void LoadSceneAction()
+    {
+        if (targetScene == null)
+            return;
+
+        PreCallSetups (GameManager.CurrentScene, data);
 
         SceneTransition.LoadScene( targetScene.ScenePath, SceneTransition.TransitionType.SafetyToDanger );
     }
+
 
     protected override void HighlightState (bool value) 
     {

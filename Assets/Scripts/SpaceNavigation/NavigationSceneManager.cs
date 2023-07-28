@@ -77,7 +77,7 @@ public class NavigationSceneManager : MonoBehaviour
         _navigationConsole = nc;
     }
 
-    public void CloseAndSetScene(string scenePath)
+    public void CloseAndSetScene (string scenePath, bool callDangerTransition = false)
     {
         SetShipTeleportScene (scenePath);
 
@@ -90,7 +90,13 @@ public class NavigationSceneManager : MonoBehaviour
         // --
 
         PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
-        GameManager.GoToScene(scenePath, saveScenePath: true);
+
+        SaveManager.SetSpawnPath(scenePath);
+
+        if (!callDangerTransition)
+            GameManager.GoToScene(scenePath);
+        else 
+            SceneTransition.LoadScene( scenePath, SceneTransition.TransitionType.SafetyToDanger );
     }
 
     private void SetShipTeleportScene (string scenePath)
