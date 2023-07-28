@@ -29,6 +29,7 @@ public class ShipDialogueManager : MonoBehaviour
     [Header("References")]
     [SerializeField] PlayerCharacter playerCharacter;
     [SerializeField] ShipDialogueBox dialogueBox;
+    [SerializeField] ShipDialogueOptions optionsesBox;
     [SerializeField] ShipInitializerSystem shipInitializer;
 
     public static int StartDialogueIndex = -1; // -- Chama "-1" se não tiver diálogo no início
@@ -99,25 +100,42 @@ public class ShipDialogueManager : MonoBehaviour
 
     private void SetDialogueGroup (ShipNPCData dialogueData, DialogueGroup dialogueGroup, int index = 0)
     {
-        UnityAction afterInputAction = null;
         (bool isValid, string text) shipTextInfo = LocalizationManager.GetShipText( dialogueGroup[index % dialogueGroup.Count] );
+        
+        bool isDialogOptions = false;
+        UnityAction afterInputAction = null;
+        string[] split = new string[] { };
 
         int nextMessageIndex = index + 1;
 
         if (Regex.IsMatch(shipTextInfo.text, flowRedirectRegex))
         {
-            string[] split = shipTextInfo.text.Split('>','-');
+            split = shipTextInfo.text.Split('>','-');
             nextMessageIndex = Int32.Parse(split[2]) -1 ;
             shipTextInfo.text = split[0];
         }
-            
+        else
+        {
+            if (Regex.IsMatch(shipTextInfo.text, dialogOptionsRegex))
+            {
+                split = shipTextInfo.text.Split('<', '>');
+                shipTextInfo.text = split[0];
+                isDialogOptions = true;
+            }
+        }
 
         if (index < dialogueGroup.Count) // -- Chama mais texto
         {
-            afterInputAction = () =>
+            if (!isDialogOptions)
             {
-                SetDialogueGroup(dialogueData, dialogueGroup, nextMessageIndex);
-            };
+                afterInputAction = () => SetDialogueGroup(dialogueData, dialogueGroup, nextMessageIndex);    
+            }
+            else
+            {
+                afterInputAction = () => OpenDialogOptionsSelectionMenu(split, dialogueData, dialogueGroup);
+            }
+            
+            
         }
         else // -- Termina a sessão de diálogos 
         {
@@ -133,6 +151,21 @@ public class ShipDialogueManager : MonoBehaviour
         }
 
         dialogueBox.Type (shipTextInfo.text, delay: .5f, instantText: false, afterInputAction);
+    }
+
+    private void OpenDialogOptionsSelectionMenu(string[] split, ShipNPCData dialogueData, DialogueGroup dialogueGroup)
+    {
+        int optionsCount = Mathf.RoundToInt((split.Length - 1) / 2f);
+        List<(int, string)> options = new List<(int, string)>();
+
+        for (int i = 0; i < optionsCount; i++)
+        {
+            int j = (i * 2) + 1;
+            options.Add((Int32.Parse(split[j]), split[j + 1]));
+        }
+        optionsesBox.InitializeOptions(options, n => SetDialogueGroup(dialogueData, dialogueGroup, n));
+        optionsesBox.gameObject.SetActive(true);
+        StartCoroutine(optionsesBox.DebugPress2());
     }
 
     private void EndDialogue (ShipNPCData dialogueData, bool forceOut = false)
