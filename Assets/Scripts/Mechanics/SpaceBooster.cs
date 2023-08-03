@@ -6,8 +6,12 @@ using DG.Tweening;
 
 public class SpaceBooster : MonoBehaviour
 {
-    [SerializeField] Vector2[] launchDirections;    
+    [SerializeField] Vector2[] launchDirections;
     [SerializeField] float cooldownDuration;
+
+    [Header("Override Speed")]
+    [SerializeField] bool overrideSpeed;
+    [SerializeField] float targetSpeed;
 
     [Header("References")]
     [SerializeField] Transform visualComponent;
@@ -143,7 +147,7 @@ public class SpaceBooster : MonoBehaviour
     {
         collectable.NullifyPreviousHolder();
         collectable.transform.position = transform.position;
-        rb.velocity = GetLaunchDirection().normalized * rb.velocity.magnitude;
+        rb.velocity = GetLaunchDirection().normalized * (overrideSpeed ? targetSpeed : rb.velocity.magnitude);
 
         StartCoroutine(CooldownRoutine());
     }
@@ -151,7 +155,7 @@ public class SpaceBooster : MonoBehaviour
     protected virtual void PlayerLaunch(SpaceJumper spaceJumper)
     {
         spaceJumper.transform.position = transform.position;
-        spaceJumper.RedirectIntoDirection(GetLaunchDirection().normalized);
+        spaceJumper.RedirectIntoDirection(GetLaunchDirection().normalized, overrideSpeed ? targetSpeed : 0);
 
         StartCoroutine(CooldownRoutine());
     }

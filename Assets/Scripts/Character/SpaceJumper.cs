@@ -226,12 +226,12 @@ public class SpaceJumper : MonoBehaviour
         rb.velocity = direction * speed * multiplier;
     } 
 
-    public void RedirectIntoDirection (Vector2 direction)
+    public void RedirectIntoDirection (Vector2 direction, float speed = 0)
     {
         SetLaunchState(true, playLongJumpSound: false);
 
         transform.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
-        rb.velocity = direction * rb.velocity.magnitude;
+        rb.velocity = direction * ( speed == 0 ? rb.velocity.magnitude : speed );
     }
 
     public bool OnLaunch()
