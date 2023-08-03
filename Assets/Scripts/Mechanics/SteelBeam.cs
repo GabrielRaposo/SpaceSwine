@@ -102,7 +102,7 @@ public class SteelBeam : MonoBehaviour
         UpdateContactPointModifier();
 
         landFeedbackTime = landFeedbackDuration;
-        exitFeedbackTime = 0;
+        //exitFeedbackTime = 0;
     }
 
     private void OnPlayerExitAction()
