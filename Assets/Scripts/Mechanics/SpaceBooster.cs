@@ -18,6 +18,7 @@ public class SpaceBooster : MonoBehaviour
     [SerializeField] Transform rotationAnchor;
     [SerializeField] ParticleSystem spinParticleSystem;
     [SerializeField] AK.Wwise.Event activationAKEvent;
+    [SerializeField] bool previewLine;
 
     int index;
     bool interactable = true;
@@ -221,6 +222,14 @@ public class SpaceBooster : MonoBehaviour
 
     private void OnDrawGizmos() 
     {
-            
+        if (!previewLine)
+            return;
+
+        if (launchDirections == null || launchDirections.Length < 1)
+            return;
+
+        Gizmos.color = Color.green;
+        float length = 20;
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3) (launchDirections[0] * length) );
     }
 }
