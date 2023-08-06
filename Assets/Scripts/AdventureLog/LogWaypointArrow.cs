@@ -23,7 +23,7 @@ public class LogWaypointArrow : MonoBehaviour
 
     private void Start() 
     {
-        //SetVisibility (false);
+        SetVisibility (false);
     }
 
     public void SetVisibility (bool value)
@@ -31,13 +31,13 @@ public class LogWaypointArrow : MonoBehaviour
         anchorRT.gameObject.SetActive(value);
     }
 
-    const float EDGE_ANGLE1 = 57.6f;
-    const float EDGE_ANGLE2 = 147.6f;
-    const float EDGE_ANGLE3 = 237.6f;
-    const float EDGE_ANGLE4 = 302.4f;
+    const float EDGE_ANGLE1 = 60f;
+    const float EDGE_ANGLE2 = 120f;
+    const float EDGE_ANGLE3 = 240f;
+    const float EDGE_ANGLE4 = 300f;
 
-    const float HALF_WIDTH = 775;
-    const float HALF_HEIGHT = 425;
+    const float HALF_WIDTH  = 775; // 800 - 25
+    const float HALF_HEIGHT = 425; // 450 - 25
 
     public void UpdateDirection (Vector2 direction)
     {
@@ -48,11 +48,10 @@ public class LogWaypointArrow : MonoBehaviour
         if (angle < 0)
             angle += 360;
 
-        //Debug.Log("angle: " + angle);
+        Debug.Log("angle: " + angle);
         Vector2 minPos = Vector2.zero;
         Vector2 maxPos = Vector2.zero;
         float lValue = .5f;
-        float offset = 10f;
 
         // -- North
         if (angle < EDGE_ANGLE1 || angle > EDGE_ANGLE4)
@@ -60,14 +59,11 @@ public class LogWaypointArrow : MonoBehaviour
             anchorRT.anchorMin = anchorRT.anchorMax = anchorRT.pivot = new Vector2(.5f, 1.0f);
             minPos = Vector2.right * HALF_WIDTH;
             maxPos = Vector2.right * -HALF_WIDTH;
+
             if (angle < 57.6f)
-            {
                 lValue = Mathg.Remap (angle, 0f, EDGE_ANGLE1, 0.5f, 1.0f);
-            }
             else
-            {
                 lValue = Mathg.Remap (angle, EDGE_ANGLE4, 360f, 0f, 0.5f);
-            }
         }
         // -- West
         else if (angle < EDGE_ANGLE2)

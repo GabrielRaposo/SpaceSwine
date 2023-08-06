@@ -9,27 +9,23 @@ public class LogWaypoint : MonoBehaviour
     [SerializeField] SpriteRenderer mainRenderer;
     [SerializeField] List<AdventureLogScriptableObject> logs;
 
-    PlayerCharacter playerCharacter;
+    bool active;
+
     LogWaypointArrow UIArrow;
+    Transform cameraTransform;
 
     void Start()
     {
-        StartCoroutine ( WaitForPlayerReference ( Initiate ) );
-    }
-
-    private IEnumerator WaitForPlayerReference (UnityAction action)
-    {
-        yield return new WaitWhile ( () => PlayerCharacter.Instance == null );
+        if (logs.Count < 1)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
         
-        playerCharacter = PlayerCharacter.Instance;
+        cameraTransform = Camera.main.transform;
         UIArrow = LogWaypointArrow.Instance;
 
-        action.Invoke();
-    }
-
-    private void Initiate()
-    {
-        if (!playerCharacter || !UIArrow)
+        if (!cameraTransform || !UIArrow)
         {
             gameObject.SetActive(false);
             return;
@@ -40,16 +36,53 @@ public class LogWaypoint : MonoBehaviour
 
     void Update()
     {
-        if (!playerCharacter)
+        active = false;
+        foreach (AdventureLogScriptableObject log in logs)
+        {
+            if (AdventureLogDisplay.UpdatedList.Contains(log))
+            {
+                active = true;
+                break;
+            }
+        }
+
+        if (!active)
+        {   
+            UpdateVisibility();
+            //UIArrow.SetVisibility(false);
             return;
+        }
 
         UpdateVisibility();
 
-        UIArrow.UpdateDirection( (transform.position - playerCharacter.transform.position).normalized );
+        if (!mainRenderer.isVisible && NotOnRange)
+        {
+            UIArrow.UpdateDirection( (transform.position - cameraTransform.transform.position).normalized );
+            UIArrow.SetVisibility(true);
+            return;
+        }
+        UIArrow.SetVisibility(false);
     }
 
     private void UpdateVisibility()
     {
-        mainRenderer.enabled = Vector2.Distance(transform.position, playerCharacter.transform.position) > hideRadius;
+        if (!active)
+        {
+            mainRenderer.enabled = false;
+            return;
+        }
+
+        mainRenderer.enabled = NotOnRange;
+    }
+
+    private bool NotOnRange => Vector2.Distance(transform.position, cameraTransform.transform.position) > hideRadius;
+
+    private void OnDrawGizmos() 
+    {
+        if (!cameraTransform)
+            return;
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay((Vector2) cameraTransform.position, (Vector2) (transform.position - cameraTransform.position) * 5);
     }
 }

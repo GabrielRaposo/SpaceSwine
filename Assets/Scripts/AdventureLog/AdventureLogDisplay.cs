@@ -21,9 +21,12 @@ public class AdventureLogDisplay : MonoBehaviour
 
     Sequence fadeSequence;
 
+    public static List<AdventureLogScriptableObject> UpdatedList;
+
     private void Awake() 
     {
-        canvasGroup = GetComponent<CanvasGroup>();    
+        canvasGroup = GetComponent<CanvasGroup>();
+        UpdatedList = new List<AdventureLogScriptableObject>();
     }
 
     private void Start() 
@@ -92,6 +95,8 @@ public class AdventureLogDisplay : MonoBehaviour
         tabs = new List<AdventureLogTab>();
         baseTab.SetActiveState(false);
 
+        UpdatedList = logList;
+
         if (logList.Count < 1)
         {
             canvasGroup.alpha = 0;
@@ -108,6 +113,7 @@ public class AdventureLogDisplay : MonoBehaviour
 
             tabs.Add(tabScript);
         }
+
         //canvasGroup.alpha = 1;
         SetFadeAnimation(true);
     }
@@ -132,6 +138,8 @@ public class AdventureLogDisplay : MonoBehaviour
         tabScript.SlideInAndStay( ()=>{} );
 
         tabs.Add (tabScript);
+        if (UpdatedList != null)
+            UpdatedList.Add(log);
 
         if (!IsOnExceptionScene())
             //canvasGroup.alpha = 1;
@@ -161,6 +169,9 @@ public class AdventureLogDisplay : MonoBehaviour
             () => 
             {
                 tabs.Remove(tabToRemove);
+                if (UpdatedList.Contains(log))
+                    UpdatedList.Remove(log);
+
                 if (tabs.Count < 1)
                 {
                     //canvasGroup.alpha = 0;
