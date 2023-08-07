@@ -6,14 +6,19 @@ using DG.Tweening;
 
 public class SpaceBooster : MonoBehaviour
 {
-    [SerializeField] Vector2[] launchDirections;    
+    [SerializeField] Vector2[] launchDirections;
     [SerializeField] float cooldownDuration;
+
+    [Header("Override Speed")]
+    [SerializeField] bool overrideSpeed;
+    [SerializeField] float targetSpeed;
 
     [Header("References")]
     [SerializeField] Transform visualComponent;
     [SerializeField] Transform rotationAnchor;
     [SerializeField] ParticleSystem spinParticleSystem;
     [SerializeField] AK.Wwise.Event activationAKEvent;
+    [SerializeField] bool previewLine;
 
     int index;
     bool interactable = true;
@@ -143,7 +148,7 @@ public class SpaceBooster : MonoBehaviour
     {
         collectable.NullifyPreviousHolder();
         collectable.transform.position = transform.position;
-        rb.velocity = GetLaunchDirection().normalized * rb.velocity.magnitude;
+        rb.velocity = GetLaunchDirection().normalized * (overrideSpeed ? targetSpeed : rb.velocity.magnitude);
 
         StartCoroutine(CooldownRoutine());
     }
@@ -151,7 +156,7 @@ public class SpaceBooster : MonoBehaviour
     protected virtual void PlayerLaunch(SpaceJumper spaceJumper)
     {
         spaceJumper.transform.position = transform.position;
-        spaceJumper.RedirectIntoDirection(GetLaunchDirection().normalized);
+        spaceJumper.RedirectIntoDirection(GetLaunchDirection().normalized, overrideSpeed ? targetSpeed : 0);
 
         StartCoroutine(CooldownRoutine());
     }
@@ -217,6 +222,14 @@ public class SpaceBooster : MonoBehaviour
 
     private void OnDrawGizmos() 
     {
-            
+        if (!previewLine)
+            return;
+
+        if (launchDirections == null || launchDirections.Length < 1)
+            return;
+
+        Gizmos.color = Color.green;
+        float length = 20;
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3) (launchDirections[0] * length) );
     }
 }
