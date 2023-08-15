@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 public class TitleMenuButton : MonoBehaviour
 {
@@ -24,7 +26,7 @@ public class TitleMenuButton : MonoBehaviour
     [Header("References")]
     [SerializeField] Image tabLine;
     [SerializeField] Image sideSlot;
-    [SerializeField] TextMeshProUGUI textDisplay;
+    [SerializeField] public TextMeshProUGUI textDisplay;
     [SerializeField] CanvasGroup canvasGroup;
 
     bool selected;
@@ -47,6 +49,17 @@ public class TitleMenuButton : MonoBehaviour
             clickAKEvent.Post(gameObject);
 
         OnClickEvent.Invoke();
+    }
+    
+    public void SetEvent(Action onClick)
+    {
+        OnClickEvent = new UnityEvent();
+        OnClickEvent.AddListener(()=>onClick());
+    }
+
+    public void RemoveAllListeners()
+    {
+        OnClickEvent.RemoveAllListeners();
     }
 
     private bool SlideSequence(bool value, UnityAction onComplete)

@@ -81,6 +81,8 @@ public class TitleMenuNavigation : MonoBehaviour
 
     private void SetContinueButtonState()
     {
+        if(continueButton == null) return;
+        
         if (StoryEventsManager.IsComplete(newSaveCheckEvent) )
         {
             continueButton.SetInteraction (true);
@@ -253,15 +255,16 @@ public class TitleMenuNavigation : MonoBehaviour
     private void MoveCursor (int direction)
     {
         holdCount = holdCooldown;
+        int buttonCount = ActiveButtonsCount();
 
         current += direction;
-        if (current % titleButtons.Count == 0 && !StoryEventsManager.IsComplete( newSaveCheckEvent ))
+        if (current % buttonCount == 0 && !StoryEventsManager.IsComplete( newSaveCheckEvent ))
             current += direction;
 
         if (current < 0)
-            current = titleButtons.Count - 1;
-        current %= titleButtons.Count;
-
+            current = buttonCount - 1;
+        
+        current %= buttonCount;
 
         SelectCurrent(instant: false, playSound: true);
     }
@@ -270,6 +273,19 @@ public class TitleMenuNavigation : MonoBehaviour
     {
         axisInput.Disable();
         playerInputActions.UI.Confirm.Disable();
+    }
+
+    private int ActiveButtonsCount()
+    {
+        int n = 0;
+        for (int i = 0; i < titleButtons.Count; i++)
+        {
+            if (titleButtons[i].gameObject.activeSelf)
+                n++;
+
+        }
+
+        return n;
     }
 
 }

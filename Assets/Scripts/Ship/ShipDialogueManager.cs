@@ -134,8 +134,6 @@ public class ShipDialogueManager : MonoBehaviour
             {
                 afterInputAction = () => OpenDialogOptionsSelectionMenu(split, dialogueData, dialogueGroup);
             }
-            
-            
         }
         else // -- Termina a sessão de diálogos 
         {
@@ -165,7 +163,6 @@ public class ShipDialogueManager : MonoBehaviour
         }
         optionsesBox.InitializeOptions(options, n => SetDialogueGroup(dialogueData, dialogueGroup, n));
         optionsesBox.gameObject.SetActive(true);
-        StartCoroutine(optionsesBox.DebugPress2());
     }
 
     private void EndDialogue (ShipNPCData dialogueData, bool forceOut = false)

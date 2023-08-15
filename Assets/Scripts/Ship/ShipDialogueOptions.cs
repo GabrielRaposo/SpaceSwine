@@ -9,7 +9,8 @@ using UnityEngine.UI;
 
 public class ShipDialogueOptions : MonoBehaviour
 {
-    [SerializeField] private List<Button> buttons;
+    [SerializeField] private TitleMenuNavigation titleMenuNavigation;
+    [SerializeField] private List<TitleMenuButton> buttons;
 
     public void InitializeOptions(List<(int, string)> list, UnityAction<int> jumpToNextDialog)
     {
@@ -17,34 +18,27 @@ public class ShipDialogueOptions : MonoBehaviour
         {
             int index = i;
             buttons[index].gameObject.SetActive(true);
-            var text = buttons[index].GetComponentInChildren<TMP_Text>();
+            var text = buttons[index].textDisplay;
             text.text = list[index].Item2;
             
-            buttons[index].onClick.AddListener(() =>
+            buttons[index].SetEvent(() =>
             {
                 CloseDialogOptions();
                 jumpToNextDialog.Invoke(list[index].Item1-1);
             });
         }
 
-        StartCoroutine(DebugPress2());
+        titleMenuNavigation.OnFocus = true;
     }
 
     private void CloseDialogOptions()
     {
         for (int i = 0; i < buttons.Count; i++)
         {
-            buttons[i].onClick.RemoveAllListeners();
+            buttons[i].RemoveAllListeners();
             buttons[i].gameObject.SetActive(false);
         }
         gameObject.SetActive(false);
     }
 
-    public IEnumerator DebugPress2()
-    {
-        Debug.Log("Start debug");
-        yield return new WaitForSeconds(1.5f);
-        buttons[0].onClick.Invoke();
-    }
-    
 }
