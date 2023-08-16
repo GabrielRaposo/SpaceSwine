@@ -7,11 +7,8 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class ShipDialogueOptions : MonoBehaviour
+public class ShipDialogueOptions : InputSystemButtonsNavigation<DialogOptionButton>
 {
-    [SerializeField] private TitleMenuNavigation titleMenuNavigation;
-    [SerializeField] private List<TitleMenuButton> buttons;
-
     public void InitializeOptions(List<(int, string)> list, UnityAction<int> jumpToNextDialog)
     {
         for (int i = 0; i < list.Count; i++)
@@ -28,7 +25,7 @@ public class ShipDialogueOptions : MonoBehaviour
             });
         }
 
-        titleMenuNavigation.OnFocus = true;
+        OnFocus = true;
     }
 
     private void CloseDialogOptions()

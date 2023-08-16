@@ -6,17 +6,12 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 
-public class TitleMenuNavigation : MonoBehaviour
+public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
 {
-    [SerializeField] bool startOnFocus;
-    [SerializeField] List<TitleMenuButton> titleButtons;
-
+    
     [Header("Dynamic Button")]
     [SerializeField] TitleMenuButton continueButton;
     [SerializeField] StoryEventScriptableObject newSaveCheckEvent;
-
-    [Header("Input")]
-    [SerializeField] float holdCooldown;
 
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event OnEnterMenuAKEvent;
@@ -27,38 +22,16 @@ public class TitleMenuNavigation : MonoBehaviour
     [SerializeField] AnimationCurve approachCurve;
     [SerializeField] CanvasGroup canvasGroup;
 
-    [HideInInspector] public bool OnFocus;
     public UnityAction OnEnterMenuEvent;
-    
-    int current = -1;
-    float holdCount;
 
     Sequence s;
-    PlayerInputActions playerInputActions;
-    InputAction axisInput;
 
-    private void OnEnable() 
+    protected override void OnEnable() 
     {
         playerInputActions = new PlayerInputActions();    
     
         axisInput = playerInputActions.UI.Navigation;
-        /**
-        //axisInput.performed += (ctx) => 
-        //{ 
-        //    if(!OnFocus || SceneTransition.OnTransition)
-        //        return;
 
-        //    Vector2 navigationInput = ctx.ReadValue<Vector2>();
-
-        //    if (navigationInput.y != 0)
-        //    {
-        //        if (navigationInput.y > .5f)
-        //            MoveCursor(-1);
-        //        else if (navigationInput.y < .5f)
-        //            MoveCursor(1);
-        //    }
-        //};
-        **/
         axisInput.Enable();
 
         playerInputActions.UI.Confirm.performed += (ctx) => 
@@ -66,18 +39,19 @@ public class TitleMenuNavigation : MonoBehaviour
             if(!OnFocus || SceneTransition.OnTransition)
                 return;
 
-            titleButtons[current].Submit();
+            buttons[current].Submit();
         };
         playerInputActions.UI.Confirm.Enable();
     }
 
-    private void Start() 
+    protected override void Start()
     {
         SetContinueButtonState();
         
         if (startOnFocus)
             OnFocus = true;
     }
+
 
     private void SetContinueButtonState()
     {
@@ -96,33 +70,7 @@ public class TitleMenuNavigation : MonoBehaviour
         }
         SelectCurrent();
     }
-
-    private void Update() 
-    {
-        Vector2 axis = axisInput.ReadValue<Vector2>();
-        if (axis == Vector2.zero)
-            holdCount = 0;
-        else
-            holdCount -= Time.deltaTime;
-
-        if (holdCount < 0)
-            holdCount = 0;
-
-        if (!OnFocus || SceneTransition.OnTransition)
-            return;
-        
-        if (holdCount > 0)
-            return;
-
-        if (axis.y != 0)
-        {
-            if (axis.y > .75f)
-                MoveCursor(-1);
-            else if (axis.y < -.75f)
-                MoveCursor(1);
-        }
-    }
-
+    
     public void FadeInSequence()
     {
         if (s != null) 
@@ -149,9 +97,9 @@ public class TitleMenuNavigation : MonoBehaviour
         s.Append( canvasGroup.DOFade(1, fadeDuration) );
 
         float startX = 2200f;
-        for (int i = 0; i < titleButtons.Count; i++)
+        for (int i = 0; i < buttons.Count; i++)
         {
-            RectTransform buttonRT = titleButtons[i].GetComponent<RectTransform>();
+            RectTransform buttonRT = buttons[i].GetComponent<RectTransform>();
             Vector2 originalPosition = buttonRT.anchoredPosition;
             buttonRT.anchoredPosition = new Vector2(startX, buttonRT.anchoredPosition.y);
 
@@ -197,36 +145,6 @@ public class TitleMenuNavigation : MonoBehaviour
 
         s = DOTween.Sequence();
         s.Append( canvasGroup.DOFade(0, fadeDuration) );
-
-        /**
-        float hideX = 2200f;
-        for (int i = 0; i < titleButtons.Count; i++)
-        {
-            RectTransform buttonRT = titleButtons[i].GetComponent<RectTransform>();
-            Vector2 originalPosition = buttonRT.anchoredPosition;
-            //buttonRT.anchoredPosition = new Vector2(hideX, buttonRT.anchoredPosition.y);
-
-            float delay = .05f * i;
-            //s.Join( buttonRT.DOAnchorPos(originalPosition, slideDuration).SetEase(Ease.OutCirc).SetDelay(delay) );
-            s.Join
-            ( 
-                DOVirtual.Float 
-                (
-                    from: 0, to: 1, slideDuration, 
-                    (f) => buttonRT.anchoredPosition = new Vector2 
-                    ( 
-                        GetModifiedPosition(f, originalPosition.x, hideX), 
-                        buttonRT.anchoredPosition.y
-                    )
-                ).SetDelay(delay)
-            );
-        }
-
-        s.OnComplete( () => 
-        {
-            // ---
-        });
-        **/
     }
 
 
@@ -235,24 +153,7 @@ public class TitleMenuNavigation : MonoBehaviour
         float f = Mathf.Lerp (start, end, t);
         return f * approachCurve.Evaluate(t);
     }
-
-    private void SelectCurrent (bool instant = false, bool playSound = false)
-    {
-        for (int i = 0; i < titleButtons.Count; i++)
-        {
-            if (instant)
-                titleButtons[i].InstantSelect(false);
-            else
-                titleButtons[i].Deselect();
-        }
-
-        if (instant)
-            titleButtons[current].InstantSelect(true);
-        else
-            titleButtons[current].Select(playSound);        
-    }
-
-    private void MoveCursor (int direction)
+    protected override void MoveCursor (int direction)
     {
         holdCount = holdCooldown;
         int buttonCount = ActiveButtonsCount();
@@ -269,23 +170,8 @@ public class TitleMenuNavigation : MonoBehaviour
         SelectCurrent(instant: false, playSound: true);
     }
 
-    private void OnDisable() 
-    {
-        axisInput.Disable();
-        playerInputActions.UI.Confirm.Disable();
-    }
 
-    private int ActiveButtonsCount()
-    {
-        int n = 0;
-        for (int i = 0; i < titleButtons.Count; i++)
-        {
-            if (titleButtons[i].gameObject.activeSelf)
-                n++;
+    
 
-        }
-
-        return n;
-    }
 
 }
