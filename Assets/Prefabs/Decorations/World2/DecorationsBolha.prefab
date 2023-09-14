@@ -175,6 +175,7 @@ MonoBehaviour:
   grassRotationOffset: 0
   grassAmount: 0
   grassSpacing: 0
+  grassHeightOffset: 0
 --- !u!1 &6122670861306789377
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +498,7 @@ MonoBehaviour:
   grassRotationOffset: 0
   grassAmount: 0
   grassSpacing: 0
+  grassHeightOffset: 0
 --- !u!1 &6122670862536634644
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +573,7 @@ GameObject:
   - component: {fileID: 4253303727253475348}
   - component: {fileID: 7490629694987741997}
   - component: {fileID: 8282925901698843547}
+  - component: {fileID: 602070725485892716}
   m_Layer: 10
   m_Name: Placer (orbital)
   m_TagString: Untagged
@@ -611,6 +614,7 @@ MonoBehaviour:
   grassRotationOffset: 0
   grassAmount: 0
   grassSpacing: 0
+  grassHeightOffset: 0
 --- !u!114 &8282925901698843547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,3 +631,25 @@ MonoBehaviour:
   startDelay: 0
   customEase: 0
   moveOnStart: 1
+--- !u!114 &602070725485892716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6163533868136837535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f84a754109316448cc69116ef19256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions:
+  - {x: 0, y: 0.1}
+  speed: 0.05
+  startDelay: 0
+  loop: 0
+  easeExtremities: 1
+  invertAutoEase: 0
+  customEase: 0
+  moveOnStart: 1
+  stopDuringOutro: 0
