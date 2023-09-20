@@ -13,5 +13,6 @@ public class DecorationPlacer : MonoBehaviour
     [Range(0,360)]public float grassRotationOffset;
     public int grassAmount;
     public float grassSpacing;
+    public float grassHeightOffset;
 
 }
