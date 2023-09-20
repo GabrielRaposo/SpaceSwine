@@ -32,6 +32,7 @@ public class DecorationPlacerEditor : Editor
         
         GrassAmountManager(dif, obj);
         SetGrassSpacing(obj);
+        SetGrassHeight(obj);
         SceneView.RepaintAll();
         EditorUtility.SetDirty(obj);
     }
@@ -256,6 +257,16 @@ public class DecorationPlacerEditor : Editor
         {
             var attach = obj.grass[i].GetComponent<AttachToPlanet>();
             attach.angle = (obj.grassSpacing * i) + obj.grassRotationOffset;
+            attach.Attach();
+        }
+    }
+    
+    private static void SetGrassHeight(DecorationPlacer obj)
+    {
+        for (int i = 0; i < obj.grass.Count; i++)
+        {
+            var attach = obj.grass[i].GetComponent<AttachToPlanet>();
+            attach.heightOffset = obj.grassHeightOffset;
             attach.Attach();
         }
     }
