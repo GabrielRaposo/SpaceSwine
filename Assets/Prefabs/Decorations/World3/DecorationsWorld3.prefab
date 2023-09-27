@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &815615885613939296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6678452221376231541}
+  - component: {fileID: 6226559676330537886}
+  m_Layer: 10
+  m_Name: Placer Overlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6678452221376231541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815615885613939296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 967640159809717395}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6226559676330537886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815615885613939296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a48ae5936dd594b9cb81c36ecd2b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grassReference: {fileID: 7946379876433479658, guid: ca0d2b7210b85c94ba4ea2bd57bd826f, type: 3}
+  miscObjectsReference:
+  - {fileID: 1878459482961637576, guid: d019c728e8493c04db8727357f82c505, type: 3}
+  - {fileID: 2301470136953347982, guid: 6b5384124a4b1b74fa72f6b33b52f0a9, type: 3}
+  grass: []
+  miscObjects: []
+  grassRotationOffset: 0
+  grassAmount: 0
+  grassSpacing: 9.19
+  grassHeightOffset: 0
 --- !u!1 &1740142938121454620
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +164,7 @@ Transform:
   m_Children:
   - {fileID: 5843778664715986628}
   m_Father: {fileID: 967640159809717395}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6590923468754480597
 GameObject:
@@ -142,6 +195,7 @@ Transform:
   m_Children:
   - {fileID: 884843361154011503}
   - {fileID: 6878728612433094434}
+  - {fileID: 6678452221376231541}
   - {fileID: 3095942615566856449}
   - {fileID: 7061414216946612668}
   m_Father: {fileID: 0}
@@ -190,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a48ae5936dd594b9cb81c36ecd2b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grassReference: {fileID: 2301470136953347982, guid: 6b5384124a4b1b74fa72f6b33b52f0a9, type: 3}
+  grassReference: {fileID: 7946379876433479658, guid: ca0d2b7210b85c94ba4ea2bd57bd826f, type: 3}
   miscObjectsReference:
   - {fileID: 1947367642232328443, guid: 32fad6b3574ea7445bebaec0652f87ce, type: 3}
   - {fileID: 311329163668010835, guid: 02d66dd75d875e24bb61a90c234d17bd, type: 3}
@@ -199,11 +253,14 @@ MonoBehaviour:
   - {fileID: 6998826301608272418, guid: 4c6aa5ab655c19d45a819df3e13f37f6, type: 3}
   - {fileID: 893692331089623492, guid: 1c887f923e30f9a47ae9e779fe2a0989, type: 3}
   - {fileID: 5138151010950744069, guid: 0a922f4a6955889498edf239a770932a, type: 3}
+  - {fileID: 5272596972895061563, guid: 8096a7a24feba794ea17b91cdb1b5fd0, type: 3}
+  - {fileID: 2001649628167592832, guid: 2b1ad6b6d2629dd45bff9a0b65ab4b45, type: 3}
+  - {fileID: 5565943924982388281, guid: 530f94ae9637f4146a14816fd4fc1961, type: 3}
   grass: []
   miscObjects: []
-  grassRotationOffset: 0
+  grassRotationOffset: 316
   grassAmount: 0
-  grassSpacing: 9.19
+  grassSpacing: 52.79
   grassHeightOffset: 0
 --- !u!1 &6878728611264305565
 GameObject:
@@ -357,9 +414,9 @@ MonoBehaviour:
   - {fileID: 8107574568517936255, guid: 83a9ddbf5e85c234387f5d8d47edd4a9, type: 3}
   grass: []
   miscObjects: []
-  grassRotationOffset: 0
+  grassRotationOffset: 76
   grassAmount: 0
-  grassSpacing: 9.19
+  grassSpacing: 77.56
   grassHeightOffset: 0
 --- !u!1 &8627021407883060419
 GameObject:
@@ -390,5 +447,5 @@ Transform:
   m_Children:
   - {fileID: 6878728611264305564}
   m_Father: {fileID: 967640159809717395}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
