@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetWorldNavigationObject : NavigationObject
+public class SetWorldNavigationObject : SetSceneNavigationObject
 {
+    [Header("World")]
+    [SerializeField] int worldIndex;
+    
 
 }
