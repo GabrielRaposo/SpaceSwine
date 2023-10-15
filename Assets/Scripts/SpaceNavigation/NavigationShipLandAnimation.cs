@@ -23,11 +23,12 @@ public class NavigationShipLandAnimation : MonoBehaviour
     NavigationSceneManager navSceneManager;
     NavigationShip navigationShip;
 
+
     void Start()
     {
+        navSceneManager = NavigationSceneManager.Instance;
         navigationShip = GetComponent<NavigationShip>();
     }
-
 
     public void Call (SetSceneNavigationObject caller, UnityAction CloseAndSetScene)
     {
