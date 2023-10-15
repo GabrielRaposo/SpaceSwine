@@ -5036,11 +5036,15 @@ MonoBehaviour:
   speed: 0.02
   spritesTransform: {fileID: 6704606070631269565}
   smokeTrailPS: {fileID: 4163630938201908525}
-  flightStepsDelay: 0.1
+  OnHoverAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 18213819c28e3ae489aa62a9c1146f15, type: 2}
+  flightStepsDelay: 0.45
   flightStepsAKEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: a5eb62b1e8ba758409f30eedb95efd80, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: cc26ec631eea5c6478684ab90c89ba70, type: 2}
   OverrideMode: 0
   OverridenControls: {x: 0, y: 0}
 --- !u!114 &4894789703157101612
@@ -5084,6 +5088,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f416d7db59d2e6a47adaeebc191044ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dotsParent: {fileID: 0}
+  OnSelectAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2f83610648846d846b67383e60a73bff, type: 2}
+  MakePathAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: ece5c268e4e34234fa8bab36b31e00cb, type: 2}
+  OnReachDestinationAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 12a68a06e673de84e8f660824c09268c, type: 2}
 --- !u!70 &6704606069767115108
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

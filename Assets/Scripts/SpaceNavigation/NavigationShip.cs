@@ -26,6 +26,7 @@ public class NavigationShip : MonoBehaviour
     private static Vector2 previousPostion = new Vector2(0f, 330f-1.28f);
 
     [Header("Audio")]
+    [SerializeField] AK.Wwise.Event OnHoverAKEvent;
     [SerializeField] float flightStepsDelay;
     [SerializeField] AK.Wwise.Event flightStepsAKEvent;
     //[SerializeField] AK.Wwise.Event flightAmbienceAKEvent;
@@ -100,7 +101,10 @@ public class NavigationShip : MonoBehaviour
         
         if(selectedObject != null)
             selectedObject.OnDeselect();
-        
+
+        if (OnHoverAKEvent != null)
+            OnHoverAKEvent.Post(gameObject);
+
         navObject.OnSelect();
         selectedObject = navObject;
     }

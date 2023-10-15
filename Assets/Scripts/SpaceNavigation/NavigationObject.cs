@@ -78,7 +78,7 @@ public class NavigationObject : StoryEventDependent
             return;
 
         //Debug.Log("OnInteract()");
-        interactAction?.Invoke(ship);
+        interactAction?.Invoke( ship );
     }
 
     private void OpenDisplay()

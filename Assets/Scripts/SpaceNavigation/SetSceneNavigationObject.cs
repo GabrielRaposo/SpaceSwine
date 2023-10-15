@@ -12,10 +12,6 @@ public class SetSceneNavigationObject : NavigationObject
     public SceneReference scene;
     public SpriteRenderer selector;
 
-    [SerializeField] private Transform debugShip;
-    [SerializeField] private GameObject navigationDot;
-    [SerializeField] private Transform dotsParent;
-
     [Header("Danger Data")]
     [SerializeField] bool toDangerZone;
     [SerializeField] SceneReference shipSceneReference;
@@ -29,21 +25,6 @@ public class SetSceneNavigationObject : NavigationObject
     [SerializeField] string notificationID;
     [SerializeField] GameObject exclamationIcon;
 
-    [Header("Audio")]
-    [SerializeField] AK.Wwise.Event OnHoverAKEvent;
-    [SerializeField] AK.Wwise.Event OnSelectAKEvent; 
-    [SerializeField] AK.Wwise.Event MakePathAKEvent;
-    [SerializeField] AK.Wwise.Event OnReachDestinationAKEvent;
-    
-    private float p2Lenght = 1.5f;
-    private float p3Lenght = 0.6f;
-    private Curve animationBezier;
-
-    private Vector2 p2Debug;
-    private Vector2 p3Debug;
-
-    private NavigationSceneManager navSceneManager;
-
     public UnityAction OnSelectAction;
 
     protected override void OnEnable()
@@ -51,7 +32,6 @@ public class SetSceneNavigationObject : NavigationObject
         base.OnEnable();
 
         interactAction += CallShipAnimation;
-        navSceneManager = FindObjectOfType<NavigationSceneManager>();
 
         if (exclamationIcon != null)
             exclamationIcon.gameObject.SetActive(false);
@@ -61,7 +41,18 @@ public class SetSceneNavigationObject : NavigationObject
 
     private void CallShipAnimation (NavigationShip ship)
     {
+        if (!ship)
+            return;
 
+        NavigationShipLandAnimation landAnimation = ship.GetComponent<NavigationShipLandAnimation>();
+        if (!landAnimation)
+            return;
+
+        {
+            sprite.color = Color.white;
+        }
+
+        landAnimation.Call( this, CloseAndSetScene );
     }
 
     private void SetCompletionDisplay()
@@ -106,9 +97,6 @@ public class SetSceneNavigationObject : NavigationObject
 
         selector.enabled = true;
 
-        if (OnHoverAKEvent != null)
-            OnHoverAKEvent.Post(gameObject);
-
         if (OnSelectAction != null)
             OnSelectAction.Invoke();
     }
@@ -121,6 +109,17 @@ public class SetSceneNavigationObject : NavigationObject
             sr.gameObject.SetActive(false);
 
         selector.enabled = false;
+    }
+
+    public Transform SelectorSprite
+    {
+        get 
+        {
+            if (selector == null)   
+                return null;
+
+            return selector.transform;
+        }
     }
 
     protected virtual void CloseAndSetScene()
@@ -138,23 +137,5 @@ public class SetSceneNavigationObject : NavigationObject
             InteractablePortal.PreCallSetups(shipSceneReference.ScenePath, data);
 
         NavigationSceneManager.Instance.CloseAndSetScene( scene.ScenePath, callDangerTransition: toDangerZone );
-    }
-
-    private void OnDrawGizmos()
-    {
-        if(debugShip == null) return;
-        
-        for (float i = 0f; i < 1f; i+=0.03f)
-        {
-            Gizmos.color = Color.yellow;
-            var from = animationBezier.GetPoint(i);
-            var to = animationBezier.GetPoint(i + 0.03f);
-            Gizmos.DrawLine(from,to);
-        }
-        
-        Gizmos.color = Color.cyan;
-        
-        Gizmos.DrawWireSphere(p2Debug, 0.1f);
-        Gizmos.DrawWireSphere(p3Debug, 0.1f);
     }
 }
