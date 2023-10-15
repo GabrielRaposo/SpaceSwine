@@ -8,30 +8,20 @@ public class NavigationWorldManager : MonoBehaviour
     [SerializeField] private GameObject[] worlds;
     [SerializeField] private NavigationWorldTransition transition;
 
-    [Header("Debug")]
-    [SerializeField] InputAction testAction;
-
     public static int CurrentWorld = 1;
+    public static NavigationWorldManager Instance;
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            return;
+        }
+        Instance = this;
+        
         //to-do: pega CurrentWorld do Save
 
         UpdateWorlds();
-    }
-
-    private void OnEnable()
-    {
-        testAction.Enable();
-        testAction.performed += (ctx) => 
-        {
-            ChangeWorld (CurrentWorld+1);
-        };
-    }
-
-    private void OnDisable()
-    {
-        testAction.Disable();
     }
 
     private void UpdateWorlds()
@@ -43,7 +33,7 @@ public class NavigationWorldManager : MonoBehaviour
             worlds[i].SetActive (i == CurrentWorld - 1);
     }
 
-    public void ChangeWorld (int targetWorld)
+    public void ChangeWorld (int valueOffset)
     {
         if (transition == null)
         {
@@ -56,7 +46,7 @@ public class NavigationWorldManager : MonoBehaviour
         ( 
             midAction: () => 
             {
-                CurrentWorld = targetWorld;
+                CurrentWorld += valueOffset;
                 UpdateWorlds ();
             },
             afterAction: () =>

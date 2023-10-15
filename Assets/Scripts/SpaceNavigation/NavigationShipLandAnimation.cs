@@ -30,7 +30,7 @@ public class NavigationShipLandAnimation : MonoBehaviour
         navigationShip = GetComponent<NavigationShip>();
     }
 
-    public void Call (SetSceneNavigationObject caller, UnityAction CloseAndSetScene)
+    public void Call (NavigationObject caller, Transform selector, UnityAction CloseAndSetScene)
     {
         if (navigationShip == null)
         {
@@ -45,8 +45,9 @@ public class NavigationShipLandAnimation : MonoBehaviour
 
         var sequence = DOTween.Sequence();
 
-        // -- Feedback de seleção e UI de autopilot         
-        sequence.Append(caller.SelectorSprite.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.22f).OnComplete(() => navSceneManager.BlinkAutoPilot()));
+        // -- Feedback de seleção e UI de autopilot
+        if (selector != null)
+            sequence.Append(selector.DOPunchScale(new Vector3(0.3f, 0.3f, 0.3f), 0.22f).OnComplete(() => navSceneManager.BlinkAutoPilot()));
         sequence.AppendInterval(0.1f);
 
         float shipStartRotation = navigationShip.spritesTransform.eulerAngles.z + 90f;

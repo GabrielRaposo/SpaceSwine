@@ -83,7 +83,8 @@ public class NavigationObject : StoryEventDependent
 
     private void OpenDisplay()
     {
-        _canvas.gameObject.SetActive(true);
+        if (_canvas)
+            _canvas.gameObject.SetActive(true);
         StopAllCoroutines();
         
         lineRoutine = StartCoroutine(ExtendLine());
@@ -94,7 +95,8 @@ public class NavigationObject : StoryEventDependent
 
     private void CloseDisplay()
     {
-        _canvas.gameObject.SetActive(false);
+        if (_canvas)
+            _canvas.gameObject.SetActive(false);
         //StopAllCoroutines();
     }
     

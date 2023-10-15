@@ -1785,22 +1785,10 @@ MonoBehaviour:
   nameCode: 
   descriptionCode: 
   coordinates: {x: 0, y: 0, z: 0}
-  scene:
-    m_SceneAsset: {fileID: 0}
-    m_IsDirty: 0
-    m_ScenePath: 
-  selector: {fileID: 0}
-  toDangerZone: 0
-  shipSceneReference:
-    m_SceneAsset: {fileID: 0}
-    m_IsDirty: 0
-    m_ScenePath: 
-  data: {fileID: 0}
-  completionStoryEvent: {fileID: 0}
-  completionDisplays: []
   notificationID: 
   exclamationIcon: {fileID: 0}
-  worldIndex: 0
+  selector: {fileID: 0}
+  indexChange: 0
 --- !u!1 &237495783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,7 +1805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &237495784
 Transform:
   m_ObjectHideFlags: 0
@@ -3628,13 +3616,14 @@ GameObject:
   m_Component:
   - component: {fileID: 568724264}
   - component: {fileID: 568724265}
+  - component: {fileID: 568724266}
   m_Layer: 0
-  m_Name: Navigation Portal
+  m_Name: Navigation World Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &568724264
 Transform:
   m_ObjectHideFlags: 0
@@ -3643,7 +3632,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568724263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.21, y: 3.03, z: 0}
+  m_LocalPosition: {x: -5.94, y: -3.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 137748866}
@@ -3668,32 +3657,36 @@ MonoBehaviour:
   unselectedColor: {r: 0.050980393, g: 0.46666667, b: 0.30588236, a: 1}
   selectedColor: {r: 0, g: 0.99607843, b: 0.60784316, a: 1}
   unavailableColor: {r: 0.41568628, g: 0.41568628, b: 0.41568628, a: 1}
-  _canvas: {fileID: 0}
-  nameField: {fileID: 0}
-  descriptionField: {fileID: 0}
-  coordnatesField: {fileID: 0}
-  displayLine: {fileID: 0}
-  unavailableNameCode: 
-  unavailableDescriptionCode: 
-  nameCode: 
-  descriptionCode: 
-  coordinates: {x: 0, y: 0, z: 0}
-  scene:
-    m_SceneAsset: {fileID: 0}
-    m_IsDirty: 0
-    m_ScenePath: 
-  selector: {fileID: 0}
-  toDangerZone: 0
-  shipSceneReference:
-    m_SceneAsset: {fileID: 0}
-    m_IsDirty: 0
-    m_ScenePath: 
-  data: {fileID: 0}
-  completionStoryEvent: {fileID: 0}
-  completionDisplays: []
+  _canvas: {fileID: 1452857517}
+  nameField: {fileID: 72602858}
+  descriptionField: {fileID: 1978040237}
+  coordnatesField: {fileID: 1368771125}
+  displayLine: {fileID: 2100438846}
+  unavailableNameCode: 000
+  unavailableDescriptionCode: 000.X
+  nameCode: 001
+  descriptionCode: 001.X
+  coordinates: {x: 1, y: 2, z: 3}
   notificationID: 
-  exclamationIcon: {fileID: 0}
-  worldIndex: 0
+  exclamationIcon: {fileID: 807780964}
+  selector: {fileID: 1320544940}
+  indexChange: 1
+--- !u!58 &568724266
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568724263}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.8
 --- !u!1 &576846655
 GameObject:
   m_ObjectHideFlags: 0
@@ -8352,22 +8345,6 @@ MonoBehaviour:
   - {fileID: 2132604569}
   - {fileID: 1616042795}
   transition: {fileID: 50519430}
-  testAction:
-    m_Name: Test
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ad1c186d-2f5a-49b2-a616-f6af54ef3ede
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: af2e1f12-eed8-4162-8fbc-3cbf97143d18
-      m_Path: <Keyboard>/1
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Test
-      m_Flags: 0
 --- !u!1 &1313322175
 GameObject:
   m_ObjectHideFlags: 0
@@ -10502,22 +10479,10 @@ MonoBehaviour:
   nameCode: 
   descriptionCode: 
   coordinates: {x: 0, y: 0, z: 0}
-  scene:
-    m_SceneAsset: {fileID: 0}
-    m_IsDirty: 0
-    m_ScenePath: 
-  selector: {fileID: 0}
-  toDangerZone: 0
-  shipSceneReference:
-    m_SceneAsset: {fileID: 0}
-    m_IsDirty: 0
-    m_ScenePath: 
-  data: {fileID: 0}
-  completionStoryEvent: {fileID: 0}
-  completionDisplays: []
   notificationID: 
   exclamationIcon: {fileID: 0}
-  worldIndex: 0
+  selector: {fileID: 0}
+  indexChange: 0
 --- !u!1 &1557032294
 GameObject:
   m_ObjectHideFlags: 0

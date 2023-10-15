@@ -52,7 +52,7 @@ public class SetSceneNavigationObject : NavigationObject
             sprite.color = Color.white;
         }
 
-        landAnimation.Call( this, CloseAndSetScene );
+        landAnimation.Call( this, selector.transform, CloseAndSetScene );
     }
 
     private void SetCompletionDisplay()
@@ -109,17 +109,6 @@ public class SetSceneNavigationObject : NavigationObject
             sr.gameObject.SetActive(false);
 
         selector.enabled = false;
-    }
-
-    public Transform SelectorSprite
-    {
-        get 
-        {
-            if (selector == null)   
-                return null;
-
-            return selector.transform;
-        }
     }
 
     protected virtual void CloseAndSetScene()
