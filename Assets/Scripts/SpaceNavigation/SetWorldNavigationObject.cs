@@ -34,6 +34,8 @@ public class SetWorldNavigationObject : NavigationObject
         if (!ship)
             return;
 
+        this.ship = ship;
+
         NavigationShipLandAnimation landAnimation = ship.GetComponent<NavigationShipLandAnimation>();
         if (!landAnimation)
             return;
@@ -53,14 +55,14 @@ public class SetWorldNavigationObject : NavigationObject
             return;
         }
 
-        //if (notificationID != string.Empty)
-        //    UINotificationManager.Use (notificationID);
+        if (notificationID != string.Empty)
+            UINotificationManager.Use(notificationID);
 
-        //if (toDangerZone) 
-        //    InteractablePortal.PreCallSetups(shipSceneReference.ScenePath, data);
-
-        //NavigationSceneManager.Instance.CloseAndSetScene( scene.ScenePath, callDangerTransition: toDangerZone );
-        NavigationWorldManager.Instance.ChangeWorld(indexChange);
+        NavigationShipLandAnimation landAnimation = ship.GetComponent<NavigationShipLandAnimation>();
+        if (!landAnimation)
+            return;
+        
+        NavigationWorldManager.Instance.ChangeWorld (indexChange, landAnimation);
     }
 
     public override void OnSelect()

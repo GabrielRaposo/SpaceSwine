@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -30,11 +31,11 @@ public class NavigationShipLandAnimation : MonoBehaviour
         navigationShip = GetComponent<NavigationShip>();
     }
 
-    public void Call (NavigationObject caller, Transform selector, UnityAction CloseAndSetScene)
+    public void Call (NavigationObject caller, Transform selector, UnityAction AfterSequenceAction)
     {
         if (navigationShip == null)
         {
-            CloseAndSetScene();
+            AfterSequenceAction();
             return;
         }
 
@@ -135,7 +136,7 @@ public class NavigationShipLandAnimation : MonoBehaviour
         sequence.AppendInterval(2.5f);
 
         //Setta Cena e fecha
-        sequence.OnComplete( () => CloseAndSetScene() );
+        sequence.OnComplete( () => AfterSequenceAction() );
     }
 
     private Tween DrawDots(float duration, int count, float startRotation, Vector2 startPos, Vector2 endPos)
@@ -167,7 +168,7 @@ public class NavigationShipLandAnimation : MonoBehaviour
 
     private void SetCurve (float startRotation, Vector2 startPos, Vector2 endPos)
     {
-        Vector2 p2 = startPos + new Vector2(Mathg.AngleToDirection(startRotation).x, Mathg.AngleToDirection(startRotation).y) * p2Lenght;
+        Vector2 p2 = startPos + new Vector2 (Mathg.AngleToDirection(startRotation).x, Mathg.AngleToDirection(startRotation).y) * p2Lenght;
         p2Debug = p2;
 
         float side = (startPos.y < endPos.y) ? -1f : 1f;
@@ -176,6 +177,38 @@ public class NavigationShipLandAnimation : MonoBehaviour
         p3Debug = p3;
 
         animationBezier = new Curve(startPos, p2, p3, endPos);
+    }
+
+    
+    public void ClearScreenState()
+    {
+        if (dotsParent != null)
+        {
+            for (int i = 0; i < dotsParent.childCount; i++)
+            {
+                var dot = dotsParent.GetChild (i);
+                dot.position = dotsParent.position;
+            }
+        }
+
+        if (navSceneManager)
+        {
+            navSceneManager.HideLandingSign();
+        }
+
+        if (navigationShip) 
+        {
+            navigationShip.SavePreviousPosition();
+        }
+    }
+
+    public void UnlockControls()
+    {
+        if (navigationShip)
+        {
+            navigationShip.OverrideMode = false;
+            navigationShip.UnlockControls();
+        }
     }
 
     private void OnDrawGizmos()

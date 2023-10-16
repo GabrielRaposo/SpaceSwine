@@ -31,7 +31,7 @@ public class NavigationWorldTransition : MonoBehaviour
         ( 
             () => {
                 midAction.Invoke();
-                OutTransition(afterAction);
+                OutTransition(afterAction); 
             }
         );
     }

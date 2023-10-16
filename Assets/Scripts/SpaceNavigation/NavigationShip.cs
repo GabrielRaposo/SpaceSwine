@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class NavigationShip : MonoBehaviour
@@ -23,7 +24,7 @@ public class NavigationShip : MonoBehaviour
 
     public static bool ControlsLocked;
 
-    private static Vector2 previousPostion = new Vector2(0f, 330f-1.28f);
+    private static Vector2 previousPosition = new Vector2(0f, 330f-1.28f);
 
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event OnHoverAKEvent;
@@ -46,7 +47,9 @@ public class NavigationShip : MonoBehaviour
 
     private void OnEnable()
     {
-        transform.position = previousPostion;
+        movDirection = Vector2.zero; 
+
+        transform.position = previousPosition;
         
         _playerInputActions = new PlayerInputActions();
         _playerInputActions.Player.Movement.Enable();
@@ -62,6 +65,10 @@ public class NavigationShip : MonoBehaviour
 
     private void OnDisable()
     {
+        movDirection = Vector2.zero;
+
+        SavePreviousPosition();
+
         _playerInputActions.Player.Movement.Disable();
         _playerInputActions.Player.Jump.Disable();
         _playerInputActions.Player.Interact.Disable();
@@ -91,7 +98,13 @@ public class NavigationShip : MonoBehaviour
     public void LockControls()
     {
         ControlsLocked = true;
-        OnDisable();
+        enabled = false;
+    }
+
+    public void UnlockControls()
+    {
+        ControlsLocked = false;
+        enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -112,7 +125,7 @@ public class NavigationShip : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         var navObject = other.gameObject.GetComponent<NavigationObject>();
-        if(navObject == null)
+        if (navObject == null)
             return;
         
         navObject.OnDeselect();
@@ -139,7 +152,7 @@ public class NavigationShip : MonoBehaviour
             return;
         }
     
-        previousPostion = transform.position;
+        SavePreviousPosition();
         if (ControlsLocked) return;
         
         Vector2 input = movementInputAction.ReadValue<Vector2>();
@@ -155,7 +168,7 @@ public class NavigationShip : MonoBehaviour
         if (input.magnitude < 0.001f)
         {
             movDirection *= deceleration;
-            if(movDirection.magnitude<0.01f)
+            if (movDirection.magnitude < 0.01f)
                 movDirection = Vector2.zero;
         }
         else
@@ -163,10 +176,10 @@ public class NavigationShip : MonoBehaviour
             spritesTransform.eulerAngles = new Vector3(0, 0, Mathg.VectorToAngle(movDirection, true));    
         }
 
-        if(NavigationParalaxAnchor.Instance)
+        if (NavigationParalaxAnchor.Instance)
             NavigationParalaxAnchor.Instance.transform.Translate(movDirection*speed*20f);
         
-        transform.Translate(movDirection * speed);
+        transform.Translate (movDirection * speed);
     }
 
 
@@ -209,6 +222,7 @@ public class NavigationShip : MonoBehaviour
         {
             if (flightStepsRoutine != null)
                 StopAllCoroutines();
+
             playingFlightStepsSound = false;
         }
     }
@@ -220,7 +234,7 @@ public class NavigationShip : MonoBehaviour
 
         while (true) 
         {
-            yield return new WaitForSeconds(flightStepsDelay);
+            yield return new WaitForSeconds (flightStepsDelay);
             //Debug.Log("step");
             
             flightStepsAKEvent.Post(gameObject);
@@ -229,10 +243,14 @@ public class NavigationShip : MonoBehaviour
 
     private void ConfirmAction()
     {
-        if(selectedObject == null)
+        if (OverrideMode || selectedObject == null)
             return;
 
         selectedObject.OnInteract(this);
     }
 
+    public void SavePreviousPosition()
+    {
+        previousPosition = transform.position;
+    }
 }

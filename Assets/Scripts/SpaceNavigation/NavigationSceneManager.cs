@@ -71,6 +71,11 @@ public class NavigationSceneManager : MonoBehaviour
         s.SetLoops(-1);
     }
     
+    public void HideLandingSign()
+    {
+        landedSignObject.DOFade(0f, 0.1f);
+    }
+
     public void ConectToConsole(NavigationConsole nc)
     {
         _navigationConsole = nc;

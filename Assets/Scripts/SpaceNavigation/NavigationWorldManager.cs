@@ -33,7 +33,7 @@ public class NavigationWorldManager : MonoBehaviour
             worlds[i].SetActive (i == CurrentWorld - 1);
     }
 
-    public void ChangeWorld (int valueOffset)
+    public void ChangeWorld (int valueOffset, NavigationShipLandAnimation ship)
     {
         if (transition == null)
         {
@@ -48,10 +48,14 @@ public class NavigationWorldManager : MonoBehaviour
             {
                 CurrentWorld += valueOffset;
                 UpdateWorlds ();
+                ship.ClearScreenState();
             },
             afterAction: () =>
             {
-                // TO-DO: restore controls 
+                // TO-DO: get spawn point
+                // TO-DO: call spawn animation
+
+                ship.UnlockControls();
             }
         );
     }
