@@ -52,11 +52,13 @@ public class NavigationObject : StoryEventDependent
 
     protected virtual void OnEnable()
     {
+        interactAction = null;
         LocalizationManager.AddToLanguageChangeActionList(QuickForceText);
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
+        interactAction = null;
         LocalizationManager.RemoveFromLanguageChangeActionList(QuickForceText);
     }
 

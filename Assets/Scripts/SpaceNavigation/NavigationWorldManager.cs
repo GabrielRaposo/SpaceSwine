@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class NavigationWorldManager : MonoBehaviour
 {
+    [SerializeField] private string worldLabelID;
+    [SerializeField] private TextMeshProUGUI display;
+
+    [Header("")]
     [SerializeField] private GameObject[] worlds;
     [SerializeField] private NavigationWorldTransition transition;
 
@@ -18,10 +24,20 @@ public class NavigationWorldManager : MonoBehaviour
             return;
         }
         Instance = this;
-        
-        //to-do: pega CurrentWorld do Save
+    }
 
+    private void Start()
+    {
         UpdateWorlds();
+    }
+
+    private void UpdateDisplay()
+    {
+        if (!display)
+            return;
+
+        string text = LocalizationManager.GetUiText(worldLabelID, fallback: "World");
+        display.text = text + " " + CurrentWorld;
     }
 
     private void UpdateWorlds()
@@ -31,6 +47,8 @@ public class NavigationWorldManager : MonoBehaviour
 
         for (int i = 0; i < worlds.Length; i++)
             worlds[i].SetActive (i == CurrentWorld - 1);
+
+        UpdateDisplay();
     }
 
     public void ChangeWorld (int valueOffset, NavigationShipLandAnimation ship)

@@ -29,6 +29,11 @@ public class SetWorldNavigationObject : NavigationObject
         //CallDependentAction ( SetCompletionDisplay );
     }
 
+    protected override void OnDisable()
+    {
+        //interactAction -= CallShipAnimation;
+    }
+
     private void CallShipAnimation (NavigationShip ship)
     {
         if (!ship)
