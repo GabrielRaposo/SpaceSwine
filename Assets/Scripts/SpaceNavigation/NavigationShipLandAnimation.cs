@@ -211,6 +211,11 @@ public class NavigationShipLandAnimation : MonoBehaviour
         }
     }
 
+    public void JumpToPosition (Vector3 position)
+    {
+        transform.position = position;
+    }
+
     private void OnDrawGizmos()
     {       
         return;

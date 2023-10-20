@@ -13,9 +13,7 @@ public class NavigationConsole : MonoBehaviour
 {
     const int HIDDEN_Y = -1000;
     
-    [SerializeField] SceneReference world1NavigationScene;
-    [SerializeField] SceneReference world2NavigationScene;
-    [SerializeField] SceneReference world3NavigationScene;
+    [SerializeField] SceneReference worldNavigationScene;
 
     [Header("Values")]
     [SerializeField] float duration;
@@ -137,28 +135,7 @@ public class NavigationConsole : MonoBehaviour
 
     private string GetNavigationScene ()
     {
-        SceneReference outputScene = null;
-
-        switch (SaveManager.CurrentWorld)
-        {
-            default:
-            case 1:
-                outputScene = world1NavigationScene;
-                break;
-
-            case 2:
-                outputScene = world2NavigationScene;
-                break;
-
-            case 3:
-                outputScene = world3NavigationScene;
-                break;
-        }
-
-        if (outputScene == null)
-            return world1NavigationScene.ScenePath;
-
-        return outputScene.ScenePath;
+        return worldNavigationScene.ScenePath;
     }
 
     private void SetupNavigationScene()

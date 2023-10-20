@@ -11,10 +11,10 @@ public class NavigationWorldManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI display;
 
     [Header("")]
-    [SerializeField] private GameObject[] worlds;
+    [SerializeField] private NavigationWorldGroup[] worlds;
     [SerializeField] private NavigationWorldTransition transition;
 
-    public static int CurrentWorld = 1;
+    public static int CurrentWorld = 0;
     public static NavigationWorldManager Instance;
 
     private void Awake()
@@ -28,6 +28,9 @@ public class NavigationWorldManager : MonoBehaviour
 
     private void Start()
     {
+        if (SaveManager.Initiated) 
+            CurrentWorld = SaveManager.CurrentWorld;
+
         UpdateWorlds();
     }
 
@@ -37,7 +40,7 @@ public class NavigationWorldManager : MonoBehaviour
             return;
 
         string text = LocalizationManager.GetUiText(worldLabelID, fallback: "World");
-        display.text = text + " " + CurrentWorld;
+        display.text = text + " " + ( CurrentWorld + 1 );
     }
 
     private void UpdateWorlds()
@@ -46,9 +49,17 @@ public class NavigationWorldManager : MonoBehaviour
             return;
 
         for (int i = 0; i < worlds.Length; i++)
-            worlds[i].SetActive (i == CurrentWorld - 1);
+            worlds[i].SetActive (i == CurrentWorld);
 
         UpdateDisplay();
+    }
+
+    private NavigationWorldGroup GetWorldGroup()
+    {
+        if (CurrentWorld < 0) 
+            return null;
+
+        return worlds [ CurrentWorld % worlds.Length ];
     }
 
     public void ChangeWorld (int valueOffset, NavigationShipLandAnimation ship)
@@ -65,7 +76,14 @@ public class NavigationWorldManager : MonoBehaviour
             midAction: () => 
             {
                 CurrentWorld += valueOffset;
+                if (SaveManager.Initiated)
+                {
+                    SaveManager.CurrentWorld = CurrentWorld;
+                    SaveManager.Save();
+                }
                 UpdateWorlds ();
+
+                ship.JumpToPosition( GetWorldGroup().SpawnPoint );
                 ship.ClearScreenState();
             },
             afterAction: () =>
