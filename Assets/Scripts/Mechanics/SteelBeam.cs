@@ -60,9 +60,9 @@ public class SteelBeam : MonoBehaviour
     {
         if (colliders != null)
         {
-            SpriteRenderer[] spriteRenderers = colliders.GetComponentsInChildren<SpriteRenderer>();
-            foreach (var sr in spriteRenderers)
-                sr.enabled = false;
+            //SpriteRenderer[] spriteRenderers = colliders.GetComponentsInChildren<SpriteRenderer>();
+            //foreach (var sr in spriteRenderers)
+            //    sr.enabled = false;
         }
 
         foreach (GravitationalPlatform p in platforms)
