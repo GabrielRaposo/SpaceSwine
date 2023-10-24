@@ -213,6 +213,25 @@ public static class RectTransformExtensions
     }
  }
 
+ public static class ExtensionMethods 
+ {
+     public static float Remap2 (this float from, float fromMin, float fromMax, float toMin,  float toMax)
+    {
+        var fromAbs  =  from - fromMin;
+        var fromMaxAbs = fromMax - fromMin;      
+       
+        var normal = fromAbs / fromMaxAbs;
+ 
+        var toMaxAbs = toMax - toMin;
+        var toAbs = toMaxAbs * normal;
+ 
+        var to = toAbs + toMin;
+       
+        return to;
+    }
+   
+}
+
 public static class ExtDebug
  {
      //Draws just the box at where it is currently hitting.

@@ -152,6 +152,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
         {
             if (soundtrackManager)
             {
+                //Debug.Log("aaa");
                 soundtrackManager.SetPlaylist(safetyToDanger ? dangerPlaylist : safetyPlaylist );
             }
         } );

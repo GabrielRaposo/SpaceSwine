@@ -136,6 +136,11 @@ public class GameManager : MonoBehaviour
         return SceneManager.GetActiveScene().buildIndex == (int) buildIndex;
     }
 
+    public static bool IsOnScene (string path)
+    {
+        return SceneManager.GetActiveScene().path == path;
+    }
+
     public static bool OnTransition
     {
         get { return SceneTransition.OnTransition || RoundTransition.OnTransition; }

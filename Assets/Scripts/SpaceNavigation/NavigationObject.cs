@@ -52,11 +52,13 @@ public class NavigationObject : StoryEventDependent
 
     protected virtual void OnEnable()
     {
+        interactAction = null;
         LocalizationManager.AddToLanguageChangeActionList(QuickForceText);
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
+        interactAction = null;
         LocalizationManager.RemoveFromLanguageChangeActionList(QuickForceText);
     }
 
@@ -78,12 +80,13 @@ public class NavigationObject : StoryEventDependent
             return;
 
         //Debug.Log("OnInteract()");
-        interactAction?.Invoke(ship);
+        interactAction?.Invoke( ship );
     }
 
     private void OpenDisplay()
     {
-        _canvas.gameObject.SetActive(true);
+        if (_canvas)
+            _canvas.gameObject.SetActive(true);
         StopAllCoroutines();
         
         lineRoutine = StartCoroutine(ExtendLine());
@@ -94,7 +97,8 @@ public class NavigationObject : StoryEventDependent
 
     private void CloseDisplay()
     {
-        _canvas.gameObject.SetActive(false);
+        if (_canvas)
+            _canvas.gameObject.SetActive(false);
         //StopAllCoroutines();
     }
     

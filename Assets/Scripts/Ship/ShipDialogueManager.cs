@@ -16,6 +16,7 @@ public class ShipDialogueManager : MonoBehaviour
     {
         public string notificationID;
         public int index;
+        public StoryEventScriptableObject storyEvent;
     }
 
     [SerializeField] List<DialogueIndexer> dialogueIndexers;
@@ -33,6 +34,7 @@ public class ShipDialogueManager : MonoBehaviour
     [SerializeField] ShipInitializerSystem shipInitializer;
 
     public static int StartDialogueIndex = -1; // -- Chama "-1" se não tiver diálogo no início
+    StoryEventScriptableObject afterDialogueStoryEvent;
 
     Sequence startSequence;
 
@@ -59,6 +61,7 @@ public class ShipDialogueManager : MonoBehaviour
             {
                 UINotificationManager.Use (dialogueIndexer.notificationID);
                 StartDialogueIndex = dialogueIndexer.index;
+                afterDialogueStoryEvent = dialogueIndexer.storyEvent;
                 break;
             }
         }
@@ -187,6 +190,8 @@ public class ShipDialogueManager : MonoBehaviour
 
         ResumeOnScene(dialogueData);
         StartDialogueIndex = -1;
+        if (afterDialogueStoryEvent != null)
+            StoryEventsManager.ChangeProgress(afterDialogueStoryEvent, +999);
         GameManager.OnDialogue = false;
     }
 

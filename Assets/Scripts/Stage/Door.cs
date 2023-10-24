@@ -65,7 +65,7 @@ public class Door : MonoBehaviour
         if (explorationSetup)
         {
             animator.SetBool("Open", true);
-            Debug.Log("hey explo");
+            //Debug.Log("hey explo");
             
             if (portal)
                 portal.gameObject.SetActive(true);

@@ -215,8 +215,18 @@ public class CollectableThrowable : Collectable
         //Debug.Log("rb.velocity: " + rb.velocity);
         rb.velocity = Vector2.zero;
 
-        transform.SetParent(gravitationalBody.transform);
-        
+        BubblePlanet bubblePlanet = gravitationalBody.GetComponent<BubblePlanet>();
+        if (bubblePlanet)
+        {
+            Round round = GetComponentInParent<Round>();
+            if (round)
+                transform.SetParent(round.transform);
+            else
+                transform.SetParent(null);
+        }
+        else transform.SetParent(gravitationalBody.transform); 
+           
+
         if (rotationRoutine != null)
             StopCoroutine(rotationRoutine);
 
