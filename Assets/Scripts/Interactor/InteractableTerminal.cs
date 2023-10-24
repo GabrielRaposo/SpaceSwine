@@ -78,7 +78,7 @@ public class InteractableTerminal : Interactable
 
         base.Interaction(interactor);
         
-        if(terminalAnimator )
+        if (terminalAnimator)
             terminalAnimator.SetTrigger("interact");
             
 
