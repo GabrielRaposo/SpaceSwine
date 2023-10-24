@@ -8,19 +8,18 @@ using UnityEngine.SceneManagement;
 
 public class NavigationSceneManager : MonoBehaviour
 {
-    private NavigationConsole _navigationConsole;
-
-    public static NavigationSceneManager Instance;
-
-    public Color uiColor;
-    private Color autoPilotStartingColor;
-    
     [Header("References")]
     [SerializeField] private TextMeshProUGUI autoPilotText;
     [SerializeField] private TextMeshProUGUI landedText;
     [SerializeField] private CanvasGroup landedSignObject;
 
+    public Color uiColor;
+
+    private Color autoPilotStartingColor;
+    private NavigationConsole _navigationConsole;
     private Sequence autopilotBlinkSequence;
+
+    public static NavigationSceneManager Instance;
     
     private void Awake()
     {
@@ -35,8 +34,8 @@ public class NavigationSceneManager : MonoBehaviour
         Instance = this;
         
         autoPilotStartingColor = autoPilotText.color;
-        
     }
+
 
     public void BlinkAutoPilot()
     {
@@ -72,6 +71,11 @@ public class NavigationSceneManager : MonoBehaviour
         s.SetLoops(-1);
     }
     
+    public void HideLandingSign()
+    {
+        landedSignObject.DOFade(0f, 0.1f);
+    }
+
     public void ConectToConsole(NavigationConsole nc)
     {
         _navigationConsole = nc;

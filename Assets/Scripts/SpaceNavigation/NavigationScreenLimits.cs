@@ -47,5 +47,8 @@ public class NavigationScreenLimits : MonoBehaviour
         Gizmos.DrawWireSphere (transform.position + new Vector3(-size.x/2,  size.y/2), radius: .1f);
         Gizmos.DrawWireSphere (transform.position + new Vector3( size.x/2, -size.y/2), radius: .1f);
         Gizmos.DrawWireSphere (transform.position + new Vector3(-size.x/2, -size.y/2), radius: .1f);
+
+        
+        ExtDebug.DrawBox(transform.position, size/2f, Quaternion.identity, Color.blue);
     }
 }
