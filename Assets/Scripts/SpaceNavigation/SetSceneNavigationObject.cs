@@ -15,7 +15,6 @@ public class SetSceneNavigationObject : NavigationObject
     [Header("Danger Data")]
     [SerializeField] bool toDangerZone;
     [SerializeField] SceneReference shipSceneReference;
-    [SerializeField] RoundSessionData data;
 
     [Header("Completion Feedback")]
     [SerializeField] private StoryEventScriptableObject completionStoryEvent;
@@ -123,7 +122,7 @@ public class SetSceneNavigationObject : NavigationObject
             UINotificationManager.Use (notificationID);
 
         if (toDangerZone) 
-            InteractablePortal.PreCallSetups(shipSceneReference.ScenePath, data);
+            InteractablePortal.PreCallSetups(shipSceneReference.ScenePath);
 
         NavigationSceneManager.Instance.CloseAndSetScene( scene.ScenePath, callDangerTransition: toDangerZone );
     }
