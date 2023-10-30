@@ -16,6 +16,7 @@ public class RoundsManager : MonoBehaviour
     [SerializeField] SceneReference exitScene;
     [SerializeField] int localAbandonSpawnIndex;
     [SerializeField] int localOutroSpawnIndex;
+    [SerializeField] StoryEventScriptableObject completionStoryEvent;
 
     public static int AbandonSpawnIndex;
     public static int OutroSpawnIndex;
@@ -150,6 +151,9 @@ public class RoundsManager : MonoBehaviour
         {
             if (OnSessionCompletedAction != null)
                 OnSessionCompletedAction();
+
+            if (completionStoryEvent != null && SaveManager.Initiated)
+                StoryEventsManager.ChangeProgress(completionStoryEvent, 99);
 
             SceneTransition.LoadScene( exitScene.ScenePath, SceneTransition.TransitionType.DangerToSafety );
             SaveManager.SetSpawnPath( exitScene.ScenePath );

@@ -5,7 +5,6 @@ using WhitethornBuild;
 
 public class InteractableDangerSceneEndCallerItem : Interactable
 {
-    [SerializeField] StoryEventScriptableObject completionStoryEvent;
     [SerializeField] GameObject inputIcon;
 
     RoundsManager roundsManager;
@@ -40,9 +39,6 @@ public class InteractableDangerSceneEndCallerItem : Interactable
 
     private void CallEnd (PlayerInteractor interactor)
     {
-        if (completionStoryEvent != null && SaveManager.Initiated)
-            StoryEventsManager.ChangeProgress(completionStoryEvent, 99);
-
         roundsManager.NextRoundLogic();
     }
 
