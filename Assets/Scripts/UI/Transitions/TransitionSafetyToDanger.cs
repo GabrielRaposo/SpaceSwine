@@ -39,12 +39,16 @@ public class TransitionSafetyToDanger : MonoBehaviour
     Sequence mainSequence;
     private static readonly int Play = Animator.StringToHash("Play");
 
+    public static bool OnTransition { get; private set; }
+
     void Start()
     {
         SetState( danger: true );
 
         mainCanvasGroup.alpha = 0;
         gameObject.SetActive(false);
+
+        OnTransition = false;
     }
 
     private void SetState (bool danger)
@@ -67,6 +71,9 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
     private IEnumerator SafetyToDangerTransition(string path, bool safetyToDanger)
     {
+        OnTransition = true;
+        GameManager.BlockCharacterInput = true;
+
         SceneTransition.OnTransition = true;
         PlayerTransitionState.BlockSpawn = true;
         RoundsManager.BlockSpawn = true;
@@ -178,12 +185,15 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         fillImage.enabled = false;
 
-        Debug.Log("end");
         RoundsManager.BlockSpawn = false;
         PlayerTransitionState.BlockSpawn = false;
         gameObject.SetActive(false);
         SceneTransition.OnTransition = false;
         SetPlaylistOnStart.Block = false; 
+
+        OnTransition = false;
+        GameManager.BlockCharacterInput = false;
+        Debug.Log(">>> OUT");
     }
 
     private Sequence SwitchStripes(bool toDanger)

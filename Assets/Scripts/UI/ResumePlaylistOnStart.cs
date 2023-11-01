@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class ResumePlaylistOnStart : MonoBehaviour
 {
+    [SerializeField] private bool DontWorkDuringTransition;
+
     public static bool Trigger;
 
     void Start()
     {
+        if (DontWorkDuringTransition && TransitionSafetyToDanger.OnTransition)
+            return;
+
         if (!Trigger)
             return;
 

@@ -128,7 +128,7 @@ public class Door : MonoBehaviour
         }
         
         animator.SetBool("Open", false);
-        Debug.Log("reset states!");
+        //Debug.Log("reset states!");
         
         Health = externalLocks.Count;
         if (Health < 1 && !startClosed)

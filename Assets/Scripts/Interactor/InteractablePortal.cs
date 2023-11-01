@@ -57,7 +57,7 @@ public class InteractablePortal : Interactable
         PagerInteractionManager.ExitScenePath = exitScenePath;
         RoundsManager.OnSessionCompletedAction = () =>
         {
-            Debug.Log("Session Done! ");
+            //Debug.Log("Session Done! ");
             if (SaveManager.Initiated)
                 SaveManager.SetSpawnIndex (RoundsManager.OutroSpawnIndex);
         };
