@@ -111,6 +111,8 @@ public class SoundtrackManager : MonoBehaviour
 
     public void SetPlaylist (PlaylistScriptableObject playlist)
     {
+        Debug.Log("SetPlaylist!");
+
         if (OverrideChecksTrigger)
             OverrideChecksTrigger = false;
         else if (this.playlist == playlist && this.playlist != fullPlaylist)

@@ -22,7 +22,8 @@ public class DialogueSystem : MonoBehaviour
         List<string> dialogueTags, 
         UnityAction OnDialogueEnd,
         DialogueBoxStyle customDialogueStyle,
-        AK.Wwise.Event talkSoundAKEvent
+        AK.Wwise.Event talkSoundAKEvent,
+        UnityAction OnDialogueCancel = null
     )
     {
         if (!dialogBox)
@@ -42,7 +43,15 @@ public class DialogueSystem : MonoBehaviour
             }
         }
 
-        dialogBox.SetDialogueData(interactable, speakerName, translatedDialogues, OnDialogueEnd, customDialogueStyle, talkSoundAKEvent);
+        dialogBox.SetDialogueData(interactable, speakerName, translatedDialogues, OnDialogueEnd, customDialogueStyle, talkSoundAKEvent, OnDialogueCancel);
+    }
+
+    public void CancelDialogue()
+    {
+        if (!dialogBox)
+            return;
+
+        dialogBox.CancelDialogue();
     }
 
     private void OnDisable() 

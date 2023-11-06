@@ -167,7 +167,7 @@ public class PlaylistPlayer : MonoBehaviour
         }
 
         soundtrackManager.OnTrackPlayedEvent += SetupOnTrackEvent;
-        if (!CutsceneMode)
+        if (!CutsceneMode && !TransitionSafetyToDanger.OnTransition)
         {
             //Debug.Log("Here?");
             soundtrackManager.SetPlaylist(playlist);

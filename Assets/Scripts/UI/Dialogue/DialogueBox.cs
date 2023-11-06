@@ -38,6 +38,7 @@ public class DialogueBox : MonoBehaviour
     string speakerName;
     List <string> dialogues;
     UnityAction OnDialogueEnd;
+    UnityAction OnDialogueCancel;
 
     PlayerInputActions playerInputActions;
     Sequence sequence;
@@ -79,13 +80,15 @@ public class DialogueBox : MonoBehaviour
         List<string> dialogues, 
         UnityAction OnDialogueEnd,
         DialogueBoxStyle customDialogueStyle,
-        AK.Wwise.Event talkSoundAKEvent
+        AK.Wwise.Event talkSoundAKEvent,
+        UnityAction OnDialogueCancel = null
     )
     {
         this.interactable = interactable;
         this.speakerName = speakerName;
         this.dialogues = dialogues;
         this.OnDialogueEnd = OnDialogueEnd;
+        this.OnDialogueCancel = OnDialogueCancel;
 
         autoSkip = false;
         if (customDialogueStyle)
@@ -231,6 +234,37 @@ public class DialogueBox : MonoBehaviour
         interactable?.IconState(true);
 
         showing = false;
+    }
+
+    public void CancelDialogue()
+    {
+        if (OnDialogueCancel != null)
+            OnDialogueCancel.Invoke();
+
+        if (nameDisplay)
+            nameDisplay.text = string.Empty;
+
+        if (dialogTyper)
+            dialogTyper.TypeText (string.Empty);
+        
+        transform.localScale = new Vector3 (1, 1);
+        canvasGroup = GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 1;
+            
+        if (sequence != null)
+            sequence.Kill();
+
+        sequence.Append( transform.DOScaleY ( 0f, .01f ) );
+        sequence.Join ( canvasGroup.DOFade ( 0f, .01f ) );
+
+        interactable?.IconState(true);
+
+        showing = false;
+
+        StartCoroutine
+        (
+            RaposUtil.Wait(3, () =>  DialogueSystem.OnDialogue = false)
+        );
     }
 
     private void OnDisable() 
