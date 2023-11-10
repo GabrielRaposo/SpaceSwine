@@ -388,10 +388,9 @@ public class PagerInteractionManager : StoryEventDependent
             description: LocalizationManager.GetUiText("lose_progress", "progress will be lost"),
             ConfirmEvent: () => 
             {
-                if (RoundsManager.SessionData && SaveManager.Initiated) 
-                {
-                    SaveManager.SetSpawnIndex( RoundsManager.SessionData.AbandonSpawnIndex );
-                }
+                if (SaveManager.Initiated) 
+                    SaveManager.SetSpawnIndex( RoundsManager.AbandonSpawnIndex );
+                
                 PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
                 GameManager.GoToScene(buildPath);
             }, 
