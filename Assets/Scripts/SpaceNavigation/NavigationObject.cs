@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using RedBlueGames.Tools.TextTyper;
+using UnityEditor;
 
 public class NavigationObject : StoryEventDependent
 {
@@ -15,9 +16,11 @@ public class NavigationObject : StoryEventDependent
     
     [Header(" ")]
     [SerializeField] protected SpriteRenderer sprite;
+    [SerializeField] SpriteRenderer backSprite;
     [SerializeField] private Color unselectedColor;
     [SerializeField] private Color selectedColor;
     [SerializeField] private Color unavailableColor;
+    public bool UnselectedUsesSelectedColor;
 
 
     [SerializeField] private Canvas _canvas;
@@ -45,8 +48,12 @@ public class NavigationObject : StoryEventDependent
     protected UnityAction<NavigationShip> interactAction;
     protected NavigationShip ship;
 
+    NavigationWorldGroup worldGroup;
+
     private void Awake()
     {
+        worldGroup = GetComponentInParent<NavigationWorldGroup>();
+
         CloseDisplay();
     }
 
@@ -64,13 +71,19 @@ public class NavigationObject : StoryEventDependent
 
     public virtual void OnSelect()
     {
-        sprite.color = blockInteraction ? unavailableColor : selectedColor;
+        Color unavailable = worldGroup ? worldGroup.UnavailableColor : unavailableColor;
+        Color selected = worldGroup ? worldGroup.SelectedColor : selectedColor;
+        sprite.color = blockInteraction ? unavailable : selected;
         OpenDisplay();
     }
 
     public virtual void OnDeselect()
     {
-        sprite.color = unselectedColor;
+        if (!UnselectedUsesSelectedColor)
+            sprite.color = worldGroup ? worldGroup.UnselectedColor : unselectedColor;
+        else 
+            sprite.color = worldGroup ? worldGroup.SelectedColor : selectedColor;  
+
         CloseDisplay();
     }
 
@@ -201,4 +214,12 @@ public class NavigationObject : StoryEventDependent
     }
     
     public virtual void SetNotificationIcon() { }
+
+    public void UpdateColors (Color lineColor, Color backColor)
+    {
+        sprite.color = lineColor;
+
+        if (backSprite)
+            backSprite.color = backColor;
+    }
 }

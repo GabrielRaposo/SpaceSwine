@@ -48,7 +48,7 @@ public class SetSceneNavigationObject : NavigationObject
             return;
 
         {
-            sprite.color = Color.white;
+            //sprite.color = Color.white;
         }
 
         landAnimation.Call( this, selector.transform, CloseAndSetScene );

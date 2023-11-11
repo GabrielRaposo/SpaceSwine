@@ -9,6 +9,11 @@ public class NavigationShipLandAnimation : MonoBehaviour
 {
     [SerializeField] private Transform dotsParent;
 
+    [Header("Visual References")]
+    [SerializeField] SpriteRenderer frontSprite;
+    [SerializeField] SpriteRenderer backSprite;
+    [SerializeField] ParticleSystem trailPS;
+
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event OnSelectAKEvent; 
     [SerializeField] AK.Wwise.Event MakePathAKEvent;
@@ -214,6 +219,31 @@ public class NavigationShipLandAnimation : MonoBehaviour
     public void JumpToPosition (Vector3 position)
     {
         transform.position = position;
+    }
+
+    public void UpdateColors (Color selectedColor, Color unselectedColor, Color backColor)
+    {
+        if (frontSprite != null)
+            frontSprite.color = selectedColor;
+
+        if (backSprite != null)
+            backSprite.color = backColor;
+
+        if (trailPS != null)
+        {
+            ParticleSystem.MainModule mainModule = trailPS.main;
+            mainModule.startColor = selectedColor;
+        }
+
+        // -- Dots visuals
+        if (dotsParent != null)
+        {
+            SpriteRenderer[] dotSprites = dotsParent.GetComponentsInChildren<SpriteRenderer>();
+            foreach(SpriteRenderer dotSprite in dotSprites) 
+            {
+                dotSprite.color = unselectedColor;
+            }
+        }
     }
 
     private void OnDrawGizmos()
