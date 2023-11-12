@@ -39,6 +39,9 @@ public class ShipScreensOverlay : MonoBehaviour
 
     public void PlayTurnOnSound()
     {
+        if (TransitionSafetyToDanger.OnTransition)
+            return;
+
         if (turnOnAKEvent != null)
             turnOnAKEvent.Post(gameObject);
     }
