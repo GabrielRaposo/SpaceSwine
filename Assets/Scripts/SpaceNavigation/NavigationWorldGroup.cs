@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class NavigationWorldGroup : MonoBehaviour
 {
     [SerializeField] Vector2 spawnPoint;
-    [Space(10)]
-    [SerializeField] Image backgroundImage;
+    
+    [Header("Colors")]
     public Color BackgroundColor;
     public Color SelectedColor;
     public Color UnselectedColor;
     public Color UnavailableColor;
+
+    [Header("References")]
+    [SerializeField] Image backgroundImage;
+    [SerializeField] PolygonCollider2D cameralWall;
+    [SerializeField] CinemachineConfiner confiner;
 
     public Vector2 SpawnPoint 
     { 
@@ -20,6 +26,9 @@ public class NavigationWorldGroup : MonoBehaviour
 
     public void SetActive (bool value)
     {
+        if (value && confiner && cameralWall)
+            confiner.m_BoundingShape2D = cameralWall;
+
         gameObject.SetActive (value);
     }
 
