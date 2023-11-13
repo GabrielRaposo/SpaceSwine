@@ -5,6 +5,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.WSA;
 
 public class NavigationSceneManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class NavigationSceneManager : MonoBehaviour
     private Color autoPilotStartingColor;
     private NavigationConsole _navigationConsole;
     private Sequence autopilotBlinkSequence;
+    private NavigationWorldManager worldManager;
 
     public static NavigationSceneManager Instance;
     
@@ -33,17 +35,51 @@ public class NavigationSceneManager : MonoBehaviour
         }
         Instance = this;
         
+        worldManager = GetComponent<NavigationWorldManager>();
         autoPilotStartingColor = autoPilotText.color;
     }
 
+    private Color UIColor
+    {
+        get 
+        {
+            if (worldManager == null)
+                return uiColor;
+
+            NavigationWorldGroup worldGroup = worldManager.GetWorldGroup();
+            if (worldGroup == null)
+                return uiColor;
+
+            return worldGroup.SelectedColor;
+        }
+    }
+
+    private Color AutoPilotStartingColor
+    {
+        get 
+        {
+            if (worldManager == null)
+                return autoPilotStartingColor;
+
+            NavigationWorldGroup worldGroup = worldManager.GetWorldGroup();
+            if (worldGroup == null)
+                return autoPilotStartingColor;
+
+            Color aux = worldGroup.UnselectedColor;
+            aux.a = autoPilotStartingColor.a;
+            return aux;
+        }
+    }
 
     public void BlinkAutoPilot()
     {
+        autoPilotText.color = AutoPilotStartingColor;
+
         //Debug.Log("BlinkAutoPilot()");
         autopilotBlinkSequence = DOTween.Sequence();
 
-        autopilotBlinkSequence.Append(autoPilotText.DOColor(uiColor, 0.6f));
-        autopilotBlinkSequence.Append(autoPilotText.DOColor(autoPilotStartingColor, 1f));
+        autopilotBlinkSequence.Append(autoPilotText.DOColor(UIColor, 0.6f));
+        autopilotBlinkSequence.Append(autoPilotText.DOColor(AutoPilotStartingColor, 1f));
 
         autopilotBlinkSequence.SetLoops(-1);
 
@@ -56,7 +92,7 @@ public class NavigationSceneManager : MonoBehaviour
         
         autopilotBlinkSequence.Kill();
 
-        autoPilotText.color = autoPilotStartingColor;
+        autoPilotText.color = AutoPilotStartingColor;
     }
 
     public void DisplayLandingSign()

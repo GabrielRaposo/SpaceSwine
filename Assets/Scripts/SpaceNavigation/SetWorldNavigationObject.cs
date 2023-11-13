@@ -15,6 +15,8 @@ public class SetWorldNavigationObject : NavigationObject
     [SerializeField] SpriteRenderer selector;
     [SerializeField] int indexChange;
 
+    [SerializeField] ParticleSystem idlePS;
+
     public UnityAction OnSelectAction;
 
     protected override void OnEnable()
@@ -27,11 +29,24 @@ public class SetWorldNavigationObject : NavigationObject
             exclamationIcon.gameObject.SetActive(false);
 
         //CallDependentAction ( SetCompletionDisplay );
+        SetParticleColor();
     }
 
     protected override void OnDisable()
     {
         //interactAction -= CallShipAnimation;
+    }
+    private void SetParticleColor()
+    {
+        if (idlePS == null)
+            return;
+
+        NavigationWorldGroup navigationWorldGroup = GetComponentInParent<NavigationWorldGroup>();
+        if (navigationWorldGroup == null)
+            return;
+
+        ParticleSystem.MainModule mainModule = idlePS.main;
+        mainModule.startColor = navigationWorldGroup.SelectedColor;
     }
 
     private void CallShipAnimation (NavigationShip ship)
@@ -46,7 +61,7 @@ public class SetWorldNavigationObject : NavigationObject
             return;
 
         {
-            sprite.color = Color.white;
+            //sprite.color = Color.white;
         }
 
         landAnimation.Call( this, selector.transform, SetWorld );

@@ -94,7 +94,7 @@ public class ShipInitializerSystem : MonoBehaviour
 
         RaposUtil.WaitSeconds(this, duration: .55f, () => 
         {
-            if (reachingAKEvent != null && playerObject.activeSelf)
+            if (reachingAKEvent != null && playerObject.activeSelf && !TransitionSafetyToDanger.OnTransition)
                 reachingAKEvent.Post(gameObject);
         });
 

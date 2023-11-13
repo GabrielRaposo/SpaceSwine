@@ -4,13 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Linq;
 
 public class NavigationWorldManager : MonoBehaviour
 {
     [SerializeField] private string worldLabelID;
     [SerializeField] private TextMeshProUGUI display;
+    [SerializeField] private UpdateNavigationMainCanvas mainCanvas;
 
     [Header("")]
+    [SerializeField] private NavigationShipLandAnimation ship;
     [SerializeField] private NavigationWorldGroup[] worlds;
     [SerializeField] private NavigationWorldTransition transition;
 
@@ -32,6 +35,7 @@ public class NavigationWorldManager : MonoBehaviour
             CurrentWorld = SaveManager.CurrentWorld;
 
         UpdateWorlds();
+        UpdateShipColors();
     }
 
     private void UpdateDisplay()
@@ -41,6 +45,11 @@ public class NavigationWorldManager : MonoBehaviour
 
         string text = LocalizationManager.GetUiText(worldLabelID, fallback: "World");
         display.text = text + " " + ( CurrentWorld + 1 );
+
+        if (worlds == null && worlds.Length < 1)
+            return;
+
+        display.color = GetWorldGroup().SelectedColor;
     }
 
     private void UpdateWorlds()
@@ -52,9 +61,26 @@ public class NavigationWorldManager : MonoBehaviour
             worlds[i].SetActive (i == CurrentWorld);
 
         UpdateDisplay();
+        UpdateMainCanvasColors();
     }
 
-    private NavigationWorldGroup GetWorldGroup()
+    private void UpdateMainCanvasColors()
+    {
+        if (mainCanvas == null)
+            return;
+
+        mainCanvas.UpdateColors( GetWorldGroup().SelectedColor, GetWorldGroup().UnselectedColor, GetWorldGroup().BackgroundColor );
+    }
+
+    private void UpdateShipColors()
+    {
+        if (!ship)
+            return;
+
+        ship.UpdateColors(GetWorldGroup().SelectedColor, GetWorldGroup().UnselectedColor, GetWorldGroup().BackgroundColor);
+    }
+
+    public NavigationWorldGroup GetWorldGroup()
     {
         if (CurrentWorld < 0) 
             return null;
@@ -83,7 +109,10 @@ public class NavigationWorldManager : MonoBehaviour
                 }
                 UpdateWorlds ();
 
-                ship.JumpToPosition( GetWorldGroup().SpawnPoint );
+                NavigationWorldGroup worldGroup = GetWorldGroup();
+                ship.JumpToPosition (worldGroup.SpawnPoint);
+                ship.UpdateColors (worldGroup.SelectedColor, worldGroup.UnselectedColor, worldGroup.BackgroundColor);
+
                 ship.ClearScreenState();
             },
             afterAction: () =>
