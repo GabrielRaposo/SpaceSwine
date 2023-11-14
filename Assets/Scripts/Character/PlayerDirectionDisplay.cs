@@ -8,12 +8,12 @@ public class PlayerDirectionDisplay : MonoBehaviour
 
     Transform parent;    
     LocalGameplayState localGameplayState;
-    SpriteRenderer spriteRenderer;
+    SpriteRenderer[] spriteRendereres;
 
     private void Awake() 
     {
         localGameplayState = GetComponentInParent<LocalGameplayState>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRendereres = GetComponentsInChildren<SpriteRenderer>();
     }
 
     private void Start() 
@@ -44,8 +44,12 @@ public class PlayerDirectionDisplay : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
+        
+        if (spriteRendereres.Length < 1)
+            return;
 
-        spriteRenderer.enabled = value;
+        foreach (var sprite in spriteRendereres)
+            sprite.enabled = value;
     }
 
     public void UpdateDirection (bool aiming, Vector2 direction)
