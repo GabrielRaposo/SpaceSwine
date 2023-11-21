@@ -6,9 +6,20 @@ using UnityEngine.Events;
 using UnityEditor;
 #endif
 
+public enum WorldTag
+{
+    World0,
+    World1,
+    World2,
+    World3
+}
+
 [CreateAssetMenu (fileName = "StoryW0", menuName = "ScriptableObjects/StoryEvent") ]
 public class StoryEventScriptableObject : ScriptableObject
 {
+    public WorldTag worldTag;
+    public string idTag;
+    
     public int Goal = 1;
     public bool StartingState;
 

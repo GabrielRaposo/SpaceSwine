@@ -218,6 +218,61 @@ public class SaveManager : MonoBehaviour
         if (autoSave)
             Save();
     }
+
+    public static void AddShipTalkEvent(StoryEventScriptableObject storyEvent)
+    {
+        if (currentSave.pendingShipDialogs == null)
+            currentSave.pendingShipDialogs = new List<string>();
+        
+        string localizationID = "CHAT_PIG_W" + (int)storyEvent.worldTag + "_" + storyEvent.idTag + "_001.01";
+
+        bool success;
+        int n = 1;
+
+        do
+        {
+            localizationID = localizationID.Remove(localizationID.Length - 4, 1);
+            localizationID = localizationID.Insert(localizationID.Length - 3, n.ToString());
+            
+            success = LocalizationManager.GetShipText(localizationID).Item1;
+
+            if (!success)
+            {
+                Debug.Log($"Skipped add {localizationID}");
+                break;
+            }
+
+            Debug.Log($"Added {localizationID}");
+            
+            if(!currentSave.pendingShipDialogs.Contains(localizationID))
+                currentSave.pendingShipDialogs.Add(localizationID);
+            
+            n++;
+
+        } while (true);
+
+        Save();
+    }
+
+    public static List<string> GetShipTalkIds()
+    {
+        if (currentSave.pendingShipDialogs == null)
+            currentSave.pendingShipDialogs = new List<string>();
+
+        return currentSave.pendingShipDialogs;
+    }
+
+    public static void RemoveFromShipTalkIds(string id)
+    {
+        if (currentSave.pendingShipDialogs == null)
+            currentSave.pendingShipDialogs = new List<string>();
+
+        Debug.Log($"Removed {id} from ship dialog list");
+        currentSave.pendingShipDialogs.Remove(id);
+        
+        Save();
+    }
+    
     #endregion
 
     #region UI Notifications
