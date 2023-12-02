@@ -86,5 +86,6 @@ public class ShipInteractionBalloon : MonoBehaviour
     public void SetInteractableState (bool value)
     {
         textDisplay.color = value ? enabledColor : disabledColor;
+        boxOutlineRenderer.color = value ? enabledColor : disabledColor;
     }
 }
