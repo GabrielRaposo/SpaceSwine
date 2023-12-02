@@ -39,7 +39,7 @@ public class GuidingStar : MonoBehaviour
         (
             DOVirtual.Float
             (
-                from: 0, to: cycles, spinDuration, 
+                from: 0, to: cycles * 2, spinDuration, 
                 (t) => spriteRenderer.color = effectGradient.Evaluate(t % 1)
             )
         );
