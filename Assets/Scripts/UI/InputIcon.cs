@@ -29,7 +29,9 @@ public class InputIcon : MonoBehaviour
         {
             case ControllerType.Keyboard:
                 boxRenderer.enabled = true;
-                textDisplay.text = LocalizationManager.GetInputText (keyboard1InteractID);
+                textDisplay.text = LocalizationManager.GetInputText 
+                    (InputTagController.CurrentKeyboardScheme == KeyboardScheme.Arrows ? 
+                        keyboard1InteractID : keyboard2InteractID);
                 break;
 
             case ControllerType.XboxJoystick:
