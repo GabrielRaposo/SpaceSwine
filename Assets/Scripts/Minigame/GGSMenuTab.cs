@@ -9,6 +9,7 @@ public class GGSMenuTab : MonoBehaviour
 {
     [SerializeField] Color highlightColor;
     [SerializeField] Color disabledColor;
+    [SerializeField] AK.Wwise.Event submitAKEvent;
 
     [Header("References")]
     [SerializeField] Image highlightImage;
@@ -42,7 +43,8 @@ public class GGSMenuTab : MonoBehaviour
 
     public void OnSubmit()
     {
-        Debug.Log("OnSubmit");
+        if (submitAKEvent != null)
+            submitAKEvent.Post(gameObject);
 
         if (!interactable)
             return;

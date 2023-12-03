@@ -111,7 +111,7 @@ public class InteractableShipComponent : Interactable
                 //if (GGSConsole.Instance)
                 //    GGSConsole.Instance.ToggleConsoleState();
                 if (GGSMenuManager.Instance)
-                    GGSMenuManager.Instance.ActivateInputs();
+                    GGSMenuManager.Instance.ActivateInputs(interactor);
                 break;
 
             case ShipAction.Leave:

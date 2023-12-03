@@ -94,11 +94,7 @@ public class NavigationConsole : MonoBehaviour
             {
                 TurnConsoleOff();
             }
-        }
-        else
-        {
-            TurnConsoleOn();
-        }
+        } else TurnConsoleOn();
     }
 
     public void TurnConsoleOn()

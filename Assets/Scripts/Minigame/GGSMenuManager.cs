@@ -10,12 +10,17 @@ public class GGSMenuManager : StoryEventDependent
     [SerializeField] Transform verticalLayout;
     [SerializeField] List<StoryEventScriptableObject> minigameUnlockEvents;    
 
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event navigationAKEvent;
+    [SerializeField] AK.Wwise.Event cancelAKEvent;
+
     bool OnFocus;
     int index = -1;
     List<GGSMenuTab> menuTabs;
 
     CanvasGroup canvasGroup;
     PlayerInputActions inputActions;
+    PlayerInteractor interactor;
 
     public static GGSMenuManager Instance;
 
@@ -46,8 +51,10 @@ public class GGSMenuManager : StoryEventDependent
         //ActivateInputs(); // ---------------------------------------- TEMP
     }
 
-    public void ActivateInputs() 
+    public void ActivateInputs (PlayerInteractor interactor) 
     {
+        this.interactor = interactor;    
+
         if (OnFocus)
             return;    
 
@@ -69,6 +76,28 @@ public class GGSMenuManager : StoryEventDependent
 
         OnFocus = true;
         canvasGroup.alpha = 1f;
+
+        SetInteractorState (lockMovement: true);
+    }
+
+    private void SetInteractorState (bool lockMovement)
+    {
+        if (interactor == null)
+            return;
+
+        if (lockMovement)
+        {
+            PlayerInput playerInput = interactor.GetComponent<PlayerInput>();
+            if (playerInput) playerInput.enabled = false;
+
+            PlatformerCharacter platformer = interactor.GetComponent<PlatformerCharacter>();
+            if (platformer) platformer.KillInputs();
+        }
+        else
+        {
+            PlayerInput playerInput = interactor.GetComponent<PlayerInput>();
+            if (playerInput) playerInput.enabled = true;
+        }
     }
 
     private void UpdateTabsInteractable(bool aux)
@@ -95,7 +124,10 @@ public class GGSMenuManager : StoryEventDependent
 
     private void NavigationInput (InputAction.CallbackContext ctx)
     {
-        if (!OnFocus)
+        if (navigationAKEvent != null)
+            navigationAKEvent.Post(gameObject);
+
+        if (!OnFocus || PauseSystem.OnPause)
             return;
 
         Vector2 axis = ctx.ReadValue<Vector2>();
@@ -117,7 +149,7 @@ public class GGSMenuManager : StoryEventDependent
 
     private void ConfirmInput (InputAction.CallbackContext ctx)
     {
-        if (!OnFocus)
+        if (!OnFocus || PauseSystem.OnPause)
             return;
 
         menuTabs[index % menuTabs.Count].OnSubmit();
@@ -136,11 +168,17 @@ public class GGSMenuManager : StoryEventDependent
 
     private void CancelInput (InputAction.CallbackContext ctx)
     {
+        if (!OnFocus || PauseSystem.OnPause)
+            return;
+
         ExitMenu();
     }
 
     public void ExitMenu()
     {
+        if (cancelAKEvent != null)
+            cancelAKEvent.Post(gameObject);
+
         if (!OnFocus)
             return;
 
@@ -154,6 +192,8 @@ public class GGSMenuManager : StoryEventDependent
 
         canvasGroup.alpha = 0;
         OnFocus = false;
+
+        SetInteractorState (lockMovement: false);
     }
 
     private void OnDisable()
