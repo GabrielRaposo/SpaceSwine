@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Minigame;
 
 namespace Jumper
 {
@@ -11,7 +12,7 @@ namespace Jumper
 
         [Header("References")]
         [SerializeField] GameObject destroyAnimation;
-        [SerializeField] MJ_GameManager gameManager;
+        [SerializeField] MinigameManager gameManager;
         [SerializeField] ParticleSystem trailEffect;
         [SerializeField] ParticleSystem launchEffect;
         [SerializeField] ParticleSystem landingEffect;

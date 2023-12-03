@@ -43,7 +43,15 @@ public class GGSMenuManager : StoryEventDependent
         menuTabs = new List<GGSMenuTab>();
         verticalLayout.GetComponentsInChildren(menuTabs);
 
-        CallDependentAction ( () => UpdateTabsInteractable(true), extraFrames: 1 );
+        CallDependentAction 
+        ( 
+            action: () => 
+            {
+                UpdateMinigameScores();
+                UpdateTabsInteractable(true);
+            }, 
+            extraFrames: 1 
+        );
 
         index = 0;
         UpdateTabsHighlight();
@@ -75,6 +83,7 @@ public class GGSMenuManager : StoryEventDependent
         inputActions.Enable();
 
         OnFocus = true;
+        UpdateMinigameScores();
         canvasGroup.alpha = 1f;
 
         SetInteractorState (lockMovement: true);
@@ -97,6 +106,23 @@ public class GGSMenuManager : StoryEventDependent
         {
             PlayerInput playerInput = interactor.GetComponent<PlayerInput>();
             if (playerInput) playerInput.enabled = true;
+        }
+    }
+
+    private void UpdateMinigameScores()
+    {
+        for (int i = 0; i < menuTabs.Count; i++) 
+        {
+            int score = -1;
+
+            switch (i) 
+            {
+                case 0: score = SaveManager.GetHighscore (GGSConsole.Jumper);   break;
+                case 1: score = SaveManager.GetHighscore (GGSConsole.Shooter);  break;
+                case 2: score = SaveManager.GetHighscore (GGSConsole.Traveler); break;
+            }
+            
+            menuTabs[i].SetScore(score);
         }
     }
 

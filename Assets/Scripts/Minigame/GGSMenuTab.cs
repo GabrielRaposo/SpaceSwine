@@ -52,4 +52,12 @@ public class GGSMenuTab : MonoBehaviour
         if (OnSelectEvent != null)
             OnSelectEvent.Invoke();
     }
+
+    public void SetScore (int value)
+    {
+        if (!scoreDisplay)
+            return;
+
+        scoreDisplay.text = value < 0 ? "---" : value.ToString();
+    }
 }
