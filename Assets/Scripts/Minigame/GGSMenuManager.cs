@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Minigame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,25 +14,20 @@ public class GGSMenuManager : StoryEventDependent
     int index = -1;
     List<GGSMenuTab> menuTabs;
 
+    CanvasGroup canvasGroup;
     PlayerInputActions inputActions;
+
+    public static GGSMenuManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void OnEnable()
     {
-        inputActions = new PlayerInputActions();
-
-        inputActions.UI.Navigation.performed += NavigationInput;
-        inputActions.UI.Navigation.Enable();
-
-        inputActions.UI.Confirm.performed += ConfirmInput;
-        inputActions.UI.Confirm.Enable();
-
-        inputActions.UI.Other.performed += ConfirmInput;
-        inputActions.UI.Other.Enable();
-
-        inputActions.UI.Cancel.performed += CancelInput;
-        inputActions.UI.Cancel.Enable();
-
-        inputActions.Enable();
+        canvasGroup = GetComponent<CanvasGroup>();
+        canvasGroup.alpha = 0f;
     }
 
     void Start()
@@ -47,7 +43,32 @@ public class GGSMenuManager : StoryEventDependent
         index = 0;
         UpdateTabsHighlight();
 
-        OnFocus = true; // ---------------------------------------- TEMP
+        //ActivateInputs(); // ---------------------------------------- TEMP
+    }
+
+    public void ActivateInputs() 
+    {
+        if (OnFocus)
+            return;    
+
+        inputActions = new PlayerInputActions();
+
+        inputActions.UI.Navigation.performed += NavigationInput;
+        inputActions.UI.Navigation.Enable();
+
+        inputActions.UI.Confirm.performed += ConfirmInput;
+        inputActions.UI.Confirm.Enable();
+
+        inputActions.UI.Other.performed += ConfirmInput;
+        inputActions.UI.Other.Enable();
+
+        inputActions.UI.Cancel.performed += CancelInput;
+        inputActions.UI.Cancel.Enable();
+
+        inputActions.Enable();
+
+        OnFocus = true;
+        canvasGroup.alpha = 1f;
     }
 
     private void UpdateTabsInteractable(bool aux)
@@ -104,25 +125,25 @@ public class GGSMenuManager : StoryEventDependent
 
     public void OnSubmit() // -- Chamada externa
     {
-        Debug.Log("Play Jumper");
+        GGSConsole ggsConsole = GGSConsole.Instance; 
+        if (!ggsConsole)
+            return;
+
+        ggsConsole.ToggleConsoleState();
+
+        ExitMenu();
     }
 
     private void CancelInput (InputAction.CallbackContext ctx)
     {
-        if (!OnFocus)
-            return;
-
         ExitMenu();
     }
 
     public void ExitMenu()
     {
-        Debug.Log("Exit menu");
-    }
+        if (!OnFocus)
+            return;
 
-
-    private void OnDisable()
-    {
         inputActions.UI.Navigation.Disable();
 
         inputActions.UI.Confirm.Disable();
@@ -130,5 +151,24 @@ public class GGSMenuManager : StoryEventDependent
         inputActions.UI.Cancel.Disable();
 
         inputActions.Disable();
+
+        canvasGroup.alpha = 0;
+        OnFocus = false;
+    }
+
+    private void OnDisable()
+    {
+        if (!OnFocus)
+            return;
+
+        inputActions.UI.Navigation.Disable();
+
+        inputActions.UI.Confirm.Disable();
+        inputActions.UI.Other.Disable();
+        inputActions.UI.Cancel.Disable();
+
+        inputActions.Disable();
+
+        OnFocus = false;
     }
 }

@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
-using Minigame;
-using static UnityEngine.Rendering.DebugUI;
+using TMPro;
 
 
 public enum ShipAction
@@ -44,6 +43,9 @@ public class InteractableShipComponent : Interactable
     bool highlighted;
     Sequence highlightSequence;
 
+    public bool DisableInteraction 
+    { set { disableInteraction = value; SetInteraction(!disableInteraction); } }
+
     private ShipAction CurrentShipAction 
     { get { return shipActions[index % shipActions.Count]; } }
 
@@ -68,7 +70,7 @@ public class InteractableShipComponent : Interactable
         _coll2D.enabled = true;
 
         if (disableInteraction)
-            SetInteraction(false);
+            DisableInteraction = true;
     }
 
 
@@ -77,7 +79,7 @@ public class InteractableShipComponent : Interactable
         for (int i = 0; i < interactionBalloons.Count; i++)
         {
             interactionBalloons[i].SetTextDisplay( shipActions[i % shipActions.Count] );
-            interactionBalloons[i].SetInteractableState(i == index);
+            interactionBalloons[i].SetInteractableState(i == index, disableInteraction);
         }
 
         UpdateArrowsState();
@@ -106,8 +108,10 @@ public class InteractableShipComponent : Interactable
         {
             case ShipAction.GGS:
 
-                if (GGSConsole.Instance)
-                    GGSConsole.Instance.ToggleConsoleState();
+                //if (GGSConsole.Instance)
+                //    GGSConsole.Instance.ToggleConsoleState();
+                if (GGSMenuManager.Instance)
+                    GGSMenuManager.Instance.ActivateInputs();
                 break;
 
             case ShipAction.Leave:
@@ -171,7 +175,7 @@ public class InteractableShipComponent : Interactable
         for (int i = 0; i < interactionBalloons.Count; i++)
         {
             interactionBalloons[i].SetHighlight(value);
-            interactionBalloons[i].SetInteractableState(i == index);
+            interactionBalloons[i].SetInteractableState(i == index, disableInteraction);
         }
 
         UpdateArrowsState();
@@ -228,10 +232,13 @@ public class InteractableShipComponent : Interactable
 
     public override void SetInteraction(bool value) 
     {
+        if (disableInteraction)
+            value = false;
+
         base.SetInteraction(value);
 
         for (int i = 0; i < interactionBalloons.Count; i++)
-            interactionBalloons[i].SetInteractableState(value);
+            interactionBalloons[i].SetInteractableState(value, disableInteraction);
     }
 
     private void OnEnable()
