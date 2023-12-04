@@ -52,8 +52,8 @@ public class CollectableInteraction : MonoBehaviour
         {
             health.OnDeathEvent += (f) => 
             { 
-                StopAllCoroutines(); 
-                //Debug.Log("ded");
+                StopAllCoroutines();
+                directionDisplay.HideLine(blockfade: true);
             };
         }
     }
@@ -292,6 +292,15 @@ public class CollectableInteraction : MonoBehaviour
             directionDisplay.SetVisibility(true);
 
         enabled = true;
+    }
+
+    public void HideAimLine()
+    {
+        if (!directionDisplay)
+            return;
+
+        Debug.Log("b");
+        directionDisplay.HideLine(blockfade: true);
     }
 
     public void ToggleDirectionDisplay()

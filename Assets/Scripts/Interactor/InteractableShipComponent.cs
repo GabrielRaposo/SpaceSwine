@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
-using Minigame;
+using TMPro;
 
 
 public enum ShipAction
@@ -24,7 +24,7 @@ public class InteractableShipComponent : Interactable
     [SerializeField] List<ShipAction> shipActions;
     
     [Header("References")]
-    [SerializeField] ShipInteractionBalloon interactionBalloon;
+    [SerializeField] List<ShipInteractionBalloon> interactionBalloons;
     [SerializeField] SpriteRenderer arrowUp;
     [SerializeField] SpriteRenderer arrowDown;
 
@@ -43,7 +43,15 @@ public class InteractableShipComponent : Interactable
     bool highlighted;
     Sequence highlightSequence;
 
-    private ShipAction CurrentShipAction { get { return shipActions[index % shipActions.Count]; } }
+    public bool DisableInteraction 
+    { set { disableInteraction = value; SetInteraction(!disableInteraction); } }
+
+    private ShipAction CurrentShipAction 
+    { get { return shipActions[index % shipActions.Count]; } }
+
+    private ShipInteractionBalloon CurrentBalloon 
+    { get { return interactionBalloons[index % interactionBalloons.Count]; } }
+
 
     private void Awake() 
     {
@@ -54,25 +62,36 @@ public class InteractableShipComponent : Interactable
         
         index = 0;
         
-        interactionBalloon.SetInstantState(false);
+        for (int i = 0; i < interactionBalloons.Count; i++)
+            interactionBalloons [i].SetInstantState(false);
+        
         UpdateTextDisplay();
 
         _coll2D.enabled = true;
 
         if (disableInteraction)
-            SetInteraction(false);
+            DisableInteraction = true;
     }
 
 
     private void UpdateTextDisplay()
     {
-        interactionBalloon.SetTextDisplay(CurrentShipAction);
-        
+        for (int i = 0; i < interactionBalloons.Count; i++)
+        {
+            interactionBalloons[i].SetTextDisplay( shipActions[i % shipActions.Count] );
+            interactionBalloons[i].SetInteractableState(i == index, disableInteraction);
+        }
+
+        UpdateArrowsState();
+    }
+
+    private void UpdateArrowsState()
+    {
         if (arrowUp)
-            arrowUp.enabled = index > 0;
+            arrowUp.enabled = highlighted && index > 0;
         
         if (arrowDown)
-            arrowDown.enabled = index < shipActions.Count - 1;
+            arrowDown.enabled = highlighted && index < shipActions.Count - 1;
     }
 
     public override void Interaction (PlayerInteractor interactor) 
@@ -89,8 +108,10 @@ public class InteractableShipComponent : Interactable
         {
             case ShipAction.GGS:
 
-                if (GGSConsole.Instance)
-                    GGSConsole.Instance.ToggleConsoleState();
+                //if (GGSConsole.Instance)
+                //    GGSConsole.Instance.ToggleConsoleState();
+                if (GGSMenuManager.Instance)
+                    GGSMenuManager.Instance.ActivateInputs(interactor);
                 break;
 
             case ShipAction.Leave:
@@ -149,9 +170,15 @@ public class InteractableShipComponent : Interactable
                 iconSwapper.SetSpriteState(value ? 1 : 0);
                 iconSwapper.GetComponent<SpriteRenderer>().color = value ? iconColorOn : iconColorOff;
             }
-        ); 
+        );
 
-        interactionBalloon.SetHighlight(value);
+        for (int i = 0; i < interactionBalloons.Count; i++)
+        {
+            interactionBalloons[i].SetHighlight(value);
+            interactionBalloons[i].SetInteractableState(i == index, disableInteraction);
+        }
+
+        UpdateArrowsState();
 
         if (value)
             EnableInputs();
@@ -205,9 +232,13 @@ public class InteractableShipComponent : Interactable
 
     public override void SetInteraction(bool value) 
     {
+        if (disableInteraction)
+            value = false;
+
         base.SetInteraction(value);
 
-        interactionBalloon.SetInteractableState(value);
+        for (int i = 0; i < interactionBalloons.Count; i++)
+            interactionBalloons[i].SetInteractableState(value, disableInteraction);
     }
 
     private void OnEnable()

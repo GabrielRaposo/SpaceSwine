@@ -7,6 +7,7 @@ public class DebugInputs : MonoBehaviour
 {
     [Header("Display")]
     [SerializeField] InputAction displayListAction;
+    [SerializeField] InputAction getAllAction;
 
     [Header("Save")]
     [SerializeField] InputAction saveInputAction;
@@ -41,6 +42,12 @@ public class DebugInputs : MonoBehaviour
                 StoryEventsManager.TogglePrintEventStates();
             };
             displayListAction.Enable();
+
+            getAllAction.performed += (ctx) =>
+            {
+                StoryEventsManager.CompleteAll();
+            };
+            getAllAction.Enable();
         }
 
         /* -- Save -- */ { 

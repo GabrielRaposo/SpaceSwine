@@ -205,6 +205,47 @@ public class SaveManager : MonoBehaviour
     }
     #endregion
 
+    #region Minigame Highscore
+
+    public static void SetHighscore (string minigame, int score)
+    {
+        bool isListed = false;
+
+        if (currentSave.minigameHighscores.Count > 0)
+        {
+            foreach (var d in currentSave.minigameHighscores)
+            {
+                if (d.minigame == minigame)
+                {
+                    d.score = score;
+                    isListed = true;
+                    break;
+                }
+            }
+        }
+
+        if (!isListed)
+            currentSave.minigameHighscores.Add(new MinigameHighscore(minigame, score));
+
+        Save();
+    }
+
+    public static int GetHighscore (string minigame)
+    {
+        if (currentSave.minigameHighscores.Count < 1)
+            return -1;
+
+        foreach (var data in currentSave.minigameHighscores)
+        {
+            if (data.minigame == minigame)
+                return data.score;
+        }
+
+        return -1; 
+    }
+
+    #endregion
+
     #region Story Events
     public static List<EventProgressData> GetStoryEvents()
     {

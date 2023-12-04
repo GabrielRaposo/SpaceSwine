@@ -179,6 +179,17 @@ public class StoryEventsManager : MonoBehaviour
         eventProgress.RemoveOnStateChangeAction(action);
     }
 
+    public static void CompleteAll()
+    {
+        if (Instance == null)
+            return;
+
+        foreach (var key in Instance.storyEvents)
+        {
+            ChangeProgress(key, 99);
+        }
+    }
+
     #region Debug Display
 
     bool showing = false;

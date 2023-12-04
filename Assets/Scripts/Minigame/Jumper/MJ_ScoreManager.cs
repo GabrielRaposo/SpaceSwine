@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Minigame;
 
 namespace Jumper 
 {
@@ -30,8 +31,19 @@ namespace Jumper
             displayedHeight = HEIGHT_OFFSET;
             heightLine.SetValue(displayedHeight, displayedHeight.ToString() + BaseText);
 
+            MinigameManager gameManager = MinigameManager.Instance;
+            if (!gameManager)
+                return;
+
+            int savedHighscore = gameManager.GetHighscore();
+            Debug.Log("savedHighscore: " + savedHighscore);
+            if (savedHighscore > PlayerBestScore)
+                PlayerBestScore = savedHighscore;
+
             if (PlayerBestScore > 0)           
                 scoreLine.SetValue(PlayerBestScore, PlayerBestScore.ToString() + BaseText);
+
+            Debug.Log("PlayerBestScore: " + PlayerBestScore);
         }
 
         private void Update() 
@@ -82,7 +94,7 @@ namespace Jumper
             return (PlayerBestScore, PlayerBestScore.ToString() + BaseText);
         }
 
-        public static bool UseHasScoreTrigger()
+        public static bool UseHasScoreTrigger() 
         {
             if (HasNewBestScore)
             {
@@ -91,6 +103,18 @@ namespace Jumper
             }
 
             return false;
+        }
+
+        private void OnDisable()
+        {
+            MinigameManager gameManager = MinigameManager.Instance;
+            if (!gameManager)
+                return;
+            
+            int savedHighscore = gameManager.GetHighscore();
+            
+            if (savedHighscore < PlayerBestScore)
+                gameManager.SetHighScore(PlayerBestScore);
         }
     }
 

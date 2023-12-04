@@ -42,6 +42,10 @@ namespace Minigame
 
         public UnityAction <bool> OnStateChange;
 
+        public static string Jumper => "Jumper";
+        public static string Shooter => "Shooter";
+        public static string Traveler => "Traveler";
+
         //public static bool TurnedOn { get; private set; }
         public static GGSConsole Instance;
 
@@ -179,6 +183,8 @@ namespace Minigame
         {
             pluggedCard = ggsMinigame;
 
+            MinigameManager.ConnectToConsole(this); //-- tornar genérico
+
             string cardPath = GetCardPath();
             StartCoroutine( AsyncLoadRoutine( cardPath ) );
         }
@@ -210,9 +216,6 @@ namespace Minigame
             if (cameraController)
                 cameraController.SetRenderTexture(minigameRenderTexture);
 
-            MJ_GameManager gameManager = MJ_GameManager.Instance;
-            if (gameManager)
-                gameManager.ConnectToConsole(this);
 
             loadedAndActive = true;
         }
@@ -236,6 +239,16 @@ namespace Minigame
             StartCoroutine(AsyncLoadRoutine( cardPath ) );
         }
 
+        public int GetHighscore (string minigame)
+        {
+            return SaveManager.GetHighscore(minigame);
+        }
+
+        public void SetHighscore (string minigame, int score)
+        {
+            SaveManager.SetHighscore(minigame, score);
+        }
+
         private void OnDisable() 
         {
             playerInputActions.UI.Start.Disable();
@@ -246,5 +259,7 @@ namespace Minigame
 public enum GGSMinigame
 {
     None,
-    Jumper
+    Jumper,
+    Shooter,
+    Traveler
 }

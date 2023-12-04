@@ -138,7 +138,7 @@ public class RoundsManager : MonoBehaviour
         currentIndex++;
 
         int lastRound = rounds.Count;
-        if (lastIndex > 0)
+        if (lastIndex > -1)
         {
             lastRound = lastIndex;
         }

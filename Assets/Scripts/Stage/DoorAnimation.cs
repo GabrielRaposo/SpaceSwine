@@ -64,7 +64,7 @@ public class DoorAnimation : MonoBehaviour
         */
     }
 
-    // -- Chamada de transiçaõ de Safety -> Danger
+    // -- Chamada de transição de Safety -> Danger
     public void SetupAnimationDangerZone( Door door, GameObject player, UnityAction OnAnimationStart)
     {
         GameManager.BlockCharacterInput = true;
@@ -150,6 +150,7 @@ public class DoorAnimation : MonoBehaviour
 
         PlayerCharacter playerCharacter = player.GetComponent<PlayerCharacter>();
         PlayerReferences playerReferences = player.GetComponent<PlayerReferences>();
+        CollectableInteraction collectableInteraction = player.GetComponent<CollectableInteraction>();
         PlayerShaderController playerShader = player.GetComponent<PlayerShaderController>();
         SpaceJumper spaceJumper = player.GetComponent<SpaceJumper>();
 
@@ -162,6 +163,7 @@ public class DoorAnimation : MonoBehaviour
 
             playerCharacter.SetPhysicsBody(false);
             player.transform.SetParent(door.transform);
+            collectableInteraction.HideAimLine();
             playerShader.SetWhiteFade(0f);
             spaceJumper.CancelOnLaunch();
 

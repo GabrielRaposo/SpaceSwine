@@ -37,4 +37,9 @@ public class TerminalLock : Lock
 
         return true;
     }
+
+    public override void AnimationEndTrigger()
+    {
+        
+    }
 }

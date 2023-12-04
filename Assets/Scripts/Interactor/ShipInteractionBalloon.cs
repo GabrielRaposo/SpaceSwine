@@ -83,8 +83,12 @@ public class ShipInteractionBalloon : MonoBehaviour
         sequence.Append( transform.DOScale(value ? 1.5f : 0, duration) );
     }
 
-    public void SetInteractableState (bool value)
+    public void SetInteractableState (bool value, bool forceFalse)
     {
+        if (forceFalse)
+            value = false;
+        
         textDisplay.color = value ? enabledColor : disabledColor;
+        boxOutlineRenderer.color = value ? enabledColor : disabledColor;
     }
 }
