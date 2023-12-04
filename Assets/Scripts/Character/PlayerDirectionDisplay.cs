@@ -66,8 +66,8 @@ public class PlayerDirectionDisplay : MonoBehaviour
         
         // -- Raycast Length
         { 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 10f, groundLayer); 
-            float lineLength = hit ? (Vector2.Distance(parent.position, hit.point) - 0.8125f) : 10; 
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, 15f, groundLayer); 
+            float lineLength = hit ? (Vector2.Distance(parent.position, hit.point) - 0.8125f) : 15; 
             raycastedLine.size = new Vector2 (lineLength, 0.0625f);
         }
 
