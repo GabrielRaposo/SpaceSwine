@@ -30,7 +30,17 @@ namespace Jumper
                 player.OnFirstMove += HideMenus;
 
             mainDisplay.text = string.Empty;
-            mainDisplay.text += "-" + "HARD" + "-" + "\n";
+
+            StartCoroutine(DelayedStart());
+        }
+
+        private IEnumerator DelayedStart()
+        {
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+
+            mainDisplay.text = string.Empty;
+            //mainDisplay.text += "-" + "HARD" + "-" + "\n";
             string bestScore = MJ_ScoreManager.PlayerBest().Item1 <= 0 ? 
                 "---" : 
                 MJ_ScoreManager.PlayerBest().Item2;
@@ -61,8 +71,7 @@ namespace Jumper
                     newRecordDisplay.color = blinkingColors[i];
 
                     mainDisplay.text = string.Empty;
-                    mainDisplay.text += "- " + "HARD" + " -" + "\n";
-
+                    //mainDisplay.text += "-" + "HARD" + "-" + "\n";
                     string bestScore = MJ_ScoreManager.PlayerBest().Item1 <= 0 ? 
                         "---" : 
                         MJ_ScoreManager.PlayerBest().Item2;

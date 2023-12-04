@@ -57,7 +57,9 @@ public class PlatformerCharacter : SidewaysCharacter
     CheckGround checkGround;
     CheckLedge checkLedge;
     CheckWall checkWall;
+    PlayerDirectionDisplay directionDisplay;
     PlayerAnimations playerAnimations;
+
     Rigidbody2D rb;
 
     public static GroundControlType OnGroundControlType = GroundControlType.Dynamic_1; 
@@ -69,6 +71,7 @@ public class PlatformerCharacter : SidewaysCharacter
         checkGround = GetComponent<CheckGround>();
         checkLedge = GetComponent<CheckLedge>();
         checkWall = GetComponent<CheckWall>();
+        directionDisplay = GetComponentInChildren<PlayerDirectionDisplay>();
         playerAnimations = GetComponent<PlayerAnimations>();
 
         rb = GetComponent<Rigidbody2D>();
@@ -79,6 +82,7 @@ public class PlatformerCharacter : SidewaysCharacter
         heldInput = Vector2.zero;    
         moveInputRotationAnchor = lastValidAnchor = holdAnchorCount = 0;
         horizontalSpeed = 0;
+        directionDisplay.HideLine();
     }
 
     private void Start() 

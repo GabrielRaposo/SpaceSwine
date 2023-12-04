@@ -18,6 +18,7 @@ public class RenameRoundsByOrder : MonoBehaviour
 
             string finalName = "Round (" + world + "-" + stageIndex + ")";
 
+            { 
             //string n = transform.GetChild(i).name;
             //if (n.Contains(")")) 
             //{
@@ -26,6 +27,7 @@ public class RenameRoundsByOrder : MonoBehaviour
             //        finalName += splits[1];
             //    }
             //}
+            }
 
             string oldName = transform.GetChild(i).name;
             if (oldName.Contains("Round (") && oldName.Length >= finalName.Length)

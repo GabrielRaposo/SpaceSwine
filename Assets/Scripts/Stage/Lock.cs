@@ -91,7 +91,7 @@ public class Lock : MonoBehaviour
             circleAura.SetActive(false);
     }
 
-    public void AnimationEndTrigger()
+    public virtual void AnimationEndTrigger()
     {
         visualComponent.SetActive(false);
     }

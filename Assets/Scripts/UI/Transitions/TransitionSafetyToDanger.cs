@@ -10,6 +10,9 @@ public class TransitionSafetyToDanger : MonoBehaviour
     [SerializeField] float iconSlideX;
     [SerializeField] float fadeDuration;
     [SerializeField] float slideDuration;
+    [SerializeField] float hold1Duration;
+    [SerializeField] float hold2Duration;
+    [SerializeField] float musicFadeOut;
 
     [Header("References")]
     [SerializeField] CanvasGroup mainCanvasGroup;    
@@ -89,7 +92,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
         if (soundtrackManager)
-            soundtrackManager.FadeOutMusic(2.0f);
+            soundtrackManager.FadeOutMusic(musicFadeOut);
 
         fillImage.enabled = false;
 
@@ -139,7 +142,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         // -- Faz animação de Safety -> Danger
         mainSequence = DOTween.Sequence();
-        mainSequence.AppendInterval(1.0f);
+        mainSequence.AppendInterval(hold1Duration);
         mainSequence.AppendCallback( () => 
         {
             if (safetyToDanger)
@@ -163,7 +166,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
                 soundtrackManager.SetPlaylist(safetyToDanger ? dangerPlaylist : safetyPlaylist );
             }
         } );
-        mainSequence.AppendInterval(2.0f);
+        mainSequence.AppendInterval(hold2Duration);
         mainSequence.OnComplete( () => done = true );
         mainSequence.SetUpdate(isIndependentUpdate: true);
 
