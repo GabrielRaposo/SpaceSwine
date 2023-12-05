@@ -67,9 +67,14 @@ public class SetSceneNavigationObject : NavigationObject
             return;
         }
 
-        foreach (SpriteRenderer sr in completionDisplays)
+        for (int i = 0; i < completionDisplays.Length; i++)
         {
+            SpriteRenderer sr = completionDisplays[i];
             sr.enabled = StoryEventsManager.IsComplete (completionStoryEvent);
+
+            if (worldGroup)
+                sr.color = (i == 0) ? worldGroup.SelectedColor : worldGroup.BackgroundColor; 
+            
             sr.gameObject.SetActive(false);
         }
     }
