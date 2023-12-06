@@ -110,7 +110,7 @@ public class NavigationWorldManager : MonoBehaviour
                 UpdateWorlds ();
 
                 NavigationWorldGroup worldGroup = GetWorldGroup();
-                ship.JumpToPosition (worldGroup.SpawnPoint);
+                ship.JumpToPosition (valueOffset > 0 ? worldGroup.SpawnPoint : worldGroup.ReturnPoint);
                 ship.UpdateColors (worldGroup.SelectedColor, worldGroup.UnselectedColor, worldGroup.BackgroundColor);
 
                 ship.ClearScreenState();
