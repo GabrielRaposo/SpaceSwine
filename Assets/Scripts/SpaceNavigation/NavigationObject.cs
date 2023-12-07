@@ -48,7 +48,7 @@ public class NavigationObject : StoryEventDependent
     protected UnityAction<NavigationShip> interactAction;
     protected NavigationShip ship;
 
-    NavigationWorldGroup worldGroup;
+    protected NavigationWorldGroup worldGroup;
 
     private void Awake()
     {
