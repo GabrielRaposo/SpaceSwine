@@ -10,6 +10,7 @@ public class DebugInputs : MonoBehaviour
     [SerializeField] InputAction getAllAction;
 
     [Header("Save")]
+    [SerializeField] InputAction unlockShipAcessAction;
     [SerializeField] InputAction saveInputAction;
     [SerializeField] InputAction resetSaveInputAction;
 
@@ -46,11 +47,19 @@ public class DebugInputs : MonoBehaviour
             getAllAction.performed += (ctx) =>
             {
                 StoryEventsManager.CompleteAll();
+                DebugDisplay.Call ("All story events completed.");
             };
             getAllAction.Enable();
         }
 
         /* -- Save -- */ { 
+            unlockShipAcessAction.performed += (ctx) =>
+            {
+                StoryEventsManager.UnlockShipAccess();
+                DebugDisplay.Call ("Ship Access Unlocked.");
+            };
+            unlockShipAcessAction.Enable();
+
             saveInputAction.performed += (ctx) => 
             { 
                 SaveManager.Save();
@@ -72,6 +81,7 @@ public class DebugInputs : MonoBehaviour
                 SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
                 if (soundtrackManager)
                     soundtrackManager.SkipTrack(1);
+                DebugDisplay.Call ("Play/Skip track.");
             };
             playMusicTestInput.Enable();
 
@@ -80,6 +90,7 @@ public class DebugInputs : MonoBehaviour
                 SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
                 if (soundtrackManager)
                     soundtrackManager.Stop();
+                DebugDisplay.Call ("Stop track.");
             };
             stopMusicTestInput.Enable();
         }
@@ -101,6 +112,7 @@ public class DebugInputs : MonoBehaviour
 
         displayListAction.Disable();
 
+        unlockShipAcessAction.Disable();
         saveInputAction.Disable();
         resetSaveInputAction.Disable();
         

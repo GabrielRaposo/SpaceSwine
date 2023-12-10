@@ -9,6 +9,7 @@ public class StoryEventsManager : MonoBehaviour
 {
     [SerializeField] bool loadEventsFromSave;
 
+    [SerializeField] StoryEventScriptableObject shipAcessStoryEvent;
     [SerializeField] List<StoryEventScriptableObject> storyEvents;
 
     TextMeshProUGUI listDisplay;
@@ -188,6 +189,14 @@ public class StoryEventsManager : MonoBehaviour
         {
             ChangeProgress(key, 99);
         }
+    }
+
+    public static void UnlockShipAccess()
+    {
+        if (Instance == null || Instance.shipAcessStoryEvent == null)
+            return;
+
+        ChangeProgress (Instance.shipAcessStoryEvent, 99);
     }
 
     #region Debug Display

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadEventsFromSave: 1
+  shipAcessStoryEvent: {fileID: 11400000, guid: 61edce01a4ea0d74abc55e0cbf6dab9b, type: 2}
   storyEvents:
   - {fileID: 11400000, guid: 0bcde44891d9fae45867548242645e14, type: 2}
   - {fileID: 11400000, guid: 724b57e941f08714580466b86de4fc11, type: 2}
@@ -1101,6 +1102,22 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Get All
       m_Flags: 0
+  unlockShipAcessAction:
+    m_Name: Unlock Ship Acess
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ba8546ce-a523-4442-aa5e-e17004257c39
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 780960d9-0a9b-4c86-b8cf-34e6db3ce2f9
+      m_Path: <Keyboard>/rightBracket
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Unlock Ship Acess
+      m_Flags: 0
   saveInputAction:
     m_Name: Save Input
     m_Type: 0
@@ -2002,7 +2019,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4055901931446261915
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2037,7 +2054,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4622009155571263708}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
