@@ -392,6 +392,7 @@ public class PagerInteractionManager : StoryEventDependent
                     SaveManager.SetSpawnIndex( RoundsManager.AbandonSpawnIndex );
                 
                 PlayerTransitionState.EnterState = PlayerTransitionState.State.Teleport;
+                backOnMainEvent?.Invoke();
                 GameManager.GoToScene(buildPath);
             }, 
             CancelEvent: () => 

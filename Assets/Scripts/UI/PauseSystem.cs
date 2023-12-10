@@ -119,7 +119,6 @@ public class PauseSystem : MonoBehaviour
         PlayerCharacter player = PlayerCharacter.Instance;
         if (player)
         {
-            Debug.Log("huh");
             if (OnUseTeleporterAction != null)
                 OnUseTeleporterAction.Invoke();
 

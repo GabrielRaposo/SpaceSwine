@@ -68,7 +68,9 @@ public class ShipInitializerSystem : MonoBehaviour
         if (!alwaysStartPlayerOnShuttle)
             return;
 
-        StartOnShuttle();        
+
+        StartCoroutine (WaitToStartOnShuttle());
+        //StartOnShuttle();        
     }
 
     private void SpawnFromMakeABeat()
@@ -76,6 +78,28 @@ public class ShipInitializerSystem : MonoBehaviour
         playerCharacter.transform.position = makeABeatSpawnPoint;
         if (screensOverlay)
             screensOverlay.InstantTurnOn();
+    }
+
+    private IEnumerator WaitToStartOnShuttle() 
+    {
+        if (TransitionSafetyToDanger.OnTransition)
+        {
+            playerCharacter.SetPhysicsBody(false);
+
+            // É bom que o componente do PlayerInput esteja desligado nas cenas em que tem esse script
+            playerCharacter.enabled = false;
+            playerInput.enabled = false;
+            platformerCharacter.StandStillState();
+
+            playerObject.transform.position 
+                = transform.position + (Vector3.up * LOWER_ANCHOR_Y); 
+            Vector2 targetPosition 
+                = transform.position + (Vector3.up * UPPER_ANCHOR_Y); 
+
+            yield return new WaitWhile( () => TransitionSafetyToDanger.OnTransition );
+        }
+
+        StartOnShuttle();
     }
 
     private void StartOnShuttle()
