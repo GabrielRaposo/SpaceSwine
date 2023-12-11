@@ -15,6 +15,7 @@ public class GGSMenuTab : MonoBehaviour
     [SerializeField] Image highlightImage;
     [SerializeField] TextMeshProUGUI titleDisplay;
     [SerializeField] TextMeshProUGUI scoreDisplay;
+    [SerializeField] GameObject exclamationIcon;
 
     [SerializeField] UnityEvent OnSelectEvent;
 
@@ -59,5 +60,13 @@ public class GGSMenuTab : MonoBehaviour
             return;
 
         scoreDisplay.text = value < 0 ? "---" : value.ToString();
+    }
+
+    public void SetExclamationIcon (bool value)
+    {
+        if (exclamationIcon == null)
+            return;
+
+        exclamationIcon.SetActive(value);
     }
 }

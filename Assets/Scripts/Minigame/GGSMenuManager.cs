@@ -85,6 +85,14 @@ public class GGSMenuManager : StoryEventDependent
     {
         if (shipExclamationIcon == null)
             return;
+
+        if (menuTabs != null && menuTabs.Count > 0 ) 
+        {
+            for (int i = 0; i < notificationIDs.Count && i < menuTabs.Count; i++)
+            {
+                menuTabs[i].SetExclamationIcon(UINotificationManager.Check(notificationIDs[i]));                
+            }
+        }
  
         for (int i = 0; i < notificationIDs.Count; i++)
         {
