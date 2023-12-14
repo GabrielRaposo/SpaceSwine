@@ -8,9 +8,11 @@ using DG.Tweening;
 
 public class ShipDialogueManager : MonoBehaviour
 {
-    string dialogOptionsRegex = @"^.*(<\d+>(.)+)+[^>]$";
-    string flowRedirectRegex = @"^.*->\d+$";
-    
+    static string dialogOptionsRegex = @"^.*(<\d+>(.)+)+[^>]$";
+    static string flowRedirectRegex = @"^.*->\d+$";
+    public static string shipDialogListRegex = @"^CHAT_PIG_W\d_([\w\d\-]+)_\d{3}\.\d{2}$";
+
+
     [System.Serializable]
     public struct DialogueIndexer
     {
