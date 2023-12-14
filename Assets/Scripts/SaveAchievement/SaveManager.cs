@@ -250,6 +250,9 @@ public class SaveManager : MonoBehaviour
             n++;
 
         } while (true);
+        
+        if (ShipInitializerSystem.Instance != null)
+            ShipInitializerSystem.Instance.UpdateDialogButton();
 
         Save();
     }
@@ -262,6 +265,17 @@ public class SaveManager : MonoBehaviour
         return currentSave.pendingShipDialogs;
     }
 
+    public static bool IsShipDialogListEmpty()
+    {
+        if (currentSave == null)
+            return true;
+        
+        if (currentSave.pendingShipDialogs == null)
+            return true;
+
+        return currentSave.pendingShipDialogs.Count == 0;
+    }
+
     public static void RemoveFromShipTalkIds(string id)
     {
         if (currentSave.pendingShipDialogs == null)
@@ -269,6 +283,9 @@ public class SaveManager : MonoBehaviour
 
         Debug.Log($"Removed {id} from ship dialog list");
         currentSave.pendingShipDialogs.Remove(id);
+        
+        if (ShipInitializerSystem.Instance != null)
+            ShipInitializerSystem.Instance.UpdateDialogButton();
         
         Save();
     }

@@ -106,7 +106,7 @@ public class ShipDialogueManager : MonoBehaviour
         );
     }
 
-    public void CallDialogue()
+    public void CallDialogueFromAvailableTalks()
     {
         var shipTalkIds = SaveManager.GetShipTalkIds();
         

@@ -90,7 +90,7 @@ public class InteractableShipComponent : Interactable
         {
             case ShipAction.Talk:
                 
-                shipDialogueManager.CallDialogue();
+                shipDialogueManager.CallDialogueFromAvailableTalks();
                 break;
             
             case ShipAction.GGS:

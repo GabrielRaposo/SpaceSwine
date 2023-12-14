@@ -17,6 +17,7 @@ public class ShipInitializerSystem : MonoBehaviour
     [SerializeField] float duration;
     [SerializeField] ShipScreensOverlay screensOverlay;
     [SerializeField] Vector2 makeABeatSpawnPoint;
+    [SerializeField] private InteractableShipComponent dialogShipInteractable;
       
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event reachingAKEvent;
@@ -68,7 +69,14 @@ public class ShipInitializerSystem : MonoBehaviour
         if (!alwaysStartPlayerOnShuttle)
             return;
 
-        StartOnShuttle();        
+        StartOnShuttle();
+        
+        UpdateDialogButton();
+    }
+
+    public void UpdateDialogButton()
+    {
+        dialogShipInteractable.SetInteraction(!SaveManager.IsShipDialogListEmpty());
     }
 
     private void SpawnFromMakeABeat()
