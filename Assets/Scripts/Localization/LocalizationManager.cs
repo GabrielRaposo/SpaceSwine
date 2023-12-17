@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 using GoogleSheetsToUnity;
@@ -391,6 +392,13 @@ public static class LocalizationManager
     
     private static void UpdateNaveDictionary(GstuSpreadSheet ss)
     {
+        List<string> allStoryEventsIds = new List<string>();
+        
+        var storyEvents =  Resources.LoadAll<StoryEventScriptableObject>("StoryEvents");
+
+        foreach (StoryEventScriptableObject so in storyEvents)
+            allStoryEventsIds.Add(so.idTag);
+
         Debug.Log("<color=#2277ff><b>UpdateNaveDictionary()</b></color>");
         var lines = ss.rows.primaryDictionary;
         
@@ -415,11 +423,29 @@ public static class LocalizationManager
                 GameLocalizationCode glc = languageCodeList[j];
                 languageToStringDictionary.Add(glc, line[columnNumber].value);
             }
+
+            if (Regex.IsMatch(code, ShipDialogueManager.shipDialogListRegex))
+            {
+                string capturedId = Regex.Match(code, ShipDialogueManager.shipDialogListRegex).Groups[1].Captures[0].Value;
+                if(!CheckDialogDialogIsValid(capturedId))
+                    continue;
+            }
             
             file.dic.Add(code, languageToStringDictionary);
         }
         
         Debug.Log("Finished loading from GoogleSheets");
+        
+        bool CheckDialogDialogIsValid(string id)
+        {
+            var result = allStoryEventsIds.Contains(id);
+
+            if (!result)
+                Debug.Log($"<color=#FF2250><b>ID NOT FOUND ON STORY EVENTS: </b> {id}</color>");
+
+            return result;
+        }
+        
     }
 
     public static void AddToActiveTextList(LocalizedText localizedText)
