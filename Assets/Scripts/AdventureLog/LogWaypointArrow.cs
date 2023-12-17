@@ -48,7 +48,7 @@ public class LogWaypointArrow : MonoBehaviour
         if (angle < 0)
             angle += 360;
 
-        Debug.Log("angle: " + angle);
+        //Debug.Log("angle: " + angle);
         Vector2 minPos = Vector2.zero;
         Vector2 maxPos = Vector2.zero;
         float lValue = .5f;
@@ -93,7 +93,7 @@ public class LogWaypointArrow : MonoBehaviour
             lValue = Mathg.Remap (angle, EDGE_ANGLE3, EDGE_ANGLE4, 0f, 1f);
         }
 
-        Debug.Log("lValue: " + lValue);
+        //Debug.Log("lValue: " + lValue);
         anchorRT.anchoredPosition = Vector2.Lerp (minPos, maxPos, lValue);
     }
 }

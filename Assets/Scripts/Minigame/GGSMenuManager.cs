@@ -8,7 +8,11 @@ using UnityEngine.InputSystem;
 public class GGSMenuManager : StoryEventDependent
 {
     [SerializeField] Transform verticalLayout;
-    [SerializeField] List<StoryEventScriptableObject> minigameUnlockEvents;    
+    [SerializeField] List<StoryEventScriptableObject> minigameUnlockEvents;
+
+    [Header("Exclamation Icon")]
+    [SerializeField] ShipExclamationIcon shipExclamationIcon;
+    [SerializeField] List<string> notificationIDs; 
 
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event navigationAKEvent;
@@ -49,14 +53,67 @@ public class GGSMenuManager : StoryEventDependent
             {
                 UpdateMinigameScores();
                 UpdateTabsInteractable(true);
+
+                SetupNotifications();
+                SetExclamationIcon();
             }, 
             extraFrames: 1 
         );
 
         index = 0;
         UpdateTabsHighlight();
+    }
 
-        //ActivateInputs(); // ---------------------------------------- TEMP
+    private void SetupNotifications()
+    {
+        if (notificationIDs == null || notificationIDs.Count < 1)
+            return;
+
+        for (int i = 0; i < notificationIDs.Count; i++)
+        {
+            if ( UINotificationManager.Check(notificationIDs[i]) )
+                continue;
+
+            if ( !StoryEventsManager.IsComplete (minigameUnlockEvents[i % minigameUnlockEvents.Count]) )
+                continue;
+
+            UINotificationManager.Create (notificationIDs[i]);
+        }
+    }
+
+    private void SetExclamationIcon()
+    {
+        if (shipExclamationIcon == null)
+            return;
+
+        if (menuTabs != null && menuTabs.Count > 0 ) 
+        {
+            for (int i = 0; i < notificationIDs.Count && i < menuTabs.Count; i++)
+            {
+                menuTabs[i].SetExclamationIcon(UINotificationManager.Check(notificationIDs[i]));                
+            }
+        }
+ 
+        for (int i = 0; i < notificationIDs.Count; i++)
+        {
+            if ( UINotificationManager.Check(notificationIDs[i]) )
+            {
+                shipExclamationIcon.Show();
+                return;
+            }
+        }
+    }
+
+    private void UseNotification()
+    {
+        if (notificationIDs == null || notificationIDs.Count < 1)
+            return;
+
+        string notification = notificationIDs[index % notificationIDs.Count];
+        if ( !UINotificationManager.Check(notification) )
+                return;
+
+        UINotificationManager.Use (notification);
     }
 
     public void ActivateInputs (PlayerInteractor interactor) 
@@ -85,6 +142,8 @@ public class GGSMenuManager : StoryEventDependent
         OnFocus = true;
         UpdateMinigameScores();
         canvasGroup.alpha = 1f;
+        if (shipExclamationIcon)
+            shipExclamationIcon.Hide();
 
         SetInteractorState (lockMovement: true);
     }
@@ -187,6 +246,7 @@ public class GGSMenuManager : StoryEventDependent
         if (!ggsConsole)
             return;
 
+        UseNotification();
         ggsConsole.ToggleConsoleState();
 
         ExitMenu();
@@ -218,6 +278,8 @@ public class GGSMenuManager : StoryEventDependent
 
         canvasGroup.alpha = 0;
         OnFocus = false;
+
+        SetExclamationIcon();
 
         SetInteractorState (lockMovement: false);
     }

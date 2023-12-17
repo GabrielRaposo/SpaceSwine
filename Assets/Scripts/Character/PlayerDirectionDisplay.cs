@@ -34,7 +34,7 @@ public class PlayerDirectionDisplay : MonoBehaviour
 
     private void OnEnable()
     {
-        previousAngle = transform.eulerAngles.z;
+        previousAngle = transform.localEulerAngles.z;
         HideLine();
     }
 
@@ -76,7 +76,7 @@ public class PlayerDirectionDisplay : MonoBehaviour
             if (blockfade)
                 return;
 
-            if (Mathf.Abs (previousAngle - transform.eulerAngles.z) > .01f)
+            if (Mathf.Abs (previousAngle - transform.localEulerAngles.z) > .01f)
             {
                 fadeCount -= (Time.deltaTime * fadeOutRatio);
                 if (fadeCount < fadeCountMin)
@@ -93,7 +93,7 @@ public class PlayerDirectionDisplay : MonoBehaviour
             raycastedLine.color = c;
         }
 
-        previousAngle = transform.eulerAngles.z;
+        previousAngle = transform.localEulerAngles.z;
     }
 
     public void SetVisibility (bool value)

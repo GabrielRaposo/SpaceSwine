@@ -48,7 +48,18 @@ public class NavigationObject : StoryEventDependent
     protected UnityAction<NavigationShip> interactAction;
     protected NavigationShip ship;
 
-    NavigationWorldGroup worldGroup;
+    protected NavigationWorldGroup worldGroup;
+
+    private string DescriptionCode
+    {
+        get 
+        {
+            if (string.IsNullOrEmpty(descriptionCode))
+                return string.Empty;
+
+            return LocalizationManager.GetUiText(descriptionCode, "???");
+        }
+    }
 
     private void Awake()
     {
@@ -158,18 +169,12 @@ public class NavigationObject : StoryEventDependent
             typer.Skip();
 
         descriptionField.text = "";
-        typer.TypeText( LocalizationManager.GetUiText(blockInteraction ? unavailableDescriptionCode : descriptionCode, "???") );
-
-        //int count = description.Length;
-        //int i = 0;
-
-        //while (i<=count)
-        //{
-        //    descriptionField.text = description.Substring(0, i);
-        //    yield return new WaitForSeconds(0.06f);
-        //    i++;
-        //}
-        //yield break;
+        typer.TypeText
+        (
+            blockInteraction ? 
+                LocalizationManager.GetUiText(unavailableDescriptionCode, fallback: "???") :
+                DescriptionCode
+        );
     }
 
     private IEnumerator SetCoordinates()
@@ -210,9 +215,10 @@ public class NavigationObject : StoryEventDependent
             nameField.text = LocalizationManager.GetUiText(nameCode, "???");
         
         if(!string.IsNullOrEmpty(descriptionField.text))
-            descriptionField.text = LocalizationManager.GetUiText(descriptionCode, "???");
+            descriptionField.text = DescriptionCode;
     }
-    
+
+
     public virtual void SetNotificationIcon() { }
 
     public void UpdateColors (Color lineColor, Color backColor)

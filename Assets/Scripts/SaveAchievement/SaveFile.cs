@@ -19,6 +19,7 @@ public class SaveFile
 
     // -- Events and UI Notifications
     public List<EventProgressData> eventProgressList;
+    public List<string> pendingShipDialogs;
     public List<UINotification> uiNotificationsList;
 
     // -- Minigame Scores

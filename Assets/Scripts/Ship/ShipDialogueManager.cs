@@ -1,11 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 
 public class ShipDialogueManager : MonoBehaviour
 {
+    static string dialogOptionsRegex = @"^.*(<\d+>(.)+)+[^>]$";
+    static string flowRedirectRegex = @"^.*->\d+$";
+    public static string shipDialogListRegex = @"^CHAT_PIG_W\d_([\w\d\-]+)_\d{3}\.\d{2}$";
+
+
     [System.Serializable]
     public struct DialogueIndexer
     {
@@ -25,12 +32,15 @@ public class ShipDialogueManager : MonoBehaviour
     [Header("References")]
     [SerializeField] PlayerCharacter playerCharacter;
     [SerializeField] ShipDialogueBox dialogueBox;
+    [SerializeField] ShipDialogueOptions optionsBox;
     [SerializeField] ShipInitializerSystem shipInitializer;
 
     public static int StartDialogueIndex = -1; // -- Chama "-1" se não tiver diálogo no início
     StoryEventScriptableObject afterDialogueStoryEvent;
 
     Sequence startSequence;
+    private PlatformerCharacter platformerCharacter;
+    private PlayerInput playerInput;
 
     void Start()
     {
@@ -41,6 +51,9 @@ public class ShipDialogueManager : MonoBehaviour
         }
 
         SetDialogueOnStart();
+        
+        platformerCharacter = playerCharacter.gameObject.GetComponent<PlatformerCharacter>();
+        playerInput = playerCharacter.gameObject.GetComponent<PlayerInput>();
     }
 
     private void SetDialogueOnStart()
@@ -95,37 +108,125 @@ public class ShipDialogueManager : MonoBehaviour
         );
     }
 
-    private void SetDialogueGroup (ShipNPCData dialogueData, DialogueGroup dialogueGroup, int index = 0)
+    public void CallDialogueFromAvailableTalks()
     {
+        var shipTalkIds = SaveManager.GetShipTalkIds();
+        
+        if(shipTalkIds.Count == 0)
+            return;
+        
+        GameManager.OnDialogue = true;
+        SetPlayerLocked(true);
+        
+        var mainDialogId = shipTalkIds[0];
+        var dialogId = mainDialogId.Remove(mainDialogId.Length - 3, 3);
+        
+        var dialogGroup = new DialogueGroup();
+        
+        dialogGroup.tags = new List<string>();
+
+        bool sucess;
+        int n = 1;
+
+        do
+        {
+            string localizationCode = dialogId + "." + n.ToString("00");
+            var tuple = LocalizationManager.GetShipText(localizationCode);
+            sucess = tuple.Item1;
+            
+            if(!sucess)
+                break;
+            
+            dialogGroup.tags.Add(localizationCode);
+            n++;
+
+        } while (true);
+
+        startSequence = DOTween.Sequence();
+        startSequence.AppendInterval(startUpDelay);
+        startSequence.Append( SetupForScene (startDialogueData) );
+        startSequence.AppendInterval(lookAtScreensDuration);
+        startSequence.AppendCallback
+        (
+            () => dialogueBox.SetShown(true)
+        );
+        startSequence.AppendInterval(.5f);
+        startSequence.OnComplete
+        (
+            () => SetDialogueGroup (startDialogueData, dialogGroup, 0, mainDialogId)
+        );
+    }
+
+    private void SetDialogueGroup (ShipNPCData dialogueData, DialogueGroup dialogueGroup, int index = 0, string idToRemove = "")
+    {
+        (bool isValid, string text) shipTextInfo = LocalizationManager.GetShipText( dialogueGroup[index % dialogueGroup.Count] );
+        
+        bool isDialogOptions = false;
         UnityAction afterInputAction = null;
+        string[] split = new string[] { };
+
+        int nextMessageIndex = index + 1;
+
+        if (Regex.IsMatch(shipTextInfo.text, flowRedirectRegex))
+        {
+            split = shipTextInfo.text.Split('>','-');
+            nextMessageIndex = Int32.Parse(split[2]) -1 ;
+            shipTextInfo.text = split[0];
+        }
+        else
+        {
+            if (Regex.IsMatch(shipTextInfo.text, dialogOptionsRegex))
+            {
+                split = shipTextInfo.text.Split('<', '>');
+                shipTextInfo.text = split[0];
+                isDialogOptions = true;
+            }
+        }
 
         if (index < dialogueGroup.Count) // -- Chama mais texto
         {
-            afterInputAction = () =>
+            if (!isDialogOptions)
             {
-                SetDialogueGroup(dialogueData, dialogueGroup, index + 1);
-            };
+                afterInputAction = () => SetDialogueGroup(dialogueData, dialogueGroup, nextMessageIndex, idToRemove);    
+            }
+            else
+            {
+                afterInputAction = () => OpenDialogOptionsSelectionMenu(split, dialogueData, dialogueGroup);
+            }
         }
         else // -- Termina a sessão de diálogos 
         {
-            EndDialogue(dialogueData);
+            EndDialogue(dialogueData, idToRemoveFromShipDialog: idToRemove);
             return;
         }
 
-        // -- Localiza o texto e manda para a DialogueBox
-        (bool isValid, string text) data = LocalizationManager.GetShipText( dialogueGroup[index % dialogueGroup.Count] );
-        if (!data.isValid)
+        // --Manda para a DialogueBox
+        if (!shipTextInfo.isValid)
         {
-            EndDialogue (dialogueData, forceOut: true);
+            EndDialogue (dialogueData, forceOut: true, idToRemoveFromShipDialog: idToRemove);
             return;
         }
 
-        dialogueBox.Type (data.text, delay: .5f, instantText: false, afterInputAction);
+        dialogueBox.Type (shipTextInfo.text, delay: .5f, instantText: false, afterInputAction);
     }
 
-    private void EndDialogue (ShipNPCData dialogueData, bool forceOut = false)
+    private void OpenDialogOptionsSelectionMenu(string[] split, ShipNPCData dialogueData, DialogueGroup dialogueGroup)
     {
-        //Debug.Log("EndDialogue()");
+        int optionsCount = Mathf.RoundToInt((split.Length - 1) / 2f);
+        List<(int, string)> options = new List<(int, string)>();
+
+        for (int i = 0; i < optionsCount; i++)
+        {
+            int j = (i * 2) + 1;
+            options.Add((Int32.Parse(split[j]), split[j + 1]));
+        }
+        optionsBox.InitializeOptions(options, n => SetDialogueGroup(dialogueData, dialogueGroup, n));
+        optionsBox.gameObject.SetActive(true);
+    }
+
+    private void EndDialogue (ShipNPCData dialogueData, string idToRemoveFromShipDialog , bool forceOut = false)
+    {
+        SetPlayerLocked(false);
 
         if (!forceOut)
             dialogueBox.SetShown(false);
@@ -148,6 +249,9 @@ public class ShipDialogueManager : MonoBehaviour
         if (afterDialogueStoryEvent != null)
             StoryEventsManager.ChangeProgress(afterDialogueStoryEvent, +999);
         GameManager.OnDialogue = false;
+
+        SaveManager.RemoveFromShipTalkIds(idToRemoveFromShipDialog);
+        
     }
 
     private Sequence SetupForScene (ShipNPCData data)
@@ -174,6 +278,17 @@ public class ShipDialogueManager : MonoBehaviour
                 shipInitializer.RestorePlayerControls();
                 break;
         }
+    }
+
+    private void SetPlayerLocked(bool value)
+    {
+        playerCharacter.SetPhysicsBody(!value);
+        playerCharacter.enabled = !value;
+        platformerCharacter.enabled = !value;
+        playerInput.enabled = !value;
+        
+        if(value)
+            platformerCharacter.StandStillState();
     }
 }
 

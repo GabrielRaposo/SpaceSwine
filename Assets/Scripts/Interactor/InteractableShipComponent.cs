@@ -27,6 +27,7 @@ public class InteractableShipComponent : Interactable
     [SerializeField] List<ShipInteractionBalloon> interactionBalloons;
     [SerializeField] SpriteRenderer arrowUp;
     [SerializeField] SpriteRenderer arrowDown;
+    [SerializeField] private ShipDialogueManager shipDialogueManager;
 
     [Header("Icon")]
     [SerializeField] SpriteSwapper iconSwapper;
@@ -106,6 +107,11 @@ public class InteractableShipComponent : Interactable
 
         switch (CurrentShipAction)
         {
+            case ShipAction.Talk:
+                
+                shipDialogueManager.CallDialogueFromAvailableTalks();
+                break;
+            
             case ShipAction.GGS:
 
                 //if (GGSConsole.Instance)

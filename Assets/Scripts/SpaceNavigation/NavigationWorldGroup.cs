@@ -7,6 +7,7 @@ using Cinemachine;
 public class NavigationWorldGroup : MonoBehaviour
 {
     [SerializeField] Vector2 spawnPoint;
+    [SerializeField] Vector2 returnPoint;
     
     [Header("Colors")]
     public Color BackgroundColor;
@@ -22,6 +23,11 @@ public class NavigationWorldGroup : MonoBehaviour
     public Vector2 SpawnPoint 
     { 
         get { return (Vector2)transform.position + spawnPoint; } 
+    }
+
+    public Vector2 ReturnPoint 
+    { 
+        get { return (Vector2)transform.position + returnPoint; } 
     }
 
     public void SetActive (bool value)
@@ -49,5 +55,12 @@ public class NavigationWorldGroup : MonoBehaviour
                 BackgroundColor
             );
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(SpawnPoint,  radius: .1f);
+        Gizmos.DrawWireSphere(ReturnPoint, radius: .1f);
     }
 }
