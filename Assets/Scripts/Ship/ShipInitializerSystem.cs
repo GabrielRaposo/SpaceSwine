@@ -76,6 +76,11 @@ public class ShipInitializerSystem : MonoBehaviour
     public void UpdateDialogButton()
     {
         dialogShipInteractable.SetInteraction(!SaveManager.IsShipDialogListEmpty());
+        if (SaveManager.IsShipDialogListEmpty())
+        {
+            dialogShipInteractable.DisableInteraction = true;
+        }
+        //DisableInteraction
     }
 
     private void SpawnFromMakeABeat()

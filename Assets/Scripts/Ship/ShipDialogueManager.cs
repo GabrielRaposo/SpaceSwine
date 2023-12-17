@@ -32,7 +32,7 @@ public class ShipDialogueManager : MonoBehaviour
     [Header("References")]
     [SerializeField] PlayerCharacter playerCharacter;
     [SerializeField] ShipDialogueBox dialogueBox;
-    [SerializeField] ShipDialogueOptions optionsesBox;
+    [SerializeField] ShipDialogueOptions optionsBox;
     [SerializeField] ShipInitializerSystem shipInitializer;
 
     public static int StartDialogueIndex = -1; // -- Chama "-1" se não tiver diálogo no início
@@ -220,8 +220,8 @@ public class ShipDialogueManager : MonoBehaviour
             int j = (i * 2) + 1;
             options.Add((Int32.Parse(split[j]), split[j + 1]));
         }
-        optionsesBox.InitializeOptions(options, n => SetDialogueGroup(dialogueData, dialogueGroup, n));
-        optionsesBox.gameObject.SetActive(true);
+        optionsBox.InitializeOptions(options, n => SetDialogueGroup(dialogueData, dialogueGroup, n));
+        optionsBox.gameObject.SetActive(true);
     }
 
     private void EndDialogue (ShipNPCData dialogueData, string idToRemoveFromShipDialog , bool forceOut = false)

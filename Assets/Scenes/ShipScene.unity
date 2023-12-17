@@ -38745,6 +38745,7 @@ MonoBehaviour:
   duration: 0.8
   screensOverlay: {fileID: 1524940603}
   makeABeatSpawnPoint: {x: 0, y: -1.6}
+  dialogShipInteractable: {fileID: 1449121815}
   reachingAKEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -38896,6 +38897,7 @@ MonoBehaviour:
   lookAtTarget: {fileID: 650116179}
   playerCharacter: {fileID: 460034959}
   dialogueBox: {fileID: 648453304}
+  optionsBox: {fileID: 3973693467642052021}
   shipInitializer: {fileID: 1136200914}
 --- !u!1 &1157511207
 GameObject:
@@ -46384,8 +46386,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3304367969057335894, guid: 5d61568c4ad13b84baf3aedf25275dcb, type: 3}
       propertyPath: disableInteraction
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3304367969057335894, guid: 5d61568c4ad13b84baf3aedf25275dcb, type: 3}
+      propertyPath: shipDialogueManager
+      value: 
+      objectReference: {fileID: 1153881120}
     - target: {fileID: 3304367969057335895, guid: 5d61568c4ad13b84baf3aedf25275dcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.67
@@ -46465,6 +46471,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3304367969057335895, guid: 5d61568c4ad13b84baf3aedf25275dcb, type: 3}
   m_PrefabInstance: {fileID: 1449121813}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1449121815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3304367969057335894, guid: 5d61568c4ad13b84baf3aedf25275dcb, type: 3}
+  m_PrefabInstance: {fileID: 1449121813}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a047b2fc43f04bb44b5257f109692742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1457765853
 GameObject:
   m_ObjectHideFlags: 0
@@ -62516,6 +62533,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3973693466604601140, guid: 20ebc0cc9586d8d4ba158e2b3696c4c5, type: 3}
   m_PrefabInstance: {fileID: 3973693467642052019}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3973693467642052021 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3938855952944614036, guid: 20ebc0cc9586d8d4ba158e2b3696c4c5, type: 3}
+  m_PrefabInstance: {fileID: 3973693467642052019}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1ec1b86d6362645a47ff9f362dcb3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5143285225331504260
 PrefabInstance:
   m_ObjectHideFlags: 0
