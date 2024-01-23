@@ -27,7 +27,7 @@ public class InteractableShipComponent : Interactable
     [SerializeField] List<ShipInteractionBalloon> interactionBalloons;
     [SerializeField] SpriteRenderer arrowUp;
     [SerializeField] SpriteRenderer arrowDown;
-    [SerializeField] private ShipDialogueManager shipDialogueManager;
+    [SerializeField] public ShipDialogueManager shipDialogueManager;
 
     [Header("Icon")]
     [SerializeField] SpriteSwapper iconSwapper;
