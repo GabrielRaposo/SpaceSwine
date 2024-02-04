@@ -122,7 +122,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         // -- Fade-in dos ícones na tela
         mainSequence = DOTween.Sequence();
-        mainSequence.Append( assetsGroup.DOFade(1, fadeDuration) );
+        mainSequence.Append( assetsGroup.DOFade(.75f, fadeDuration) );
         mainSequence.OnComplete( () => done = true );
         mainSequence.SetUpdate(isIndependentUpdate: true);
 

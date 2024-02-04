@@ -15,7 +15,10 @@ public class DialogueBoxStyleController : MonoBehaviour
     [SerializeField] Image skipIconImage;
     [SerializeField] RectTransform skipIconAnchor;
     [SerializeField] TextMeshProUGUI textDisplay;
+    
+    [Header("Name Box")]
     [SerializeField] GameObject nameBoxObject;
+    [SerializeField] Image nameBoxImage;
 
     //skip arrow anchor
 
@@ -99,8 +102,12 @@ public class DialogueBoxStyleController : MonoBehaviour
         // -- Alignment
         textDisplay.horizontalAlignment = style.horizontalAlignment;
         textDisplay.verticalAlignment = style.verticalAlignment;
-
+        
+        // -- Name Box
         nameBoxObject.SetActive(style.showNameBox);
+        nameBoxImage.sprite = style.nameBoxSprite;
+        nameBoxImage.enabled = style.nameBoxSprite;
+        nameBoxObject.GetComponent<RectTransform>().localPosition = new Vector2 (style.nameBoxPosX, style.nameBoxPosY);
 
         currentStyle = style;
     }
