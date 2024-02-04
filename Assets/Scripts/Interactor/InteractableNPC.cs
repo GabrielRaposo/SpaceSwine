@@ -16,6 +16,8 @@ public class InteractableNPC : Interactable
     public override void Interaction (PlayerInteractor interactor) 
     {
         //Debug.Log($"Interaction - name: {name}");
+        if (!interactable)
+            return;
 
         base.Interaction(interactor);
 
@@ -62,21 +64,25 @@ public class InteractableNPC : Interactable
 
     protected override void HighlightState (bool value) 
     {
-        if (speechBubble)
-        {
-            if (value)
-                speechBubble.Show();
-            else
-                speechBubble.Hide();
-        }
+        if (!interactable)
+            return;
+
+        if (!speechBubble)
+            return;
+        
+        if (value)
+            speechBubble.Show();
+        else
+            speechBubble.Hide();
+        
     }
 
     public override void IconState (bool value) 
     {
-        if (speechBubble)
-        {
-            speechBubble.SetAnimationState(value);
-        }
+        if (!speechBubble)
+            return;
+
+        speechBubble.SetAnimationState(value);
     }
 
     public int GetDialogueIndex()
