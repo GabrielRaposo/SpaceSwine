@@ -6,8 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(InteractableNPC))]
 public class ClosedSpaceNPC : MonoBehaviour
 {
+    [SerializeField] bool deactivateHelmetOnStart;
     [SerializeField] ClosedSpaceInner closedSpaceInner;
     [SerializeField] SpriteRenderer visualComponent;    
+    [SerializeField] SpriteRenderer helmetVisualComponent;
 
     InteractableNPC interactableNPC;
     Sequence s;
@@ -19,11 +21,18 @@ public class ClosedSpaceNPC : MonoBehaviour
 
     void Start()
     {
-        if (!closedSpaceInner || !visualComponent)
+        if (!closedSpaceInner || !visualComponent || !helmetVisualComponent)
             return;
         
-        visualComponent.color = new Color (1,1,1,0);
-        interactableNPC.SetInteraction(false);
+        { 
+            visualComponent.color = new Color (1,1,1,0);
+            helmetVisualComponent.color = new Color (1,1,1,0);
+
+            if (deactivateHelmetOnStart)
+                SetHelmetState(false);
+            
+            interactableNPC.SetInteraction(false);
+        }
 
         closedSpaceInner.OnSetStateAction += CallTransition;
     }
@@ -35,8 +44,16 @@ public class ClosedSpaceNPC : MonoBehaviour
 
         s = DOTween.Sequence();
         s.Append(visualComponent.DOColor(value ? Color.white : new Color(1,1,1,0), duration));
+        s.Join(helmetVisualComponent.DOColor(value ? Color.white : new Color(1,1,1,0), duration));
 
         s.OnComplete( () => interactableNPC.SetInteraction(value) );
     }
 
+    public void SetHelmetState(bool value)
+    {
+        if (!helmetVisualComponent)
+            return;
+
+        helmetVisualComponent.enabled = value;
+    }
 }
