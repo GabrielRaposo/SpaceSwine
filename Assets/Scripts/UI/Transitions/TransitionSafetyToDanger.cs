@@ -110,6 +110,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
         done = false;
 
         fillImage.enabled = true;
+        DOTween.Clear();
 
         // -- Inicia carregamento de cena
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(path);
@@ -175,10 +176,10 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         // -- Libera apresentação da cena
         asyncOperation.allowSceneActivation = true;
-        DOTween.KillAll();
         yield return new WaitForEndOfFrame();
 
         // -- Fade-out da tela de transição
+        //DOTween.Clear();
         mainSequence = DOTween.Sequence();
         mainSequence.Append( mainCanvasGroup.DOFade(0, slideDuration) );
         mainSequence.OnComplete( () => done = true );

@@ -13341,7 +13341,7 @@ PrefabInstance:
     - target: {fileID: 4585204730338536689, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 9174496461731593689, guid: 369f9c850fd4c204084335b1c76721ce, type: 3}
+      objectReference: {fileID: -1736391987450509240, guid: 14507d7ceec0a4349a98187a903d82ef, type: 3}
     - target: {fileID: 4585204730892095361, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_Color.r
       value: 0.050980397
@@ -13357,7 +13357,7 @@ PrefabInstance:
     - target: {fileID: 4585204730892095361, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -14878556918894607, guid: 369f9c850fd4c204084335b1c76721ce, type: 3}
+      objectReference: {fileID: 4109943934037942124, guid: 14507d7ceec0a4349a98187a903d82ef, type: 3}
     - target: {fileID: 4585204730892095361, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_Color.g
       value: 0.29411766
@@ -13412,7 +13412,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839614, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_Name
-      value: 1Sub - NavigationObject
+      value: 1Hub - NavigationObject
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839614, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_IsActive
@@ -13445,14 +13445,14 @@ PrefabInstance:
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: scene.m_SceneAsset
       value: 
-      objectReference: {fileID: 102900000, guid: d4c47ec7f28412246a64ee9c84070e5d, type: 3}
+      objectReference: {fileID: 102900000, guid: 905c53556ba77e94089c3ec3d3d5a480, type: 3}
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: scene.m_IsDirty
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: scene.m_ScenePath
-      value: Assets/Scenes/World3/World3DangerScene-1 (vigas).unity
+      value: Assets/Scenes/World3/World3ExplorationScene-1.unity
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: completionStoryEvent
@@ -13460,7 +13460,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 1ed0517e7a07e064dbb9af5a1615d7cd, type: 2}
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: notificationID
-      value: w3sub1unlocked
+      value: w3hub1unlocked
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: toDangerZone
@@ -13711,7 +13711,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313322175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.6660447, y: 0, z: -2}
+  m_LocalPosition: {x: 2.6661339, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 923856147}
@@ -14300,7 +14300,17 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1348230363}
+    m_ColliderPaths:
+    - - X: 74999707
+        Y: -75000000
+      - X: 74999707
+        Y: 75000000
+      - X: -75000000
+        Y: 74999707
+      - X: -74999707
+        Y: -75000000
   m_CompositePaths:
     m_Paths:
     - - {x: 7.499942, y: -7.5}
@@ -18844,17 +18854,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1788618458}
-    m_ColliderPaths:
-    - - X: 59999707
-        Y: -75000000
-      - X: 59999707
-        Y: 75000000
-      - X: -60000000
-        Y: 74999707
-      - X: -59999707
-        Y: -75000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 5.999942, y: -7.5}
@@ -19498,7 +19498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2344785330290861715, guid: 6071b3658569ca24ebfd444740ad9c4a, type: 3}
       propertyPath: m_Name
-      value: Navigation World Portal
+      value: Navigation World Portal (->W2)
       objectReference: {fileID: 0}
     - target: {fileID: 2344785330290861715, guid: 6071b3658569ca24ebfd444740ad9c4a, type: 3}
       propertyPath: m_IsActive
@@ -21582,7 +21582,7 @@ PrefabInstance:
     - target: {fileID: 4585204730338536689, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1736391987450509240, guid: 14507d7ceec0a4349a98187a903d82ef, type: 3}
+      objectReference: {fileID: 9174496461731593689, guid: 369f9c850fd4c204084335b1c76721ce, type: 3}
     - target: {fileID: 4585204730892095361, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_Color.r
       value: 0.050980397
@@ -21598,7 +21598,7 @@ PrefabInstance:
     - target: {fileID: 4585204730892095361, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 4109943934037942124, guid: 14507d7ceec0a4349a98187a903d82ef, type: 3}
+      objectReference: {fileID: -14878556918894607, guid: 369f9c850fd4c204084335b1c76721ce, type: 3}
     - target: {fileID: 4585204730892095361, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_Color.g
       value: 0.29411766
@@ -21974,7 +21974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2061038773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22893,7 +22893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2132604570
 Transform:
   m_ObjectHideFlags: 0
