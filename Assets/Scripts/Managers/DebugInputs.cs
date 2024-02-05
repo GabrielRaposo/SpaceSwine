@@ -80,7 +80,7 @@ public class DebugInputs : MonoBehaviour
             {
                 SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
                 if (soundtrackManager)
-                    soundtrackManager.SkipTrack(1);
+                    soundtrackManager.PlayInput();
                 DebugDisplay.Call ("Play/Skip track.");
             };
             playMusicTestInput.Enable();
@@ -89,7 +89,7 @@ public class DebugInputs : MonoBehaviour
             {
                 SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
                 if (soundtrackManager)
-                    soundtrackManager.Stop();
+                    soundtrackManager.StopInput();
                 DebugDisplay.Call ("Stop track.");
             };
             stopMusicTestInput.Enable();
