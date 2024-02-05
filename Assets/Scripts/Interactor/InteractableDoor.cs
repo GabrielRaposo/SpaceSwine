@@ -20,7 +20,12 @@ public class InteractableDoor : Interactable
     [SerializeField] ClosedSpaceInner backComponent;
     [SerializeField] GameObject inputHelper;
 
-    bool closedSpaceIsActive; 
+    [Header("Camera")]
+    [SerializeField] float zoomInSize;
+    [SerializeField] float zoomOutSize;
+
+    bool closedSpaceIsActive;
+    Sequence zoomSequence;
 
     private void Start() 
     {
@@ -43,7 +48,9 @@ public class InteractableDoor : Interactable
         base.Interaction(interactor);
 
         StartCoroutine( SetState (interactor, !closedSpaceIsActive) );
+        SetCameraZoom( !closedSpaceIsActive );
     }
+
 
     private IEnumerator SetState (PlayerInteractor interactor, bool value)
     {
@@ -86,6 +93,24 @@ public class InteractableDoor : Interactable
         closedSpaceIsActive = value;
 
         AfterSequence (interactor);
+    }
+
+    private void SetCameraZoom (bool value)
+    {
+        if (zoomSequence != null)
+            zoomSequence.Kill();
+
+        zoomSequence = DOTween.Sequence();
+        zoomSequence.Append
+        ( 
+            DOVirtual.Float
+            (
+                from: value ? zoomOutSize : zoomInSize,
+                to:   value ? zoomInSize : zoomOutSize,
+                duration: fadeAnimationDuration,
+                (f) => CameraSizeController.Size = f 
+            )
+        );
     }
 
     private void BeforeSequence (PlayerInteractor player)
