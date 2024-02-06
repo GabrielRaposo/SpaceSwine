@@ -26,6 +26,8 @@ public class SoundtrackManager : MonoBehaviour
     public static bool IsPlaying;
     bool applicationIsPaused;
 
+    bool manuallyPaused;
+
     int currentIndex = 0;
 
     public UnityAction<string, int> OnTrackPlayedEvent;
@@ -139,6 +141,9 @@ public class SoundtrackManager : MonoBehaviour
 
         if (playlist == null)
             return;
+        
+        if (manuallyPaused)
+            return;
 
         int orderedIndex = currentIndex;
         if (playOrder != null) // -- Interação com shuffle
@@ -212,5 +217,17 @@ public class SoundtrackManager : MonoBehaviour
         }
 
         IsPlaying = false;
+    }
+
+    public void StopInput()
+    {
+        manuallyPaused = true;
+        Stop();
+    }
+
+    public void PlayInput()
+    {
+        manuallyPaused = false;
+        SkipTrack(1);
     }
 }

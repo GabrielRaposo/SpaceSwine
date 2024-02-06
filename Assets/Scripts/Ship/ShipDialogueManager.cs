@@ -34,6 +34,7 @@ public class ShipDialogueManager : MonoBehaviour
     [SerializeField] ShipDialogueBox dialogueBox;
     [SerializeField] ShipDialogueOptions optionsBox;
     [SerializeField] ShipInitializerSystem shipInitializer;
+    [SerializeField] ShipExclamationIcon shipExclamationIcon;
 
     public static int StartDialogueIndex = -1; // -- Chama "-1" se não tiver diálogo no início
     StoryEventScriptableObject afterDialogueStoryEvent;
@@ -290,6 +291,15 @@ public class ShipDialogueManager : MonoBehaviour
         if(value)
             platformerCharacter.StandStillState();
     }
+
+    public void SetExclamationIcon(bool value)
+    {
+        if(value)
+            shipExclamationIcon.Show();
+        else
+            shipExclamationIcon.Hide();
+    }
+    
 }
 
 public enum ShipSceneType
