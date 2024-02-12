@@ -5001,6 +5001,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8660751350395901560, guid: 5e26baab528e32846aca54badb85a144, type: 3}
   m_PrefabInstance: {fileID: 3206352598204214315}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &374788901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374788900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09283ef6d4e5374e826e1b2b0e9636d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storyEvent: {fileID: 11400000, guid: 3153b0b6911b01e48a6039cacb1c4668, type: 2}
+  progressValue: 1
+  dialogueGroupIndex: -1
 --- !u!114 &374788907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19846,6 +19861,10 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: af011dfedd5bd464b9b01eefc520a04d, type: 2}
+    - target: {fileID: 2155953242716288718, guid: e51fa7b6d15970c4cb7c9ba6876afeaf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8460487432233387560, guid: e51fa7b6d15970c4cb7c9ba6876afeaf, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -28274,7 +28293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -32804,6 +32823,7 @@ GameObject:
   - component: {fileID: 1417792465364232827}
   - component: {fileID: 1417792465364232773}
   - component: {fileID: 1417792465364232776}
+  - component: {fileID: 1417792465364232777}
   m_Layer: 0
   m_Name: NPC-Robot Screen (Outro)
   m_TagString: Untagged
@@ -32843,6 +32863,19 @@ MonoBehaviour:
   storyEvent: {fileID: 11400000, guid: 9363266226b2bac46997b897ac875c34, type: 2}
   progressValue: 1
   dialogueGroupIndex: -1
+--- !u!114 &1417792465364232777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417792465364232774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb1bc5609f3dcb43b44b8a525339b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenTransform: {fileID: 1832801091}
 --- !u!114 &1417792465364232826
 MonoBehaviour:
   m_ObjectHideFlags: 0

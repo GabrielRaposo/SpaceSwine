@@ -10,6 +10,7 @@ public class InteractableNPC : Interactable
     [SerializeField] DialogueBoxStyle customDialogueStyle;
     [SerializeField] AK.Wwise.Event talkSoundAKEvent;
 
+    public UnityAction OnInteraction;
     public UnityAction <int, NPCData> OnPreviousIndexReached;
     public UnityAction OnDialogueEnd;
     public UnityAction AfterDialogueEnd;
@@ -29,6 +30,9 @@ public class InteractableNPC : Interactable
 
         if (data)
         {
+            if (OnInteraction != null)
+                OnInteraction.Invoke();
+
             //Debug.Log("data:  " + data);
 
             DialogueSystem dialogSystem = DialogueSystem.Instance;
