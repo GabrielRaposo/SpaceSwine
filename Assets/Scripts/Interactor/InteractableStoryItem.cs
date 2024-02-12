@@ -75,7 +75,7 @@ public class InteractableStoryItem : Interactable
                     npcName = nameData.text;
             }
             
-            dialogSystem?.SetDialogue(this, npcName, dialogueGroup.tags, OnDialogueEnd: () => {}, customDialogueStyle, talkSoundAKEvent);
+            dialogSystem?.SetDialogue(this, npcName, dialogueGroup.tags, OnDialogueEnd: () => {}, AfterDialogueEnd: () => {}, customDialogueStyle, talkSoundAKEvent);
 
             if (interactor)
             {

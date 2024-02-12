@@ -73,7 +73,7 @@ public class InteractableShowDialogueAndCallAction : Interactable
 
     private void CallDialogueText(PlayerInteractor interactor)
     {            
-        dialogSystem?.SetDialogue(this, speakerName: string.Empty, dialogueIDs, OnDialogueEnd, dialogueBoxStyle, chatSoundAKEvent, OnDialogueCancel);
+        dialogSystem?.SetDialogue(this, speakerName: string.Empty, dialogueIDs, OnDialogueEnd, AfterDialogueEnd: () => {}, dialogueBoxStyle, chatSoundAKEvent, OnDialogueCancel);
 
         if (interactor)
         {

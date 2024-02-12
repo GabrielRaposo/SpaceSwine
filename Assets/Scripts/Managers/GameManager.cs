@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.UI.Start.performed += (ctx) => 
         {
-            if (BlockCharacterInput || OnTransition || OnDialogue)
+            if (BlockCharacterInput || OnTransition || OnDialogue || DialogueSystem.OnDialogue)
                 return;
 
             pauseSystem?.TogglePauseState();

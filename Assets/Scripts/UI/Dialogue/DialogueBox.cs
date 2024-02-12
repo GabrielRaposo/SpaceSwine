@@ -39,6 +39,7 @@ public class DialogueBox : MonoBehaviour
     List <string> dialogues;
     UnityAction OnDialogueEnd;
     UnityAction OnDialogueCancel;
+    UnityAction AfterDialogueEnd;
 
     PlayerInputActions playerInputActions;
     Sequence sequence;
@@ -56,7 +57,7 @@ public class DialogueBox : MonoBehaviour
 
     private void TestForwardInput(InputAction.CallbackContext ctx)
     {
-        if (!DialogueSystem.OnDialogue || Time.timeScale < 1)
+        if (!DialogueSystem.OnDialogue || DialogueSystem.BlockInputs || Time.timeScale < 1)
             return;
 
         if (delayFrames > 0)
@@ -79,6 +80,7 @@ public class DialogueBox : MonoBehaviour
         string speakerName, 
         List<string> dialogues, 
         UnityAction OnDialogueEnd,
+        UnityAction AfterDialogueEnd,
         DialogueBoxStyle customDialogueStyle,
         AK.Wwise.Event talkSoundAKEvent,
         UnityAction OnDialogueCancel = null
@@ -88,6 +90,7 @@ public class DialogueBox : MonoBehaviour
         this.speakerName = speakerName;
         this.dialogues = dialogues;
         this.OnDialogueEnd = OnDialogueEnd;
+        this.AfterDialogueEnd = AfterDialogueEnd;
         this.OnDialogueCancel = OnDialogueCancel;
 
         autoSkip = false;
@@ -156,7 +159,13 @@ public class DialogueBox : MonoBehaviour
                 EndDialogue();
                 StartCoroutine
                 (
-                    RaposUtil.Wait(3, () =>  DialogueSystem.OnDialogue = false)
+                    RaposUtil.Wait(3, () =>  
+                    {
+                        DialogueSystem.OnDialogue = false;
+
+                        if (AfterDialogueEnd != null)
+                            AfterDialogueEnd.Invoke();
+                    })
                 );
             }
         }
@@ -263,7 +272,10 @@ public class DialogueBox : MonoBehaviour
 
         StartCoroutine
         (
-            RaposUtil.Wait(3, () =>  DialogueSystem.OnDialogue = false)
+            RaposUtil.Wait(3, () => 
+            {
+                DialogueSystem.OnDialogue = false;
+            })
         );
     }
 
