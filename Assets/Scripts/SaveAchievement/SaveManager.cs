@@ -265,7 +265,7 @@ public class SaveManager : MonoBehaviour
         if (currentSave.pendingShipDialogs == null)
             currentSave.pendingShipDialogs = new List<string>();
         
-        string localizationID = "CHAT_PIG_W" + (int)storyEvent.worldTag + "_" + storyEvent.idTag + "_001.01";
+        string localizationID = "CHAT_W" + (int)storyEvent.worldTag + "_" + storyEvent.idTag + "_001.01";
 
         bool success;
         int n = 1;
