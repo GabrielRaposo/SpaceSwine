@@ -10548,16 +10548,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startOnFocus: 0
-  titleButtons:
+  buttons:
   - {fileID: 945349696}
   - {fileID: 1477454179}
   - {fileID: 1899896070}
   - {fileID: 1629194074}
   - {fileID: 1427899895}
   - {fileID: 943965518}
+  holdCooldown: 0.4
+  OnFocus: 0
   continueButton: {fileID: 945349696}
   newSaveCheckEvent: {fileID: 11400000, guid: 0bcde44891d9fae45867548242645e14, type: 2}
-  holdCooldown: 0.4
   OnEnterMenuAKEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -10598,7 +10599,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   canvasGroup: {fileID: 1598926317}
-  OnFocus: 0
 --- !u!1 &954784263
 GameObject:
   m_ObjectHideFlags: 0
@@ -17458,6 +17458,10 @@ PrefabInstance:
       propertyPath: pressAnykeyDisplay
       value: 
       objectReference: {fileID: 2086119031}
+    - target: {fileID: 7055959565048212334, guid: e890fd22414b8ac449fbad21277b8427, type: 3}
+      propertyPath: playlist
+      value: 
+      objectReference: {fileID: 11400000, guid: 23a56cfd175ca1a4b9d5cc1797b9be04, type: 2}
     - target: {fileID: 7055959565048212335, guid: e890fd22414b8ac449fbad21277b8427, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
