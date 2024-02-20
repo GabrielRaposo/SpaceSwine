@@ -10,7 +10,7 @@ public class ShipDialogueManager : MonoBehaviour
 {
     static string dialogOptionsRegex = @"^.*(<\d+>(.)+)+[^>]$";
     static string flowRedirectRegex = @"^.*->\d+$";
-    public static string shipDialogListRegex = @"^CHAT_PIG_W\d_([\w\d\-]+)_\d{3}\.\d{2}$";
+    public static string shipDialogListRegex = @"^CHAT_W\d_([\w\d\-]+)_\d{3}\.\d{2}$";
 
 
     [System.Serializable]
