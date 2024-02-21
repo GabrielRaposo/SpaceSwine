@@ -8849,11 +8849,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839609, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.9799998
+      value: -3.25
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839609, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.55
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839609, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10833,11 +10833,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839609, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.892
+      value: -3.64
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839609, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.192
+      value: -1.93
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839609, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10877,7 +10877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839614, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: m_Name
-      value: 0Sub - NavigationObject (1)
+      value: 1Hub - NavigationObject
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: dotsParent
@@ -10906,14 +10906,14 @@ PrefabInstance:
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: scene.m_SceneAsset
       value: 
-      objectReference: {fileID: 102900000, guid: 3b5709e8f2c9d744da9891b5d7239c6a, type: 3}
+      objectReference: {fileID: 102900000, guid: 4d05780a1ae4e934498c8f84cc767566, type: 3}
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: scene.m_IsDirty
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: scene.m_ScenePath
-      value: Assets/Scenes/World2/World2DangerScene-1 (bolha).unity
+      value: Assets/Scenes/World2/World2ExplorationScene-1.unity
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: completionStoryEvent
@@ -10921,11 +10921,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0484e4b667c0efb4aaa957305c26b78b, type: 2}
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: notificationID
-      value: w2sub1unlocked
+      value: w2hub1unlocked
       objectReference: {fileID: 0}
     - target: {fileID: 4585204731604839615, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: toDangerZone
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5739569840260570604, guid: f063da377dce269428c9c029ccdf3032, type: 3}
       propertyPath: localizationCode
@@ -17031,7 +17031,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313322175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.9792762, y: 0, z: -2}
+  m_LocalPosition: {x: 4.8248043, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 923856147}
@@ -17620,17 +17620,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1348230363}
-    m_ColliderPaths:
-    - - X: 74999707
-        Y: -112000000
-      - X: 74999707
-        Y: 112000000
-      - X: -75000000
-        Y: 111999707
-      - X: -74999707
-        Y: -112000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 7.499942, y: -11.2}
@@ -21349,7 +21339,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1606156502}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e715e9b994cc81429a9cda5b836e31c, type: 3}
   m_Name: 
@@ -23327,7 +23317,17 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1788618458}
+    m_ColliderPaths:
+    - - X: 59999707
+        Y: -75000000
+      - X: 59999707
+        Y: 75000000
+      - X: -60000000
+        Y: 74999707
+      - X: -59999707
+        Y: -75000000
   m_CompositePaths:
     m_Paths:
     - - {x: 5.999942, y: -7.5}
@@ -27223,7 +27223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2061038773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28473,7 +28473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2132604570
 Transform:
   m_ObjectHideFlags: 0
