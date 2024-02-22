@@ -5,7 +5,7 @@ using UnityEngine;
 public class CallAnotherDialogueAfterDialogue : MonoBehaviour
 {
     [SerializeField] InteractableNPC otherNPC;
-    [SerializeField] float delay;
+    [SerializeField] float delay = 1.5f;
 
     void Start()
     {
