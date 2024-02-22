@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using DevLocker.Utils;
 
 public class RoundsManager : MonoBehaviour
 {
@@ -10,15 +11,21 @@ public class RoundsManager : MonoBehaviour
     [SerializeField] InputAction resetInputAction;
     [SerializeField] InputAction nextInputAction;
 
-    [Header("Temp")]
-    [SerializeField] RoundSessionData testSessionData;
+    [Header ("SessionData")]
+    [SerializeField] int lastIndex;
+    [SerializeField] SceneReference exitScene;
+    [SerializeField] int localAbandonSpawnIndex;
+    [SerializeField] int localOutroSpawnIndex;
+    [SerializeField] StoryEventScriptableObject completionStoryEvent;
+
+    public static int AbandonSpawnIndex;
+    public static int OutroSpawnIndex;
 
     int currentIndex;
     List<Round> rounds;
     PlayerCharacter player;
 
     public static bool BlockSpawn;
-    public static RoundSessionData SessionData;
     public static UnityAction OnSessionCompletedAction;
 
     public static RoundsManager Instance;
@@ -26,6 +33,9 @@ public class RoundsManager : MonoBehaviour
     private void Awake() 
     {
         Instance = this;    
+
+        AbandonSpawnIndex = localAbandonSpawnIndex;
+        OutroSpawnIndex = localOutroSpawnIndex;
     }
 
     private void Start() 
@@ -60,17 +70,8 @@ public class RoundsManager : MonoBehaviour
             return;
         }
 
-        if (testSessionData != null && SessionData == null)
-        {
-            SessionData = testSessionData;
-        }
-
         // -- Encontra o Index inicial
-        if (SessionData != null)
-        {
-            currentIndex = SessionData.startingIndex;
-        }
-        else currentIndex = 0;
+        currentIndex = 0;
 
         ActivateCurrentIndex();
         
@@ -106,7 +107,7 @@ public class RoundsManager : MonoBehaviour
 
     public void PreviousRoundLogic()
     {
-        int first = SessionData ? SessionData.startingIndex : 0;
+        int first = 0;
 
         if (currentIndex > first)
         {
@@ -137,9 +138,9 @@ public class RoundsManager : MonoBehaviour
         currentIndex++;
 
         int lastRound = rounds.Count;
-        if (SessionData != null)
+        if (lastIndex > -1)
         {
-            lastRound = SessionData.lastIndex;
+            lastRound = lastIndex;
         }
 
         if (currentIndex - 1 < lastRound)
@@ -151,13 +152,11 @@ public class RoundsManager : MonoBehaviour
             if (OnSessionCompletedAction != null)
                 OnSessionCompletedAction();
 
-            if (SessionData != null)
-            {
-                SceneTransition.LoadScene( SessionData.outroScene.ScenePath, SceneTransition.TransitionType.DangerToSafety );
-                SaveManager.SetSpawnPath( SessionData.outroScene.ScenePath );
-            }
+            if (completionStoryEvent != null && SaveManager.Initiated)
+                StoryEventsManager.ChangeProgress(completionStoryEvent, 99);
 
-            SessionData = null;
+            SceneTransition.LoadScene( exitScene.ScenePath, SceneTransition.TransitionType.DangerToSafety );
+            SaveManager.SetSpawnPath( exitScene.ScenePath );
         }
     }
 

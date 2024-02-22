@@ -104,7 +104,10 @@ public class BubblePlanet : CustomSurface, ConcealingBody
         player = null;
 
         if (concealedCollectable && concealedCollectable.transform.parent == transform)
-            concealedCollectable.transform.SetParent (null);
+        {
+            Round round = GetComponentInParent<Round>();
+            concealedCollectable.transform.SetParent (round ? round.transform : null);
+        }
 
         burstPS?.Play();
         if (burstAKEvent != null)

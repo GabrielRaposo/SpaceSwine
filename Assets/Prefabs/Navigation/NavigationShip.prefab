@@ -4996,6 +4996,7 @@ GameObject:
   - component: {fileID: 6704606069767115114}
   - component: {fileID: 6704606069767115115}
   - component: {fileID: 4894789703157101612}
+  - component: {fileID: 7895281234532312504}
   - component: {fileID: 6704606069767115108}
   - component: {fileID: 6704606069767115109}
   m_Layer: 0
@@ -5035,11 +5036,17 @@ MonoBehaviour:
   speed: 0.02
   spritesTransform: {fileID: 6704606070631269565}
   smokeTrailPS: {fileID: 4163630938201908525}
-  flightStepsDelay: 0.1
+  OnHoverAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 18213819c28e3ae489aa62a9c1146f15, type: 2}
+  flightStepsDelay: 0.45
   flightStepsAKEvent:
     idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: a5eb62b1e8ba758409f30eedb95efd80, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: cc26ec631eea5c6478684ab90c89ba70, type: 2}
+  OverrideMode: 0
+  OverridenControls: {x: 0, y: 0}
 --- !u!114 &4894789703157101612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5052,6 +5059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6441437245ec83b44a953e56b0d88445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volumeFade: 0
   startMovementAKEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -5068,6 +5076,34 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 79cd1ec8fb10d0743b88caac60acea05, type: 2}
+--- !u!114 &7895281234532312504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6704606069767115113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f416d7db59d2e6a47adaeebc191044ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dotsParent: {fileID: 0}
+  frontSprite: {fileID: 6704606069501284969}
+  backSprite: {fileID: 6704606069621987061}
+  trailPS: {fileID: 4163630938201908525}
+  OnSelectAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2f83610648846d846b67383e60a73bff, type: 2}
+  MakePathAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: ece5c268e4e34234fa8bab36b31e00cb, type: 2}
+  OnReachDestinationAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 12a68a06e673de84e8f660824c09268c, type: 2}
 --- !u!70 &6704606069767115108
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

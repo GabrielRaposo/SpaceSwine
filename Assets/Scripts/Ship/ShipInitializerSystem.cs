@@ -17,6 +17,7 @@ public class ShipInitializerSystem : MonoBehaviour
     [SerializeField] float duration;
     [SerializeField] ShipScreensOverlay screensOverlay;
     [SerializeField] Vector2 makeABeatSpawnPoint;
+    [SerializeField] private InteractableShipComponent dialogShipInteractable;
       
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event reachingAKEvent;
@@ -68,7 +69,23 @@ public class ShipInitializerSystem : MonoBehaviour
         if (!alwaysStartPlayerOnShuttle)
             return;
 
-        StartOnShuttle();        
+        StartCoroutine (WaitToStartOnShuttle());
+        //StartOnShuttle();              
+    }
+
+    public void UpdateDialogButton()
+    {
+        bool dialogListEmpty = SaveManager.IsShipDialogListEmpty();
+        
+        dialogShipInteractable.SetInteraction(!dialogListEmpty);
+        if (dialogListEmpty)
+            dialogShipInteractable.DisableInteraction = true;
+
+        var dialogManager = dialogShipInteractable.shipDialogueManager;
+        if(dialogManager)
+            dialogManager.SetExclamationIcon(!dialogListEmpty);
+
+        //DisableInteraction
     }
 
     private void SpawnFromMakeABeat()
@@ -76,6 +93,29 @@ public class ShipInitializerSystem : MonoBehaviour
         playerCharacter.transform.position = makeABeatSpawnPoint;
         if (screensOverlay)
             screensOverlay.InstantTurnOn();
+    }
+
+    private IEnumerator WaitToStartOnShuttle() 
+    {
+        if (TransitionSafetyToDanger.OnTransition)
+        {
+            playerCharacter.SetPhysicsBody(false);
+
+            // É bom que o componente do PlayerInput esteja desligado nas cenas em que tem esse script
+            playerCharacter.enabled = false;
+            playerInput.enabled = false;
+            platformerCharacter.StandStillState();
+
+            playerObject.transform.position 
+                = transform.position + (Vector3.up * LOWER_ANCHOR_Y); 
+            Vector2 targetPosition 
+                = transform.position + (Vector3.up * UPPER_ANCHOR_Y); 
+
+            yield return new WaitWhile( () => TransitionSafetyToDanger.OnTransition );
+        }
+
+        StartOnShuttle();
+		UpdateDialogButton();
     }
 
     private void StartOnShuttle()
@@ -94,7 +134,7 @@ public class ShipInitializerSystem : MonoBehaviour
 
         RaposUtil.WaitSeconds(this, duration: .55f, () => 
         {
-            if (reachingAKEvent != null && playerObject.activeSelf)
+            if (reachingAKEvent != null && playerObject.activeSelf && !TransitionSafetyToDanger.OnTransition)
                 reachingAKEvent.Post(gameObject);
         });
 

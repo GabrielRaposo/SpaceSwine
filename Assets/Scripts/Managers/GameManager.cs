@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.UI.Start.performed += (ctx) => 
         {
-            if (BlockCharacterInput || OnTransition || OnDialogue)
+            if (BlockCharacterInput || OnTransition || OnDialogue || DialogueSystem.OnDialogue)
                 return;
 
             pauseSystem?.TogglePauseState();
@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
         Vector3 spawnPosition = spawnManager.GetSpawnPoint();
         playerObject.transform.position = spawnPosition;
     }
+    
 
     private void SetupPlaylist()
     {
@@ -84,7 +85,15 @@ public class GameManager : MonoBehaviour
         if (saveScenePath)
             SaveManager.SetSpawnPath(path);
         
-        SceneTransition.LoadScene(path, SceneTransition.TransitionType.BlackFade);
+        SceneTransition.TransitionType transitionType = SceneTransition.TransitionType.BlackFade;
+
+        PlayerCharacter player = PlayerCharacter.Instance;
+        if ( player && player.GetComponent<LocalGameplayState>().state == GameplayState.Danger )
+        {
+            transitionType = SceneTransition.TransitionType.DangerToSafety;
+        }
+
+        SceneTransition.LoadScene(path, transitionType);
     }
 
     public static void GoToScene (BuildIndex index)
@@ -134,6 +143,11 @@ public class GameManager : MonoBehaviour
     public static bool IsOnScene (BuildIndex buildIndex)
     {
         return SceneManager.GetActiveScene().buildIndex == (int) buildIndex;
+    }
+
+    public static bool IsOnScene (string path)
+    {
+        return SceneManager.GetActiveScene().path == path;
     }
 
     public static bool OnTransition

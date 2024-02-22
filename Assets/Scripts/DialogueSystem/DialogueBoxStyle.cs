@@ -29,8 +29,13 @@ public class DialogueBoxStyle : ScriptableObject
     public float skipIconPosX = -1;
     public float skipIconPosY = -1;
 
-    [Header("Text")]
+    [Header("Name Box")]
     public bool showNameBox = true;
+    public Sprite nameBoxSprite;
+    public float nameBoxPosX = -394f;
+    public float nameBoxPosY = 104f;
+
+    [Header("Font")]
     public float fontSize = 36f;
     public bool autoSize = false;
     public TMP_FontAsset fontAsset;

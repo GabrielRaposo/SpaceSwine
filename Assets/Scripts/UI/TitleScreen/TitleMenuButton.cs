@@ -1,15 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
-public class TitleMenuButton : MonoBehaviour
+public class TitleMenuButton : InputSystemCompatibleButton
 {
-    [SerializeField] UnityEvent OnClickEvent;
-
     [Header("Values")]
     [SerializeField] Color highlightColor;
     [SerializeField] Color hiddenColor;
@@ -17,38 +17,13 @@ public class TitleMenuButton : MonoBehaviour
     [SerializeField] float hiddenX;
     [SerializeField] float duration;
 
-    [Header("Audio")]
-    [SerializeField] AK.Wwise.Event hoverAKEvent;
-    [SerializeField] AK.Wwise.Event clickAKEvent;
-
     [Header("References")]
     [SerializeField] Image tabLine;
     [SerializeField] Image sideSlot;
-    [SerializeField] TextMeshProUGUI textDisplay;
     [SerializeField] CanvasGroup canvasGroup;
 
-    bool selected;
     
     Sequence s;
-
-    private void Awake() 
-    {
-        SetState (selected = false);
-
-        if (OnClickEvent == null)
-            OnClickEvent = new UnityEvent();
-    }
-
-    public void Submit()
-    {
-        //Debug.Log("Submit: " + name);
-        
-        if (clickAKEvent != null)
-            clickAKEvent.Post(gameObject);
-
-        OnClickEvent.Invoke();
-    }
-
     private bool SlideSequence(bool value, UnityAction onComplete)
     {
         if (!tabLine)
@@ -65,15 +40,7 @@ public class TitleMenuButton : MonoBehaviour
         return true;
     }
 
-    public void InstantSelect (bool value)
-    {
-        if (value)
-            SetState( selected = true );
-        else
-            SetState( selected = false );
-    }
-
-    public void Select (bool playSound = false)
+    public override void Select (bool playSound = false)
     {
         if (playSound && hoverAKEvent != null)
             hoverAKEvent.Post(gameObject);
@@ -83,14 +50,14 @@ public class TitleMenuButton : MonoBehaviour
             SetState (selected = value);
     }
 
-    public void Deselect() 
+    public override void Deselect() 
     {
         bool value = false;
         if (! SlideSequence(value, () => SetState(selected = value) ))
             SetState (selected = value);
     }
 
-    private void SetState (bool value)
+    protected override void SetState (bool value)
     {
         if (tabLine) 
         { 
@@ -102,7 +69,7 @@ public class TitleMenuButton : MonoBehaviour
             textDisplay.color = value ? highlightColor : hiddenColor;
     }
 
-    public void SetInteraction(bool value)
+    public override void SetInteraction(bool value)
     {
         if (canvasGroup)
             canvasGroup.alpha = value ? 1.0f : .4f;

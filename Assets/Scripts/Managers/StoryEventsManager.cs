@@ -9,14 +9,15 @@ public class StoryEventsManager : MonoBehaviour
 {
     [SerializeField] bool loadEventsFromSave;
 
+    [SerializeField] StoryEventScriptableObject shipAcessStoryEvent;
     [SerializeField] List<StoryEventScriptableObject> storyEvents;
 
     TextMeshProUGUI listDisplay;
 
     public static bool Initiated;
-    
+
     static Dictionary<StoryEventScriptableObject, EventProgress> eventsDictionary;
-    static StoryEventsManager Instance;
+    public static StoryEventsManager Instance;
 
     private void Awake() 
     {
@@ -76,7 +77,7 @@ public class StoryEventsManager : MonoBehaviour
             eventsDictionary.Add 
             (
                 key: storyEvent, 
-                value: new EventProgress (progress, goal)
+                value: new EventProgress (progress, goal, storyEvent)
             );
         }
 
@@ -179,6 +180,25 @@ public class StoryEventsManager : MonoBehaviour
         eventProgress.RemoveOnStateChangeAction(action);
     }
 
+    public static void CompleteAll()
+    {
+        if (Instance == null)
+            return;
+
+        foreach (var key in Instance.storyEvents)
+        {
+            ChangeProgress(key, 99);
+        }
+    }
+
+    public static void UnlockShipAccess()
+    {
+        if (Instance == null || Instance.shipAcessStoryEvent == null)
+            return;
+
+        ChangeProgress (Instance.shipAcessStoryEvent, 99);
+    }
+
     #region Debug Display
 
     bool showing = false;
@@ -231,17 +251,27 @@ public class StoryEventsManager : MonoBehaviour
     }
 
     #endregion
+    
+    public List<StoryEventScriptableObject> GetStoryEventsList()
+    {
+        return storyEvents;
+    }
 
 }
 
 [System.Serializable]
 public class EventProgress
 {
-    public EventProgress (int progress, int goal)
+    public EventProgress (int progress, int goal, StoryEventScriptableObject eventObject)
     {
         this.progress = progress;
         this.goal = goal > 0 ? goal : 1;
         OnStateChangedEvent = new UnityEvent<bool>();
+        OnStateChangedEvent.AddListener((isComplete) =>
+        {
+            if(!isComplete) return;
+            SaveManager.AddShipTalkEvent(eventObject);
+        });
     }
 
     int progress;

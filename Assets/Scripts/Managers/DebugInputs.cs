@@ -7,8 +7,10 @@ public class DebugInputs : MonoBehaviour
 {
     [Header("Display")]
     [SerializeField] InputAction displayListAction;
+    [SerializeField] InputAction getAllAction;
 
     [Header("Save")]
+    [SerializeField] InputAction unlockShipAcessAction;
     [SerializeField] InputAction saveInputAction;
     [SerializeField] InputAction resetSaveInputAction;
 
@@ -41,9 +43,23 @@ public class DebugInputs : MonoBehaviour
                 StoryEventsManager.TogglePrintEventStates();
             };
             displayListAction.Enable();
+
+            getAllAction.performed += (ctx) =>
+            {
+                StoryEventsManager.CompleteAll();
+                DebugDisplay.Call ("All story events completed.");
+            };
+            getAllAction.Enable();
         }
 
         /* -- Save -- */ { 
+            unlockShipAcessAction.performed += (ctx) =>
+            {
+                StoryEventsManager.UnlockShipAccess();
+                DebugDisplay.Call ("Ship Access Unlocked.");
+            };
+            unlockShipAcessAction.Enable();
+
             saveInputAction.performed += (ctx) => 
             { 
                 SaveManager.Save();
@@ -64,7 +80,8 @@ public class DebugInputs : MonoBehaviour
             {
                 SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
                 if (soundtrackManager)
-                    soundtrackManager.SkipTrack(1);
+                    soundtrackManager.PlayInput();
+                DebugDisplay.Call ("Play/Skip track.");
             };
             playMusicTestInput.Enable();
 
@@ -72,7 +89,8 @@ public class DebugInputs : MonoBehaviour
             {
                 SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
                 if (soundtrackManager)
-                    soundtrackManager.Stop();
+                    soundtrackManager.StopInput();
+                DebugDisplay.Call ("Stop track.");
             };
             stopMusicTestInput.Enable();
         }
@@ -94,6 +112,7 @@ public class DebugInputs : MonoBehaviour
 
         displayListAction.Disable();
 
+        unlockShipAcessAction.Disable();
         saveInputAction.Disable();
         resetSaveInputAction.Disable();
         

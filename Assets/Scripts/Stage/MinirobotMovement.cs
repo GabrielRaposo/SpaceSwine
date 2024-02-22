@@ -9,6 +9,7 @@ public class MinirobotMovement : AttachToPlanet
     [Header("Movement options")]
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private Animator animator;
+    [SerializeField] private float startDelay;
     [SerializeField] private float pauseTime;
     [SerializeField] private float duration;
     [SerializeField] private float range;
@@ -37,6 +38,25 @@ public class MinirobotMovement : AttachToPlanet
         angle = startingAngle;
         sprite.flipX = range>0?false:true;
 
+        if (startDelay > 0)
+        {
+            mySequence = DOTween.Sequence();
+            mySequence.AppendCallback(()=>SetMoveAnimation(false));
+            mySequence.AppendInterval(startDelay);
+
+            mySequence.OnComplete( MainSequence );
+
+            return;
+        }
+
+        MainSequence();
+    }
+
+    private void MainSequence()
+    {
+        if (mySequence != null)
+            mySequence.Kill();
+
         mySequence = DOTween.Sequence();
 
         //Debug.Log("mySequence.id: " + mySequence.id);
@@ -44,7 +64,7 @@ public class MinirobotMovement : AttachToPlanet
         mySequence.AppendCallback(()=>SetMoveAnimation(true));
         //var going = DOTween.To(() => angle, x => angle = x, angle + range, duration).SetEase(Ease.Linear);
         //s.Append( DOTween.To(() => angle, x => angle = x, startingAngle + range, duration).SetEase(Ease.Linear) );
-        mySequence.Append( DOVirtual.Float(from: startingAngle, to: startingAngle + range, duration, f => angle = f ).SetEase(Ease.Linear) );
+        mySequence.Append( DOVirtual.Float(from: startingAngle, to: startingAngle + range, duration, f => angle = f ).SetEase(Ease.Linear) );        
         mySequence.AppendCallback(()=>SetMoveAnimation(false));
         mySequence.AppendInterval(pauseTime);
         mySequence.AppendCallback(() => sprite.flipX = range>0?true:false);

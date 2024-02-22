@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DevLocker.Utils;
+using MakeABeat;
 
 public class TitleScreenFunctions : MonoBehaviour
 {
     [SerializeField] SceneReference newFileScene;
+    [SerializeField] SceneReference makeABeatScene;
 
     TitleStateManager titleStateManager;
 
@@ -14,13 +16,21 @@ public class TitleScreenFunctions : MonoBehaviour
         titleStateManager = GetComponentInParent<TitleStateManager>();
     }
 
+    private void Start() 
+    {
+        BeatMenuController.ExitToTitle = false;
+    }
+
     public void NewGameInput()
     {
         SaveManager.ResetSave();
-        DebugDisplay.Call ("New Game: Save Reset.");
+        //DebugDisplay.Call ("New Game: Save Reset.");
 
-        TrailerSceneCaller.AutoStart = true;
-        PlaylistPlayer.CutsceneMode = true;
+        //TrailerSceneCaller.AutoStart = true;
+        //PlaylistPlayer.CutsceneMode = true;
+
+        TrailerSceneCaller.AutoStart = false;
+        PlaylistPlayer.CutsceneMode = false;
 
         ContinueInput();
     }
@@ -33,6 +43,21 @@ public class TitleScreenFunctions : MonoBehaviour
             scenePath = newFileScene.ScenePath;
 
         GameManager.GoToScene (scenePath, saveScenePath: true);
+    }
+
+    public void CallMakeABeat()
+    {
+        if (makeABeatScene == null)
+            return;
+
+        SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
+        if (soundtrackManager)
+            soundtrackManager.FadeOutMusic(1f);
+
+        BeatMenuController.ExitToTitle = true;
+        SoundtrackManager.OverrideChecksTrigger = true;
+
+        GameManager.GoToScene (makeABeatScene.ScenePath);
     }
 
     public void QuitInput()

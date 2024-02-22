@@ -144,6 +144,7 @@ public class SaveManager : MonoBehaviour
         UINotificationManager.ResetList();
         StoryEventsManager.ReloadEventsDictionary();
         StoryEventsManager.UpdatePrintedEventStates();
+        AdventureLogManager.ResetStates();
 
         AchievementsManager.SetCurrentList (currentSave.achievementLog);
     }
@@ -204,6 +205,47 @@ public class SaveManager : MonoBehaviour
     }
     #endregion
 
+    #region Minigame Highscore
+
+    public static void SetHighscore (string minigame, int score)
+    {
+        bool isListed = false;
+
+        if (currentSave.minigameHighscores.Count > 0)
+        {
+            foreach (var d in currentSave.minigameHighscores)
+            {
+                if (d.minigame == minigame)
+                {
+                    d.score = score;
+                    isListed = true;
+                    break;
+                }
+            }
+        }
+
+        if (!isListed)
+            currentSave.minigameHighscores.Add(new MinigameHighscore(minigame, score));
+
+        Save();
+    }
+
+    public static int GetHighscore (string minigame)
+    {
+        if (currentSave.minigameHighscores.Count < 1)
+            return -1;
+
+        foreach (var data in currentSave.minigameHighscores)
+        {
+            if (data.minigame == minigame)
+                return data.score;
+        }
+
+        return -1; 
+    }
+
+    #endregion
+
     #region Story Events
     public static List<EventProgressData> GetStoryEvents()
     {
@@ -217,6 +259,78 @@ public class SaveManager : MonoBehaviour
         if (autoSave)
             Save();
     }
+
+    public static void AddShipTalkEvent(StoryEventScriptableObject storyEvent)
+    {
+        if (currentSave.pendingShipDialogs == null)
+            currentSave.pendingShipDialogs = new List<string>();
+        
+        string localizationID = "CHAT_W" + (int)storyEvent.worldTag + "_" + storyEvent.idTag + "_001.01";
+
+        bool success;
+        int n = 1;
+
+        do
+        {
+            localizationID = localizationID.Remove(localizationID.Length - 4, 1);
+            localizationID = localizationID.Insert(localizationID.Length - 3, n.ToString());
+            
+            success = LocalizationManager.GetShipText(localizationID).Item1;
+
+            if (!success)
+            {
+                Debug.Log($"Skipped add {localizationID}");
+                break;
+            }
+
+            Debug.Log($"Added {localizationID}");
+            
+            if(!currentSave.pendingShipDialogs.Contains(localizationID))
+                currentSave.pendingShipDialogs.Add(localizationID);
+            
+            n++;
+
+        } while (true);
+        
+        if (ShipInitializerSystem.Instance != null)
+            ShipInitializerSystem.Instance.UpdateDialogButton();
+
+        Save();
+    }
+
+    public static List<string> GetShipTalkIds()
+    {
+        if (currentSave.pendingShipDialogs == null)
+            currentSave.pendingShipDialogs = new List<string>();
+
+        return currentSave.pendingShipDialogs;
+    }
+
+    public static bool IsShipDialogListEmpty()
+    {
+        if (currentSave == null)
+            return true;
+        
+        if (currentSave.pendingShipDialogs == null)
+            return true;
+
+        return currentSave.pendingShipDialogs.Count == 0;
+    }
+
+    public static void RemoveFromShipTalkIds(string id)
+    {
+        if (currentSave.pendingShipDialogs == null)
+            currentSave.pendingShipDialogs = new List<string>();
+
+        Debug.Log($"Removed {id} from ship dialog list");
+        currentSave.pendingShipDialogs.Remove(id);
+        
+        if (ShipInitializerSystem.Instance != null)
+            ShipInitializerSystem.Instance.UpdateDialogButton();
+        
+        Save();
+    }
+    
     #endregion
 
     #region UI Notifications

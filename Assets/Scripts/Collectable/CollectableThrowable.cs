@@ -15,6 +15,7 @@ public class CollectableThrowable : Collectable
     [SerializeField] AnimationCurve bounceBackCurve;
 
     [Header("Particles")]
+    [SerializeField] Animator breakAnimator;
     [SerializeField] ParticleSystem idleParticle;
     [SerializeField] ParticleSystem trailParticle;
     [SerializeField] ParticleSystem intenseTrailParticle;
@@ -182,8 +183,16 @@ public class CollectableThrowable : Collectable
 
     private void DestroyCollectable()
     {
+        breakAnimator.SetTrigger("Reset");
+        breakAnimator.transform.SetParent(null);
+        breakAnimator.transform.position = transform.position;
+
+        ParticleSystem particleSystem = breakAnimator.GetComponent<ParticleSystem>();
+        if (particleSystem != null)
+            particleSystem.Play();
+
         gameObject.SetActive(false);
-        Instantiate(destroyParticles, transform.position, quaternion.identity);
+        //Instantiate(destroyParticles, transform.position, quaternion.identity);
     }
 
     private void ResetToCollectableState ()
@@ -215,8 +224,18 @@ public class CollectableThrowable : Collectable
         //Debug.Log("rb.velocity: " + rb.velocity);
         rb.velocity = Vector2.zero;
 
-        transform.SetParent(gravitationalBody.transform);
-        
+        BubblePlanet bubblePlanet = gravitationalBody.GetComponent<BubblePlanet>();
+        if (bubblePlanet)
+        {
+            Round round = GetComponentInParent<Round>();
+            if (round)
+                transform.SetParent(round.transform);
+            else
+                transform.SetParent(null);
+        }
+        else transform.SetParent(gravitationalBody.transform); 
+           
+
         if (rotationRoutine != null)
             StopCoroutine(rotationRoutine);
 

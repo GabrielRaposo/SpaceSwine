@@ -10,6 +10,9 @@ public class TransitionSafetyToDanger : MonoBehaviour
     [SerializeField] float iconSlideX;
     [SerializeField] float fadeDuration;
     [SerializeField] float slideDuration;
+    [SerializeField] float hold1Duration;
+    [SerializeField] float hold2Duration;
+    [SerializeField] float musicFadeOut;
 
     [Header("References")]
     [SerializeField] CanvasGroup mainCanvasGroup;    
@@ -39,12 +42,16 @@ public class TransitionSafetyToDanger : MonoBehaviour
     Sequence mainSequence;
     private static readonly int Play = Animator.StringToHash("Play");
 
+    public static bool OnTransition { get; private set; }
+
     void Start()
     {
         SetState( danger: true );
 
         mainCanvasGroup.alpha = 0;
         gameObject.SetActive(false);
+
+        OnTransition = false;
     }
 
     private void SetState (bool danger)
@@ -67,6 +74,9 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
     private IEnumerator SafetyToDangerTransition(string path, bool safetyToDanger)
     {
+        OnTransition = true;
+        GameManager.BlockCharacterInput = true;
+
         SceneTransition.OnTransition = true;
         PlayerTransitionState.BlockSpawn = true;
         RoundsManager.BlockSpawn = true;
@@ -82,7 +92,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
         if (soundtrackManager)
-            soundtrackManager.FadeOutMusic(2.0f);
+            soundtrackManager.FadeOutMusic(musicFadeOut);
 
         fillImage.enabled = false;
 
@@ -100,6 +110,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
         done = false;
 
         fillImage.enabled = true;
+        DOTween.Clear();
 
         // -- Inicia carregamento de cena
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(path);
@@ -112,7 +123,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         // -- Fade-in dos ícones na tela
         mainSequence = DOTween.Sequence();
-        mainSequence.Append( assetsGroup.DOFade(1, fadeDuration) );
+        mainSequence.Append( assetsGroup.DOFade(.75f, fadeDuration) );
         mainSequence.OnComplete( () => done = true );
         mainSequence.SetUpdate(isIndependentUpdate: true);
 
@@ -132,7 +143,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         // -- Faz animação de Safety -> Danger
         mainSequence = DOTween.Sequence();
-        mainSequence.AppendInterval(1.0f);
+        mainSequence.AppendInterval(hold1Duration);
         mainSequence.AppendCallback( () => 
         {
             if (safetyToDanger)
@@ -152,10 +163,11 @@ public class TransitionSafetyToDanger : MonoBehaviour
         {
             if (soundtrackManager)
             {
+                //Debug.Log("aaa");
                 soundtrackManager.SetPlaylist(safetyToDanger ? dangerPlaylist : safetyPlaylist );
             }
         } );
-        mainSequence.AppendInterval(2.0f);
+        mainSequence.AppendInterval(hold2Duration);
         mainSequence.OnComplete( () => done = true );
         mainSequence.SetUpdate(isIndependentUpdate: true);
 
@@ -164,10 +176,10 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         // -- Libera apresentação da cena
         asyncOperation.allowSceneActivation = true;
-        DOTween.KillAll();
         yield return new WaitForEndOfFrame();
 
         // -- Fade-out da tela de transição
+        //DOTween.Clear();
         mainSequence = DOTween.Sequence();
         mainSequence.Append( mainCanvasGroup.DOFade(0, slideDuration) );
         mainSequence.OnComplete( () => done = true );
@@ -177,12 +189,15 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         fillImage.enabled = false;
 
-        Debug.Log("end");
         RoundsManager.BlockSpawn = false;
         PlayerTransitionState.BlockSpawn = false;
         gameObject.SetActive(false);
         SceneTransition.OnTransition = false;
         SetPlaylistOnStart.Block = false; 
+
+        OnTransition = false;
+        GameManager.BlockCharacterInput = false;
+        Debug.Log(">>> OUT");
     }
 
     private Sequence SwitchStripes(bool toDanger)

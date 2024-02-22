@@ -10,17 +10,29 @@ public class InteractableNPC : Interactable
     [SerializeField] DialogueBoxStyle customDialogueStyle;
     [SerializeField] AK.Wwise.Event talkSoundAKEvent;
 
+    public UnityAction OnInteraction;
     public UnityAction <int, NPCData> OnPreviousIndexReached;
     public UnityAction OnDialogueEnd;
+    public UnityAction AfterDialogueEnd;
+
+    PlayerInteractor interactor;
+
+    public PlayerInteractor PlayerInteractor { get { return interactor; } }
 
     public override void Interaction (PlayerInteractor interactor) 
     {
         //Debug.Log($"Interaction - name: {name}");
+        if (!interactable)
+            return;
 
-        base.Interaction(interactor);
+        base.Interaction (interactor);
+        this.interactor = interactor;
 
         if (data)
         {
+            if (OnInteraction != null)
+                OnInteraction.Invoke();
+
             //Debug.Log("data:  " + data);
 
             DialogueSystem dialogSystem = DialogueSystem.Instance;
@@ -35,7 +47,7 @@ public class InteractableNPC : Interactable
                     npcName = nameData.text;
             }
             
-            dialogSystem?.SetDialogue(this, npcName, dialogueGroup.tags, OnDialogueEnd, customDialogueStyle, talkSoundAKEvent);
+            dialogSystem?.SetDialogue(this, npcName, dialogueGroup.tags, OnDialogueEnd, AfterDialogueEnd, customDialogueStyle, talkSoundAKEvent);
 
             if (interactor)
             {
@@ -62,21 +74,25 @@ public class InteractableNPC : Interactable
 
     protected override void HighlightState (bool value) 
     {
-        if (speechBubble)
-        {
-            if (value)
-                speechBubble.Show();
-            else
-                speechBubble.Hide();
-        }
+        if (!interactable)
+            return;
+
+        if (!speechBubble)
+            return;
+        
+        if (value)
+            speechBubble.Show();
+        else
+            speechBubble.Hide();
+        
     }
 
     public override void IconState (bool value) 
     {
-        if (speechBubble)
-        {
-            speechBubble.SetAnimationState(value);
-        }
+        if (!speechBubble)
+            return;
+
+        speechBubble.SetAnimationState(value);
     }
 
     public int GetDialogueIndex()

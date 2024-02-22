@@ -56,7 +56,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5437326552325147159, guid: 96086cb6988e45d4f9b9dea82808f22b, type: 2}
+  - {fileID: -2294602536122123570, guid: bcb2e8ad222dabc4d9a32c4cc906589d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -75,7 +75,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -543194987
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &2647525993919406690
@@ -100,8 +100,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: C
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 96086cb6988e45d4f9b9dea82808f22b, type: 2}
-  m_sharedMaterial: {fileID: -5437326552325147159, guid: 96086cb6988e45d4f9b9dea82808f22b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bcb2e8ad222dabc4d9a32c4cc906589d, type: 2}
+  m_sharedMaterial: {fileID: -2294602536122123570, guid: bcb2e8ad222dabc4d9a32c4cc906589d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -117,7 +117,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: 39958eb81efdfdf4abdca13ed43dfdae, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -178,6 +178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7507587593240173240}
+  - component: {fileID: 7722166135936156924}
   m_Layer: 10
   m_Name: Input Icon
   m_TagString: Untagged
@@ -200,6 +201,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7722166135936156924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5105759684263348855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63980051a96a8cb4fa332cbddad6883f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyboard1InteractID: interact_keyboard
+  keyboard2InteractID: interact_keyboard2
+  joystickInteractID: interact_joystick
+  boxRenderer: {fileID: 225224101301613060}
+  textDisplay: {fileID: 2647525993919406690}
 --- !u!1 &7428389526056157263
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +301,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -543194987
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf63f7c4bd9ed5849a442b6b77fe69c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

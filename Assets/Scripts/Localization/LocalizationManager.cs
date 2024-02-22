@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
 using GoogleSheetsToUnity;
@@ -391,6 +393,13 @@ public static class LocalizationManager
     
     private static void UpdateNaveDictionary(GstuSpreadSheet ss)
     {
+        List<Tuple<string, string>> allStoryEventsIds = new List<Tuple<string, string>>();
+        
+        var storyEvents =  Resources.LoadAll<StoryEventScriptableObject>("StoryEvents");
+
+        foreach (StoryEventScriptableObject so in storyEvents)
+            allStoryEventsIds.Add(new Tuple<string, string>(so.idTag, so.worldTag.ToString()));
+
         Debug.Log("<color=#2277ff><b>UpdateNaveDictionary()</b></color>");
         var lines = ss.rows.primaryDictionary;
         
@@ -415,11 +424,30 @@ public static class LocalizationManager
                 GameLocalizationCode glc = languageCodeList[j];
                 languageToStringDictionary.Add(glc, line[columnNumber].value);
             }
+
+            if (Regex.IsMatch(code, ShipDialogueManager.shipDialogListRegex))
+            {
+                string capturedId = Regex.Match(code, ShipDialogueManager.shipDialogListRegex).Groups[1].Captures[0].Value;
+                string captureWorldNumber = Regex.Match(code, @"^CHAT_W(\d)_[\w\d\-]+_\d{3}\.\d{2}$").Groups[1].Captures[0].Value;
+                if(!CheckDialogDialogIsValid(capturedId, captureWorldNumber))
+                    continue;
+            }
             
             file.dic.Add(code, languageToStringDictionary);
         }
         
         Debug.Log("Finished loading from GoogleSheets");
+        
+        bool CheckDialogDialogIsValid(string id, string worldNumber)
+        {
+            var result = allStoryEventsIds.Contains(new Tuple<string, string>(id, $"World{worldNumber}"));
+
+            if (!result)
+                Debug.LogError($"<color=#FF2250><b>ID NOT FOUND ON STORY EVENTS: </b>World {worldNumber} {id}</color>");
+
+            return result;
+        }
+        
     }
 
     public static void AddToActiveTextList(LocalizedText localizedText)

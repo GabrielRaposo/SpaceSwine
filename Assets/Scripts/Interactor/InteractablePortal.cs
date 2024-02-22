@@ -7,7 +7,6 @@ using DevLocker.Utils;
 public class InteractablePortal : Interactable
 {
     [SerializeField] SceneReference targetScene;
-    [SerializeField] RoundSessionData data;
     //[SerializeField] SpriteSwapper ballonSpriteSwapper;
     [SerializeField] DoorAnimation doorAnimation;
     [SerializeField] GameObject inputHelper;
@@ -22,33 +21,51 @@ public class InteractablePortal : Interactable
     {
         base.Interaction(interactor);
 
-        if (data)
+        if (targetScene == null)
+            return;
+
+        if (inputHelper)
+            inputHelper.SetActive(false);
+
+        //if (interactor)
+        //{
+        //    PlatformerCharacter platformerCharacter = interactor.GetComponent<PlatformerCharacter>();
+        //    platformerCharacter?.KillInputs();
+        //    platformerCharacter?.LookAtTarget(transform);
+        //}
+
+        if (!doorAnimation)
+            doorAnimation = GetComponentInChildren<DoorAnimation>();
+
+        if (interactor && doorAnimation)
         {
-            if (inputHelper)
-                inputHelper.SetActive(false);
+            doorAnimation.SetupAnimationDangerZone
+            (
+                doorAnimation.GetComponent<Door>(), 
+                interactor.gameObject,
+                LoadSceneAction
+            );
+            return;
+        }
 
-            //if (interactor)
-            //{
-            //    PlatformerCharacter platformerCharacter = interactor.GetComponent<PlatformerCharacter>();
-            //    platformerCharacter?.KillInputs();
-            //    platformerCharacter?.LookAtTarget(transform);
-            //}
+        LoadSceneAction();   
+    }
 
-            if (!doorAnimation)
-                doorAnimation = GetComponentInChildren<DoorAnimation>();
+    // -- Passado para Static para que possa ser usado na cena de navegação também
+    public static void PreCallSetups (string exitScenePath)
+    {
+        PagerInteractionManager.ExitScenePath = exitScenePath;
+        RoundsManager.OnSessionCompletedAction = () =>
+        {
+            //Debug.Log("Session Done! ");
+            if (SaveManager.Initiated)
+                SaveManager.SetSpawnIndex (RoundsManager.OutroSpawnIndex);
+        };
 
-            if (interactor && doorAnimation)
-            {
-                doorAnimation.SetupAnimationDangerZone
-                (
-                    doorAnimation.GetComponent<Door>(), 
-                    interactor.gameObject,
-                    LoadSceneAction
-                );
-                return;
-            }
-
-            LoadSceneAction();
+        if (SaveManager.Initiated) 
+        {
+            SaveManager.SetSpawnPath (exitScenePath);
+            SaveManager.SetSpawnIndex (RoundsManager.AbandonSpawnIndex);
         }
     }
 
@@ -57,23 +74,11 @@ public class InteractablePortal : Interactable
         if (targetScene == null)
             return;
 
-        PagerInteractionManager.ExitScenePath = GameManager.CurrentScene;
-        RoundsManager.OnSessionCompletedAction = () =>
-        {
-            Debug.Log("Session Done! ");
-            if (SaveManager.Initiated)
-                SaveManager.SetSpawnIndex (data.OutroSpawnIndex);
-        };
-        RoundsManager.SessionData = data;
-
-        if (SaveManager.Initiated) 
-        {
-            SaveManager.SetSpawnPath (GameManager.CurrentScene);
-            SaveManager.SetSpawnIndex (data.AbandonSpawnIndex);
-        }
+        PreCallSetups (GameManager.CurrentScene);
 
         SceneTransition.LoadScene( targetScene.ScenePath, SceneTransition.TransitionType.SafetyToDanger );
     }
+
 
     protected override void HighlightState (bool value) 
     {

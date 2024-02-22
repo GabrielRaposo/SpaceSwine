@@ -18,16 +18,43 @@ public class RenameRoundsByOrder : MonoBehaviour
 
             string finalName = "Round (" + world + "-" + stageIndex + ")";
 
-            string n = transform.GetChild(i).name;
-            if (n.Contains(")")) 
-            {
-                string[] splits = n.Split(')');
-                if (splits.Length > 1 && splits[1].Trim() != string.Empty) {
-                    finalName += splits[1];
-                }
+            { 
+            //string n = transform.GetChild(i).name;
+            //if (n.Contains(")")) 
+            //{
+            //    string[] splits = n.Split(')');
+            //    if (splits.Length > 1 && splits[1].Trim() != string.Empty) {
+            //        finalName += splits[1];
+            //    }
+            //}
             }
 
-            transform.GetChild(i).name = finalName;
+            string oldName = transform.GetChild(i).name;
+            if (oldName.Contains("Round (") && oldName.Length >= finalName.Length)
+            {
+                char[] splits = oldName.ToCharArray();
+
+                int endIndex = finalName.Length;
+                for (int a = 0; a < oldName.Length; a++)
+                {
+                    if (oldName[a] == ')')
+                    {
+                        endIndex = a + 2;
+                        break;
+                    }
+                }
+
+                oldName = string.Empty;
+                for (int b = endIndex; b < splits.Length; b++)
+                {
+                    oldName += splits[b];
+                }
+
+                transform.GetChild(i).name = finalName + " " + oldName;
+                continue;
+            }
+
+            transform.GetChild(i).name = finalName + " " + transform.GetChild(i).name;
         }
     }
 }

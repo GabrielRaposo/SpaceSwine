@@ -8,6 +8,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] DialogueBox dialogBox;
 
     public static bool OnDialogue;
+    public static bool BlockInputs;
     public static DialogueSystem Instance;
 
     void Awake()
@@ -21,12 +22,16 @@ public class DialogueSystem : MonoBehaviour
         string speakerName, 
         List<string> dialogueTags, 
         UnityAction OnDialogueEnd,
+        UnityAction AfterDialogueEnd,
         DialogueBoxStyle customDialogueStyle,
-        AK.Wwise.Event talkSoundAKEvent
+        AK.Wwise.Event talkSoundAKEvent,
+        UnityAction OnDialogueCancel = null
     )
     {
         if (!dialogBox)
             return;
+
+        BlockInputs = false;
         
         List<string> translatedDialogues = new List<string>();
         if (dialogueTags != null)
@@ -42,7 +47,15 @@ public class DialogueSystem : MonoBehaviour
             }
         }
 
-        dialogBox.SetDialogueData(interactable, speakerName, translatedDialogues, OnDialogueEnd, customDialogueStyle, talkSoundAKEvent);
+        dialogBox.SetDialogueData(interactable, speakerName, translatedDialogues, OnDialogueEnd, AfterDialogueEnd, customDialogueStyle, talkSoundAKEvent, OnDialogueCancel);
+    }
+
+    public void CancelDialogue()
+    {
+        if (!dialogBox)
+            return;
+
+        dialogBox.CancelDialogue();
     }
 
     private void OnDisable() 

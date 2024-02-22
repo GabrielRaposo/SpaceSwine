@@ -21,9 +21,12 @@ public class SoundtrackManager : MonoBehaviour
     static AK.Wwise.Event soundtrackEvent;
 
     public static SoundtrackManager Instance;
-    //static bool paused;
+    
+    public static bool OverrideChecksTrigger;
     public static bool IsPlaying;
     bool applicationIsPaused;
+
+    bool manuallyPaused;
 
     int currentIndex = 0;
 
@@ -110,7 +113,11 @@ public class SoundtrackManager : MonoBehaviour
 
     public void SetPlaylist (PlaylistScriptableObject playlist)
     {
-        if (this.playlist == playlist && this.playlist != fullPlaylist)
+        Debug.Log("SetPlaylist!");
+
+        if (OverrideChecksTrigger)
+            OverrideChecksTrigger = false;
+        else if (this.playlist == playlist && this.playlist != fullPlaylist)
             return;
 
         this.playlist = playlist;
@@ -133,6 +140,9 @@ public class SoundtrackManager : MonoBehaviour
         Stop();
 
         if (playlist == null)
+            return;
+        
+        if (manuallyPaused)
             return;
 
         int orderedIndex = currentIndex;
@@ -207,5 +217,17 @@ public class SoundtrackManager : MonoBehaviour
         }
 
         IsPlaying = false;
+    }
+
+    public void StopInput()
+    {
+        manuallyPaused = true;
+        Stop();
+    }
+
+    public void PlayInput()
+    {
+        manuallyPaused = false;
+        SkipTrack(1);
     }
 }

@@ -103,6 +103,10 @@ namespace AK
         static const AkUniqueID LOFI_24 = 82482802U;
         static const AkUniqueID LOFI_25 = 82482803U;
         static const AkUniqueID LOFI_26 = 82482800U;
+        static const AkUniqueID LOFI_27 = 82482801U;
+        static const AkUniqueID LOFI_28 = 82482814U;
+        static const AkUniqueID LOFI_29 = 82482815U;
+        static const AkUniqueID LOFI_30 = 99260393U;
         static const AkUniqueID MAKEABEAT_APARELHOS_NAVEGACAO = 1887497970U;
         static const AkUniqueID MAKEABEAT_APARELHOS_SELECAO = 2771531893U;
         static const AkUniqueID MAKEABEAT_BRINQUEDO_CONDUCAO = 2489339849U;
@@ -205,33 +209,16 @@ namespace AK
     {
         static const AkUniqueID INIT = 1355168291U;
         static const AkUniqueID GENERAL = 133642231U;
-        static const AkUniqueID LOFI_01 = 48927505U;
-        static const AkUniqueID LOFI_02 = 48927506U;
-        static const AkUniqueID LOFI_03 = 48927507U;
-        static const AkUniqueID LOFI_04 = 48927508U;
-        static const AkUniqueID LOFI_05 = 48927509U;
-        static const AkUniqueID LOFI_06 = 48927510U;
-        static const AkUniqueID LOFI_07 = 48927511U;
-        static const AkUniqueID LOFI_08 = 48927512U;
-        static const AkUniqueID LOFI_09 = 48927513U;
-        static const AkUniqueID LOFI_10 = 65705091U;
-        static const AkUniqueID LOFI_11 = 65705090U;
-        static const AkUniqueID LOFI_12 = 65705089U;
-        static const AkUniqueID LOFI_13 = 65705088U;
-        static const AkUniqueID LOFI_14 = 65705095U;
-        static const AkUniqueID LOFI_15 = 65705094U;
-        static const AkUniqueID LOFI_16 = 65705093U;
-        static const AkUniqueID LOFI_17 = 65705092U;
-        static const AkUniqueID LOFI_18 = 65705099U;
-        static const AkUniqueID LOFI_19 = 65705098U;
-        static const AkUniqueID LOFI_20 = 82482806U;
-        static const AkUniqueID LOFI_21 = 82482807U;
-        static const AkUniqueID LOFI_22 = 82482804U;
-        static const AkUniqueID LOFI_23 = 82482805U;
-        static const AkUniqueID LOFI_24 = 82482802U;
-        static const AkUniqueID LOFI_25 = 82482803U;
-        static const AkUniqueID LOFI_26 = 82482800U;
         static const AkUniqueID MAKE_A_BEAT = 2500044626U;
+        static const AkUniqueID MUNDO_1_01 = 1869223718U;
+        static const AkUniqueID MUNDO_1_02 = 1869223717U;
+        static const AkUniqueID MUNDO_1_03 = 1869223716U;
+        static const AkUniqueID MUNDO_2_01 = 520322023U;
+        static const AkUniqueID MUNDO_2_02 = 520322020U;
+        static const AkUniqueID MUNDO_2_03 = 520322021U;
+        static const AkUniqueID MUNDO_3_01 = 1159328528U;
+        static const AkUniqueID MUNDO_3_02 = 1159328531U;
+        static const AkUniqueID MUNDO_3_03 = 1159328530U;
     } // namespace BANKS
 
     namespace BUSSES

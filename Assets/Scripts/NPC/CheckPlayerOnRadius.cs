@@ -71,6 +71,9 @@ public class CheckPlayerOnRadius : MonoBehaviour
 
     private void OnDrawGizmosSelected() 
     {
+        if (!enabled)
+            return;
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + (transform.right.normalized * (radius + baseOffset) * 1), radius);
         Gizmos.DrawWireSphere(transform.position + (transform.right.normalized * (radius + baseOffset) * -1), radius);

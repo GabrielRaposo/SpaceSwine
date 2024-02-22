@@ -65,7 +65,7 @@ public class Door : MonoBehaviour
         if (explorationSetup)
         {
             animator.SetBool("Open", true);
-            Debug.Log("hey explo");
+            //Debug.Log("hey explo");
             
             if (portal)
                 portal.gameObject.SetActive(true);
@@ -128,7 +128,7 @@ public class Door : MonoBehaviour
         }
         
         animator.SetBool("Open", false);
-        Debug.Log("reset states!");
+        //Debug.Log("reset states!");
         
         Health = externalLocks.Count;
         if (Health < 1 && !startClosed)
@@ -175,6 +175,12 @@ public class Door : MonoBehaviour
         OpenAnimation();
     }
 
+    // -- Chamado por Unity Event em "InteractableShowDialogueAndCallAction"
+    public void SetOpenState () 
+    {
+        OpenAnimation();
+    }
+
     private void OpenAnimation()
     {
         if (openSequence != null)
@@ -183,7 +189,7 @@ public class Door : MonoBehaviour
         portal.transform.position = transform.position;
         portal.VisualSetup();
         animator.SetBool("Open", true);
-        Debug.Log("open animation");
+        //Debug.Log("open animation");
         openAKEvent?.Post(gameObject);
 
         openSequence = DOTween.Sequence();

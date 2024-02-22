@@ -51,7 +51,7 @@ public class PlaylistPlayer : MonoBehaviour
         titleStateManager = GetComponentInParent<TitleStateManager>();
         restLoopManager = GetComponentInParent<RestLoopManager>();
 
-        SetAbsolutePosition (visible: false);
+        SetAbsolutePosition (visible: false); 
     }
 
     private void OnEnable() 
@@ -167,8 +167,9 @@ public class PlaylistPlayer : MonoBehaviour
         }
 
         soundtrackManager.OnTrackPlayedEvent += SetupOnTrackEvent;
-        if (!CutsceneMode)
+        if (!CutsceneMode && !TransitionSafetyToDanger.OnTransition)
         {
+            //Debug.Log("Here?");
             soundtrackManager.SetPlaylist(playlist);
         }
 

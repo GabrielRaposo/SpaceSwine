@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using DG.Tweening;
 
 public class ClosedSpaceInner : MonoBehaviour
@@ -13,6 +14,8 @@ public class ClosedSpaceInner : MonoBehaviour
 
     Sequence sequence;
 
+    public UnityAction<bool, float> OnSetStateAction;
+
     void Start()
     {
         //SetState(false);
@@ -23,6 +26,9 @@ public class ClosedSpaceInner : MonoBehaviour
 
     public void SetState (bool value)
     {
+        if (OnSetStateAction != null)
+            OnSetStateAction (value, transitionDuration);
+
         gravitationalPlatform.gameObject.SetActive(value);
 
         if (sequence != null)

@@ -19,12 +19,13 @@ public class SaveFile
 
     // -- Events and UI Notifications
     public List<EventProgressData> eventProgressList;
+    public List<string> pendingShipDialogs;
     public List<UINotification> uiNotificationsList;
 
     // -- Minigame Scores
-    //public List<MinigameHiscore> JumperHighscores;
-    //public List<MinigameHiscore> ShooterHighscores;
+    public List<MinigameHighscore> minigameHighscores;
 
+    // -- Achievement
     public List<AchievementLog> achievementLog;
 
     private float playtime;
@@ -65,6 +66,9 @@ public class SaveFile
         if (uiNotificationsList == null)
             uiNotificationsList = new List<UINotification>();
 
+        if (minigameHighscores == null) 
+            minigameHighscores = new List<MinigameHighscore>();
+
         if (achievementLog == null)
             achievementLog = new List<AchievementLog>();
     }
@@ -93,9 +97,9 @@ public class EventProgressData
 {
     public EventProgressData (string id, int progress, int goal)
     {
-        this.id = id;
+        this.id       = id;
         this.progress = progress;
-        this.goal = goal;
+        this.goal     = goal;
     }
 
     public string id;
@@ -126,4 +130,17 @@ public class NavigationShipData
             posY = value.y;
         }
     }
+}
+
+[System.Serializable]
+public class MinigameHighscore
+{
+    public MinigameHighscore (string minigame, int score)
+    {
+        this.minigame = minigame;
+        this.score = -1;
+    }
+
+    public string minigame;
+    public int score;
 }
