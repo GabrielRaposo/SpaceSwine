@@ -64,7 +64,10 @@ public class DebugInputs : MonoBehaviour
             {
                 RoundsManager roundsManager = RoundsManager.Instance;
                 if (!roundsManager)
+                {
+                    DebugDisplay.Call ("Input exclusive to Danger Zones.");
                     return;
+                }
 
                 roundsManager.PreviousRoundInput();
             };
@@ -74,7 +77,10 @@ public class DebugInputs : MonoBehaviour
             {
                 RoundsManager roundsManager = RoundsManager.Instance;
                 if (!roundsManager)
+                {
+                    DebugDisplay.Call ("Input exclusive to Danger Zones.");
                     return;
+                }
 
                 roundsManager.NextRoundInput();
             };
@@ -84,7 +90,10 @@ public class DebugInputs : MonoBehaviour
             {
                 RoundsManager roundsManager = RoundsManager.Instance;
                 if (!roundsManager)
+                {
+                    DebugDisplay.Call ("Input exclusive to Danger Zones.");
                     return;
+                }
 
                 roundsManager.ClearStageInput();
             };
