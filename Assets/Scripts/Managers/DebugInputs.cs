@@ -9,8 +9,13 @@ public class DebugInputs : MonoBehaviour
     [SerializeField] InputAction displayListAction;
     [SerializeField] InputAction getAllAction;
 
+    [Header("Danger Zone")]
+    [SerializeField] InputAction previousRoundAction;
+    [SerializeField] InputAction nextRoundAction;
+    [SerializeField] InputAction clearStageAction;
+
     [Header("Save")]
-    [SerializeField] InputAction unlockShipAcessAction;
+    [SerializeField] InputAction unlockShipAccessAction;
     [SerializeField] InputAction saveInputAction;
     [SerializeField] InputAction resetSaveInputAction;
 
@@ -37,6 +42,7 @@ public class DebugInputs : MonoBehaviour
         if (Instance != this)
             return;
         
+
         /* -- Display -- */ {
             displayListAction.performed += (ctx) => 
             {
@@ -52,13 +58,47 @@ public class DebugInputs : MonoBehaviour
             getAllAction.Enable();
         }
 
+        /* -- Danger Zone -- */ {
+//#if UNITY_EDITOR
+            previousRoundAction.performed += ctx => 
+            {
+                RoundsManager roundsManager = RoundsManager.Instance;
+                if (!roundsManager)
+                    return;
+
+                roundsManager.PreviousRoundInput();
+            };
+            previousRoundAction.Enable();
+
+            nextRoundAction.performed += ctx => 
+            {
+                RoundsManager roundsManager = RoundsManager.Instance;
+                if (!roundsManager)
+                    return;
+
+                roundsManager.NextRoundInput();
+            };
+            nextRoundAction.Enable();
+
+            clearStageAction.performed += ctx => 
+            {
+                RoundsManager roundsManager = RoundsManager.Instance;
+                if (!roundsManager)
+                    return;
+
+                roundsManager.ClearStageInput();
+            };
+            clearStageAction.Enable();
+//#endif
+        }
+
         /* -- Save -- */ { 
-            unlockShipAcessAction.performed += (ctx) =>
+            unlockShipAccessAction.performed += (ctx) =>
             {
                 StoryEventsManager.UnlockShipAccess();
                 DebugDisplay.Call ("Ship Access Unlocked.");
             };
-            unlockShipAcessAction.Enable();
+            unlockShipAccessAction.Enable();
 
             saveInputAction.performed += (ctx) => 
             { 
@@ -112,7 +152,13 @@ public class DebugInputs : MonoBehaviour
 
         displayListAction.Disable();
 
-        unlockShipAcessAction.Disable();
+        //#if UNITY_EDITOR
+        previousRoundAction.Disable();
+        nextRoundAction.Disable();
+        clearStageAction.Disable();
+        //#endif
+
+        unlockShipAccessAction.Disable();
         saveInputAction.Disable();
         resetSaveInputAction.Disable();
         

@@ -7,10 +7,6 @@ using DevLocker.Utils;
 
 public class RoundsManager : MonoBehaviour
 {
-    [SerializeField] InputAction previousInputAction;
-    [SerializeField] InputAction resetInputAction;
-    [SerializeField] InputAction nextInputAction;
-
     [Header ("SessionData")]
     [SerializeField] int lastIndex;
     [SerializeField] SceneReference exitScene;
@@ -81,28 +77,6 @@ public class RoundsManager : MonoBehaviour
             playerCharacter.SetDeathEvent( () => RoundTransition.Call(ActivateCurrentIndex) );
 
         player.gameObject.SetActive(false);
-
-        // -- Setup de inputs de teste
-        //#if UNITY_EDITOR
-        previousInputAction.performed += ctx => 
-        {
-            if (GameManager.BlockCharacterInput || GameManager.OnTransition || PauseSystem.OnPause)
-                return;
-
-            PreviousRoundLogic();
-        };
-        previousInputAction.Enable();
-
-        nextInputAction.performed += ctx => 
-        {
-            if (GameManager.BlockCharacterInput || GameManager.OnTransition || PauseSystem.OnPause)
-                return;
-
-            if (currentIndex < rounds.Count)
-                rounds[currentIndex].RoundCleared();
-        };
-        nextInputAction.Enable();
-        //#endif
     }
 
     public void PreviousRoundLogic()
@@ -146,18 +120,22 @@ public class RoundsManager : MonoBehaviour
         if (currentIndex - 1 < lastRound)
         {
             RoundTransition.Call(ActivateCurrentIndex);
+            return;
         } 
-        else
-        {
-            if (OnSessionCompletedAction != null)
+        
+        ClearStage();
+    }
+
+    private void ClearStage()
+    {
+        if (OnSessionCompletedAction != null)
                 OnSessionCompletedAction();
 
-            if (completionStoryEvent != null && SaveManager.Initiated)
-                StoryEventsManager.ChangeProgress(completionStoryEvent, 99);
+        if (completionStoryEvent != null && SaveManager.Initiated)
+            StoryEventsManager.ChangeProgress(completionStoryEvent, 99);
 
-            SceneTransition.LoadScene( exitScene.ScenePath, SceneTransition.TransitionType.DangerToSafety );
-            SaveManager.SetSpawnPath( exitScene.ScenePath );
-        }
+        SceneTransition.LoadScene( exitScene.ScenePath, SceneTransition.TransitionType.DangerToSafety );
+        SaveManager.SetSpawnPath( exitScene.ScenePath );
     }
 
     public void CallReset()
@@ -165,11 +143,25 @@ public class RoundsManager : MonoBehaviour
         RoundTransition.Call(ActivateCurrentIndex);
     }
 
-    private void OnDisable()
+    public void PreviousRoundInput()
     {
-        //#if UNITY_EDITOR
-        previousInputAction.Disable();
-        nextInputAction.Disable();
-        //#endif
+        if (GameManager.BlockCharacterInput || GameManager.OnTransition || PauseSystem.OnPause)
+                return;
+
+        PreviousRoundLogic();
+    }
+
+    public void NextRoundInput()
+    {
+        if (GameManager.BlockCharacterInput || GameManager.OnTransition || PauseSystem.OnPause)
+                return;
+
+        if (currentIndex < rounds.Count)
+            rounds[currentIndex].RoundCleared();
+    }
+
+    public void ClearStageInput()
+    {
+        ClearStage();
     }
 }
