@@ -253,4 +253,10 @@ public class NavigationShip : MonoBehaviour
     {
         previousPosition = transform.position;
     }
+
+    public static void SetPreviousPosition (Vector3 position)
+    {
+        previousPosition = position;
+        SaveManager.SetNavigationData(position, angle: 0);
+    }
 }
