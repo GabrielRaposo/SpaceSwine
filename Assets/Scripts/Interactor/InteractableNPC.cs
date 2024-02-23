@@ -6,16 +6,16 @@ using UnityEngine.Events;
 public class InteractableNPC : Interactable
 {
     [SerializeField] NPCData data;
-    [SerializeField] SpeechBubble speechBubble;
-    [SerializeField] DialogueBoxStyle customDialogueStyle;
-    [SerializeField] AK.Wwise.Event talkSoundAKEvent;
+    [SerializeField] protected SpeechBubble speechBubble;
+    [SerializeField] protected DialogueBoxStyle customDialogueStyle;
+    [SerializeField] protected AK.Wwise.Event talkSoundAKEvent;
 
     public UnityAction OnInteraction;
     public UnityAction <int, NPCData> OnPreviousIndexReached;
     public UnityAction OnDialogueEnd;
     public UnityAction AfterDialogueEnd;
 
-    PlayerInteractor interactor;
+    protected PlayerInteractor interactor;
 
     public PlayerInteractor PlayerInteractor { get { return interactor; } }
 
@@ -60,7 +60,7 @@ public class InteractableNPC : Interactable
         }
     }
 
-    private void DialogueIndexLogic() 
+    protected virtual void DialogueIndexLogic() 
     {   
         if (!data)
             return;
