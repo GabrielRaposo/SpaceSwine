@@ -799,7 +799,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1514010921}
   - component: {fileID: 1514010923}
-  - component: {fileID: 1514010922}
   m_Layer: 0
   m_Name: TextBox
   m_TagString: Untagged
@@ -828,36 +827,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1514010922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514010920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.13333334}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1514010923
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -971,6 +940,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8acbad47ed1fb942acc277c288b2463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedUpModifier: 3
+  duration: 20
+  endDelay: 2
+  mainLayout: {fileID: 89879333}
+  overshotDistance: 200
+  afterCreditsScene:
+    m_SceneAsset: {fileID: 102900000, guid: bd1cb2d0ce18c15428c1c8894ecf4d66, type: 3}
+    m_IsDirty: 0
+    m_ScenePath: Assets/Scenes/TitleScene.unity
 --- !u!224 &1685995548
 RectTransform:
   m_ObjectHideFlags: 0
