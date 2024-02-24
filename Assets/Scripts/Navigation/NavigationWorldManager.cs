@@ -108,6 +108,8 @@ public class NavigationWorldManager : MonoBehaviour
                     SaveManager.Save();
                 }
                 UpdateWorlds ();
+                //DebugDisplay.Call($"CurrentWorld: {CurrentWorld}");
+                WorldBackgroundManager.ChangeTo(CurrentWorld);
 
                 NavigationWorldGroup worldGroup = GetWorldGroup();
                 ship.JumpToPosition (valueOffset > 0 ? worldGroup.SpawnPoint : worldGroup.ReturnPoint);
