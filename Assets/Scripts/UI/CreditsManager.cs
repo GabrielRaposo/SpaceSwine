@@ -38,7 +38,7 @@ public class CreditsManager : MonoBehaviour
 
         s = DOTween.Sequence();
 
-        s.AppendInterval(.5f);
+        s.AppendInterval(2f);
         s.Append ( mainLayout.DOAnchorPosY(distance, duration, snapping: true).SetEase(Ease.Linear) );
         s.AppendInterval(endDelay);
 
