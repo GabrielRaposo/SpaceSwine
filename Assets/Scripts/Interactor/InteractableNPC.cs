@@ -84,7 +84,6 @@ public class InteractableNPC : Interactable
             speechBubble.Show();
         else
             speechBubble.Hide();
-        
     }
 
     public override void IconState (bool value) 
