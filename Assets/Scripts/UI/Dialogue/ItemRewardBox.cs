@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class ItemRewardBox : MonoBehaviour
@@ -19,26 +20,26 @@ public class ItemRewardBox : MonoBehaviour
     [SerializeField] List<Sprite> rewardIcons;
 
     CanvasGroup canvasGroup;
+    UnityAction AfterRewardAction;
+
+    public static ItemRewardBox Instance;
 
     void Awake()
     {
+        if (Instance == null) 
+        {
+            Instance = this;
+        }
+
         canvasGroup = GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0;
     }
 
-    private void Start()
+    public void Call (int reward, PlayerInteractor interactor, UnityAction AfterRewardAction)
     {
-        //this.WaitSeconds( 4f, () => Call(1, null) );
-    }
+        this.AfterRewardAction = AfterRewardAction;
 
-    public void Call (int reward, PlayerInteractor interactor)
-    {
-        GameManager.OnDialogue = true;
-        if (interactor)
-        {
-            PlatformerCharacter platformerCharacter = interactor.GetComponent<PlatformerCharacter>();
-            platformerCharacter?.KillInputs();
-        }
+        BlockInputs(true, interactor);
 
         reward -= 1;
 
@@ -62,17 +63,33 @@ public class ItemRewardBox : MonoBehaviour
         s.Join ( GetComponent<RectTransform>().DOPunchScale(Vector3.one * .2f, duration, vibrato: 0, elasticity: 0) );
         s.AppendInterval(showDuration);
         s.Append( canvasGroup.DOFade(0f, duration).SetEase(Ease.Linear) );
+        s.AppendInterval(1f);
         s.OnComplete( () => 
             { 
-                BlockInputs(false);
-                // After reward action 
+                if (AfterRewardAction == null)
+                {
+                    BlockInputs(false, interactor);
+                    return;
+                }
+
+                AfterRewardAction.Invoke();
             }
         );
     }
 
-    private void BlockInputs (bool value)
+    private void BlockInputs (bool value, PlayerInteractor interactor)
     {
         GameManager.OnDialogue = value;
+        DialogueSystem.BlockInputs = value;
+        GameManager.BlockCharacterInput = value;
 
+        if (interactor)
+        {
+            PlatformerCharacter platformerCharacter = interactor.GetComponent<PlatformerCharacter>();
+            if (value)
+            {
+                platformerCharacter?.KillInputs();
+            }
+        }
     }
 }

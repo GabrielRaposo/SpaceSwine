@@ -62036,7 +62036,7 @@ GameObject:
   - component: {fileID: 1349854918}
   - component: {fileID: 1349854917}
   m_Layer: 0
-  m_Name: 'NPC-World 1 Ship Outro '
+  m_Name: 'NPC-World 2 Ship Outro '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62057,7 +62057,7 @@ Transform:
   - {fileID: 1354277230}
   - {fileID: 774742311}
   m_Father: {fileID: 1229557523}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1349854917
 MonoBehaviour:
@@ -78607,6 +78607,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1945215826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1945215827}
+  - component: {fileID: 1945215828}
+  m_Layer: 10
+  m_Name: 'Thingamajig 2 Rewarder '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1945215827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945215826}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.16, y: 8.62, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1229557523}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1945215828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945215826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a0b612d98cc954686e9fb65f0d9198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reward: 2
+  afterDialogueNPC: {fileID: 1349854920}
 --- !u!1 &1953141506
 GameObject:
   m_ObjectHideFlags: 0
@@ -84955,10 +85000,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2011694613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2923fe87136e71a4cb73de5cc9c0d72f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cbdff4a1b218d1479f53290255fe66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  otherNPC: {fileID: 1349854920}
+  itemRewarder: {fileID: 1945215828}
   delay: 1.5
 --- !u!1001 &2014200338
 PrefabInstance:

@@ -6772,7 +6772,7 @@ MonoBehaviour:
   storyEvent: {fileID: 11400000, guid: 3153b0b6911b01e48a6039cacb1c4668, type: 2}
   progressValue: 1
   dialogueGroupIndex: -1
---- !u!114 &374788907
+--- !u!114 &374788902
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6781,10 +6781,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 374788900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2923fe87136e71a4cb73de5cc9c0d72f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cbdff4a1b218d1479f53290255fe66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  otherNPC: {fileID: 7535983111385445744}
+  itemRewarder: {fileID: 1961603278}
   delay: 1.5
 --- !u!1 &396310544
 GameObject:
@@ -10558,7 +10558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2888290609810881193, guid: 577522431b2b3ed4ab4d66e1567003d1, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2888290609810881193, guid: 577522431b2b3ed4ab4d66e1567003d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -23004,10 +23004,10 @@ Transform:
   - {fileID: 878505179}
   - {fileID: 322329133}
   - {fileID: 364917030}
-  - {fileID: 1854207391}
   - {fileID: 504524506}
   - {fileID: 1538173698}
   - {fileID: 1954516294}
+  - {fileID: 1854207391}
   - {fileID: 777759154}
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -30104,7 +30104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2888290609810881193, guid: 577522431b2b3ed4ab4d66e1567003d1, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2888290609810881193, guid: 577522431b2b3ed4ab4d66e1567003d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -35812,7 +35812,7 @@ Transform:
   m_Children:
   - {fileID: 1429640058}
   m_Father: {fileID: 1173150423}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1856021315
 GameObject:
@@ -37130,7 +37130,7 @@ Transform:
   - {fileID: 2006491548}
   - {fileID: 1124586600}
   m_Father: {fileID: 1173150423}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1954516295
 MonoBehaviour:
@@ -37455,6 +37455,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1961603276
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1961603277}
+  - component: {fileID: 1961603278}
+  m_Layer: 10
+  m_Name: 'Thingamajig 1 Rewarder '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1961603277
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961603276}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 504524506}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1961603278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961603276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a0b612d98cc954686e9fb65f0d9198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reward: 1
+  afterDialogueNPC: {fileID: 7535983111385445744}
 --- !u!1001 &1963240606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44268,7 +44313,7 @@ Transform:
   - {fileID: 7535983111678453821}
   - {fileID: 5369876451406254854}
   m_Father: {fileID: 504524506}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7535983111385445710
 MonoBehaviour:
