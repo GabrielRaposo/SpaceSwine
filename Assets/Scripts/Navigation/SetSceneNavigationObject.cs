@@ -51,7 +51,7 @@ public class SetSceneNavigationObject : NavigationObject
             //sprite.color = Color.white;
         }
 
-        landAnimation.Call( this, selector.transform, CloseAndSetScene );
+        landAnimation.Call( this, selector.transform, CloseAndSetScene, landingOnPlanet: true );
     }
 
     private void SetCompletionDisplay()

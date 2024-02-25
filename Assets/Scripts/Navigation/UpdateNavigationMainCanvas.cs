@@ -9,7 +9,8 @@ public class UpdateNavigationMainCanvas : MonoBehaviour
     [SerializeField] TextMeshProUGUI autoPilotText;
     [SerializeField] Image bannerBackgroundImage;
     [SerializeField] Image upperBarImage;
-    [SerializeField] TextMeshProUGUI tabTextDisplay;
+    [SerializeField] TextMeshProUGUI tabPlanetTextDisplay;
+    [SerializeField] TextMeshProUGUI tabPortalTextDisplay;
     [SerializeField] Image lowerBarImage;
 
     public void UpdateColors (Color selectedColor, Color unselectedColor, Color backgroundColor)
@@ -32,9 +33,14 @@ public class UpdateNavigationMainCanvas : MonoBehaviour
             upperBarImage.color = selectedColor;
         }
 
-        if (tabTextDisplay != null) 
+        if (tabPlanetTextDisplay != null) 
         {
-            tabTextDisplay.color = selectedColor;
+            tabPlanetTextDisplay.color = selectedColor;
+        }
+
+        if (tabPortalTextDisplay != null)
+        {
+            tabPortalTextDisplay.color = selectedColor;
         }
 
         if (lowerBarImage != null) 

@@ -36,7 +36,7 @@ public class NavigationShipLandAnimation : MonoBehaviour
         navigationShip = GetComponent<NavigationShip>();
     }
 
-    public void Call (NavigationObject caller, Transform selector, UnityAction AfterSequenceAction)
+    public void Call (NavigationObject caller, Transform selector, UnityAction AfterSequenceAction, bool landingOnPlanet)
     {
         if (navigationShip == null)
         {
@@ -89,7 +89,7 @@ public class NavigationShipLandAnimation : MonoBehaviour
                 {
                     // -- Mostra UI de aterrisagem no final
                     navSceneManager.StopBlinkAutoPilot();
-                    navSceneManager.DisplayLandingSign();
+                    navSceneManager.DisplayLandingSign(landingOnPlanet);
 
                     navigationShip.SetFlightStepsSound(false);
                     navigationShip.OverridenControls = Vector2.zero;
@@ -127,7 +127,7 @@ public class NavigationShipLandAnimation : MonoBehaviour
                 {
                     // -- Mostra UI de aterrisagem no final
                     navSceneManager.StopBlinkAutoPilot();
-                    navSceneManager.DisplayLandingSign();
+                    navSceneManager.DisplayLandingSign(landingOnPlanet);
 
                     navigationShip.SetFlightStepsSound(false);
                     navigationShip.OverridenControls = Vector2.zero;

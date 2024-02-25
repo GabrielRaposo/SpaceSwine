@@ -78,6 +78,7 @@ public class NavigationObject : StoryEventDependent
     {
         interactAction = null;
         LocalizationManager.RemoveFromLanguageChangeActionList(QuickForceText);
+        //Debug.Log("OnDisable");
     }
 
     public virtual void OnSelect()
