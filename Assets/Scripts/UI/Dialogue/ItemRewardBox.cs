@@ -28,7 +28,7 @@ public class ItemRewardBox : MonoBehaviour
 
     private void Start()
     {
-        this.WaitSeconds( 4f, () => Call(1, null) );
+        //this.WaitSeconds( 4f, () => Call(1, null) );
     }
 
     public void Call (int reward, PlayerInteractor interactor)
