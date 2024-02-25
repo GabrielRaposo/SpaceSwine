@@ -141,11 +141,8 @@ public class SoundtrackManager : MonoBehaviour
         this.playlist = playlist;
         MakePlaylistPlayOrder();
 
-        Debug.Log("B");
-
         if (soundtrackEvent == null && !IsPlaying)
         {
-            Debug.Log("B2");
             PlayTrack();
         }
     }
@@ -157,15 +154,12 @@ public class SoundtrackManager : MonoBehaviour
         if (this.playlist == null)
             return;
 
-        Debug.Log("A");
-
         this.playlist = playlist;
         MakePlaylistPlayOrder();
 
         if (!IsCurrentTrackOnPlaylist)
         {
             FadeOutAndSkip();
-            Debug.Log("A2");
             return;
         }
     }
