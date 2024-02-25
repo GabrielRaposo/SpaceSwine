@@ -168,9 +168,4 @@ public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
 
         SelectCurrent(instant: false, playSound: true);
     }
-
-
-    
-
-
 }
