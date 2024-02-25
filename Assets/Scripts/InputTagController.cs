@@ -33,7 +33,7 @@ public static class InputTagController
 
     public static void ReadKeyboardBindings(string bindingsInfo)
     {
-        DebugDisplay.Call(bindingsInfo);
+        //DebugDisplay.Call(bindingsInfo);
 
         if (bindingsInfo.Contains("Movement:2DVector"))
         {

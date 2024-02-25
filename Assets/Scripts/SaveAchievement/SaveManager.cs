@@ -36,7 +36,7 @@ public class SaveManager : MonoBehaviour
         
         if (File.Exists(path))
         {
-            DebugDisplay.Call("File found!");
+            DebugDisplay.Log("File found!");
             
             FileStream file = File.OpenRead(path);
             BinaryFormatter bf = new BinaryFormatter();
@@ -47,7 +47,7 @@ public class SaveManager : MonoBehaviour
 
             if (!IsSaveValid(loadedSaveFile)) 
             {
-                DebugDisplay.Call("Invalid save file!");
+                DebugDisplay.Log("Invalid save file!");
                 currentSave = new SaveFile();
 
                 if (loadedSaveFile.achievementLog != null)
@@ -96,7 +96,7 @@ public class SaveManager : MonoBehaviour
             return loadedSaveFile;
         }
 
-        DebugDisplay.Call("File not found, creating new.");
+        DebugDisplay.Log("File not found, creating new.");
         currentSave = new SaveFile();
         Save();
 

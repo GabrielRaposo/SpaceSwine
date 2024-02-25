@@ -860,6 +860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4796787506915736951}
   - component: {fileID: 1528574954285098493}
+  - component: {fileID: 2184788980114417181}
   m_Layer: 0
   m_Name: Soundtrack Manager
   m_TagString: Untagged
@@ -910,6 +911,22 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: e3b0120eabb284c41be708b47bf91e4b, type: 2}
+--- !u!114 &2184788980114417181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972309513374064537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3d9be279a4b8d449f5c14707467925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullPlaylist: {fileID: 11400000, guid: 23a56cfd175ca1a4b9d5cc1797b9be04, type: 2}
+  world1Playlist: {fileID: 11400000, guid: 23eb5e775aef7004f9abaf5d33e4243c, type: 2}
+  world2Playlist: {fileID: 11400000, guid: cedc57f0c58b8164fa26d6552bcae4c0, type: 2}
+  world3Playlist: {fileID: 11400000, guid: 2da46aaf5e28a244c930da0bd81f62b6, type: 2}
 --- !u!1 &2479926269062887750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,6 +2483,7 @@ MonoBehaviour:
   hold1Duration: 0.75
   hold2Duration: 1.25
   musicFadeOut: 1.25
+  musicFadeIn: 1.25
   mainCanvasGroup: {fileID: 8232591258871688760}
   assetsGroup: {fileID: 6703508647994764053}
   fillImage: {fileID: 4329337394556345140}
@@ -2488,8 +2506,6 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 275a822744353764783ba2eb6857269d, type: 2}
-  safetyPlaylist: {fileID: 11400000, guid: 12284a3eda1658e4cb90090abb7e49c2, type: 2}
-  dangerPlaylist: {fileID: 11400000, guid: 029182bd2c4fd1b48a75476fee0aaedb, type: 2}
 --- !u!225 &8232591258871688760
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -53,7 +53,7 @@ public class DebugInputs : MonoBehaviour
             getAllAction.performed += (ctx) =>
             {
                 StoryEventsManager.CompleteAll();
-                DebugDisplay.Call ("All story events completed.");
+                DebugDisplay.Log ("All story events completed.");
             };
             getAllAction.Enable();
         }
@@ -65,7 +65,7 @@ public class DebugInputs : MonoBehaviour
                 RoundsManager roundsManager = RoundsManager.Instance;
                 if (!roundsManager)
                 {
-                    DebugDisplay.Call ("Input exclusive to Danger Zones.");
+                    DebugDisplay.Log ("Input exclusive to Danger Zones.");
                     return;
                 }
 
@@ -78,7 +78,7 @@ public class DebugInputs : MonoBehaviour
                 RoundsManager roundsManager = RoundsManager.Instance;
                 if (!roundsManager)
                 {
-                    DebugDisplay.Call ("Input exclusive to Danger Zones.");
+                    DebugDisplay.Log ("Input exclusive to Danger Zones.");
                     return;
                 }
 
@@ -91,7 +91,7 @@ public class DebugInputs : MonoBehaviour
                 RoundsManager roundsManager = RoundsManager.Instance;
                 if (!roundsManager)
                 {
-                    DebugDisplay.Call ("Input exclusive to Danger Zones.");
+                    DebugDisplay.Log ("Input exclusive to Danger Zones.");
                     return;
                 }
 
@@ -105,21 +105,21 @@ public class DebugInputs : MonoBehaviour
             unlockShipAccessAction.performed += (ctx) =>
             {
                 StoryEventsManager.UnlockShipAccess();
-                DebugDisplay.Call ("Ship Access Unlocked.");
+                DebugDisplay.Log ("Ship Access Unlocked.");
             };
             unlockShipAccessAction.Enable();
 
             saveInputAction.performed += (ctx) => 
             { 
                 SaveManager.Save();
-                DebugDisplay.Call ("Manual Save.");
+                DebugDisplay.Log ("Manual Save.");
             };
             saveInputAction.Enable();
 
             resetSaveInputAction.performed += (ctx) => 
             {
                 SaveManager.ResetSave();
-                DebugDisplay.Call ("Manual Save Reset.");
+                DebugDisplay.Log ("Manual Save Reset.");
             };
             resetSaveInputAction.Enable();
         }
@@ -130,7 +130,7 @@ public class DebugInputs : MonoBehaviour
                 SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
                 if (soundtrackManager)
                     soundtrackManager.PlayInput();
-                DebugDisplay.Call ("Play/Skip track.");
+                DebugDisplay.Log ("Play/Skip track.");
             };
             playMusicTestInput.Enable();
 
@@ -139,7 +139,7 @@ public class DebugInputs : MonoBehaviour
                 SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
                 if (soundtrackManager)
                     soundtrackManager.StopInput();
-                DebugDisplay.Call ("Stop track.");
+                DebugDisplay.Log ("Stop track.");
             };
             stopMusicTestInput.Enable();
         }

@@ -37,7 +37,7 @@ public class CreditsManager : MonoBehaviour
     void DelayedStart()
     {
         float distance = (mainLayout.rect.height + overshotDistance) * mainLayout.localScale.y;
-        DebugDisplay.Call($"Distance: {distance}");
+        DebugDisplay.Log($"Distance: {distance}");
 
         s = DOTween.Sequence();
 

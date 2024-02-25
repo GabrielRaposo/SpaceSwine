@@ -113,7 +113,7 @@ public class SoundtrackManager : MonoBehaviour
 
     public void SetPlaylist (PlaylistScriptableObject playlist)
     {
-        Debug.Log("SetPlaylist!");
+        DebugDisplay.Log($"SetPlaylist: {playlist.name}");
 
         if (OverrideChecksTrigger)
             OverrideChecksTrigger = false;
@@ -133,6 +133,17 @@ public class SoundtrackManager : MonoBehaviour
         }
 
         PlayTrack();        
+    }
+
+    public void ChangePlaylistOnTheBack (PlaylistScriptableObject playlist)
+    {
+        DebugDisplay.Log($"Change Playlist: {playlist.name}");
+
+        if (this.playlist == playlist)
+            return;
+
+        this.playlist = playlist;
+        MakePlaylistPlayOrder();
     }
 
     public void PlayTrack ()
@@ -229,5 +240,21 @@ public class SoundtrackManager : MonoBehaviour
     {
         manuallyPaused = false;
         SkipTrack(1);
+    }
+
+    public void FadeOutAndPause(float duration = 2f)
+    {
+        if (soundtrackEvent == null || !IsPlaying)
+            return;
+
+        soundtrackEvent.Pause(gameObject, duration, value: true);
+    }
+
+    public void ResumeAndFadeIn(float duration = 2f)
+    {
+        if (soundtrackEvent == null || !IsPlaying)
+            return;
+
+        soundtrackEvent.Pause(gameObject, duration, value: false);
     }
 }

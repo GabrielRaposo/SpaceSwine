@@ -150,7 +150,7 @@ public class NavigationSceneManager : MonoBehaviour
             return;
 
         SaveManager.ShuttleExitLocationPath = scenePath;
-        DebugDisplay.Call("ShuttleExitLocationPath set as " + scenePath);
+        DebugDisplay.Log("ShuttleExitLocationPath set as " + scenePath);
     }
     
 }

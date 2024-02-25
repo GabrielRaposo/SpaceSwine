@@ -62,7 +62,7 @@ public static class WWiseExtensions
         }
     }
 
-    private static void Pause (string eventName, GameObject go, bool value)
+    private static void Pause (string eventName, GameObject go, float duration, bool value)
     {
         List<uint> eventsIDs = GetEventIDs(eventName, go);
 
@@ -80,7 +80,7 @@ public static class WWiseExtensions
                 eventsIDs[i], 
                 action, 
                 go, 
-                in_uTransitionDuration: 0, 
+                in_uTransitionDuration: Mathf.RoundToInt(duration * 1000), // em milisegundos aparentemente 
                 AkCurveInterpolation.AkCurveInterpolation_Linear
             );
         }
@@ -137,9 +137,9 @@ public static class WWiseExtensions
         Stop (AKEvent.Name, go);
     }
 
-    public static void Pause (this AK.Wwise.Event AKEvent, GameObject go, bool value = true)
+    public static void Pause (this AK.Wwise.Event AKEvent, GameObject go, float duration, bool value = true)
     {
-        Pause (AKEvent.Name, go, value);
+        Pause (AKEvent.Name, go, duration, value);
     }
 
     public static void FadeOut (this AK.Wwise.Event AKEvent, GameObject go, float duration)

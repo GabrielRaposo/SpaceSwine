@@ -99,7 +99,7 @@ public class InteractableShipComponent : Interactable
     {
         if (!interactable)
         {
-            DebugDisplay.Call("Cannot interact.");
+            DebugDisplay.Log("Cannot interact.");
             return;
         }
 

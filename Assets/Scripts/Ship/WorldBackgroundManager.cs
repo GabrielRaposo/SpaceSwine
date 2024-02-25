@@ -30,7 +30,7 @@ public class WorldBackgroundManager : MonoBehaviour
         if (!SaveManager.Initiated) 
             yield return new WaitUntil ( () => SaveManager.Initiated);
 
-        SetWorldBackground (SaveManager.CurrentWorld);
+        SetWorldBackgroundAndMusic (SaveManager.CurrentWorld);
     }
 
     public static void ChangeTo (int world)
@@ -47,11 +47,11 @@ public class WorldBackgroundManager : MonoBehaviour
 
         s = DOTween.Sequence();
         s.Append( backgroundOverlay.DOFade(1f, fadeDuration).SetEase(Ease.OutCirc));
-        s.AppendCallback( () => SetWorldBackground(world) );
+        s.AppendCallback( () => SetWorldBackgroundAndMusic(world) );
         s.Append( backgroundOverlay.DOFade(0f, fadeDuration).SetEase(Ease.InCirc));
     }
 
-    private void SetWorldBackground(int world)
+    private void SetWorldBackgroundAndMusic(int world)
     {
         world %= 3;
 
@@ -63,5 +63,8 @@ public class WorldBackgroundManager : MonoBehaviour
         
         if (World3BGGroup)
             World3BGGroup.SetActive(world == 2);
+
+        if (SoundtrackManager.Instance && PlaylistReferences.Instance)
+            SoundtrackManager.Instance.ChangePlaylistOnTheBack( PlaylistReferences.Instance.GetPlaylistBy(world) );
     }
 }

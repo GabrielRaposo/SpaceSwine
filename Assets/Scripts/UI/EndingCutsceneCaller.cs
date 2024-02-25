@@ -104,7 +104,7 @@ public class EndingCutsceneCaller : MonoBehaviour
         (bool isValid, string text) data = LocalizationManager.GetStoryText(cutsceneStoryData.textTags[textIndex % cutsceneStoryData.textTags.Count]);
         if (!data.isValid)
         {
-            DebugDisplay.Call("Invalid text tag");
+            DebugDisplay.Log("Invalid text tag");
             yield break;
         }
 
@@ -127,7 +127,7 @@ public class EndingCutsceneCaller : MonoBehaviour
     IEnumerator EndCutscene()
     {
         yield return new WaitForSeconds(1f);
-        DebugDisplay.Call("Cutscene ended");
+        DebugDisplay.Log("Cutscene ended");
 
         s = DOTween.Sequence();
         s.Append( imageCanvasGroup.DOFade(0f, duration: 3f) );

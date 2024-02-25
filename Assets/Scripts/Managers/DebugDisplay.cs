@@ -35,7 +35,7 @@ public class DebugDisplay : MonoBehaviour
         textDisplay.text = string.Empty;
     }
 
-    public static void Call (string s)
+    public static void Log (string s)
     {
         if (Instance == null)
             return;
