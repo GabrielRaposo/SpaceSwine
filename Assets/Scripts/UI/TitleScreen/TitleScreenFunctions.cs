@@ -8,6 +8,7 @@ public class TitleScreenFunctions : MonoBehaviour
 {
     [SerializeField] SceneReference newFileScene;
     [SerializeField] SceneReference makeABeatScene;
+    [SerializeField] SceneReference creditsScene;
 
     TitleStateManager titleStateManager;
 
@@ -58,6 +59,11 @@ public class TitleScreenFunctions : MonoBehaviour
         SoundtrackManager.OverrideChecksTrigger = true;
 
         GameManager.GoToScene (makeABeatScene.ScenePath);
+    }
+
+    public void CreditsInput()
+    {
+        GameManager.GoToScene(creditsScene.ScenePath);
     }
 
     public void QuitInput()
