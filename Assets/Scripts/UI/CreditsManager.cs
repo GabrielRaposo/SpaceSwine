@@ -13,8 +13,11 @@ public class CreditsManager : MonoBehaviour
     [SerializeField] RectTransform mainLayout;
     [SerializeField] float overshotDistance;
     [SerializeField] SceneReference afterCreditsScene;
+    [SerializeField] CanvasGroup fastForwardInputCanvasGroup;
 
     Sequence s;
+
+    bool fastForwardTrigger;
 
     PlayerInputActions inputActions;
     InputAction fastForwardInputAction;
@@ -53,6 +56,12 @@ public class CreditsManager : MonoBehaviour
         if (fastForwardInputAction.ReadValue<float>() > .1f)
         {
             s.timeScale = speedUpModifier;
+
+            if (!fastForwardTrigger)
+            {
+                fastForwardTrigger = true;
+                fastForwardInputCanvasGroup.DOFade(0f, duration: 2f);
+            }
             return;
         }
         
