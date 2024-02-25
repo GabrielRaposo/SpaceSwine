@@ -31,7 +31,6 @@ public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
         playerInputActions = new PlayerInputActions();    
     
         axisInput = playerInputActions.UI.Navigation;
-
         axisInput.Enable();
 
         playerInputActions.UI.Confirm.performed += (ctx) => 
