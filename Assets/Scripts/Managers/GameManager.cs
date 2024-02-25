@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         ggsConsole = GGSConsole.Instance;
 
         SetupPlayer(); // Deve ocorrer no Start()
-        SetupPlaylist();
+        //SetupPlaylist();
     }
 
     private void SetupPlayer()
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         if (!soundtrackManager)
             return;
 
-        soundtrackManager.SetPlaylist(CurrentPlaylist);
+        soundtrackManager.ChangePlaylistOnTheBack(CurrentPlaylist);
     }
 
     public static void GoToScene (string path, bool saveScenePath = false)

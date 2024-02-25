@@ -40,10 +40,10 @@ public class DebugDisplay : MonoBehaviour
         if (Instance == null)
             return;
 
-        Instance.LocalCallText(s);
+        Instance.LocalLog(s);
     }
 
-    public void LocalCallText(string s)
+    public void LocalLog(string s)
     {
         if (!textDisplay || !canvasGroup)
             return;
@@ -52,6 +52,7 @@ public class DebugDisplay : MonoBehaviour
 
         SetState(true);
         textDisplay.text = s;
+        Debug.Log(s);
 
         this.WaitSeconds(duration, () => SetState(false));
     }

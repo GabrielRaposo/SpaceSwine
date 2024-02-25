@@ -81,10 +81,8 @@ public class TransitionSafetyToDanger : MonoBehaviour
         SceneTransition.OnTransition = true;
         PlayerTransitionState.BlockSpawn = true;
         RoundsManager.BlockSpawn = true;
-        SetPlaylistOnStart.Block = true;
 
-        //if (!safetyToDanger)
-            PlayerTransitionState.EnterState = PlayerTransitionState.State.OutOfPortal;
+        PlayerTransitionState.EnterState = PlayerTransitionState.State.OutOfPortal;
 
         bool done = false;
 
@@ -191,7 +189,6 @@ public class TransitionSafetyToDanger : MonoBehaviour
         PlayerTransitionState.BlockSpawn = false;
         gameObject.SetActive(false);
         SceneTransition.OnTransition = false;
-        SetPlaylistOnStart.Block = false; 
 
         OnTransition = false;
         GameManager.BlockCharacterInput = false;

@@ -240,7 +240,7 @@ public class Door : MonoBehaviour
         if (!animator)
             return;
 
-        Debug.Log("huh? " + value);
+        //Debug.Log("huh? " + value);
 
         if (instant)
         {
