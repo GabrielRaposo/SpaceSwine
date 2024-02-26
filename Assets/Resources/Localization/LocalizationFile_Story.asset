@@ -64,10 +64,12 @@ MonoBehaviour:
     - Z1_NPC_TREE_001.01
     - Z1_NPC_TREE_001.02
     - Z1_NPC_TREE_002.01
+    - Z1_NPC_TREE_003.01
     - Z1_NPC_PLANK_001.01
     - Z1_NPC_PLANK_001.02
     - Z1_NPC_PLANK_001.03
     - Z1_NPC_PLANK_001.04
+    - Z1_NPC_PLANK_001.05
     - Z1_NPC_PLANK_002.01
     - Z1_NPC_PLANK_003.01
     - Z1_NPC_SAM_001.01
@@ -78,9 +80,11 @@ MonoBehaviour:
     - Z1_NPC_TOM_001.01
     - Z1_NPC_TOM_001.02
     - Z1_NPC_TOM_001.03
-    - Z1_NPC_TOM_001.04
+    - Z1_NPC_TOM_00X
     - Z1_NPC_TOM_002.01
     - Z1_NPC_TOM_003.01
+    - Z1_NPC_TOM_004.01
+    - Z1_NPC_TOM_005.01
     - Z1_NPC_LABORBOT_001.01
     - Z1_NPC_LABORBOT_001.02
     - Z1_NPC_LABORBOT_002.01
@@ -211,10 +215,10 @@ MonoBehaviour:
       - Aperte <color=yellow>:interact:</color> para interagir com o mundo
     - m_keys: 0000000001000000
       m_values:
-      - "Remember: jumping over the stumps won't make you escape the planet's gravity
-        field!\n\u2013 <i>Plank</i>"
-      - "Lembrete: pular os tocos de \xE1rvore n\xE3o vai te fazer escapar o campo
-        gravitacional do planeta!\n\u2013 <i>T\xE1bua</i>"
+      - "Remember: jumping over the stumps with <color=yellow>:jump:</color=yellow>
+        won't make you escape the planet's gravity field!\n\u2013 <i>Plank</i>"
+      - "Lembrete: pular os tocos de \xE1rvore com <color=yellow>:jump:</color=yellow>
+        n\xE3o vai te fazer escapar o campo gravitacional do planeta!\n\u2013 <i>T\xE1bua</i>"
     - m_keys: 0000000001000000
       m_values:
       - "We ask of all workers to please keep the elevators in working conditions
@@ -274,8 +278,8 @@ MonoBehaviour:
       - Aperte <color=yellow>:jump:</color> para voltar ao menu principal
     - m_keys: 0000000001000000
       m_values:
-      - Oh my, that was a frightful fall! Are all your systems operational?
-      - "Minha nossa, que queda terr\xEDvel! Todos os seus sistemas est\xE3o operacionais?"
+      - That was a frightful fall! Are all your systems operational?
+      - "Que queda terr\xEDvel! Todos os seus sistemas ainda est\xE3o operacionais?"
     - m_keys: 0000000001000000
       m_values:
       - Wait... That uniform! You are one of those patroller fellows!
@@ -284,8 +288,8 @@ MonoBehaviour:
       m_values:
       - It has been almost [18.14 * 10^9 EPHEMERIS SECONDS] since I've last paroled
         with such a distinguished individual! How can I help you, little one?
-      - "Faz quase [18.14 * 10^9 SEGUNDOS EPHEMERIS] desde a \xFAltima vez que pude
-        conversar com um indiv\xEDduo t\xE3o distinto! Como posso te ajudar, pequenino?"
+      - "Faz quase [18.14 * 10^9 SEGUNDOS EPHEMERIS] desde a \xFAltima vez que falei
+        com um indiv\xEDduo t\xE3o distinto! Como posso te ajudar, pequenino?"
     - m_keys: 0000000001000000
       m_values:
       - ... Oh my. Your ship malfunctioned due to an abnormal fluctuation in gravitational
@@ -296,28 +300,29 @@ MonoBehaviour:
     - m_keys: 0000000001000000
       m_values:
       - Oh no! Your <color=yellow>teleporter</color=yellow> is broken due to the
-        fall! What a complication!
+        fall? What a complication!
       - "Ah, n\xE3o! O seu <color=yellow>teleportador</color=yellow> se quebrou na
-        queda! Que complica\xE7\xE3o!"
+        queda? Que complica\xE7\xE3o!"
     - m_keys: 0000000001000000
       m_values:
-      - ... I'm jesting, of course. Nothing is a problem when we have friends and
-        <color=yellow>spare parts</color=yellow>. I just happen to have many, myself!
+      - ... Just kidding! Nothing is a problem when we have friends and <color=yellow>spare
+        parts</color=yellow>. I just happen to have many, myself!
       - "... Brincadeira! Nada \xE9 um problema quando se tem amigos e <color=yellow>pe\xE7as
         sobressalentes</color=yellow>. Coincid\xEAncia ou n\xE3o, tenho ambos!"
     - m_keys: 0000000001000000
       m_values:
       - That said, I can repair your device, but, as you can see, I'm not one for
-        hopping around. If you could fetch me some scrap, I could make it new again!
-      - "Dito isso, at\xE9 posso consertar o seu dispositivo, mas, como pode ver,
-        n\xE3o sou muito de ficar dando volta por a\xED. Se puder me trazer umas
-        partes, consigo deixar novo em folha!"
+        hopping around. If you could fetch me some spare scrap, I could make it new
+        again!
+      - "Dito isso, eu at\xE9 consigo consertar o seu dispositivo, mas, como pode
+        ver, n\xE3o sou muito de ficar dando voltas por a\xED. Se puder me trazer
+        umas pe\xE7as sobressalentes, consigo deixar novo em folha!"
     - m_keys: 0000000001000000
       m_values:
-      - One of my assistants may have something useful in their possession. They
-        are right over those next planets.
-      - "Um dos meus assistentes deve ter alguma coisa \xFAtil. Eles est\xE3o ali,
-        nos planetas ao lado."
+      - One of my assistants may have something useful in their hands. They are right
+        over those next planets.
+      - "Algum dos meus assistentes deve ter alguma coisa \xFAtil em m\xE3os. Eles
+        est\xE3o ali, nos planetas ao lado."
     - m_keys: 0000000001000000
       m_values:
       - Here, let me assess if the <color=yellow>elevator</color=yellow> still works...
@@ -326,15 +331,15 @@ MonoBehaviour:
         Parece que  sim!
     - m_keys: 0000000001000000
       m_values:
-      - I'll be here if you require any assistance! I'll also be here if you do not.
-      - "Vou estar aqui se voc\xEA requisitar qualquer aux\xEDlio adicional!\nE tamb\xE9m
-        vou estar aqui se n\xE3o."
+      - I'll be here if you require any assistance. I'll also be here if you do not.
+      - "Vou estar aqui se precisar de qualquer ajuda. Se n\xE3o precisar, vou estar
+        aqui tamb\xE9m."
     - m_keys: 0000000001000000
       m_values:
       - Something wrong with the <color=yellow>elevator</color=yellow>? It should
         work simply by standing on it and activating it.
-      - "Algo de errado com o elevador? Deveria funcionar simplesmente ficando de
-        p\xE9 sobre a plataforma e acionando."
+      - "Algum problema com o elevador? Deveria funcionar simplesmente ficando em
+        p\xE9 na plataforma e acionando."
     - m_keys: 0000000001000000
       m_values:
       - You can do it. If no one else has believed in you so far, know that I do.
@@ -343,31 +348,31 @@ MonoBehaviour:
     - m_keys: 0000000001000000
       m_values:
       - Take your time. I appreciate the company.
-      - Tome seu tempo. Eu aprecio boa companhia.
+      - Tome o tempo que precisar. Eu aprecio a companhia.
     - m_keys: 0000000001000000
       m_values:
       - Here comes the little one! You got some nice <color=yellow>parts</color=yellow>
         for me there?
-      - "E volta o pequenino! Conseguiu umas <color=yellow>pe\xE7as</color=yellow>
+      - "O pequenino est\xE1 de volta! Conseguiu umas <color=yellow>pe\xE7as</color=yellow>
         boas pra mim?"
     - m_keys: 0000000001000000
       m_values:
-      - Oh yes, this is perfect. It will take just a second, and... It's done!
+      - Oh yes, this is perfect. It will take just a second... Done!
       - "Ah, perfeito. Vai levar s\xF3 um segundo... pronto!"
+    - m_keys: 0000000001000000
+      m_values:
+      - You should be able to return to your <color=yellow>ship</color=yellow> now,
+        but know that you are always welcome to stick around! I sure do enjoy our
+        pleasant chats.
+      - "Voc\xEA deve conseguir voltar \xE0 sua <color=yellow>nave</color=yellow>
+        agora, mas saiba que \xE9 sempre bem-vindo pra passar um tempo! Gosto bastante
+        das nossas conversas."
     - m_keys: 0000000001000000
       m_values:
       - "\xA7instant text\xA7 <color=yellow>Your teleporter is fixed! A new button
         was added to your pause menu."
       - "\xA7instant text\xA7 <color=yellow>Seu teleportador foi consertado! Um bot\xE3o
         novo foi adicionado ao menu de pausa."
-    - m_keys: 0000000001000000
-      m_values:
-      - Here you go. You should be able to return to your <color=yellow>ship</color=yellow>
-        now, but know that you are always welcome to stick around! I sure do enjoy
-        our pleasant chats.
-      - "Aqui est\xE1. Voc\xEA deve conseguir voltar \xE0 sua <color=yellow>nave</color=yellow>
-        agora, mas saiba que \xE9 sempre bem-vindo pra passar um tempo! Gosto bastante
-        das nossas conversas."
     - m_keys: 0000000001000000
       m_values:
       - So what brings you around here, little one? Are you lost as well?
@@ -401,8 +406,8 @@ MonoBehaviour:
         discuss\xF5es t\xE3o interessantes."
     - m_keys: 0000000001000000
       m_values:
-      - '*cheerful whistling*'
-      - '*assovio alegre*'
+      - <i>*cheerful whistling*</i>
+      - <i>*assovio alegre*</i>
     - m_keys: 0000000001000000
       m_values:
       - LEG?
@@ -434,11 +439,11 @@ MonoBehaviour:
         ser de carne?"
     - m_keys: 0000000001000000
       m_values:
-      - Are you one of those hoodlums that stick up <color=yellow>parts</color=yellow>
+      - Are you one of those organic hoodlums that stick up <color=yellow>parts</color=yellow>
         inside their bodies? I expect you don't need me to tell you how incredibly
         appropriative that is.
-      - "Voc\xEA \xE9 um daqueles folgados que fica enfiando <color=yellow>pe\xE7as</color=yellow>
-        dentro do pr\xF3prio corpo? Espero que voc\xEA saiba que isso \xE9 incrivelmente
+      - "Voc\xEA \xE9 um daqueles folgados org\xE2nicos que fica enfiando <color=yellow>pe\xE7as</color=yellow>
+        dentro do pr\xF3prio corpo? Espero que voc\xEA saiba que isso \xE9 ofensivamente
         apropriativo."
     - m_keys: 0000000001000000
       m_values:
@@ -450,14 +455,13 @@ MonoBehaviour:
         is putting up his leg act again; Pigs are running around with space suits\u2013"
       - "Tudo est\xE1 fora do prazo; N\xE3o h\xE1 pe\xE7as em lugar algum;\n<color=yellow>Perna</color=yellow>
         est\xE1 bancando a perna de novo; Porcos est\xE3o correndo por a\xED com
-        trajes de astronauta\u2013"
+        roupas de astronauta\u2013"
     - m_keys: 0000000001000000
       m_values:
       - Lastly, a new tear in space has opened up and sequestered <color=yellow>Tom</color=yellow>.
-        How are we supposed to keep up morale like this?
-      - "Por fim, um novo rasgo espacial surgiu e abduziu o <color=yellow>Tom</color=yellow>.
-        Como esperam que a gente mantenha o entusiasmo dos funcion\xE1rios desse
-        jeito?"
+        How am I supposed to keep up morale like this?
+      - "Por fim, um dos portais se abriu e perdemos o <color=yellow>Tom</color=yellow>.
+        Como esperam que eu mantenha o entusiasmo dos funcion\xE1rios desse jeito?"
     - m_keys: 0000000001000000
       m_values:
       - What? You want <color=yellow>parts</color=yellow>? So do I. Unfortunately
@@ -466,6 +470,12 @@ MonoBehaviour:
       - "O qu\xEA? Voc\xEA quer <color=yellow>pe\xE7as</color=yellow>? Eu tamb\xE9m.
         Infelizmente <color=yellow>Tom</color=yellow> estava com as nossas melhores
         pe\xE7as, e agora todos est\xE3o \"de luto\" como desculpa pra n\xE3o trabalhar."
+    - m_keys: 0000000001000000
+      m_values:
+      - I see you're keen on standing around not doing anything. Want to become an
+        assistant supervisor?
+      - "Vejo que voc\xEA gosta de ficar parado sem fazer nada. Quer se tornar assistente
+        de supervisor?"
     - m_keys: 0000000001000000
       m_values:
       - Hey there. What can I get you, pink one?
@@ -481,19 +491,24 @@ MonoBehaviour:
         agora."
     - m_keys: 0000000001000000
       m_values:
-      - ... Actually, there is one who might still have hold on to their <color=yellow>parts</color=yellow>.
-      - "... Na verdade, tem algu\xE9m que ainda pode ter umas <color=yellow>pe\xE7as</color=yellow>."
+      - ... Hey, don't look at me with those eyes. I really can't help you out, sorry.
+      - "... N\xE3o olha pra mim com esses olhos n\xE3o. Eu realmente n\xE3o consigo
+        te ajudar, desculpa."
     - m_keys: 0000000001000000
       m_values:
-      - The problem is that you'd have to reach that planet on the top-right and
-        enter its <color=yellow>portal</color=yellow>.
-      - "O problema \xE9 que voc\xEA precisa chegar no planeta pra cima e \xE0 direita
-        e entrar no <color=yellow>portal</color=yellow> que tem l\xE1."
+      - ... Okay, there is one who might have still held on to their <color=yellow>parts</color=yellow>.
+      - "... T\xE1. Pra falar a verdade, tem algu\xE9m que ainda pode ter umas <color=yellow>pe\xE7as</color=yellow>,
+        sim."
     - m_keys: 0000000001000000
       m_values:
-      - Go with you? Sorry, my self-preservation circuits are still intact.
-      - "Ir com voc\xEA? Desculpa, mas meus circuitos de autopreserva\xE7\xE3o continuam
-        intactos."
+      - You just need to reach that planet on the top-right and enter its <color=yellow>portal</color=yellow>.
+      - "Voc\xEA s\xF3 precisa chegar no planeta pra cima e \xE0 direita e entrar
+        no <color=yellow>portal</color=yellow> que tem l\xE1."
+    - m_keys: 0000000001000000
+      m_values:
+      - Go with you? I don't think so, my self-preservation circuits are still intact.
+      - "Ir junto com voc\xEA? Acho que n\xE3o, meus circuitos de autopreserva\xE7\xE3o
+        continuam intactos."
     - m_keys: 0000000001000000
       m_values:
       - You will be remembered. I strongly think so.
@@ -531,8 +546,8 @@ MonoBehaviour:
       m_values:
       - Welcome to the afterlife, comrade. It doesn't have much, but at least now
         we'll have each other...
-      - "Bem-vindo ao p\xF3s-vida, camarada. N\xE3o temos muito, mas pelo menos agora
-        temos um ao outro..."
+      - "Bem-vindo ao p\xF3s-vida, camarada. N\xE3o tem muita coisa, mas pelo menos
+        agora temos um ao outro..."
     - m_keys: 0000000001000000
       m_values:
       - Oh, <color=yellow>parts</color=yellow>? Yeah, we have that too!
@@ -553,22 +568,29 @@ MonoBehaviour:
         fria e escura do Universo."
     - m_keys: 0000000001000000
       m_values:
-      - And so he passes on... Life is a miracle, and death is what binds us all.
-      - "Ele segue sua jornada... A vida \xE9 um milagre, e a vida \xE9 o que une
-        n\xF3s todos."
+      - Life is a miracle, and death is what binds us all.
+      - "A vida \xE9 um milagre, e a vida \xE9 o que une n\xF3s todos."
+    - m_keys: 0000000001000000
+      m_values:
+      - Dude, I am so hungry.
+      - "Cara, eu t\xF4 com tanta fome."
+    - m_keys: 0000000001000000
+      m_values:
+      - <i>*Tom gazes deeply upon the starry sky*
+      - "<i>*Tom olha profundamente para o c\xE9u estrelado*"
     - m_keys: 0000000001000000
       m_values:
       - <color=yellow>Parts</color>? I do not have <color=yellow>parts</color>, my
         friend. But I believe that <color=yellow>odd fellow</color> had something
-        with him when he fell through the portal.
+        in his hands when he fell through the portal.
       - "<color=yellow>Pe\xE7as</color>? N\xE3o tenho <color=yellow>pe\xE7as</color>,
         companheiro. Mas acho que aquele <color=yellow>sujeito doido</color> l\xE1
-        tinha alguma coisa com ele quando ele caiu no portal."
+        tinha alguma coisa nas m\xE3os quando ele caiu no portal."
     - m_keys: 0000000001000000
       m_values:
-      - But if you plan on entering the <color=yellow>low-gravity zone</color>, please
+      - If you plan on entering the <color=yellow>low-gravity zone</color>, please
         try not to interrupt the workers. We're trying to leave early for the weekend.
-      - "Mas se voc\xEA pensa em entrar na <color=yellow>zona de baixa gravidade</color>,
+      - "Se voc\xEA pensa em entrar na <color=yellow>zona de baixa gravidade</color>,
         por favor tente n\xE3o interromper os trabalhadores. Estamos tentando sair
         mais cedo pro fim de semana."
     - m_keys: 0000000001000000
@@ -583,8 +605,8 @@ MonoBehaviour:
       m_values:
       - To enter the <color=yellow>low-gravity zone</color>, just enter the <color=yellow>portal</color>
         on this planet.
-      - "Para acessar a <color=yellow>zona de baixa gravidade</color>, s\xF3 entrar
-        no <color=yellow>portal</color> neste planeta."
+      - "Para acessar a <color=yellow>zona de baixa gravidade</color>, \xE9 s\xF3
+        entrar no <color=yellow>portal</color> neste planeta."
     - m_keys: 0000000001000000
       m_values:
       - Hey. Are you a friend of that <color=yellow>lad</color> that flew through
@@ -598,15 +620,15 @@ MonoBehaviour:
     - m_keys: 0000000001000000
       m_values:
       - 'To get arms like these? Proper dieting, proper rest, and never forgetting
-        from where you came from. '
-      - "Pra ter bra\xE7os assim? Dieta, descanso, e jamais se esque\xE7a das suas
+        where you came from. '
+      - "Pra ter bra\xE7os assim? Dieta, descanso, e jamais se esquecer das suas
         origens."
     - m_keys: 0000000001000000
       m_values:
       - Others focus too much on the upper arms, but real power is all about that
         grip strength.
       - "Outros focam demais em b\xEDceps e tr\xEDceps, mas a verdadeira for\xE7a
-        \xE9 tudo grip."
+        \xE9 toda nas m\xE3os e pulsos."
     - m_keys: 0000000001000000
       m_values:
       - Are you admiring me, brother?
@@ -624,16 +646,15 @@ MonoBehaviour:
         S\xF3 se certifiquem de alinhar o salto antes de acionar.\n\u2013 Perna"
     - m_keys: 0000000001000000
       m_values:
-      - "Hey, I found something strange on the planets above. I'm going to take a
-        look.\n\u2013 Tom"
-      - "Encontrei uma coisa estranha nos planetas acima. Vou dar uma olhada.\n\u2013
-        Tom"
+      - "Hey, guys!! I found something strange on the planets above!! I'm going to
+        take a look. Be back before lunch.\n\u2013 Tom"
+      - "Ei, pessoal!! Acho que vi uma coisa estranha nos planetas l\xE1 em acima.
+        Vou dar uma olhada. Volto antes do almo\xE7o.\n\u2013 Tom"
     - m_keys: 0000000001000000
       m_values:
-      - "Warning: There appears to be a low-gravity zone beyond this passage. And
-        I haven't seen Tom in a few hours.\n\u2013 Plank"
-      - "Aten\xE7\xE3o: Parece ter uma zona de baixa gravidade al\xE9m dessa passagem.
-        E o Tom est\xE1 sumido h\xE1 algumas horas.\n\u2013 T\xE1bua"
+      - "Warning: Low-gravity zone ahead. Yes, Tom, this is for you.\n\u2013 Plank"
+      - "Aten\xE7\xE3o: Zona de baixa gravidade adiante. Sim, Tom, isso \xE9 um aviso
+        pra voc\xEA.\n\u2013 T\xE1bua"
     - m_keys: 0000000001000000
       m_values:
       - If you miss your throw, press <b>'R'</b> to restart the round quickly!

@@ -6,6 +6,7 @@ public class CallAnotherDialogueAfterDialogue : MonoBehaviour
 {
     [SerializeField] InteractableNPC otherNPC;
     [SerializeField] float delay = 1.5f;
+    [SerializeField] bool onlyOnce = false;
 
     void Start()
     {
@@ -21,6 +22,10 @@ public class CallAnotherDialogueAfterDialogue : MonoBehaviour
 
     private IEnumerator Call (InteractableNPC interactableNPC)
     {
+        if (onlyOnce)
+            yield break;
+        onlyOnce = true;
+
         PlayerInteractor playerInteractor = interactableNPC.PlayerInteractor;
         if (playerInteractor == null)
             yield break;

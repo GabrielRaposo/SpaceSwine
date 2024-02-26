@@ -113,7 +113,7 @@ public class ShipDialogueManager : MonoBehaviour
     {
         var shipTalkIds = SaveManager.GetShipTalkIds();
         
-        if(shipTalkIds.Count == 0)
+        if (shipTalkIds.Count == 0)
             return;
         
         GameManager.OnDialogue = true;
@@ -144,9 +144,9 @@ public class ShipDialogueManager : MonoBehaviour
         } while (true);
 
         startSequence = DOTween.Sequence();
-        startSequence.AppendInterval(startUpDelay);
+        //startSequence.AppendInterval(startUpDelay);
         startSequence.Append( SetupForScene (startDialogueData) );
-        startSequence.AppendInterval(lookAtScreensDuration);
+        //startSequence.AppendInterval(lookAtScreensDuration);
         startSequence.AppendCallback
         (
             () => dialogueBox.SetShown(true)
