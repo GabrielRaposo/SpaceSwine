@@ -21,6 +21,7 @@ public class PagerCallScreen : MonoBehaviour
     private void OnEnable() 
     {
         // Signal Test (verify Story Events)
+        //planetAndShip.SetActive()
 
         if (NoSignalMode)
         {
