@@ -5,15 +5,28 @@ using TMPro;
 
 public class PagerCallScreen : MonoBehaviour
 {
+    [Header("Text Codes")]
     [SerializeField] string textCode;
+    [SerializeField] string noSignalCode;
+
     [SerializeField] float updateDelay;
 
     [Header("References")]
+    [SerializeField] GameObject planetAndShip;
+    [SerializeField] GameObject noSignalWarning;
     [SerializeField] TextMeshProUGUI callDisplay;
+
+    public bool NoSignalMode;
 
     private void OnEnable() 
     {
         // Signal Test (verify Story Events)
+
+        if (NoSignalMode)
+        {
+            
+            return;
+        }
 
         StartCoroutine( DisplayLoop() );
     }
