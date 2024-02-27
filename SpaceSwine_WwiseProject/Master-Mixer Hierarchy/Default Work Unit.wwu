@@ -178,18 +178,6 @@
 								</Bus>
 							</ChildrenList>
 							<ObjectLists/>
-							<DuckingList>
-								<DuckItem>
-									<BusRef Name="ui_pager_chama_nave" ID="{99418646-0C68-4766-BE16-0BEAA5E4C498}"/>
-									<DuckingParam>
-										<Volume>-6</Volume>
-										<FadeInTime>1.29999995231628</FadeInTime>
-										<FadeOutTime>1.29999995231628</FadeOutTime>
-										<FadeCurve>FadeLinear</FadeCurve>
-										<TargetProp>BusVolume</TargetProp>
-									</DuckingParam>
-								</DuckItem>
-							</DuckingList>
 						</Bus>
 						<Bus Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}">
 							<PropertyList>
@@ -289,8 +277,22 @@
 									</PropertyList>
 									<ObjectLists/>
 								</Bus>
-								<Bus Name="ui_pager_chama_nave" ID="{99418646-0C68-4766-BE16-0BEAA5E4C498}">
+								<Bus Name="ui_pager_sidechain" ID="{99418646-0C68-4766-BE16-0BEAA5E4C498}">
+									<PropertyList>
+										<Property Name="RecoveryTime" Type="Real64" Value="0.3"/>
+									</PropertyList>
 									<ObjectLists/>
+									<DuckingList>
+										<DuckItem>
+											<BusRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}"/>
+											<DuckingParam>
+												<Volume>-9</Volume>
+												<FadeInTime>0</FadeInTime>
+												<FadeOutTime>0</FadeOutTime>
+												<FadeCurve>FadeLog2</FadeCurve>
+											</DuckingParam>
+										</DuckItem>
+									</DuckingList>
 								</Bus>
 							</ChildrenList>
 							<ObjectLists/>
