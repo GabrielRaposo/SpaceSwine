@@ -234,6 +234,7 @@ namespace AK
         static const AkUniqueID SFX = 393239870U;
         static const AkUniqueID SFX_MAKEABEAT = 3530778344U;
         static const AkUniqueID SFX_PLACEHOLDER = 891914060U;
+        static const AkUniqueID UI_PAGER_CHAMA_NAVE = 476413945U;
     } // namespace BUSSES
 
     namespace AUDIO_DEVICES
