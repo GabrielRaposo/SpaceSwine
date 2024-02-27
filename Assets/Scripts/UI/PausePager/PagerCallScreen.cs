@@ -16,23 +16,23 @@ public class PagerCallScreen : MonoBehaviour
     [SerializeField] GameObject noSignalWarning;
     [SerializeField] TextMeshProUGUI callDisplay;
 
-    public bool NoSignalMode;
+    [HideInInspector] public bool NoSignalMode;
 
     private void OnEnable() 
     {
-        // Signal Test (verify Story Events)
-        //planetAndShip.SetActive()
+        planetAndShip.SetActive(!NoSignalMode);
+        noSignalWarning.SetActive(NoSignalMode);
 
         if (NoSignalMode)
         {
-            
+            StartCoroutine( DisplayErrorLoop() );
             return;
         }
 
-        StartCoroutine( DisplayLoop() );
+        StartCoroutine( DisplayCallLoop() );
     }
 
-    IEnumerator DisplayLoop()
+    IEnumerator DisplayCallLoop()
     {
         if (!callDisplay)
             yield break;
@@ -42,6 +42,25 @@ public class PagerCallScreen : MonoBehaviour
             for (int i = 0; i < 4; i++)
             {
                 callDisplay.text = LocalizationManager.GetUiText(textCode, "calling");
+
+                for (int j = 0; j < i; j++) 
+                    callDisplay.text += ".";
+
+                yield return new WaitForSecondsRealtime(updateDelay);
+            }
+        }
+    }
+
+    IEnumerator DisplayErrorLoop()
+    {
+        if (!callDisplay)
+            yield break;
+
+        while (true)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                callDisplay.text = LocalizationManager.GetUiText(noSignalCode, "no signal");
 
                 for (int j = 0; j < i; j++) 
                     callDisplay.text += ".";

@@ -12,7 +12,7 @@ public class PagerInteractionManager : StoryEventDependent
     [SerializeField] PagerAxisButtonsVisual pagerAxisButtonsVisual;
     [SerializeField] PagerConfirmationScreen confirmationScreen;
     [SerializeField] List<PagerScreen> screens;
-    [SerializeField] GameObject callScreen;
+    [SerializeField] PagerCallScreen callScreen;
     [SerializeField] Image callCountFillDisplay;
 
     [Header("Exclusive Buttons")]
@@ -45,6 +45,11 @@ public class PagerInteractionManager : StoryEventDependent
     [SerializeField] AK.Wwise.Event callShipAKEvent;
     [SerializeField] AK.Wwise.Event keychainButtonAKEvent;
     [SerializeField] AK.Wwise.Event keychainShakeAKEvent;
+
+    [Header("No Signal Toggle Criteria")]
+    [SerializeField] Image noSignalHeaderIcon;
+    [SerializeField] StoryEventScriptableObject signalBlockerStoryEvent;
+    [SerializeField] StoryEventScriptableObject signalRestorerStoryEvent;
 
     [HideInInspector] public bool OnFocus;
 
@@ -83,7 +88,7 @@ public class PagerInteractionManager : StoryEventDependent
         if (optionsMode) i = 2;
 
         GoToScreen ( i );
-        callScreen.SetActive(false); 
+        SetupCallScreen();
 
         // -- Setup de inputs
         {
@@ -107,6 +112,40 @@ public class PagerInteractionManager : StoryEventDependent
             shipInputAction = playerInputActions.UI.Other;
             shipInputAction.Enable();
         }
+    }
+
+    private void SetupCallScreen()
+    {
+        callScreen.gameObject.SetActive(false); 
+
+        if (signalBlockerStoryEvent == null || signalRestorerStoryEvent == null)
+            return;
+
+        CallDependentAction
+        (
+            action: () => 
+            {
+                if (StoryEventsManager.IsComplete(signalRestorerStoryEvent))
+                {
+                    callScreen.NoSignalMode = false;
+                    if (noSignalHeaderIcon)
+                        noSignalHeaderIcon.enabled = false;
+                    return;
+                }
+                
+                if (StoryEventsManager.IsComplete(signalBlockerStoryEvent))
+                {
+                    callScreen.NoSignalMode = true;
+                    if (noSignalHeaderIcon)
+                        noSignalHeaderIcon.enabled = true;
+                    return;
+                }
+
+                callScreen.NoSignalMode = false;
+                if (noSignalHeaderIcon)
+                    noSignalHeaderIcon.enabled = false;
+            }
+        );
     }
 
     private void KeychainInitiationLogic()
@@ -160,7 +199,7 @@ public class PagerInteractionManager : StoryEventDependent
         if (optionsMode) i = 2;
         
         GoToScreen ( i );
-        callScreen.SetActive(false);
+        callScreen.gameObject.SetActive(false);
         CallDependentAction ( KeychainInitiationLogic );
 
         if (resetRoundButton)
@@ -242,7 +281,7 @@ public class PagerInteractionManager : StoryEventDependent
         // -- Som de chamada da Nave
         if (callShipAKEvent != null)
         {
-            if (shipInput && !callShipAKEvent.IsPlaying(gameObject))
+            if (shipCallCount < .2f && shipInput && !callShipAKEvent.IsPlaying(gameObject))
             {
                 if (keychainButtonAKEvent != null)
                     keychainButtonAKEvent.Post(gameObject);
@@ -260,21 +299,40 @@ public class PagerInteractionManager : StoryEventDependent
             shipCallCount = 0;
         else
         {
-            if (shipCallCount > holdDuration)
+            if (!callScreen.NoSignalMode)
             {
-                if (callShipAKEvent != null)
-                    callShipAKEvent.Stop(gameObject);
+                if (shipCallCount > holdDuration) // -- Teleporta para a nave
+                {
+                    if (callShipAKEvent != null)
+                        callShipAKEvent.Stop(gameObject);
 
-                callShipEvent?.Invoke();
-                return;
+                    callShipEvent?.Invoke();
+                    return;
+                }
+                shipCallCount += Time.unscaledDeltaTime;    
             }
-            shipCallCount += Time.unscaledDeltaTime;    
+            else
+            {
+                if (shipCallCount > holdDuration) // -- Falha em ir pra nave
+                {
+                    if (callShipAKEvent != null)
+                        callShipAKEvent.Stop(gameObject);
+
+                    if (shipCallCount > holdDuration + 2f) // -- Tempo extra
+                    {
+                        shipCallCount = 0;
+                        return;
+                    }
+                    
+                }
+                shipCallCount += Time.unscaledDeltaTime;    
+            }
         }
         if (callCountFillDisplay)
             callCountFillDisplay.fillAmount = shipCallCount / holdDuration;
 
         // -- Mostra a tela certa
-        callScreen.SetActive(shipInput);
+        callScreen.gameObject.SetActive(shipInput);
         if (callingShip)
         {
             if (!shipInput)
