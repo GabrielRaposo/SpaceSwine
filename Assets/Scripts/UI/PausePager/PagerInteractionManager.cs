@@ -50,6 +50,7 @@ public class PagerInteractionManager : StoryEventDependent
     [SerializeField] Image noSignalHeaderIcon;
     [SerializeField] StoryEventScriptableObject signalBlockerStoryEvent;
     [SerializeField] StoryEventScriptableObject signalRestorerStoryEvent;
+    [SerializeField] AK.Wwise.Event signalErrorAKEvent; 
 
     [HideInInspector] public bool OnFocus;
 
@@ -318,7 +319,15 @@ public class PagerInteractionManager : StoryEventDependent
                     if (callShipAKEvent != null)
                         callShipAKEvent.Stop(gameObject);
 
-                    if (shipCallCount > holdDuration + 2f) // -- Tempo extra
+                    if (signalErrorAKEvent != null)
+                    {
+                        if (!signalErrorAKEvent.IsPlaying(gameObject) && shipCallCount < holdDuration + .1f)
+                        {
+                            signalErrorAKEvent.Post(gameObject);
+                        }
+                    }
+
+                    if (shipCallCount > holdDuration + .5f) // -- Tempo extra
                     {
                         shipCallCount = 0;
                         return;
