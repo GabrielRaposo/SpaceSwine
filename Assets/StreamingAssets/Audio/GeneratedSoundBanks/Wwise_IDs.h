@@ -141,6 +141,7 @@ namespace AK
         static const AkUniqueID UI_PAGER_CHAMA_NAVE = 476413945U;
         static const AkUniqueID UI_PAGER_CHAMA_NAVE_BOTAO = 3652001215U;
         static const AkUniqueID UI_PAGER_CLIQUE = 1750137231U;
+        static const AkUniqueID UI_PAGER_ERRO = 2070302670U;
         static const AkUniqueID UI_PAGER_KEYCHAIN = 2974033650U;
         static const AkUniqueID UI_PAGER_SOME = 1841407834U;
         static const AkUniqueID UI_ROBOZAO_FALA = 2728419545U;

@@ -2255,6 +2255,42 @@
 										<ActiveSource Name="ui_pager_chama_nave_botao" ID="{DBA2DFE5-2A80-4C75-B039-EF7F9370B4C8}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="ui_pager_erro" ID="{0C1D8E3E-2158-410E-9DD9-CA0AD10C9307}" ShortID="368560408">
+									<Comment>Fanfarra que acontece no texto quando vc obtem algum item ou alguma coisa que muda o gameplay</Comment>
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>40</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_pager_erro" ID="{D92953B3-02C2-4DB3-B04E-B538EEA3043F}">
+											<Language>SFX</Language>
+											<AudioFile>ui_pager_erro.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="403989979"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_pager_erro" ID="{D92953B3-02C2-4DB3-B04E-B538EEA3043F}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Tela de Título" ID="{D53F2801-1BCB-4524-A22E-F88B4AE6AF6A}" ShortID="63876998">
