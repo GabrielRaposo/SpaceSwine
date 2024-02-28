@@ -6,7 +6,8 @@ public class CallAnotherDialogueAfterDialogue : MonoBehaviour
 {
     [SerializeField] InteractableNPC otherNPC;
     [SerializeField] float delay = 1.5f;
-    [SerializeField] bool onlyOnce = false;
+    
+    bool onlyOnce = false;
 
     void Start()
     {
