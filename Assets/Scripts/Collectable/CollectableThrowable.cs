@@ -7,6 +7,7 @@ public class CollectableThrowable : Collectable
 {
     [SerializeField] AK.Wwise.Event OnThrowAKEvent;
     [SerializeField] AK.Wwise.Event BounceBackAKEvent;
+    [SerializeField] AK.Wwise.Event DestroyAKEvent;
 
     [Header("Throw Data")]
     [SerializeField] SpriteRenderer visualComponent;
@@ -183,6 +184,9 @@ public class CollectableThrowable : Collectable
 
     private void DestroyCollectable()
     {
+        if (DestroyAKEvent != null)
+            DestroyAKEvent.Post(gameObject);
+
         breakAnimator.SetTrigger("Reset");
         breakAnimator.transform.SetParent(null);
         breakAnimator.transform.position = transform.position;
@@ -192,7 +196,6 @@ public class CollectableThrowable : Collectable
             particleSystem.Play();
 
         gameObject.SetActive(false);
-        //Instantiate(destroyParticles, transform.position, quaternion.identity);
     }
 
     private void ResetToCollectableState ()
