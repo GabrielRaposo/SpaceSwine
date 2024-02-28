@@ -5130,6 +5130,47 @@
 									<ObjectLists/>
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="ui_ursaochefe_fala" ID="{7192F5A6-7505-465A-A36D-8B3626BA4DDE}" ShortID="619622097">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<RTPCList>
+												<RTPC Name="" ID="{FA118E68-D593-43F6-9456-D840BB729437}" ShortID="401251787">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{5688C3DD-0317-4452-AA0B-A49982624B36}" ShortID="744217651">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{338F09C0-6CAD-43DE-8976-C00A6EE881BD}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-30</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>150</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>11.5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5139,33 +5180,152 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="ui_laborbot_fala_01" ID="{73B87BB7-C8E4-4360-A9AD-53D49174941E}" ShortID="496540771">
+										<Sound Name="ui_ursaochefe_fala_01" ID="{1B6091B3-26D5-45EE-B9B9-CDF1286B379C}" ShortID="366906838">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ValueList>
+														<Value>-100</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 												</Reference>
 												<Reference Name="OutputBus">
-													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ui_laborbot_fala_01" ID="{6FFD2FCC-F20A-4950-B3D5-57431E3BD655}">
+												<AudioFileSource Name="ui_ursaochefe_fala_01" ID="{637C9383-38E0-4B98-B7CA-384B55B60D16}">
 													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0336846106457998"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.102683732452519"/>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.01135320409474"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0788587419553563"/>
 														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimEnd" Type="Real64" Value="0.145061145845621"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.189322349363638"/>
 													</PropertyList>
 													<Language>SFX</Language>
-													<AudioFile>ui_laborbot_fala_01.wav</AudioFile>
+													<AudioFile>ui_ursaochefe_fala_01.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="925209900"/>
+														<MediaID ID="342939540"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ui_laborbot_fala_01" ID="{6FFD2FCC-F20A-4950-B3D5-57431E3BD655}" Platform="Linked"/>
+												<ActiveSource Name="ui_ursaochefe_fala_01" ID="{637C9383-38E0-4B98-B7CA-384B55B60D16}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_ursaochefe_fala_02" ID="{A4562C42-459A-4170-B59D-9F7DA2C52B2B}" ShortID="247588342">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_ursaochefe_fala_02" ID="{C962A1E8-B86A-411E-A47D-D7B521074805}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.00647257939784777"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0129451587956955"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_ursaochefe_fala_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="100734177"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_ursaochefe_fala_02" ID="{C962A1E8-B86A-411E-A47D-D7B521074805}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_ursaochefe_fala_03" ID="{45C73F4E-54E1-49D0-9F65-9B916B27138B}" ShortID="33601448">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_ursaochefe_fala_03" ID="{C2B88716-B301-4B0B-87D8-400F8D217EB9}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.00621367622193386"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.00983832068472862"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_ursaochefe_fala_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="381102525"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_ursaochefe_fala_03" ID="{C2B88716-B301-4B0B-87D8-400F8D217EB9}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_ursaochefe_fala_04" ID="{FE9FA182-6207-4161-BFC7-16999B13A7EF}" ShortID="323783447">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_ursaochefe_fala_04" ID="{E5BBE978-C67A-4EEA-946D-9C513952F25B}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.00530828516377649"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0146609780713827"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_ursaochefe_fala_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="176452573"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_ursaochefe_fala_04" ID="{E5BBE978-C67A-4EEA-946D-9C513952F25B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_ursaochefe_fala_05" ID="{2A4320C1-4CBA-4DAE-B271-B4C8822B60CB}" ShortID="78939192">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_ursaochefe_fala_05" ID="{2E6D1779-445F-4757-B6D1-3B405E7AA0A3}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0074656914789037"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.017108876305821"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_ursaochefe_fala_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="389775009"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_ursaochefe_fala_05" ID="{2E6D1779-445F-4757-B6D1-3B405E7AA0A3}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
