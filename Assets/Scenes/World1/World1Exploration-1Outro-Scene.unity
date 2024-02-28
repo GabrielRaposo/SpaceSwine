@@ -37366,7 +37366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reward: 1
-  afterDialogueNPC: {fileID: 7535983111385445744}
+  afterDialogueNPC: {fileID: 7535983111385445713}
 --- !u!1001 &1963240606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44166,10 +44166,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7535983111385445709}
   - component: {fileID: 7535983111385445710}
-  - component: {fileID: 7535983111385445744}
   - component: {fileID: 7535983111385445745}
   - component: {fileID: 7535983111385445711}
   - component: {fileID: 7535983111385445712}
+  - component: {fileID: 7535983111385445713}
   m_Layer: 0
   m_Name: 'NPC-World 1 Ship Outro '
   m_TagString: Untagged
@@ -44236,7 +44236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5b3a637b055ed488b1249b06d623af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7535983111385445744
+--- !u!114 &7535983111385445713
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44245,17 +44245,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7535983111385445708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aee2b73a4e79b6345bc33802372b9ed9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9cc0fe5ee68d4bc49a3df9525c203cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   autoActivate: 1
-  data: {fileID: 11400000, guid: e47e09c6428e1c04ca240d8a41e3497d, type: 2}
+  data: {fileID: 0}
   speechBubble: {fileID: 3667587603063214119}
   customDialogueStyle: {fileID: 11400000, guid: ca959bb3f4154164a832ff356b3f1dbd, type: 2}
   talkSoundAKEvent:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 9f5f5ef3b613c484f97341c7dc6ee571, type: 2}
+  npcNameCode: NAME_SHIP
+  startingIndex: 0
+  holdIndex: 0
+  dialogueGroupTags:
+  - Z1_NPC_SHIP_UNLOCKW2_001
 --- !u!114 &7535983111385445745
 MonoBehaviour:
   m_ObjectHideFlags: 0
