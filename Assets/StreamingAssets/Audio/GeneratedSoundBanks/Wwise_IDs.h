@@ -126,6 +126,9 @@ namespace AK
         static const AkUniqueID TREBLE_02 = 2489791120U;
         static const AkUniqueID TREBLE_03 = 2489791121U;
         static const AkUniqueID TREBLE_04 = 2489791126U;
+        static const AkUniqueID UI_ALIENX_FALA = 2185850926U;
+        static const AkUniqueID UI_COELHA_FALA = 455040323U;
+        static const AkUniqueID UI_COELHA_FALA_CAPACETE = 3057748314U;
         static const AkUniqueID UI_LABORBOT_FALA = 1076532240U;
         static const AkUniqueID UI_MAROMBOT_FALA = 1293565034U;
         static const AkUniqueID UI_NAVE_FALA = 1320095827U;
@@ -157,6 +160,8 @@ namespace AK
         static const AkUniqueID UI_TRANSICAO_DESCARGA = 841217249U;
         static const AkUniqueID UI_TRANSICAO_EXPLORACAO = 2331041427U;
         static const AkUniqueID UI_TRANSICAO_LEVELS = 2524279794U;
+        static const AkUniqueID UI_URSAOCHEFE_FALA = 794178228U;
+        static const AkUniqueID UI_URSO_FALA = 2055710810U;
     } // namespace EVENTS
 
     namespace SWITCHES
