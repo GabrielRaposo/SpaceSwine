@@ -209,14 +209,15 @@ MonoBehaviour:
     - Z2_PLACA_001.02
     - NAME_SHADOW
     - Z3_NPC_BEAR_001.01
+    - Z3_NPC_BEAR_001.02
     - Z3_NPC_BEAR_002.01
-    - Z3_NPC_BEAR_003.01
     - Z3_NPC_BUNNY_001.01
     - Z3_NPC_BUNNY_001.02
     - Z3_NPC_BUNNY_002.01
     - Z3_NPC_BUNNY_002.02
-    - Z3_NPC_BUNNY_003
-    - Z3_NPC_BUNNY_004
+    - Z3_NPC_BUNNY_003.01
+    - Z3_NPC_BUNNY_003.02
+    - Z3_NPC_BUNNY_004.01
     - Z3_NPC_BUNNY_005
     - Z3_NPC_BUNNY_006
     - Z3_NPC_BUNNY_007
@@ -230,6 +231,10 @@ MonoBehaviour:
     - Z3_NPC_WORKER_A_001.01
     - Z3_NPC_WORKER_A_001.02
     - Z3_NPC_WORKER_A_002.01
+    - Z3_NPC_WORKER_B_001.01
+    - Z3_NPC_WORKER_B_001.02
+    - Z3_NPC_WORKER_B_002.01
+    - Z3_NPC_WORKER_C_001.01
     - Z3_PLACA_001.01
     - Z3_PLACA_001.02
     - Z3_PLACA_001.CAR
@@ -1021,50 +1026,58 @@ MonoBehaviour:
       m_values:
       - 'I take it you are the one that has been causing all that ruckus among the
         workers. Here is a list of your crimes:'
-      - "Acredito que seja voc\xEA "
+      - "Acredito que seja voc\xEA o respons\xE1vel por toda essa confus\xE3o entre
+        os trabalhadores. Segue uma lista dos seus crimes:"
     - m_keys: 0000000001000000
       m_values:
       - Distracting them from work, harassing them with your empty, soulless stare,
         opening up closed maintenance portals....
-      - '[Tree Dialogue END ZP 4] - 3'
+      - "Distrair eles do trabalho, assediar eles com o seu olhar vazio e sem alma,
+        abrir portais de manuten\xE7\xE3o fechados..."
     - m_keys: 0000000001000000
       m_values:
       - ... abusing the lock-and-key traversal system, stealing my sector plans,
         and disturbing the peace and tranquility of the Scrapgarten with your ship's
         engine noise.
-      - '[Tree Dialogue END ZP 4] - 4'
+      - ... abusar do sistema de chave-e-fechadura, roubar meus mapas do setor, e
+        obstruir a paz e tranquilidade d'O Jardim com o barulho do motor da sua nave.
     - m_keys: 0000000001000000
       m_values:
       - I should detain you here and now, but I don't have the jurisdiction. And,
-        much to my chagrin, the boss seems to like you.
-      - '[Tree Dialogue END ZP 4] - 5'
+        much to my chagrin, the Boss seems to like you.
+      - "Eu devia te restringir aqui e agora, mas eu n\xE3o tenho a compet\xEAncia
+        jur\xEDdica. E, para minha infelicidade, o Chefe parece gostar de voc\xEA."
     - m_keys: 0000000001000000
       m_values:
       - So, and this is the beginning and the end of my sympathy - he requested I
         gave you the remaining sector plans. To help out on your search.
-      - '[Tree Dialogue END ZP 4] - 6'
+      - "Ent\xE3o, e esse \xE9 o come\xE7o e o final da minha simpatia - ele pediu
+        pra te entregar os mapas do setor restantes. Pra te ajudar na sua busca."
     - m_keys: 0000000001000000
       m_values:
       - Now skedaddle. We're already too much behind on our work.
-      - '[Tree Dialogue END ZP 4] - 7'
+      - "Agora some daqui. A gente j\xE1 est\xE1 muito atrasado no trabalho."
     - m_keys: 0000000001000000
       m_values:
       - ... And, hm, good luck. The Boss told me about your mission. You know it's
         a long shot, right?
-      - '[Tree Dialogue END ZP 4] - 8'
+      - "... E, hm, boa sorte. O Chefe me falou da sua miss\xE3o. Voc\xEA sabe que
+        \xE9 um tiro no escuro, n\xE9?"
     - m_keys: 0000000001000000
       m_values:
       - ... Ok, that was the actual, official, for real, end of my sympathy.
-      - '[Tree Dialogue END ZP 4] - 9'
+      - ... Ok, esse realmente foi o final, real, oficial, da minha simpatia.
     - m_keys: 0000000001000000
       m_values:
       - Next time you see him, tell the Boss we need one more worker for this area.
         It seems he inserted one consciousness module in a limbless chassis by mistake.
-      - '[Tree Dialogue END ZP 4] - Bark 1'
+      - "Na pr\xF3xima vez que voc\xEA encontrar com ele, diz pro Chefe que a gente
+        precisa de mais um trabalhador pra essa \xE1rea. Parece que ele colocou um
+        m\xF3dulo de consci\xEAncia em um chassi sem membros por engano."
     - m_keys: 0000000001000000
       m_values:
       - ... I need a vacation.
-      - ...
+      - "... Preciso de f\xE9rias."
     - m_keys: 0000000001000000
       m_values:
       - Yo, 'ssup, dawg? You dig it?
@@ -1265,12 +1278,16 @@ MonoBehaviour:
       - Bark 2
     - m_keys: 0000000001000000
       m_values:
-      - Hey there Buyk
-      - "Ol\xE1 Buyk"
+      - Hey 1 (ZP2)
+      - Hey 1 (ZP2)
     - m_keys: 0000000001000000
       m_values:
-      - Hey there Buyk
-      - "Ol\xE1 Buyk"
+      - Hey 2 (ZP2)
+      - Hey 2 (ZP2)
+    - m_keys: 0000000001000000
+      m_values:
+      - Bark 1 (ZP2)
+      - Bark 1 (ZP2)
     - m_keys: 0000000001000000
       m_values:
       - Hey there Buyk
@@ -1328,8 +1345,24 @@ MonoBehaviour:
       - '[Worker A dialogue] - 2'
     - m_keys: 0000000001000000
       m_values:
-      - '[Bark] - 1'
-      - '[Bark] - 1'
+      - '[Bark A] - 1'
+      - '[Bark A] - 1'
+    - m_keys: 0000000001000000
+      m_values:
+      - '[Worker B dialogue] - 1'
+      - '[Worker B dialogue] - 1'
+    - m_keys: 0000000001000000
+      m_values:
+      - '[Worker B dialogue] - 2'
+      - '[Worker B dialogue] - 2'
+    - m_keys: 0000000001000000
+      m_values:
+      - '[Bark B] - 1'
+      - '[Bark B] - 1'
+    - m_keys: 0000000001000000
+      m_values:
+      - ETA PORRA
+      - ETA PORRA
     - m_keys: 0000000001000000
       m_values:
       - "You are at the Urbs. This area of the game will feature more mechanics for
