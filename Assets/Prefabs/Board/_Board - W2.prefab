@@ -257,9 +257,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6933749126307691227}
   - component: {fileID: 6933749126307691224}
-  - component: {fileID: 6933749126307691238}
   - component: {fileID: 6933749126307691225}
   - component: {fileID: 1305120975958789213}
+  - component: {fileID: 753103201273071051}
   m_Layer: 0
   m_Name: _Board - W2
   m_TagString: Untagged
@@ -274,7 +274,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6933749126307691226}
-  m_LocalRotation: {x: 0, y: 0, z: 0.37217796, w: 0.9281614}
+  m_LocalRotation: {x: 0, y: 0, z: 0.37217793, w: 0.92816144}
   m_LocalPosition: {x: -1.0363237, y: 1.0844507, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -283,7 +283,7 @@ Transform:
   - {fileID: 5293286378942388051}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 43.7}
 --- !u!114 &6933749126307691224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,28 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63a967f765834046b2624686fce5c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 43.7
+  angle: 15.599979
   heightOffset: 0
---- !u!114 &6933749126307691238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6933749126307691226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aee2b73a4e79b6345bc33802372b9ed9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoActivate: 1
-  data: {fileID: 11400000, guid: d0249e9a248f82740b2420bbfb7df32d, type: 2}
-  speechBubble: {fileID: 3536951586242548850}
-  customDialogueStyle: {fileID: 11400000, guid: c95722b2add286348a8a22dfa1d79290, type: 2}
-  talkSoundAKEvent:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 0}
 --- !u!58 &6933749126307691225
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -349,6 +329,31 @@ MonoBehaviour:
   allignOnUpdate: 1
   deltaAngle: 0
   ps: {fileID: 0}
+--- !u!114 &753103201273071051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933749126307691226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc0fe5ee68d4bc49a3df9525c203cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoActivate: 1
+  data: {fileID: 0}
+  speechBubble: {fileID: 3536951586242548850}
+  customDialogueStyle: {fileID: 11400000, guid: c95722b2add286348a8a22dfa1d79290, type: 2}
+  talkSoundAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  npcNameCode: 
+  startingIndex: 0
+  holdIndex: -1
+  dialogueGroupTags:
+  - Z2_PLACA_001
 --- !u!1 &6933749126355708376
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,9 +676,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1442008919
-  m_SortingLayer: -1
-  m_SortingOrder: -1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -6824253381943160386, guid: 373f1109c67bce540a380d85a1a4c07a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1

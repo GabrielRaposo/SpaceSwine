@@ -135,6 +135,7 @@ public static class AchievementsManager
         if(a.achieved == state) return;
         
         a.achieved = state;
+        Debug.Log(">>>> Got Achievement: " + id);
         
         if(state) achievementAnimation.Invoke(a.Achievement);
     }
