@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using DG.Tweening;
-using UnityEditor.ShaderGraph.Internal;
 
 public class SoundtrackManager : MonoBehaviour
 {
