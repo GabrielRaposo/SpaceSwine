@@ -18,6 +18,7 @@ public class DoorAnimation : MonoBehaviour
     [SerializeField] AK.Wwise.Event enterAKEvent;
 
     Sequence sequence;
+    public UnityAction OnAnimationStartAction;
 
     private void Start() 
     {
@@ -171,6 +172,9 @@ public class DoorAnimation : MonoBehaviour
 
             OnEnterAreaPS?.Play();
             enterAKEvent?.Post(gameObject);
+
+            if (OnAnimationStartAction != null)
+                OnAnimationStartAction.Invoke();
         }
 
         sequence = DOTween.Sequence();
