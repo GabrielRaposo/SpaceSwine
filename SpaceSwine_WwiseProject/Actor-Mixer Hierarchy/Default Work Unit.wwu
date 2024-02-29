@@ -1601,6 +1601,42 @@
 								<ActiveSource Name="gameplay_terminal_bipe" ID="{B55E5230-22D4-4B46-8035-1DCBAF0F316D}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="gameplay_cristal_teleporta" ID="{D8E0F0E6-67CC-4B3E-A19A-436E0A8D7072}" ShortID="211080463">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>10</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="gameplay_cristal_teleporta" ID="{AE28E7CE-035D-46EA-B752-30892060EC23}">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="0.0503004535147392"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.87893424036281"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="1.47459750566893"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>gameplay_cristal_teleporta.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="645670982"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="gameplay_cristal_teleporta" ID="{AE28E7CE-035D-46EA-B752-30892060EC23}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{9B1ED146-6719-4B81-AE3D-F5B877AC7C1A}" ShortID="507530770">
