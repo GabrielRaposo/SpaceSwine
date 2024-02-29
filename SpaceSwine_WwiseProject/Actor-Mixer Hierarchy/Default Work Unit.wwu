@@ -5536,6 +5536,18 @@
 									<ObjectLists/>
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="ui_coelha_fala_capacete" ID="{A2DEBEFE-8014-4475-8A3F-0E929F0187B0}" ShortID="160833973">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>200</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5545,39 +5557,132 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="ui_laborbot_fala_01" ID="{7150A39E-C01E-4234-9F50-BEE4823A8557}" ShortID="39106033">
+										<Sound Name="ui_coelha_fala_abafada_01" ID="{7D20CC46-6B06-49B6-83A4-809F25111E82}" ShortID="47847796">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 												</Reference>
 												<Reference Name="OutputBus">
-													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ui_laborbot_fala_01" ID="{BB43A05E-AF01-41EC-A69C-45D86E5660B4}">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0336846106457998"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.102683732452519"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimEnd" Type="Real64" Value="0.145061145845621"/>
-													</PropertyList>
+												<AudioFileSource Name="ui_coelha_fala_abafada_01" ID="{F617DF13-783D-43DB-9D59-23DD3202F47C}">
 													<Language>SFX</Language>
-													<AudioFile>ui_laborbot_fala_01.wav</AudioFile>
+													<AudioFile>ui_coelha_fala_abafada_01.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="925209900"/>
+														<MediaID ID="188551124"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ui_laborbot_fala_01" ID="{BB43A05E-AF01-41EC-A69C-45D86E5660B4}" Platform="Linked"/>
+												<ActiveSource Name="ui_coelha_fala_abafada_01" ID="{F617DF13-783D-43DB-9D59-23DD3202F47C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_coelha_fala_abafada_02" ID="{EF5E9BAF-F278-41F2-BC60-F76B4907860C}" ShortID="338325995">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_coelha_fala_abafada_02" ID="{F892BDB9-1195-4F8B-A6C8-70AE241DD316}">
+													<Language>SFX</Language>
+													<AudioFile>ui_coelha_fala_abafada_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="560930233"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_coelha_fala_abafada_02" ID="{F892BDB9-1195-4F8B-A6C8-70AE241DD316}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_coelha_fala_abafada_03" ID="{1C052C76-7D16-4AF6-A60A-16C5D5B320A9}" ShortID="200365895">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_coelha_fala_abafada_03" ID="{9C904DE1-931B-4628-8453-74C61242EB2D}">
+													<Language>SFX</Language>
+													<AudioFile>ui_coelha_fala_abafada_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="818888721"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_coelha_fala_abafada_03" ID="{9C904DE1-931B-4628-8453-74C61242EB2D}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_coelha_fala_abafada_04" ID="{525D9641-4CC0-4C6F-9C1D-0D9C3433DB23}" ShortID="440962380">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_coelha_fala_abafada_04" ID="{D7DBBCB2-C6F7-4266-AE58-5304FFCE03ED}">
+													<Language>SFX</Language>
+													<AudioFile>ui_coelha_fala_abafada_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="894905516"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_coelha_fala_abafada_04" ID="{D7DBBCB2-C6F7-4266-AE58-5304FFCE03ED}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_coelha_fala_abafada_05" ID="{76C3D60B-04A7-4023-9A09-B242B98F6681}" ShortID="151312429">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_coelha_fala_abafada_05" ID="{B03EF769-1632-4E10-9FE3-9862A9DE9984}">
+													<Language>SFX</Language>
+													<AudioFile>ui_coelha_fala_abafada_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="590071362"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_coelha_fala_abafada_05" ID="{B03EF769-1632-4E10-9FE3-9862A9DE9984}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
 									<ObjectLists/>
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="ui_coelha_fala" ID="{039783B5-AE5D-45B0-9BC5-FA689007DC59}" ShortID="8556983">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>3</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5587,33 +5692,119 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="ui_laborbot_fala_01" ID="{ECA333C9-FD4A-43D1-90EA-EA4E3FBD4B1A}" ShortID="995699776">
+										<Sound Name="ui_coelha_fala_01" ID="{75EB487C-9C1F-4075-8FB0-788C2822E343}" ShortID="419960797">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 												</Reference>
 												<Reference Name="OutputBus">
-													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ui_laborbot_fala_01" ID="{03258C05-1896-4610-80F3-660E1173B886}">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0336846106457998"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.102683732452519"/>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimEnd" Type="Real64" Value="0.145061145845621"/>
-													</PropertyList>
+												<AudioFileSource Name="ui_coelha_fala_01" ID="{5F4864C6-B676-438D-8366-70C08C6BEB46}">
 													<Language>SFX</Language>
-													<AudioFile>ui_laborbot_fala_01.wav</AudioFile>
+													<AudioFile>ui_coelha_fala_01.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="925209900"/>
+														<MediaID ID="449604308"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ui_laborbot_fala_01" ID="{03258C05-1896-4610-80F3-660E1173B886}" Platform="Linked"/>
+												<ActiveSource Name="ui_coelha_fala_01" ID="{5F4864C6-B676-438D-8366-70C08C6BEB46}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_coelha_fala_02" ID="{C3D24FBD-81C3-49BF-BE9E-D90CE86ED595}" ShortID="188795365">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_coelha_fala_02" ID="{F99AB26B-028E-407B-9B90-D92D70562ACC}">
+													<Language>SFX</Language>
+													<AudioFile>ui_coelha_fala_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="210807829"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_coelha_fala_02" ID="{F99AB26B-028E-407B-9B90-D92D70562ACC}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_coelha_fala_03" ID="{2F09A449-26BE-4EC2-B3D4-4E94A7C2839F}" ShortID="467036773">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_coelha_fala_03" ID="{6AB4E2D1-ABD1-4A05-B0DE-006E71EF25AF}">
+													<Language>SFX</Language>
+													<AudioFile>ui_coelha_fala_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="208485429"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_coelha_fala_03" ID="{6AB4E2D1-ABD1-4A05-B0DE-006E71EF25AF}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_coelha_fala_04" ID="{3DB09756-116B-4221-9DF5-910C7D964D4D}" ShortID="785253168">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_coelha_fala_04" ID="{34C9D9E2-3B88-4074-B510-46D840D56AE0}">
+													<Language>SFX</Language>
+													<AudioFile>ui_coelha_fala_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="500393271"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_coelha_fala_04" ID="{34C9D9E2-3B88-4074-B510-46D840D56AE0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_coelha_fala_05" ID="{A5352A2C-5B77-4C18-A25E-A1D1ED817E06}" ShortID="202358670">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_coelha_fala_05" ID="{1AE0B032-A103-45D8-A29C-C93923E59CBF}">
+													<Language>SFX</Language>
+													<AudioFile>ui_coelha_fala_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="473427947"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_coelha_fala_05" ID="{1AE0B032-A103-45D8-A29C-C93923E59CBF}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
