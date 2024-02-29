@@ -26,6 +26,8 @@ public class DialogueBoxStyle : ScriptableObject
 
     [Header("Skip Icon")]
     public Sprite skipIconSprite;
+    public float skipIconWidth = 46.875f;
+    public float skipIconHeight = 40.625f;
     public float skipIconPosX = -1;
     public float skipIconPosY = -1;
 
