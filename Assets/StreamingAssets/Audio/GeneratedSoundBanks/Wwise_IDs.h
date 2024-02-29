@@ -135,6 +135,7 @@ namespace AK
         static const AkUniqueID UI_ALIENX_FALA = 2185850926U;
         static const AkUniqueID UI_COELHO_FALA = 2890153433U;
         static const AkUniqueID UI_COELHO_FALA_CAPACETE = 2851539928U;
+        static const AkUniqueID UI_CUTSCENE_FALA = 1697948795U;
         static const AkUniqueID UI_KEYITEM_FANFARRA = 1610369300U;
         static const AkUniqueID UI_LABORBOT_FALA = 1076532240U;
         static const AkUniqueID UI_MAROMBOT_FALA = 1293565034U;
