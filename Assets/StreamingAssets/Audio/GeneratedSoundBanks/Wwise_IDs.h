@@ -22,12 +22,16 @@ namespace AK
         static const AkUniqueID BUMBOCAIXA_02 = 883042111U;
         static const AkUniqueID CENARIO_BUYK_CHUTA_BOLINHA = 2035115204U;
         static const AkUniqueID CENARIO_BUYK_CHUTA_COPO = 223749984U;
+        static const AkUniqueID CENARIO_COELHO_APOIACAPACETE_CHAO = 88884162U;
         static const AkUniqueID CENARIO_NAVE_BIP_PERIGO = 3298760050U;
         static const AkUniqueID CENARIO_NAVE_BIP_TV = 3867903812U;
         static const AkUniqueID CENARIO_NAVE_ELEVADOR_DESCE = 1899025469U;
         static const AkUniqueID CENARIO_NAVE_ELEVADOR_SOBE = 2287841762U;
         static const AkUniqueID CENARIO_NAVE_EXPLODE = 1147273941U;
         static const AkUniqueID CENARIO_PASSARINHOS_VOAM = 1982671206U;
+        static const AkUniqueID CENARIO_PORTACONTAINER_ABRE = 3761750313U;
+        static const AkUniqueID CENARIO_PORTACONTAINER_FECHA = 863928978U;
+        static const AkUniqueID CENARIO_TELAROBOZAO_LIGA = 2630923647U;
         static const AkUniqueID CENARIO_TRANSICAO = 3223415371U;
         static const AkUniqueID CENARIO_TUTORIAL_SOUNDSCAPE = 1243364701U;
         static const AkUniqueID CENARIO_VITORIA = 3655190725U;
