@@ -24,6 +24,10 @@ public class InteractableDoor : Interactable
     [SerializeField] float zoomInSize;
     [SerializeField] float zoomOutSize;
 
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event openAKEvent;
+    [SerializeField] AK.Wwise.Event closeAKEvent;
+
     bool closedSpaceIsActive;
     Sequence zoomSequence;
 
@@ -50,7 +54,6 @@ public class InteractableDoor : Interactable
         StartCoroutine( SetState (interactor, !closedSpaceIsActive) );
         SetCameraZoom( !closedSpaceIsActive );
     }
-
 
     private IEnumerator SetState (PlayerInteractor interactor, bool value)
     {
@@ -121,6 +124,9 @@ public class InteractableDoor : Interactable
         //        i.SetInteraction(false);
         //}
 
+        if (openAKEvent != null)
+            openAKEvent.Post(gameObject);
+
         GameManager.BlockCharacterInput = true;
 
         if (player)
@@ -141,6 +147,9 @@ public class InteractableDoor : Interactable
         //    foreach (Interactable i in interactableChildren)
         //        i.SetInteraction(true);
         //}
+
+        if (closeAKEvent != null)
+            closeAKEvent.Post(gameObject);
 
         if (player)
         {
