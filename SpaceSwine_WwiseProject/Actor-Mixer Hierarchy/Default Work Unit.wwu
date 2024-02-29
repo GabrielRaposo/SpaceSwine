@@ -5539,8 +5539,72 @@
 									<PropertyList>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
-												<Value>450</Value>
+												<Value>-100</Value>
 											</ValueList>
+											<RTPCList>
+												<RTPC Name="" ID="{C75CF94C-1E34-44FA-9210-2C54474E09B8}" ShortID="781138914">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{D7514B82-7CE6-4238-943A-5854A902E651}" ShortID="282527516">
+																	<PropertyList>
+																		<Property Name="LfoFrequency" Type="Real64" Value="100"/>
+																		<Property Name="LfoWaveform" Type="int32" Value="4"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{DF973D78-BC66-41EA-9C2B-D23758BD4675}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>100</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+												<RTPC Name="" ID="{A19F28FD-7EDC-4108-84A6-26774412C2DA}" ShortID="186505876">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{CA3814F0-DC87-42EF-B307-C4FA12BF95B0}" ShortID="462209805">
+																	<PropertyList>
+																		<Property Name="LfoAttack" Type="Real64" Value="0.2"/>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{A385B10D-406D-4568-B906-BD9B54110F20}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>-100</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
@@ -5557,7 +5621,7 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<Sound Name="ui_coelha_fala_abafada_01" ID="{2AB250B8-BAFF-4AC6-9F85-F0F51A576373}" ShortID="1068726777">
+										<Sound Name="ui_coelha_fala_abafada_01" ID="{408128D9-ABA9-4D87-8E56-73274A6E70EA}" ShortID="979649616">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5567,11 +5631,13 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ui_coelha_fala_abafada_01" ID="{F6B81316-BE03-44D2-9846-FE8534DF3418}">
+												<AudioFileSource Name="ui_coelha_fala_abafada_01" ID="{9C9E7898-5ADE-4C46-B817-6D966EF0222B}">
 													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0138908222248437"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.0225256576619087"/>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0591797412606661"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0493164510505551"/>
 														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.0951807505275713"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.29047389668777"/>
 													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>ui_coelha_fala_abafada_01.wav</AudioFile>
@@ -5582,10 +5648,10 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ui_coelha_fala_abafada_01" ID="{F6B81316-BE03-44D2-9846-FE8534DF3418}" Platform="Linked"/>
+												<ActiveSource Name="ui_coelha_fala_abafada_01" ID="{9C9E7898-5ADE-4C46-B817-6D966EF0222B}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="ui_coelha_fala_abafada_02" ID="{39A1EBDE-2D24-476C-BF3D-FE3ED0836918}" ShortID="905366606">
+										<Sound Name="ui_coelha_fala_abafada_02" ID="{1715AEFD-C308-4669-B3B3-5892846D9826}" ShortID="40015471">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5595,12 +5661,12 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ui_coelha_fala_abafada_02" ID="{58E7A324-EB4D-4681-BC1C-B33030EA5C33}">
+												<AudioFileSource Name="ui_coelha_fala_abafada_02" ID="{EF06D882-CD01-437A-B52F-95ED64CE24A7}">
 													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0602802681766348"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.0197280877668987"/>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0259102080138414"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0293323109590657"/>
 														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.0230161023947151"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.199459714521647"/>
 													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>ui_coelha_fala_abafada_02.wav</AudioFile>
@@ -5611,10 +5677,10 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ui_coelha_fala_abafada_02" ID="{58E7A324-EB4D-4681-BC1C-B33030EA5C33}" Platform="Linked"/>
+												<ActiveSource Name="ui_coelha_fala_abafada_02" ID="{EF06D882-CD01-437A-B52F-95ED64CE24A7}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="ui_coelha_fala_abafada_03" ID="{9D96F0AA-86AD-49E4-AD83-ED954BB5A9CB}" ShortID="35804241">
+										<Sound Name="ui_coelha_fala_abafada_03" ID="{C39FF3C3-D5BF-40E3-955D-034169B7679B}" ShortID="837820553">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5624,11 +5690,13 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ui_coelha_fala_abafada_03" ID="{F9A96039-0FEA-4496-A649-BBC2DB2A6CB8}">
+												<AudioFileSource Name="ui_coelha_fala_abafada_03" ID="{7F090832-823F-4707-A9D8-2FF2B6C222C1}">
 													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0191281310211946"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.0152244308127875"/>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0172338222379511"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0212108581390167"/>
 														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.0401017786690784"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.199846054028548"/>
 													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>ui_coelha_fala_abafada_03.wav</AudioFile>
@@ -5639,10 +5707,10 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ui_coelha_fala_abafada_03" ID="{F9A96039-0FEA-4496-A649-BBC2DB2A6CB8}" Platform="Linked"/>
+												<ActiveSource Name="ui_coelha_fala_abafada_03" ID="{7F090832-823F-4707-A9D8-2FF2B6C222C1}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="ui_coelha_fala_abafada_04" ID="{453AED6C-F2FB-4AC7-9F19-ACFF39C46B2F}" ShortID="69501378">
+										<Sound Name="ui_coelha_fala_abafada_04" ID="{F9A2F7A4-EFFD-42A9-BF14-525F58A314B8}" ShortID="439059482">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5652,11 +5720,13 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ui_coelha_fala_abafada_04" ID="{FDCAFC57-3A3B-43B9-84C4-AB0C25B11780}">
+												<AudioFileSource Name="ui_coelha_fala_abafada_04" ID="{946CE289-F9FB-4D84-84B4-C6C765754FE6}">
 													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.019498676156397"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.0148898981557941"/>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.024467382328654"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0267976092170972"/>
 														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.0271859803651711"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.208166935367595"/>
 													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>ui_coelha_fala_abafada_04.wav</AudioFile>
@@ -5667,10 +5737,10 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ui_coelha_fala_abafada_04" ID="{FDCAFC57-3A3B-43B9-84C4-AB0C25B11780}" Platform="Linked"/>
+												<ActiveSource Name="ui_coelha_fala_abafada_04" ID="{946CE289-F9FB-4D84-84B4-C6C765754FE6}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
-										<Sound Name="ui_coelha_fala_abafada_05" ID="{AE27D722-E548-4F16-92BE-BD9CEC39847D}" ShortID="945005810">
+										<Sound Name="ui_coelha_fala_abafada_05" ID="{5531FBC5-F05E-4627-A51E-EB80F5DB7CE6}" ShortID="841797411">
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5680,11 +5750,12 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ui_coelha_fala_abafada_05" ID="{943A84C7-8B0D-4D84-A5F8-19B790D5CC91}">
+												<AudioFileSource Name="ui_coelha_fala_abafada_05" ID="{FD8D1712-4824-4951-B2C6-27CC15C372D8}">
 													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="0.0117711651134442"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.029224961660965"/>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0114620607395174"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0244322873658134"/>
 														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.180678273236077"/>
 													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>ui_coelha_fala_abafada_05.wav</AudioFile>
@@ -5695,7 +5766,7 @@
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ui_coelha_fala_abafada_05" ID="{943A84C7-8B0D-4D84-A5F8-19B790D5CC91}" Platform="Linked"/>
+												<ActiveSource Name="ui_coelha_fala_abafada_05" ID="{FD8D1712-4824-4951-B2C6-27CC15C372D8}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -5705,7 +5776,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>10</Value>
+												<Value>15</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
