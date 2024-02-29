@@ -3516,6 +3516,41 @@
 								<ActiveSource Name="Ident Vis Anim Antiga resync" ID="{5BC6AB59-C170-4AC7-B1EF-E1B5862EBAB6}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="ui_keyitem_fanfarra" ID="{888D107F-4ECC-4BD2-B9BB-125ABF899654}" ShortID="993098522">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="ui_keyitem_fanfarra" ID="{310E33D9-3E77-4EC9-AA64-23616BA8D0C6}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.710836774015964"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="4.39743141572621"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>ui_keyitem_fanfarra.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="293116895"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="ui_keyitem_fanfarra" ID="{310E33D9-3E77-4EC9-AA64-23616BA8D0C6}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Personagens" ID="{6B6FD2D5-A395-4FC4-B4A5-F1BEFF327038}" ShortID="476870456">
@@ -6670,6 +6705,43 @@
 										<ActiveSource Name="cenario_portacontainer_fecha" ID="{888A4987-45CE-4A2F-9102-3CE9D839A106}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="cenario_buyk_chuta_copo" ID="{D7135217-DF92-420D-B214-71892044022F}" ShortID="381202433">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>17</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="cenario_buyk_chuta_copo" ID="{CAB54232-DDA6-4F11-9C1A-C308CA88F0D2}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.139734983424264"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.964400459370739"/>
+												<Property Name="FadeOutShape" Type="int16" Value="1"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.04228553209902"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>cenario_buyk_chuta_copo.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="878438960"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="cenario_buyk_chuta_copo" ID="{CAB54232-DDA6-4F11-9C1A-C308CA88F0D2}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Nave" ID="{F27216EF-07E1-4B3D-87D9-BD05452CCFD2}" ShortID="526252604">
@@ -7063,43 +7135,6 @@
 								</Sound>
 							</ChildrenList>
 						</Folder>
-						<Sound Name="cenario_buyk_chuta_copo" ID="{D7135217-DF92-420D-B214-71892044022F}" ShortID="381202433">
-							<PropertyList>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>17</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="cenario_buyk_chuta_copo" ID="{CAB54232-DDA6-4F11-9C1A-C308CA88F0D2}">
-									<PropertyList>
-										<Property Name="FadeInDuration" Type="Real64" Value="0.139734983424264"/>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.964400459370739"/>
-										<Property Name="FadeOutShape" Type="int16" Value="1"/>
-										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="1.04228553209902"/>
-									</PropertyList>
-									<Language>SFX</Language>
-									<AudioFile>cenario_buyk_chuta_copo.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="878438960"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="cenario_buyk_chuta_copo" ID="{CAB54232-DDA6-4F11-9C1A-C308CA88F0D2}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="z_depois" ID="{FABFE171-3A83-4BBD-AFD0-4AAA8D23CEF6}" ShortID="797183350">
