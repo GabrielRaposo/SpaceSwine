@@ -53,6 +53,7 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_STUCK_FANFARRA = 1336538064U;
         static const AkUniqueID GAMEPLAY_BUYK_TACA_ITEM = 3851873763U;
         static const AkUniqueID GAMEPLAY_BUYK_VOA = 3132805884U;
+        static const AkUniqueID GAMEPLAY_CHAVE_QUEBRA = 1139994008U;
         static const AkUniqueID GAMEPLAY_ELETRICIDADE = 141290699U;
         static const AkUniqueID GAMEPLAY_FLOR_ENERGIZA = 3179447255U;
         static const AkUniqueID GAMEPLAY_FLOR_TRANSITION = 3272639445U;
@@ -127,8 +128,8 @@ namespace AK
         static const AkUniqueID TREBLE_03 = 2489791121U;
         static const AkUniqueID TREBLE_04 = 2489791126U;
         static const AkUniqueID UI_ALIENX_FALA = 2185850926U;
-        static const AkUniqueID UI_COELHA_FALA = 455040323U;
-        static const AkUniqueID UI_COELHA_FALA_CAPACETE = 3057748314U;
+        static const AkUniqueID UI_COELHO_FALA = 2890153433U;
+        static const AkUniqueID UI_COELHO_FALA_CAPACETE = 2851539928U;
         static const AkUniqueID UI_LABORBOT_FALA = 1076532240U;
         static const AkUniqueID UI_MAROMBOT_FALA = 1293565034U;
         static const AkUniqueID UI_NAVE_FALA = 1320095827U;
