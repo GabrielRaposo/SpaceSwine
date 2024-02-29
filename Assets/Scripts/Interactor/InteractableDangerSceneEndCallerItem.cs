@@ -6,6 +6,7 @@ using WhitethornBuild;
 public class InteractableDangerSceneEndCallerItem : Interactable
 {
     [SerializeField] GameObject inputIcon;
+    [SerializeField] AK.Wwise.Event OnInterectAKEvent;
 
     RoundsManager roundsManager;
 
@@ -32,7 +33,8 @@ public class InteractableDangerSceneEndCallerItem : Interactable
             if (platformer) platformer.KillInputs();
         }
 
-        // -- Chama caixa de diálogo do item sendo pego
+        if (OnInterectAKEvent != null)
+            OnInterectAKEvent.Post(gameObject);
 
         CallEnd (interactor);
     }
