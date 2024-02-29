@@ -343,18 +343,30 @@ MonoBehaviour:
     - N_W2_PIG_002.01
     - N_W2_PIG_002.02
     - Z3_NPC_WORKER_A_001.01
-    - Z3_NPC_WORKER_A_001.02
     - Z3_NPC_WORKER_A_002.01
     - Z3_NPC_BEAR_001.01
     - Z3_NPC_BEAR_001.02
+    - Z3_NPC_BEAR_001.03
+    - Z3_NPC_BEAR_001.04
+    - Z3_NPC_BEAR_001.05
+    - Z3_NPC_BEAR_001.06
+    - Z3_NPC_BEAR_001.07
+    - Z3_NPC_BEAR_001.08
     - Z3_NPC_BEAR_002.01
+    - Z3_NPC_BEAR_003.01
+    - Z3_NPC_BEAR_003.02
+    - Z3_NPC_BEAR_004.01
+    - Z3_NPC_BEAR_005.01
+    - Z3_NPC_BEAR_005.02
+    - Z3_NPC_BEAR_006.01
     - Z3_NPC_BUNNY_001.01
-    - Z3_NPC_BUNNY_001.02
     - Z3_NPC_BUNNY_002.01
     - Z3_NPC_BUNNY_002.02
     - Z3_NPC_BUNNY_003.01
-    - Z3_NPC_BUNNY_003.02
     - Z3_NPC_BUNNY_004.01
+    - Z3_NPC_BUNNY_005.01
+    - Z3_NPC_BUNNY_005.02
+    - Z3_NPC_BUNNY_006.01
     - Z3_NPC_BUNNY_ZP_001.01
     - Z3_NPC_BUNNY_ZP_001.02
     - Z3_NPC_BUNNY_ZP_002.01
@@ -374,6 +386,12 @@ MonoBehaviour:
     - Z3_NPC_WORKER_B_001.02
     - Z3_NPC_WORKER_B_002.01
     - Z3_NPC_WORKER_C_001.01
+    - Z3_NPC_PIDGEON_001.01
+    - Z3_NPC_PIDGEON_001.02
+    - Z3_NPC_PIDGEON_001.03
+    - Z3_NPC_PIDGEON_001.04
+    - Z3_NPC_PIDGEON_001.05
+    - Z3_NPC_PIDGEON_002.01
     - Z3_PLACA_001.01
     - Z3_PLACA_001.02
     - Z3_PLACA_002.01
@@ -383,6 +401,7 @@ MonoBehaviour:
     - NAME_BEAR
     - NAME_BUNNY
     - NAME_WORKER
+    - NAME_PIDGEON
     m_values:
     - m_keys: 0000000001000000
       m_values:
@@ -2123,49 +2142,118 @@ MonoBehaviour:
       - .
     - m_keys: 0000000001000000
       m_values:
-      - '[Worker A dialogue]. [Worker A dialogue] [Worker A dialogue] [Worker A dialogue]
-        [Worker A dialogue]'
-      - '[Worker A dialogue] - 1'
+      - Word of advice, that see-through helmet will end up providing you with a
+        concussion or two around here. And pray that there isn't a surprise inspection
+        today.
+      - "Te dar um conselho, esse capacete transparente vai acabar te arranjando
+        uma concuss\xE3o. E reza pra n\xE3o ter nenhuma inspe\xE7\xE3o surpresa hoje."
     - m_keys: 0000000001000000
       m_values:
-      - '[Worker A dialogue] - 2. [Worker A dialogue]'
-      - '[Worker A dialogue] - 2'
+      - This is not a playground. Do what you must and get moving.
+      - "Isso aqui n\xE3o \xE9 um parquinho. Faz o que voc\xEA veio fazer e circula."
     - m_keys: 0000000001000000
       m_values:
-      - '[Bark A] - 1 [Bark A] - 1'
-      - '[Bark A] - 1'
+      - "Nice ship you\u2019ve got up there. Real piece of engineering, I can tell.
+        Not the most inconspicuous one, though - saw the thing coming from a parsec
+        away."
+      - "Nave legal a sua. Engenharia de qualidade, meus olhos n\xE3o me enganam.
+        S\xF3 n\xE3o \xE9 muito discreta - consegui te ver chegando a um parsec de
+        dist\xE2ncia."
     - m_keys: 0000000001000000
       m_values:
-      - "Nice ship you\u2019ve got there. Real piece of engineering. Not the most
-        inconspicuous one, though - saw the thing coming from a parsec away."
-      - "Ol\xE1 Buyk"
+      - What system are ya' running on it? An A.C.E.? Or are you more of a G.Y.R.O.
+        guy?
+      - "T\xE1 rodando qual sistema? Um A.C.E.? Ou tu \xE9 mais pros lados de um
+        G.I.R.O.?"
+    - m_keys: 0000000001000000
+      m_values:
+      - ... A P.I.G.? Seriously? That ancient, slow and full of attitude one?
+      - "... Um P.I.G.? S\xE9rio? Aquele anci\xE3o, lento e cheio de atitude?"
+    - m_keys: 0000000001000000
+      m_values:
+      - Well, I can at least respect the commitment. Most young'uns just slap on
+        some generic J.E.T. and call it a day.
+      - "Bom, pelo menos eu admiro o compromisso. Maior parte dos jovens s\xF3 enfia
+        um J.E.T. gen\xE9rico e se d\xE3o por satisfeitos."
+    - m_keys: 0000000001000000
+      m_values:
+      - And what on my good mother's name brings such a shortie Patroller around
+        my yard? Did you meant for the City Port?
+      - "E o que, no bom nome de minha m\xE3e, traz um Patrulheiro tampinha pelos
+        lados do meu canteiro? Voc\xEA se enganou tentando chegar no Porto da Cidade?"
+    - m_keys: 0000000001000000
+      m_values:
+      - ... Ya looking for something? Well, can't say that brings a smile on my face
+        - but little I can do to say no to a Patroller.
+      - "... Procurando alguma coisa? N\xE3o posso dizer que isso coloca um sorriso
+        no meu rosto - mas tem pouca coisa que eu possa fazer pra impedir um Patrulheiro."
+    - m_keys: 0000000001000000
+      m_values:
+      - Well, since you're already here... Wanna take a look at our Low-Gravity Zones?
+        Maybe you could also lend us a hand with a few jammed up portals?
+      - "Bom, j\xE1 que voc\xEA t\xE1 por aqui... Quer dar uma olhada nas nossas
+        Zonas de Baixa Gravidade? Quem sabe tu pode dar uma m\xE3o pra gente com
+        uns portais emperrados?"
+    - m_keys: 0000000001000000
+      m_values:
+      - And who knows - maybe you'll find whatever it is you're looking for.
+      - "E vai que - de repente, o que voc\xEA est\xE1 procurando t\xE1 a\xED dentro."
     - m_keys: 0000000001000000
       m_values:
       - Try not to dilly-dally around too much. Lots of workers and heavy stuff going
         around.
-      - "Ol\xE1 Buyk"
+      - "Tenta n\xE3o ficar dando muita bobeira por a\xED. Muitos trabalhadores e
+        material pesado circulando."
     - m_keys: 0000000001000000
       m_values:
-      - This is not a playground. Do what you must and get moving.
-      - "Ol\xE1 Buyk"
+      - '[BEAR TALK] - 2'
+      - '[BEAR TALK] - 2'
     - m_keys: 0000000001000000
       m_values:
-      - Hey there Buyk Hey there Buyk. Hey there Buyk Hey there Buyk Hey there Buyk
-        Hey there Buyk Hey there Buyk Hey there Buyk Hey there Buyk
-      - "Ol\xE1 Buyk"
+      - '[BEAR TALK] - 2.5'
+      - '[BEAR TALK] - 2.5'
     - m_keys: 0000000001000000
       m_values:
-      - Hey there Buyk 2 Hey there Buyk 2  Hey there Buyk 2.
-      - Hey there Buyk 2
+      - '[BEAR BARK] - 2'
+      - '[BEAR BARK] - 2'
     - m_keys: 0000000001000000
       m_values:
-      - Bark 1 Bark 1 Bark 1 Bark 1 Bark 1 Bark 1. Bark 1 Bark 1, Bark 1 Bark 1 Bark
-        1 Bark 1 Bark 1
-      - Bark 1
+      - '[BEAR TALK] - 3'
+      - '[BEAR TALK] - 3'
     - m_keys: 0000000001000000
       m_values:
-      - Bark 2 Bark 2 Bark 2 Bark 2. Bark 2. Bark 2 Bark 2 Bark 2 v
-      - Bark 2
+      - '[BEAR TALK] - 3.5'
+      - '[BEAR TALK] - 3.5'
+    - m_keys: 0000000001000000
+      m_values:
+      - '[BEAR BARK] - 3'
+      - '[BEAR BARK] - 3'
+    - m_keys: 0000000001000000
+      m_values:
+      - I got this job in order to get big and strong, but I'm not sure if my sinews
+        were supposed to hurt this much.
+      - "Arranjei esse trampo pra ficar grande e forte, mas n\xE3o tenho certeza
+        se era pros meus mocot\xF3s doerem tanto."
+    - m_keys: 0000000001000000
+      m_values:
+      - A sense of humor helps you power through the day. Also, copious amounts of
+        painkillers.
+      - "Um forte senso de humor ajuda a segurar a barra durante o dia. O que tamb\xE9m
+        ajuda s\xE3o quantidades insalubres de analg\xE9sico."
+    - m_keys: 0000000001000000
+      m_values:
+      - ... I can hook you up, if you're interested. Medically interested.
+      - ... Posso te arranjar, se estiver interessado. Medicinalmente interessado.
+    - m_keys: 0000000001000000
+      m_values:
+      - Sorry, it's really hard to hear you over the sound of my stifled gasps for
+        oxygen under this helmet.
+      - "Mal a\xED, \xE9 bem dif\xEDcil de te ouvir por conta das minhas profundas
+        e angustiadas arfadas dentro desse capacete."
+    - m_keys: 0000000001000000
+      m_values:
+      - I'm struggling.
+      - "T\xE1 dif\xEDcil."
     - m_keys: 0000000001000000
       m_values:
       - Hey 1 (ZP2)
@@ -2263,6 +2351,35 @@ MonoBehaviour:
       - ETA PORRA
     - m_keys: 0000000001000000
       m_values:
+      - CAREFUL WITH THE ELECTRIC WIRING THEM WE HAVEN'T GOT AROUND TO FIXING THEM
+        YET
+      - '[POMBO TALK] - 1'
+    - m_keys: 0000000001000000
+      m_values:
+      - WHAT DID YOU SAY? SORRY I CAN'T REMOVE MY EAR PROTECTORS I HAVE NO HANDS
+      - '[POMBO TALK] - 2'
+    - m_keys: 0000000001000000
+      m_values:
+      - ... Thanks, that's better. Please be careful around here. You don't seem
+        as tough as those big hairy fellas. Why are you so hairless, by the way?
+        Fashion statement?
+      - .
+    - m_keys: 0000000001000000
+      m_values:
+      - ... What? No, of course I don't need a helmet! I'm not a mammal! Only you
+        guys can't breathe properly in space!
+      - .
+    - m_keys: 0000000001000000
+      m_values:
+      - Frankly, don't they teach you this stuff at the Academy? What are those medals
+        good for if you don't know basic biology?
+      - .
+    - m_keys: 0000000001000000
+      m_values:
+      - '[POMBO BARK] - 1'
+      - '[POMBO BARK] - 1'
+    - m_keys: 0000000001000000
+      m_values:
       - "You are at the Urbs. This area of the game will feature more mechanics for
         B\xFCyk to play with, as well as many other animal NPCs to talk to."
       - Cuidado com pedras rolantes
@@ -2289,13 +2406,17 @@ MonoBehaviour:
       - "bjs, bebam \xE1gua!"
     - m_keys: 0000000001000000
       m_values:
-      - Bear
-      - Urso
+      - Big Bear
+      - "Urs\xE3o"
     - m_keys: 0000000001000000
       m_values:
-      - Bunny
-      - Coelho
+      - Little Bunny
+      - Coelhinho
     - m_keys: 0000000001000000
       m_values:
       - Masked Worker
-      - Trabalhador
+      - Trabalhador Mascarado
+    - m_keys: 0000000001000000
+      m_values:
+      - Colombo
+      - Pombson
