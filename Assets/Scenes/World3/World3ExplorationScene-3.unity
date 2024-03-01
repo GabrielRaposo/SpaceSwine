@@ -22271,10 +22271,11 @@ MonoBehaviour:
     WwiseObjectReference: {fileID: 11400000, guid: 73c5001ad8d658c4b9dc99983cce7d84, type: 2}
   npcNameCode: NAME_BEAR
   startingIndex: 0
-  holdIndex: 1
+  holdIndex: 2
   dialogueGroupTags:
   - Z3_NPC_BEAR_005
   - Z3_NPC_BEAR_006
+  - Z3_NPC_BEAR_007
 --- !u!1 &350501184
 GameObject:
   m_ObjectHideFlags: 0
@@ -22781,6 +22782,10 @@ PrefabInstance:
       propertyPath: placeHelmetAKEvent.WwiseObjectReference
       value: 
       objectReference: {fileID: 11400000, guid: 61b1c2e82ce2d2c4cb54ecf50b783e04, type: 2}
+    - target: {fileID: 1551303602352006563, guid: 4b9a74352fc27c34994c512432dedd4b, type: 3}
+      propertyPath: mainNPC
+      value: 
+      objectReference: {fileID: 728632855}
     - target: {fileID: 3634773868242139949, guid: 4b9a74352fc27c34994c512432dedd4b, type: 3}
       propertyPath: animationEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -22857,7 +22862,9 @@ PrefabInstance:
       propertyPath: storyEvent
       value: 
       objectReference: {fileID: 11400000, guid: 0517524c304be8a428d386f946e036ca, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6197040962289071115, guid: 4b9a74352fc27c34994c512432dedd4b, type: 3}
+    - {fileID: 6197040962289071114, guid: 4b9a74352fc27c34994c512432dedd4b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4b9a74352fc27c34994c512432dedd4b, type: 3}
 --- !u!114 &378710628 stripped
 MonoBehaviour:
@@ -22868,6 +22875,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5dd0538b11b9e7248afc4bf261c5aa9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &378710629 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 896388003667480925, guid: 4b9a74352fc27c34994c512432dedd4b, type: 3}
+  m_PrefabInstance: {fileID: 378710627}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293cf077300742b40b2253c263e4a1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &383612007
@@ -38104,6 +38122,31 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6197040962289071158, guid: 4b9a74352fc27c34994c512432dedd4b, type: 3}
   m_PrefabInstance: {fileID: 378710627}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &728632855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728632854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc0fe5ee68d4bc49a3df9525c203cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoActivate: 1
+  data: {fileID: 0}
+  speechBubble: {fileID: 378710629}
+  customDialogueStyle: {fileID: 11400000, guid: 32b6fec7d8fd4b843a964c293371debc, type: 2}
+  talkSoundAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: be7d76941d529a14ba6cb23c2e30935b, type: 2}
+  npcNameCode: NAME_WORKER
+  startingIndex: 0
+  holdIndex: -1
+  dialogueGroupTags:
+  - Z3_NPC_BUNNY_009
 --- !u!114 &728632862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66323,7 +66366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1222967594
 Transform:
   m_ObjectHideFlags: 0
@@ -104729,10 +104772,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1988833543}
   - component: {fileID: 1988833548}
-  - component: {fileID: 1988833547}
   - component: {fileID: 1988833546}
   - component: {fileID: 1988833545}
   - component: {fileID: 1988833544}
+  - component: {fileID: 1988833547}
   m_Layer: 0
   m_Name: 'NPC-World 1 Ship Outro '
   m_TagString: Untagged
@@ -104809,17 +104852,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1988833542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aee2b73a4e79b6345bc33802372b9ed9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9cc0fe5ee68d4bc49a3df9525c203cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   autoActivate: 1
-  data: {fileID: 11400000, guid: e47e09c6428e1c04ca240d8a41e3497d, type: 2}
+  data: {fileID: 0}
   speechBubble: {fileID: 1222967596}
-  customDialogueStyle: {fileID: 11400000, guid: ca959bb3f4154164a832ff356b3f1dbd, type: 2}
+  customDialogueStyle: {fileID: 11400000, guid: f9284ffd531306e458390aeadad42b39, type: 2}
   talkSoundAKEvent:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 9f5f5ef3b613c484f97341c7dc6ee571, type: 2}
+  npcNameCode: 
+  startingIndex: 0
+  holdIndex: -1
+  dialogueGroupTags:
+  - N_W3_PIG_001
 --- !u!114 &1988833548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108466,17 +108514,31 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5878162480544633441, guid: 6aea74b9e0a16b34eb8e26930079645f, type: 3}
   m_PrefabInstance: {fileID: 4193733635191273242}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2094704510 stripped
+--- !u!114 &2094704510
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5878162480544633442, guid: 6aea74b9e0a16b34eb8e26930079645f, type: 3}
-  m_PrefabInstance: {fileID: 4193733635191273242}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094704509}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aee2b73a4e79b6345bc33802372b9ed9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9cc0fe5ee68d4bc49a3df9525c203cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  autoActivate: 1
+  data: {fileID: 0}
+  speechBubble: {fileID: 4193733635191273243}
+  customDialogueStyle: {fileID: 11400000, guid: 9518d65a6fd518b4b8bae83e0182c304, type: 2}
+  talkSoundAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 934134599978f514281825e451b4510c, type: 2}
+  npcNameCode: NAME_BUNNY
+  startingIndex: 0
+  holdIndex: -1
+  dialogueGroupTags:
+  - Z3_NPC_BUNNY_010
 --- !u!114 &2094704511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110410,8 +110472,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5878162480544633442, guid: 6aea74b9e0a16b34eb8e26930079645f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6aea74b9e0a16b34eb8e26930079645f, type: 3}
+--- !u!114 &4193733635191273243 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5878162480172630366, guid: 6aea74b9e0a16b34eb8e26930079645f, type: 3}
+  m_PrefabInstance: {fileID: 4193733635191273242}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293cf077300742b40b2253c263e4a1e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7663591773740118287
 PrefabInstance:
   m_ObjectHideFlags: 0
