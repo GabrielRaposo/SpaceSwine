@@ -8,10 +8,10 @@ using DG.Tweening;
 
 public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
 {
-    [Header("Dynamic Buttons")]
-    [SerializeField] TitleMenuButton continueButton;
-    [SerializeField] TitleMenuButton newGameButton;
-    [SerializeField] StoryEventScriptableObject newSaveCheckEvent;
+    //[Header("Dynamic Buttons")]
+    //[SerializeField] TitleMenuButton continueButton;
+    //[SerializeField] TitleMenuButton newGameButton;
+    //[SerializeField] StoryEventScriptableObject newSaveCheckEvent;
 
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event OnEnterMenuAKEvent;
@@ -45,48 +45,30 @@ public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
 
     protected override void Start()
     {
-        SetContinueButtonState();
-        //SetNewGameButtonState();
+        //SetContinueButtonState();
         
         if (startOnFocus)
             OnFocus = true;
     }
 
 
-    private void SetContinueButtonState()
-    {
-        if (continueButton == null) return;
+    //private void SetContinueButtonState()
+    //{
+    //    if (continueButton == null) return;
         
-        if (StoryEventsManager.IsComplete(newSaveCheckEvent) )
-        {
-            continueButton.SetInteraction (true);
-            current = 0;
-        }
-        else
-        {
-            // remove da lista de scroll
-            continueButton.SetInteraction (false);
-            current = 1;
-        }
-        SelectCurrent();
-    }
-
-    private void SetNewGameButtonState()
-    {
-        if (newGameButton == null) return;
-
-        if (StoryEventsManager.IsComplete(newSaveCheckEvent) )
-        {
-            newGameButton.gameObject.SetActive(false);
-            current = 0;
-        }
-        else
-        {
-            newGameButton.gameObject.SetActive(true);
-            current = 1;
-        }
-        SelectCurrent();
-    }
+    //    if (StoryEventsManager.IsComplete(newSaveCheckEvent) )
+    //    {
+    //        continueButton.SetInteraction (true);
+    //        current = 0;
+    //    }
+    //    else
+    //    {
+    //        // remove da lista de scroll
+    //        continueButton.SetInteraction (false);
+    //        current = 1;
+    //    }
+    //    SelectCurrent();
+    //}
     
     public void FadeInSequence()
     {
@@ -101,12 +83,13 @@ public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
             if (canvasGroup)
                 canvasGroup.alpha = 0;
 
-            SetContinueButtonState();
+            //SetContinueButtonState();
 
             OnEnterMenuEvent?.Invoke();
             if (OnEnterMenuAKEvent != null && !OnEnterMenuAKEvent.IsPlaying(gameObject))
                 OnEnterMenuAKEvent.Post(gameObject);
 
+            current = 0;
             SelectCurrent(instant: true);
         }
 
@@ -177,8 +160,8 @@ public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
         int buttonCount = ActiveButtonsCount();
 
         current += direction;
-        if (current % buttonCount == 0 && !StoryEventsManager.IsComplete( newSaveCheckEvent ))
-            current += direction;
+        //if (current % buttonCount == 0 && !StoryEventsManager.IsComplete( newSaveCheckEvent ))
+        //    current += direction;
 
         if (current < 0)
             current = buttonCount - 1;
