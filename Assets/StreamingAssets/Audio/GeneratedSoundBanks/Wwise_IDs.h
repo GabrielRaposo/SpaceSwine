@@ -154,6 +154,7 @@ namespace AK
         static const AkUniqueID UI_PAGER_CLIQUE = 1750137231U;
         static const AkUniqueID UI_PAGER_ERRO = 2070302670U;
         static const AkUniqueID UI_PAGER_KEYCHAIN = 2974033650U;
+        static const AkUniqueID UI_PAGER_RESETA_SAVE = 2654344480U;
         static const AkUniqueID UI_PAGER_SOME = 1841407834U;
         static const AkUniqueID UI_POMBO_FALA = 3042476992U;
         static const AkUniqueID UI_ROBOZAO_FALA = 2728419545U;
@@ -248,6 +249,8 @@ namespace AK
         static const AkUniqueID SFX = 393239870U;
         static const AkUniqueID SFX_MAKEABEAT = 3530778344U;
         static const AkUniqueID SFX_PLACEHOLDER = 891914060U;
+        static const AkUniqueID UI_KEYITEM_FANFARRA = 1610369300U;
+        static const AkUniqueID UI_PAGER_RESETA_SAVE = 2654344480U;
         static const AkUniqueID UI_PAGER_SIDECHAIN = 1184658986U;
     } // namespace BUSSES
 

@@ -58,8 +58,10 @@ MonoBehaviour:
     - press_to_start
     - press_to_open_pda
     - press_to_call_ship
+    - press_to_reset_save
     - calling
     - no_signal
+    - resetting_save
     - transporter_notification
     - ggs_notification
     - skip_scene
@@ -316,12 +318,20 @@ MonoBehaviour:
       - Segure ':interact:' para chamar a nave
     - m_keys: 0000000001000000
       m_values:
+      - Hold ':interact:' to <color=red>reset the save file</color>
+      - Segura ':interact:' para <color=red>apagar o save</color>
+    - m_keys: 0000000001000000
+      m_values:
       - calling ship
       - chamando nave
     - m_keys: 0000000001000000
       m_values:
       - no signal
       - sem sinal
+    - m_keys: 0000000001000000
+      m_values:
+      - save reset
+      - apagando save
     - m_keys: 0000000001000000
       m_values:
       - You got a Transporter. You can use it while on the pause menu to return to

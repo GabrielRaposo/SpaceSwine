@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class KeychainInputBanner : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class KeychainInputBanner : MonoBehaviour
     [SerializeField] Vector2 targetPos;
     [SerializeField] Vector2 punchDirection;
     [SerializeField] float duration;
+
+    [SerializeField] TextMeshProUGUI shipCallTextDisplay;
+    [SerializeField] TextMeshProUGUI resetSaveTextDisplay;
 
     [Space(10)]
     [SerializeField] RectTransform labelRectTransform;
@@ -21,6 +25,12 @@ public class KeychainInputBanner : MonoBehaviour
     {
         if (labelRectTransform)
             labelRectTransform.anchoredPosition = startingPos;
+    }
+
+    public void SetLabelText (bool callShip)
+    {
+        shipCallTextDisplay.enabled = callShip;
+        resetSaveTextDisplay.enabled = !callShip;
     }
 
     public void Show()

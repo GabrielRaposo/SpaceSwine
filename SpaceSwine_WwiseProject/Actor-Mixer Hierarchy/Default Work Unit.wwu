@@ -2471,6 +2471,42 @@
 										<ActiveSource Name="ui_pager_erro" ID="{D92953B3-02C2-4DB3-B04E-B538EEA3043F}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="ui_pager_reseta_save" ID="{036F6E29-B9E4-408D-B1AD-2E0B873CB1E3}" ShortID="692247293">
+									<Comment>Fanfarra que acontece no texto quando vc obtem algum item ou alguma coisa que muda o gameplay</Comment>
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>40</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="ui_pager_reseta_save" ID="{11AC13BE-CD46-42DC-85BE-21C00F78CD56}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_pager_reseta_save" ID="{463FDA52-4E96-4C3A-BCB5-07FB46153F3A}">
+											<Language>SFX</Language>
+											<AudioFile>ui_pager_reseta_save.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="860901304"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_pager_reseta_save" ID="{463FDA52-4E96-4C3A-BCB5-07FB46153F3A}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Tela de Título" ID="{D53F2801-1BCB-4524-A22E-F88B4AE6AF6A}" ShortID="63876998">
@@ -3641,7 +3677,7 @@
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+									<ObjectRef Name="ui_keyitem_fanfarra" ID="{BF3F6779-9E30-4992-B445-314E907ECABD}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
