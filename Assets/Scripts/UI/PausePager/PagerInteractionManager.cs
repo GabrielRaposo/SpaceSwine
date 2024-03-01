@@ -26,6 +26,7 @@ public class PagerInteractionManager : StoryEventDependent
     [Header("Keychain Interaction")]
     [SerializeField] GameObject keychainObject;
     [SerializeField] float holdDuration;
+    [SerializeField] float holdResetDuration;
     [SerializeField] ImageSwapper keychainSwapper;
     [SerializeField] StoryEventScriptableObject unlockStoryEvent; 
     [SerializeField] KeychainInputBanner keychainBanner;
@@ -43,6 +44,7 @@ public class PagerInteractionManager : StoryEventDependent
     [SerializeField] AK.Wwise.Event appearAKEvent;
     [SerializeField] AK.Wwise.Event vanishAKEvent;
     [SerializeField] AK.Wwise.Event callShipAKEvent;
+    [SerializeField] AK.Wwise.Event callSaveResetAKEvent;
     [SerializeField] AK.Wwise.Event keychainButtonAKEvent;
     [SerializeField] AK.Wwise.Event keychainShakeAKEvent;
 
@@ -293,10 +295,21 @@ public class PagerInteractionManager : StoryEventDependent
         get 
         { 
             if (isOnTitleScreen)
-                return holdDuration * 2;
+                return holdResetDuration;
 
             return holdDuration;
         } 
+    }
+
+    private AK.Wwise.Event RingtoneEvent 
+    {
+        get 
+        {
+            if (isOnTitleScreen)
+                return callSaveResetAKEvent;
+
+            return callShipAKEvent;
+        }
     }
 
     private void ShipInputLogic()
@@ -308,18 +321,18 @@ public class PagerInteractionManager : StoryEventDependent
         keychainSwapper.SetSpriteState(shipInput ? 1 : 0);
 
         // -- Som de chamada da Nave
-        if (callShipAKEvent != null)
+        if (RingtoneEvent != null)
         {
-            if (shipCallCount < .2f && shipInput && !callShipAKEvent.IsPlaying(gameObject))
+            if (shipCallCount < .2f && shipInput && !RingtoneEvent.IsPlaying(gameObject))
             {
                 if (keychainButtonAKEvent != null)
                     keychainButtonAKEvent.Post(gameObject);
 
-                callShipAKEvent.Post(gameObject);
+                RingtoneEvent.Post(gameObject);
             } else
-            if (!shipInput && callShipAKEvent.IsPlaying(gameObject))
+            if (!shipInput && RingtoneEvent.IsPlaying(gameObject))
             {
-                callShipAKEvent.FadeOut(gameObject, duration: .1f);
+                RingtoneEvent.FadeOut(gameObject, duration: .1f);
             }
         }
         
@@ -334,8 +347,8 @@ public class PagerInteractionManager : StoryEventDependent
                 {
                     if (shipCallCount > HoldDuration) // -- Teleporta para a nave
                     {
-                        if (callShipAKEvent != null)
-                            callShipAKEvent.Stop(gameObject);
+                        if (RingtoneEvent != null)
+                            RingtoneEvent.Stop(gameObject);
 
                         callShipEvent?.Invoke();
                         return;
@@ -346,8 +359,8 @@ public class PagerInteractionManager : StoryEventDependent
                 {
                     if (shipCallCount > HoldDuration) // -- Chama Save Reset
                     {
-                        if (callShipAKEvent != null)
-                            callShipAKEvent.Stop(gameObject);
+                        if (RingtoneEvent != null)
+                            RingtoneEvent.Stop(gameObject);
 
                         //callShipEvent?.Invoke();
                         SaveManager.ResetSave();
@@ -361,8 +374,8 @@ public class PagerInteractionManager : StoryEventDependent
             {
                 if (shipCallCount > HoldDuration) // -- Falha em ir pra nave
                 {
-                    if (callShipAKEvent != null)
-                        callShipAKEvent.Stop(gameObject);
+                    if (RingtoneEvent != null)
+                        RingtoneEvent.Stop(gameObject);
 
                     if (signalErrorAKEvent != null)
                     {
@@ -574,6 +587,9 @@ public class PagerInteractionManager : StoryEventDependent
     {
         if (callShipAKEvent != null)
             callShipAKEvent.Stop(gameObject);
+
+        if (callSaveResetAKEvent != null)
+            callSaveResetAKEvent.Stop(gameObject);
 
         navigationAction.Disable();
         confirmAction.Disable();
