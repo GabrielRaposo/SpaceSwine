@@ -72,6 +72,7 @@ public class ItemRewardBox : MonoBehaviour
                     return;
                 }
 
+                BlockInputs(false, interactor);
                 AfterRewardAction.Invoke();
             }
         );
