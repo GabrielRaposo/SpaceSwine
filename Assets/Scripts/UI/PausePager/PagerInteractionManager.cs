@@ -58,6 +58,7 @@ public class PagerInteractionManager : StoryEventDependent
     float screenDelay;
     float shipCallCount; 
     bool keychainState;
+    bool isOnTitleScreen;
     bool callingShip;
     Sequence s;
 
@@ -154,14 +155,23 @@ public class PagerInteractionManager : StoryEventDependent
         if (unlockStoryEvent != null)
             keychainState = StoryEventsManager.IsComplete (unlockStoryEvent);
 
-        if (GameManager.IsOnScene(BuildIndex.Ship) || GameManager.IsOnScene(BuildIndex.Title))
+        if (GameManager.IsOnScene(BuildIndex.Ship))
             keychainState = false;
+
+        if (GameManager.IsOnScene(BuildIndex.Title))
+        {
+            keychainState = true;
+            isOnTitleScreen = true;
+        }
 
         if (keychainObject)
             keychainObject.SetActive( keychainState );
 
         if (keychainBanner)
+        {
+            keychainBanner.SetLabelText (callShip: !isOnTitleScreen);
             keychainBanner.Show();
+        }
 
         if (keychainState && keychainShakeAKEvent != null)
             keychainShakeAKEvent.Post(gameObject);
@@ -302,15 +312,32 @@ public class PagerInteractionManager : StoryEventDependent
         {
             if (!callScreen.NoSignalMode)
             {
-                if (shipCallCount > holdDuration) // -- Teleporta para a nave
+                if (!isOnTitleScreen)
                 {
-                    if (callShipAKEvent != null)
-                        callShipAKEvent.Stop(gameObject);
+                    if (shipCallCount > holdDuration) // -- Teleporta para a nave
+                    {
+                        if (callShipAKEvent != null)
+                            callShipAKEvent.Stop(gameObject);
 
-                    callShipEvent?.Invoke();
-                    return;
+                        callShipEvent?.Invoke();
+                        return;
+                    }
+                    shipCallCount += Time.unscaledDeltaTime; 
                 }
-                shipCallCount += Time.unscaledDeltaTime;    
+                else
+                {
+                    if (shipCallCount > holdDuration) // -- Chama Save Reset
+                    {
+                        if (callShipAKEvent != null)
+                            callShipAKEvent.Stop(gameObject);
+
+                        //callShipEvent?.Invoke();
+                        SaveManager.ResetSave();
+                        GameManager.ResetScene();
+                        return;
+                    }
+                    shipCallCount += Time.unscaledDeltaTime; 
+                }
             }
             else
             {
