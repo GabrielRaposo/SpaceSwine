@@ -1574,6 +1574,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_chave_quebra" ID="{BDFD840E-A75B-45AE-B547-3F19B918E15A}" ShortID="722246900">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>10</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1583,22 +1590,17 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="gameplay_terminal_bipe" ID="{B55E5230-22D4-4B46-8035-1DCBAF0F316D}">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-										</Reference>
-									</ReferenceList>
+								<AudioFileSource Name="gameplay_chave_quebra" ID="{663E5647-9C8D-4DD3-A091-88E902E03D85}">
 									<Language>SFX</Language>
-									<AudioFile>gameplay_terminal_bipe.wav</AudioFile>
+									<AudioFile>gameplay_chave_quebra.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="739371326"/>
+										<MediaID ID="94958824"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="gameplay_terminal_bipe" ID="{B55E5230-22D4-4B46-8035-1DCBAF0F316D}" Platform="Linked"/>
+								<ActiveSource Name="gameplay_chave_quebra" ID="{663E5647-9C8D-4DD3-A091-88E902E03D85}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_cristal_teleporta" ID="{D8E0F0E6-67CC-4B3E-A19A-436E0A8D7072}" ShortID="211080463">
@@ -6429,7 +6431,7 @@
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
@@ -6480,6 +6482,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="ui_cutscene_fala_04" ID="{908F3D6A-DA2B-4890-A199-D0143083CDF1}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.200397808449006"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>ui_cutscene_fala_04.wav</AudioFile>
 											<MediaIDList>
