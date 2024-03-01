@@ -3700,6 +3700,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ui_objetivo_novo" ID="{27DAE126-1B68-4BD9-9F3E-25CAFD8A5952}" ShortID="118176460">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>10</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -3709,20 +3716,31 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="gameplay_buyk_pega_chave" ID="{BD268491-23B0-4CB9-845B-A54DDB9C5A0F}">
+								<AudioFileSource Name="ui_objetivo_novo" ID="{4C2F4ACB-FA3F-4719-9EA1-3768F105515E}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="1.06750822486991"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
 									<Language>SFX</Language>
-									<AudioFile>gameplay_buyk_pega_chave.wav</AudioFile>
+									<AudioFile>ui_objetivo_novo.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="937473941"/>
+										<MediaID ID="94984384"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="gameplay_buyk_pega_chave" ID="{BD268491-23B0-4CB9-845B-A54DDB9C5A0F}" Platform="Linked"/>
+								<ActiveSource Name="ui_objetivo_novo" ID="{4C2F4ACB-FA3F-4719-9EA1-3768F105515E}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="ui_objetivo_completou" ID="{E1672E0E-4045-49EF-B586-7A82D97317FF}" ShortID="517115641">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>10</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -3732,17 +3750,22 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="gameplay_buyk_pega_chave" ID="{84852125-933C-4648-89DA-B82DB94352D6}">
+								<AudioFileSource Name="ui_objetivo_completou" ID="{46E43772-6705-4C57-858E-BA152250F8F0}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.423654365407049"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="3.5876553222445"/>
+									</PropertyList>
 									<Language>SFX</Language>
-									<AudioFile>gameplay_buyk_pega_chave.wav</AudioFile>
+									<AudioFile>ui_objetivo_completou.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="937473941"/>
+										<MediaID ID="441278136"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="gameplay_buyk_pega_chave" ID="{84852125-933C-4648-89DA-B82DB94352D6}" Platform="Linked"/>
+								<ActiveSource Name="ui_objetivo_completou" ID="{46E43772-6705-4C57-858E-BA152250F8F0}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
