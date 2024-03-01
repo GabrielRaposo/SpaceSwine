@@ -277,59 +277,80 @@
 									</PropertyList>
 									<ObjectLists/>
 								</Bus>
-								<Bus Name="ui_pager_sidechain" ID="{99418646-0C68-4766-BE16-0BEAA5E4C498}">
-									<PropertyList>
-										<Property Name="RecoveryTime" Type="Real64" Value="0.3"/>
-									</PropertyList>
-									<ObjectLists/>
-									<DuckingList>
-										<DuckItem>
-											<BusRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}"/>
-											<DuckingParam>
-												<Volume>-9</Volume>
-												<FadeInTime>0</FadeInTime>
-												<FadeOutTime>0</FadeOutTime>
-												<FadeCurve>FadeLog2</FadeCurve>
-											</DuckingParam>
-										</DuckItem>
-									</DuckingList>
-								</Bus>
-								<Bus Name="ui_keyitem_fanfarra" ID="{BF3F6779-9E30-4992-B445-314E907ECABD}">
-									<PropertyList>
-										<Property Name="MaxDuckVolume" Type="Real64" Value="-200"/>
-										<Property Name="RecoveryTime" Type="Real64" Value="0.3"/>
-									</PropertyList>
-									<ObjectLists/>
-									<DuckingList>
-										<DuckItem>
-											<BusRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}"/>
-											<DuckingParam>
-												<Volume>-30</Volume>
-												<FadeInTime>2</FadeInTime>
-												<FadeOutTime>0.300000011920929</FadeOutTime>
-												<FadeCurve>FadeLog2</FadeCurve>
-											</DuckingParam>
-										</DuckItem>
-									</DuckingList>
-								</Bus>
-								<Bus Name="ui_pager_reseta_save" ID="{11AC13BE-CD46-42DC-85BE-21C00F78CD56}">
-									<PropertyList>
-										<Property Name="MaxDuckVolume" Type="Real64" Value="-200"/>
-										<Property Name="RecoveryTime" Type="Real64" Value="0.3"/>
-									</PropertyList>
-									<ObjectLists/>
-									<DuckingList>
-										<DuckItem>
-											<BusRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}"/>
-											<DuckingParam>
-												<Volume>-20</Volume>
-												<FadeInTime>3</FadeInTime>
-												<FadeOutTime>1</FadeOutTime>
-												<FadeCurve>FadeLog2</FadeCurve>
-											</DuckingParam>
-										</DuckItem>
-									</DuckingList>
-								</Bus>
+								<Folder Name="Sidechains" ID="{28EAD4FC-26C3-4B9D-A005-64E370CC3083}" ShortID="1070280684">
+									<ChildrenList>
+										<Bus Name="ui_keyitem_fanfarra" ID="{BF3F6779-9E30-4992-B445-314E907ECABD}">
+											<PropertyList>
+												<Property Name="MaxDuckVolume" Type="Real64" Value="-200"/>
+												<Property Name="RecoveryTime" Type="Real64" Value="0.3"/>
+											</PropertyList>
+											<ObjectLists/>
+											<DuckingList>
+												<DuckItem>
+													<BusRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}"/>
+													<DuckingParam>
+														<Volume>-30</Volume>
+														<FadeInTime>2</FadeInTime>
+														<FadeOutTime>0.300000011920929</FadeOutTime>
+														<FadeCurve>FadeLog2</FadeCurve>
+													</DuckingParam>
+												</DuckItem>
+											</DuckingList>
+										</Bus>
+										<Bus Name="ui_pager_reseta_save" ID="{11AC13BE-CD46-42DC-85BE-21C00F78CD56}">
+											<PropertyList>
+												<Property Name="MaxDuckVolume" Type="Real64" Value="-200"/>
+												<Property Name="RecoveryTime" Type="Real64" Value="0.3"/>
+											</PropertyList>
+											<ObjectLists/>
+											<DuckingList>
+												<DuckItem>
+													<BusRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}"/>
+													<DuckingParam>
+														<Volume>-20</Volume>
+														<FadeInTime>3</FadeInTime>
+														<FadeOutTime>1</FadeOutTime>
+														<FadeCurve>FadeLog2</FadeCurve>
+													</DuckingParam>
+												</DuckItem>
+											</DuckingList>
+										</Bus>
+										<Bus Name="ui_pager_sidechain" ID="{99418646-0C68-4766-BE16-0BEAA5E4C498}">
+											<PropertyList>
+												<Property Name="RecoveryTime" Type="Real64" Value="0.3"/>
+											</PropertyList>
+											<ObjectLists/>
+											<DuckingList>
+												<DuckItem>
+													<BusRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}"/>
+													<DuckingParam>
+														<Volume>-9</Volume>
+														<FadeInTime>0</FadeInTime>
+														<FadeOutTime>0</FadeOutTime>
+														<FadeCurve>FadeLog2</FadeCurve>
+													</DuckingParam>
+												</DuckItem>
+											</DuckingList>
+										</Bus>
+										<Bus Name="ui_objetivo_novo" ID="{5ED0A792-A0B6-4B08-B61D-FFD312A46C9A}">
+											<ObjectLists/>
+											<DuckingList>
+												<DuckItem>
+													<BusRef Name="ui_objetivo_completou" ID="{0E491E5E-B5A5-428A-A522-4F1B2FEA617B}"/>
+													<DuckingParam>
+														<Volume>-10</Volume>
+														<FadeInTime>0</FadeInTime>
+														<FadeOutTime>0</FadeOutTime>
+														<FadeCurve>FadeLinear</FadeCurve>
+													</DuckingParam>
+												</DuckItem>
+											</DuckingList>
+										</Bus>
+										<Bus Name="ui_objetivo_completou" ID="{0E491E5E-B5A5-428A-A522-4F1B2FEA617B}">
+											<ObjectLists/>
+										</Bus>
+									</ChildrenList>
+								</Folder>
 							</ChildrenList>
 							<ObjectLists/>
 						</Bus>

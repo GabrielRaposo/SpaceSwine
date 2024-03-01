@@ -252,6 +252,8 @@ namespace AK
         static const AkUniqueID SFX_MAKEABEAT = 3530778344U;
         static const AkUniqueID SFX_PLACEHOLDER = 891914060U;
         static const AkUniqueID UI_KEYITEM_FANFARRA = 1610369300U;
+        static const AkUniqueID UI_OBJETIVO_COMPLETOU = 2911553171U;
+        static const AkUniqueID UI_OBJETIVO_NOVO = 1893002589U;
         static const AkUniqueID UI_PAGER_RESETA_SAVE = 2654344480U;
         static const AkUniqueID UI_PAGER_SIDECHAIN = 1184658986U;
     } // namespace BUSSES
