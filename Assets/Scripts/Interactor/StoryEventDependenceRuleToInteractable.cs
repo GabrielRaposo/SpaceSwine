@@ -36,7 +36,7 @@ public class StoryEventDependenceRuleToInteractable : StoryEventDependent
             }
         } 
 
-        Debug.Log("Disable? " + disable);
+        //Debug.Log("Disable? " + disable);
         interactableShipComponent.DisableInteraction = disable;
     }
 }
