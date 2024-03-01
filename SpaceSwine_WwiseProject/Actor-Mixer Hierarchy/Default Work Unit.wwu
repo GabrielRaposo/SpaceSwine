@@ -6189,6 +6189,238 @@
 									</ChildrenList>
 									<ObjectLists/>
 								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="ui_pombo_fala" ID="{5A831DF4-A589-4077-91C5-489293C32D89}" ShortID="148903593">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<RTPCList>
+												<RTPC Name="" ID="{3F53849D-A184-4D45-9BE5-2655F1D45346}" ShortID="179708806">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorEnvelope Name="Modulator Envelope (Custom)" ID="{8F8BBA0A-C798-47C2-8369-9F150BF26BF5}" ShortID="789751509">
+																	<PropertyList>
+																		<Property Name="EnvelopeAttackCurve" Type="Real64" Value="46"/>
+																		<Property Name="EnvelopeDecayTime" Type="Real64" Value="0.147"/>
+																		<Property Name="EnvelopeReleaseTime" Type="Real64" Value="0"/>
+																		<Property Name="EnvelopeSustainLevel" Type="Real64" Value="0"/>
+																	</PropertyList>
+																</ModulatorEnvelope>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{A2ACCF55-838C-4CD2-91AA-5473D65F4C05}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>500</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>-500</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+												<RTPC Name="" ID="{832558E3-9820-4840-9537-40BFFB3015B9}" ShortID="176106152">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{05110146-AFE9-45A5-99E4-22AB0FDCF0F1}" ShortID="492087573">
+																	<PropertyList>
+																		<Property Name="LfoFrequency" Type="Real64" Value="0.5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{595AFDAD-F45A-4F65-96BB-327ACFFD88C8}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>100</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>-100</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>9</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="ui_pombo_fala_01" ID="{8E3371F9-BF61-4A7F-9CCD-CE2E9ED83081}" ShortID="614205060">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_pombo_fala_01" ID="{E8F081DE-8667-4A9A-BEC3-C1D8730331B2}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.00379163225984035"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.00812492627108646"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.185789980732177"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_pombo_fala_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="688583296"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_pombo_fala_01" ID="{E8F081DE-8667-4A9A-BEC3-C1D8730331B2}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_pombo_fala_02" ID="{213273BF-4F5F-49CA-932E-24A6031A41F4}" ShortID="679050525">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_pombo_fala_02" ID="{5D191FF3-7FD0-4E8F-97F9-E22F6C2B7AF0}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.00902294443789076"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0276911053438717"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.180147752742716"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_pombo_fala_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="1006867593"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_pombo_fala_02" ID="{5D191FF3-7FD0-4E8F-97F9-E22F6C2B7AF0}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_pombo_fala_03" ID="{D739FEB2-15F1-42FA-8CCE-9A7C704B506B}" ShortID="969601493">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_pombo_fala_03" ID="{D8D70ACB-F55A-4E78-A202-17F6C2DE7484}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0034985516364542"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.00445270208275989"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.155526522747827"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_pombo_fala_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="371924531"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_pombo_fala_03" ID="{D8D70ACB-F55A-4E78-A202-17F6C2DE7484}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_pombo_fala_04" ID="{941E3236-0E2F-41BF-A64E-F17CB73EE5C1}" ShortID="517684288">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_pombo_fala_04" ID="{C56A1794-DC37-4DA4-B5AD-9EAB29EA3BB5}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.00718791370112592"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.00605297995884288"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.157377478929915"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_pombo_fala_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="744157450"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_pombo_fala_04" ID="{C56A1794-DC37-4DA4-B5AD-9EAB29EA3BB5}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_pombo_fala_05" ID="{D89B6C44-B3C5-451A-B19B-33E354FCB268}" ShortID="808501751">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_pombo_fala_05" ID="{AC73094A-DEEB-41FE-9847-9875686117B6}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.00458407062246864"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.012341728598954"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.162910817506193"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_pombo_fala_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="155253863"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_pombo_fala_05" ID="{AC73094A-DEEB-41FE-9847-9875686117B6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</RandomSequenceContainer>
 							</ChildrenList>
 						</Folder>
 						<RandomSequenceContainer Name="ui_cutscene_fala" ID="{527A4048-7389-42B3-A40C-6AEFA31C42B5}" ShortID="660142643">
