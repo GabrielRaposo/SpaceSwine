@@ -143,7 +143,8 @@ public class StoryEventsManager : MonoBehaviour
 
     private static void StoryEventsAchievementsChecks(StoryEventScriptableObject storyEvent)
     {
-        if(!storyEvent.UpdatedState) return;
+        Debug.Log("<color=#45de00>Checking story events achievements for " + storyEvent.name + " id:" + storyEvent.idTag + "</color>");
+        if(!IsComplete(storyEvent)) return;
         
         //ACHIEVEMENT CALLS
 

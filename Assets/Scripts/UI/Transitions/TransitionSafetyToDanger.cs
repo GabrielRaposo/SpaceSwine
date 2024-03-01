@@ -192,7 +192,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         OnTransition = false;
         GameManager.BlockCharacterInput = false;
-        Debug.Log(">>> OUT");
+        //Debug.Log(">>> OUT");
     }
 
     private Sequence SwitchStripes(bool toDanger)
