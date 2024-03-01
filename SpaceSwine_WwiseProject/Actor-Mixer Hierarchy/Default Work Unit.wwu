@@ -3701,6 +3701,16 @@
 						</Sound>
 						<Sound Name="ui_objetivo_novo" ID="{27DAE126-1B68-4BD9-9F3E-25CAFD8A5952}" ShortID="118176460">
 							<PropertyList>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
 										<Value>4</Value>
@@ -3735,6 +3745,16 @@
 						</Sound>
 						<Sound Name="ui_objetivo_completou" ID="{E1672E0E-4045-49EF-B586-7A82D97317FF}" ShortID="517115641">
 							<PropertyList>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
 										<Value>5</Value>
@@ -7102,13 +7122,6 @@
 									<ObjectLists/>
 								</RandomSequenceContainer>
 								<Sound Name="cenario_telarobozao_liga" ID="{3D655E45-902D-4F39-B0F4-24912FBDDA07}" ShortID="253921712">
-									<PropertyList>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>5</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
