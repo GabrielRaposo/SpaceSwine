@@ -171,13 +171,13 @@ public class AdventureLogDisplay : MonoBehaviour
         if (tabToRemove == null)
             return;
 
+        if (removeAKEvent != null)
+            removeAKEvent.Post(gameObject);
+
         tabToRemove.StrikeAndVanish 
         (
             () => 
             {
-                if (removeAKEvent != null)
-                    removeAKEvent.Post(gameObject);
-
                 tabs.Remove(tabToRemove);
                 if (UpdatedList.Contains(log))
                     UpdatedList.Remove(log);
