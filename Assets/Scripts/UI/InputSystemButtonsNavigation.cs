@@ -93,7 +93,7 @@ public abstract class InputSystemButtonsNavigation<ButtonType> : MonoBehaviour w
 
     protected void SelectCurrent (bool instant = false, bool playSound = false)
     {
-        Debug.Log("current: " + current);
+        //Debug.Log("current: " + current);
 
         for (int i = 0; i < buttons.Count; i++)
         {
