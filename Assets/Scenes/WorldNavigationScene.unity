@@ -18474,7 +18474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &842967600
 Transform:
   m_ObjectHideFlags: 0
@@ -25597,7 +25597,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1859445900}
+    m_TransformParent: {fileID: 1295916042}
     m_Modifications:
     - target: {fileID: 2344785330290861715, guid: 6071b3658569ca24ebfd444740ad9c4a, type: 3}
       propertyPath: m_Name
@@ -25609,11 +25609,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2344785330290861724, guid: 6071b3658569ca24ebfd444740ad9c4a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.08
+      value: 2.3200002
       objectReference: {fileID: 0}
     - target: {fileID: 2344785330290861724, guid: 6071b3658569ca24ebfd444740ad9c4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.69
+      value: -1.7100024
       objectReference: {fileID: 0}
     - target: {fileID: 2344785330290861724, guid: 6071b3658569ca24ebfd444740ad9c4a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25637,7 +25637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2344785330290861724, guid: 6071b3658569ca24ebfd444740ad9c4a, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2344785330290861724, guid: 6071b3658569ca24ebfd444740ad9c4a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -26266,6 +26266,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4585204731604839609, guid: f063da377dce269428c9c029ccdf3032, type: 3}
   m_PrefabInstance: {fileID: 1272245219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1295916041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1295916042}
+  - component: {fileID: 1295916043}
+  m_Layer: 0
+  m_Name: Group W3 - Navigation Object Activator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1295916042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295916041}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.4, y: -1.98, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1266080318}
+  m_Father: {fileID: 1859445900}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1295916043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295916041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e715e9b994cc81429a9cda5b836e31c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notificationIDs: []
+  criteriaEvents:
+  - {fileID: 11400000, guid: a21f95dc868d34940ad90b3e4572cf8f, type: 2}
 --- !u!1 &1297630545
 GameObject:
   m_ObjectHideFlags: 0
@@ -26425,7 +26472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313322175}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.8253703, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: -0.8800049, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 923856147}
@@ -28140,7 +28187,17 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1400007070}
+    m_ColliderPaths:
+    - - X: 101599707
+        Y: -56450000
+      - X: 101599707
+        Y: 56450000
+      - X: -101600000
+        Y: 56449707
+      - X: -101599707
+        Y: -56450000
   m_CompositePaths:
     m_Paths:
     - - {x: 10.159942, y: -5.645}
@@ -33694,17 +33751,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1788618458}
-    m_ColliderPaths:
-    - - X: 73249707
-        Y: -72500000
-      - X: 73249707
-        Y: 72500000
-      - X: -73250000
-        Y: 72499707
-      - X: -73249707
-        Y: -72500000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 7.3249416, y: -7.25}
@@ -35360,7 +35407,7 @@ Transform:
   - {fileID: 1871111972}
   - {fileID: 68219105}
   - {fileID: 1606156503}
-  - {fileID: 1266080318}
+  - {fileID: 1295916042}
   m_Father: {fileID: 842967600}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -39492,7 +39539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2132604570
 Transform:
   m_ObjectHideFlags: 0
