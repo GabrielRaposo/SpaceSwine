@@ -32,9 +32,7 @@ namespace AK
         static const AkUniqueID CENARIO_PORTACONTAINER_ABRE = 3761750313U;
         static const AkUniqueID CENARIO_PORTACONTAINER_FECHA = 863928978U;
         static const AkUniqueID CENARIO_TELAROBOZAO_LIGA = 2630923647U;
-        static const AkUniqueID CENARIO_TRANSICAO = 3223415371U;
         static const AkUniqueID CENARIO_TUTORIAL_SOUNDSCAPE = 1243364701U;
-        static const AkUniqueID CENARIO_VITORIA = 3655190725U;
         static const AkUniqueID CHORDS_01 = 522712106U;
         static const AkUniqueID CHORDS_02 = 522712105U;
         static const AkUniqueID GAMEPLAY_BOLHA_ANDAR = 2398576381U;
