@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class LanguageScreenFunctions : MonoBehaviour
+public class LanguageScreenFunctions : StoryEventDependent
 {
+    [SerializeField] StoryEventScriptableObject newSaveStoryEvent;
     [SerializeField] List<LanguageMenuButton> languageButtons;
     [SerializeField] float holdCooldown;
 
@@ -36,13 +37,28 @@ public class LanguageScreenFunctions : MonoBehaviour
         playerInputActions.UI.Confirm.Enable();
 
         if (canvasGroup)
-            canvasGroup.alpha = 1;
+            canvasGroup.alpha = 0;
     }
 
     private void Start() 
     {
-        current = ( LocalizationManager.CurrentLanguage == GameLocalizationCode.EN ? 1 : 0 );
-        SelectCurrent();
+        CallDependentAction
+        (
+            () => {
+                current = ( LocalizationManager.CurrentLanguage == GameLocalizationCode.EN ? 1 : 0 );
+
+                if (newSaveStoryEvent != null && StoryEventsManager.IsComplete(newSaveStoryEvent))
+                {
+                    SetLanguage ( languageButtons[current].LocalizationCode );
+                    return;
+                }
+
+                if (canvasGroup)
+                    canvasGroup.alpha = 1;
+
+                SelectCurrent();
+            }
+        );
     }
 
     private void Update() 
