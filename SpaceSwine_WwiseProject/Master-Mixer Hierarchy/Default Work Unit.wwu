@@ -282,7 +282,7 @@
 										<Bus Name="ui_keyitem_fanfarra" ID="{BF3F6779-9E30-4992-B445-314E907ECABD}">
 											<PropertyList>
 												<Property Name="MaxDuckVolume" Type="Real64" Value="-200"/>
-												<Property Name="RecoveryTime" Type="Real64" Value="0.3"/>
+												<Property Name="RecoveryTime" Type="Real64" Value="0.5"/>
 											</PropertyList>
 											<ObjectLists/>
 											<DuckingList>
@@ -290,9 +290,9 @@
 													<BusRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}"/>
 													<DuckingParam>
 														<Volume>-30</Volume>
-														<FadeInTime>2</FadeInTime>
-														<FadeOutTime>0.300000011920929</FadeOutTime>
-														<FadeCurve>FadeLog2</FadeCurve>
+														<FadeInTime>0.5</FadeInTime>
+														<FadeOutTime>0.5</FadeOutTime>
+														<FadeCurve>FadeLog1</FadeCurve>
 													</DuckingParam>
 												</DuckItem>
 											</DuckingList>
