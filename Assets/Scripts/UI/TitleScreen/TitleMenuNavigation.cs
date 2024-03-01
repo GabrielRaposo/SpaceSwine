@@ -8,9 +8,9 @@ using DG.Tweening;
 
 public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
 {
-    
-    [Header("Dynamic Button")]
+    [Header("Dynamic Buttons")]
     [SerializeField] TitleMenuButton continueButton;
+    [SerializeField] TitleMenuButton newGameButton;
     [SerializeField] StoryEventScriptableObject newSaveCheckEvent;
 
     [Header("Audio")]
