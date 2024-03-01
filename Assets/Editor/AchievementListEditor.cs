@@ -66,7 +66,7 @@ public class AchievementListEditor : Editor
             
             GUILayout.Space(iconSize);
             
-            a.sprite = (Sprite)EditorGUI.ObjectField(rect, a.sprite, typeof(Sprite), a.sprite);
+            //a.sprite = (Sprite)EditorGUI.ObjectField(rect, a.sprite, typeof(Sprite), a.sprite);
             
             EditorGUILayout.EndVertical();//OBJ0
 

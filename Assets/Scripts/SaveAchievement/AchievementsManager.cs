@@ -6,8 +6,18 @@ using UnityEditor;
 using UnityEngine;
 
 public enum AchievementEnum
-{
-    
+{   //Adicionar achievements aqui
+    IKnowAShortcut,
+    AsimovsLaws,
+    HistoricalPreservation,
+    Beatmaker,
+    TheBody,
+    ElectromagneticInterference,
+    TheSpirit,
+    Cryptogeologist,
+    FruitsOfLabor,
+    TheMind,
+    Aficionado,
 }
 
 public static class AchievementsManager
@@ -15,7 +25,7 @@ public static class AchievementsManager
     private const string achievementListAddress = "AchievementList";
     public static List<AchievementLog> currentAchievementLog;
     public static List<Achievement> achievementList;
-    public static Action<Achievement> achievementAnimation;
+    //public static Action<Achievement> achievementAnimation;
 
     private static GameAchievementList loadedList;
 
@@ -26,7 +36,18 @@ public static class AchievementsManager
     static AchievementsManager()
     {
         EnumStringDictionary = new Dictionary<AchievementEnum, string>
-        {
+        {   //Inicializar dicionário com os ids aqui
+            { AchievementEnum.IKnowAShortcut , "$0"},
+            { AchievementEnum.AsimovsLaws , "$1"},
+            { AchievementEnum.HistoricalPreservation , "$2"},
+            { AchievementEnum.Beatmaker , "$3"},
+            { AchievementEnum.TheBody , "$4"},
+            { AchievementEnum.ElectromagneticInterference , "$5"},
+            { AchievementEnum.TheSpirit , "$6"},
+            { AchievementEnum.Cryptogeologist , "$7"},
+            { AchievementEnum.FruitsOfLabor , "$8"},
+            { AchievementEnum.TheMind , "$9"},
+            { AchievementEnum.Aficionado , "$10"}
         };
     }
     
@@ -135,8 +156,10 @@ public static class AchievementsManager
         if(a.achieved == state) return;
         
         a.achieved = state;
+        //Debug.Log($"<color=#45de00>Setting achievement progress for - {LocalizationManager.GetAchievementName(a.Achievement.id)} -> {state}</color>");
+        DebugDisplay.Log($"<color=#45de00>Setting achievement progress for - {LocalizationManager.GetAchievementName(a.Achievement.id)} -> {state}</color>");
         
-        if(state) achievementAnimation.Invoke(a.Achievement);
+        //if(state) achievementAnimation.Invoke(a.Achievement);
     }
 
     public static void SetAchievementState(AchievementEnum achivEnum, bool state)
@@ -162,12 +185,12 @@ public static class AchievementsManager
         
         a.AddProgress(amount);
         
-        Debug.Log($"Progress: {a.GetProgress()}/{a.GetAmountRequired()}");
+        Debug.Log($"<color=#45de00>Progress of {a.Achievement.id}: {a.GetProgress()}/{a.GetAmountRequired()}</color>");
 
         if (a.GetProgress() >= a.GetAmountRequired())
         {
             a.achieved = true;
-            achievementAnimation.Invoke(a.Achievement);
+            //achievementAnimation.Invoke(a.Achievement);
         }
     }
 
@@ -192,14 +215,14 @@ public static class AchievementsManager
         if(a.Achievement.achievementType != AchievementType.Events) return;
         
         a.SetCodeProgress(code, value);
-        Debug.Log($"SetAchievementProgressPart: {id} code:{code} progress:{a.GetProgress()}/{a.GetAmountRequired()}");
+        Debug.Log($"<color=#45de00>SetAchievementProgressPart: {id} code:{code} progress:{a.GetProgress()}/{a.GetAmountRequired()}</color>");
 
         if(a.achieved) return;
 
         if (a.GetProgress() >= a.GetAmountRequired())
         {
             a.achieved = true;
-            achievementAnimation.Invoke(a.Achievement);
+            //achievementAnimation.Invoke(a.Achievement);
         }
     }
 
@@ -224,7 +247,7 @@ public enum AchievementType
 [Serializable]
 public class Achievement
 {
-    public Sprite sprite;
+    //public Sprite sprite;
     
     public AchievementType achievementType;
     
@@ -317,7 +340,7 @@ public class AchievementLog
 
         e.concluded = value;
         
-        Debug.Log($"Event Progress (code: {code}):  {GetProgress()}/{GetAmountRequired()}");
+        Debug.Log($"<color=#45de00>Event Progress (code: {code}):  {GetProgress()}/{GetAmountRequired()}</color>");
     }
 
     public virtual int GetAmountRequired()
@@ -349,13 +372,4 @@ public class AchievementEvent
         this.code = achievementEventCode;
         this.concluded = achievementEventConcluded;
     }
-}
-
-[Serializable]
-public class StageProgress
-{
-    public int id;
-    public float timeRecord;
-    public bool cleared;
-    public bool unlocked;
 }

@@ -33,7 +33,7 @@ public class InteractablePortalStoryEventInteraction : StoryEventDependent
 
                 interactablePortal.SetInteraction(IsComplete);
                 door.SetOpenState(IsComplete, instant: true);
-                Debug.Log("Setup!: " + IsComplete);
+                //Debug.Log("Setup!: " + IsComplete);
             }
         );
     }

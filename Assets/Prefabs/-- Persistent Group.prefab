@@ -69,8 +69,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 17d37000588e62c47885aca6e9c6d88e, type: 2}
   - {fileID: 11400000, guid: 8e5d91b6aefee78409244a773c522b59, type: 2}
   - {fileID: 11400000, guid: e07945c2ffae4ee4f8263b50acbffd66, type: 2}
+  - {fileID: 11400000, guid: e2a84814715b2094bb998bfa2c8d3d08, type: 2}
   - {fileID: 11400000, guid: a21f95dc868d34940ad90b3e4572cf8f, type: 2}
-  - {fileID: 11400000, guid: 9cc288ca6df927e4e9bfc5cafa97ad81, type: 2}
+  - {fileID: 11400000, guid: cb644672b7880194d804b9d3f5dfb3bd, type: 2}
   - {fileID: 11400000, guid: 894dc7ff4a14e5c4eb8104c8408b333e, type: 2}
   - {fileID: 11400000, guid: 4f285f59122e38649bccf53b57308d10, type: 2}
   - {fileID: 11400000, guid: 0517524c304be8a428d386f946e036ca, type: 2}
@@ -80,6 +81,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f914ae3c1da7ddc4397326859f4965ec, type: 2}
   - {fileID: 11400000, guid: f196fb72092362d4582d89124d72327a, type: 2}
   - {fileID: 11400000, guid: c927377e8f8b4f34fbb76d6bf2a63c75, type: 2}
+  - {fileID: 11400000, guid: 6b11854da7053f34c92823c942413bda, type: 2}
 --- !u!1 &106744926703459151
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,6 +862,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4796787506915736951}
   - component: {fileID: 1528574954285098493}
+  - component: {fileID: 2184788980114417181}
   m_Layer: 0
   m_Name: Soundtrack Manager
   m_TagString: Untagged
@@ -910,6 +913,22 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: e3b0120eabb284c41be708b47bf91e4b, type: 2}
+--- !u!114 &2184788980114417181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972309513374064537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f3d9be279a4b8d449f5c14707467925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullPlaylist: {fileID: 11400000, guid: 23a56cfd175ca1a4b9d5cc1797b9be04, type: 2}
+  world1Playlist: {fileID: 11400000, guid: 23eb5e775aef7004f9abaf5d33e4243c, type: 2}
+  world2Playlist: {fileID: 11400000, guid: cedc57f0c58b8164fa26d6552bcae4c0, type: 2}
+  world3Playlist: {fileID: 11400000, guid: 2da46aaf5e28a244c930da0bd81f62b6, type: 2}
 --- !u!1 &2479926269062887750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,11 +1052,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ada9c15bb6cb5f44ae3428b56480f99, type: 2}
   - {fileID: 11400000, guid: f672ad6f1543f694a9c4b3ce2e421c2d, type: 2}
   - {fileID: 11400000, guid: 9c137a7034a4e5a4a93e5cab3e102e57, type: 2}
-  - {fileID: 11400000, guid: 1c2a16c52439b46468547cf07dbf8133, type: 2}
-  - {fileID: 11400000, guid: 1f49fbf45277e004a93471657b8e3fd7, type: 2}
-  - {fileID: 11400000, guid: 283d112375fce344dbe9ed9f75053874, type: 2}
   - {fileID: 11400000, guid: 16d41523acbe42d4083dc2c40f58cf49, type: 2}
-  - {fileID: 11400000, guid: 89494ea6a83becb43a3088dc16e2ef3e, type: 2}
 --- !u!1 &3234124924910997602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,7 +1070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8859486982507285968
 Transform:
   m_ObjectHideFlags: 0
@@ -2466,6 +2481,7 @@ MonoBehaviour:
   hold1Duration: 0.75
   hold2Duration: 1.25
   musicFadeOut: 1.25
+  musicFadeIn: 1.25
   mainCanvasGroup: {fileID: 8232591258871688760}
   assetsGroup: {fileID: 6703508647994764053}
   fillImage: {fileID: 4329337394556345140}
@@ -2488,8 +2504,6 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 275a822744353764783ba2eb6857269d, type: 2}
-  safetyPlaylist: {fileID: 11400000, guid: 12284a3eda1658e4cb90090abb7e49c2, type: 2}
-  dangerPlaylist: {fileID: 11400000, guid: 029182bd2c4fd1b48a75476fee0aaedb, type: 2}
 --- !u!225 &8232591258871688760
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3147,8 +3161,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 9
+  m_fontSizeBase: 9
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

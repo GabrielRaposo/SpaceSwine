@@ -389,6 +389,28 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="gameplay_chave_quebra" ID="{379B9603-FEE6-4662-BABE-5C034C1932C0}">
+							<ChildrenList>
+								<Action Name="" ID="{CB38EAA4-6E9A-49E0-9C53-5490A92CCE70}" ShortID="1071396230">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="gameplay_chave_quebra" ID="{BDFD840E-A75B-45AE-B547-3F19B918E15A}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="gameplay_cristal_teleporta" ID="{4B77F6B1-2540-44AA-B0E1-FD099F0FD47C}">
+							<ChildrenList>
+								<Action Name="" ID="{0C535818-AE2A-4FA5-84AB-E6D64796B986}" ShortID="365557109">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="gameplay_cristal_teleporta" ID="{D8E0F0E6-67CC-4B3E-A19A-436E0A8D7072}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{A605F833-337F-4E50-B645-2CF63495EEFF}" ShortID="785344164">
@@ -578,6 +600,28 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Event Name="ui_pager_erro" ID="{BE8F8044-BC32-484D-8114-3A38329F5F06}">
+									<ChildrenList>
+										<Action Name="" ID="{FDF62567-537E-4E4F-8B8E-A924CA927FDB}" ShortID="408360266">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_pager_erro" ID="{0C1D8E3E-2158-410E-9DD9-CA0AD10C9307}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_pager_reseta_save" ID="{A3C54406-AF95-4ADC-ADAB-928691F4E195}">
+									<ChildrenList>
+										<Action Name="" ID="{7B2573F2-FC40-4570-AF67-5A649EF6FD93}" ShortID="603852086">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_pager_reseta_save" ID="{036F6E29-B9E4-408D-B1AD-2E0B873CB1E3}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Transições" ID="{D6DA78C8-FBF1-457C-BB4F-6D42332CDE6F}" ShortID="276052669">
@@ -685,6 +729,39 @@
 									<ReferenceList>
 										<Reference Name="Target">
 											<ObjectRef Name="splash_screen" ID="{D26C9E43-ABF4-45C3-8155-C300DA130534}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ui_keyitem_fanfarra" ID="{CFFC3C8D-9033-405C-AA3E-FBE693555153}">
+							<ChildrenList>
+								<Action Name="" ID="{CD776E9D-D2DC-49ED-B72D-EDCBA0B39A62}" ShortID="148188953">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_keyitem_fanfarra" ID="{888D107F-4ECC-4BD2-B9BB-125ABF899654}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ui_objetivo_novo" ID="{5A834CAD-20E7-42F7-BB62-19722485101C}">
+							<ChildrenList>
+								<Action Name="" ID="{A4AD5B2F-CAC8-416B-9BF9-30D7DA6AC1E4}" ShortID="298742751">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_objetivo_novo" ID="{27DAE126-1B68-4BD9-9F3E-25CAFD8A5952}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ui_objetivo_completou" ID="{3C4308DF-C93C-407E-947C-751CCC1D1D62}">
+							<ChildrenList>
+								<Action Name="" ID="{32825A16-A098-448A-80AF-A0657FA9616C}" ShortID="92078409">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_objetivo_completou" ID="{E1672E0E-4045-49EF-B586-7A82D97317FF}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -1036,110 +1113,207 @@
 						<Property Name="OverrideColor" Type="bool" Value="True"/>
 					</PropertyList>
 					<ChildrenList>
-						<Event Name="ui_nave_fala" ID="{AF4D5EE6-ADA2-4583-A72B-0C77A9F1EFF7}">
+						<Folder Name="Mundo 1" ID="{BBA368D9-57A5-4EBE-9E2E-B90454807CAA}" ShortID="568700738">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
-								<Action Name="" ID="{9C3866D0-EAA8-4E9C-AF12-163B5CD4C414}" ShortID="532763341">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="ui_nave_fala" ID="{4C15F122-1426-4EF2-B940-7D758AEB61B5}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
+								<Event Name="ui_robozinho_fala_leg" ID="{0A30245C-722D-42E8-A6DA-3049D52D7B67}">
+									<ChildrenList>
+										<Action Name="" ID="{DA0A5318-BB5C-4523-805B-B96BDD9A8E4F}" ShortID="47819439">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_robozinho_fala_leg" ID="{C498FEC6-F6DF-4FE6-8F39-5527BC75842C}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{93E738A8-AD82-40FD-BE5F-9B1054407F78}" ShortID="393111625">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="leg extra sound 1" ID="{CAADCED8-15E9-4832-9198-C77880CBBCDD}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{F7E54DDC-46C1-45E3-AAE3-88F0EEDAB209}" ShortID="675359649">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="leg extra sound 2" ID="{08846447-FF25-485E-9666-5AE1DFA1602B}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_marombot_fala" ID="{9AA686F0-6633-4240-99C1-570D3C79046F}">
+									<ChildrenList>
+										<Action Name="" ID="{CF755E2B-A672-4F06-817B-E8BE0CE33817}" ShortID="616790172">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_marombot_fala" ID="{1F34455C-AB04-40A1-A42A-94B26851BACA}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_nave_fala" ID="{AF4D5EE6-ADA2-4583-A72B-0C77A9F1EFF7}">
+									<ChildrenList>
+										<Action Name="" ID="{9C3866D0-EAA8-4E9C-AF12-163B5CD4C414}" ShortID="532763341">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_nave_fala" ID="{4C15F122-1426-4EF2-B940-7D758AEB61B5}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_robozao_fala" ID="{FB89972B-C99C-4ADD-8CBA-1ABA698D350F}">
+									<ChildrenList>
+										<Action Name="" ID="{090B7E78-1285-433B-8BC3-6410D797D1A9}" ShortID="283898862">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_robozao_fala" ID="{F018DB10-B814-4E25-B5D5-409565BCF1AD}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_laborbot_fala" ID="{5B61D08C-8A5A-4D45-ACB3-4E2DD11F84AE}">
+									<ChildrenList>
+										<Action Name="" ID="{950589D2-4E30-46A4-8DBA-94726180AB73}" ShortID="750206581">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_laborbot_fala" ID="{7F4B63BF-C904-4995-83EC-2F46AE54BF86}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_robozinho_fala_plank" ID="{25D4A8BA-8CDE-4497-B9CD-DBFFA714E09F}">
+									<ChildrenList>
+										<Action Name="" ID="{8E99895C-D291-45A3-8D0F-4EEF1080B6BF}" ShortID="33091961">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_robozinho_fala_plank" ID="{EFFCFEEF-9BAD-48B8-A9BF-67C056618F39}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+										<Action Name="" ID="{6BC9291C-DCF3-4ED9-BB33-76F330263CFE}" ShortID="226446154">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="plank extra sound" ID="{3BF72B28-8CB7-4983-A08E-1B924152C15F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_robozinho_fala_tom" ID="{5A7A0503-C55E-4472-8D48-71B2EAA17F91}">
+									<ChildrenList>
+										<Action Name="" ID="{89B38A94-E53C-48F4-823F-99332450C587}" ShortID="273749742">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_robozinho_fala_tom" ID="{803CB281-9087-4446-8752-BAF55846A20C}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_robozinho_fala_tree" ID="{660374A3-42AC-434E-B887-FDF199D4304B}">
+									<ChildrenList>
+										<Action Name="" ID="{9D588298-21E9-4693-8EDA-4EDACCA4B4A9}" ShortID="839896942">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_robozinho_fala_tree" ID="{0BFA9E94-C401-4CF8-98BB-03669BF4C920}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
-						</Event>
-						<Event Name="ui_robozao_fala" ID="{FB89972B-C99C-4ADD-8CBA-1ABA698D350F}">
+						</Folder>
+						<Folder Name="Mundo 2" ID="{644F7B8D-3465-4A0F-8219-A9252B0E489F}" ShortID="459664759">
 							<ChildrenList>
-								<Action Name="" ID="{090B7E78-1285-433B-8BC3-6410D797D1A9}" ShortID="283898862">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="ui_robozao_fala" ID="{F018DB10-B814-4E25-B5D5-409565BCF1AD}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
+								<Event Name="ui_alienX_fala" ID="{249ACC7E-DF6D-48CD-B9D9-6A6D206271BB}">
+									<ChildrenList>
+										<Action Name="" ID="{961E7133-1420-4EA2-923B-194EB9CC5A6A}" ShortID="1042338006">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_alienX_fala" ID="{B8FCCD04-0977-4778-813C-A7670E9D4AC4}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
-						</Event>
-						<Event Name="ui_robozinho_fala_leg" ID="{0A30245C-722D-42E8-A6DA-3049D52D7B67}">
+						</Folder>
+						<Folder Name="Mundo 3" ID="{274BA520-8918-497E-BCBB-B5B88312871C}" ShortID="211111516">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="21"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
 							<ChildrenList>
-								<Action Name="" ID="{DA0A5318-BB5C-4523-805B-B96BDD9A8E4F}" ShortID="47819439">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="ui_robozinho_fala_leg" ID="{C498FEC6-F6DF-4FE6-8F39-5527BC75842C}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{93E738A8-AD82-40FD-BE5F-9B1054407F78}" ShortID="393111625">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="leg extra sound 1" ID="{CAADCED8-15E9-4832-9198-C77880CBBCDD}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{F7E54DDC-46C1-45E3-AAE3-88F0EEDAB209}" ShortID="675359649">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="leg extra sound 2" ID="{08846447-FF25-485E-9666-5AE1DFA1602B}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
+								<Event Name="ui_coelho_fala_capacete" ID="{BA2EE8AD-7F24-421D-BE7C-AADA928830B1}">
+									<ChildrenList>
+										<Action Name="" ID="{4290834B-0AAB-428F-AE83-38E72E9A7C77}" ShortID="265926440">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_coelha_fala_capacete" ID="{A2DEBEFE-8014-4475-8A3F-0E929F0187B0}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_urso_fala" ID="{A3CC9901-17C2-4355-B56F-2DD6020ECD0C}">
+									<ChildrenList>
+										<Action Name="" ID="{5BD43E4F-7F4B-46C7-995A-B20840246E23}" ShortID="411790131">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_urso_fala" ID="{3ED58F89-FEE0-424C-8F25-6F2D9B8F1AAD}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_ursaochefe_fala" ID="{BFB22860-4D10-431E-A9FE-A0EC6D99A1BF}">
+									<ChildrenList>
+										<Action Name="" ID="{F0DAF225-F508-4AFD-AD5E-648BC948C356}" ShortID="991674507">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_ursaochefe_fala" ID="{7192F5A6-7505-465A-A36D-8B3626BA4DDE}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_coelho_fala" ID="{73D260D3-5DED-4018-BDAA-0F00EC3EEA33}">
+									<ChildrenList>
+										<Action Name="" ID="{81413DD8-06D5-4AF3-A87F-041B5ACA91B3}" ShortID="695765892">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_coelha_fala" ID="{039783B5-AE5D-45B0-9BC5-FA689007DC59}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ui_pombo_fala" ID="{A2CDE762-4F08-4D89-AF15-B4700C2E26AD}">
+									<ChildrenList>
+										<Action Name="" ID="{85ACD067-DA13-4810-9BF4-7B10BEDED30F}" ShortID="193652371">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ui_pombo_fala" ID="{5A831DF4-A589-4077-91C5-489293C32D89}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
-						</Event>
-						<Event Name="ui_robozinho_fala_plank" ID="{25D4A8BA-8CDE-4497-B9CD-DBFFA714E09F}">
+						</Folder>
+						<Event Name="ui_cutscenefinal_fala" ID="{A9B0ED83-001E-4A1A-83F5-959B045DE27D}">
 							<ChildrenList>
-								<Action Name="" ID="{8E99895C-D291-45A3-8D0F-4EEF1080B6BF}" ShortID="33091961">
+								<Action Name="" ID="{07242D5E-DDCA-4DDE-9761-C77DEFF472B6}" ShortID="678377187">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="ui_robozinho_fala_plank" ID="{EFFCFEEF-9BAD-48B8-A9BF-67C056618F39}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-								<Action Name="" ID="{6BC9291C-DCF3-4ED9-BB33-76F330263CFE}" ShortID="226446154">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="plank extra sound" ID="{3BF72B28-8CB7-4983-A08E-1B924152C15F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="ui_robozinho_fala_tom" ID="{5A7A0503-C55E-4472-8D48-71B2EAA17F91}">
-							<ChildrenList>
-								<Action Name="" ID="{89B38A94-E53C-48F4-823F-99332450C587}" ShortID="273749742">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="ui_robozinho_fala_tom" ID="{803CB281-9087-4446-8752-BAF55846A20C}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="ui_robozinho_fala_tree" ID="{660374A3-42AC-434E-B887-FDF199D4304B}">
-							<ChildrenList>
-								<Action Name="" ID="{9D588298-21E9-4693-8EDA-4EDACCA4B4A9}" ShortID="839896942">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="ui_robozinho_fala_tree" ID="{0BFA9E94-C401-4CF8-98BB-03669BF4C920}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="ui_laborbot_fala" ID="{5B61D08C-8A5A-4D45-ACB3-4E2DD11F84AE}">
-							<ChildrenList>
-								<Action Name="" ID="{950589D2-4E30-46A4-8DBA-94726180AB73}" ShortID="750206581">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="ui_laborbot_fala" ID="{7F4B63BF-C904-4995-83EC-2F46AE54BF86}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
-						<Event Name="ui_marombot_fala" ID="{9AA686F0-6633-4240-99C1-570D3C79046F}">
-							<ChildrenList>
-								<Action Name="" ID="{CF755E2B-A672-4F06-817B-E8BE0CE33817}" ShortID="616790172">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="ui_marombot_fala" ID="{1F34455C-AB04-40A1-A42A-94B26851BACA}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+											<ObjectRef Name="ui_cutscenefinal_fala" ID="{527A4048-7389-42B3-A40C-6AEFA31C42B5}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -1246,6 +1420,61 @@
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="cenario_passarinhos_voam" ID="{AEC874B7-8668-4F1A-9875-29F5EB875118}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="cenario_telarobozao_liga" ID="{7AE60C59-1DF6-4833-BD80-8D462CA4F3A3}">
+									<ChildrenList>
+										<Action Name="" ID="{CCD88E41-098C-4172-854D-870ACF09DC25}" ShortID="562899750">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="cenario_telarobozao_liga" ID="{3D655E45-902D-4F39-B0F4-24912FBDDA07}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="cenario_buyk_chuta_copo" ID="{02784F4B-21F6-4890-B946-0416AEF56415}">
+									<ChildrenList>
+										<Action Name="" ID="{01C4014A-5D3C-45A8-9691-004B762F6B61}" ShortID="900786357">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="cenario_buyk_chuta_copo" ID="{D7135217-DF92-420D-B214-71892044022F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="cenario_portacontainer_abre" ID="{6515E9F7-FD6E-4ED3-A696-E1707E5F50BE}">
+									<ChildrenList>
+										<Action Name="" ID="{817596ED-023C-4AA2-BAE0-F0619EC49CF2}" ShortID="561885220">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="cenario_portacontainer_abre" ID="{455E57A5-5AC1-41C1-9B35-FCB87E5A86DC}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="cenario_portacontainer_fecha" ID="{9E2281FF-2C09-40C7-B018-70ACB35F12B6}">
+									<ChildrenList>
+										<Action Name="" ID="{CBC23DAD-FAA1-471B-9FEF-7A5ECCEB863E}" ShortID="39506696">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="cenario_portacontainer_fecha" ID="{EBE81B94-A022-4EDD-81AD-EA15F635C7E0}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="cenario_coelho_apoiacapacete_chao" ID="{077CEBA7-363E-4096-A14F-CD40B8C42A8B}">
+									<ChildrenList>
+										<Action Name="" ID="{47242454-DB3E-4015-9D62-ABFB1175E6E7}" ShortID="900353625">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="cenario_coelha_apoiacapacete_chao" ID="{24ED4E2D-6951-415B-AC1C-793BA6FF70FD}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -1371,17 +1600,6 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
-						<Event Name="cenario_buyk_chuta_copo" ID="{02784F4B-21F6-4890-B946-0416AEF56415}">
-							<ChildrenList>
-								<Action Name="" ID="{01C4014A-5D3C-45A8-9691-004B762F6B61}" ShortID="900786357">
-									<ReferenceList>
-										<Reference Name="Target">
-											<ObjectRef Name="cenario_buyk_chuta_copo" ID="{D7135217-DF92-420D-B214-71892044022F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-										</Reference>
-									</ReferenceList>
-								</Action>
-							</ChildrenList>
-						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="z_depois" ID="{D409761D-AB2C-488D-8196-3D397D3728EF}" ShortID="382020020">

@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1006063551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3096985270007129183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09283ef6d4e5374e826e1b2b0e9636d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storyEvent: {fileID: 0}
+  progressValue: 1
+  dialogueGroupIndex: -1
 --- !u!95 &552555830102811003
 Animator:
   serializedVersion: 3
@@ -19,21 +34,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1006063551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3096985270007129183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b09283ef6d4e5374e826e1b2b0e9636d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  storyEvent: {fileID: 11400000, guid: 9cc288ca6df927e4e9bfc5cafa97ad81, type: 2}
-  progressValue: 1
-  dialogueGroupIndex: -1
 --- !u!1001 &4131965854750686700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ PrefabInstance:
     - target: {fileID: 1417792465394555279, guid: 8674df90daacfea4585ef0a39a58a466, type: 3}
       propertyPath: customDialogueStyle
       value: 
-      objectReference: {fileID: 11400000, guid: 9e31de7e557d9234ca6eefd9e0a89a5e, type: 2}
+      objectReference: {fileID: 11400000, guid: 32b6fec7d8fd4b843a964c293371debc, type: 2}
     - target: {fileID: 1417792465394555279, guid: 8674df90daacfea4585ef0a39a58a466, type: 3}
       propertyPath: talkSoundAKEvent.WwiseObjectReference
       value: 
@@ -103,7 +103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1417792465394555315, guid: 8674df90daacfea4585ef0a39a58a466, type: 3}
       propertyPath: m_Name
-      value: NPC-World 3 Bunny(Masked)
+      value: NPC-World 3 Bunny(Masked) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1417792465447193231, guid: 8674df90daacfea4585ef0a39a58a466, type: 3}
       propertyPath: m_SortingOrder

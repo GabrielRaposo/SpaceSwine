@@ -133,10 +133,44 @@ public class StoryEventsManager : MonoBehaviour
             return;
 
         eventProgress.ChangeProgress(value);
+        
+        StoryEventsAchievementsChecks(key);
 
         UpdatePrintedEventStates();
 
         ParseToSaveFormat();
+    }
+
+    private static void StoryEventsAchievementsChecks(StoryEventScriptableObject storyEvent)
+    {
+        Debug.Log("<color=#45de00>Checking story events achievements for " + storyEvent.name + " id:" + storyEvent.idTag + "</color>");
+        if(!IsComplete(storyEvent)) return;
+        
+        //ACHIEVEMENT CALLS
+
+        switch (storyEvent.idTag)
+        {
+            case "SHIP-ACCESS-REPAIRED":
+                AchievementsManager.SetAchievementState(AchievementEnum.IKnowAShortcut, true);
+                break;
+            
+            case "THINGAMAJIG-1":
+                AchievementsManager.SetAchievementState(AchievementEnum.TheBody, true);
+                break;
+            
+            case "THINGAMAJIG-2":
+                AchievementsManager.SetAchievementState(AchievementEnum.TheSpirit, true);
+                break;
+            
+            case "THINGAMAJIG-3":
+                AchievementsManager.SetAchievementState(AchievementEnum.TheMind, true);
+                break;
+            
+            case "W2-SUB-3":
+                AchievementsManager.SetAchievementState(AchievementEnum.ElectromagneticInterference, true);
+                break;
+        }
+        
     }
 
     public static void ClearProgress (StoryEventScriptableObject key)

@@ -6,28 +6,25 @@ using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 
-public class ShipDialogueManager : MonoBehaviour
+public class ShipDialogueManager : StoryEventDependent
 {
     static string dialogOptionsRegex = @"^.*(<\d+>(.)+)+[^>]$";
     static string flowRedirectRegex = @"^.*->\d+$";
     public static string shipDialogListRegex = @"^CHAT_W\d_([\w\d\-]+)_\d{3}\.\d{2}$";
 
-
     [System.Serializable]
-    public struct DialogueIndexer
+    public class DialogueIndexer
     {
-        public string notificationID;
-        public int index;
         public StoryEventScriptableObject storyEvent;
+        public string textCode;
     }
-
-    [SerializeField] List<DialogueIndexer> dialogueIndexers;
 
     [Header("Start Scene")]
     [SerializeField] ShipNPCData startDialogueData;
     [SerializeField] float startUpDelay;
     [SerializeField] float lookAtScreensDuration;
     [SerializeField] Transform lookAtTarget;
+    [SerializeField] StoryEventScriptableObject talkedWithShipStoryEvent;
 
     [Header("References")]
     [SerializeField] PlayerCharacter playerCharacter;
@@ -36,7 +33,8 @@ public class ShipDialogueManager : MonoBehaviour
     [SerializeField] ShipInitializerSystem shipInitializer;
     [SerializeField] ShipExclamationIcon shipExclamationIcon;
 
-    public static int StartDialogueIndex = -1; // -- Chama "-1" se não tiver diálogo no início
+    [SerializeField] List<DialogueIndexer> dialogueIndexers;
+    
     StoryEventScriptableObject afterDialogueStoryEvent;
 
     Sequence startSequence;
@@ -51,7 +49,7 @@ public class ShipDialogueManager : MonoBehaviour
             return;
         }
 
-        SetDialogueOnStart();
+        CallDependentAction( SetDialogueOnStart );
         
         platformerCharacter = playerCharacter.gameObject.GetComponent<PlatformerCharacter>();
         playerInput = playerCharacter.gameObject.GetComponent<PlayerInput>();
@@ -62,14 +60,20 @@ public class ShipDialogueManager : MonoBehaviour
         if (dialogueIndexers == null)
             return;
 
-        // Read notifications
-        foreach (DialogueIndexer dialogueIndexer in dialogueIndexers)
+        int StartDialogueIndex = -1;
+        DialogueIndexer dialogueIndexer = null;
+
+        for (int i = 0; i < dialogueIndexers.Count; i++)
         {
-            if (UINotificationManager.Check (dialogueIndexer.notificationID))
-            {
-                UINotificationManager.Use (dialogueIndexer.notificationID);
-                StartDialogueIndex = dialogueIndexer.index;
-                afterDialogueStoryEvent = dialogueIndexer.storyEvent;
+            DialogueIndexer data = dialogueIndexers[i];
+            if (data.storyEvent == null)
+                continue;
+
+            if (StoryEventsManager.IsComplete(data.storyEvent) && !UINotificationManager.Check( NotificationID(i) ))
+            {   
+                StartDialogueIndex = i;
+                dialogueIndexer = data;
+                UINotificationManager.Create (NotificationID(i));
                 break;
             }
         }
@@ -77,26 +81,47 @@ public class ShipDialogueManager : MonoBehaviour
         if (StartDialogueIndex < 0)
             return;
 
-        if (startDialogueData == null)
-            return;
+        DialogueGroup dialogueGroup = new DialogueGroup();
+        dialogueGroup.tags = new List<string>();
+
+        int localIndex = 1;
+
+        for (int k = 0; k < 30; k++) 
+        {
+            if (!CheckTagValidity( FormatedTag(dialogueIndexer.textCode, localIndex) ))
+                break;
+
+            dialogueGroup.tags.Add( FormatedTag(dialogueIndexer.textCode, localIndex) );
+            localIndex++;
+        }
+
+        if (dialogueGroup.tags.Count < 1)
+           return;
 
         GameManager.OnDialogue = true;
 
         shipInitializer.AfterStartAction = () => 
         {
-            CallDialogueOnStart();
+            CallDialogueOnStart(dialogueGroup);
         };
     }
 
-    private void CallDialogueOnStart()
-    {
-        List<DialogueGroup> dialogueGroups = startDialogueData.dialogueGroups;
-        if (dialogueGroups.Count < 1)
-            return;
+    string NotificationID (int id) => "StartDialogue_" + id.ToString("00");
 
+    string FormatedTag (string tag, int i) => tag + "." + i.ToString("00");
+
+    private bool CheckTagValidity (string tag)
+    {
+        (bool isValid, string text) data = LocalizationManager.GetShipText( tag );
+
+        return data.isValid;
+    }
+
+    private void CallDialogueOnStart (DialogueGroup dialogueGroup)
+    {
         startSequence = DOTween.Sequence();
         startSequence.AppendInterval(startUpDelay);
-        startSequence.Append( SetupForScene (startDialogueData) );
+        startSequence.Append(SetupForScene(TurnOnScreensAndTalk: true));
         startSequence.AppendInterval(lookAtScreensDuration);
         startSequence.AppendCallback
         (
@@ -105,15 +130,18 @@ public class ShipDialogueManager : MonoBehaviour
         startSequence.AppendInterval(.5f);
         startSequence.OnComplete
         (
-            () => SetDialogueGroup (startDialogueData, dialogueGroups[StartDialogueIndex % dialogueGroups.Count])
+            () => SetDialogueGroup (startDialogueData, dialogueGroup)
         );
     }
 
     public void CallDialogueFromAvailableTalks()
     {
+        SetExclamationIcon(false);
+        return;
+
         var shipTalkIds = SaveManager.GetShipTalkIds();
         
-        if(shipTalkIds.Count == 0)
+        if (shipTalkIds.Count == 0)
             return;
         
         GameManager.OnDialogue = true;
@@ -144,9 +172,9 @@ public class ShipDialogueManager : MonoBehaviour
         } while (true);
 
         startSequence = DOTween.Sequence();
-        startSequence.AppendInterval(startUpDelay);
+        //startSequence.AppendInterval(startUpDelay);
         startSequence.Append( SetupForScene (startDialogueData) );
-        startSequence.AppendInterval(lookAtScreensDuration);
+        //startSequence.AppendInterval(lookAtScreensDuration);
         startSequence.AppendCallback
         (
             () => dialogueBox.SetShown(true)
@@ -154,7 +182,7 @@ public class ShipDialogueManager : MonoBehaviour
         startSequence.AppendInterval(.5f);
         startSequence.OnComplete
         (
-            () => SetDialogueGroup (startDialogueData, dialogGroup, 0, mainDialogId)
+            () => SetDialogueGroup(startDialogueData, dialogGroup, 0, mainDialogId)
         );
     }
 
@@ -234,38 +262,27 @@ public class ShipDialogueManager : MonoBehaviour
         else 
             dialogueBox.SetShown(false, duration: .5f, forceOut: true);
 
-        // -- TEMP PRA BUILD -------
-        //if (SetShipDialogueOnNotification.AllDialoguesSet && StartDialogueIndex < 3)
-        //{
-        //    StartDialogueIndex = 3;
-        //    //RaposUtil.WaitSeconds(this, duration: .5f,  );
-        //    dialogueBox.Type(" ", delay: .5f, instantText: true, afterInputAction: null);
-        //    CallDialogueOnStart();
-        //    return;
-        //}
-        // -- 
-
         ResumeOnScene(dialogueData);
-        StartDialogueIndex = -1;
         if (afterDialogueStoryEvent != null)
             StoryEventsManager.ChangeProgress(afterDialogueStoryEvent, +999);
+        if (talkedWithShipStoryEvent != null)
+            StoryEventsManager.ChangeProgress(talkedWithShipStoryEvent, +999);
+
         GameManager.OnDialogue = false;
 
         SaveManager.RemoveFromShipTalkIds(idToRemoveFromShipDialog);
-        
+
     }
 
-    private Sequence SetupForScene (ShipNPCData data)
+    private Sequence SetupForScene (bool TurnOnScreensAndTalk)
     {
         Sequence s = DOTween.Sequence();
 
-        switch (data.sceneType)
-        {
-            case ShipSceneType.TurnOnScreensAndTalk:
-                PlatformerCharacter platformerCharacter = playerCharacter.GetComponent<PlatformerCharacter>();
-                if (platformerCharacter)
-                    s.AppendCallback( () => platformerCharacter.LookAtTarget(lookAtTarget != null ? lookAtTarget : transform) );
-                break;
+        if (TurnOnScreensAndTalk)
+        { 
+            PlatformerCharacter platformerCharacter = playerCharacter.GetComponent<PlatformerCharacter>();
+            if (platformerCharacter)
+                s.AppendCallback( () => platformerCharacter.LookAtTarget(lookAtTarget != null ? lookAtTarget : transform) );
         }
 
         return s;

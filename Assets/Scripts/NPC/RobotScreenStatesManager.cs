@@ -6,6 +6,7 @@ using DG.Tweening;
 public class RobotScreenStatesManager : MonoBehaviour
 {
     [SerializeField] Transform screenTransform;
+    [SerializeField] AK.Wwise.Event turnOnAKEvent;
 
     bool displayed;
 
@@ -24,6 +25,9 @@ public class RobotScreenStatesManager : MonoBehaviour
         {
             if (displayed)
                 return;
+
+            if (turnOnAKEvent != null)
+                turnOnAKEvent.Post(gameObject);
 
             screenTransform.DOScaleY(1f, duration: .1f)
                 .SetEase(Ease.Linear);

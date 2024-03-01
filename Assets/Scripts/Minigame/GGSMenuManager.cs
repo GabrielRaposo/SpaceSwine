@@ -190,12 +190,23 @@ public class GGSMenuManager : StoryEventDependent
         if (!aux)
             return;
 
+        bool gotAllCartridges = true;
+        
         for (int i = 0; i < menuTabs.Count - 1; i++)
         {
             bool state = i < minigameUnlockEvents.Count && StoryEventsManager.IsComplete(minigameUnlockEvents[i]);
             menuTabs[i].SetInteractableState(state);
+
+            if (state)
+                AchievementsManager.SetAchievementState(AchievementEnum.HistoricalPreservation, true);
+            else
+                gotAllCartridges = false;
         }
         menuTabs[menuTabs.Count - 1].SetInteractableState(true);
+        
+        if(gotAllCartridges)
+            AchievementsManager.SetAchievementState(AchievementEnum.Aficionado, true);
+        
     }
 
     private void UpdateTabsHighlight()

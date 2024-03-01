@@ -15,8 +15,6 @@ public class SubNPCSetter : MonoBehaviour
         subNPC.SetInteraction(false);
         //subNPC.gameObject.SetActive(false);
         StartCoroutine(DelayDeactivation());
-
-        subNPC.GetComponentInChildren<Animator>().SetTrigger("StartUnmasked");
     }
 
     IEnumerator DelayDeactivation()

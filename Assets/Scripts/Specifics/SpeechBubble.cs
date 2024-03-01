@@ -52,6 +52,7 @@ public class SpeechBubble : MonoBehaviour
 
     public void SetAnimationState (bool state)
     {
-        animator.SetInteger("State", state ? -1 : 1);
+        if (animator)
+            animator.SetInteger("State", state ? -1 : 1);
     }
 }

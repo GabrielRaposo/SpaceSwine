@@ -13,6 +13,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
     [SerializeField] float hold1Duration;
     [SerializeField] float hold2Duration;
     [SerializeField] float musicFadeOut;
+    [SerializeField] float musicFadeIn;
 
     [Header("References")]
     [SerializeField] CanvasGroup mainCanvasGroup;    
@@ -35,9 +36,9 @@ public class TransitionSafetyToDanger : MonoBehaviour
     [SerializeField] AK.Wwise.Event safetyToDangerAKEvent;
     [SerializeField] AK.Wwise.Event dangerToSafetyAKEvent;
 
-    [Header("Playlists - TEMP: sistematizar depois")]
-    [SerializeField] PlaylistScriptableObject safetyPlaylist;
-    [SerializeField] PlaylistScriptableObject dangerPlaylist;
+    //[Header("Playlists - TEMP: sistematizar depois")]
+    //[SerializeField] PlaylistScriptableObject safetyPlaylist;
+    //[SerializeField] PlaylistScriptableObject dangerPlaylist;
 
     Sequence mainSequence;
     private static readonly int Play = Animator.StringToHash("Play");
@@ -80,10 +81,8 @@ public class TransitionSafetyToDanger : MonoBehaviour
         SceneTransition.OnTransition = true;
         PlayerTransitionState.BlockSpawn = true;
         RoundsManager.BlockSpawn = true;
-        SetPlaylistOnStart.Block = true;
 
-        //if (!safetyToDanger)
-            PlayerTransitionState.EnterState = PlayerTransitionState.State.OutOfPortal;
+        PlayerTransitionState.EnterState = PlayerTransitionState.State.OutOfPortal;
 
         bool done = false;
 
@@ -92,7 +91,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
 
         SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
         if (soundtrackManager)
-            soundtrackManager.FadeOutMusic(musicFadeOut);
+            soundtrackManager.FadeOutAndPause(musicFadeOut);
 
         fillImage.enabled = false;
 
@@ -162,10 +161,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
         mainSequence.AppendCallback( () => 
         {
             if (soundtrackManager)
-            {
-                //Debug.Log("aaa");
-                soundtrackManager.SetPlaylist(safetyToDanger ? dangerPlaylist : safetyPlaylist );
-            }
+                soundtrackManager.ResumeAndFadeIn(musicFadeIn);
         } );
         mainSequence.AppendInterval(hold2Duration);
         mainSequence.OnComplete( () => done = true );
@@ -193,11 +189,10 @@ public class TransitionSafetyToDanger : MonoBehaviour
         PlayerTransitionState.BlockSpawn = false;
         gameObject.SetActive(false);
         SceneTransition.OnTransition = false;
-        SetPlaylistOnStart.Block = false; 
 
         OnTransition = false;
         GameManager.BlockCharacterInput = false;
-        Debug.Log(">>> OUT");
+        //Debug.Log(">>> OUT");
     }
 
     private Sequence SwitchStripes(bool toDanger)

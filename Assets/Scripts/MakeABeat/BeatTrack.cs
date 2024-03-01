@@ -118,7 +118,11 @@ namespace MakeABeat
                 else
                 {
                     if (instalationAKEvent != null)
+                    {
                         instalationAKEvent.Post(gameObject);
+                        AchievementsManager.SetAchievementState(AchievementEnum.Beatmaker, true);
+                    }
+                        
                 }
             }
 

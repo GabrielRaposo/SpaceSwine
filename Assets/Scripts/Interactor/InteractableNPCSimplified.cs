@@ -35,7 +35,7 @@ public class InteractableNPCSimplified : InteractableNPC
             if (!CheckTagValidity( FormatedTag(tag, localIndex) ))
                 continue;
 
-            while (true) 
+            for (int k = 0; k < 30; k++) 
             {
                 dialogueGroup.tags.Add( FormatedTag(tag, localIndex) );
                 localIndex++;
@@ -69,6 +69,8 @@ public class InteractableNPCSimplified : InteractableNPC
 
     public override void Interaction (PlayerInteractor interactor)
     {
+        //AchievementsManager.SetAchievementState(AchievementEnum.TheSpirit, true);
+
         //Debug.Log($"Interaction - name: {name}");
         if (!interactable)
             return;

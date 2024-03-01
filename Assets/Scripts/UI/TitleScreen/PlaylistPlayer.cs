@@ -170,7 +170,7 @@ public class PlaylistPlayer : MonoBehaviour
         if (!CutsceneMode && !TransitionSafetyToDanger.OnTransition)
         {
             //Debug.Log("Here?");
-            soundtrackManager.SetPlaylist(playlist);
+            //soundtrackManager.SetPlaylist(playlist);
         }
 
         var data = soundtrackManager.GetTrackData();

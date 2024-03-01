@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BunnyNPCEvents : MonoBehaviour
 {
+    [SerializeField] AK.Wwise.Event unmaskAKEvent;
+
     void Start()
     {
         InteractableNPC interactableNPC = GetComponent<InteractableNPC>();
@@ -11,6 +13,9 @@ public class BunnyNPCEvents : MonoBehaviour
         {
             interactableNPC.SetInteraction(false);
             GetComponentInChildren<Animator>().SetTrigger("Unmask");
+
+            if (unmaskAKEvent != null)
+                unmaskAKEvent.Post(gameObject);
         };
     }
 }

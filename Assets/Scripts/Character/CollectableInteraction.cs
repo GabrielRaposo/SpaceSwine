@@ -299,7 +299,7 @@ public class CollectableInteraction : MonoBehaviour
         if (!directionDisplay)
             return;
 
-        Debug.Log("b");
+        //Debug.Log("b");
         directionDisplay.HideLine(blockfade: true);
     }
 
