@@ -46,6 +46,7 @@ public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
     protected override void Start()
     {
         SetContinueButtonState();
+        //SetNewGameButtonState();
         
         if (startOnFocus)
             OnFocus = true;
@@ -54,7 +55,7 @@ public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
 
     private void SetContinueButtonState()
     {
-        if(continueButton == null) return;
+        if (continueButton == null) return;
         
         if (StoryEventsManager.IsComplete(newSaveCheckEvent) )
         {
@@ -65,6 +66,23 @@ public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
         {
             // remove da lista de scroll
             continueButton.SetInteraction (false);
+            current = 1;
+        }
+        SelectCurrent();
+    }
+
+    private void SetNewGameButtonState()
+    {
+        if (newGameButton == null) return;
+
+        if (StoryEventsManager.IsComplete(newSaveCheckEvent) )
+        {
+            newGameButton.gameObject.SetActive(false);
+            current = 0;
+        }
+        else
+        {
+            newGameButton.gameObject.SetActive(true);
             current = 1;
         }
         SelectCurrent();
@@ -152,6 +170,7 @@ public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
         float f = Mathf.Lerp (start, end, t);
         return f * approachCurve.Evaluate(t);
     }
+
     protected override void MoveCursor (int direction)
     {
         holdCount = holdCooldown;
@@ -166,6 +185,6 @@ public class TitleMenuNavigation : InputSystemButtonsNavigation<TitleMenuButton>
         
         current %= buttonCount;
 
-        SelectCurrent(instant: false, playSound: true);
+        SelectCurrent (instant: false, playSound: true);
     }
 }
