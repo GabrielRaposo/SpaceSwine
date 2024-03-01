@@ -19,12 +19,21 @@ public class DynamicTitleMenuButton : StoryEventDependent
     [SerializeField] List<Data> dataList;
 
     TitleMenuButton menuButton;
-    TextMeshProUGUI labelDisplay;
+    LocalizedText localizedText;
 
-    private void Awake()
+    private void OnEnable()
     {
         menuButton = GetComponent<TitleMenuButton>();
-        labelDisplay = GetComponentInChildren<TextMeshProUGUI>();
+        localizedText = GetComponentInChildren<LocalizedText>();
+
+        if (localizedText)
+            LocalizationManager.AddToActiveTextList(localizedText);
+    }
+
+    private void OnDisable()
+    {
+        if (localizedText)
+            LocalizationManager.RemoveFromActiveTextList(localizedText);
     }
 
     void Start()
@@ -41,11 +50,10 @@ public class DynamicTitleMenuButton : StoryEventDependent
 
         Data data = dataList[state % dataList.Count];
 
-        if (labelDisplay)
-            labelDisplay.text = LocalizationManager.GetUiText(data.labelID, "Continue");
+        if (localizedText)
+            localizedText.SetText (data.labelID);
 
         menuButton.OnClickEvent.RemoveAllListeners();
         menuButton.OnClickEvent = data.OnClickEvent;
     }
-
 }
