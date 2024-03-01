@@ -127,6 +127,12 @@ public class PagerInteractionManager : StoryEventDependent
         (
             action: () => 
             {
+                if (GameManager.IsOnScene(BuildIndex.Title))
+                {
+                    callScreen.titleScreenMode = true;
+                    return;
+                }
+
                 if (StoryEventsManager.IsComplete(signalRestorerStoryEvent))
                 {
                     callScreen.NoSignalMode = false;
@@ -143,6 +149,7 @@ public class PagerInteractionManager : StoryEventDependent
                     return;
                 }
 
+                callScreen.titleScreenMode = false;
                 callScreen.NoSignalMode = false;
                 if (noSignalHeaderIcon)
                     noSignalHeaderIcon.enabled = false;
@@ -281,6 +288,17 @@ public class PagerInteractionManager : StoryEventDependent
         );
     }
 
+    private float HoldDuration
+    {
+        get 
+        { 
+            if (isOnTitleScreen)
+                return holdDuration * 2;
+
+            return holdDuration;
+        } 
+    }
+
     private void ShipInputLogic()
     {
         if (!keychainState)
@@ -314,7 +332,7 @@ public class PagerInteractionManager : StoryEventDependent
             {
                 if (!isOnTitleScreen)
                 {
-                    if (shipCallCount > holdDuration) // -- Teleporta para a nave
+                    if (shipCallCount > HoldDuration) // -- Teleporta para a nave
                     {
                         if (callShipAKEvent != null)
                             callShipAKEvent.Stop(gameObject);
@@ -326,7 +344,7 @@ public class PagerInteractionManager : StoryEventDependent
                 }
                 else
                 {
-                    if (shipCallCount > holdDuration) // -- Chama Save Reset
+                    if (shipCallCount > HoldDuration) // -- Chama Save Reset
                     {
                         if (callShipAKEvent != null)
                             callShipAKEvent.Stop(gameObject);
@@ -341,20 +359,20 @@ public class PagerInteractionManager : StoryEventDependent
             }
             else
             {
-                if (shipCallCount > holdDuration) // -- Falha em ir pra nave
+                if (shipCallCount > HoldDuration) // -- Falha em ir pra nave
                 {
                     if (callShipAKEvent != null)
                         callShipAKEvent.Stop(gameObject);
 
                     if (signalErrorAKEvent != null)
                     {
-                        if (!signalErrorAKEvent.IsPlaying(gameObject) && shipCallCount < holdDuration + .1f)
+                        if (!signalErrorAKEvent.IsPlaying(gameObject) && shipCallCount < HoldDuration + .1f)
                         {
                             signalErrorAKEvent.Post(gameObject);
                         }
                     }
 
-                    if (shipCallCount > holdDuration + .5f) // -- Tempo extra
+                    if (shipCallCount > HoldDuration + .5f) // -- Tempo extra
                     {
                         shipCallCount = 0;
                         return;
@@ -365,7 +383,7 @@ public class PagerInteractionManager : StoryEventDependent
             }
         }
         if (callCountFillDisplay)
-            callCountFillDisplay.fillAmount = shipCallCount / holdDuration;
+            callCountFillDisplay.fillAmount = shipCallCount / HoldDuration;
 
         // -- Mostra a tela certa
         callScreen.gameObject.SetActive(shipInput);
