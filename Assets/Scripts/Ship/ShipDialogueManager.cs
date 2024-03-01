@@ -24,6 +24,7 @@ public class ShipDialogueManager : StoryEventDependent
     [SerializeField] float startUpDelay;
     [SerializeField] float lookAtScreensDuration;
     [SerializeField] Transform lookAtTarget;
+    [SerializeField] StoryEventScriptableObject talkedWithShipStoryEvent;
 
     [Header("References")]
     [SerializeField] PlayerCharacter playerCharacter;
@@ -264,10 +265,13 @@ public class ShipDialogueManager : StoryEventDependent
         ResumeOnScene(dialogueData);
         if (afterDialogueStoryEvent != null)
             StoryEventsManager.ChangeProgress(afterDialogueStoryEvent, +999);
+        if (talkedWithShipStoryEvent != null)
+            StoryEventsManager.ChangeProgress(talkedWithShipStoryEvent, +999);
+
         GameManager.OnDialogue = false;
 
         SaveManager.RemoveFromShipTalkIds(idToRemoveFromShipDialog);
-        
+
     }
 
     private Sequence SetupForScene (bool TurnOnScreensAndTalk)
