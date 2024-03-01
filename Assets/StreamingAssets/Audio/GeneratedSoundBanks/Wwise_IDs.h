@@ -148,6 +148,8 @@ namespace AK
         static const AkUniqueID UI_NAVEGACAO_MOVIMENTACAO_INTRO = 3361592752U;
         static const AkUniqueID UI_NAVEGACAO_MOVIMENTACAO_LOOP = 2757513700U;
         static const AkUniqueID UI_NAVEGACAO_MOVIMENTACAO_OUTRO = 730814295U;
+        static const AkUniqueID UI_OBJETIVO_COMPLETOU = 2911553171U;
+        static const AkUniqueID UI_OBJETIVO_NOVO = 1893002589U;
         static const AkUniqueID UI_PAGER_APARECE = 1544588369U;
         static const AkUniqueID UI_PAGER_CHAMA_NAVE = 476413945U;
         static const AkUniqueID UI_PAGER_CHAMA_NAVE_BOTAO = 3652001215U;
