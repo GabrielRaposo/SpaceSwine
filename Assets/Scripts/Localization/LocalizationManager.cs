@@ -28,15 +28,14 @@ public static class LocalizationManager
     {
         get 
         {
-            //if (!PlayerPrefs.HasKey(LANGUAGE_KEY))
-            //    return currentLanguage;
+            if (!PlayerPrefs.HasKey(LANGUAGE_KEY))
+                return currentLanguage;
 
-            //currentLanguage = PlayerPrefs.GetInt(LANGUAGE_KEY);
-            return currentLanguage;
+            return (GameLocalizationCode) PlayerPrefs.GetInt(LANGUAGE_KEY);
         }
         set
         {
-            Debug.Log("Change language to " + value);
+            //Debug.Log("Change language to " + value);
 
             if(value == currentLanguage) return;
             currentLanguage = value;
@@ -49,6 +48,7 @@ public static class LocalizationManager
                     CurrentLanguage = (GameLocalizationCode)(((int) currentLanguage) + 1);
             }
             
+            PlayerPrefs.SetInt( LANGUAGE_KEY, (int) currentLanguage );
             OnLanguageChange();
         }
     }
