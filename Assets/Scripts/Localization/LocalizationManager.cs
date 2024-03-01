@@ -22,12 +22,22 @@ public static class LocalizationManager
         false   //DE
     };
     
+    static string LANGUAGE_KEY = "language";
+
     public static GameLocalizationCode CurrentLanguage
     {
-        get => currentLanguage;
+        get 
+        {
+            //if (!PlayerPrefs.HasKey(LANGUAGE_KEY))
+            //    return currentLanguage;
+
+            //currentLanguage = PlayerPrefs.GetInt(LANGUAGE_KEY);
+            return currentLanguage;
+        }
         set
         {
             Debug.Log("Change language to " + value);
+
             if(value == currentLanguage) return;
             currentLanguage = value;
 
