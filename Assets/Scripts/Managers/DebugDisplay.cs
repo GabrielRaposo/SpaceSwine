@@ -52,7 +52,7 @@ public class DebugDisplay : MonoBehaviour
 
         SetState(true);
         textDisplay.text = s;
-        Debug.Log(s);
+        //Debug.Log(s);
 
         this.WaitSeconds(duration, () => SetState(false));
     }

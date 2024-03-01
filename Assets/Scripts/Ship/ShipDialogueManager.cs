@@ -80,8 +80,6 @@ public class ShipDialogueManager : StoryEventDependent
         if (StartDialogueIndex < 0)
             return;
 
-        Debug.Log("C: " + dialogueIndexer.textCode);
-
         DialogueGroup dialogueGroup = new DialogueGroup();
         dialogueGroup.tags = new List<string>();
 
@@ -98,8 +96,6 @@ public class ShipDialogueManager : StoryEventDependent
 
         if (dialogueGroup.tags.Count < 1)
            return;
-
-        Debug.Log("D");
 
         GameManager.OnDialogue = true;
 
@@ -139,6 +135,9 @@ public class ShipDialogueManager : StoryEventDependent
 
     public void CallDialogueFromAvailableTalks()
     {
+        SetExclamationIcon(false);
+        return;
+
         var shipTalkIds = SaveManager.GetShipTalkIds();
         
         if (shipTalkIds.Count == 0)

@@ -18,7 +18,8 @@ public class ShipExclamationIcon : MonoBehaviour
         if (shown)
             return;
 
-        animator.SetTrigger("Show");
+        if (animator)
+            animator.SetTrigger("Show");
         shown = true;
     }
 
@@ -27,7 +28,8 @@ public class ShipExclamationIcon : MonoBehaviour
         if (!shown)
             return;
 
-        animator.SetTrigger("Reset");
+        if (animator)
+            animator.SetTrigger("Reset");
         shown = false;
     }
 }
