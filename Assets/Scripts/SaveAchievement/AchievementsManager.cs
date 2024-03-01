@@ -156,7 +156,8 @@ public static class AchievementsManager
         if(a.achieved == state) return;
         
         a.achieved = state;
-        Debug.Log($"<color=#45de00>Setting achievement progress for - {a.Achievement.id} -> {state}</color>");
+        //Debug.Log($"<color=#45de00>Setting achievement progress for - {LocalizationManager.GetAchievementName(a.Achievement.id)} -> {state}</color>");
+        DebugDisplay.Log($"<color=#45de00>Setting achievement progress for - {LocalizationManager.GetAchievementName(a.Achievement.id)} -> {state}</color>");
         
         //if(state) achievementAnimation.Invoke(a.Achievement);
     }
