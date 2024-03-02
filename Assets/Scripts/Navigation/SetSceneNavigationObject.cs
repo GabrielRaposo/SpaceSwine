@@ -32,6 +32,9 @@ public class SetSceneNavigationObject : NavigationObject
 
         interactAction += CallShipAnimation;
 
+        if (selector != null)
+            selector.enabled = false;
+
         if (exclamationIcon != null)
             exclamationIcon.gameObject.SetActive(false);
 
