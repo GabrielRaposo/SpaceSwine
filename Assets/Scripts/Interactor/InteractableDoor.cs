@@ -69,6 +69,9 @@ public class InteractableDoor : Interactable
         // -- Se precisar botar pra depois, então dividir a função em cases de "true" e casos de "false" ocorrendo em tempos diferentes
         if (value)
         {
+            if (openAKEvent != null)
+                openAKEvent.Post(gameObject);
+
             doorAnimator.SetBool("Open", value);
             yield return new WaitForSeconds (doorAnimationDuration);
 
@@ -77,6 +80,9 @@ public class InteractableDoor : Interactable
         }
         else
         {
+            if (closeAKEvent != null)
+                closeAKEvent.Post(gameObject);
+
             backComponent.SetState(value);
             yield return new WaitForSeconds (fadeAnimationDuration);
             
@@ -124,9 +130,6 @@ public class InteractableDoor : Interactable
         //        i.SetInteraction(false);
         //}
 
-        if (openAKEvent != null)
-            openAKEvent.Post(gameObject);
-
         GameManager.BlockCharacterInput = true;
 
         if (player)
@@ -147,9 +150,6 @@ public class InteractableDoor : Interactable
         //    foreach (Interactable i in interactableChildren)
         //        i.SetInteraction(true);
         //}
-
-        if (closeAKEvent != null)
-            closeAKEvent.Post(gameObject);
 
         if (player)
         {

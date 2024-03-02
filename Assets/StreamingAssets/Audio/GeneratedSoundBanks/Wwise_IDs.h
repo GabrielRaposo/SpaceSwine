@@ -57,7 +57,6 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_VOA = 3132805884U;
         static const AkUniqueID GAMEPLAY_CHAVE_QUEBRA = 1139994008U;
         static const AkUniqueID GAMEPLAY_CRISTAL_TELEPORTA = 2452065229U;
-        static const AkUniqueID GAMEPLAY_ELETRICIDADE = 141290699U;
         static const AkUniqueID GAMEPLAY_FLOR_ENERGIZA = 3179447255U;
         static const AkUniqueID GAMEPLAY_FLOR_TRANSITION = 3272639445U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
@@ -75,7 +74,6 @@ namespace AK
         static const AkUniqueID GGS_NAVE_POUSA = 3402632736U;
         static const AkUniqueID GGS_NAVE_PULA = 1092440616U;
         static const AkUniqueID GGS_NAVE_VOA = 1915172630U;
-        static const AkUniqueID GGS_UI_CLIQUE = 1368754271U;
         static const AkUniqueID GGS_UI_DESLIGA = 3509273191U;
         static const AkUniqueID GGS_UI_LIGA = 4113901743U;
         static const AkUniqueID GGS_UI_RECORDE_FANFARRA = 1270516008U;

@@ -258,6 +258,9 @@ public class SpaceJumper : MonoBehaviour
     {
         if (flightLoopAKEvent != null)
             flightLoopAKEvent.Stop(gameObject);
+
+        if (longJumpAKEvent != null)
+            longJumpAKEvent.Stop(gameObject);
     }
 
     private void OnDisable() 
