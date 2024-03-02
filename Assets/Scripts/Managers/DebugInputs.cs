@@ -47,6 +47,7 @@ public class DebugInputs : MonoBehaviour
             displayListAction.performed += (ctx) => 
             {
                 StoryEventsManager.TogglePrintEventStates();
+                DebugDisplay.Log("Toggle Print Events");
             };
             displayListAction.Enable();
 
@@ -160,6 +161,7 @@ public class DebugInputs : MonoBehaviour
             return;
 
         displayListAction.Disable();
+        getAllAction.Disable();
 
         //#if UNITY_EDITOR
         previousRoundAction.Disable();
