@@ -25,6 +25,7 @@ public class SetSceneNavigationObject : NavigationObject
     [SerializeField] GameObject exclamationIcon;
 
     public UnityAction OnSelectAction;
+    public UnityAction OnDeselectAction;
 
     protected override void OnEnable()
     {
@@ -116,6 +117,9 @@ public class SetSceneNavigationObject : NavigationObject
             sr.gameObject.SetActive(false);
 
         selector.enabled = false;
+
+        if (OnDeselectAction != null)
+            OnDeselectAction.Invoke();
     }
 
     protected virtual void CloseAndSetScene()
