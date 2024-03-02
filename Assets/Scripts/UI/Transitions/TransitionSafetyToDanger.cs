@@ -184,6 +184,7 @@ public class TransitionSafetyToDanger : MonoBehaviour
         yield return new WaitUntil( () => done );
 
         fillImage.enabled = false;
+        materialInterface.animator.SetTrigger("Reset");
 
         RoundsManager.BlockSpawn = false;
         PlayerTransitionState.BlockSpawn = false;
