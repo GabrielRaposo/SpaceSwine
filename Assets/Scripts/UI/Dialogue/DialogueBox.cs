@@ -159,7 +159,7 @@ public class DialogueBox : MonoBehaviour
                 EndDialogue();
                 StartCoroutine
                 (
-                    RaposUtil.Wait(3, () =>  
+                    RaposUtil.Wait(frames: 3, () =>  
                     {
                         DialogueSystem.OnDialogue = false;
 

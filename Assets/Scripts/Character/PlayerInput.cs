@@ -25,6 +25,8 @@ public class PlayerInput : MonoBehaviour
     CollectableInteraction collectableInteraction;
     PlayerInteractor playerInteractor;
 
+    [HideInInspector] public float LaunchCooldown; 
+
     private void Awake() 
     {
         gameplayState = GetComponent<LocalGameplayState>();
@@ -94,7 +96,7 @@ public class PlayerInput : MonoBehaviour
 
     private void DoLaunch(InputAction.CallbackContext ctx)
     {
-        if (IsInputBlocked())
+        if (IsInputBlocked() || LaunchCooldown > 0)
             return;
 
         spaceJumper.JumpInput();
@@ -113,32 +115,8 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        //if (DialogueSystem.OnDialogue)
-        //    return;
-
-        //if (Input.GetButtonDown("Interact"))
-        //{
-        //    if (playerInteractor.Interact())
-        //        return;
-        //}
-
-        //platformerCharacter.HorizontalInput(Input.GetAxis("Horizontal"));
-        //collectableInteraction.AxisInput(new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
-
-        //if (Input.GetButtonDown("Jump"))
-        //{
-        //    platformerCharacter.JumpInput();
-        //} 
-        //else if (Input.GetButtonDown("Launch"))
-        //{
-        //    spaceJumper.JumpInput();
-        //} 
-        //else if (Input.GetButtonDown("Throw"))
-        //{
-        //    collectableInteraction.InteractInput();
-        //}
-
-        //gravityInteraction.SetJumpHeld(Input.GetButton("Jump"));           
+        if (LaunchCooldown > 0)
+            LaunchCooldown -= Time.deltaTime;   
     }
 
     private void FixedUpdate() 

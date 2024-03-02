@@ -75,7 +75,7 @@ public class SpaceJumper : MonoBehaviour
                 if (Vector2.Angle(direction, transform.up) > 67.5f)
                     return;
 
-                Debug.Log("Is on gravity area: " + gravityData.Area.transform.parent.name);
+                //Debug.Log("Is on gravity area: " + gravityData.Area.transform.parent.name);
 
                 float speed = rb.velocity.magnitude;
                 direction = rb.velocity + (direction * gravitationalPull);
