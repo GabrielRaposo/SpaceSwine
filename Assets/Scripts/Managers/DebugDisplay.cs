@@ -43,8 +43,11 @@ public class DebugDisplay : MonoBehaviour
         Instance.LocalLog(s);
     }
 
-    public void LocalLog(string s)
+    public void LocalLog (string s)
     {
+        if (!gameObject.activeSelf)
+            return;
+
         if (!textDisplay || !canvasGroup)
             return;
 
@@ -53,7 +56,7 @@ public class DebugDisplay : MonoBehaviour
         SetState(true);
         textDisplay.text = s;
         //Debug.Log(s);
-
+        
         this.WaitSeconds(duration, () => SetState(false));
     }
 }

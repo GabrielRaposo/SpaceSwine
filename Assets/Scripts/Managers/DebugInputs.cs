@@ -28,6 +28,7 @@ public class DebugInputs : MonoBehaviour
     [SerializeField] FPSCounterDisplay fpsDisplay;
 
     static DebugInputs Instance;
+    static bool wasSetup;
 
     private void Awake() 
     {
@@ -42,6 +43,25 @@ public class DebugInputs : MonoBehaviour
         if (Instance != this)
             return;
         
+        displayListAction.Enable();
+        getAllAction.Enable();
+
+        previousRoundAction.Enable();
+        nextRoundAction.Enable();
+        clearStageAction.Enable();
+
+        unlockShipAccessAction.Enable();
+        saveInputAction.Enable();
+        resetSaveInputAction.Enable();
+
+        playMusicTestInput.Enable();
+        stopMusicTestInput.Enable();
+        
+        fpsInputAction.Enable();
+
+        if (wasSetup)
+            return;
+
 
         /* -- Display -- */ {
             displayListAction.performed += (ctx) => 
@@ -49,18 +69,15 @@ public class DebugInputs : MonoBehaviour
                 StoryEventsManager.TogglePrintEventStates();
                 DebugDisplay.Log("Toggle Print Events");
             };
-            displayListAction.Enable();
 
             getAllAction.performed += (ctx) =>
             {
                 StoryEventsManager.CompleteAll();
                 DebugDisplay.Log ("All story events completed.");
             };
-            getAllAction.Enable();
         }
 
         /* -- Danger Zone -- */ {
-//#if UNITY_EDITOR
             previousRoundAction.performed += ctx => 
             {
                 RoundsManager roundsManager = RoundsManager.Instance;
@@ -72,7 +89,6 @@ public class DebugInputs : MonoBehaviour
 
                 roundsManager.PreviousRoundInput();
             };
-            previousRoundAction.Enable();
 
             nextRoundAction.performed += ctx => 
             {
@@ -85,7 +101,6 @@ public class DebugInputs : MonoBehaviour
 
                 roundsManager.NextRoundInput();
             };
-            nextRoundAction.Enable();
 
             clearStageAction.performed += ctx => 
             {
@@ -98,8 +113,6 @@ public class DebugInputs : MonoBehaviour
 
                 roundsManager.ClearStageInput();
             };
-            clearStageAction.Enable();
-//#endif
         }
 
         /* -- Save -- */ { 
@@ -108,21 +121,18 @@ public class DebugInputs : MonoBehaviour
                 StoryEventsManager.UnlockShipAccess();
                 DebugDisplay.Log ("Ship Access Unlocked.");
             };
-            unlockShipAccessAction.Enable();
 
             saveInputAction.performed += (ctx) => 
             { 
                 SaveManager.Save();
                 DebugDisplay.Log ("Manual Save.");
             };
-            saveInputAction.Enable();
 
             resetSaveInputAction.performed += (ctx) => 
             {
                 SaveManager.ResetSave();
                 DebugDisplay.Log ("Manual Save Reset.");
             };
-            resetSaveInputAction.Enable();
         }
         
         /* -- Music -- */ {
@@ -133,7 +143,6 @@ public class DebugInputs : MonoBehaviour
                     soundtrackManager.PlayInput();
                 DebugDisplay.Log ("Play/Skip track.");
             };
-            playMusicTestInput.Enable();
 
             stopMusicTestInput.performed += (ctx) =>
             {
@@ -142,7 +151,6 @@ public class DebugInputs : MonoBehaviour
                     soundtrackManager.StopInput();
                 DebugDisplay.Log ("Stop track.");
             };
-            stopMusicTestInput.Enable();
         }
 
         /* -- FPS -- */ {
@@ -151,8 +159,9 @@ public class DebugInputs : MonoBehaviour
                 if (fpsDisplay)
                     fpsDisplay.ToggleVisivility();
             };
-            fpsInputAction.Enable();
         }
+
+        wasSetup = true;
     }
 
     private void OnDisable() 
