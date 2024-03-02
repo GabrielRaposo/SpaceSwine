@@ -1139,6 +1139,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Debug Unlocker"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a8dc5bd-4cf7-404a-92d2-db2e0520d584"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -1229,6 +1237,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""Input3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""850c1e44-458f-45f5-8049-6224ec109aa1"",
+                    ""path"": ""<Keyboard>/scrollLock"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Debug Unlocker"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1296,6 +1315,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Dev_Input1 = m_Dev.FindAction("Input1", throwIfNotFound: true);
         m_Dev_Input2 = m_Dev.FindAction("Input2", throwIfNotFound: true);
         m_Dev_Input3 = m_Dev.FindAction("Input3", throwIfNotFound: true);
+        m_Dev_DebugUnlocker = m_Dev.FindAction("Debug Unlocker", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1544,6 +1564,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Dev_Input1;
     private readonly InputAction m_Dev_Input2;
     private readonly InputAction m_Dev_Input3;
+    private readonly InputAction m_Dev_DebugUnlocker;
     public struct DevActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1552,6 +1573,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Input1 => m_Wrapper.m_Dev_Input1;
         public InputAction @Input2 => m_Wrapper.m_Dev_Input2;
         public InputAction @Input3 => m_Wrapper.m_Dev_Input3;
+        public InputAction @DebugUnlocker => m_Wrapper.m_Dev_DebugUnlocker;
         public InputActionMap Get() { return m_Wrapper.m_Dev; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1573,6 +1595,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Input3.started -= m_Wrapper.m_DevActionsCallbackInterface.OnInput3;
                 @Input3.performed -= m_Wrapper.m_DevActionsCallbackInterface.OnInput3;
                 @Input3.canceled -= m_Wrapper.m_DevActionsCallbackInterface.OnInput3;
+                @DebugUnlocker.started -= m_Wrapper.m_DevActionsCallbackInterface.OnDebugUnlocker;
+                @DebugUnlocker.performed -= m_Wrapper.m_DevActionsCallbackInterface.OnDebugUnlocker;
+                @DebugUnlocker.canceled -= m_Wrapper.m_DevActionsCallbackInterface.OnDebugUnlocker;
             }
             m_Wrapper.m_DevActionsCallbackInterface = instance;
             if (instance != null)
@@ -1589,6 +1614,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Input3.started += instance.OnInput3;
                 @Input3.performed += instance.OnInput3;
                 @Input3.canceled += instance.OnInput3;
+                @DebugUnlocker.started += instance.OnDebugUnlocker;
+                @DebugUnlocker.performed += instance.OnDebugUnlocker;
+                @DebugUnlocker.canceled += instance.OnDebugUnlocker;
             }
         }
     }
@@ -1650,5 +1678,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnInput1(InputAction.CallbackContext context);
         void OnInput2(InputAction.CallbackContext context);
         void OnInput3(InputAction.CallbackContext context);
+        void OnDebugUnlocker(InputAction.CallbackContext context);
     }
 }
