@@ -46,8 +46,15 @@ public class InteractableNPC : Interactable
                 if (nameData.isValid)
                     npcName = nameData.text;
             }
+
+            UnityAction OnDialogueEndExtra = OnDialogueEnd;
+            OnDialogueEndExtra += () => 
+            {
+                if (interactor.GetComponent<PlayerInput>())
+                    interactor.GetComponent<PlayerInput>().LaunchCooldown = .5f;
+            };
             
-            dialogSystem?.SetDialogue(this, npcName, dialogueGroup.tags, OnDialogueEnd, AfterDialogueEnd, customDialogueStyle, talkSoundAKEvent);
+            dialogSystem?.SetDialogue(this, npcName, dialogueGroup.tags, OnDialogueEndExtra, AfterDialogueEnd, customDialogueStyle, talkSoundAKEvent);
 
             if (interactor)
             {

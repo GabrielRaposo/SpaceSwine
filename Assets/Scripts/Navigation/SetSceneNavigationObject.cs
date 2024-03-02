@@ -25,12 +25,16 @@ public class SetSceneNavigationObject : NavigationObject
     [SerializeField] GameObject exclamationIcon;
 
     public UnityAction OnSelectAction;
+    public UnityAction OnDeselectAction;
 
     protected override void OnEnable()
     {
         base.OnEnable();
 
         interactAction += CallShipAnimation;
+
+        if (selector != null)
+            selector.enabled = false;
 
         if (exclamationIcon != null)
             exclamationIcon.gameObject.SetActive(false);
@@ -113,6 +117,9 @@ public class SetSceneNavigationObject : NavigationObject
             sr.gameObject.SetActive(false);
 
         selector.enabled = false;
+
+        if (OnDeselectAction != null)
+            OnDeselectAction.Invoke();
     }
 
     protected virtual void CloseAndSetScene()
