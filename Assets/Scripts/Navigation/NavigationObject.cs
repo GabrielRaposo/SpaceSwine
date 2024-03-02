@@ -16,7 +16,7 @@ public class NavigationObject : StoryEventDependent
     
     [Header(" ")]
     [SerializeField] protected SpriteRenderer sprite;
-    [SerializeField] SpriteRenderer backSprite;
+    [SerializeField] private SpriteRenderer backSprite;
     [SerializeField] private Color unselectedColor;
     [SerializeField] private Color selectedColor;
     [SerializeField] private Color unavailableColor;
@@ -229,4 +229,6 @@ public class NavigationObject : StoryEventDependent
         if (backSprite)
             backSprite.color = backColor;
     }
+
+    public Color GetSpriteColor => sprite ? sprite.color : Color.white;
 }
