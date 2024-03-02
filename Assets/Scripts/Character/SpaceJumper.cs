@@ -9,6 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimations))]
 public class SpaceJumper : MonoBehaviour
 {
+    public bool fallIntoGravityIfNothingElse;
     [SerializeField] float speed;
     [SerializeField] float gravitationalPull;
     [SerializeField] LayerMask groundLayer;
@@ -54,32 +55,34 @@ public class SpaceJumper : MonoBehaviour
             flightLoopAKEvent.Stop(gameObject);
     }
 
-    /**
-    private void FixedUpdate() 
+    
+    private void FixedUpdate()
     {
+        if (!fallIntoGravityIfNothingElse)
+            return;
+
         if (gravitationalPull <= 0 || !onLaunch)
             return;
 
         float groundCastDistance = 2f;
-        var groundCast = Physics2D.Raycast (transform.position, transform.up, groundCastDistance, groundLayer);
+        var groundCast = Physics2D.Raycast(transform.position, transform.up, groundCastDistance, groundLayer);
         if (!groundCast)
         {
             var gravityData = gravityInteraction.GetGravityArea();
             if (gravityData.isValid)
             {
                 Vector2 direction = (gravityData.Area.transform.position - transform.position).normalized;
-                if  (Vector2.Angle(direction, transform.up) > 67.5f )
+                if (Vector2.Angle(direction, transform.up) > 67.5f)
                     return;
 
                 Debug.Log("Is on gravity area: " + gravityData.Area.transform.parent.name);
 
                 float speed = rb.velocity.magnitude;
-                direction = rb.velocity + (direction * gravitationalPull); 
-                rb.velocity = direction.normalized * speed; 
+                direction = rb.velocity + (direction * gravitationalPull);
+                rb.velocity = direction.normalized * speed;
             }
         }
     }
-    **/
 
     public void JumpInput()
     {
@@ -110,6 +113,7 @@ public class SpaceJumper : MonoBehaviour
         {
             playerAnimations.SetLandedState();
         }
+        enabled = value;
 
         platformerCharacter.enabled = !value;
         gravityInteraction.enabled = !value;

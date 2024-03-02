@@ -168,7 +168,7 @@ public class Door : MonoBehaviour
 
             animator.SetTrigger("InstantOpen");
             animator.SetBool("Open", true);
-            Debug.Log("spawn portal!");
+            //Debug.Log("spawn portal!");
             return;
         }
 
