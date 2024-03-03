@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class MS_SessionManager : MonoBehaviour
 {
+    [SerializeField] MS_Session testSession;
+
+    [Space(20)]
+
     [SerializeField] MS_Player player;
 
     [SerializeField] MS_Session firstSession;
@@ -42,6 +46,8 @@ public class MS_SessionManager : MonoBehaviour
         switch (level)
         {
             case 0:
+                if (testSession != null)
+                    return sessionsCompleted == 0 ? firstSession : testSession;
                 return sessionsCompleted == 0 ? firstSession : secondSession;
 
             case 1:

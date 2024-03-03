@@ -13,6 +13,7 @@ namespace Shooter
         [SerializeField] TextMeshProUGUI mainDisplay;
         [SerializeField] TextMeshProUGUI newRecordDisplay;
         [SerializeField] TextMeshProUGUI helpInputDisplay;
+        [SerializeField] CanvasGroup canvasGroup;
         [SerializeField] MS_Player player;
         [SerializeField] AK.Wwise.Event newScoreAKEvent;
 
@@ -24,8 +25,8 @@ namespace Shooter
                 return;
             }
 
-            if (GetComponent<CanvasGroup>())
-                GetComponent<CanvasGroup>().alpha = 1;
+            if (canvasGroup)
+                canvasGroup.alpha = 1;
 
             if (player)
                 player.OnFirstMove += HideMenus;

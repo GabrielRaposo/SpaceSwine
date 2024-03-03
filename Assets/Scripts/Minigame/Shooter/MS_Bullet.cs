@@ -48,6 +48,12 @@ namespace Shooter
                 return;
             }
 
+            if (collision.CompareTag("Hazard"))
+            {
+                SelfDestruct();
+                return;
+            }
+
             MS_Enemy enemy = collision.GetComponent<MS_Enemy>();
             if (enemy)
             {

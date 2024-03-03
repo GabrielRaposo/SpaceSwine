@@ -12,11 +12,11 @@ public class CustomMove : MonoBehaviour
     [SerializeField] bool loop;
     [SerializeField] bool easeExtremities;
     [SerializeField] bool invertAutoEase;
-    [SerializeField] CustomEase customEase;
-    [SerializeField] bool moveOnStart;
+    [SerializeField] protected CustomEase customEase;
+    [SerializeField] protected bool moveOnStart;
     [SerializeField] bool stopDuringOutro;
 
-    float startingT = 0; 
+    protected float startingT = 0; 
     int direction = 1;
     int index = 1;
     float t;
