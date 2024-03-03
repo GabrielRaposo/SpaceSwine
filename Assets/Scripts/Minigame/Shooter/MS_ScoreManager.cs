@@ -43,7 +43,7 @@ namespace Shooter
 
         public void ChangeScore (int value)
         {
-            score += value;
+            score += Mathf.RoundToInt(value * MS_ComboManager.ComboMultiplier);
 
             if (score > PlayerBestScore)
             {

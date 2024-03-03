@@ -16,6 +16,9 @@ public class MS_Bouncer : MonoBehaviour
 
     private void OnValidate()
     {
+        if (Application.isPlaying)
+            return;
+
         if (width <= 0)
             return;
 

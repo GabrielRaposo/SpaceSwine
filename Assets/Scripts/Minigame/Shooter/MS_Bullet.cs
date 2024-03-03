@@ -52,8 +52,11 @@ namespace Shooter
             if (enemy)
             {
                 enemy.TakeDamage(damage);
+
                 if (player)
                     player.RestoreAmmo();
+
+                MS_ComboManager.Instance.NotifyHit();
                 return;
             }
 
