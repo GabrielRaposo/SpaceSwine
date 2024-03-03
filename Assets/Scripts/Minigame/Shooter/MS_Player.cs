@@ -4,14 +4,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Minigame;
 using UnityEngine.Events;
+using DG.Tweening.Core.Easing;
 
 namespace Shooter
 {
     public class MS_Player : MonoBehaviour
     {
+        const int MAX_AMMO = 3;
+
         [Header("Shooting")]
         [SerializeField] float shootSpeed;
         [SerializeField] int startingAmmo;
+        [SerializeField] Transform shootPosition;
 
         [Header("Movement")]
         [SerializeField] float rotationSpeed;
@@ -19,10 +23,14 @@ namespace Shooter
         [SerializeField] float maxAngle;
 
         int ammo;
+        int activeBullets;
+        
         bool hasMoved;
+
 
         MS_BulletPool bulletPool;
         MS_AmmoDisplay ammoDisplay;
+        MinigameManager gameManager;
 
         PlayerInputActions inputActions;
         InputAction axisInput;
@@ -45,12 +53,13 @@ namespace Shooter
         {
             bulletPool = MS_BulletPool.Instance;
             ammoDisplay = MS_AmmoDisplay.Instance;
+            gameManager = MinigameManager.Instance;
 
             ammoDisplay.UpdateDisplay (ammo = startingAmmo);
         }
         private bool UseAmmo()
         {
-            if (ammo < 0)
+            if (ammo < 1)
                 return false;
 
             ammoDisplay.UpdateDisplay (--ammo);
@@ -66,8 +75,10 @@ namespace Shooter
             if (!UseAmmo())
                 return;
 
+            activeBullets++;
+
             Vector2 velocity = shootSpeed * RaposUtil.RotateVector (Vector2.up, rotationAnchor.eulerAngles.z);
-            bullet.Shoot (this, transform.position, velocity);
+            bullet.Shoot (this, shootPosition.position, velocity);
 
             if (!hasMoved)
             {
@@ -101,13 +112,47 @@ namespace Shooter
             rotationAnchor.eulerAngles = Vector3.forward * angle;
         }
 
+        public void RestoreAmmo()
+        {
+            ammo++;
+
+            if (ammo > MAX_AMMO)
+                ammo = MAX_AMMO;
+
+            ammoDisplay.UpdateDisplay(ammo);
+        }
+
         public void OnAmmoDestroyed()
         {
-            Debug.Log("Ammo Broke");
-
-            if (ammo < 0)
-                Debug.Log("Die!");
+            if (--activeBullets > 0 || ammo > 0)
+                return;
+            
+            Die();
         }
+
+        public void ClearActiveBullets()
+        {
+            bulletPool.VanishAllBullets();
+            activeBullets = 0;
+        }
+
+        private void Die()
+        {
+            //if (destroyAnimation)
+            //{
+            //    breakAKEvent?.Post(gameObject);
+
+            //    destroyAnimation.transform.SetParent (null);
+            //    destroyAnimation.transform.eulerAngles = Vector3.zero;
+            //    destroyAnimation.SetActive (true);
+            //}
+            
+            gameObject.SetActive(false);
+
+            if (gameManager)
+                gameManager.ResetScene(.5f);
+        }
+
 
         private void OnDisable()
         {

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 using DevLocker.Utils;
 using Jumper;
+using Shooter;
 
 namespace Minigame
 {
@@ -16,6 +17,7 @@ namespace Minigame
         const int HIDDEN_Y = -1000;
     
         [SerializeField] SceneReference jumperScene;
+        [SerializeField] SceneReference shooterScene;
 
         [Header("Values")]
         [SerializeField] float duration;
@@ -65,7 +67,7 @@ namespace Minigame
             {
                 if (!turnedOn)
                     return; 
-                ToggleConsoleState();
+                ToggleConsoleState (GGSMinigame.None);
             };
             playerInputActions.UI.Start.Enable();
         }
@@ -78,7 +80,7 @@ namespace Minigame
         }
 
 
-        public void ToggleConsoleState()
+        public void ToggleConsoleState(GGSMinigame minigame)
         {
             if (turnedOn)
             {
@@ -89,11 +91,11 @@ namespace Minigame
             }
             else
             {
-                TurnConsoleOn();
+                TurnConsoleOn(minigame);
             }
         }
 
-        public void TurnConsoleOn()
+        public void TurnConsoleOn(GGSMinigame minigame)
         {
             //SetTurnedOn(true);
             GameManager.BlockCharacterInput = true;
@@ -132,7 +134,7 @@ namespace Minigame
                     (
                         () => splashScreen.Call
                         (
-                            () => SetupMinigame (GGSMinigame.Jumper)
+                            () => SetupMinigame (minigame)
                         )
                     );
                 }
@@ -196,6 +198,9 @@ namespace Minigame
                 default:
                 case GGSMinigame.Jumper:
                     return jumperScene.ScenePath;
+
+                case GGSMinigame.Shooter:
+                    return shooterScene.ScenePath;
             }
         }
 
@@ -212,10 +217,10 @@ namespace Minigame
 
         private void SetupComponents()
         {
-            MJ_CameraController cameraController = MJ_CameraController.Instance;
-            if (cameraController)
-                cameraController.SetRenderTexture(minigameRenderTexture);
+            MinigameCameraController cameraController = MinigameCameraController.Instance;
 
+            if (cameraController)
+                cameraController.SetRenderTexture (minigameRenderTexture);
 
             loadedAndActive = true;
         }

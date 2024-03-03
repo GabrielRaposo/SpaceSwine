@@ -2,22 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Minigame;
 
 namespace Jumper 
 {
-    public class MJ_CameraController : MonoBehaviour
+    public class MJ_CameraController : MinigameCameraController
     {
         const float SCREEN_OFFSET = 3.25f;
 
         [SerializeField] float lerpRatio;
         [SerializeField] MJ_Player player;
-
-        public static MJ_CameraController Instance;
-
-        private void Awake() 
-        {
-            Instance = this;
-        }
 
         void Start()
         {
@@ -41,15 +35,6 @@ namespace Jumper
                     transform.position.z
                 );
             //}
-        }
-
-        public void SetRenderTexture (RenderTexture renderTexture)
-        {
-            Camera camera = GetComponent<Camera>();
-            if (!camera)
-                return;
-
-            camera.targetTexture = renderTexture;
         }
     }
 

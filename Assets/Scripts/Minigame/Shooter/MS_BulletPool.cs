@@ -49,5 +49,17 @@ namespace Shooter
 
             return b;
         }
+
+        public void VanishAllBullets()
+        {
+            if (!Initiated)
+                return;
+
+            foreach (MS_Bullet bullet in bullets)
+            {
+                if (bullet.gameObject.activeSelf)
+                    bullet.Vanish();
+            }
+        }
     }
 }

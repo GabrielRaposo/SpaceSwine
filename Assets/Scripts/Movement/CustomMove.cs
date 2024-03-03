@@ -58,7 +58,7 @@ public class CustomMove : MonoBehaviour
         positions.Insert(0, transform.position);
     }
 
-    private void Start() 
+    protected virtual void Start() 
     {
         Restart();
 

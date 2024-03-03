@@ -7,6 +7,11 @@ namespace Shooter
     [RequireComponent(typeof(Rigidbody2D))]
     public class MS_Bullet : MonoBehaviour
     {
+        [SerializeField] int damage;
+        [SerializeField] ParticleSystem trailPS;
+
+        bool insideArea;
+
         Rigidbody2D rb;
         MS_Player player;
 
@@ -24,14 +29,70 @@ namespace Shooter
             transform.position = position;
             gameObject.SetActive(true);
             rb.velocity = velocity;
+
+            trailPS.transform.SetParent (null);
+            trailPS.transform.position = transform.position;
+            trailPS.Play();
+        }
+
+        private void Update()
+        {
+            trailPS.transform.position = transform.position;
+        }
+
+        private void OnTriggerEnter2D (Collider2D collision)
+        {
+            if (collision.CompareTag("GameplayArea"))
+            {
+                insideArea = true;
+                return;
+            }
+
+            MS_Enemy enemy = collision.GetComponent<MS_Enemy>();
+            if (enemy)
+            {
+                enemy.TakeDamage(damage);
+                if (player)
+                    player.RestoreAmmo();
+                return;
+            }
+
+            MS_Bouncer bouncer = collision.GetComponent<MS_Bouncer>();
+            if (bouncer)
+            {
+                rb.velocity = bouncer.ReflectVelocity (rb.velocity);
+            }
+        }
+
+        public void Vanish()
+        {
+            trailPS.Stop();
+
+            // -- Call Destroy animation
+
+            insideArea = false;
+            gameObject.SetActive(false);
         }
 
         private void SelfDestruct()
         {
-            // Call Destroy animation
+            Vanish();
 
             if (player)
                 player.OnAmmoDestroyed();
+        }
+
+        private void OnTriggerExit2D (Collider2D collision)
+        {
+            if (insideArea && collision.CompareTag("GameplayArea"))
+            {
+                SelfDestruct();
+            }
+        }
+
+        private void OnDisable()
+        {
+            trailPS.Stop();
         }
     }
 }

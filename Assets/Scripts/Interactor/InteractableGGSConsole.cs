@@ -19,7 +19,7 @@ public class InteractableGGSConsole : Interactable
 
         if (ggsConsole)
         {
-            ggsConsole.ToggleConsoleState();
+            //ggsConsole.ToggleConsoleState();
         }
     }
 

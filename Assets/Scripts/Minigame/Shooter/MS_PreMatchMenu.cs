@@ -24,6 +24,9 @@ namespace Shooter
                 return;
             }
 
+            if (GetComponent<CanvasGroup>())
+                GetComponent<CanvasGroup>().alpha = 1;
+
             if (player)
                 player.OnFirstMove += HideMenus;
 
@@ -39,21 +42,21 @@ namespace Shooter
 
             mainDisplay.text = string.Empty;
 
-            string bestScore = (1).ToString();
-            //string bestScore = MJ_ScoreManager.PlayerBest().Item1 <= 0 ? 
-            //    "---" : 
-            //    MJ_ScoreManager.PlayerBest().Item2;
+            //string bestScore = (1).ToString();
+            string bestScore = MS_ScoreManager.PlayerBest().Item1 <= 0 ? 
+                "---" : 
+                MS_ScoreManager.PlayerBest().Item2;
             mainDisplay.text += "BEST: " + bestScore;
 
-            //if (MJ_ScoreManager.UseHasScoreTrigger() )
-            //{
-            //    newRecordDisplay.gameObject.SetActive (true);
+            if (MS_ScoreManager.UseHasScoreTrigger() )
+            {
+                newRecordDisplay.gameObject.SetActive (true);
             //    newScoreAKEvent?.Post(gameObject);
-            //}
-            //else
-            //{
-            //    newRecordDisplay.gameObject.SetActive (false);
-            //}
+            }
+            else
+            {
+                newRecordDisplay.gameObject.SetActive (false);
+            }
 
             if (newRecordDisplay.gameObject.activeSelf)
                 StartCoroutine( RecordBlinkRoutine() );
@@ -70,10 +73,9 @@ namespace Shooter
                     newRecordDisplay.color = blinkingColors[i];
 
                     mainDisplay.text = string.Empty;
-                    string bestScore = (1).ToString();
-                    //string bestScore = MJ_ScoreManager.PlayerBest().Item1 <= 0 ? 
-                    //    "---" : 
-                    //    MJ_ScoreManager.PlayerBest().Item2;
+                    string bestScore = MS_ScoreManager.PlayerBest().Item1 <= 0 ? 
+                        "---" : 
+                        MS_ScoreManager.PlayerBest().Item2;
 
                     mainDisplay.text += "BEST: " 
                         + "<color=#" + ColorUtility.ToHtmlStringRGBA(blinkingColors[i]) + ">" 

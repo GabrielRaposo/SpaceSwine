@@ -7,7 +7,7 @@ namespace Shooter
     public class MS_AmmoDisplay : MonoBehaviour
     {
         [SerializeField] Transform positionAnchor;
-        [SerializeField] List<GameObject> ammoDisplays;
+        [SerializeField] List<ImageSwapper> ammoDisplays;
 
         static public MS_AmmoDisplay Instance;
 
@@ -23,7 +23,7 @@ namespace Shooter
 
             for (int i = 0; i < ammoDisplays.Count; i++) 
             {
-                ammoDisplays[i].SetActive (i < currentAmmo);
+                ammoDisplays[i].SetSpriteState (i < currentAmmo ? 0 : 1);
             }
         }
     }
