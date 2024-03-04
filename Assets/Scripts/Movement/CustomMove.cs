@@ -49,6 +49,7 @@ public class CustomMove : MonoBehaviour
             InitList();
             
             startingPosition = transform.position;
+            Debug.Log("startingPosition: " + startingPosition);
             initiated = true;
         }
 

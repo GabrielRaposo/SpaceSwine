@@ -18,16 +18,22 @@ namespace Shooter
             {
                 session.OnReset +=  () => 
                 {
-                    enabled = true;
+                    gameObject.SetActive(true);
                     Restart();
+                    enabled = true;
                 };
 
                 session.OnVanish += () => 
                 {
+                    enabled = false;
+                };
+
+                session.OnAfterVanish += () =>
+                {
+                    gameObject.SetActive(true);
                     Restart();
                     FixedUpdate();
                     enabled = false;
-                    gameObject.SetActive(false);
                 };
 
                 if (MS_SessionManager.OnSessionTransition)

@@ -15,8 +15,9 @@ namespace Shooter
         MS_Enemy[] enemies;
         MS_SessionManager sessionManager;
 
-        public UnityAction OnVanish;
         public UnityAction OnReset;
+        public UnityAction OnVanish;
+        public UnityAction OnAfterVanish;
 
         public void Setup (MS_SessionManager sessionManager)
         {
@@ -64,6 +65,11 @@ namespace Shooter
             {
                 if (sessionManager != null)
                     sessionManager.NotifyCompletedSession();
+
+                gameObject.SetActive (false);
+                
+                if (OnAfterVanish != null)
+                    OnAfterVanish.Invoke();
             });
         }
     }

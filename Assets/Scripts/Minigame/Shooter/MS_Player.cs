@@ -99,9 +99,6 @@ namespace Shooter
             if (cooldownCount > 0)
                 cooldownCount -= Time.deltaTime;
 
-            //if (MS_SessionManager.OnSessionTransition)
-            //    return;
-
             if (!hasMoved)
                 return;
 

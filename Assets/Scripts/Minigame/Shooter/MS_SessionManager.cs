@@ -75,9 +75,6 @@ public class MS_SessionManager : MonoBehaviour
 
         player.ClearActiveBullets();
         
-        if (currentSession != null)
-            currentSession.gameObject.SetActive(false);
-        
         SetNewSession();
     }
 
