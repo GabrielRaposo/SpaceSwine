@@ -8,6 +8,7 @@ namespace Shooter
     {   
         [SerializeField] int scoreReward;
         [SerializeField] int startingHP = 1;
+        [SerializeField] MS_DettachableEffect vanishEffect;
 
         int HP;
         MS_Session session;
@@ -40,9 +41,17 @@ namespace Shooter
             SelfDestruct();
         }
 
-        public void SelfDestruct()
+        private void Vanish()
         {
             gameObject.SetActive(false);
+            
+            if (vanishEffect)
+                vanishEffect.Call();
+        }
+
+        public void SelfDestruct()
+        {
+            Vanish();
 
             if (session)
                 session.NotifyProgress();

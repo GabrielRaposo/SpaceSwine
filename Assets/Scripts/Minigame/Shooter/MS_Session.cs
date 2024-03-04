@@ -66,7 +66,7 @@ namespace Shooter
             MS_ScoreManager.Instance.ChangeScore(scoreReward);
             MS_SessionManager.OnSessionTransition = true;
 
-            this.WaitSeconds (duration: .3f, action: () => 
+            this.WaitSeconds (duration: .35f, action: () => 
             {
                 if (sessionManager != null)
                     sessionManager.NotifyCompletedSession();
