@@ -41,7 +41,7 @@ namespace Shooter
             transform.localPosition = Vector3.up * 10f;
 
             Sequence s = DOTween.Sequence();
-            s.AppendInterval(.25f);
+            s.AppendInterval(.3f);
             s.Append( transform.DOLocalMoveY(endValue: 0f, duration: .35f).SetEase(Ease.OutCirc) );
             s.OnComplete( () => 
             {
@@ -66,7 +66,7 @@ namespace Shooter
             MS_ScoreManager.Instance.ChangeScore(scoreReward);
             MS_SessionManager.OnSessionTransition = true;
 
-            this.WaitSeconds (duration: .5f, action: () => 
+            this.WaitSeconds (duration: .3f, action: () => 
             {
                 if (sessionManager != null)
                     sessionManager.NotifyCompletedSession();
