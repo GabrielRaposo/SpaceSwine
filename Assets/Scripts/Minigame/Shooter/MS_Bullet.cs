@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 
 namespace Shooter
@@ -12,6 +13,7 @@ namespace Shooter
         [SerializeField] MS_DettachableEffect dettachableEffect;
 
         bool insideArea;
+        bool restoredAmmo;
 
         Rigidbody2D rb;
         MS_Player player;
@@ -34,6 +36,8 @@ namespace Shooter
             trailPS.transform.SetParent (null);
             trailPS.transform.position = transform.position;
             trailPS.Play();
+
+            restoredAmmo = false;
         }
 
         private void Update()
@@ -58,10 +62,13 @@ namespace Shooter
             MS_Enemy enemy = collision.GetComponent<MS_Enemy>();
             if (enemy)
             {
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, restoredAmmo ? 1 : 0);
 
-                if (player)
+                if (!restoredAmmo && player)
+                {
+                    restoredAmmo = true;
                     player.RestoreAmmo();
+                }
 
                 MS_ComboManager.Instance.NotifyHit();
                 return;

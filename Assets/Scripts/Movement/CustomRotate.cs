@@ -8,7 +8,7 @@ public class CustomRotate : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float startDelay;
     [SerializeField] CustomEase customEase;
-    [SerializeField] bool moveOnStart;
+    [SerializeField] protected bool moveOnStart;
 
     float startingRotation;
     float startingT = 0; 
@@ -33,7 +33,7 @@ public class CustomRotate : MonoBehaviour
         }
     }
 
-    private void Start() 
+    protected virtual void Start() 
     {
         Restart();
 
@@ -78,7 +78,7 @@ public class CustomRotate : MonoBehaviour
         rotating = false;
     }
 
-    private void FixedUpdate() 
+    protected void FixedUpdate() 
     {
         if (!rotating)
             return;

@@ -26,11 +26,16 @@ namespace Shooter
             gameObject.SetActive(true);
         }
 
-        public void TakeDamage (int value) 
+        private void Update()
+        {
+            transform.eulerAngles = Vector3.zero;
+        }
+
+        public void TakeDamage (int value, int scoreBonus) 
         {
             HP -= value;
 
-            MS_ScoreManager.Instance.ChangeScore (scoreReward);
+            MS_ScoreManager.Instance.ChangeScore (scoreReward + scoreBonus);
 
             if (HP > 0)
             {

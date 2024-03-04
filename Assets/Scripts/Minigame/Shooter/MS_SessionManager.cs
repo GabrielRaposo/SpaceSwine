@@ -14,7 +14,10 @@ public class MS_SessionManager : MonoBehaviour
     [SerializeField] MS_Session firstSession;
     [SerializeField] MS_Session secondSession;
 
+    [Space(20)]
+
     [SerializeField] Transform difficulty1Group;
+    [SerializeField] Transform difficulty2Group;
 
     MS_Session currentSession;
     MS_ProgressDisplay progressDisplay;
@@ -31,6 +34,7 @@ public class MS_SessionManager : MonoBehaviour
 
         DeactivateAllSessions(transform);
         DeactivateAllSessions(difficulty1Group);
+        DeactivateAllSessions(difficulty2Group);
 
         SetNewSession();
     }
@@ -47,17 +51,19 @@ public class MS_SessionManager : MonoBehaviour
     {
         switch (level)
         {
+            default:
+                return GetRandomFromGroup(difficulty1Group);
+
             case 0:
                 if (testSession != null)
                     return sessionsCompleted == 0 ? firstSession : testSession;
                 return sessionsCompleted == 0 ? firstSession : secondSession;
 
             case 1:
-            default:
                 return GetRandomFromGroup(difficulty1Group);
 
-            //default:
-            //    return firstSession;
+            case 2:
+                return GetRandomFromGroup(difficulty2Group);
         }
     }
 
@@ -74,7 +80,9 @@ public class MS_SessionManager : MonoBehaviour
         UpdateLevel();
 
         player.ClearActiveBullets();
-        
+        if ( (sessionsCompleted - 1) % 5 == 0 )
+            player.RestoreAmmo();
+
         SetNewSession();
     }
 

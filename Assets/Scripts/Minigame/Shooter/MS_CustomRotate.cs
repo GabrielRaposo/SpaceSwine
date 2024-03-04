@@ -1,17 +1,14 @@
-﻿using System.Collections;
+﻿using Shooter;
+using System.Collections;
 using System.Collections.Generic;
+using System.Security.AccessControl;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace Shooter
+public class MS_CustomRotate : CustomRotate
 {
-
-    public class MS_CustomMove : CustomMove
+    protected override void Start()
     {
-        protected override void Start() 
-        {
             moveOnStart = true;
-            customEase = CustomEase.EaseInOut;
 
             MS_Session session = GetComponentInParent<MS_Session>();
             if (session)
@@ -43,6 +40,5 @@ namespace Shooter
             }
 
             enabled = false;
-        }
     }
 }
