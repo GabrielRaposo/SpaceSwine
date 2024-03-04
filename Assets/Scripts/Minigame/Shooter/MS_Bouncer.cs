@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Shooter;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,5 +54,37 @@ public class MS_Bouncer : MonoBehaviour
     {
         if (cooldownCount > 0)
             cooldownCount -= Time.deltaTime;
+    }
+
+    private void Start()
+    {
+        MS_Session session = GetComponentInParent<MS_Session>();
+        if (session)
+        {
+            session.OnVanish += Vanish;
+            session.OnPreReset += Setup;
+        }
+    }
+
+    private void Setup()
+    {
+        springRenderer.enabled = true;
+        baseRenderer.enabled = true;
+        boxCollider.enabled = true;
+    }
+
+
+    public void Vanish()
+    {
+        animator.SetTrigger ("Vanish");
+        boxCollider.enabled = false;
+    }
+
+    public void _AnimationCall()
+    {
+        springRenderer.enabled = false;
+        baseRenderer.enabled = false;
+        boxCollider.enabled = false;
+        animator.SetBool("PopBack", false);
     }
 }

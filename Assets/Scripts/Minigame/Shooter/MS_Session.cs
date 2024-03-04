@@ -15,6 +15,7 @@ namespace Shooter
         MS_Enemy[] enemies;
         MS_SessionManager sessionManager;
 
+        public UnityAction OnPreReset;
         public UnityAction OnReset;
         public UnityAction OnVanish;
         public UnityAction OnAfterVanish;
@@ -33,6 +34,9 @@ namespace Shooter
                 e.Setup(this);
 
             gameObject.SetActive(true);
+
+            if (OnPreReset != null)
+                OnPreReset.Invoke();
 
             transform.localPosition = Vector3.up * 10f;
 

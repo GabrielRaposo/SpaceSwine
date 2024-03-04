@@ -33,7 +33,7 @@ public class MS_Hazard : MonoBehaviour
         if (session)
         {
             session.OnVanish += Vanish;
-            session.OnReset += Setup;
+            session.OnPreReset += Setup;
         }
     }
 
