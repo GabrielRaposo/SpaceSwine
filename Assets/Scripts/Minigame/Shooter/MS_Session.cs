@@ -41,7 +41,8 @@ namespace Shooter
             transform.localPosition = Vector3.up * 10f;
 
             Sequence s = DOTween.Sequence();
-            s.Append( transform.DOLocalMoveY(endValue: 0f, duration: .5f).SetEase(Ease.OutCirc) );
+            s.AppendInterval(.25f);
+            s.Append( transform.DOLocalMoveY(endValue: 0f, duration: .35f).SetEase(Ease.OutCirc) );
             s.OnComplete( () => 
             {
                 MS_SessionManager.OnSessionTransition = false;

@@ -9,6 +9,7 @@ namespace Shooter
     {
         [SerializeField] int damage;
         [SerializeField] ParticleSystem trailPS;
+        [SerializeField] MS_DettachableEffect dettachableEffect;
 
         bool insideArea;
 
@@ -77,7 +78,8 @@ namespace Shooter
         {
             trailPS.Stop();
 
-            // -- Call Destroy animation
+            if (dettachableEffect)
+                dettachableEffect.Call();
 
             insideArea = false;
             gameObject.SetActive(false);
