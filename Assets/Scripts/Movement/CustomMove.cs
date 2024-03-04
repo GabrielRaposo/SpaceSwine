@@ -126,7 +126,7 @@ public class CustomMove : MonoBehaviour
     //        PauseMovement();
     //}
 
-    private void FixedUpdate() 
+    protected void FixedUpdate() 
     {
         if (!moving)
             return;

@@ -22,6 +22,8 @@ public class MS_SessionManager : MonoBehaviour
     int sessionsCompleted;
     int level;
 
+    public static bool OnSessionTransition;
+
     void Start()
     {
         progressDisplay = MS_ProgressDisplay.Instance;
@@ -62,7 +64,6 @@ public class MS_SessionManager : MonoBehaviour
     private void SetNewSession()
     {
         currentSession = GetSessionByLevel();
-        currentSession.gameObject.SetActive(true);
         currentSession.Setup(this);
     }
 

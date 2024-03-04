@@ -13,18 +13,28 @@ namespace Shooter
             moveOnStart = true;    
             customEase = CustomEase.EaseInOut;
 
-            Restart();
-
             MS_Session session = GetComponentInParent<MS_Session>();
             if (session)
             {
                 session.OnReset +=  () => 
                 {
+                    enabled = true;
                     Restart();
                 };
-            }
 
-            OnStart?.Invoke();
+                session.OnVanish += () => 
+                {
+                    Restart();
+                    FixedUpdate();
+                    enabled = false;
+                    gameObject.SetActive(false);
+                };
+
+                if (MS_SessionManager.OnSessionTransition)
+                    return;
+
+                Restart();
+            }
         }
     }
 }

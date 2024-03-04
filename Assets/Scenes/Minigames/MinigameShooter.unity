@@ -15993,7 +15993,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f38991b5470ab748b3aec01579b5f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootSpeed: 5
+  shotSpeed: 5
+  shotCooldown: 0.4
   startingAmmo: 3
   shootPosition: {fileID: 593592643}
   rotationSpeed: 100
@@ -35282,7 +35283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1499995603
 Transform:
   m_ObjectHideFlags: 0
@@ -48249,6 +48250,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3520585114114068073, guid: ea1007417d277d64784f6a88e40c9c5d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6788778062439545606, guid: a9f339aec192bc9429d6d814ec24893d, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea1007417d277d64784f6a88e40c9c5d, type: 3}
 --- !u!1001 &6178247457490561355

@@ -13,7 +13,8 @@ namespace Shooter
         const int MAX_AMMO = 3;
 
         [Header("Shooting")]
-        [SerializeField] float shootSpeed;
+        [SerializeField] float shotSpeed;
+        [SerializeField] float shotCooldown;
         [SerializeField] int startingAmmo;
         [SerializeField] Transform shootPosition;
 
@@ -24,6 +25,7 @@ namespace Shooter
 
         int ammo;
         int activeBullets;
+        float cooldownCount;
         
         bool hasMoved;
 
@@ -68,17 +70,22 @@ namespace Shooter
 
         private void ShootInput (InputAction.CallbackContext ctx)
         {
+            if (MS_SessionManager.OnSessionTransition)
+                return;
+
+            if (cooldownCount > 0 || !UseAmmo())
+                return;
+
             MS_Bullet bullet = bulletPool.Get();
             if (bullet == null) 
                 return;
 
-            if (!UseAmmo())
-                return;
-
             activeBullets++;
 
-            Vector2 velocity = shootSpeed * RaposUtil.RotateVector (Vector2.up, rotationAnchor.eulerAngles.z);
+            Vector2 velocity = shotSpeed * RaposUtil.RotateVector (Vector2.up, rotationAnchor.eulerAngles.z);
             bullet.Shoot (this, shootPosition.position, velocity);
+
+            cooldownCount = shotCooldown;
 
             if (!hasMoved)
             {
@@ -89,6 +96,12 @@ namespace Shooter
 
         void Update()
         {
+            if (cooldownCount > 0)
+                cooldownCount -= Time.deltaTime;
+
+            //if (MS_SessionManager.OnSessionTransition)
+            //    return;
+
             if (!hasMoved)
                 return;
 

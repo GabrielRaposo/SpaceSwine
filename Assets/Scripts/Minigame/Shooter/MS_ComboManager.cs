@@ -45,6 +45,9 @@ public class MS_ComboManager : MonoBehaviour
 
     private void Update()
     {
+        if (MS_SessionManager.OnSessionTransition)  
+            return;
+
         if (t > 0)
         {
             t -= Time.deltaTime;
