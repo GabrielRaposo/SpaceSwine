@@ -64,7 +64,7 @@ namespace Shooter
             {
                 enemy.TakeDamage(damage, restoredAmmo ? 1 : 0);
 
-                if (!restoredAmmo && player)
+                if (/*!restoredAmmo &&*/ player)
                 {
                     restoredAmmo = true;
                     player.RestoreAmmo();
@@ -110,7 +110,8 @@ namespace Shooter
 
         private void OnDisable()
         {
-            trailPS.Stop();
+            if (trailPS && trailPS.gameObject)
+                trailPS.Stop();
         }
     }
 }

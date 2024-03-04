@@ -63,8 +63,10 @@ namespace Shooter
             if (OnVanish != null)
                 OnVanish.Invoke();
 
-            MS_ScoreManager.Instance.ChangeScore(scoreReward);
+            MS_ScoreManager.Instance.ChangeScore (scoreReward);
             MS_SessionManager.OnSessionTransition = true;
+            MS_StageTimer.AddTime(+4);
+            MS_StageTimer.SetSessionBlink();
 
             this.WaitSeconds (duration: .35f, action: () => 
             {

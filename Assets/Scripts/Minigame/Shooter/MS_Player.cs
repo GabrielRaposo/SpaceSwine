@@ -62,7 +62,8 @@ namespace Shooter
         private bool UseAmmo()
         {
             if (ammo < 1)
-                return false;
+                //return false;
+                return true;
 
             ammoDisplay.UpdateDisplay (--ammo);
             return true;
@@ -137,7 +138,7 @@ namespace Shooter
             if (--activeBullets > 0 || ammo > 0)
                 return;
             
-            Die();
+            //Die();
         }
 
         public void ClearActiveBullets()
@@ -146,7 +147,7 @@ namespace Shooter
             activeBullets = 0;
         }
 
-        private void Die()
+        public void Die()
         {
             //if (destroyAnimation)
             //{

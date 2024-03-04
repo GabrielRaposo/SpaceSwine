@@ -1,22 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static System.Net.WebRequestMethods;
 
 namespace Shooter
 {
     public class MS_Enemy : MonoBehaviour
     {   
+        const string BLINKING_TAG = "Blinking";
+
         [SerializeField] int scoreReward;
         [SerializeField] int startingHP = 1;
+        [SerializeField] float blinkingDuration;
+
+        [Header("References")]
         [SerializeField] MS_DettachableEffect vanishEffect;
+        [SerializeField] Animator mainAnimator;
+        [SerializeField] Animator floatAnimator;
+        [SerializeField] Collider2D coll2D;
+        [SerializeField] ParticleSystem HitPS;
 
         int HP;
         MS_Session session;
 
-        void Start()
-        {
-        
-        }
+        float blinkingCount;
+
 
         public void Setup (MS_Session session)
         {
@@ -24,11 +32,33 @@ namespace Shooter
 
             HP = startingHP;
             gameObject.SetActive(true);
+
+            SetBlinkingState(false);
+        }
+
+        private void SetBlinkingState (bool value)
+        {
+            //if (coll2D)
+            //    coll2D.enabled = !value;
+
+            if (mainAnimator)
+                mainAnimator.SetBool(BLINKING_TAG, value);
+
+            if (floatAnimator)
+                floatAnimator.enabled = !value;
         }
 
         private void Update()
         {
             transform.eulerAngles = Vector3.zero;
+
+            if (blinkingCount > 0)
+            {
+                blinkingCount -= Time.deltaTime;
+
+                if (blinkingCount <= 0)
+                    SetBlinkingState(false);
+            }
         }
 
         public void TakeDamage (int value, int scoreBonus) 
@@ -40,6 +70,12 @@ namespace Shooter
             if (HP > 0)
             {
                 // On Take Damage
+                if (HitPS)
+                    HitPS.Play();
+
+                blinkingCount = blinkingDuration;
+                SetBlinkingState(true);
+
                 return;
             }
         

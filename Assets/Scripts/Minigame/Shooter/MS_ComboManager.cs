@@ -28,7 +28,7 @@ public class MS_ComboManager : MonoBehaviour
 
     void Start()
     {
-        canvasGroup.alpha = 0;    
+        //canvasGroup.alpha = 0;    
         Combo = 0;
         t = 0;
 
@@ -40,7 +40,7 @@ public class MS_ComboManager : MonoBehaviour
         if (fillImage)
             fillImage.fillAmount = t / comboHoldDuration;
 
-        canvasGroup.alpha = (t == 0 || ComboMultiplier == 1f) ? 0 : 1;
+        //canvasGroup.alpha = (t == 0 || ComboMultiplier == 1f) ? 0 : 1;
     }
 
     private void Update()
