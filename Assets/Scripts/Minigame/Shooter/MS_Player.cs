@@ -28,7 +28,7 @@ namespace Shooter
         float cooldownCount;
         
         bool hasMoved;
-
+        public static bool LostMatch {get; private set;} 
 
         MS_BulletPool bulletPool;
         MS_AmmoDisplay ammoDisplay;
@@ -58,6 +58,8 @@ namespace Shooter
             gameManager = MinigameManager.Instance;
 
             ammoDisplay.UpdateDisplay (ammo = startingAmmo);
+
+            LostMatch = false;
         }
         private bool UseAmmo()
         {
@@ -159,6 +161,7 @@ namespace Shooter
             //}
             
             gameObject.SetActive(false);
+            LostMatch = true;
 
             if (gameManager)
                 gameManager.ResetScene(.5f);

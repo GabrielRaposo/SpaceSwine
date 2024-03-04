@@ -8,9 +8,11 @@ namespace Shooter
 {
     public class MS_Session : MonoBehaviour
     {
+        [SerializeField] bool specialSession;
         [SerializeField] int scoreReward;
 
         int completion;
+        int totalCompletion;
 
         MS_Enemy[] enemies;
         MS_SessionManager sessionManager;
@@ -24,14 +26,25 @@ namespace Shooter
         {
             this.sessionManager = sessionManager;
 
-            if (enemies == null || enemies.Length < 1)
-                enemies = GetComponentsInChildren<MS_Enemy>();
+            if (!specialSession)
+            {
+                if (enemies == null || enemies.Length < 1)
+                    enemies = GetComponentsInChildren<MS_Enemy>();
 
-            if (enemies.Length < 1)
-                return;
+                if (enemies.Length < 1)
+                    return;
 
-            foreach (MS_Enemy e in enemies)
-                e.Setup(this);
+                foreach (MS_Enemy e in enemies)
+                    e.Setup(this);
+            }
+            else
+            {
+                MS_Sun sun = GetComponentInChildren<MS_Sun>();
+                if (!sun)
+                    return;
+
+                sun.Setup(this);
+            }
 
             gameObject.SetActive(true);
 
@@ -46,7 +59,7 @@ namespace Shooter
             s.OnComplete( () => 
             {
                 MS_SessionManager.OnSessionTransition = false;
-                completion = enemies.Length;
+                totalCompletion = completion = (specialSession ? 1 : enemies.Length);
 
                 if (OnReset != null) 
                     OnReset.Invoke();
@@ -65,7 +78,7 @@ namespace Shooter
 
             MS_ScoreManager.Instance.ChangeScore (scoreReward);
             MS_SessionManager.OnSessionTransition = true;
-            MS_StageTimer.AddTime(+4);
+            MS_StageTimer.AddTime ( specialSession ? 6 : totalCompletion * 2);
             MS_StageTimer.SetSessionBlink();
 
             this.WaitSeconds (duration: .35f, action: () => 

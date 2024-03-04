@@ -16,7 +16,8 @@ namespace Shooter
 
             parent = transform.parent;
             transform.SetParent(null);
-            transform.position = parent.position;
+            if (parent != null)
+                transform.position = parent.position;
         }
 
         public void _AnimationCall()

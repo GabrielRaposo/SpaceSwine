@@ -51,8 +51,6 @@ public class MS_SessionManager : MonoBehaviour
     {
         switch (level)
         {
-            default:
-                return GetRandomFromGroup(difficulty1Group);
 
             case 0:
                 if (testSession != null)
@@ -60,9 +58,28 @@ public class MS_SessionManager : MonoBehaviour
                 return sessionsCompleted == 0 ? firstSession : secondSession;
 
             case 1:
-                return GetRandomFromGroup(difficulty1Group);
+                return GetRandomFromGroup( GetGroupByChance (9,1,0) );
 
             case 2:
+                return GetRandomFromGroup( GetGroupByChance (6,4,0) );
+
+            case 3:
+                return GetRandomFromGroup( GetGroupByChance (3,7,0) );
+
+            case 4:
+                return GetRandomFromGroup( GetGroupByChance (1,7,2) );
+
+            case 5:
+                return GetRandomFromGroup( GetGroupByChance (1,4,5) );
+
+            case 6:
+                return GetRandomFromGroup( GetGroupByChance (1,2,7) );
+
+            case 7:
+                return GetRandomFromGroup( GetGroupByChance (0,1,9) );
+
+            default:
+                //return GetRandomFromGroup(difficulty3Group);
                 return GetRandomFromGroup(difficulty2Group);
         }
     }
@@ -88,17 +105,27 @@ public class MS_SessionManager : MonoBehaviour
 
     private void UpdateLevel()
     {
-        if (sessionsCompleted > 5)
+
+        //if (sessionsCompleted > 4)
+        //{
+        //    level = 2;
+        //    return;
+        //}
+
+        if ((sessionsCompleted + 1) % 3 == 0)
         {
-            level = 2;
-            return;
+            level++;
+            Debug.Log("Level up: " + level);
         }
 
-        if (sessionsCompleted > 1)
-        {
-            level = 1;
-            return;
-        }
+        //if (sessionsCompleted > 1)
+        //{
+        //    level = 1;
+        //    return;
+        //}
+
+
+
     }
 
     private void DeactivateAllSessions (Transform group)
@@ -135,5 +162,19 @@ public class MS_SessionManager : MonoBehaviour
             return null;
 
         return sessions[Random.Range(0, sessions.Count)];   
+    }
+
+    private Transform GetGroupByChance (int group1Ratio, int group2Ratio, int group3ratio)
+    {
+        int r = Random.Range(0, group1Ratio + group2Ratio + group3ratio);
+
+        if (r < group1Ratio)
+            return difficulty1Group;
+        
+        if (r < group1Ratio + group2Ratio)
+            return difficulty2Group;
+
+        return difficulty2Group;
+
     }
 }

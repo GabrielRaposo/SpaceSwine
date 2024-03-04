@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class MS_StageTimer : MonoBehaviour
 {
+    const int MAX_TIME = 20;
+
     [SerializeField] int startingTime;
     [SerializeField] Color baseColor;
     [SerializeField] Color dangerColor;
@@ -108,9 +110,13 @@ public class MS_StageTimer : MonoBehaviour
 
     public static void AddTime (int value)
     {
+        if (MS_Player.LostMatch)
+            return;
+
         Time += value;
-        if (Time > 30)
-            Time = 30;
+
+        if (Time > MAX_TIME)
+            Time = MAX_TIME;
 
         if (Instance)
             Instance.UpdateDisplay();

@@ -7,6 +7,7 @@ public class MS_Hazard : MonoBehaviour
 {
     const float LENGTH = 0.5f;
 
+    [SerializeField] bool lockRotation;
     [SerializeField] Vector2Int size;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] BoxCollider2D boxCollider;
@@ -35,6 +36,14 @@ public class MS_Hazard : MonoBehaviour
             session.OnVanish += Vanish;
             session.OnPreReset += Setup;
         }
+    }
+
+    private void Update()
+    {
+        if (!lockRotation)
+            return;
+
+        transform.eulerAngles = Vector3.zero;
     }
 
     private void Setup()

@@ -59,6 +59,12 @@ namespace Shooter
                 return;
             }
 
+            MS_TimeBonus timeBonus = collision.GetComponent<MS_TimeBonus>();
+            if (timeBonus)
+            {
+                timeBonus.Collect();
+            }
+
             MS_Enemy enemy = collision.GetComponent<MS_Enemy>();
             if (enemy)
             {
@@ -70,6 +76,16 @@ namespace Shooter
                     player.RestoreAmmo();
                 }
 
+                MS_ComboManager.Instance.NotifyHit();
+                return;
+            }
+
+            MS_Sun sun = collision.GetComponent<MS_Sun>();
+            if (sun)
+            {
+                sun.TakeDamage(damage, restoredAmmo? 1 : 0);
+
+                Vanish();
                 MS_ComboManager.Instance.NotifyHit();
                 return;
             }
