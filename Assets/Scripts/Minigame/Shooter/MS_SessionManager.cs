@@ -75,7 +75,7 @@ public class MS_SessionManager : MonoBehaviour
                 return GetRandomFromGroup( GetGroupByChance (3,7,0) );
 
             case 4:
-                return GetRandomFromGroup( GetGroupByChance (1,7,2) );
+                return GetRandomFromGroup( GetGroupByChance (1,8,1) );
 
             case 5:
                 return GetRandomFromGroup( GetGroupByChance (1,4,5) );
@@ -84,10 +84,10 @@ public class MS_SessionManager : MonoBehaviour
                 return GetRandomFromGroup( GetGroupByChance (1,2,7) );
 
             case 7:
-                return GetRandomFromGroup( GetGroupByChance (0,1,9) );
+                return GetRandomFromGroup( GetGroupByChance (1,1,10) );
 
             default:
-                return GetRandomFromGroup(difficulty3Group);
+                return GetRandomFromGroup( GetGroupByChance (1,1,20) );
         }
     }
 

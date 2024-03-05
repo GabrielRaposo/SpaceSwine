@@ -105,7 +105,7 @@ namespace Shooter
                 return 6;
 
             if (level < 2)
-                return totalCompletion;
+                return totalCompletion + 1;
 
             if (level < 5)
                 return totalCompletion * 2;
