@@ -53,7 +53,7 @@ public class MS_SessionManager : MonoBehaviour
 
     private MS_Session GetSessionByLevel()
     {
-        if ( sessionsCompleted % 15 == 0 )
+        if ( sessionsCompleted > 0 && sessionsCompleted % 15 == 0 )
             return sunSession;
 
         switch (level)
