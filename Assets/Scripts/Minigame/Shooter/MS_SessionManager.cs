@@ -66,28 +66,28 @@ public class MS_SessionManager : MonoBehaviour
                 return sessionsCompleted == 0 ? firstSession : secondSession;
 
             case 1:
-                return GetRandomFromGroup( GetGroupByChance (9,1,0) );
+                return GetRandomFromGroup( GetGroupByChance (90, 10, 0) );
 
             case 2:
-                return GetRandomFromGroup( GetGroupByChance (6,4,0) );
+                return GetRandomFromGroup( GetGroupByChance (60, 40, 0) );
 
             case 3:
-                return GetRandomFromGroup( GetGroupByChance (3,7,0) );
+                return GetRandomFromGroup( GetGroupByChance (30, 69, 1) );
 
             case 4:
-                return GetRandomFromGroup( GetGroupByChance (1,8,1) );
+                return GetRandomFromGroup( GetGroupByChance (15, 80, 5) );
 
             case 5:
-                return GetRandomFromGroup( GetGroupByChance (1,4,5) );
+                return GetRandomFromGroup( GetGroupByChance (10, 65, 25) );
 
             case 6:
-                return GetRandomFromGroup( GetGroupByChance (1,2,7) );
+                return GetRandomFromGroup( GetGroupByChance (5,  20, 70) );
 
             case 7:
-                return GetRandomFromGroup( GetGroupByChance (1,1,10) );
+                return GetRandomFromGroup( GetGroupByChance (2,  13, 85) );
 
             default:
-                return GetRandomFromGroup( GetGroupByChance (1,1,20) );
+                return GetRandomFromGroup( GetGroupByChance (1,  2,  97) );
         }
     }
 
