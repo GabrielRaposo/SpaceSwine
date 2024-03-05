@@ -26,14 +26,24 @@ namespace Shooter
         float blinkingCount;
 
 
-        public void Setup (MS_Session session)
+        public void Setup (MS_Session session, int level)
         {
             this.session = session;
 
-            HP = startingHP;
+            HP = SetHealthByLevel(level);
             gameObject.SetActive(true);
 
             SetBlinkingState(false);
+        }
+
+        private int SetHealthByLevel(int level)
+        {
+            if (level < 2)
+                return 1;
+
+            if (level < 5)
+                return 2;
+            return 3;
         }
 
         private void SetBlinkingState (bool value)

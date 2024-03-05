@@ -40,10 +40,10 @@ public class MS_Bouncer : MonoBehaviour
 
     public Vector2 ReflectVelocity (Vector2 velocity)
     {
-        if (cooldownCount > 0)
-            return velocity;
+        //if (cooldownCount > 0)
+        //    return velocity;
 
-        cooldownCount = cooldown;
+        //cooldownCount = cooldown;
 
         animator.SetTrigger("PopBack");
 

@@ -18,6 +18,7 @@ public class MS_SessionManager : MonoBehaviour
 
     [SerializeField] Transform difficulty1Group;
     [SerializeField] Transform difficulty2Group;
+    [SerializeField] Transform difficulty3Group;
 
     [Space(20)]
 
@@ -39,6 +40,7 @@ public class MS_SessionManager : MonoBehaviour
         DeactivateAllSessions(transform);
         DeactivateAllSessions(difficulty1Group);
         DeactivateAllSessions(difficulty2Group);
+        DeactivateAllSessions(difficulty3Group);
 
         SetNewSession();
     }
@@ -85,15 +87,14 @@ public class MS_SessionManager : MonoBehaviour
                 return GetRandomFromGroup( GetGroupByChance (0,1,9) );
 
             default:
-                //return GetRandomFromGroup(difficulty3Group);
-                return GetRandomFromGroup(difficulty2Group);
+                return GetRandomFromGroup(difficulty3Group);
         }
     }
 
     private void SetNewSession()
     {
         currentSession = GetSessionByLevel();
-        currentSession.Setup(this);
+        currentSession.Setup(this, level);
     }
 
     public void NotifyCompletedSession()
@@ -111,27 +112,11 @@ public class MS_SessionManager : MonoBehaviour
 
     private void UpdateLevel()
     {
-
-        //if (sessionsCompleted > 4)
-        //{
-        //    level = 2;
-        //    return;
-        //}
-
         if ((sessionsCompleted + 1) % 3 == 0)
         {
             level++;
             Debug.Log("Level up: " + level);
         }
-
-        //if (sessionsCompleted > 1)
-        //{
-        //    level = 1;
-        //    return;
-        //}
-
-
-
     }
 
     private void DeactivateAllSessions (Transform group)
@@ -180,7 +165,6 @@ public class MS_SessionManager : MonoBehaviour
         if (r < group1Ratio + group2Ratio)
             return difficulty2Group;
 
-        return difficulty2Group;
-
+        return difficulty3Group;
     }
 }

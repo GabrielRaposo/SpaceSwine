@@ -23,9 +23,12 @@ namespace Shooter
         public UnityAction OnVanish;
         public UnityAction OnAfterVanish;
 
-        public void Setup (MS_SessionManager sessionManager)
+        int level;
+
+        public void Setup (MS_SessionManager sessionManager, int level)
         {
             this.sessionManager = sessionManager;
+            this.level = level;
 
             if (!specialSession)
             {
@@ -36,7 +39,7 @@ namespace Shooter
                     return;
 
                 foreach (MS_Enemy e in enemies)
-                    e.Setup(this);
+                    e.Setup(this, level);
             }
             else
             {
@@ -81,7 +84,7 @@ namespace Shooter
 
             MS_ScoreManager.Instance.ChangeScore (scoreReward);
             MS_SessionManager.OnSessionTransition = true;
-            MS_StageTimer.AddTime ( specialSession ? 6 : totalCompletion * 2);
+            MS_StageTimer.AddTime ( TimeByLevel() );
             MS_StageTimer.SetSessionBlink();
 
             this.WaitSeconds (duration: .35f, action: () => 
@@ -94,6 +97,20 @@ namespace Shooter
                 if (OnAfterVanish != null)
                     OnAfterVanish.Invoke();
             });
+        }
+
+        private int TimeByLevel()
+        {
+            if (specialSession)
+                return 6;
+
+            if (level < 2)
+                return totalCompletion;
+
+            if (level < 5)
+                return totalCompletion * 2;
+
+            return (totalCompletion * 3) - 2;
         }
     }
 }
