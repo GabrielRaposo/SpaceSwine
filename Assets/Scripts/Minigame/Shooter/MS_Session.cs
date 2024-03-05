@@ -15,6 +15,7 @@ namespace Shooter
         int totalCompletion;
 
         MS_Enemy[] enemies;
+        MS_Sun sunEnemy;
         MS_SessionManager sessionManager;
 
         public UnityAction OnPreReset;
@@ -39,11 +40,13 @@ namespace Shooter
             }
             else
             {
-                MS_Sun sun = GetComponentInChildren<MS_Sun>();
-                if (!sun)
+                if (sunEnemy == null)
+                    sunEnemy = GetComponentInChildren<MS_Sun>();
+
+                if (!sunEnemy)
                     return;
 
-                sun.Setup(this);
+                sunEnemy.Setup(this);
             }
 
             gameObject.SetActive(true);

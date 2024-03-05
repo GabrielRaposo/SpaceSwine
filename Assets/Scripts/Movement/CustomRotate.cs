@@ -10,7 +10,7 @@ public class CustomRotate : MonoBehaviour
     [SerializeField] CustomEase customEase;
     [SerializeField] protected bool moveOnStart;
 
-    float startingRotation;
+    protected float startingRotation;
     float startingT = 0; 
     float t;
     float startupCount;

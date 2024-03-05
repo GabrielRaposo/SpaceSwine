@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class MS_CustomRotate : CustomRotate
 {
+    [SerializeField] bool randomizeStartingRotation;
+
     protected override void Start()
     {
             moveOnStart = true;
@@ -27,6 +29,9 @@ public class MS_CustomRotate : CustomRotate
 
                 session.OnAfterVanish += () =>
                 {
+                    if (randomizeStartingRotation)
+                        startingRotation = Random.Range(0, 360);
+
                     gameObject.SetActive(true);
                     Restart();
                     FixedUpdate();

@@ -9,16 +9,20 @@ public class MS_SessionManager : MonoBehaviour
 
     [Space(20)]
 
-    [SerializeField] MS_Player player;
 
     [SerializeField] MS_Session firstSession;
     [SerializeField] MS_Session secondSession;
+    [SerializeField] MS_Session sunSession;
 
     [Space(20)]
 
     [SerializeField] Transform difficulty1Group;
     [SerializeField] Transform difficulty2Group;
 
+    [Space(20)]
+
+    [SerializeField] MS_Player player;
+    
     MS_Session currentSession;
     MS_ProgressDisplay progressDisplay;
 
@@ -49,9 +53,11 @@ public class MS_SessionManager : MonoBehaviour
 
     private MS_Session GetSessionByLevel()
     {
+        if ( sessionsCompleted % 15 == 0 )
+            return sunSession;
+
         switch (level)
         {
-
             case 0:
                 if (testSession != null)
                     return sessionsCompleted == 0 ? firstSession : testSession;

@@ -161,9 +161,11 @@ public class MS_StageTimer : MonoBehaviour
             yield return new WaitForSeconds(blinkDelay);
             t += blinkDelay;
 
-            SetColors (baseColor);
+            SetColors (sessionColor);
             yield return new WaitForSeconds(blinkDelay);
             t += blinkDelay;
         }
+
+        SetColors (baseColor);
     }
 }

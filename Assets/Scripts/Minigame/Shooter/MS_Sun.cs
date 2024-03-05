@@ -8,6 +8,13 @@ namespace Shooter
     {
         [SerializeField] int scoreReward;
         [SerializeField] int startingHP = 1;
+        [SerializeField] float blinkingDuration;
+        
+        [Header("References")]
+        [SerializeField] GameObject visualComponent;
+        [SerializeField] SpriteSwapper faceSwapper;
+        [SerializeField] SpriteSwapper bodySwapper;
+        [SerializeField] SpriteSwapper earsSwapper;
 
         int HP;
 
@@ -36,11 +43,11 @@ namespace Shooter
 
             if (HP > 0)
             {
-                // On Take Damage
                 //if (HitPS)
                 //    HitPS.Play();
 
-                //blinkingCount = blinkingDuration;
+                StopAllCoroutines ();
+                StartCoroutine (BlinkingRoutine());
                 //SetBlinkingState(true);
 
                 return;
@@ -63,6 +70,42 @@ namespace Shooter
 
             if (session)
                 session.NotifyProgress();
+        }
+
+        IEnumerator BlinkingRoutine ()
+        {
+            float step = .06f;
+            float t = 0;
+
+            if (faceSwapper) faceSwapper.SetSpriteState(1);
+
+            while (t < blinkingDuration)
+            {
+                if (visualComponent) visualComponent.SetActive(true);
+                if (bodySwapper) bodySwapper.SetSpriteState(1);
+                if (earsSwapper) earsSwapper.SetSpriteState(1);
+
+                yield return new WaitForSeconds (step);
+                t += step;
+
+                if (bodySwapper) bodySwapper.SetSpriteState(2);
+                if (earsSwapper) earsSwapper.SetSpriteState(2);
+
+                yield return new WaitForSeconds (step);
+                t += step;
+
+                if (visualComponent) visualComponent.SetActive(false);
+                //if (bodySwapper) bodySwapper.SetSpriteState(0);
+                //if (earsSwapper) earsSwapper.SetSpriteState(0);
+
+                yield return new WaitForSeconds (step);
+                t += step;
+            }
+
+            if (visualComponent) visualComponent.SetActive(true);
+            if (faceSwapper) faceSwapper.SetSpriteState(0);
+            if (bodySwapper) bodySwapper.SetSpriteState(0);
+            if (earsSwapper) earsSwapper.SetSpriteState(0);
         }
     }
 }
