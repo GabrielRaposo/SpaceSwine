@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Minigame;
 using UnityEngine.Events;
-using DG.Tweening.Core.Easing;
+using DG.Tweening;
 
 namespace Shooter
 {
@@ -17,6 +17,8 @@ namespace Shooter
         [SerializeField] float shotCooldown;
         [SerializeField] int startingAmmo;
         [SerializeField] Transform shootPosition;
+        [SerializeField] ParticleSystem shotPS;
+        [SerializeField] Transform visualComponent;
 
         [Header("Movement")]
         [SerializeField] float rotationSpeed;
@@ -90,6 +92,15 @@ namespace Shooter
 
             Vector2 velocity = shotSpeed * RaposUtil.RotateVector (Vector2.up, rotationAnchor.eulerAngles.z);
             bullet.Shoot (this, shootPosition.position, velocity);
+            if (shotPS != null)
+                shotPS.Play();
+
+
+            if (visualComponent != null)
+            {
+                visualComponent.DOKill();
+                visualComponent.DOPunchPosition(Vector2.down * .2f, duration: .15f, vibrato: 1);
+            }
 
             cooldownCount = shotCooldown;
 
