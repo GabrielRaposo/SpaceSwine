@@ -23,6 +23,7 @@ public class MS_StageTimer : MonoBehaviour
     [SerializeField] TextMeshProUGUI timeUpDisplay;
     [SerializeField] Image clockImage;
     [SerializeField] MS_SessionManager sessionManager;
+    [SerializeField] AK.Wwise.Event OnTimeUpAKEvent;
 
     bool dangerBlinking;
 
@@ -101,6 +102,9 @@ public class MS_StageTimer : MonoBehaviour
 
         if (sessionManager)
             sessionManager.CallOnVanishSession();
+
+        if (OnTimeUpAKEvent != null)
+            OnTimeUpAKEvent.Post(gameObject);
 
         Running = false;
         StopAllCoroutines();

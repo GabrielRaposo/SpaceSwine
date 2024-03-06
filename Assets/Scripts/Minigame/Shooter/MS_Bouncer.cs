@@ -12,6 +12,8 @@ public class MS_Bouncer : MonoBehaviour
     [SerializeField] SpriteRenderer springRenderer;
     [SerializeField] BoxCollider2D boxCollider;
 
+    [SerializeField] AK.Wwise.Event OnBounceAKEvent;
+
     float cooldownCount;
     Animator animator;
 
@@ -40,12 +42,10 @@ public class MS_Bouncer : MonoBehaviour
 
     public Vector2 ReflectVelocity (Vector2 velocity)
     {
-        //if (cooldownCount > 0)
-        //    return velocity;
-
-        //cooldownCount = cooldown;
-
         animator.SetTrigger("PopBack");
+
+        if (OnBounceAKEvent != null)
+            OnBounceAKEvent.Post(gameObject);
 
         return Vector2.Reflect( velocity, RaposUtil.RotateVector(transform.up, 180) );
     }

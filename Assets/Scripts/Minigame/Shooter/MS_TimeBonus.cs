@@ -6,6 +6,7 @@ using UnityEngine;
 public class MS_TimeBonus : MonoBehaviour
 {
     [SerializeField] MS_DettachableEffect onCollectEffect;
+    [SerializeField] AK.Wwise.Event OnCollectAKEvent;
 
     private void Start()
     {
@@ -25,6 +26,9 @@ public class MS_TimeBonus : MonoBehaviour
     {
         if (onCollectEffect != null)
             onCollectEffect.Call();
+
+        if (OnCollectAKEvent != null)
+            OnCollectAKEvent.Post(gameObject);
 
         MS_StageTimer.AddTime(1);
 

@@ -23,6 +23,7 @@ public class MS_SessionManager : MonoBehaviour
     [Space(20)]
 
     [SerializeField] MS_Player player;
+    [SerializeField] AK.Wwise.Event OnNewSessionAKEvent;
     
     MS_Session currentSession;
     MS_ProgressDisplay progressDisplay;
@@ -101,6 +102,9 @@ public class MS_SessionManager : MonoBehaviour
     {
         if (MS_Player.LostMatch)
             return;
+
+        if (OnNewSessionAKEvent != null)
+            OnNewSessionAKEvent.Post(gameObject);
 
         sessionsCompleted++;
         UpdateStageDisplay();

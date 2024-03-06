@@ -20,6 +20,10 @@ namespace Shooter
         [SerializeField] Collider2D coll2D;
         [SerializeField] ParticleSystem HitPS;
 
+        [Header ("Audio")]
+        [SerializeField] AK.Wwise.Event OnDamageAKEvent;
+        [SerializeField] AK.Wwise.Event OnVanishAKEvent;
+
         int HP;
         MS_Session session;
 
@@ -79,7 +83,9 @@ namespace Shooter
 
             if (HP > 0)
             {
-                // On Take Damage
+                if (OnDamageAKEvent != null)
+                    OnDamageAKEvent.Post(gameObject);
+
                 if (HitPS)
                     HitPS.Play();
 
@@ -103,6 +109,9 @@ namespace Shooter
         public void SelfDestruct()
         {
             Vanish();
+
+            if (OnVanishAKEvent != null)
+                OnVanishAKEvent.Post(gameObject);
 
             if (session)
                 session.NotifyProgress();

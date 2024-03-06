@@ -23,6 +23,9 @@ namespace Shooter
         [SerializeField] Transform rotationAnchor;
         [SerializeField] float maxAngle;
 
+        [Header("Audio")]
+        [SerializeField] AK.Wwise.Event shootAKEvent;
+
         int ammo;
         int activeBullets;
         float cooldownCount;
@@ -89,6 +92,9 @@ namespace Shooter
             bullet.Shoot (this, shootPosition.position, velocity);
 
             cooldownCount = shotCooldown;
+
+            if (shootAKEvent != null)
+                shootAKEvent.Post(gameObject);
 
             if (!hasMoved)
             {

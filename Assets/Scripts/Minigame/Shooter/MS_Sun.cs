@@ -16,6 +16,10 @@ namespace Shooter
         [SerializeField] SpriteSwapper bodySwapper;
         [SerializeField] SpriteSwapper earsSwapper;
 
+        [Header ("Audio")]
+        [SerializeField] AK.Wwise.Event OnDamageAKEvent;
+        [SerializeField] AK.Wwise.Event OnVanishAKEvent;
+
         int HP;
 
         MS_Session session;
@@ -30,11 +34,6 @@ namespace Shooter
             //SetBlinkingState(false);
         }
 
-        void Update()
-        {
-        
-        }
-
         public void TakeDamage (int value, int scoreBonus) 
         {
             HP -= value;
@@ -43,8 +42,8 @@ namespace Shooter
 
             if (HP > 0)
             {
-                //if (HitPS)
-                //    HitPS.Play();
+                if (OnDamageAKEvent != null)
+                    OnDamageAKEvent.Post(gameObject);
 
                 StopAllCoroutines ();
                 StartCoroutine (BlinkingRoutine());
@@ -67,6 +66,9 @@ namespace Shooter
         public void SelfDestruct()
         {
             Vanish();
+
+            if (OnVanishAKEvent != null)
+                OnVanishAKEvent.Post(gameObject);
 
             if (session)
                 session.NotifyProgress();
