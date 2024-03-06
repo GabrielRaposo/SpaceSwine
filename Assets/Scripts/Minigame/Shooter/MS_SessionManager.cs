@@ -99,6 +99,9 @@ public class MS_SessionManager : MonoBehaviour
 
     public void NotifyCompletedSession()
     {
+        if (MS_Player.LostMatch)
+            return;
+
         sessionsCompleted++;
         UpdateStageDisplay();
         UpdateLevel();
@@ -115,7 +118,7 @@ public class MS_SessionManager : MonoBehaviour
         if ((sessionsCompleted + 1) % 3 == 0)
         {
             level++;
-            Debug.Log("Level up: " + level);
+            //Debug.Log("Level up: " + level);
         }
     }
 
@@ -166,5 +169,13 @@ public class MS_SessionManager : MonoBehaviour
             return difficulty2Group;
 
         return difficulty3Group;
+    }
+
+    public void CallOnVanishSession()
+    {
+        if (currentSession == null)
+            return;
+
+        currentSession.CallOnVanish();
     }
 }

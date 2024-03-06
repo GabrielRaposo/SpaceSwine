@@ -160,11 +160,13 @@ namespace Shooter
             //    destroyAnimation.SetActive (true);
             //}
             
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            enabled = false;
+            
             LostMatch = true;
 
             if (gameManager)
-                gameManager.ResetScene(.5f);
+                gameManager.ResetScene(2f);
         }
 
 
