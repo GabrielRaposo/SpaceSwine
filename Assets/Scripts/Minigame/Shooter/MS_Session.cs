@@ -72,6 +72,12 @@ namespace Shooter
             });
         }
 
+        public void CallOnVanish()
+        {
+            if (OnVanish != null)
+                OnVanish.Invoke();
+        }
+
         public void NotifyProgress()
         {
             completion--;
@@ -79,8 +85,7 @@ namespace Shooter
             if (completion > 0)
                 return;
 
-            if (OnVanish != null)
-                OnVanish.Invoke();
+            CallOnVanish();
 
             MS_ScoreManager.Instance.ChangeScore (scoreReward);
             MS_SessionManager.OnSessionTransition = true;

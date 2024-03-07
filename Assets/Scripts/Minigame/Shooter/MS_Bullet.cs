@@ -12,6 +12,9 @@ namespace Shooter
         [SerializeField] ParticleSystem trailPS;
         [SerializeField] MS_DettachableEffect dettachableEffect;
 
+        [Header("Audio")]
+        [SerializeField] AK.Wwise.Event vanishAKEvent;
+
         bool insideArea;
         bool restoredAmmo;
 
@@ -103,6 +106,9 @@ namespace Shooter
 
             if (dettachableEffect)
                 dettachableEffect.Call();
+
+            if (vanishAKEvent != null)
+                vanishAKEvent.Post(gameObject);
 
             insideArea = false;
             gameObject.SetActive(false);

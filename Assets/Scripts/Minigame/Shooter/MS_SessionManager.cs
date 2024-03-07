@@ -23,6 +23,7 @@ public class MS_SessionManager : MonoBehaviour
     [Space(20)]
 
     [SerializeField] MS_Player player;
+    [SerializeField] AK.Wwise.Event OnNewSessionAKEvent;
     
     MS_Session currentSession;
     MS_ProgressDisplay progressDisplay;
@@ -99,6 +100,12 @@ public class MS_SessionManager : MonoBehaviour
 
     public void NotifyCompletedSession()
     {
+        if (MS_Player.LostMatch)
+            return;
+
+        if (OnNewSessionAKEvent != null)
+            OnNewSessionAKEvent.Post(gameObject);
+
         sessionsCompleted++;
         UpdateStageDisplay();
         UpdateLevel();
@@ -115,7 +122,7 @@ public class MS_SessionManager : MonoBehaviour
         if ((sessionsCompleted + 1) % 3 == 0)
         {
             level++;
-            Debug.Log("Level up: " + level);
+            //Debug.Log("Level up: " + level);
         }
     }
 
@@ -166,5 +173,13 @@ public class MS_SessionManager : MonoBehaviour
             return difficulty2Group;
 
         return difficulty3Group;
+    }
+
+    public void CallOnVanishSession()
+    {
+        if (currentSession == null)
+            return;
+
+        currentSession.CallOnVanish();
     }
 }

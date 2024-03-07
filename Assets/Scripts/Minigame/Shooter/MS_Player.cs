@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Minigame;
 using UnityEngine.Events;
-using DG.Tweening.Core.Easing;
+using DG.Tweening;
 
 namespace Shooter
 {
@@ -17,11 +17,16 @@ namespace Shooter
         [SerializeField] float shotCooldown;
         [SerializeField] int startingAmmo;
         [SerializeField] Transform shootPosition;
+        [SerializeField] ParticleSystem shotPS;
+        [SerializeField] Transform visualComponent;
 
         [Header("Movement")]
         [SerializeField] float rotationSpeed;
         [SerializeField] Transform rotationAnchor;
         [SerializeField] float maxAngle;
+
+        [Header("Audio")]
+        [SerializeField] AK.Wwise.Event shootAKEvent;
 
         int ammo;
         int activeBullets;
@@ -87,8 +92,20 @@ namespace Shooter
 
             Vector2 velocity = shotSpeed * RaposUtil.RotateVector (Vector2.up, rotationAnchor.eulerAngles.z);
             bullet.Shoot (this, shootPosition.position, velocity);
+            if (shotPS != null)
+                shotPS.Play();
+
+
+            if (visualComponent != null)
+            {
+                visualComponent.DOKill();
+                visualComponent.DOPunchPosition(Vector2.down * .2f, duration: .15f, vibrato: 1);
+            }
 
             cooldownCount = shotCooldown;
+
+            if (shootAKEvent != null)
+                shootAKEvent.Post(gameObject);
 
             if (!hasMoved)
             {
@@ -160,11 +177,13 @@ namespace Shooter
             //    destroyAnimation.SetActive (true);
             //}
             
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            enabled = false;
+            
             LostMatch = true;
 
             if (gameManager)
-                gameManager.ResetScene(.5f);
+                gameManager.ResetScene(2f);
         }
 
 

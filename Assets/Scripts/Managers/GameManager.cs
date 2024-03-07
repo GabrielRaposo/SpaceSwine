@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
         playerInputActions.UI.Reset.performed += (ctx) => 
         {
-            if (BlockCharacterInput || OnTransition || PauseSystem.OnPause)
+            if (BlockCharacterInput || OnTransition || PauseSystem.OnPause || DialogueSystem.OnDialogue)
                 return;
 
             if (RoundsManager.Instance)

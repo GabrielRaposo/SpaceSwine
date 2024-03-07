@@ -20,7 +20,10 @@ public class MS_StageTimer : MonoBehaviour
     [Header("References")]
     [SerializeField] MS_Player player;
     [SerializeField] TextMeshProUGUI timerDisplay;
+    [SerializeField] TextMeshProUGUI timeUpDisplay;
     [SerializeField] Image clockImage;
+    [SerializeField] MS_SessionManager sessionManager;
+    [SerializeField] AK.Wwise.Event OnTimeUpAKEvent;
 
     bool dangerBlinking;
 
@@ -40,6 +43,8 @@ public class MS_StageTimer : MonoBehaviour
     {
         Time = startingTime;
         UpdateDisplay();
+        if (timeUpDisplay)
+            timeUpDisplay.enabled = false;
         Running = false;
 
         canvasGroup.alpha = 0;
@@ -95,9 +100,19 @@ public class MS_StageTimer : MonoBehaviour
         if (player)
             player.Die();
 
+        if (sessionManager)
+            sessionManager.CallOnVanishSession();
+
+        if (OnTimeUpAKEvent != null)
+            OnTimeUpAKEvent.Post(gameObject);
+
         Running = false;
         StopAllCoroutines();
-        SetColors (dangerColor);
+
+        timerDisplay.gameObject.SetActive(false);
+
+        if (timeUpDisplay)
+            timeUpDisplay.enabled = true;
     }
 
     private void UpdateDisplay()
