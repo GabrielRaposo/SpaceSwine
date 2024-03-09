@@ -60,7 +60,7 @@ namespace Traveler
             rb.velocity = speed * direction * -1;
 
             MT_Bullet bullet = bulletPool.Get();
-            bullet.Shoot (speed * direction, transform.position);
+            bullet.Shoot (speed * direction * .5f, transform.position);
         }
 
         void Update()
@@ -88,6 +88,13 @@ namespace Traveler
             if (bullet && bullet.FriendlyFire)
             {
                 gameObject.SetActive(false);
+                return;
+            }
+
+            MT_Collectable collectable = collision.GetComponent<MT_Collectable>();
+            if (collectable)
+            {
+                collectable.OnCollect();
                 return;
             }
         }

@@ -44,7 +44,6 @@ namespace Traveler
 
             if (transform.localPosition.x - threshold > SCREEN_X / 2)
             {
-                Debug.Log("A");
                 transform.position += Vector3.left * (SCREEN_X + (threshold * 2));
                 //insideZone = true;
                 return;
@@ -52,7 +51,6 @@ namespace Traveler
 
             if (transform.localPosition.x + threshold < -SCREEN_X / 2)
             {
-                Debug.Log("B");
                 transform.position += Vector3.right * (SCREEN_X + (threshold * 2));
                 //insideZone = true;
                 return;
