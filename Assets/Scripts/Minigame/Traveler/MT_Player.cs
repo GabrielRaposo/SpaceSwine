@@ -3,74 +3,94 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MT_Player : MonoBehaviour
+namespace Traveler
 {
-    [SerializeField] float speed;
-    [SerializeField] Transform aimAnchor;
-
-    Vector2 direction;
-    Rigidbody2D rb;
-    MT_ScreenLooper screenLooper;
-
-    PlayerInputActions inputActions;
-    InputAction movementAction;
-
-    private void Awake()
+    public class MT_Player : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody2D>();
-        screenLooper = GetComponent<MT_ScreenLooper>();
-    }
+        [SerializeField] float speed;
+        [SerializeField] Transform aimAnchor;
 
-    private void OnEnable()
-    {
-        inputActions = new PlayerInputActions();
-        inputActions.Enable();
+        Vector2 direction;
+        Rigidbody2D rb;
+        MT_ScreenLooper screenLooper;
+        MT_BulletPool bulletPool;
 
-        movementAction = inputActions.Minigame.Movement;
-        movementAction.Enable();
+        PlayerInputActions inputActions;
+        InputAction movementAction;
 
-        inputActions.Minigame.Action.performed += (ctx) => 
+        private void Awake()
         {
-            ShootInput();
-        };
-        inputActions.Minigame.Action.Enable();
-    }
+            rb = GetComponent<Rigidbody2D>();
+            screenLooper = GetComponent<MT_ScreenLooper>();
+        }
 
-    void Start()
-    {
-        direction = Vector2.up;
-        UpdateAimDisplay();
-    }
+        private void OnEnable()
+        {
+            inputActions = new PlayerInputActions();
+            inputActions.Enable();
 
-    void UpdateAimDisplay()
-    {
-        if (!aimAnchor || !screenLooper.InsideZone)
-            return;
+            movementAction = inputActions.Minigame.Movement;
+            movementAction.Enable();
 
-        aimAnchor.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
-    }
+            inputActions.Minigame.Action.performed += (ctx) => 
+            {
+                ShootInput();
+            };
+            inputActions.Minigame.Action.Enable();
+        }
 
-    void ShootInput()
-    {
-        rb.velocity = speed * direction * -1;
-    }
+        void Start()
+        {
+            bulletPool = MT_BulletPool.Instance;
 
-    void Update()
-    {
-        Vector2 axisInput = movementAction.ReadValue<Vector2>();
+            direction = Vector2.up;
+            UpdateAimDisplay();
+        }
+
+        void UpdateAimDisplay()
+        {
+            if (!aimAnchor || !screenLooper.InsideZone)
+                return;
+
+            aimAnchor.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
+        }
+
+        void ShootInput()
+        {
+            rb.velocity = speed * direction * -1;
+
+            MT_Bullet bullet = bulletPool.Get();
+            bullet.Shoot (speed * direction, transform.position);
+        }
+
+        void Update()
+        {
+            Vector2 axisInput = movementAction.ReadValue<Vector2>();
         
-        if (axisInput == Vector2.zero)
-            return;
+            if (axisInput == Vector2.zero)
+                return;
 
-        direction = axisInput.normalized;
-        UpdateAimDisplay();
+            direction = axisInput.normalized;
+            UpdateAimDisplay();
+        }
+
+        private void OnDisable()
+        {
+            inputActions.Disable();
+
+            movementAction.Disable();
+            inputActions.Minigame.Action.Disable();
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            MT_Bullet bullet = collision.GetComponent<MT_Bullet>();
+            if (bullet && bullet.FriendlyFire)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+        }
     }
 
-    private void OnDisable()
-    {
-        inputActions.Disable();
-
-        movementAction.Disable();
-        inputActions.Minigame.Action.Disable();
-    }
 }

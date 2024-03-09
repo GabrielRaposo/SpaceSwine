@@ -16,6 +16,7 @@ public class ShipDialogueManager : StoryEventDependent
     public class DialogueIndexer
     {
         public StoryEventScriptableObject storyEvent;
+        public List<StoryEventScriptableObject> extraEvents;
         public string textCode;
     }
 
@@ -33,6 +34,8 @@ public class ShipDialogueManager : StoryEventDependent
     [SerializeField] ShipInitializerSystem shipInitializer;
     [SerializeField] ShipExclamationIcon shipExclamationIcon;
 
+    [Header("Intro Dialogue")]
+    [SerializeField] int testSpecific = -1;
     [SerializeField] List<DialogueIndexer> dialogueIndexers;
     
     StoryEventScriptableObject afterDialogueStoryEvent;
@@ -65,11 +68,31 @@ public class ShipDialogueManager : StoryEventDependent
 
         for (int i = 0; i < dialogueIndexers.Count; i++)
         {
+            //Debug.Log($"i: {i}, test: {testSpecific}");
+
+            if (testSpecific > -1 && i != testSpecific)
+                continue;
+
             DialogueIndexer data = dialogueIndexers[i];
             if (data.storyEvent == null)
                 continue;
 
-            if (StoryEventsManager.IsComplete(data.storyEvent) && !UINotificationManager.Check( NotificationID(i) ))
+            bool isStoryEventComplete = false;
+            if (StoryEventsManager.IsComplete(data.storyEvent))
+                isStoryEventComplete = true;
+            else if (data.extraEvents != null && data.extraEvents.Count > 0)
+            {
+                foreach (var d in data.extraEvents)
+                {
+                    if (StoryEventsManager.IsComplete(d))
+                    {
+                        isStoryEventComplete = true;
+                        break;
+                    }
+                }
+            }
+
+            if (isStoryEventComplete && !UINotificationManager.Check( NotificationID(i) ))
             {   
                 StartDialogueIndex = i;
                 dialogueIndexer = data;

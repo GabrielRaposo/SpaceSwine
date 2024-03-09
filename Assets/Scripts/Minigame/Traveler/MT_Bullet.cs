@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MT_Bullet : MonoBehaviour
+namespace Traveler
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MT_Bullet : MonoBehaviour
     {
+        public bool FriendlyFire { get; private set; }
         
-    }
+        Rigidbody2D rb;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Shoot (Vector2 velocity, Vector2 origin)
+        {
+            FriendlyFire = false;
+            transform.position = origin;
+
+            gameObject.SetActive (true);
+
+            rb = GetComponent<Rigidbody2D>();
+            rb.velocity = velocity;
+
+            this.WaitSeconds (1f, () => FriendlyFire = true);
+        }
     }
 }
