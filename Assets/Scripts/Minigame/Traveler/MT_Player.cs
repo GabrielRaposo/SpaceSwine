@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,9 @@ namespace Traveler
     {
         [SerializeField] float speed;
         [SerializeField] Transform aimAnchor;
+        [SerializeField] MT_Barrier barrier;
+
+        bool invincible;
 
         Vector2 direction;
         Rigidbody2D rb;
@@ -18,8 +22,12 @@ namespace Traveler
         PlayerInputActions inputActions;
         InputAction movementAction;
 
+        static public MT_Player Instance;
+
         private void Awake()
         {
+            Instance = this;
+
             rb = GetComponent<Rigidbody2D>();
             screenLooper = GetComponent<MT_ScreenLooper>();
         }
@@ -43,6 +51,8 @@ namespace Traveler
         {
             bulletPool = MT_BulletPool.Instance;
 
+            barrier.gameObject.SetActive(false);
+
             direction = Vector2.up;
             UpdateAimDisplay();
         }
@@ -57,9 +67,12 @@ namespace Traveler
 
         void ShootInput()
         {
+            if (rb.velocity.normalized == -direction.normalized)
+                return;
+
             rb.velocity = speed * direction * -1;
 
-            MT_Bullet bullet = bulletPool.Get();
+            MT_Bullet bullet = bulletPool.GetMainBullet();
             bullet.Shoot (speed * direction * .5f, transform.position);
         }
 
@@ -84,17 +97,22 @@ namespace Traveler
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            MT_Bullet bullet = collision.GetComponent<MT_Bullet>();
-            if (bullet && bullet.FriendlyFire)
-            {
-                gameObject.SetActive(false);
-                return;
-            }
-
             MT_Collectable collectable = collision.GetComponent<MT_Collectable>();
             if (collectable)
             {
                 collectable.OnCollect();
+                barrier.Setup(transform);
+
+                invincible = true;
+                this.WaitSeconds(.1f, () => invincible = false);
+
+                return;
+            }
+
+            MT_Bullet bullet = collision.GetComponent<MT_Bullet>();
+            if (bullet && bullet.FriendlyFire && !invincible)
+            {
+                gameObject.SetActive(false);
                 return;
             }
         }

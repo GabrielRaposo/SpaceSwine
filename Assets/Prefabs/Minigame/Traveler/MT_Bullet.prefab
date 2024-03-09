@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3339963458569661806}
+  - component: {fileID: 6429042175849579301}
   - component: {fileID: 3339963458569661807}
   m_Layer: 0
   m_Name: Visual Component
@@ -31,6 +32,21 @@ Transform:
   m_Father: {fileID: 3339963459136440224}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6429042175849579301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3339963458569661805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0790bcfa3e1053a4f9dddd5884a0d2b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -92470442571148441, guid: ee4230d6edef9ee49920e140debcee15, type: 3}
+  - {fileID: -2820397481596667315, guid: ee4230d6edef9ee49920e140debcee15, type: 3}
 --- !u!212 &3339963458569661807
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -96,7 +112,7 @@ GameObject:
   - component: {fileID: 3339963459136440228}
   - component: {fileID: 3339963459136440227}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: MT_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,6 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6160fbe2b4d42f047ac52bc8b8f84317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateOnAim: 0
+  spriteSwapper: {fileID: 6429042175849579301}
 --- !u!114 &3339963459136440225
 MonoBehaviour:
   m_ObjectHideFlags: 0

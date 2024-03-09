@@ -7,11 +7,16 @@ namespace Traveler
     public class MT_BulletPool : MonoBehaviour
     {
         [SerializeField] int poolSize;
+        [SerializeField] int aimPoolSize;
+
         [SerializeField] GameObject bulletBase;
+        [SerializeField] GameObject aimBulletBase;
 
-        int index;
+        int mainIndex;
+        int aimIndex;
 
-        List<MT_Bullet> bullets; 
+        List<MT_Bullet> mainBullets; 
+        List<MT_Bullet> aimBullets; 
 
         public static MT_BulletPool Instance;
 
@@ -25,25 +30,48 @@ namespace Traveler
             if (bulletBase == null)
                 return;
 
-            bullets = new List<MT_Bullet>();
-            
-            for (int i = 0; i < poolSize; i++) 
             {
-                MT_Bullet b = Instantiate (bulletBase, transform).GetComponent<MT_Bullet>();
-                b.gameObject.SetActive (false);
-                bullets.Add(b);
+                mainBullets = new List<MT_Bullet>();
+            
+                for (int i = 0; i < poolSize; i++) 
+                {
+                    MT_Bullet b = Instantiate (bulletBase, transform).GetComponent<MT_Bullet>();
+                    b.gameObject.SetActive (false);
+                    mainBullets.Add(b);
+                }
+
+                bulletBase.SetActive (false);
             }
 
-            bulletBase.SetActive (false);
-            index = 0;
+            {
+                aimBullets = new List<MT_Bullet>();
+            
+                for (int i = 0; i < aimPoolSize; i++) 
+                {
+                    MT_Bullet b = Instantiate (aimBulletBase, transform).GetComponent<MT_Bullet>();
+                    b.gameObject.SetActive (false);
+                    aimBullets.Add(b);
+                }
+
+                aimBulletBase.SetActive (false);
+            }
+
+            mainIndex = 0;
         }
 
-        public MT_Bullet Get ()
+        public MT_Bullet GetMainBullet ()
         {
-            MT_Bullet bullet = bullets[index % bullets.Count];
-            index = (index + 1) % bullets.Count;
+            MT_Bullet bullet = mainBullets[mainIndex % mainBullets.Count];
+            mainIndex = (mainIndex + 1) % mainBullets.Count;
             return bullet;
         }
-    }
 
+        public MT_Bullet GetAimBullet ()
+        {
+            MT_Bullet bullet = aimBullets[aimIndex % aimBullets.Count];
+            aimIndex = (aimIndex + 1) % aimBullets.Count;
+            return bullet;
+        }
+
+    }
 }
