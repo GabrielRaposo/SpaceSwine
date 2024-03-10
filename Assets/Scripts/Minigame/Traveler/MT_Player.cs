@@ -1,6 +1,7 @@
 ﻿using Minigame;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,15 +11,22 @@ namespace Traveler
 {
     public class MT_Player : MonoBehaviour
     {
+        const int SCREEN_X = 10;
+        const int SCREEN_Y = 9;
+        const float OFFSET = .35f;
+
         [SerializeField] float speed;
         [SerializeField] float hitStunDuration;
         [SerializeField] GameObject OnHitEffect;
+        [SerializeField] SpriteRenderer signaler;
         [SerializeField] Transform aimAnchor;
         [SerializeField] MT_Barrier barrier;
         [SerializeField] MinigameManager gameManager;
 
         bool invincible;
         bool inputLocked;
+
+        int offscreenFrameCount;
 
         Vector2 direction;
         Rigidbody2D rb;
@@ -69,6 +77,8 @@ namespace Traveler
             direction = Vector2.right;
             aimAnchor.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
             UpdateAimDisplay();
+
+            signaler.enabled = false;
         }
 
         void UpdateAimDisplay()
@@ -104,6 +114,8 @@ namespace Traveler
             if (!HasMoved || inputLocked)
                 return;
 
+            SignalerLogic();
+
             Vector2 axisInput = movementAction.ReadValue<Vector2>();
         
             if (axisInput == Vector2.zero)
@@ -111,6 +123,33 @@ namespace Traveler
 
             direction = axisInput.normalized;
             UpdateAimDisplay();
+        }
+
+        private void SignalerLogic()
+        {
+            if (IsOffscreen())
+                offscreenFrameCount++;
+            else
+                offscreenFrameCount = 0;
+
+            signaler.enabled = offscreenFrameCount > 30;
+        }
+
+        private bool IsOffscreen()
+        {
+            if (transform.localPosition.x < -(SCREEN_X/2) - OFFSET )
+                return true;
+
+            if (transform.localPosition.x >  (SCREEN_X/2) + OFFSET )
+                return true;
+
+            if (transform.localPosition.y < -(SCREEN_Y/2) - OFFSET )
+                return true;
+
+            if (transform.localPosition.y >  (SCREEN_Y/2) + OFFSET )
+                return true;
+
+            return false;
         }
 
         private void OnDisable()

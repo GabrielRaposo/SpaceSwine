@@ -9,7 +9,6 @@ public class MS_SessionManager : MonoBehaviour
 
     [Space(20)]
 
-
     [SerializeField] MS_Session firstSession;
     [SerializeField] MS_Session secondSession;
     [SerializeField] MS_Session sunSession;
@@ -32,6 +31,12 @@ public class MS_SessionManager : MonoBehaviour
     int level;
 
     public static bool OnSessionTransition;
+    public static MS_SessionManager Instance; 
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -181,5 +186,10 @@ public class MS_SessionManager : MonoBehaviour
             return;
 
         currentSession.CallOnVanish();
+    }
+
+    public int GetLevel()
+    {
+        return level;
     }
 }
