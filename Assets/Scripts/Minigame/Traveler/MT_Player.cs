@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using Minigame;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Traveler
@@ -11,8 +13,10 @@ namespace Traveler
         [SerializeField] float speed;
         [SerializeField] Transform aimAnchor;
         [SerializeField] MT_Barrier barrier;
+        [SerializeField] MinigameManager gameManager;
 
         bool invincible;
+        bool inputLocked;
 
         Vector2 direction;
         Rigidbody2D rb;
@@ -22,6 +26,11 @@ namespace Traveler
         PlayerInputActions inputActions;
         InputAction movementAction;
 
+        public UnityAction OnFirstMove;
+
+        static public bool HasMoved {get; private set;}
+        static public bool HasLost {get; private set;}
+
         static public MT_Player Instance;
 
         private void Awake()
@@ -30,6 +39,8 @@ namespace Traveler
 
             rb = GetComponent<Rigidbody2D>();
             screenLooper = GetComponent<MT_ScreenLooper>();
+
+            HasMoved = HasLost = false;
         }
 
         private void OnEnable()
@@ -53,7 +64,8 @@ namespace Traveler
 
             barrier.gameObject.SetActive(false);
 
-            direction = Vector2.up;
+            direction = Vector2.right;
+            aimAnchor.eulerAngles = Vector3.forward * Vector2.SignedAngle(Vector2.up, direction);
             UpdateAimDisplay();
         }
 
@@ -74,10 +86,22 @@ namespace Traveler
 
             MT_Bullet bullet = bulletPool.GetMainBullet();
             bullet.Shoot (speed * direction * .5f, transform.position);
+
+            if (!HasMoved)
+            {
+                OnFirstMove?.Invoke();
+                HasMoved = true;
+
+                inputLocked = true;
+                this.WaitSeconds(.5f, () => inputLocked = false);
+            }
         }
 
         void Update()
         {
+            if (!HasMoved || inputLocked)
+                return;
+
             Vector2 axisInput = movementAction.ReadValue<Vector2>();
         
             if (axisInput == Vector2.zero)
@@ -97,6 +121,9 @@ namespace Traveler
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (HasLost)
+                return;
+
             MT_Collectable collectable = collision.GetComponent<MT_Collectable>();
             if (collectable)
             {
@@ -104,7 +131,7 @@ namespace Traveler
                 barrier.Setup(transform);
 
                 invincible = true;
-                this.WaitSeconds(.1f, () => invincible = false);
+                this.WaitSeconds(1.5f, () => invincible = false);
 
                 return;
             }
@@ -112,9 +139,18 @@ namespace Traveler
             MT_Bullet bullet = collision.GetComponent<MT_Bullet>();
             if (bullet && bullet.FriendlyFire && !invincible)
             {
-                gameObject.SetActive(false);
+                Die();
                 return;
             }
+        }
+
+        private void Die()
+        {
+            gameObject.SetActive(false);
+            HasLost = true;
+
+            if (gameManager)
+                gameManager.ResetScene();
         }
     }
 

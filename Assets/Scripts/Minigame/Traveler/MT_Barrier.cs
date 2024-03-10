@@ -35,10 +35,21 @@ namespace Traveler
 
         private void OnTriggerEnter2D (Collider2D collision)
         {
+            TriggerEvent (collision);
+        }
+
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            TriggerEvent (collision);
+        }
+
+        private void TriggerEvent(Collider2D collision)
+        { 
             MT_Bullet bullet = collision.GetComponent<MT_Bullet>();
             if (bullet && bullet.FriendlyFire)
             {
                 bullet.Vanish();
+                MT_ScoreManager.Instance.ChangeScore(1);
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Traveler;
 using UnityEngine;
 
 public class MT_CollectableSpawner : MonoBehaviour
@@ -16,10 +17,13 @@ public class MT_CollectableSpawner : MonoBehaviour
 
     List<MT_Collectable> collectables;
 
+    int quad1Ratio;
+    int quad2Ratio;
+    int quad3Ratio;
+    int quad4Ratio;
+
     int index;
     float spawnCount;
-
-    static int Score;
 
     void Start()
     {
@@ -35,15 +39,17 @@ public class MT_CollectableSpawner : MonoBehaviour
             collectables.Add(collectable);
         }
 
-        collectableBase.SetActive(false);
-        index = 0;
-        Score = 0;
+        quad1Ratio = quad2Ratio = quad3Ratio = quad4Ratio = 25;
 
-        MT_ProgressDisplay.Instance.UpdateScore(Score);
+        //collectableBase.SetActive(false);
+        index = 0;
     }
 
     void Update()
     {
+        if (!MT_Player.HasMoved)
+            return;
+
         spawnCount += Time.deltaTime;
 
         if (spawnCount > spawnRatio)
@@ -63,19 +69,53 @@ public class MT_CollectableSpawner : MonoBehaviour
 
     private void SpawnCollectable()
     {
+        int quad = GetRandomQuad();
+        Vector2 quadRange = GetQuadRange(quad);
+
         Vector2 spawnPos = new Vector2 
         ( 
-            Random.Range(-SIZE_X/2f, SIZE_X/2f),
-            Random.Range(-SIZE_Y/2f, SIZE_Y/2f) 
+            Random.Range(0f, quadRange.x),
+            Random.Range(0f, quadRange.y) 
         );
+        //Debug.Log($"quad: {quad}, spawnPos: {spawnPos}");
+
+        UpdateRatio (quad);
 
         MT_Collectable collectable = GetCollectable();
         collectable.Spawn(spawnPos);
     }
 
-    public static void AddScore (int value)
+    private int GetRandomQuad()
     {
-        Score += value;
-        MT_ProgressDisplay.Instance.UpdateScore(Score);
+        int r = Random.Range(0, quad1Ratio + quad2Ratio + quad3Ratio + quad4Ratio);
+        //Debug.Log($"quad1: {quad1Ratio}, quad2: {quad2Ratio}, quad3: {quad3Ratio}, quad4: {quad4Ratio}");
+
+        if (r < quad1Ratio)
+            return 1;
+        if (r < quad1Ratio + quad2Ratio)
+            return 2;
+        if (r < quad1Ratio + quad2Ratio + quad3Ratio)
+            return 3;
+        return 4;
+    }
+
+    private Vector2 GetQuadRange(int index)
+    {
+        switch (index)
+        {
+            default: 
+            case 1:  return new Vector2 (-SIZE_X/2f, -SIZE_Y/2f);
+            case 2:  return new Vector2 ( SIZE_X/2f, -SIZE_Y/2f);
+            case 3:  return new Vector2 (-SIZE_X/2f,  SIZE_Y/2f);
+            case 4:  return new Vector2 ( SIZE_X/2f,  SIZE_Y/2f);
+        }
+    }
+
+    private void UpdateRatio (int quad)
+    {
+        quad1Ratio += (quad == 1) ? -3 : 1;
+        quad2Ratio += (quad == 2) ? -3 : 1;
+        quad3Ratio += (quad == 3) ? -3 : 1;
+        quad4Ratio += (quad == 4) ? -3 : 1;
     }
 }

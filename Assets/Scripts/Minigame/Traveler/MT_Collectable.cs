@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Shooter;
+using System.Collections;
 using System.Collections.Generic;
 using Traveler;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class MT_Collectable : MonoBehaviour
     [SerializeField] int score;
     [SerializeField] float cooldownToBlink;
     [SerializeField] float blinkDuration;
+    [SerializeField] MS_DettachableEffect dettachableEffect;
 
     Animator animator;
 
@@ -25,11 +27,16 @@ public class MT_Collectable : MonoBehaviour
         t = 0;
     }
 
+    bool IsOnCooldownBlink => t > cooldownToBlink;
+
     private void Update()
     {
+        if (!MT_Player.HasMoved)
+            return;
+
         t += Time.deltaTime;
 
-        if (t > cooldownToBlink)
+        if (IsOnCooldownBlink)
             animator.SetBool("OnTransition", true);
 
         if (t > cooldownToBlink + blinkDuration)
@@ -50,7 +57,10 @@ public class MT_Collectable : MonoBehaviour
 
     public void OnCollect()
     {
-        MT_CollectableSpawner.AddScore(score);
+        if (dettachableEffect)
+            dettachableEffect.Call();
+
+        MT_ScoreManager.Instance.ChangeScore( (int)(score * (IsOnCooldownBlink ? 1.5f : 1f)) );
         gameObject.SetActive(false);
     }
 }

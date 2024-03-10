@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Shooter;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Traveler
     {
         [SerializeField] bool rotateOnAim;
         [SerializeField] SpriteSwapper spriteSwapper;
+        [SerializeField] MS_DettachableEffect vanishEffect;
 
         public bool FriendlyFire { get; private set; }
         
@@ -39,6 +41,9 @@ namespace Traveler
 
         public void Vanish ()
         {
+            if (vanishEffect)
+                vanishEffect.Call();
+
             gameObject.SetActive(false);
         }
     }

@@ -14,8 +14,11 @@ namespace Shooter
             animator.SetTrigger("Reset");
             gameObject.SetActive(true);
 
-            parent = transform.parent;
+            if (parent == null)
+                parent = transform.parent;
+
             transform.SetParent(null);
+
             if (parent != null)
                 transform.position = parent.position;
         }
