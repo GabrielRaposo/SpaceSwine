@@ -46,5 +46,11 @@ namespace Traveler
 
             gameObject.SetActive(false);
         }
+
+        public void Highlight()
+        {
+            spriteSwapper.SetSpriteState (2);
+            spriteSwapper.ChangePrintOrder (4);
+        }
     }
 }

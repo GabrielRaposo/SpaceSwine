@@ -27,4 +27,9 @@ public class SpriteSwapper : MonoBehaviour
     {
         spriteRenderer.enabled = value;
     }
+
+    public void ChangePrintOrder (int value)
+    {
+        spriteRenderer.sortingOrder = value;
+    }
 }

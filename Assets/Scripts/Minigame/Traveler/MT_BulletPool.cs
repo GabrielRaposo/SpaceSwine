@@ -73,5 +73,20 @@ namespace Traveler
             return bullet;
         }
 
+        public void StopAllBullets()
+        {
+            if (mainBullets.Count > 0)
+            {
+                foreach (MT_Bullet b in mainBullets)
+                    b.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            }
+
+            if (aimBullets.Count > 0)
+            {
+                foreach (MT_Bullet b in aimBullets)
+                    b.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            }
+        }
+
     }
 }

@@ -11,6 +11,8 @@ namespace Traveler
     public class MT_Player : MonoBehaviour
     {
         [SerializeField] float speed;
+        [SerializeField] float hitStunDuration;
+        [SerializeField] GameObject OnHitEffect;
         [SerializeField] Transform aimAnchor;
         [SerializeField] MT_Barrier barrier;
         [SerializeField] MinigameManager gameManager;
@@ -139,6 +141,13 @@ namespace Traveler
             MT_Bullet bullet = collision.GetComponent<MT_Bullet>();
             if (bullet && bullet.FriendlyFire && !invincible)
             {
+                bullet.Highlight();
+                if (OnHitEffect)
+                {
+                    Vector2 pos = transform.position + (bullet.transform.position - transform.position)/2f;
+                    OnHitEffect.transform.position = pos;
+                    OnHitEffect.SetActive(true);
+                }
                 Die();
                 return;
             }
@@ -146,11 +155,22 @@ namespace Traveler
 
         private void Die()
         {
-            gameObject.SetActive(false);
             HasLost = true;
+            //gameObject.SetActive(false);
 
-            if (gameManager)
-                gameManager.ResetScene();
+            if (OnHitEffect)
+                OnHitEffect.SetActive(true);
+
+            rb.velocity = Vector3.zero;
+            aimAnchor.gameObject.SetActive(false);
+
+            bulletPool.StopAllBullets();
+
+            this.WaitSeconds(hitStunDuration, () => 
+            {
+                if (gameManager)
+                    gameManager.ResetScene();
+            });
         }
     }
 

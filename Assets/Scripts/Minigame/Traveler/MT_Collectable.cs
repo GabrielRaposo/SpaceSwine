@@ -15,6 +15,11 @@ public class MT_Collectable : MonoBehaviour
 
     float t;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     public void Spawn (Vector2 position)
     {
         animator = GetComponent<Animator>();
@@ -33,6 +38,12 @@ public class MT_Collectable : MonoBehaviour
     {
         if (!MT_Player.HasMoved)
             return;
+
+        if (MT_Player.HasLost)
+        {
+            animator.enabled = false;
+            return;
+        }
 
         t += Time.deltaTime;
 

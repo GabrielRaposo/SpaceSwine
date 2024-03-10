@@ -12,9 +12,14 @@ namespace Traveler
         float t;
         Transform follow;
 
+        Animator animator;
+
         public void Setup (Transform follow)
         {
             this.follow = follow;
+
+            animator = GetComponent<Animator>();
+            animator.SetTrigger("Reset");
 
             transform.SetParent(null);
             transform.position = follow.position;
