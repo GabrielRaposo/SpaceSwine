@@ -26,6 +26,7 @@ public class TerminalCallCustomMove : TerminalCustomCaller, ITerminalEvent
 
     public void Activate (InteractableTerminal terminal, PlayerInteractor interactor) 
     {    
+        Debug.Log("Activate");
         calls++;
         customMove.ResumeMovement();
 

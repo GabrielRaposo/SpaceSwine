@@ -18,6 +18,7 @@ namespace Minigame
     
         [SerializeField] SceneReference jumperScene;
         [SerializeField] SceneReference shooterScene;
+        [SerializeField] SceneReference travelerScene;
 
         [Header("Values")]
         [SerializeField] float duration;
@@ -201,6 +202,9 @@ namespace Minigame
 
                 case GGSMinigame.Shooter:
                     return shooterScene.ScenePath;
+
+                case GGSMinigame.Traveler:
+                    return travelerScene.ScenePath;
             }
         }
 

@@ -155,6 +155,7 @@ namespace Traveler
 
         private void Die()
         {
+            enabled = false;
             HasLost = true;
             //gameObject.SetActive(false);
 
