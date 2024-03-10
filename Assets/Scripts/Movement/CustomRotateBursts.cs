@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CustomRotateBursts : MonoBehaviour
 {
@@ -19,6 +21,8 @@ public class CustomRotateBursts : MonoBehaviour
 
     bool running;
     bool initiated;
+
+    public UnityAction OnStepReached;
 
     private void OnEnable() 
     {
@@ -42,6 +46,17 @@ public class CustomRotateBursts : MonoBehaviour
         Round round = GetComponentInParent<Round>();
         if (round)
             round.OnReset += Restart;
+    }
+
+    public void ResumeMovement()
+    {
+        running = true;
+    }
+
+    public void PauseMovement()
+    {
+        t = startingT;   
+        running = false;
     }
 
     public void Restart()
@@ -80,6 +95,9 @@ public class CustomRotateBursts : MonoBehaviour
         // --
         frameCount = 0;
         t = 0;
+
+        if (OnStepReached != null)
+            OnStepReached.Invoke();
     }
 
     public void SetStartingT (float startingT)
