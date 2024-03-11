@@ -109,6 +109,21 @@ namespace AK
         static const AkUniqueID LOFI_28 = 82482814U;
         static const AkUniqueID LOFI_29 = 82482815U;
         static const AkUniqueID LOFI_30 = 99260393U;
+        static const AkUniqueID LOFI_31 = 99260392U;
+        static const AkUniqueID LOFI_32 = 99260395U;
+        static const AkUniqueID LOFI_33 = 99260394U;
+        static const AkUniqueID LOFI_34 = 99260397U;
+        static const AkUniqueID LOFI_35 = 99260396U;
+        static const AkUniqueID LOFI_36 = 99260399U;
+        static const AkUniqueID LOFI_37 = 99260398U;
+        static const AkUniqueID LOFI_38 = 99260385U;
+        static const AkUniqueID LOFI_39 = 99260384U;
+        static const AkUniqueID LOFI_40 = 116037980U;
+        static const AkUniqueID LOFI_41 = 116037981U;
+        static const AkUniqueID LOFI_42 = 116037982U;
+        static const AkUniqueID LOFI_43 = 116037983U;
+        static const AkUniqueID LOFI_44 = 116037976U;
+        static const AkUniqueID LOFI_45 = 116037977U;
         static const AkUniqueID MAKEABEAT_APARELHOS_NAVEGACAO = 1887497970U;
         static const AkUniqueID MAKEABEAT_APARELHOS_SELECAO = 2771531893U;
         static const AkUniqueID MAKEABEAT_BRINQUEDO_CONDUCAO = 2489339849U;
@@ -227,12 +242,18 @@ namespace AK
         static const AkUniqueID MUNDO_1_01 = 1869223718U;
         static const AkUniqueID MUNDO_1_02 = 1869223717U;
         static const AkUniqueID MUNDO_1_03 = 1869223716U;
+        static const AkUniqueID MUNDO_1_04 = 1869223715U;
+        static const AkUniqueID MUNDO_1_05 = 1869223714U;
         static const AkUniqueID MUNDO_2_01 = 520322023U;
         static const AkUniqueID MUNDO_2_02 = 520322020U;
         static const AkUniqueID MUNDO_2_03 = 520322021U;
+        static const AkUniqueID MUNDO_2_04 = 520322018U;
+        static const AkUniqueID MUNDO_2_05 = 520322019U;
         static const AkUniqueID MUNDO_3_01 = 1159328528U;
         static const AkUniqueID MUNDO_3_02 = 1159328531U;
         static const AkUniqueID MUNDO_3_03 = 1159328530U;
+        static const AkUniqueID MUNDO_3_04 = 1159328533U;
+        static const AkUniqueID MUNDO_3_05 = 1159328532U;
     } // namespace BANKS
 
     namespace BUSSES
