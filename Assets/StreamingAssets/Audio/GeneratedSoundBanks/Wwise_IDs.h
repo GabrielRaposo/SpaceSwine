@@ -109,11 +109,6 @@ namespace AK
         static const AkUniqueID LOFI_28 = 82482814U;
         static const AkUniqueID LOFI_29 = 82482815U;
         static const AkUniqueID LOFI_30 = 99260393U;
-        static const AkUniqueID LOFI_36 = 99260399U;
-        static const AkUniqueID LOFI_37 = 99260398U;
-        static const AkUniqueID LOFI_38 = 99260385U;
-        static const AkUniqueID LOFI_39 = 99260384U;
-        static const AkUniqueID LOFI_40 = 116037980U;
         static const AkUniqueID LOFI_41 = 116037981U;
         static const AkUniqueID LOFI_42 = 116037982U;
         static const AkUniqueID LOFI_43 = 116037983U;
