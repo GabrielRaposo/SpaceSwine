@@ -23,6 +23,10 @@ namespace Traveler
         [SerializeField] MT_Barrier barrier;
         [SerializeField] MinigameManager gameManager;
 
+        [Header("Audio")]
+        [SerializeField] AK.Wwise.Event shootAKEvent;
+        [SerializeField] AK.Wwise.Event deathAKEvent;
+
         bool invincible;
         bool inputLocked;
 
@@ -93,6 +97,9 @@ namespace Traveler
         {
             if (rb.velocity.normalized == -direction.normalized)
                 return;
+
+            if (shootAKEvent != null)
+                shootAKEvent.Post(gameObject);
 
             rb.velocity = speed * direction * -1;
 
@@ -196,10 +203,12 @@ namespace Traveler
         {
             enabled = false;
             HasLost = true;
-            //gameObject.SetActive(false);
 
             if (OnHitEffect)
                 OnHitEffect.SetActive(true);
+
+            if (deathAKEvent != null)
+                deathAKEvent.Post(gameObject);
 
             rb.velocity = Vector3.zero;
             aimAnchor.gameObject.SetActive(false);

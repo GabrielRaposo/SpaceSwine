@@ -10,6 +10,9 @@ public class MT_Collectable : MonoBehaviour
     [SerializeField] float cooldownToBlink;
     [SerializeField] float blinkDuration;
     [SerializeField] MS_DettachableEffect dettachableEffect;
+    [SerializeField] AK.Wwise.Event scoreAKEvent;
+    [SerializeField] AK.Wwise.Event scoreBonusAKEvent;
+    [SerializeField] AK.Wwise.Event onAimBulletSpawnAKEvent;
 
     Animator animator;
 
@@ -56,13 +59,16 @@ public class MT_Collectable : MonoBehaviour
 
     private void SelfDestruct ()
     {
+        if (onAimBulletSpawnAKEvent != null)
+            onAimBulletSpawnAKEvent.Post(gameObject);
+
         gameObject.SetActive(false);
         MT_Bullet bullet = MT_BulletPool.Instance.GetAimBullet();
 
         Vector2 direction = Vector2.up;
         if (MT_Player.Instance)
             direction = (MT_Player.Instance.transform.position - transform.position).normalized;
-        
+
         bullet.Shoot (direction * 3f, transform.position);
     }
 
@@ -71,7 +77,18 @@ public class MT_Collectable : MonoBehaviour
         if (dettachableEffect)
             dettachableEffect.Call();
 
-        MT_ScoreManager.Instance.ChangeScore( (int)(score * (IsOnCooldownBlink ? 1.5f : 1f)) );
+        if (IsOnCooldownBlink)
+        {
+            if (scoreBonusAKEvent != null)
+                scoreBonusAKEvent.Post(gameObject);
+            MT_ScoreManager.Instance.ChangeScore( (int)(score * 1.5f) );
+        }
+        else
+        {
+            if (scoreAKEvent != null)
+                scoreAKEvent.Post(gameObject);
+            MT_ScoreManager.Instance.ChangeScore( score );
+        }
         gameObject.SetActive(false);
     }
 }

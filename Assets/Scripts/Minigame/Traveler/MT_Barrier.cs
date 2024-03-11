@@ -8,6 +8,7 @@ namespace Traveler
     public class MT_Barrier : MonoBehaviour
     {
         [SerializeField] float activeDuration;
+        [SerializeField] AK.Wwise.Event activationAKEvent;
 
         float t;
         Transform follow;
@@ -26,6 +27,9 @@ namespace Traveler
 
             gameObject.SetActive(true);
             t = 0;
+
+            if (activationAKEvent != null)
+                activationAKEvent.Post(gameObject);
         }
 
         private void Update()

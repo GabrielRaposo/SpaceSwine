@@ -11166,6 +11166,14 @@ MonoBehaviour:
   aimAnchor: {fileID: 1370262225}
   barrier: {fileID: 2101476207}
   gameManager: {fileID: 1769468437}
+  shootAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 28e90d0da6c871247ba2eef4838a0287, type: 2}
+  deathAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 70ad7136298fd1f4898fbbe911b6c542, type: 2}
 --- !u!114 &1200172414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11482,8 +11490,6 @@ GameObject:
   - component: {fileID: 1423707237}
   - component: {fileID: 1423707234}
   - component: {fileID: 1423707239}
-  - component: {fileID: 1423707238}
-  - component: {fileID: 1423707241}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11498,12 +11504,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1423707233}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffca6c89771b1da49b9116b3947ca52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDefaultListener: 0
+  isDefaultListener: 1
   listenerId: 0
 --- !u!20 &1423707235
 Camera:
@@ -11590,26 +11596,6 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
---- !u!114 &1423707238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423707233}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AssetsPPU: 16
-  m_RefResolutionX: 160
-  m_RefResolutionY: 144
-  m_UpscaleRT: 1
-  m_PixelSnapping: 1
-  m_CropFrameX: 0
-  m_CropFrameY: 0
-  m_StretchFill: 1
 --- !u!114 &1423707239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11653,26 +11639,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97738eefe4578b94bac25a16319d3c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1423707241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1423707233}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AssetsPPU: 16
-  m_RefResolutionX: 160
-  m_RefResolutionY: 144
-  m_UpscaleRT: 1
-  m_PixelSnapping: 0
-  m_CropFrameX: 0
-  m_CropFrameY: 0
-  m_StretchFill: 0
 --- !u!114 &1423707242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17793,6 +17759,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeDuration: 1.5
+  activationAKEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 67318bf544d494d45a3a7265c76e189a, type: 2}
 --- !u!1001 &1782301974082661848
 PrefabInstance:
   m_ObjectHideFlags: 0

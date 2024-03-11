@@ -10,6 +10,7 @@ namespace Traveler
         [SerializeField] bool rotateOnAim;
         [SerializeField] SpriteSwapper spriteSwapper;
         [SerializeField] MS_DettachableEffect vanishEffect;
+        [SerializeField] AK.Wwise.Event OnDestroyAKEvent;
 
         public bool FriendlyFire { get; private set; }
         
@@ -43,6 +44,9 @@ namespace Traveler
         {
             if (vanishEffect)
                 vanishEffect.Call();
+
+            if (OnDestroyAKEvent != null)
+                OnDestroyAKEvent.Post(gameObject);
 
             gameObject.SetActive(false);
         }
