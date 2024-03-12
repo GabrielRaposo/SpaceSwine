@@ -185,6 +185,7 @@ namespace AK
         static const AkUniqueID UI_TRANSICAO_LEVELS = 2524279794U;
         static const AkUniqueID UI_URSAOCHEFE_FALA = 794178228U;
         static const AkUniqueID UI_URSO_FALA = 2055710810U;
+        static const AkUniqueID UI_URSO_FALA_NORMAL = 725549828U;
     } // namespace EVENTS
 
     namespace SWITCHES
