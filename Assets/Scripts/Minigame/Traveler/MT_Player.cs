@@ -17,6 +17,7 @@ namespace Traveler
 
         [SerializeField] float speed;
         [SerializeField] float hitStunDuration;
+        [SerializeField] Transform visualComponent;
         [SerializeField] GameObject OnHitEffect;
         [SerializeField] SpriteRenderer signaler;
         [SerializeField] Transform aimAnchor;
@@ -102,6 +103,7 @@ namespace Traveler
                 shootAKEvent.Post(gameObject);
 
             rb.velocity = speed * direction * -1;
+            visualComponent.eulerAngles = Vector3.forward * (Vector2.SignedAngle(Vector2.up, direction) + 180);
 
             MT_Bullet bullet = bulletPool.GetMainBullet();
             bullet.Shoot (speed * direction * .5f, transform.position);
