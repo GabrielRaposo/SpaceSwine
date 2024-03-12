@@ -9058,7 +9058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 349535262006152145, guid: 9fb3e16905746854ba50abd3f1c4bdbc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 349535262006152148, guid: 9fb3e16905746854ba50abd3f1c4bdbc, type: 3}
       propertyPath: m_Radius
@@ -9092,17 +9092,21 @@ PrefabInstance:
       propertyPath: externalLocks.Array.data[1]
       value: 
       objectReference: {fileID: 174335794}
+    - target: {fileID: 349535262006152149, guid: 9fb3e16905746854ba50abd3f1c4bdbc, type: 3}
+      propertyPath: startClosed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 349535262006152150, guid: 9fb3e16905746854ba50abd3f1c4bdbc, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 349535262006152150, guid: 9fb3e16905746854ba50abd3f1c4bdbc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 349535262006152150, guid: 9fb3e16905746854ba50abd3f1c4bdbc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 349535262006152150, guid: 9fb3e16905746854ba50abd3f1c4bdbc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9163,6 +9167,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 349535262006152150, guid: 9fb3e16905746854ba50abd3f1c4bdbc, type: 3}
   m_PrefabInstance: {fileID: 329243850}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &329243852 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 349535262006152149, guid: 9fb3e16905746854ba50abd3f1c4bdbc, type: 3}
+  m_PrefabInstance: {fileID: 329243850}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4962b1af597a1144eb7c852303ae924a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &332477910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58167,11 +58182,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 255156501872850261, guid: 9b9ea35d8e91c934e85a7cda17bbddf3, type: 3}
       propertyPath: zoomInSize
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 255156501872850261, guid: 9b9ea35d8e91c934e85a7cda17bbddf3, type: 3}
       propertyPath: zoomOutSize
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 2697570666801398733, guid: 9b9ea35d8e91c934e85a7cda17bbddf3, type: 3}
       propertyPath: m_IsActive
@@ -63164,7 +63179,7 @@ GameObject:
   - component: {fileID: 1965619107}
   - component: {fileID: 1965619106}
   m_Layer: 0
-  m_Name: 'NPC-World 1 Ship Outro '
+  m_Name: 'NPC-World 3 Item Reward '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63202,7 +63217,7 @@ MonoBehaviour:
   autoActivate: 1
   data: {fileID: 0}
   speechBubble: {fileID: 789389959}
-  customDialogueStyle: {fileID: 11400000, guid: f9284ffd531306e458390aeadad42b39, type: 2}
+  customDialogueStyle: {fileID: 11400000, guid: ca959bb3f4154164a832ff356b3f1dbd, type: 2}
   talkSoundAKEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -63211,7 +63226,7 @@ MonoBehaviour:
   startingIndex: 0
   holdIndex: -1
   dialogueGroupTags:
-  - N_W3_PIG_001
+  - GET_GGS_Game_003
 --- !u!114 &1965619107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63219,7 +63234,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965619104}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39081f9fa2ee2964bb6e94a066d87490, type: 3}
   m_Name: 
@@ -66391,7 +66406,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2113118130
 Transform:
   m_ObjectHideFlags: 0
@@ -66423,7 +66438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d6078da65aed34a8d68b7daa198853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customSize: 4
+  customSize: 3.5
 --- !u!114 &2113118132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67615,6 +67630,7 @@ GameObject:
   - component: {fileID: 2044633568369365351}
   - component: {fileID: 5359196205909289806}
   - component: {fileID: 5359196205909289808}
+  - component: {fileID: 5359196205909289809}
   m_Layer: 0
   m_Name: NPC-World 3 ClosedSpace - Bunny(Masked) Variant
   m_TagString: Untagged
@@ -67660,11 +67676,12 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: f052fdf1747eb9046a9e2c3a54c9007d, type: 2}
-  npcNameCode: NAME_WORKER
+  npcNameCode: NAME_WORKER_MASKLESS
   startingIndex: 0
-  holdIndex: -1
+  holdIndex: 1
   dialogueGroupTags:
-  - Z3_NPC_BUNNY_009
+  - Z3_NPC_BEAR_BONUS_001
+  - Z3_NPC_BEAR_BONUS_002
 --- !u!58 &5359196205909289807
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -67695,6 +67712,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otherNPC: {fileID: 1965619106}
   delay: 1.5
+--- !u!114 &5359196205909289809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5359196205909289804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a63c76be47f43489293ed983fa3d7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 329243852}
 --- !u!114 &5359196205909289842
 MonoBehaviour:
   m_ObjectHideFlags: 0
