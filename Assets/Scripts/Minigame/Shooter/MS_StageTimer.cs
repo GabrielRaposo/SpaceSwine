@@ -131,7 +131,12 @@ public class MS_StageTimer : MonoBehaviour
         Time += value;
 
         if (Time > MAX_TIME)
+        {
+            int extraTime = (int)Time - MAX_TIME;
+            MS_ScoreManager.Instance.ChangeScore(extraTime * 2);
+
             Time = MAX_TIME;
+        }
 
         if (Instance)
             Instance.UpdateDisplay();

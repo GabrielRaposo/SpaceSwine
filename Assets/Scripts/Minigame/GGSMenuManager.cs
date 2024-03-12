@@ -270,7 +270,7 @@ public class GGSMenuManager : StoryEventDependent
             default:
             case 1: return GGSMinigame.Jumper;
             case 2: return GGSMinigame.Shooter;
-            //case 3: return GGSMinigame.Traveler;
+            case 3: return GGSMinigame.Traveler;
         }
     }
 

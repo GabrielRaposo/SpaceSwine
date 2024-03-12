@@ -358,6 +358,7 @@ MonoBehaviour:
     - Z2_NPC_LOGS_001.03
     - Z2_NPC_LOGS_001.04
     - Z2_NPC_LOGS_001.05
+    - Z2_NPC_LOGS_001.06
     - Z2_NPC_LOGS_002.01
     - Z2_NPC_LOGS_002.02
     - Z2_NPC_LOGS_002.03
@@ -378,6 +379,7 @@ MonoBehaviour:
     - Z2_NPC_LOGS_005.06
     - Z2_NPC_LOGS_005.07
     - Z2_NPC_LOGS_005.08
+    - Z2_NPC_LOGS_006.01
     - Z2_PLACA_001.01
     - Z2_PLACA_002.01
     - Z2_PLACA_003.01
@@ -392,6 +394,7 @@ MonoBehaviour:
     - N_W2_PIG_001.06
     - N_W2_PIG_002.01
     - N_W2_PIG_002.02
+    - N_W2_PIG_003.01
     - Z3_NPC_WORKER_A_001.01
     - Z3_NPC_WORKER_A_002.01
     - Z3_NPC_BEAR_001.01
@@ -480,6 +483,10 @@ MonoBehaviour:
     - Z3_NPC_PIDGEON_001.04
     - Z3_NPC_PIDGEON_001.05
     - Z3_NPC_PIDGEON_002.01
+    - Z3_NPC_BEAR_BONUS_001.01
+    - Z3_NPC_BEAR_BONUS_001.02
+    - Z3_NPC_BEAR_BONUS_002.01
+    - Z3_NPC_BEAR_BONUS_002.02
     - Z3_PLACA_001.01
     - Z3_PLACA_002.01
     - Z3_PLACA_001.CAR
@@ -490,7 +497,9 @@ MonoBehaviour:
     - NAME_BEAR
     - NAME_BUNNY
     - NAME_WORKER
+    - NAME_WORKER_MASKLESS
     - NAME_PIDGEON
+    - GET_GGS_Game_003.01
     m_values:
     - m_keys: 0000000001000000
       m_values:
@@ -2172,8 +2181,8 @@ MonoBehaviour:
       - I was the last around left with a consciousness. As I felt my mind and body
         be split apart, I hugged a cluster of Matter Crystals. I had an hypothesis.
       - "Eu fui o \xFAltimo a reter consci\xEAncia. Enquanto sentia minha mente e
-        corpo serem despeda\xE7ados, me agarrei \xE0 um dep\xF3sito de Cristais de
-        Mat\xE9ria. Eu tinha uma hip\xF3tese."
+        corpo serem despeda\xE7ados, me agarrei a um dep\xF3sito de Cristais de Mat\xE9ria.
+        Eu tinha uma hip\xF3tese."
     - m_keys: 0000000001000000
       m_values:
       - It was, unfortunately, half-correct. With my sense of self, my sense of time,
@@ -2297,15 +2306,19 @@ MonoBehaviour:
     - m_keys: 0000000001000000
       m_values:
       - <i>I can't help remembering my oath, when I said I'd never falter. Never
-        give up hope. That we'd venture bravely into the unknown, into the uncharted.
-        Become a beacon of progress and exploration.
+        give up hope.
       - "<i>N\xE3o consigo n\xE3o lembrar do meu juramento, quando disse que nunca
-        iria hesitar. Nunca perder a esperan\xE7a. Que ir\xEDamos nos aventurar bravamente
-        no desconhecido, no n\xE3o-mapeado. Nos tornar um farol do progresso e explora\xE7\xE3o."
+        iria hesitar. Nunca perder a esperan\xE7a."
+    - m_keys: 0000000001000000
+      m_values:
+      - <I>That we'd venture bravely into the unknown, into the uncharted. Become
+        a beacon of progress and exploration.
+      - "<I>Que ir\xEDamos nos aventurar bravamente no desconhecido, no n\xE3o-mapeado.
+        Nos tornar um farol do progresso e explora\xE7\xE3o."
     - m_keys: 0000000001000000
       m_values:
       - <i>Sorry, comrades. My light is dimming.
-      - <i>Me desculpem, camaradas.
+      - "<i>Me desculpem, camaradas. Minha luz est\xE1 se apagando."
     - m_keys: 0000000001000000
       m_values:
       - <i>This is bogus. It's true that people talked about it on the Academy, but
@@ -2418,6 +2431,10 @@ MonoBehaviour:
       - <i>Eu nunca fui especial.
     - m_keys: 0000000001000000
       m_values:
+      - <i>This is the log for the bonus stage
+      - "<i>Este \xE9 o log para o est\xE1gio b\xF4nus"
+    - m_keys: 0000000001000000
+      m_values:
       - 'NILMINES - SECTOR 34.29.02 - Crystallization process: advanced. Status:
         ABANDON.'
       - "NILMINAS - SETOR 34.29.02 - Processo de Cristaliza\xE7\xE3o: avan\xE7ado.
@@ -2486,13 +2503,21 @@ MonoBehaviour:
       - ...
     - m_keys: 0000000001000000
       m_values:
-      - -Captain!I finally got a hold of you. Something's been jamming my signal,
+      - -Captain! I finally got a hold of you. Something's been jamming my signal,
         but I managed to restore it.
-      - .
+      - "-Capit\xE3o! Finalmente consegui te contatar. Tem alguma coisa criando interfer\xEAncia
+        no meu sinal, mas eu consegui restaurar o acesso."
     - m_keys: 0000000001000000
       m_values:
       - I'll warp you back, ok? This place's giving me the creeps.
-      - .
+      - "Vou te puxar de volta, ok? Esse lugar est\xE1 me dando calafrios."
+    - m_keys: 0000000001000000
+      m_values:
+      - "\xA7instant text\xA7 \xA7award sound\xA7You've gotten a <color=yellow>GGS
+        cartridge</color>! Play it by sitting in your <color=yellow>armchair</color>
+        at the Ship."
+      - "\xA7instant text\xA7 \xA7award sound\xA7Voc\xEA encontrou um <color=yellow>cartucho
+        de GGS</color>! Jogue se sentando na <color=yellow>poltrona</color> na Nave."
     - m_keys: 0000000001000000
       m_values:
       - Word of advice, that see-through helmet will end up providing you with a
@@ -2978,6 +3003,22 @@ MonoBehaviour:
       - "P\xE1ssaros com respiradores... Doentio..."
     - m_keys: 0000000001000000
       m_values:
+      - '[Something something toma aqui o minigame que eu jogava]'
+      - '[Something something toma aqui o minigame que eu jogava]'
+    - m_keys: 0000000001000000
+      m_values:
+      - Dialogo 2
+      - Dialogo 2
+    - m_keys: 0000000001000000
+      m_values:
+      - Bark 1
+      - Bark 1
+    - m_keys: 0000000001000000
+      m_values:
+      - Bark 2
+      - Bark 2
+    - m_keys: 0000000001000000
+      m_values:
       - 'Warning: You''re entering a construction site. Remember to always wear the
         company-provided breather helmets and protective gear!'
       - "Aviso: \xE1rea em obras. Lembre-se de sempre usar a roupa de prote\xE7\xE3o
@@ -3026,5 +3067,16 @@ MonoBehaviour:
       - "Oper\xE1rio"
     - m_keys: 0000000001000000
       m_values:
+      - Bear
+      - Urso
+    - m_keys: 0000000001000000
+      m_values:
       - Colombo
       - Pombson
+    - m_keys: 0000000001000000
+      m_values:
+      - "\xA7instant text\xA7 \xA7award sound\xA7 <color=yellow>You've got the <i>'\"Looper\"
+        cartridge</i> for your GGS!</color>\nTry it out on your armchair at the ship!"
+      - "\xA7instant text\xA7 \xA7award sound\xA7 <color=yellow>Voc\xEA ganhou um
+        <i>cartucho de \"Looper\"</i> para o GGS!</color>\nJogue na sua poltrona
+        na Nave!"

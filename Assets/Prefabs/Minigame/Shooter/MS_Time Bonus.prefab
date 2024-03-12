@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8994331857289472051}
+  - component: {fileID: 8298328671548695160}
   - component: {fileID: 8994331857289472012}
   m_Layer: 0
   m_Name: Visual Component
@@ -31,6 +32,24 @@ Transform:
   m_Father: {fileID: 8994331857373726510}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8298328671548695160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8994331857289472050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0790bcfa3e1053a4f9dddd5884a0d2b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontSetOnStart: 1
+  sprites:
+  - {fileID: 1317692553237230280, guid: c341e3afe34d9bd448830bcfc84b2080, type: 3}
+  - {fileID: -7405870996626007674, guid: c341e3afe34d9bd448830bcfc84b2080, type: 3}
+  - {fileID: 928599931541338722, guid: c341e3afe34d9bd448830bcfc84b2080, type: 3}
+  - {fileID: -2435348219855822797, guid: c341e3afe34d9bd448830bcfc84b2080, type: 3}
 --- !u!212 &8994331857289472012
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -194,6 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onCollectEffect: {fileID: 8994331857373726504}
+  bonusSpriteSwapper: {fileID: 8298328671548695160}
   OnCollectAKEvent:
     idInternal: 0
     valueGuidInternal: 

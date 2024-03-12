@@ -6591,6 +6591,209 @@
 									</ChildrenList>
 									<ObjectLists/>
 								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="ui_urso_fala_normal" ID="{4462E52D-9C8F-4A2A-ACEB-DE9F6A031DE9}" ShortID="114546557">
+									<PropertyList>
+										<Property Name="Highpass" Type="int16">
+											<ValueList>
+												<Value>10</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<RTPCList>
+												<RTPC Name="" ID="{3E8A436B-9CBE-4686-8FD9-943789610AD5}" ShortID="643581736">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{879C096A-948D-4F21-82F7-695C98AC8852}" ShortID="883455400">
+																	<PropertyList>
+																		<Property Name="LfoFrequency" Type="Real64" Value="100"/>
+																		<Property Name="LfoWaveform" Type="int32" Value="4"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{7D97BA4A-AE2F-41EA-BE54-580550966EEC}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>-200</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+												<RTPC Name="" ID="{3A6FFEBB-BDDB-4B27-8BC7-206BA8EAB44B}" ShortID="143784678">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{FE96E847-D3AB-46C5-A9B4-0869B1DC6A65}" ShortID="408277623">
+																	<PropertyList>
+																		<Property Name="LfoAttack" Type="Real64" Value="0.2"/>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{1DCFDB2D-425B-4470-AA5D-A60053D8D855}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>300</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>-500</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>12</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="ui_urso_fala_normal_02" ID="{8D1A3EF3-DBBC-4011-A499-E93215336A65}" ShortID="342340859">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_urso_fala_normal_02" ID="{8D309ED7-A00E-4253-9708-FB259A3AF21A}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0194481476043655"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.191115450496745"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_urso_fala_normal_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="324021551"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_urso_fala_normal_02" ID="{8D309ED7-A00E-4253-9708-FB259A3AF21A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_urso_fala_normal_03" ID="{1156E186-8C18-478C-A14A-A20CC2AD0798}" ShortID="970521699">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_urso_fala_normal_03" ID="{78B4334D-5512-4A1D-BA0A-3DF4BEDBD4CB}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0202489437021811"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.191076396026036"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_urso_fala_normal_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="915758194"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_urso_fala_normal_03" ID="{78B4334D-5512-4A1D-BA0A-3DF4BEDBD4CB}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_urso_fala_normal_04" ID="{E4973AE4-7C9B-4AA5-A377-27112C7DCD09}" ShortID="1059426918">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_urso_fala_normal_04" ID="{9476E870-CDC7-40D8-B8C7-481EA8B23790}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0306322125972691"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.200890324475114"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_urso_fala_normal_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="731502446"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_urso_fala_normal_04" ID="{9476E870-CDC7-40D8-B8C7-481EA8B23790}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_urso_fala_normal_05" ID="{EF721C45-2164-4773-899D-1275D50C38A7}" ShortID="758830842">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_urso_fala_normal_05" ID="{48946734-28B7-4E66-9AF2-DA23F284E658}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0214554886702882"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.19052473939216"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_urso_fala_normal_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="416316322"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_urso_fala_normal_05" ID="{48946734-28B7-4E66-9AF2-DA23F284E658}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</RandomSequenceContainer>
 							</ChildrenList>
 						</Folder>
 						<RandomSequenceContainer Name="ui_cutscenefinal_fala" ID="{527A4048-7389-42B3-A40C-6AEFA31C42B5}" ShortID="660142643">
