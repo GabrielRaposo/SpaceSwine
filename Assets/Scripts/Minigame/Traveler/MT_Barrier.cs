@@ -28,8 +28,8 @@ namespace Traveler
             gameObject.SetActive(true);
             t = 0;
 
-            if (activationAKEvent != null)
-                activationAKEvent.Post(gameObject);
+            //if (activationAKEvent != null)
+            //    activationAKEvent.Post(gameObject);
         }
 
         private void Update()
@@ -60,6 +60,12 @@ namespace Traveler
                 bullet.Vanish();
                 MT_ScoreManager.Instance.ChangeScore(1);
             }
+        }
+
+        public void CallBarrierSound()
+        {
+            if (activationAKEvent != null)
+                activationAKEvent.Post(gameObject);
         }
     }
 }
