@@ -9,7 +9,7 @@ namespace Shooter
     {   
         const string BLINKING_TAG = "Blinking";
 
-        [SerializeField] int scoreReward;
+        //[SerializeField] int scoreReward;
         [SerializeField] int startingHP = 1;
         [SerializeField] float blinkingDuration;
 
@@ -79,7 +79,7 @@ namespace Shooter
         {
             HP -= value;
 
-            MS_ScoreManager.Instance.ChangeScore (scoreReward + scoreBonus);
+            MS_ScoreManager.Instance.ChangeScore (1 + scoreBonus);
 
             if (HP > 0)
             {

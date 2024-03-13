@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MS_StageTimer : MonoBehaviour
 {
-    const int MAX_TIME = 20;
+    const int MAX_TIME = 15;
 
     [SerializeField] int startingTime;
     [SerializeField] Color baseColor;
@@ -23,6 +23,7 @@ public class MS_StageTimer : MonoBehaviour
     [SerializeField] TextMeshProUGUI timeUpDisplay;
     [SerializeField] Image clockImage;
     [SerializeField] MS_SessionManager sessionManager;
+    [SerializeField] AK.Wwise.Event OnTimeHighlightEvent; 
     [SerializeField] AK.Wwise.Event OnTimeUpAKEvent;
 
     bool dangerBlinking;
@@ -133,7 +134,7 @@ public class MS_StageTimer : MonoBehaviour
         if (Time > MAX_TIME)
         {
             int extraTime = (int)Time - MAX_TIME;
-            MS_ScoreManager.Instance.ChangeScore(extraTime * 2);
+            MS_ScoreManager.Instance.ChangeScore(extraTime);
 
             Time = MAX_TIME;
         }
@@ -174,6 +175,9 @@ public class MS_StageTimer : MonoBehaviour
     {
         float t = 0;
         float blinkDelay = .15f;
+
+        if (OnTimeHighlightEvent != null)
+            OnTimeHighlightEvent.Post(gameObject);
 
         while (t < sessionBlinkDuration)
         {
