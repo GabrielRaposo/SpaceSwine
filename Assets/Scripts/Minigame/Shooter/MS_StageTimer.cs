@@ -24,6 +24,7 @@ public class MS_StageTimer : MonoBehaviour
     [SerializeField] Image clockImage;
     [SerializeField] MS_SessionManager sessionManager;
     [SerializeField] AK.Wwise.Event OnTimeHighlightEvent; 
+    [SerializeField] AK.Wwise.Event RunningOutOfTimeAKEvent;
     [SerializeField] AK.Wwise.Event OnTimeUpAKEvent;
 
     bool dangerBlinking;
@@ -77,6 +78,13 @@ public class MS_StageTimer : MonoBehaviour
 
             if (Time < blinkThreshold)
             {
+                if (!RunningOutOfTimeAKEvent.IsPlaying(gameObject))
+                {
+                    
+                    RunningOutOfTimeAKEvent.Post(gameObject);
+                }
+
+
                 if (!dangerBlinking)
                 {
                     dangerBlinking = true;
