@@ -73,6 +73,13 @@ namespace AK
         static const AkUniqueID GGS_GAMEPLAY_LINHA_RECORDE = 1056476565U;
         static const AkUniqueID GGS_LOBO_DANO = 202545214U;
         static const AkUniqueID GGS_LOBO_MORRE = 2683897467U;
+        static const AkUniqueID GGS_LOOPER_BALA_COME = 1368652362U;
+        static const AkUniqueID GGS_LOOPER_COLETAVEL = 3589092620U;
+        static const AkUniqueID GGS_LOOPER_COLETAVEL_PLUS = 3017364203U;
+        static const AkUniqueID GGS_LOOPER_ESCUDO = 3394453366U;
+        static const AkUniqueID GGS_LOOPER_MORRE = 4160931490U;
+        static const AkUniqueID GGS_LOOPER_NAVE_NASCE = 2275464958U;
+        static const AkUniqueID GGS_LOOPER_TIRO = 3954428117U;
         static const AkUniqueID GGS_NAVE_MORRE = 592843473U;
         static const AkUniqueID GGS_NAVE_POUSA = 3402632736U;
         static const AkUniqueID GGS_NAVE_PULA = 1092440616U;

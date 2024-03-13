@@ -7611,7 +7611,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>13</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7641,7 +7641,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>12</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7671,7 +7671,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>-2</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7684,32 +7684,20 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ggs_shooter_countdown" ID="{AAD41169-1D08-459B-9E19-77E1DB22B031}">
-													<PropertyList>
-														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.50051998355106"/>
-														<Property Name="TrimEnd" Type="Real64" Value="1.49875938331126"/>
-													</PropertyList>
+												<AudioFileSource Name="ggs_shooter_countdown2" ID="{8FF7FC0C-CCBA-4CFB-A2B7-F6D7348A1D45}">
 													<Language>SFX</Language>
-													<AudioFile>ggs_shooter_countdown.wav</AudioFile>
+													<AudioFile>ggs_shooter_countdown2.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="894601265"/>
+														<MediaID ID="1000533860"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ggs_shooter_countdown" ID="{AAD41169-1D08-459B-9E19-77E1DB22B031}" Platform="Linked"/>
+												<ActiveSource Name="ggs_shooter_countdown2" ID="{8FF7FC0C-CCBA-4CFB-A2B7-F6D7348A1D45}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="ggs_shooter_gameover" ID="{BD7A2499-2729-4B44-A004-B49BB540B509}" ShortID="709007249">
-											<PropertyList>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>4</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -7720,6 +7708,12 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="ggs_shooter_gameover" ID="{928D5790-01B8-4455-B632-DC3362A2A0D3}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0753595021823758"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0642408871062876"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.559636958829775"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>ggs_shooter_gameover.wav</AudioFile>
 													<MediaIDList>
@@ -7766,7 +7760,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>6</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7794,9 +7788,15 @@
 										</Sound>
 										<Sound Name="ggs_shooter_tiro_some" ID="{A06AFBF3-7E27-48E8-BFAB-9864CDCC6CEF}" ShortID="491660587">
 											<PropertyList>
-												<Property Name="Volume" Type="Real64">
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
 													<ValueList>
-														<Value>4</Value>
+														<Value>3</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7826,7 +7826,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>13</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7856,7 +7856,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>12</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -8046,7 +8046,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>10</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -8164,6 +8164,348 @@
 										<ActiveSource Name="ggs_ui_liga" ID="{5C313441-00ED-42C9-A52B-302A7CD2C26E}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Folder Name="Looper" ID="{9C848B52-1579-4E9C-8D0D-48CFC66347F3}" ShortID="778246902">
+									<ChildrenList>
+										<Sound Name="ggs_looper_bala_come" ID="{580DC73C-CE92-47E3-B25F-C81A13626BB1}" ShortID="1029620550">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>4</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ggs_looper_bala_come" ID="{898BD269-E8AD-4D11-B249-ED231D7D8D76}">
+													<Language>SFX</Language>
+													<AudioFile>ggs_looper_bala_come.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="389142374"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ggs_looper_bala_come" ID="{898BD269-E8AD-4D11-B249-ED231D7D8D76}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ggs_looper_coletavel" ID="{09D07053-6AB1-45DE-80D4-0F263FAE9CD5}" ShortID="725519349">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>4</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ggs_looper_coletavel" ID="{E3018B00-E100-4C78-885A-DB56D11B3A38}">
+													<Language>SFX</Language>
+													<AudioFile>ggs_looper_coletavel.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="87402857"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ggs_looper_coletavel" ID="{E3018B00-E100-4C78-885A-DB56D11B3A38}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ggs_looper_coletavel_plus" ID="{E9B745FA-CD87-4857-93EE-8D1C8812AA0D}" ShortID="30604603">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>4</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ggs_looper_coletavel_plus" ID="{96745383-AD09-40FC-8F9B-DF6100766E4A}">
+													<Language>SFX</Language>
+													<AudioFile>ggs_looper_coletavel_plus.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="900898431"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ggs_looper_coletavel_plus" ID="{96745383-AD09-40FC-8F9B-DF6100766E4A}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ggs_looper_morre" ID="{A2024A64-C4D1-49F3-967A-A426CCBDFD23}" ShortID="44391968">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>2</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ggs_looper_morre" ID="{618DB834-EF3C-4E63-8594-FBEF57078522}">
+													<Language>SFX</Language>
+													<AudioFile>ggs_looper_morre.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="53584931"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ggs_looper_morre" ID="{618DB834-EF3C-4E63-8594-FBEF57078522}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ggs_looper_nave_nasce" ID="{38F9453B-CB7F-4BDB-97DF-A85BDED41A4A}" ShortID="439317035">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>4</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ggs_looper_nave_nasce" ID="{EA46E7BC-6216-4CC1-83C0-3326DE2CBC7C}">
+													<Language>SFX</Language>
+													<AudioFile>ggs_looper_nave_nasce.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="48998145"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ggs_looper_nave_nasce" ID="{EA46E7BC-6216-4CC1-83C0-3326DE2CBC7C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ggs_looper_tiro" ID="{7AD36407-FAEC-4062-B92A-D56BBC1989AD}" ShortID="457540667">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>4</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ggs_looper_tiro" ID="{D35EB9CD-500C-4774-8D9A-AB68504CEE8F}">
+													<Language>SFX</Language>
+													<AudioFile>ggs_looper_tiro.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="552103736"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ggs_looper_tiro" ID="{D35EB9CD-500C-4774-8D9A-AB68504CEE8F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<RandomSequenceContainer Name="ggs_looper_escudo" ID="{81EBFC86-6B7F-4894-A15E-EE4E5A04F31B}" ShortID="60643373">
+											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>4</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="ggs_looper_escudo_01" ID="{17A8B37E-2754-431C-910E-BD1A9C1B25E2}" ShortID="229685412">
+													<PropertyList>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>4</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ggs_looper_escudo_01" ID="{1E6AE83E-BBEB-4F02-B430-7BBE9F022614}">
+															<Language>SFX</Language>
+															<AudioFile>ggs_looper_escudo_01.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="652785234"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ggs_looper_escudo_01" ID="{1E6AE83E-BBEB-4F02-B430-7BBE9F022614}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ggs_looper_escudo_02" ID="{561A7FD0-2A66-4778-A89D-7A741180C2EA}" ShortID="778368381">
+													<PropertyList>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>4</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ggs_looper_escudo_02" ID="{4054E190-524D-4C37-9DD6-72D6866000E9}">
+															<Language>SFX</Language>
+															<AudioFile>ggs_looper_escudo_02.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="829437549"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ggs_looper_escudo_02" ID="{4054E190-524D-4C37-9DD6-72D6866000E9}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ggs_looper_escudo_03" ID="{92D17F75-7102-4629-8E76-F84B07AEA47B}" ShortID="485558839">
+													<PropertyList>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>4</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ggs_looper_escudo_03" ID="{70C0061D-8F0D-4BDC-9647-D5B35D5ED010}">
+															<Language>SFX</Language>
+															<AudioFile>ggs_looper_escudo_03.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="310845616"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ggs_looper_escudo_03" ID="{70C0061D-8F0D-4BDC-9647-D5B35D5ED010}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="ggs_looper_escudo_04" ID="{345CE580-D958-409C-854D-17C59E6EC45E}" ShortID="209481421">
+													<PropertyList>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>4</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="ggs_looper_escudo_04" ID="{7BE99C6C-3DAF-4DB7-B47E-85FCB180C531}">
+															<Language>SFX</Language>
+															<AudioFile>ggs_looper_escudo_04.wav</AudioFile>
+															<MediaIDList>
+																<MediaID ID="908666886"/>
+															</MediaIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ObjectLists/>
+													<ActiveSourceList>
+														<ActiveSource Name="ggs_looper_escudo_04" ID="{7BE99C6C-3DAF-4DB7-B47E-85FCB180C531}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+											<ObjectLists/>
+											<Playlist>
+												<ItemRef Name="ggs_looper_escudo_01" ID="{17A8B37E-2754-431C-910E-BD1A9C1B25E2}"/>
+												<ItemRef Name="ggs_looper_escudo_02" ID="{561A7FD0-2A66-4778-A89D-7A741180C2EA}"/>
+												<ItemRef Name="ggs_looper_escudo_03" ID="{92D17F75-7102-4629-8E76-F84B07AEA47B}"/>
+												<ItemRef Name="ggs_looper_escudo_04" ID="{345CE580-D958-409C-854D-17C59E6EC45E}"/>
+											</Playlist>
+										</RandomSequenceContainer>
+									</ChildrenList>
+								</Folder>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>
