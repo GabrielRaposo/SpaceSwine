@@ -132,11 +132,16 @@ public class SoundtrackManager : MonoBehaviour
             return;
         }
 
-        PlayTrack();        
+        PlayTrack();    
+        
+        DisplayData();
     }
 
     public void ChangePlaylistOnTheBack (PlaylistScriptableObject playlist)
     {
+        if (this.playlist == playlist)
+            return;
+
         this.playlist = playlist;
         MakePlaylistPlayOrder();
 
@@ -144,13 +149,15 @@ public class SoundtrackManager : MonoBehaviour
         {
             PlayTrack();
         }
+
+        DisplayData();
     }
 
     public void ForceSkipToPlaylist (PlaylistScriptableObject playlist)
     {
         DebugDisplay.Log($"Change Playlist: {playlist.name}");
 
-        if (this.playlist == null)
+        if (this.playlist == playlist)
             return;
 
         this.playlist = playlist;
@@ -161,6 +168,8 @@ public class SoundtrackManager : MonoBehaviour
             FadeOutAndSkip();
             return;
         }
+
+        DisplayData();
     }
 
     public bool IsCurrentTrackOnPlaylist
@@ -311,5 +320,33 @@ public class SoundtrackManager : MonoBehaviour
 
         soundtrackEvent.Pause(gameObject, duration, value: true);
         this.WaitSecondsRealtime(duration, () => SkipTrack(1) );
+    }
+
+    public void DisplayData()
+    {
+        if (playlist == null)
+        {
+            Debug.Log("Playlist is Empty");
+            return;
+        }
+
+        string s = "- Playlist:: \n";
+        for (int i = 0; i < playlist.Count; i++)
+        {
+            var musicData = playlist[i];
+            s += $"{i}: {musicData.name} \n";
+        }
+
+        s += "\n- Play Order:: "; 
+        for (int i = 0; i < playOrder.Count; i++) 
+        {
+            int index = playOrder[i];
+            s += $", {index}";
+        }
+
+        if (soundtrackEvent != null)
+            s += "\n - Current: " + soundtrackEvent.Name + "\n\n";
+
+        Debug.Log(s);
     }
 }
