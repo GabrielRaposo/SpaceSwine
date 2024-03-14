@@ -33,6 +33,8 @@ public class InteractableElevator : Interactable
         if (autoActivate)
         {
             SetActivation(startActive);
+            if (!startActive)
+                interactable = false;
         }
 
         //testInput.performed += (c) => { SetActivation(!active); };
