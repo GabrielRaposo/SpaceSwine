@@ -235,6 +235,10 @@ namespace AK
         static const AkUniqueID CHORDS_01 = 522712106U;
         static const AkUniqueID CHORDS_02 = 522712105U;
         static const AkUniqueID CUTSCENE_INICIO = 1171258525U;
+        static const AkUniqueID CUTSCENEMUSIC_VOLUME_STAGE_01 = 3238365110U;
+        static const AkUniqueID CUTSCENEMUSIC_VOLUME_STAGE_02 = 3238365109U;
+        static const AkUniqueID CUTSCENEMUSIC_VOLUME_STAGE_03 = 3238365108U;
+        static const AkUniqueID CUTSCENEMUSIC_VOLUME_STAGE_04 = 3238365107U;
         static const AkUniqueID HIHAT_01 = 2036806543U;
         static const AkUniqueID HIHAT_02 = 2036806540U;
         static const AkUniqueID TREBLE_01 = 2489791123U;
