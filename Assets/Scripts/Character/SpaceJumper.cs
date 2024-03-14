@@ -43,16 +43,28 @@ public class SpaceJumper : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        enabled = false;
+    }
+
     private void Update() 
     {
         if (!onLaunch || flightLoopAKEvent == null)
             return;
         
+        Debug.Log($"A: Time.timeScale {Time.timeScale}, flightLoopAKEvent.IsPlaying(gameObject): {flightLoopAKEvent.IsPlaying(gameObject)}");
         if (Time.timeScale != 0 && !flightLoopAKEvent.IsPlaying(gameObject))
+        {
+            Debug.Log("Post");
             flightLoopAKEvent.Post(gameObject);
+        }
 
         if (Time.timeScale == 0)
+        {
+            Debug.Log("Stop");
             flightLoopAKEvent.Stop(gameObject);
+        }
     }
 
     
@@ -99,6 +111,7 @@ public class SpaceJumper : MonoBehaviour
 
         if (value) 
         {
+            Debug.Log("SetLaunchState: true");
             flightLoopAKEvent?.Post(gameObject);
             if (playLongJumpSound) longJumpAKEvent?.Post(gameObject);
             playerAnimations.throwing = false;
@@ -260,6 +273,8 @@ public class SpaceJumper : MonoBehaviour
 
     private void KillFlightSound()
     {
+        Debug.Log("KillFlightSound");
+
         if (flightLoopAKEvent != null)
             flightLoopAKEvent.Stop(gameObject);
 

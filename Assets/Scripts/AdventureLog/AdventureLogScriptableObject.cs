@@ -10,6 +10,6 @@ public class AdventureLogScriptableObject : ScriptableObject
 
     [Space(10)]
 
-    public StoryEventScriptableObject activationEventKey;
+    public List<StoryEventScriptableObject> activationEventKeys;
     public StoryEventScriptableObject completionEventKey;
 }

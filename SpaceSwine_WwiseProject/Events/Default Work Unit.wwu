@@ -1664,67 +1664,12 @@
 								<Property Name="OverrideColor" Type="bool" Value="True"/>
 							</PropertyList>
 							<ChildrenList>
-								<Event Name="ggs_nave_pula" ID="{CF586B47-07E0-401B-AE58-CF00ECAB2194}">
-									<ChildrenList>
-										<Action Name="" ID="{2980ECCC-8DF4-43FC-841D-D686F96C15C8}" ShortID="438083376">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="ggs_nave_pula" ID="{70E6A275-0845-45DC-A805-6B6C6BEF5AE1}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="ggs_nave_pousa" ID="{38B514CF-55EE-48A9-92D2-F03258C2F6C1}">
-									<ChildrenList>
-										<Action Name="" ID="{59B642CF-4CFD-4960-AB92-F56C73F9AD31}" ShortID="393062033">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="ggs_nave_pousa" ID="{F0E6BAD0-E814-4F38-AD69-BFD490842ECF}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="ggs_nave_morre" ID="{DF3A044F-0136-4007-8629-8699DE519B9F}">
-									<ChildrenList>
-										<Action Name="" ID="{CA8DBDB5-8B10-4325-9275-90355E90C3A2}" ShortID="588010481">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="ggs_nave_morre" ID="{0A3A3B49-9077-4B31-80B1-A0749D0291F8}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="ggs_nave_voa" ID="{77F845BC-7692-4481-A192-57779DF8CE6E}">
-									<ChildrenList>
-										<Action Name="" ID="{CC6571F5-5C66-416E-BD97-8E2897B95787}" ShortID="867583637">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="ggs_nave_voa" ID="{5E726E93-DAD9-48BB-AF65-872A69B2E606}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
 								<Event Name="ggs_ui_clique" ID="{6AF4D2AF-60B0-4DD4-951B-3130861DA2BF}">
 									<ChildrenList>
 										<Action Name="" ID="{6AF5FA67-1F98-4AAA-A70B-075E2FF98AF5}" ShortID="922275449">
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="ggs_ui_clique" ID="{63BF167D-1406-490F-8479-F51AA75945AD}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
-									</ChildrenList>
-								</Event>
-								<Event Name="ggs_gameplay_linha_recorde" ID="{7BB80F24-6D5C-49ED-A0DF-B32A91843C4C}">
-									<ChildrenList>
-										<Action Name="" ID="{645622D3-F56C-4302-8699-10D6EACD6623}" ShortID="727796058">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="ggs_gameplay_linha_recorde" ID="{7D477166-EF89-4B77-BC3B-16275B3B8118}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -1752,28 +1697,293 @@
 										</Action>
 									</ChildrenList>
 								</Event>
-								<Event Name="ggs_ui_recorde_fanfarra" ID="{DE50BA88-6156-4151-AE3F-6C2F3E4FFDD7}">
+								<Folder Name="Shooter" ID="{460A6DF9-6629-4F3C-9E9D-9085D7F6C94E}" ShortID="581756321">
 									<ChildrenList>
-										<Action Name="" ID="{72D688A6-36D6-47E7-9ABC-87B7DE901A8E}" ShortID="810575154">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="ggs_ui_recorde_fanfarra" ID="{81A8F8B0-D5F8-4AE8-A81A-9A78848C51C3}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
+										<Event Name="ggs_shooter_tiro_bounce" ID="{99D1C045-B504-4F9F-B679-CA7A77BBD3F1}">
+											<ChildrenList>
+												<Action Name="" ID="{7AF309CE-2ABD-4335-B831-9F0D16BF612F}" ShortID="1052285751">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_shooter_tiro_bounce" ID="{6A80C324-6C03-4190-98E9-BB7087213E60}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_sol_dano" ID="{D1CB737A-3C0F-492B-AA66-A5A6F2ECD5A8}">
+											<ChildrenList>
+												<Action Name="" ID="{306CBD25-A65E-4F35-87E3-EB6B5D959BC0}" ShortID="183762470">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_sol_dano" ID="{F277F22E-6C28-4A24-8179-F086A82BB294}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_extratime_coletar" ID="{AA811AD0-15C2-4A87-80E4-3AB38C6EFB13}">
+											<ChildrenList>
+												<Action Name="" ID="{7F4ACC4C-19E0-463B-85C8-F34F21E75781}" ShortID="116326015">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_extratime_coletar" ID="{A36B11BE-19B2-4A14-B238-46A57BCC12F5}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_shooter_tiro_some" ID="{D024CEAA-BF03-4580-A8E4-B3AE8B5BEB6F}">
+											<ChildrenList>
+												<Action Name="" ID="{238BAF18-D0F2-42D0-B10C-17ABDCD67EBB}" ShortID="1069121059">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_shooter_tiro_some" ID="{A06AFBF3-7E27-48E8-BFAB-9864CDCC6CEF}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_shooter_newlevel" ID="{C99E4516-0E15-4FB3-8F9E-EA4046F78E1B}">
+											<ChildrenList>
+												<Action Name="" ID="{6D73876E-2B65-4DD6-804F-495D07492501}" ShortID="976760528">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_shooter_newlevel" ID="{79D58A18-917D-4D91-A48A-7AC06931CD17}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_shooter_tiro" ID="{BD5EE4BB-D77D-45CD-BE77-D6D0F3309987}">
+											<ChildrenList>
+												<Action Name="" ID="{15921B2C-0A5E-4BEF-94D1-A0DF6D844F56}" ShortID="893356571">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_shooter_tiro" ID="{3247962F-C05A-4CE5-806F-7C3B7DBF9E91}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_lobo_morre" ID="{C344952A-42D3-444C-A90B-D0CAE9C8FD37}">
+											<ChildrenList>
+												<Action Name="" ID="{6DA5B2F5-4BE4-4E54-85C4-A01BB669789F}" ShortID="217182018">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_lobo_morre" ID="{8D7E331F-7EA6-4E00-87D0-8F22AC49A68E}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_shooter_countdown" ID="{8BDBA649-4934-4DBF-92AF-700412A4C80A}">
+											<ChildrenList>
+												<Action Name="" ID="{626AFC32-E46F-4269-9538-A36FAE198456}" ShortID="81422712">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_shooter_countdown" ID="{5AA284BD-F060-41A0-AEBA-6A4EC8B53F14}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_shooter_gameover" ID="{B4ECCCF0-D2E2-453C-9246-1625F378CFE3}">
+											<ChildrenList>
+												<Action Name="" ID="{076CFBDD-7F70-4487-A1D3-A534E5393427}" ShortID="275363318">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_shooter_gameover" ID="{BD7A2499-2729-4B44-A004-B49BB540B509}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_sol_morre" ID="{81A985B4-01C6-4F24-BA51-56AD4D8109F3}">
+											<ChildrenList>
+												<Action Name="" ID="{97381BCC-0317-454B-8136-27E3B49AD70D}" ShortID="384299775">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_sol_morre" ID="{12E1E1BA-7C21-4352-95F5-9E7EA459BB42}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_lobo_dano" ID="{F167D336-F2C4-4F1D-94FD-4762EEE50DD6}">
+											<ChildrenList>
+												<Action Name="" ID="{E6691FE3-580C-4615-B4F1-87C4C95E5278}" ShortID="381868220">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_lobo_dano" ID="{538D65E0-9179-4975-9CB6-FFBDF55B4699}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
 									</ChildrenList>
-								</Event>
-								<Event Name="ggs_gameplay_linha_milestone" ID="{18642A6A-F30E-4C3B-8B95-13EE7570B458}">
+								</Folder>
+								<Folder Name="Jumper" ID="{5AEAA6A9-5FD0-4D65-B9FA-906664795B7B}" ShortID="338395702">
 									<ChildrenList>
-										<Action Name="" ID="{E75F35E3-4D12-4566-8074-AE2985F3C08E}" ShortID="193824560">
-											<ReferenceList>
-												<Reference Name="Target">
-													<ObjectRef Name="ggs_gameplay_linha_milestone" ID="{AD6259E7-BAEB-48AA-9781-F33EEE747E46}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
-												</Reference>
-											</ReferenceList>
-										</Action>
+										<Event Name="ggs_nave_pula" ID="{CF586B47-07E0-401B-AE58-CF00ECAB2194}">
+											<ChildrenList>
+												<Action Name="" ID="{2980ECCC-8DF4-43FC-841D-D686F96C15C8}" ShortID="438083376">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_nave_pula" ID="{70E6A275-0845-45DC-A805-6B6C6BEF5AE1}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_nave_pousa" ID="{38B514CF-55EE-48A9-92D2-F03258C2F6C1}">
+											<ChildrenList>
+												<Action Name="" ID="{59B642CF-4CFD-4960-AB92-F56C73F9AD31}" ShortID="393062033">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_nave_pousa" ID="{F0E6BAD0-E814-4F38-AD69-BFD490842ECF}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_nave_morre" ID="{DF3A044F-0136-4007-8629-8699DE519B9F}">
+											<ChildrenList>
+												<Action Name="" ID="{CA8DBDB5-8B10-4325-9275-90355E90C3A2}" ShortID="588010481">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_nave_morre" ID="{0A3A3B49-9077-4B31-80B1-A0749D0291F8}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_nave_voa" ID="{77F845BC-7692-4481-A192-57779DF8CE6E}">
+											<ChildrenList>
+												<Action Name="" ID="{CC6571F5-5C66-416E-BD97-8E2897B95787}" ShortID="867583637">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_nave_voa" ID="{5E726E93-DAD9-48BB-AF65-872A69B2E606}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_gameplay_linha_recorde" ID="{7BB80F24-6D5C-49ED-A0DF-B32A91843C4C}">
+											<ChildrenList>
+												<Action Name="" ID="{645622D3-F56C-4302-8699-10D6EACD6623}" ShortID="727796058">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_gameplay_linha_recorde" ID="{7D477166-EF89-4B77-BC3B-16275B3B8118}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_gameplay_linha_milestone" ID="{18642A6A-F30E-4C3B-8B95-13EE7570B458}">
+											<ChildrenList>
+												<Action Name="" ID="{E75F35E3-4D12-4566-8074-AE2985F3C08E}" ShortID="193824560">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_gameplay_linha_milestone" ID="{AD6259E7-BAEB-48AA-9781-F33EEE747E46}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_ui_recorde_fanfarra" ID="{DE50BA88-6156-4151-AE3F-6C2F3E4FFDD7}">
+											<ChildrenList>
+												<Action Name="" ID="{72D688A6-36D6-47E7-9ABC-87B7DE901A8E}" ShortID="810575154">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_ui_recorde_fanfarra" ID="{81A8F8B0-D5F8-4AE8-A81A-9A78848C51C3}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
 									</ChildrenList>
-								</Event>
+								</Folder>
+								<Folder Name="Looper" ID="{1C44175F-036D-49A4-B0AF-1492374448DA}" ShortID="618338641">
+									<ChildrenList>
+										<Event Name="ggs_looper_coletavel" ID="{635B6C1F-A1F9-4EE2-81D5-55760A0153B0}">
+											<ChildrenList>
+												<Action Name="" ID="{82A8CFA5-2CE6-4ADA-A452-541561A735DD}" ShortID="754891363">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_looper_coletavel" ID="{09D07053-6AB1-45DE-80D4-0F263FAE9CD5}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_looper_bala_come" ID="{F1A83CC4-5E1A-4229-BACE-C09B76AB3E83}">
+											<ChildrenList>
+												<Action Name="" ID="{05D02D36-A18B-4767-8156-30BF2FF28510}" ShortID="796018987">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_looper_bala_come" ID="{580DC73C-CE92-47E3-B25F-C81A13626BB1}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_looper_morre" ID="{56872D18-41D7-4E69-80BD-BBE58908C456}">
+											<ChildrenList>
+												<Action Name="" ID="{9738F08D-93A3-4172-9328-FF90DB74C3BA}" ShortID="958632305">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_looper_morre" ID="{A2024A64-C4D1-49F3-967A-A426CCBDFD23}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_looper_coletavel_plus" ID="{CEB144B9-97BD-48D4-AF68-ACD878C1AAA1}">
+											<ChildrenList>
+												<Action Name="" ID="{53111531-6724-4397-8D52-72323F6D6F6F}" ShortID="781635769">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_looper_coletavel_plus" ID="{E9B745FA-CD87-4857-93EE-8D1C8812AA0D}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_looper_nave_nasce" ID="{DDD91D39-9D71-4C8E-9252-35DC4541B573}">
+											<ChildrenList>
+												<Action Name="" ID="{B58D1F2B-FD22-421D-A60A-6AB412576449}" ShortID="360419893">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_looper_nave_nasce" ID="{38F9453B-CB7F-4BDB-97DF-A85BDED41A4A}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_looper_escudo" ID="{EA822DCC-F2FF-4B96-92AD-2CB673B8A56D}">
+											<ChildrenList>
+												<Action Name="" ID="{14E1C61C-D33D-4124-B27A-CC061E139ED9}" ShortID="748317300">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_looper_escudo" ID="{81EBFC86-6B7F-4894-A15E-EE4E5A04F31B}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="ggs_looper_tiro" ID="{66148E7C-975D-41E2-BEEF-17562E54F213}">
+											<ChildrenList>
+												<Action Name="" ID="{CB4AF149-0358-4F98-8967-5546527D5701}" ShortID="336007850">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="ggs_looper_tiro" ID="{7AD36407-FAEC-4062-B92A-D56BBC1989AD}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
 							</ChildrenList>
 						</Folder>
 					</ChildrenList>

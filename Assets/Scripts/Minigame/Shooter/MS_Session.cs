@@ -87,7 +87,7 @@ namespace Shooter
 
             CallOnVanish();
 
-            MS_ScoreManager.Instance.ChangeScore (scoreReward);
+            //MS_ScoreManager.Instance.ChangeScore (scoreReward);
             MS_SessionManager.OnSessionTransition = true;
             MS_StageTimer.AddTime ( TimeByLevel() );
             MS_StageTimer.SetSessionBlink();
@@ -115,7 +115,7 @@ namespace Shooter
             if (level < 5)
                 return (totalCompletion * 2) + 1;
 
-            return (totalCompletion * 3);
+            return (totalCompletion * 3) - 1;
         }
     }
 }

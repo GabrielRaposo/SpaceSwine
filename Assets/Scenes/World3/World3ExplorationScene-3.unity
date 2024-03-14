@@ -7648,7 +7648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5399106538922796904, guid: 85280de838d639d4b862319dfbc66461, type: 3}
       propertyPath: startActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5399106538922796913, guid: 85280de838d639d4b862319dfbc66461, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7740,11 +7740,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7726375918226568484, guid: 85280de838d639d4b862319dfbc66461, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7726375918667220825, guid: 85280de838d639d4b862319dfbc66461, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 29796e3a01f66654db94d9e5b04e82d5, type: 3}
     - target: {fileID: 7726375919641161650, guid: 85280de838d639d4b862319dfbc66461, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85280de838d639d4b862319dfbc66461, type: 3}
@@ -22204,6 +22208,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7726375918667220825, guid: 85280de838d639d4b862319dfbc66461, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3badd475d0d7a6647a8499d9c5750584, type: 3}
     - target: {fileID: 7726375919641161650, guid: 85280de838d639d4b862319dfbc66461, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -22328,7 +22336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b09283ef6d4e5374e826e1b2b0e9636d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storyEvent: {fileID: 11400000, guid: 894dc7ff4a14e5c4eb8104c8408b333e, type: 2}
+  storyEvent: {fileID: 11400000, guid: a7c770816dd3ef14cbe398ff34057be5, type: 2}
   progressValue: 1
   dialogueGroupIndex: -1
 --- !u!114 &343449472
@@ -87820,13 +87828,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654684958}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 21a0c66e8dda56c4a8557c665b7125c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetState: 1
-  storyEvent: {fileID: 0}
+  storyEvent: {fileID: 11400000, guid: a7c770816dd3ef14cbe398ff34057be5, type: 2}
 --- !u!1 &1658758353
 GameObject:
   m_ObjectHideFlags: 0
@@ -90523,6 +90531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0790bcfa3e1053a4f9dddd5884a0d2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontSetOnStart: 0
   sprites:
   - {fileID: 0}
   - {fileID: 21300000, guid: 68918b061073a9f46a71e96203e22bcc, type: 3}

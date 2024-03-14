@@ -19,6 +19,7 @@ public class EndingCutsceneCaller : MonoBehaviour
     [SerializeField] Image imageDisplay;
     [SerializeField] Image proceedIcon;
     [SerializeField] CanvasGroup imageCanvasGroup;
+    [SerializeField] EndingSoundtrackSystem endingSoundtrack;
 
     int frameIndex;
     int textIndex;
@@ -91,6 +92,9 @@ public class EndingCutsceneCaller : MonoBehaviour
             imageCanvasGroup.alpha = 0;
             imageDisplay.sprite = cutsceneStoryData.frameSprite;
 
+            if (cutsceneStoryData.soundtrackState != -1)
+                endingSoundtrack.ChangeFocus(cutsceneStoryData.soundtrackState);
+
             done = false;
             s = DOTween.Sequence();
             s.Append( imageCanvasGroup.DOFade(1f, frameTransitionDuration) );
@@ -151,5 +155,6 @@ public class EndingCutsceneCaller : MonoBehaviour
 public class CutsceneStoryData
 {
     public Sprite frameSprite;
+    public int soundtrackState = -1;
     public List<string> textTags;
 }

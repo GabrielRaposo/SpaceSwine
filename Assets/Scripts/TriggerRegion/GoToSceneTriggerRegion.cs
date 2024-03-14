@@ -9,7 +9,7 @@ public class GoToSceneTriggerRegion : MonoBehaviour
     [SerializeField] SceneReference targetScene;
     [SerializeField] int nextSceneSpawnPoint = -1;
 
-    [HideInInspector] public UnityAction OnTriggerAction;
+    //[HideInInspector] public UnityAction OnTriggerAction;
 
     bool activated;
 
@@ -21,8 +21,8 @@ public class GoToSceneTriggerRegion : MonoBehaviour
         if (activated)
             return;
 
-        if (OnTriggerAction != null)
-            OnTriggerAction.Invoke();
+        //if (OnTriggerAction != null)
+        //    OnTriggerAction.Invoke();
 
         if (nextSceneSpawnPoint > -1 && SaveManager.Initiated)
             SaveManager.SetSpawnIndex (nextSceneSpawnPoint);

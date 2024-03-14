@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AdventureLogManager : StoryEventDependent
 {
@@ -55,8 +56,11 @@ public class AdventureLogManager : StoryEventDependent
 
         foreach (AdventureLogScriptableObject log in adventureLogs)
         {
-            if (log.activationEventKey != null)
-                StoryEventsManager.AddListener (log.activationEventKey, (b) => AddToList      (b, log) );
+            if (log.activationEventKeys != null && log.activationEventKeys.Count > 0)
+            {
+                foreach (var key in log.activationEventKeys)
+                    StoryEventsManager.AddListener (key, (b) => AddToList (b, log) );
+            }
             
             if (log.completionEventKey != null)
                 StoryEventsManager.AddListener (log.completionEventKey, (b) => RemoveFromList (b, log) );
@@ -69,12 +73,18 @@ public class AdventureLogManager : StoryEventDependent
 
         foreach (var log in adventureLogs)
         {
-            if (log.activationEventKey != null && StoryEventsManager.IsComplete(log.activationEventKey))
+            if (log.activationEventKeys != null)
             {
-                if (log.completionEventKey != null && StoryEventsManager.IsComplete(log.completionEventKey))
-                    continue;
+                foreach (var key in log.activationEventKeys)
+                {
+                    if (StoryEventsManager.IsComplete(key))
+                    {
+                        if (log.completionEventKey != null && StoryEventsManager.IsComplete(log.completionEventKey))
+                            continue;
 
-                logsList.Add (log);
+                        logsList.Add (log);
+                    }
+                }
             }
         }
 

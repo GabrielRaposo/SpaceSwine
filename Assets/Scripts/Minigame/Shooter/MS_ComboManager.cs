@@ -68,5 +68,5 @@ public class MS_ComboManager : MonoBehaviour
         UpdateDisplays ();
     }
 
-    public static float ComboMultiplier => 1 + (Combo > 3 ? .5f : 0f);
+    public static float ComboMultiplier => 1 + (Combo > 3 ? .25f : 0f);
 }

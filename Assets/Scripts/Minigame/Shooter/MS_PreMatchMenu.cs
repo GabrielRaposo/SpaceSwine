@@ -52,7 +52,7 @@ namespace Shooter
             if (MS_ScoreManager.UseHasScoreTrigger() )
             {
                 newRecordDisplay.gameObject.SetActive (true);
-            //    newScoreAKEvent?.Post(gameObject);
+                newScoreAKEvent?.Post(gameObject);
             }
             else
             {

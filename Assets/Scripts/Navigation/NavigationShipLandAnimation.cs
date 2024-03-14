@@ -19,8 +19,8 @@ public class NavigationShipLandAnimation : MonoBehaviour
     [SerializeField] AK.Wwise.Event MakePathAKEvent;
     [SerializeField] AK.Wwise.Event OnReachDestinationAKEvent;
 
-    private float p2Lenght = 1.5f;
-    private float p3Lenght = 0.6f;
+    //private float p2Lenght = 1.5f;
+    //private float p3Lenght = 0.6f;
     private Curve animationBezier;
 
     private Vector2 p2Debug;
@@ -103,7 +103,7 @@ public class NavigationShipLandAnimation : MonoBehaviour
         {
             SetCurve(shipStartRotation, startPos, caller.transform.position);
 
-            sequence.Append(DrawDots(.3f, 10, shipStartRotation, startPos, caller.transform.position));
+            sequence.Append(DrawDots(.3f, 8, shipStartRotation, startPos, caller.transform.position));
 
             sequence.AppendInterval(0.35f);
 
@@ -117,7 +117,7 @@ public class NavigationShipLandAnimation : MonoBehaviour
             });
 
             // -- Tween da movimentação e rotação
-            sequence.Append(DOVirtual.Float(0f, 1f, 2.75f, value =>
+            sequence.Append(DOVirtual.Float(0f, 1f, 1.85f, value =>
                 {
                     navigationShip.transform.position = animationBezier.GetPoint(value);
                     navigationShip.spritesTransform.eulerAngles = new Vector3(0f, 0f,
@@ -173,7 +173,13 @@ public class NavigationShipLandAnimation : MonoBehaviour
 
     private void SetCurve (float startRotation, Vector2 startPos, Vector2 endPos)
     {
-        Vector2 p2 = startPos + new Vector2 (Mathg.AngleToDirection(startRotation).x, Mathg.AngleToDirection(startRotation).y) * p2Lenght;
+        float p2Lenght = Random.Range(0.2f, 0.8f);
+        float p3Lenght = Random.Range(0.2f, 0.8f);
+
+        float randomAngle2 = Random.Range(-35f, 35f);
+        float randomAngle3 = Random.Range(-35f, 35f);
+    
+        Vector2 p2 = startPos + new Vector2 (Mathg.AngleToDirection(startRotation+randomAngle2).x, Mathg.AngleToDirection(startRotation+randomAngle3).y) * p2Lenght;
         p2Debug = p2;
 
         float side = (startPos.y < endPos.y) ? -1f : 1f;

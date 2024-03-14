@@ -137,7 +137,7 @@ public class RestLoopManager : MonoBehaviour
             else
                 customShipCamera.ResetZoom();
 
-            customShipCamera.SetCustomRotation(value ? 2f : 0f);
+            //customShipCamera.SetCustomRotation(value ? 2f : 0f);
         }   
 
         if (horizontalLetterboxes)
