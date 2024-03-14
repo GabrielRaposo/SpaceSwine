@@ -7760,7 +7760,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>6</Value>
+														<Value>8</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -8168,9 +8168,20 @@
 									<ChildrenList>
 										<Sound Name="ggs_looper_bala_come" ID="{580DC73C-CE92-47E3-B25F-C81A13626BB1}" ShortID="1029620550">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>3</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>8</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -8183,17 +8194,17 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ggs_looper_bala_come" ID="{898BD269-E8AD-4D11-B249-ED231D7D8D76}">
+												<AudioFileSource Name="ggs_looper_bala_come2" ID="{535ECCFC-EEEC-4651-8F1A-8F5DA8C8B86C}">
 													<Language>SFX</Language>
-													<AudioFile>ggs_looper_bala_come.wav</AudioFile>
+													<AudioFile>ggs_looper_bala_come2.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="389142374"/>
+														<MediaID ID="891757876"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ggs_looper_bala_come" ID="{898BD269-E8AD-4D11-B249-ED231D7D8D76}" Platform="Linked"/>
+												<ActiveSource Name="ggs_looper_bala_come2" ID="{535ECCFC-EEEC-4651-8F1A-8F5DA8C8B86C}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="ggs_looper_coletavel" ID="{09D07053-6AB1-45DE-80D4-0F263FAE9CD5}" ShortID="725519349">
@@ -8213,24 +8224,31 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ggs_looper_coletavel2" ID="{15CCC22A-A734-4529-B270-FD151802D8AD}">
+												<AudioFileSource Name="ggs_looper_coletavel2" ID="{8FD5AEFE-4DB4-484B-83E0-40F4E54B07B8}">
 													<Language>SFX</Language>
 													<AudioFile>ggs_looper_coletavel2.wav</AudioFile>
 													<MediaIDList>
 														<MediaID ID="228774525"/>
 													</MediaIDList>
 												</AudioFileSource>
+												<AudioFileSource Name="ggs_looper_coletavel3" ID="{3D3F7790-7AD0-41F9-9BCD-051F6CE720EB}">
+													<Language>SFX</Language>
+													<AudioFile>ggs_looper_coletavel3.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="129472743"/>
+													</MediaIDList>
+												</AudioFileSource>
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ggs_looper_coletavel2" ID="{15CCC22A-A734-4529-B270-FD151802D8AD}" Platform="Linked"/>
+												<ActiveSource Name="ggs_looper_coletavel3" ID="{3D3F7790-7AD0-41F9-9BCD-051F6CE720EB}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="ggs_looper_coletavel_plus" ID="{E9B745FA-CD87-4857-93EE-8D1C8812AA0D}" ShortID="30604603">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>8</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -8263,9 +8281,20 @@
 										</Sound>
 										<Sound Name="ggs_looper_morre" ID="{A2024A64-C4D1-49F3-967A-A426CCBDFD23}" ShortID="44391968">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>2</Value>
+														<Value>6</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -8278,24 +8307,24 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<AudioFileSource Name="ggs_looper_morre" ID="{618DB834-EF3C-4E63-8594-FBEF57078522}">
+												<AudioFileSource Name="ggs_looper_morre2" ID="{15DD9029-14AB-4672-AD3C-0B6BB6C35DB2}">
 													<Language>SFX</Language>
-													<AudioFile>ggs_looper_morre.wav</AudioFile>
+													<AudioFile>ggs_looper_morre2.wav</AudioFile>
 													<MediaIDList>
-														<MediaID ID="53584931"/>
+														<MediaID ID="21087789"/>
 													</MediaIDList>
 												</AudioFileSource>
 											</ChildrenList>
 											<ObjectLists/>
 											<ActiveSourceList>
-												<ActiveSource Name="ggs_looper_morre" ID="{618DB834-EF3C-4E63-8594-FBEF57078522}" Platform="Linked"/>
+												<ActiveSource Name="ggs_looper_morre2" ID="{15DD9029-14AB-4672-AD3C-0B6BB6C35DB2}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="ggs_looper_nave_nasce" ID="{38F9453B-CB7F-4BDB-97DF-A85BDED41A4A}" ShortID="439317035">
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>14</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -8309,6 +8338,9 @@
 											</ReferenceList>
 											<ChildrenList>
 												<AudioFileSource Name="ggs_looper_nave_nasce" ID="{EA46E7BC-6216-4CC1-83C0-3326DE2CBC7C}">
+													<PropertyList>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>ggs_looper_nave_nasce.wav</AudioFile>
 													<MediaIDList>
@@ -8325,7 +8357,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>8</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -8367,7 +8399,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>10</Value>
+														<Value>14</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
