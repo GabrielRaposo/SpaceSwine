@@ -157,8 +157,13 @@ public class SoundtrackManager : MonoBehaviour
     {
         DebugDisplay.Log($"Change Playlist: {playlist.name}");
 
+        //Debug.Log($"B: {this.playlist.name} == {playlist.name} ");
         if (this.playlist == playlist)
+        {
+            if (this.playlist != null)
+                Resume();
             return;
+        }
 
         this.playlist = playlist;
         MakePlaylistPlayOrder();
