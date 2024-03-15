@@ -142,6 +142,10 @@ namespace AK
         static const AkUniqueID LOFI_43 = 116037983U;
         static const AkUniqueID LOFI_44 = 116037976U;
         static const AkUniqueID LOFI_45 = 116037977U;
+        static const AkUniqueID LOFI_46_STAGE01 = 1417604668U;
+        static const AkUniqueID LOFI_46_STAGE02 = 1417604671U;
+        static const AkUniqueID LOFI_46_STAGE03 = 1417604670U;
+        static const AkUniqueID LOFI_46_STAGE04 = 1417604665U;
         static const AkUniqueID MAKEABEAT_APARELHOS_NAVEGACAO = 1887497970U;
         static const AkUniqueID MAKEABEAT_APARELHOS_SELECAO = 2771531893U;
         static const AkUniqueID MAKEABEAT_BRINQUEDO_CONDUCAO = 2489339849U;
@@ -260,6 +264,7 @@ namespace AK
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
+        static const AkUniqueID CUTSCENEFINAL = 1702586979U;
         static const AkUniqueID GENERAL = 133642231U;
         static const AkUniqueID MAKE_A_BEAT = 2500044626U;
         static const AkUniqueID MUNDO_1_01 = 1869223718U;

@@ -3967,6 +3967,462 @@
 								</ObjectList>
 							</ObjectLists>
 						</MusicSegment>
+						<MusicSegment Name="20240314 lofi 46_stage01" ID="{812CC104-D53E-47C8-88AB-711E29ED6BD7}" ShortID="11184026">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="26"/>
+								<Property Name="EndPosition" Type="Real64" Value="16000"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{47239EE9-40BB-4C6F-9289-93501F57DEDA}" ShortID="417979317">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="CutsceneMusic_Volume_Stage_01" ID="{F1FE5557-9B65-47F7-91E1-623D579F366E}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{8903C637-C8AA-4DAF-958F-6E91D158D560}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="20240314 lofi 46_stage01" ID="{83665C4A-8C28-4084-8388-5D386AA819DC}" ShortID="695198696">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="20240314 lofi 46_stage01" ID="{DAED5180-C956-4044-BFB5-CB8B2CE3BB32}">
+											<Language>SFX</Language>
+											<AudioFile>20240314 lofi 46_stage01.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="595919731"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{0FB44BE8-9FDC-4690-8C06-791DCD3FDA96}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{D18C2041-E512-4558-AD9D-50A85B648DF7}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="20240314 lofi 46_stage01" ID="{572DF7B9-5746-4207-950F-36D3D81A6CF6}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="16000"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="20240314 lofi 46_stage01" ID="{DAED5180-C956-4044-BFB5-CB8B2CE3BB32}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{682ECCE8-1E58-40E7-B42E-6D262C083026}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{2860EBF5-E2B9-42E0-9AC4-ECE9C534A5CF}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="16000"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
+						<MusicSegment Name="20240314 lofi 46_stage02" ID="{EF88E5E9-9B77-40C7-9EC6-90CD40593514}" ShortID="177862976">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="26"/>
+								<Property Name="EndPosition" Type="Real64" Value="16000"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{5966F029-FB9D-4C1C-9DE5-22DE3B670D59}" ShortID="695326696">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="CutsceneMusic_Volume_Stage_02" ID="{6942CEE4-8B6A-4CAD-9582-EA93BF0F0E33}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{AF6550A6-E536-4EB0-B363-E616928158C3}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="20240314 lofi 46_stage02" ID="{3FF5A048-347D-4231-9303-0E08406F974B}" ShortID="369139481">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="20240314 lofi 46_stage02" ID="{F820CD28-B5C4-4170-A754-CBBA529B0E2D}">
+											<Language>SFX</Language>
+											<AudioFile>20240314 lofi 46_stage02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="113643663"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{0AD63FC4-DE3E-4A37-A696-C158AFA01678}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{D520D841-8E45-44E6-9CF8-3D66243CB454}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="20240314 lofi 46_stage02" ID="{FB97D043-09FF-4896-971A-28D0CC677BB9}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="16000"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="20240314 lofi 46_stage02" ID="{F820CD28-B5C4-4170-A754-CBBA529B0E2D}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{C1BFCA86-C3A3-4839-957C-06005DCD006B}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{22CDA0D1-926E-4B69-99E7-A737C62FF3EA}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="16000"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
+						<MusicSegment Name="20240314 lofi 46_stage03" ID="{5BF2052B-4014-4097-8149-CE6D1F663B90}" ShortID="1043182121">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="26"/>
+								<Property Name="EndPosition" Type="Real64" Value="16000"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{BA6F434D-254B-4662-8BF4-2F6A9EA7A527}" ShortID="928454011">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="CutsceneMusic_Volume_Stage_03" ID="{D17A092B-4463-4948-BE9B-5F9493199FDC}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{2F7D6DDF-CEDB-4658-A8D1-BBEF5370B6B9}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="20240314 lofi 46_stage03" ID="{FC24C928-4804-44C6-87D2-50772C737E24}" ShortID="79775045">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="20240314 lofi 46_stage03" ID="{83A6ED5E-A7E8-43A8-9FFD-3A00654D0A92}">
+											<Language>SFX</Language>
+											<AudioFile>20240314 lofi 46_stage03.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="866728161"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{AF68BC1C-C6AA-44DE-A44B-4451F1EF23B0}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{3661469C-CADA-47C9-A45B-A5AE146FCEDA}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="20240314 lofi 46_stage03" ID="{91D6FD93-34A7-4223-A6E9-D8CB8C90DC77}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="16000"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="20240314 lofi 46_stage03" ID="{83A6ED5E-A7E8-43A8-9FFD-3A00654D0A92}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{E12DC034-F4E9-44C3-BA59-A5B6B5D62AD0}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{899E13CE-82E9-4A6E-85E9-F2EF4B3BD80C}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="16000"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
+						<MusicSegment Name="20240314 lofi 46_stage04" ID="{4048927C-DAEE-4CE1-999D-1E21A2011662}" ShortID="1028059823">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="26"/>
+								<Property Name="EndPosition" Type="Real64" Value="16000"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<RTPCList>
+										<RTPC Name="" ID="{1967EAAB-4076-4569-B206-A2C7111272D5}" ShortID="33915651">
+											<ReferenceList>
+												<Reference Name="ControlInput">
+													<ObjectRef Name="CutsceneMusic_Volume_Stage_04" ID="{FAED70A6-D7C1-4399-B9B2-2267067C7530}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+												</Reference>
+											</ReferenceList>
+											<Curve Name="" ID="{5281E261-9101-4F6A-9A42-EAD17F286066}">
+												<PropertyList>
+													<Property Name="Flags" Type="int32" Value="3"/>
+												</PropertyList>
+												<PointList>
+													<Point>
+														<XPos>0</XPos>
+														<YPos>-200</YPos>
+														<Flags>5</Flags>
+													</Point>
+													<Point>
+														<XPos>100</XPos>
+														<YPos>0</YPos>
+														<Flags>37</Flags>
+													</Point>
+												</PointList>
+											</Curve>
+										</RTPC>
+									</RTPCList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="20240314 lofi 46_stage04" ID="{F9A303E4-C528-43CA-876F-D18914084505}" ShortID="96127815">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="20240314 lofi 46_stage04" ID="{16D104F2-32E2-4432-95D2-4915E69E6CBD}">
+											<Language>SFX</Language>
+											<AudioFile>20240314 lofi 46_stage04.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="909205581"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{DE266B81-0AFE-4BD6-9E69-DE58F2C05420}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{151D4F5F-CDF1-4C08-8314-3667511B9979}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="20240314 lofi 46_stage04" ID="{C101FD26-A6DC-45FE-93C0-082EC7C0C8C3}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="16000"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="20240314 lofi 46_stage04" ID="{16D104F2-32E2-4432-95D2-4915E69E6CBD}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{E3B97D5D-F537-411B-AF5B-3EF007975C4A}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{3C66ECC5-4250-4FAF-B3E1-CE8D0A4472B7}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="16000"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Samples Make A Beat" ID="{70C8F577-DE81-41C4-B525-1611505904A4}" ShortID="5997971">
