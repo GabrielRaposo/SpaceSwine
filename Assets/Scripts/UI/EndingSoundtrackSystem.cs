@@ -1,51 +1,58 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
 public class EndingSoundtrackSystem : MonoBehaviour
 {
-    const float FADE_OUT = 2f;
-    const float FADE_IN = 2f;
+    const float FADE_DURATION = .5f;
 
-    [SerializeField] AK.Wwise.Event soundtrackEvent1;
-    [SerializeField] AK.Wwise.Event soundtrackEvent2;
-    [SerializeField] AK.Wwise.Event soundtrackEvent3;
-    
+    //[SerializeField] AK.Wwise.Event soundtrackEvent1;
+    //[SerializeField] AK.Wwise.Event soundtrackEvent2;
+    //[SerializeField] AK.Wwise.Event soundtrackEvent3;
+    [SerializeField] List<AK.Wwise.Event> soundtrackEvents;
+    [SerializeField] List<AK.Wwise.RTPC> volumeParameters;
+
     SoundtrackManager soundtrackManager;
 
-    int focus;
+    Sequence sequence;
 
     private void Start()
     {
         soundtrackManager = SoundtrackManager.Instance;
-        soundtrackManager.FadeOutAndPause(FADE_OUT);
+        soundtrackManager.FadeOutAndPause(FADE_DURATION);
 
-        //this.WaitSeconds (FADE_IN, SetupSoundtrack);
-        this.WaitSeconds (FADE_IN, () => ChangeFocus(1));
+        InitParameters();
+
+        this.WaitSeconds (FADE_DURATION, SetupSoundtrack);
+        //this.WaitSeconds (FADE_IN, () => ChangeFocus(1));
     }
+
+    private void InitParameters()
+    {
+        foreach (var volume in volumeParameters)
+        {
+            volume.SetGlobalValue(0);
+        }
+    }
+
     private void SetupSoundtrack()
     {
-        if (soundtrackEvent1 != null)
-            soundtrackEvent1.Post(gameObject);
+        foreach (var soundtrack in soundtrackEvents) 
+        {
+            soundtrack.Post(gameObject);
+        }
 
-        if (soundtrackEvent2 != null)
-            soundtrackEvent2.Post(gameObject);
-
-        if (soundtrackEvent3 != null)
-            soundtrackEvent3.Post(gameObject);
+        ChangeFocus(0);
     }
 
     private void Update()
     {
-        if (focus == 1)
-            RepeatSoundtrack (soundtrackEvent1);
-
-        if (focus == 2)
-            RepeatSoundtrack (soundtrackEvent2);
-
-        if (focus == 3)
-            RepeatSoundtrack (soundtrackEvent3);
+        for (int i = 0; i < soundtrackEvents.Count; i++)
+        {
+            RepeatSoundtrack (soundtrackEvents[i]);
+        }
     }
 
     private void RepeatSoundtrack (AK.Wwise.Event soundtrackEvent)
@@ -59,29 +66,33 @@ public class EndingSoundtrackSystem : MonoBehaviour
 
     public void ChangeFocus (int focus)
     {
-        this.focus = focus;
+        sequence = DOTween.Sequence();
+        sequence.AppendInterval (FADE_DURATION);
 
-        SetSoundtrackFocus(soundtrackEvent1, focus == 1);
-        SetSoundtrackFocus(soundtrackEvent2, focus == 2);
-        SetSoundtrackFocus(soundtrackEvent3, focus == 3);
-    }
+        for (int i = 0; i < volumeParameters.Count; i++)
+        {
+            var parameter = volumeParameters[i];
+            float targetValue = (i == focus) ? 100 : 0;
+            if (targetValue == parameter.GetGlobalValue())
+                continue;
 
-    private void SetSoundtrackFocus(AK.Wwise.Event soundtrackEvent, bool state)
-    {
-        if (soundtrackEvent == null)
-            return;
-        
-        if (state)
-            soundtrackEvent.Post(gameObject);
-        else
-            soundtrackEvent.FadeOut(gameObject, FADE_OUT);
+            sequence.Join
+            ( 
+                DOVirtual.Float
+                (
+                    from: parameter.GetGlobalValue(), 
+                    to:   targetValue,
+                    duration: FADE_DURATION,
+                    (f) => parameter.SetGlobalValue(f)
+                )
+            );
+        }
     }
 
     public void TurnOffAll()
     {
-        TurnOff(soundtrackEvent1);
-        TurnOff(soundtrackEvent2);
-        TurnOff(soundtrackEvent3);
+        foreach (var soundtrack in soundtrackEvents)
+            TurnOff(soundtrack);
     }
 
     private void TurnOff (AK.Wwise.Event soundtrackEvent)

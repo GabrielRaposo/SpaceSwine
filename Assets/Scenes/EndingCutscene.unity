@@ -865,18 +865,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bf0c5cfef42794ea4bfb0a33004c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundtrackEvent1:
-    idInternal: 0
+  soundtrackEvents:
+  - idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: f51320a58e6c1c64dab77aa4493b230f, type: 2}
-  soundtrackEvent2:
-    idInternal: 0
+    WwiseObjectReference: {fileID: 11400000, guid: 04c45ae18a6b91e418c749c7d728ecc0, type: 2}
+  - idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 51d1867968150cd46803c9b0a30524c4, type: 2}
-  soundtrackEvent3:
-    idInternal: 0
+    WwiseObjectReference: {fileID: 11400000, guid: fe6d5bfdeda842b4ba3d7260afb0973b, type: 2}
+  - idInternal: 0
     valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 9b8318d2ee762c74dba7ed98385adac2, type: 2}
+    WwiseObjectReference: {fileID: 11400000, guid: 86e9fa10c23bac74786bb06712a09eb6, type: 2}
+  volumeParameters:
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 24fb87e0031c0d048a0174f65e1ad4ea, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 0a6948c453258c140a66b6392bc08497, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 4e1c3e39964b8114d89f17ae6c593b36, type: 2}
+  - idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 7efedb5b66069f04eb8e9c52c94a8b24, type: 2}
 --- !u!1 &1134135255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1385,7 @@ MonoBehaviour:
   frameTransitionDuration: 1
   cutsceneStoryDatas:
   - frameSprite: {fileID: 21300000, guid: dc661778917476148b42160e9246d206, type: 3}
-    soundtrackState: 1
+    soundtrackState: -1
     textTags:
     - ENDING_001.01
     - ENDING_001.02
@@ -1387,7 +1398,7 @@ MonoBehaviour:
     - ENDING_002.04
     - ENDING_002.05
   - frameSprite: {fileID: 21300000, guid: 0d56b1032368f0843910445501b08c28, type: 3}
-    soundtrackState: 2
+    soundtrackState: 1
     textTags:
     - ENDING_003.01
     - ENDING_003.02
@@ -1397,7 +1408,7 @@ MonoBehaviour:
     - ENDING_003.06
     - ENDING_003.07
   - frameSprite: {fileID: 21300000, guid: 9fb67535988940a46ac6ddbc4c9a4574, type: 3}
-    soundtrackState: -1
+    soundtrackState: 2
     textTags:
     - ENDING_004.01
     - ENDING_004.02
