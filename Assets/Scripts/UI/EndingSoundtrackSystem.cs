@@ -6,11 +6,15 @@ using UnityEngine;
 
 public class EndingSoundtrackSystem : MonoBehaviour
 {
-    const float FADE_DURATION = .5f;
-
     //[SerializeField] AK.Wwise.Event soundtrackEvent1;
     //[SerializeField] AK.Wwise.Event soundtrackEvent2;
     //[SerializeField] AK.Wwise.Event soundtrackEvent3;
+    [SerializeField] float playlistStartFadeOut;
+    [SerializeField] float startUpDelay;
+    [SerializeField] float endFadeOut;
+    [SerializeField] List<float> fadeDuration;
+
+    [Header("References")]
     [SerializeField] List<AK.Wwise.Event> soundtrackEvents;
     [SerializeField] List<AK.Wwise.RTPC> volumeParameters;
 
@@ -18,14 +22,16 @@ public class EndingSoundtrackSystem : MonoBehaviour
 
     Sequence sequence;
 
+    bool setup;
+
     private void Start()
     {
         soundtrackManager = SoundtrackManager.Instance;
-        soundtrackManager.FadeOutAndPause(FADE_DURATION);
+        soundtrackManager.FadeOutAndPause(playlistStartFadeOut);
 
         InitParameters();
 
-        this.WaitSeconds (FADE_DURATION, SetupSoundtrack);
+        this.WaitSeconds (playlistStartFadeOut + startUpDelay, SetupSoundtrack);
         //this.WaitSeconds (FADE_IN, () => ChangeFocus(1));
     }
 
@@ -45,10 +51,15 @@ public class EndingSoundtrackSystem : MonoBehaviour
         }
 
         ChangeFocus(0);
+
+        setup = true;
     }
 
     private void Update()
     {
+        if (!setup)
+            return;
+
         for (int i = 0; i < soundtrackEvents.Count; i++)
         {
             RepeatSoundtrack (soundtrackEvents[i]);
@@ -60,14 +71,20 @@ public class EndingSoundtrackSystem : MonoBehaviour
         if (soundtrackEvent == null || soundtrackEvent.IsPlaying(gameObject))
             return;
 
+        Debug.Log("Post2");
         soundtrackEvent.Post(gameObject);
     }
 
 
     public void ChangeFocus (int focus)
     {
+        if (focus < 0)
+            return;
+
+        float fade = fadeDuration[focus % fadeDuration.Count];
+
         sequence = DOTween.Sequence();
-        sequence.AppendInterval (FADE_DURATION);
+        sequence.AppendInterval (fade);
 
         for (int i = 0; i < volumeParameters.Count; i++)
         {
@@ -76,15 +93,16 @@ public class EndingSoundtrackSystem : MonoBehaviour
             if (targetValue == parameter.GetGlobalValue())
                 continue;
 
+            int local_i = i;
             sequence.Join
             ( 
                 DOVirtual.Float
                 (
-                    from: parameter.GetGlobalValue(), 
-                    to:   targetValue,
-                    duration: FADE_DURATION,
-                    (f) => parameter.SetGlobalValue(f)
-                )
+                    from:     parameter.GetGlobalValue(), 
+                    to:       targetValue,
+                    duration: fade,
+                    (f) => { /*Debug.Log($"i: {local_i}, f: {f}");*/ parameter.SetGlobalValue(f); }
+                )/*.SetEase(Ease.Linear)*/
             );
         }
     }
@@ -98,7 +116,7 @@ public class EndingSoundtrackSystem : MonoBehaviour
     private void TurnOff (AK.Wwise.Event soundtrackEvent)
     {
         if (soundtrackEvent != null && soundtrackEvent.IsPlaying(gameObject))
-            soundtrackEvent.FadeOut(gameObject, 1f);
+            soundtrackEvent.FadeOut(gameObject, endFadeOut);
     }
 
     private void OnDisable()
