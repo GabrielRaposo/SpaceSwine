@@ -15,11 +15,16 @@ namespace AK
     {
         static const AkUniqueID AMBIENCE_01 = 1671483493U;
         static const AkUniqueID AMBIENCE_02 = 1671483494U;
+        static const AkUniqueID AMBIENCE_03 = 1671483495U;
         static const AkUniqueID ASMR_01 = 419243222U;
+        static const AkUniqueID ASMR_02_PLACEHOLDER = 384827303U;
+        static const AkUniqueID ASMR_03_PLACEHOLDER = 2019051282U;
         static const AkUniqueID BASS_01 = 2197579062U;
         static const AkUniqueID BASS_02 = 2197579061U;
+        static const AkUniqueID BASS_03 = 2197579060U;
         static const AkUniqueID BUMBOCAIXA_01 = 883042108U;
         static const AkUniqueID BUMBOCAIXA_02 = 883042111U;
+        static const AkUniqueID BUMBOCAIXA_03 = 883042110U;
         static const AkUniqueID CENARIO_BUYK_CHUTA_BOLINHA = 2035115204U;
         static const AkUniqueID CENARIO_BUYK_CHUTA_COPO = 223749984U;
         static const AkUniqueID CENARIO_COELHO_APOIACAPACETE_CHAO = 88884162U;
@@ -35,6 +40,7 @@ namespace AK
         static const AkUniqueID CENARIO_TUTORIAL_SOUNDSCAPE = 1243364701U;
         static const AkUniqueID CHORDS_01 = 522712106U;
         static const AkUniqueID CHORDS_02 = 522712105U;
+        static const AkUniqueID CHORDS_03 = 522712104U;
         static const AkUniqueID GAMEPLAY_BOLHA_ANDAR = 2398576381U;
         static const AkUniqueID GAMEPLAY_BOLHA_ESTOURA = 505437816U;
         static const AkUniqueID GAMEPLAY_BOLHA_POUSAR = 39504875U;
@@ -97,6 +103,7 @@ namespace AK
         static const AkUniqueID GGS_UI_RECORDE_FANFARRA = 1270516008U;
         static const AkUniqueID HIHAT_01 = 2036806543U;
         static const AkUniqueID HIHAT_02 = 2036806540U;
+        static const AkUniqueID HIHAT_03 = 2036806541U;
         static const AkUniqueID LOFI_01 = 48927505U;
         static const AkUniqueID LOFI_02 = 48927506U;
         static const AkUniqueID LOFI_03 = 48927507U;
@@ -160,11 +167,18 @@ namespace AK
         static const AkUniqueID MAKEABEAT_FITA_TIRAR_FILA = 2316358293U;
         static const AkUniqueID MAKEABEAT_METRONOMO_OFF = 482400517U;
         static const AkUniqueID MAKEABEAT_METRONOMO_ON = 2580933369U;
+        static const AkUniqueID NOISE_01 = 2758956373U;
+        static const AkUniqueID NOISE_02 = 2758956374U;
+        static const AkUniqueID NOISE_03 = 2758956375U;
+        static const AkUniqueID NOISE_04 = 2758956368U;
+        static const AkUniqueID NOISE_05 = 2758956369U;
         static const AkUniqueID SPLASH_SCREEN = 3514087899U;
         static const AkUniqueID TREBLE_01 = 2489791123U;
         static const AkUniqueID TREBLE_02 = 2489791120U;
         static const AkUniqueID TREBLE_03 = 2489791121U;
         static const AkUniqueID TREBLE_04 = 2489791126U;
+        static const AkUniqueID TREBLE_05 = 2489791127U;
+        static const AkUniqueID TREBLE_06 = 2489791124U;
         static const AkUniqueID UI_ALIENX_FALA = 2185850926U;
         static const AkUniqueID UI_COELHO_FALA = 2890153433U;
         static const AkUniqueID UI_COELHO_FALA_CAPACETE = 2851539928U;
