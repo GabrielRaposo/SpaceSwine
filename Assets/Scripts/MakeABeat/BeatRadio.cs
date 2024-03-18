@@ -111,7 +111,7 @@ namespace MakeABeat
                 noise.Post(gameObject);
             }
 
-            ChangeStation(currentIndex);
+            ChangeStation(currentIndex, silent: true);
         }
 
         private void UpdateVolumes()
