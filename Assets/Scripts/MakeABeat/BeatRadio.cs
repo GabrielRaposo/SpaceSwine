@@ -8,10 +8,9 @@ namespace MakeABeat
     public class BeatRadio : MonoBehaviour
     {
         [SerializeField] List<AK.Wwise.Event> noiseAKEvents;
+        [SerializeField] List<AK.Wwise.RTPC> noiseRTPCs;
         [SerializeField] DuctTapeLabel labelDisplay;
         [SerializeField] ParticleSystem pulsePS;
-
-        AK.Wwise.Event currentEvent;
 
         SpriteSwapper lidSwapper;
         TapeBox tapeBox;
@@ -42,7 +41,7 @@ namespace MakeABeat
         {
             beatMaster.SignaturePulse_Action += (f) => 
             {
-                if (!pulsePS || isMuted || currentEvent == null)
+                if (!pulsePS || isMuted || currentIndex < 0)
                     return;
 
                 pulsePS.Play();
@@ -55,6 +54,8 @@ namespace MakeABeat
 
             //UpdateQueuedTapeVisual();
             //UpdatePlayingTapeVisual();
+
+            Install (-1);
         }
 
         public void SetSelected (bool value)
@@ -67,34 +68,41 @@ namespace MakeABeat
 
         public void OnConfirmInput()
         {
-            Install( (currentIndex + 1) % noiseAKEvents.Count );
+            int index = currentIndex + 1;
+            if (index >= noiseAKEvents.Count)
+                index = -1;
+            Install (index);
         }
 
         public void OnCancelInput()
         {
-            Install (0);
+            Install (-1);
         }
 
         private void CyclePulse()
         {
-            if (currentEvent != null)
+            gameObject.StopAllEvents();
+            
+            foreach (AK.Wwise.Event noise in noiseAKEvents)
             {
-                gameObject.StopAllEvents();
+                if (noise == null) 
+                    continue;
+
+                noise.Post(gameObject);
             }
 
             Install(currentIndex);
-
-            if (currentEvent == null)
-                return;
-
-            currentEvent.Post(gameObject);
         }
 
         public void Install (int index)
         {
+            for (int i = 0; i < noiseRTPCs.Count; i++) 
+            {
+                noiseRTPCs[i].SetGlobalValue(i == index ? 100 : 0);
+            }
+
             currentIndex = index;
-            currentEvent = index == 0 ? null : noiseAKEvents[index % noiseAKEvents.Count];
-            Debug.Log($"currentIndex: {currentIndex}");
+            //Debug.Log($"currentIndex: {currentIndex}");
 
             //UpdateQueuedTapeVisual();
             //UpdatePlayingTapeVisual();
@@ -102,7 +110,7 @@ namespace MakeABeat
             //if (currentEvent != null)
             //    UpdateMutedState();
 
-            if (currentEvent == null)
+            if (currentIndex < 0)
                 return;
 
             if (sequence != null)
