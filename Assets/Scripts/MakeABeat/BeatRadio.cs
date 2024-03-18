@@ -1,18 +1,25 @@
 ﻿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 namespace MakeABeat
 {
     public class BeatRadio : MonoBehaviour
     {
+        [SerializeField] AK.Wwise.Event OnConfirmAKEvent;
+        [SerializeField] AK.Wwise.Event OnCancelAKEvent;
         [SerializeField] List<AK.Wwise.Event> noiseAKEvents;
         [SerializeField] List<AK.Wwise.RTPC> noiseRTPCs;
         [SerializeField] DuctTapeLabel labelDisplay;
         [SerializeField] ParticleSystem pulsePS;
 
-        SpriteSwapper lidSwapper;
+        [Header("Visual")]
+        [SerializeField] Color mutedColor;
+        [SerializeField] SpriteRenderer[] renderers;
+
+        SpriteSwapper screenSwapper;
         TapeBox tapeBox;
 
         int currentIndex;
@@ -34,7 +41,7 @@ namespace MakeABeat
                 return;
             }
 
-            lidSwapper = GetComponentInChildren<SpriteSwapper>();
+            screenSwapper = GetComponentInChildren<SpriteSwapper>();
         }
 
         void Start()
@@ -52,11 +59,20 @@ namespace MakeABeat
                 gameObject.StopAllEvents();
             };
 
-            //UpdateQueuedTapeVisual();
+            UpdateScreenVisualState();
             //UpdatePlayingTapeVisual();
 
-            Install (-1);
+            ChangeStation (-1, silent: true);
         }
+
+        private void UpdateScreenVisualState()
+        {
+            if (!screenSwapper)
+                return;
+
+            screenSwapper.SetSpriteState(currentIndex + 1);
+        }
+
 
         public void SetSelected (bool value)
         {
@@ -71,12 +87,16 @@ namespace MakeABeat
             int index = currentIndex + 1;
             if (index >= noiseAKEvents.Count)
                 index = -1;
-            Install (index);
+
+            if (beatMaster)
+                beatMaster.StartCycle();
+
+            ChangeStation (index);
         }
 
         public void OnCancelInput()
         {
-            Install (-1);
+            ChangeStation (-1);
         }
 
         private void CyclePulse()
@@ -91,21 +111,37 @@ namespace MakeABeat
                 noise.Post(gameObject);
             }
 
-            Install(currentIndex);
+            ChangeStation(currentIndex);
         }
 
-        public void Install (int index)
+        private void UpdateVolumes()
         {
             for (int i = 0; i < noiseRTPCs.Count; i++) 
             {
-                noiseRTPCs[i].SetGlobalValue(i == index ? 100 : 0);
+                int value = i == currentIndex ? 100 : 0;
+
+                if (isMuted)
+                    value = 0;
+
+                noiseRTPCs[i].SetGlobalValue(value);
+            }
+        }
+
+        public void ChangeStation (int index, bool silent = false)
+        {
+            currentIndex = index;
+
+            UpdateVolumes();
+
+            if (!silent)
+            {
+                if (currentIndex < 0)
+                    OnCancelAKEvent.Post(gameObject);
+                else
+                    OnConfirmAKEvent.Post(gameObject);
             }
 
-            currentIndex = index;
-            //Debug.Log($"currentIndex: {currentIndex}");
-
-            //UpdateQueuedTapeVisual();
-            //UpdatePlayingTapeVisual();
+            UpdateScreenVisualState();
 
             //if (currentEvent != null)
             //    UpdateMutedState();
@@ -115,6 +151,8 @@ namespace MakeABeat
 
             if (sequence != null)
                 sequence.Kill();
+
+            transform.localScale = Vector3.one;
 
             sequence = DOTween.Sequence();
             sequence.Append( transform.DOPunchScale(Vector3.one * .05f, duration: .2f, vibrato: 0) );
@@ -129,21 +167,14 @@ namespace MakeABeat
         public void SetMutedState(bool value)
         {
             isMuted = value;
-            //UpdateMutedState();
+            
+            foreach (SpriteRenderer r in renderers)
+            {
+                r.color = value ? mutedColor : Color.white;
+            }
+
+            UpdateVolumes();
         }
-
-        //private void UpdateMutedState()
-        //{
-        //    foreach (SpriteRenderer r in renderers)
-        //    {
-        //        r.color = isMuted ? mutedColor : Color.white;
-        //    }
-
-        //    if (!currentBeatTape || currentBeatTape.volumeAKParam == null)
-        //        return;
-
-        //    currentBeatTape.volumeAKParam.SetGlobalValue( isMuted ? 0 : 100 );
-        //}
 
         private void OnDisable() 
         {
