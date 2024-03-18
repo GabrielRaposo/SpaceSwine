@@ -25,7 +25,17 @@ namespace MakeABeat
 
                 BeatTrack track = item.GetComponent<BeatTrack>();
                 if (track)
+                {
                     track.SetSelected(false);
+                    continue;
+                }
+
+                BeatRadio radio = item.GetComponent<BeatRadio>();
+                if (radio)
+                {
+                    radio.SetSelected(false);
+                    continue;
+                }
             }
 
             CurrentSelection = initialSelection;
@@ -46,6 +56,13 @@ namespace MakeABeat
                 if (track)
                 {
                     track.SetSelected( isSelected ); 
+                    continue;
+                }
+
+                BeatRadio radio = item.GetComponent<BeatRadio>();
+                if (radio)
+                {
+                    radio.SetSelected( isSelected );
                     continue;
                 }
 
@@ -101,6 +118,13 @@ namespace MakeABeat
                 return;
             }
 
+            BeatRadio radio = CurrentSelection.GetComponent<BeatRadio>();
+            if (radio)
+            {
+                radio.OnConfirmInput();
+                return;
+            }
+
             BeatMetronome metronome = CurrentSelection.GetComponent<BeatMetronome>();
             if (metronome)
             {
@@ -128,6 +152,13 @@ namespace MakeABeat
                 return;
             }
 
+            BeatRadio radio = CurrentSelection.GetComponent<BeatRadio>();
+            if (radio)
+            {
+                radio.OnCancelInput();
+                return;
+            }
+
             BeatToy beatToy = CurrentSelection.GetComponent<BeatToy>();
             if (beatToy)
             {
@@ -145,6 +176,13 @@ namespace MakeABeat
             if (track) 
             { 
                 track.ToggleMute();
+                return;
+            }
+
+            BeatRadio radio = CurrentSelection.GetComponent<BeatRadio>();
+            if (radio)
+            {
+                radio.ToggleMute();
                 return;
             }
 
@@ -168,10 +206,17 @@ namespace MakeABeat
             foreach (BeatNavigationItem item in items)
             {
                 BeatTrack track = item.GetComponent<BeatTrack>();
-                if (!track)
+                if (track)
+                {
+                    track.SetMutedState(value);
                     continue;
+                }
 
-                track.SetMutedState(value);
+                BeatRadio radio = item.GetComponent<BeatRadio>();
+                if (radio)
+                {
+                    radio.SetMutedState(value);
+                }
             }
         }
     }
