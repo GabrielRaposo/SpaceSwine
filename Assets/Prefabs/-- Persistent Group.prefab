@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadEventsFromSave: 1
-  newSaveStoryEvent: {fileID: 11400000, guid: 0bcde44891d9fae45867548242645e14, type: 2}
-  shipAccessStoryEvent: {fileID: 11400000, guid: 61edce01a4ea0d74abc55e0cbf6dab9b, type: 2}
+  newSaveStoryEvent: {fileID: 0}
+  shipAccessStoryEvent: {fileID: 0}
   storyEvents:
   - {fileID: 11400000, guid: 0bcde44891d9fae45867548242645e14, type: 2}
   - {fileID: 11400000, guid: 724b57e941f08714580466b86de4fc11, type: 2}
@@ -269,6 +269,7 @@ Transform:
   - {fileID: 6946092584061072860}
   - {fileID: 8859486982507285968}
   - {fileID: 2854994264400387872}
+  - {fileID: 4375833027610841593}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1053,18 +1054,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adventureLogs:
-  - {fileID: 11400000, guid: 7042a40eb6fb4d742b8f5cd39155673b, type: 2}
-  - {fileID: 11400000, guid: 9ada9c15bb6cb5f44ae3428b56480f99, type: 2}
-  - {fileID: 11400000, guid: f672ad6f1543f694a9c4b3ce2e421c2d, type: 2}
-  - {fileID: 11400000, guid: 793ea5e071cbc63419da2338473d01f2, type: 2}
-  - {fileID: 11400000, guid: 5a3faa8c09f9e8f48bb72947ddec98a6, type: 2}
-  - {fileID: 11400000, guid: e76a5bc8c7f778e45a261f407f894a35, type: 2}
-  - {fileID: 11400000, guid: c79ec42d687ba5e48878c7fa6ea88cb8, type: 2}
-  - {fileID: 11400000, guid: da4bf6051e20de94b8c10a9cf971ab9a, type: 2}
-  - {fileID: 11400000, guid: b0e7e7440e7e00d498fe5fb185b6bb01, type: 2}
-  - {fileID: 11400000, guid: 6aef8476b5637694f8437ad4d1c6426f, type: 2}
-  - {fileID: 11400000, guid: e1bb589ecf1d7024ea272da425196808, type: 2}
-  - {fileID: 11400000, guid: 4e3682bc6a15fde4e98e79691210ed33, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &3234124924910997602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,69 +1144,37 @@ MonoBehaviour:
       m_Action: Get All
       m_Flags: 0
   previousRoundAction:
-    m_Name: Previous Round
+    m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: d34c9f37-fb86-4c10-8629-c38a9dbca4c8
+    m_Id: 
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 54a7b15d-24a4-49d5-b498-b9098561512d
-      m_Path: <Keyboard>/1
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Previous Round
-      m_Flags: 0
+    m_SingletonActionBindings: []
   nextRoundAction:
-    m_Name: Next Round
+    m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: d84d5376-f4e2-4a7c-a63f-a9d26bceb190
+    m_Id: 
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 19046055-00af-4cea-94f9-f758ff57b674
-      m_Path: <Keyboard>/3
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Next Round
-      m_Flags: 0
+    m_SingletonActionBindings: []
   clearStageAction:
-    m_Name: Clear Stage
+    m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 46c29b4c-c409-4e37-80da-87ac5bf9e496
+    m_Id: 
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: a22efd3b-9211-4a3a-9256-31dff78b389e
-      m_Path: <Keyboard>/6
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Clear Stage
-      m_Flags: 0
+    m_SingletonActionBindings: []
   unlockShipAccessAction:
-    m_Name: Unlock Ship Access
+    m_Name: 
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: ed9f3428-e33e-4525-884d-6d784a7887ff
+    m_Id: 
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 0f9065e0-cb33-414d-8e71-bf240032c4f3
-      m_Path: <Keyboard>/rightBracket
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Unlock Ship Access
-      m_Flags: 0
+    m_SingletonActionBindings: []
   saveInputAction:
     m_Name: Save Input
     m_Type: 0
@@ -2558,7 +2527,7 @@ MonoBehaviour:
   hold1Duration: 0.75
   hold2Duration: 1.25
   musicFadeOut: 1.25
-  musicFadeIn: 1.25
+  musicFadeIn: 0
   mainCanvasGroup: {fileID: 8232591258871688760}
   assetsGroup: {fileID: 6703508647994764053}
   fillImage: {fileID: 4329337394556345140}
@@ -3827,3 +3796,65 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1001 &1688544766736242696
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 636125615912779242}
+    m_Modifications:
+    - target: {fileID: 3158428998762105329, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158428998762105329, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158428998762105329, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158428998762105329, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158428998762105329, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158428998762105329, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158428998762105329, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158428998762105329, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158428998762105329, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158428998762105329, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158428998762105329, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158428998762105330, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+      propertyPath: m_Name
+      value: -- Persistent Steam Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+--- !u!4 &4375833027610841593 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3158428998762105329, guid: 13302ab316c1ff540a9454c0027a4b08, type: 3}
+  m_PrefabInstance: {fileID: 1688544766736242696}
+  m_PrefabAsset: {fileID: 0}
