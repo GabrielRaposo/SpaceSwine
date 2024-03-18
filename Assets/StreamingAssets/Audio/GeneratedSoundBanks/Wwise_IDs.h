@@ -264,6 +264,11 @@ namespace AK
         static const AkUniqueID HIHAT_01 = 2036806543U;
         static const AkUniqueID HIHAT_02 = 2036806540U;
         static const AkUniqueID HIHAT_03 = 2036806541U;
+        static const AkUniqueID NOISE_01 = 2758956373U;
+        static const AkUniqueID NOISE_02 = 2758956374U;
+        static const AkUniqueID NOISE_03 = 2758956375U;
+        static const AkUniqueID NOISE_04 = 2758956368U;
+        static const AkUniqueID NOISE_05 = 2758956369U;
         static const AkUniqueID TREBLE_01 = 2489791123U;
         static const AkUniqueID TREBLE_02 = 2489791120U;
         static const AkUniqueID TREBLE_03 = 2489791121U;
