@@ -9,8 +9,13 @@ public class DebugInputs : MonoBehaviour
     [SerializeField] InputAction displayListAction;
     [SerializeField] InputAction getAllAction;
 
+    [Header("Danger Zone")]
+    [SerializeField] InputAction previousRoundAction;
+    [SerializeField] InputAction nextRoundAction;
+    [SerializeField] InputAction clearStageAction;
+
     [Header("Save")]
-    [SerializeField] InputAction unlockShipAcessAction;
+    [SerializeField] InputAction unlockShipAccessAction;
     [SerializeField] InputAction saveInputAction;
     [SerializeField] InputAction resetSaveInputAction;
 
@@ -23,6 +28,7 @@ public class DebugInputs : MonoBehaviour
     [SerializeField] FPSCounterDisplay fpsDisplay;
 
     static DebugInputs Instance;
+    static bool wasSetup;
 
     private void Awake() 
     {
@@ -37,42 +43,96 @@ public class DebugInputs : MonoBehaviour
         if (Instance != this)
             return;
         
+        displayListAction.Enable();
+        getAllAction.Enable();
+
+        previousRoundAction.Enable();
+        nextRoundAction.Enable();
+        clearStageAction.Enable();
+
+        unlockShipAccessAction.Enable();
+        saveInputAction.Enable();
+        resetSaveInputAction.Enable();
+
+        playMusicTestInput.Enable();
+        stopMusicTestInput.Enable();
+        
+        fpsInputAction.Enable();
+
+        if (wasSetup)
+            return;
+
+
         /* -- Display -- */ {
             displayListAction.performed += (ctx) => 
             {
                 StoryEventsManager.TogglePrintEventStates();
+                DebugDisplay.Log("Toggle Print Events");
             };
-            displayListAction.Enable();
 
             getAllAction.performed += (ctx) =>
             {
                 StoryEventsManager.CompleteAll();
-                DebugDisplay.Call ("All story events completed.");
+                DebugDisplay.Log ("All story events completed.");
             };
-            getAllAction.Enable();
+        }
+
+        /* -- Danger Zone -- */ {
+            previousRoundAction.performed += ctx => 
+            {
+                RoundsManager roundsManager = RoundsManager.Instance;
+                if (!roundsManager)
+                {
+                    DebugDisplay.Log ("Input exclusive to Danger Zones.");
+                    return;
+                }
+
+                roundsManager.PreviousRoundInput();
+            };
+
+            nextRoundAction.performed += ctx => 
+            {
+                RoundsManager roundsManager = RoundsManager.Instance;
+                if (!roundsManager)
+                {
+                    DebugDisplay.Log ("Input exclusive to Danger Zones.");
+                    return;
+                }
+
+                roundsManager.NextRoundInput();
+            };
+
+            clearStageAction.performed += ctx => 
+            {
+                RoundsManager roundsManager = RoundsManager.Instance;
+                if (!roundsManager)
+                {
+                    DebugDisplay.Log ("Input exclusive to Danger Zones.");
+                    return;
+                }
+
+                roundsManager.ClearStageInput();
+            };
         }
 
         /* -- Save -- */ { 
-            unlockShipAcessAction.performed += (ctx) =>
+            unlockShipAccessAction.performed += (ctx) =>
             {
                 StoryEventsManager.UnlockShipAccess();
-                DebugDisplay.Call ("Ship Access Unlocked.");
+                DebugDisplay.Log ("Ship Access Unlocked.");
             };
-            unlockShipAcessAction.Enable();
 
             saveInputAction.performed += (ctx) => 
             { 
                 SaveManager.Save();
-                DebugDisplay.Call ("Manual Save.");
+                DebugDisplay.Log ("Manual Save.");
             };
-            saveInputAction.Enable();
 
             resetSaveInputAction.performed += (ctx) => 
             {
                 SaveManager.ResetSave();
-                DebugDisplay.Call ("Manual Save Reset.");
+                DebugDisplay.Log ("Manual Save Reset.");
             };
-            resetSaveInputAction.Enable();
         }
         
         /* -- Music -- */ {
@@ -81,18 +141,16 @@ public class DebugInputs : MonoBehaviour
                 SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
                 if (soundtrackManager)
                     soundtrackManager.PlayInput();
-                DebugDisplay.Call ("Play/Skip track.");
+                DebugDisplay.Log ("Play/Skip track.");
             };
-            playMusicTestInput.Enable();
 
             stopMusicTestInput.performed += (ctx) =>
             {
                 SoundtrackManager soundtrackManager = SoundtrackManager.Instance;
                 if (soundtrackManager)
                     soundtrackManager.StopInput();
-                DebugDisplay.Call ("Stop track.");
+                DebugDisplay.Log ("Stop track.");
             };
-            stopMusicTestInput.Enable();
         }
 
         /* -- FPS -- */ {
@@ -101,8 +159,9 @@ public class DebugInputs : MonoBehaviour
                 if (fpsDisplay)
                     fpsDisplay.ToggleVisivility();
             };
-            fpsInputAction.Enable();
         }
+
+        wasSetup = true;
     }
 
     private void OnDisable() 
@@ -111,8 +170,15 @@ public class DebugInputs : MonoBehaviour
             return;
 
         displayListAction.Disable();
+        getAllAction.Disable();
 
-        unlockShipAcessAction.Disable();
+        //#if UNITY_EDITOR
+        previousRoundAction.Disable();
+        nextRoundAction.Disable();
+        clearStageAction.Disable();
+        //#endif
+
+        unlockShipAccessAction.Disable();
         saveInputAction.Disable();
         resetSaveInputAction.Disable();
         

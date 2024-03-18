@@ -14,6 +14,10 @@ public class AdventureLogDisplay : MonoBehaviour
     [SerializeField] TextMeshProUGUI labelDisplay;
     [SerializeField] AdventureLogTab baseTab;
 
+    [Header("WWise")]
+    [SerializeField] AK.Wwise.Event addAKEvent;
+    [SerializeField] AK.Wwise.Event removeAKEvent;
+
     [SerializeField] List<SceneReference> exceptionScenes;
 
     CanvasGroup canvasGroup;
@@ -141,6 +145,9 @@ public class AdventureLogDisplay : MonoBehaviour
         if (UpdatedList != null)
             UpdatedList.Add(log);
 
+        if (addAKEvent != null)
+            addAKEvent.Post(gameObject);
+
         if (!IsOnExceptionScene())
             //canvasGroup.alpha = 1;
             SetFadeAnimation(true);
@@ -163,6 +170,9 @@ public class AdventureLogDisplay : MonoBehaviour
 
         if (tabToRemove == null)
             return;
+
+        if (removeAKEvent != null)
+            removeAKEvent.Post(gameObject);
 
         tabToRemove.StrikeAndVanish 
         (

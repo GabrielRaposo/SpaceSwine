@@ -19,6 +19,8 @@ public class PlayerDirectionDisplay : MonoBehaviour
 
     float fadeCount;
     float previousAngle;
+    float previousParentAngle; // -- Para planetas e vigas que giram sozinhos
+    bool isLanded;
     bool blockfade;
 
     Transform parent;    
@@ -53,10 +55,16 @@ public class PlayerDirectionDisplay : MonoBehaviour
         transform.SetParent(null);
     }
 
+    bool AngleChangedTooMuch => Mathf.Abs (previousAngle - transform.localEulerAngles.z) > .01f;
+    bool ParentAngleChangedTooMuch(Transform parentTransform) => Mathf.Abs (previousParentAngle - parentTransform.eulerAngles.z) > .01f;
+
     private void Update() 
     {
         if (parent == null)
             return;
+
+        GravitationalBody gBody = parent.GetComponentInParent<GravitationalBody>();
+        isLanded = gBody;
 
         transform.position = parent.position;
         SetVisibility(parent.gameObject.activeInHierarchy);
@@ -76,17 +84,17 @@ public class PlayerDirectionDisplay : MonoBehaviour
             if (blockfade)
                 return;
 
-            if (Mathf.Abs (previousAngle - transform.localEulerAngles.z) > .01f)
-            {
-                fadeCount -= (Time.deltaTime * fadeOutRatio);
-                if (fadeCount < fadeCountMin)
-                    fadeCount = fadeCountMin;
-            }
-            else
+            if ( !AngleChangedTooMuch || (isLanded && gBody && ParentAngleChangedTooMuch(gBody.transform)) )
             {
                 fadeCount += (Time.deltaTime * fadeInRatio);
                 if (fadeCount > fadeCountMax)
                     fadeCount = fadeCountMax;
+            }
+            else
+            {
+                fadeCount -= (Time.deltaTime * fadeOutRatio);
+                if (fadeCount < fadeCountMin)
+                    fadeCount = fadeCountMin;
             }
 
             Color c = Color.Lerp(hiddenColor, shownColor, Mathf.Clamp01 (fadeCount));
@@ -94,6 +102,7 @@ public class PlayerDirectionDisplay : MonoBehaviour
         }
 
         previousAngle = transform.localEulerAngles.z;
+        previousParentAngle = (isLanded ? gBody.transform.eulerAngles.z : 0 );
     }
 
     public void SetVisibility (bool value)

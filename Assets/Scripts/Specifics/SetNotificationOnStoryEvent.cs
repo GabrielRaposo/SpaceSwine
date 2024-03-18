@@ -43,7 +43,7 @@ public class SetNotificationOnStoryEvent : StoryEventDependent
         if (string.IsNullOrEmpty(notificationID))
             return;
 
-        DebugDisplay.Call ($"Create notificationID: {notificationID}");
+        DebugDisplay.Log ($"Create notificationID: {notificationID}");
         UINotificationManager.Create(notificationID);
     }
 

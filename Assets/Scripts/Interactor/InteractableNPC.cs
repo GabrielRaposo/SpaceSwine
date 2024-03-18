@@ -6,16 +6,16 @@ using UnityEngine.Events;
 public class InteractableNPC : Interactable
 {
     [SerializeField] NPCData data;
-    [SerializeField] SpeechBubble speechBubble;
-    [SerializeField] DialogueBoxStyle customDialogueStyle;
-    [SerializeField] AK.Wwise.Event talkSoundAKEvent;
+    [SerializeField] protected SpeechBubble speechBubble;
+    [SerializeField] protected DialogueBoxStyle customDialogueStyle;
+    [SerializeField] protected AK.Wwise.Event talkSoundAKEvent;
 
     public UnityAction OnInteraction;
     public UnityAction <int, NPCData> OnPreviousIndexReached;
     public UnityAction OnDialogueEnd;
     public UnityAction AfterDialogueEnd;
 
-    PlayerInteractor interactor;
+    protected PlayerInteractor interactor;
 
     public PlayerInteractor PlayerInteractor { get { return interactor; } }
 
@@ -46,8 +46,15 @@ public class InteractableNPC : Interactable
                 if (nameData.isValid)
                     npcName = nameData.text;
             }
+
+            UnityAction OnDialogueEndExtra = OnDialogueEnd;
+            OnDialogueEndExtra += () => 
+            {
+                if (interactor.GetComponent<PlayerInput>())
+                    interactor.GetComponent<PlayerInput>().LaunchCooldown = .5f;
+            };
             
-            dialogSystem?.SetDialogue(this, npcName, dialogueGroup.tags, OnDialogueEnd, AfterDialogueEnd, customDialogueStyle, talkSoundAKEvent);
+            dialogSystem?.SetDialogue(this, npcName, dialogueGroup.tags, OnDialogueEndExtra, AfterDialogueEnd, customDialogueStyle, talkSoundAKEvent);
 
             if (interactor)
             {
@@ -60,7 +67,7 @@ public class InteractableNPC : Interactable
         }
     }
 
-    private void DialogueIndexLogic() 
+    protected virtual void DialogueIndexLogic() 
     {   
         if (!data)
             return;
@@ -84,7 +91,6 @@ public class InteractableNPC : Interactable
             speechBubble.Show();
         else
             speechBubble.Hide();
-        
     }
 
     public override void IconState (bool value) 

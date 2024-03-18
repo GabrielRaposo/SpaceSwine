@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(InteractableNPC))]
+//[RequireComponent(typeof(InteractableNPC))]
 public class ChangeStoryEventAfterDialogue : MonoBehaviour
 {
     [SerializeField] StoryEventScriptableObject storyEvent;

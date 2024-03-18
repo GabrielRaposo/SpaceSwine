@@ -168,7 +168,7 @@ public class Door : MonoBehaviour
 
             animator.SetTrigger("InstantOpen");
             animator.SetBool("Open", true);
-            Debug.Log("spawn portal!");
+            //Debug.Log("spawn portal!");
             return;
         }
 
@@ -240,7 +240,7 @@ public class Door : MonoBehaviour
         if (!animator)
             return;
 
-        Debug.Log("huh? " + value);
+        //Debug.Log("huh? " + value);
 
         if (instant)
         {

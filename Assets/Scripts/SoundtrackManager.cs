@@ -113,7 +113,7 @@ public class SoundtrackManager : MonoBehaviour
 
     public void SetPlaylist (PlaylistScriptableObject playlist)
     {
-        Debug.Log("SetPlaylist!");
+        DebugDisplay.Log($"SetPlaylist: {playlist.name}");
 
         if (OverrideChecksTrigger)
             OverrideChecksTrigger = false;
@@ -132,7 +132,69 @@ public class SoundtrackManager : MonoBehaviour
             return;
         }
 
-        PlayTrack();        
+        PlayTrack();    
+        
+        DisplayData();
+    }
+
+    public void ChangePlaylistOnTheBack (PlaylistScriptableObject playlist)
+    {
+        if (this.playlist == playlist)
+            return;
+
+        this.playlist = playlist;
+        MakePlaylistPlayOrder();
+
+        if (soundtrackEvent == null && !IsPlaying)
+        {
+            PlayTrack();
+        }
+
+        DisplayData();
+    }
+
+    public void ForceSkipToPlaylist (PlaylistScriptableObject playlist)
+    {
+        DebugDisplay.Log($"Change Playlist: {playlist.name}");
+
+        //Debug.Log($"B: {this.playlist.name} == {playlist.name} ");
+        if (this.playlist == playlist)
+        {
+            if (this.playlist != null)
+                Resume();
+            return;
+        }
+
+        this.playlist = playlist;
+        MakePlaylistPlayOrder();
+
+        if (!IsCurrentTrackOnPlaylist)
+        {
+            FadeOutAndSkip();
+            return;
+        }
+
+        DisplayData();
+    }
+
+    public bool IsCurrentTrackOnPlaylist
+    {
+        get 
+        {
+            if (playlist == null || soundtrackEvent == null)
+                return false;
+
+            foreach (var data in playlist.list)
+            {
+                if (data.akEvent == soundtrackEvent)
+                {
+                    Debug.Log($"data.akEvent ({data.akEvent}) is on {playlist}");
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 
     public void PlayTrack ()
@@ -190,6 +252,12 @@ public class SoundtrackManager : MonoBehaviour
 
     public void SkipTrack(int direction)
     {
+        if (playlist == null)
+        {
+            DebugDisplay.Log("Playlist hasn't been set.");
+            return;
+        }
+
         currentIndex += direction;
         
         if (currentIndex < 0)
@@ -229,5 +297,61 @@ public class SoundtrackManager : MonoBehaviour
     {
         manuallyPaused = false;
         SkipTrack(1);
+    }
+
+    public void FadeOutAndPause(float duration = 2f)
+    {
+        if (soundtrackEvent == null || !IsPlaying)
+            return;
+
+        soundtrackEvent.Pause(gameObject, duration, value: true);
+    }
+
+    public void ResumeAndFadeIn(float duration = 2f)
+    {
+        if (soundtrackEvent == null || !IsPlaying)
+            return;
+
+        soundtrackEvent.Pause(gameObject, duration, value: false);
+    }
+
+    private void FadeOutAndSkip(float duration = 1.5f)
+    {
+        if (soundtrackEvent == null || !IsPlaying)
+        {
+            SkipTrack(1);
+            return;
+        }
+
+        soundtrackEvent.Pause(gameObject, duration, value: true);
+        this.WaitSecondsRealtime(duration, () => SkipTrack(1) );
+    }
+
+    public void DisplayData()
+    {
+        if (playlist == null)
+        {
+            Debug.Log("Playlist is Empty");
+            return;
+        }
+
+        string s = "- Playlist:: \n";
+        for (int i = 0; i < playlist.Count; i++)
+        {
+            var musicData = playlist[i];
+            s += $"{i}: {musicData.name} \n";
+        }
+
+        s += "\n- Play Order:: "; 
+        for (int i = 0; i < playOrder.Count; i++) 
+        {
+            int index = playOrder[i];
+            s += $", {index}";
+        }
+
+        if (soundtrackEvent != null)
+            s += "\n - Current: " + soundtrackEvent.Name + "\n\n";
+
+        Debug.Log(s);
     }
 }

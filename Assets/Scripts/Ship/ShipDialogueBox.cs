@@ -62,6 +62,9 @@ public class ShipDialogueBox : MonoBehaviour
 
         inputActions.UI.Confirm.performed += SkipInput;
         inputActions.UI.Confirm.Enable();
+
+        inputActions.UI.Other.performed += SkipInput;
+        inputActions.UI.Other.Enable();
     }
 
     void Start()
@@ -82,6 +85,7 @@ public class ShipDialogueBox : MonoBehaviour
     {
         //Debug.Log("OnDisable");
         inputActions.UI.Confirm.Disable();
+        inputActions.UI.Other.Disable();
     }
 
     #region IMMEDIATE

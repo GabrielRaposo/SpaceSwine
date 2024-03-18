@@ -72,6 +72,19 @@ public class DialogueBoxStyleController : MonoBehaviour
 
             iconAnchorRT.anchoredPosition = new Vector2 (X, Y);
         }
+        Image iconImage = skipIconAnchor.GetComponentInChildren<Image> ();
+        if (iconImage)
+        {
+            float W = 46.875f;
+            if (style.skipIconWidth != -1)
+                W = style.skipIconWidth;
+
+            float H = 40.625f;
+            if (style.skipIconHeight != -1)
+                H = style.skipIconHeight;
+
+            iconImage.GetComponent<RectTransform>().sizeDelta = new Vector2 (W, H);
+        }
 
         textDisplay.color = style.textColor;
         textDisplay.fontSize = style.fontSize;

@@ -190,12 +190,23 @@ public class GGSMenuManager : StoryEventDependent
         if (!aux)
             return;
 
+        bool gotAllCartridges = true;
+        
         for (int i = 0; i < menuTabs.Count - 1; i++)
         {
             bool state = i < minigameUnlockEvents.Count && StoryEventsManager.IsComplete(minigameUnlockEvents[i]);
             menuTabs[i].SetInteractableState(state);
+
+            if (state)
+                AchievementsManager.SetAchievementState(AchievementEnum.HistoricalPreservation, true);
+            else
+                gotAllCartridges = false;
         }
         menuTabs[menuTabs.Count - 1].SetInteractableState(true);
+        
+        if(gotAllCartridges)
+            AchievementsManager.SetAchievementState(AchievementEnum.Aficionado, true);
+        
     }
 
     private void UpdateTabsHighlight()
@@ -240,16 +251,27 @@ public class GGSMenuManager : StoryEventDependent
         menuTabs[index % menuTabs.Count].OnSubmit();
     }
 
-    public void OnSubmit() // -- Chamada externa
+    public void OnSubmit (int index) // -- Chamada externa
     {
         GGSConsole ggsConsole = GGSConsole.Instance; 
         if (!ggsConsole)
             return;
 
         UseNotification();
-        ggsConsole.ToggleConsoleState();
+        ggsConsole.ToggleConsoleState( GetMinigameBy(index) );
 
         ExitMenu();
+    }
+
+    private GGSMinigame GetMinigameBy(int index)
+    {
+        switch (index)
+        {
+            default:
+            case 1: return GGSMinigame.Jumper;
+            case 2: return GGSMinigame.Shooter;
+            case 3: return GGSMinigame.Traveler;
+        }
     }
 
     private void CancelInput (InputAction.CallbackContext ctx)

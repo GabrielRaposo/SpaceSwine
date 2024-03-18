@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Jumper;
 
 namespace Minigame
 {
@@ -21,7 +20,7 @@ namespace Minigame
         public static void ConnectToConsole (GGSConsole ggsConsole)
         {
             CurrentConsole = ggsConsole;
-            //Debug.Log("Connected.");
+            Debug.Log("Connected.");
         }
 
         public void ResetScene (float delay = 0) 

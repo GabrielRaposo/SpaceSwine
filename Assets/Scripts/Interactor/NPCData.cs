@@ -10,7 +10,6 @@ public class NPCData : ScriptableObject, ISerializationCallbackReceiver
     public string npcNameCode;
     public int startingIndex = 0;
     public List<DialogueGroup> dialogueGroups;
-    public UnityAction OnDialogueEnd;
 
     int accessIndex;
 
@@ -69,6 +68,11 @@ public class NPCData : ScriptableObject, ISerializationCallbackReceiver
 [System.Serializable]
 public class DialogueGroup 
 {
+    public DialogueGroup() 
+    {
+        tags = new List<string>();
+    }
+
     public List<string> tags;
 
     public string this [int i]

@@ -58,13 +58,36 @@ MonoBehaviour:
     - press_to_start
     - press_to_open_pda
     - press_to_call_ship
+    - press_to_reset_save
     - calling
+    - no_signal
+    - resetting_save
     - transporter_notification
     - ggs_notification
     - skip_scene
     - new
     - mab_inputs
     - pause_inputs
+    - thingamajig1
+    - thingamajig2
+    - thingamajig3
+    - credits_fastforward
+    - credits_credits
+    - credits_art
+    - credits_code
+    - credits_environment
+    - credits_gd
+    - credits_level
+    - credits_narrative
+    - credits_pixel
+    - credits_prod
+    - credits_sm
+    - credits_sound
+    - credits_testers
+    - credits_fonts
+    - credits_madewith
+    - credits_gameby
+    - credits_help
     - nav_move
     - nav_land
     - nav_exit
@@ -72,50 +95,82 @@ MonoBehaviour:
     - w2portal
     - w3portal
     - wportal.x
+    - wendportal
+    - wendportal.x
     - world
-    - 000
-    - 000.X
-    - 001
-    - 001.X
-    - 001.1
-    - 001.sub1
-    - 001.sub1.1
-    - 001.sub2
-    - 001.sub2.1
-    - 001.sub3
-    - 001.sub4
-    - 001.sub5
-    - 001.b1
-    - 002
-    - 002.X
-    - 002.sub1
-    - 002.sub2
-    - 002.sub3
-    - 002.sub4
-    - 002.sub5
-    - 003
-    - 003.X
-    - 003.sub1
-    - 003.sub2
-    - 003.sub3
-    - 003.sub4
-    - 003.sub5
-    - 00?
-    - 00?.X
+    - 0
+    - 0.D
+    - 0.T
+    - 1.0
+    - 1.0.D
+    - 1.0.P
+    - 1.2
+    - 1.2.D
+    - 1.3
+    - 1.3.D
+    - 1.4
+    - 1.4.D
+    - 1.5
+    - 1.5.D
+    - 1.B1
+    - 1.B1.D
+    - 1.O
+    - 1.O.D
+    - 2.0
+    - 2.0.D
+    - 2.0.P
+    - 2.1
+    - 2.1.D
+    - 2.1.P
+    - 2.2
+    - 2.2.D
+    - 2.3
+    - 2.3.D
+    - 2.4
+    - 2.4.D
+    - 2.5
+    - 2.5.D
+    - 2.B2
+    - 2.B2.D
+    - 2.O
+    - 2.O.D
+    - 3.0
+    - 3.0.D
+    - 3.0.P
+    - 3.1
+    - 3.1.D
+    - 3.1.P
+    - 3.2
+    - 3.2.D
+    - 3.3
+    - 3.3.D
+    - 3.4
+    - 3.4.D
+    - 3.5
+    - 3.5.D
+    - 3.B3
+    - 3.B3.D
+    - 3.O
+    - 3.O.D
     - mj_new_record
     - mj_best_score
     - mj_title_tutorial
     - mj_your_best
     - objectives
-    - log000
-    - log001
-    - log002
-    - log003
-    - log004
-    - log005
-    - log006
-    - log007
-    - log008
+    - log1.000
+    - log1.001
+    - log1.002
+    - log1.003
+    - log2.000
+    - log2.001
+    - log2.002
+    - log3.000
+    - log3.001
+    - log3.002
+    - log3.003
+    - epilepsy_title
+    - epilepsy_text
+    - epilepsy_input
     m_values:
     - m_keys: 0000000001000000
       m_values:
@@ -144,7 +199,7 @@ MonoBehaviour:
     - m_keys: 0000000001000000
       m_values:
       - Make-a-beat
-      - Make a Beat
+      - Make-a-Beat
     - m_keys: 0000000001000000
       m_values:
       - Talk
@@ -223,8 +278,8 @@ MonoBehaviour:
       - "Progresso ser\xE1 perdido."
     - m_keys: 0000000001000000
       m_values:
-      - Quit game?
-      - Sair do jogo?
+      - Quit to title
+      - Voltar para o menu
     - m_keys: 0000000001000000
       m_values:
       - Are you sure?
@@ -295,8 +350,20 @@ MonoBehaviour:
       - Segure ':interact:' para chamar a nave
     - m_keys: 0000000001000000
       m_values:
+      - Hold ':interact:' to <color=red>reset the save file</color>
+      - Segura ':interact:' para <color=red>apagar o save</color>
+    - m_keys: 0000000001000000
+      m_values:
       - calling ship
       - chamando nave
+    - m_keys: 0000000001000000
+      m_values:
+      - no signal
+      - sem sinal
+    - m_keys: 0000000001000000
+      m_values:
+      - save reset
+      - apagando save
     - m_keys: 0000000001000000
       m_values:
       - You got a Transporter. You can use it while on the pause menu to return to
@@ -338,6 +405,90 @@ MonoBehaviour:
       - "Navega\xE7\xE3o - :movement:\nConfirmar - :jump:\nCancelar - :throw:"
     - m_keys: 0000000001000000
       m_values:
+      - You got the <color=yellow>Mechanical Chassis!
+      - "Voc\xEA adquiriu o <color=yellow>Chassi Mec\xE2nico!"
+    - m_keys: 0000000001000000
+      m_values:
+      - You got the <color=yellow>Empathic Crystal!
+      - "Voc\xEA adquiriu o <color=yellow>Cristal Emp\xE1tico!"
+    - m_keys: 0000000001000000
+      m_values:
+      - You got the <color=yellow>Echoing Relic!
+      - "Voc\xEA adquiriu a <color=yellow>Rel\xEDquia Ecoante!"
+    - m_keys: 0000000001000000
+      m_values:
+      - 'Press :jump:
+
+        to fast-forward'
+      - 'Aperte :jump:
+
+        para acelerar'
+    - m_keys: 0000000001000000
+      m_values:
+      - Credits
+      - "Cr\xE9ditos"
+    - m_keys: 0000000001000000
+      m_values:
+      - Art Direction and Illustrations
+      - "Dire\xE7\xE3o de Arte e Ilustra\xE7\xF5es"
+    - m_keys: 0000000001000000
+      m_values:
+      - Code
+      - "Programa\xE7\xE3o"
+    - m_keys: 0000000001000000
+      m_values:
+      - Environment Design
+      - Environment Design
+    - m_keys: 0000000001000000
+      m_values:
+      - Game Design
+      - Game Design
+    - m_keys: 0000000001000000
+      m_values:
+      - Level Design
+      - Level Design
+    - m_keys: 0000000001000000
+      m_values:
+      - Narrative Design and Story
+      - Design Narrativo e Roteiro
+    - m_keys: 0000000001000000
+      m_values:
+      - Pixel Art, UI and Animations
+      - "Pixel Arte, UI e Anima\xE7\xF5es"
+    - m_keys: 0000000001000000
+      m_values:
+      - Production
+      - "Produ\xE7\xE3o"
+    - m_keys: 0000000001000000
+      m_values:
+      - Social Media
+      - "M\xEDdias Sociais"
+    - m_keys: 0000000001000000
+      m_values:
+      - Original Soundtrack and Sound Design
+      - Trilha Sonora Original e Sound Design
+    - m_keys: 0000000001000000
+      m_values:
+      - Testers
+      - Playtesters
+    - m_keys: 0000000001000000
+      m_values:
+      - Custom Fonts
+      - Fontes Personalizadas
+    - m_keys: 0000000001000000
+      m_values:
+      - Made with
+      - Feito com
+    - m_keys: 0000000001000000
+      m_values:
+      - A game by
+      - Um jogo da
+    - m_keys: 0000000001000000
+      m_values:
+      - With the help of
+      - Com a ajuda do
+    - m_keys: 0000000001000000
+      m_values:
       - 'Move - :movement:'
       - 'Mover - :movement:'
     - m_keys: 0000000001000000
@@ -366,6 +517,14 @@ MonoBehaviour:
       - Viagem para outro mundo
     - m_keys: 0000000001000000
       m_values:
+      - ???
+      - ???
+    - m_keys: 0000000001000000
+      m_values:
+      - Finish the journey
+      - Termine a jornada
+    - m_keys: 0000000001000000
+      m_values:
       - World
       - Mundo
     - m_keys: 0000000001000000
@@ -378,76 +537,140 @@ MonoBehaviour:
       - ...
     - m_keys: 0000000001000000
       m_values:
+      - ???
+      - ???
+    - m_keys: 0000000001000000
+      m_values:
       - The Scrapgarten
-      - O Jardim
+      - O Jardim da Sucata
     - m_keys: 0000000001000000
       m_values:
-      - An abandoned system
-      - Um sistema abandonado
+      - An abandoned junkyard
+      - Um ferro-velho abandonado
     - m_keys: 0000000001000000
       m_values:
-      - Low Gravity Zone 1
-      - Zona de Baixa Gravidade 1
-    - m_keys: 0000000001000000
-      m_values:
-      - The Lost Garden
-      - O Jardim Perdido
-    - m_keys: 0000000001000000
-      m_values:
-      - Low Gravity Zone 2
-      - Zona de Baixa Gravidade 2
+      - Learning to Fly
+      - Aprendendo a Voar
     - m_keys: 0000000001000000
       m_values:
       - The Crossroads
       - As Encruzilhadas
     - m_keys: 0000000001000000
       m_values:
-      - Low Gravity Zone 3
-      - Zona de Baixa Gravidade 3
+      - Where different paths meet
+      - Onde diferentes caminhos se encontram
     - m_keys: 0000000001000000
       m_values:
-      - Sub 3
-      - Sub 3
+      - The Herbarium
+      - "O Herb\xE1rio"
     - m_keys: 0000000001000000
       m_values:
-      - Sub 4
-      - Sub 4
+      - A garden of flowers
+      - Um jardim de flores
     - m_keys: 0000000001000000
       m_values:
-      - Sub 5
-      - Sub 5
+      - The Shrubbery
+      - O Matagal
     - m_keys: 0000000001000000
       m_values:
-      - 'Bonus 1: Jumper'
-      - "B\xF4nus 1: Jumper"
+      - A leap of faith
+      - "Um salto de f\xE9"
+    - m_keys: 0000000001000000
+      m_values:
+      - The Woods
+      - O Bosque
+    - m_keys: 0000000001000000
+      m_values:
+      - A test of mettle
+      - Um teste de vontade
+    - m_keys: 0000000001000000
+      m_values:
+      - The Maze
+      - O Labirinto
+    - m_keys: 0000000001000000
+      m_values:
+      - A garden designer's dream
+      - Um sonho de um jardineiro
+    - m_keys: 0000000001000000
+      m_values:
+      - The Backyard
+      - O Jardim dos Fundos
+    - m_keys: 0000000001000000
+      m_values:
+      - A reunion
+      - Um reencontro
     - m_keys: 0000000001000000
       m_values:
       - The Nilmines
       - As Nilminas
     - m_keys: 0000000001000000
       m_values:
-      - An uncharted frontierland
-      - "Uma fronteira n\xE3o mapeada"
+      - An abandoned mining operation
+      - Uma mineradora abandonada
     - m_keys: 0000000001000000
       m_values:
-      - Sub 1
-      - Sub 1
+      - The Outside
+      - O Exterior
     - m_keys: 0000000001000000
       m_values:
-      - Sub 2
-      - Sub 2
+      - The Covenant
+      - O Pacto
     - m_keys: 0000000001000000
       m_values:
-      - Sub 3
-      - Sub 3
+      - A setting of boundaries
+      - Um estabelecimento de limites
     - m_keys: 0000000001000000
       m_values:
-      - Sub 4
-      - Sub 4
+      - The Inside
+      - O Interior
     - m_keys: 0000000001000000
       m_values:
-      - Sub 5
-      - Sub 5
+      - The Agreement
+      - O Acordo
+    - m_keys: 0000000001000000
+      m_values:
+      - A reversal of beliefs
+      - "Uma invers\xE3o de cren\xE7as"
+    - m_keys: 0000000001000000
+      m_values:
+      - The Flow
+      - O Fluxo
+    - m_keys: 0000000001000000
+      m_values:
+      - A tear
+      - Um rasgo
+    - m_keys: 0000000001000000
+      m_values:
+      - The Continuum
+      - "O Cont\xEDnuo"
+    - m_keys: 0000000001000000
+      m_values:
+      - A frightful discovery
+      - Uma descoberta assombrosa
+    - m_keys: 0000000001000000
+      m_values:
+      - The Scientific Endeavor
+      - "O Empreendimento Cient\xEDfico"
+    - m_keys: 0000000001000000
+      m_values:
+      - A testament to bravery
+      - "Um testamento \xE0 coragem"
+    - m_keys: 0000000001000000
+      m_values:
+      - The Bubble Maze
+      - O Labirinto de Bolhas
+    - m_keys: 0000000001000000
+      m_values:
+      - One man's trash
+      - "O que para alguns \xE9 lixo"
+    - m_keys: 0000000001000000
+      m_values:
+      - The Beginning
+      - "O In\xEDcio"
+    - m_keys: 0000000001000000
+      m_values:
+      - Where it all ends
+      - Onde tudo termina
     - m_keys: 0000000001000000
       m_values:
       - The Urbs
@@ -455,35 +678,71 @@ MonoBehaviour:
     - m_keys: 0000000001000000
       m_values:
       - A busy construction site
-      - Um canteiro de obras
+      - Um canteiro de obras atarefado
     - m_keys: 0000000001000000
       m_values:
-      - Sub 1
-      - Sub 1
+      - The Foundation
+      - O Alicerce
     - m_keys: 0000000001000000
       m_values:
-      - Sub 2
-      - Sub 2
+      - The Essential
+      - O Essencial
     - m_keys: 0000000001000000
       m_values:
-      - Sub 3
-      - Sub 3
+      - A short break
+      - "Uma pausa r\xE1pida"
     - m_keys: 0000000001000000
       m_values:
-      - Sub 4
-      - Sub 4
+      - The Electrical Network
+      - "A Rede El\xE9trica"
     - m_keys: 0000000001000000
       m_values:
-      - Sub 5
-      - Sub 5
+      - The Worker's Area
+      - "\xC1rea dos Trabalhadores"
     - m_keys: 0000000001000000
       m_values:
-      - ???
-      - ???
+      - A place of rest
+      - Um lugar de descanso
     - m_keys: 0000000001000000
       m_values:
-      - Something glimmers from afar
-      - Algo brilha ao longe
+      - The Binding
+      - "A Conex\xE3o"
+    - m_keys: 0000000001000000
+      m_values:
+      - A reflection
+      - "Uma reflex\xE3o"
+    - m_keys: 0000000001000000
+      m_values:
+      - The Potency
+      - "A Pot\xEAncia"
+    - m_keys: 0000000001000000
+      m_values:
+      - A responsibility
+      - Uma responsabilidade
+    - m_keys: 0000000001000000
+      m_values:
+      - The Catharsis
+      - A Catarse
+    - m_keys: 0000000001000000
+      m_values:
+      - The final test
+      - O teste final
+    - m_keys: 0000000001000000
+      m_values:
+      - The Steel Maze
+      - "O Labirinto de A\xE7o"
+    - m_keys: 0000000001000000
+      m_values:
+      - The remains of a place that isn't there anymore
+      - "O restos de um lugar que n\xE3o est\xE1 mais l\xE1"
+    - m_keys: 0000000001000000
+      m_values:
+      - The Future
+      - O Futuro
+    - m_keys: 0000000001000000
+      m_values:
+      - Where do we go from here?
+      - Para onde vamos?
     - m_keys: 0000000001000000
       m_values:
       - NEW RECORD
@@ -509,36 +768,63 @@ MonoBehaviour:
     - m_keys: 0000000001000000
       m_values:
       - Figure out where you are
-      - "Descubra onde est\xE1"
+      - "Descubra onde voc\xEA est\xE1"
     - m_keys: 0000000001000000
       m_values:
-      - Find the scraps!
-      - Encontre as partes!
+      - Find some scrap
+      - "Consiga pe\xE7as"
     - m_keys: 0000000001000000
       m_values:
       - Return to the Big Robot
       - "Volte para o Roboz\xE3o"
     - m_keys: 0000000001000000
       m_values:
-      - Explore The Lost Garden
-      - 'Explore O Jardim Perdido '
+      - Item 1
+      - Item 1
     - m_keys: 0000000001000000
       m_values:
-      - Find Xaxim's treasure
-      - Encontre a "coisa" de Xaxim
+      - What is that over there...?
+      - "O que \xE9 aquilo ali...? "
     - m_keys: 0000000001000000
       m_values:
-      - Deliver the Mirror to Xaxim
-      - Devolva o espelho a Xaxim
+      - Search for a way back to your ship
+      - Encontra um caminho de volta para a nave
     - m_keys: 0000000001000000
       m_values:
-      - Explore The Crossroads
-      - Explore As Encruzilhadas
+      - Item 2
+      - Item 2
     - m_keys: 0000000001000000
       m_values:
-      - Find the Sector Plans
-      - Encontre o mapa do setor
+      - Find someone who can help you
+      - "Encontre algu\xE9m que possa te ajudar"
     - m_keys: 0000000001000000
       m_values:
-      - Check out the navigator...
-      - "D\xEA uma olhada no navegador..."
+      - 'Search through the Low Gravity Zones '
+      - Vasculhe as Zonas de Baixa Gravidade
+    - m_keys: 0000000001000000
+      m_values:
+      - Find someone who can ACTUALLY help you
+      - "Encontre algu\xE9m que possa REALMENTE te ajudar"
+    - m_keys: 0000000001000000
+      m_values:
+      - Meet the rabbit again
+      - Encontre o coelhinho novamente
+    - m_keys: 0000000001000000
+      m_values:
+      - Photosensitivity Warning
+      - Aviso para Fotossensibilidade
+    - m_keys: 0000000001000000
+      m_values:
+      - 'Astro Pig contains bright, flashing lights and imagery that may cause discomfort
+        or seizures for those with photosensitivity epilepsy.
+
+
+        Player discretion
+        is advised.'
+      - "Astro Pig cont\xE9m luzes fortes e piscantes e pode provocar desconforto
+        ou convuls\xF5es para indiv\xEDduos com epilepsia fotossens\xEDvel.\n\n\xC9
+        recomendada aten\xE7\xE3o aos jogadores."
+    - m_keys: 0000000001000000
+      m_values:
+      - 'Press :jump: to continue'
+      - 'Aperte :jump: para continuar'

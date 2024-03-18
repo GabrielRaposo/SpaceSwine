@@ -9796,8 +9796,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889226335432220605}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.51, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalPosition: {x: 0, y: 0.53, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 813743293341056411}
   m_RootOrder: 0
@@ -9842,7 +9842,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e945d5393e6defb4494318c645d05227, type: 3}
+  m_Sprite: {fileID: 6395827621899541267, guid: fd0168b90d6989c458d96a469892c05a, type: 3}
   m_Color: {r: 0.59607846, g: 0.6039216, b: 0.9450981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -24758,15 +24758,8 @@ MonoBehaviour:
     m_Id: 0f6a118c-cda7-4f54-a290-2adb34183569
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: d2d92ceb-8040-4ceb-a109-00950851e30b
-      m_Path: <Keyboard>/tab
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Test Input
-      m_Flags: 0
+    m_SingletonActionBindings: []
+  LaunchCooldown: 0
 --- !u!114 &2321033240821268932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24887,6 +24880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19dffdb67af29244a8a5fe8719def86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fallIntoGravityIfNothingElse: 0
   speed: 3
   gravitationalPull: 0.15
   groundLayer:

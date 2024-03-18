@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
         playerInputActions.UI.Reset.performed += (ctx) => 
         {
-            if (BlockCharacterInput || OnTransition || PauseSystem.OnPause)
+            if (BlockCharacterInput || OnTransition || PauseSystem.OnPause || DialogueSystem.OnDialogue)
                 return;
 
             if (RoundsManager.Instance)
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         ggsConsole = GGSConsole.Instance;
 
         SetupPlayer(); // Deve ocorrer no Start()
-        SetupPlaylist();
+        //SetupPlaylist();
     }
 
     private void SetupPlayer()
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         if (!soundtrackManager)
             return;
 
-        soundtrackManager.SetPlaylist(CurrentPlaylist);
+        soundtrackManager.ChangePlaylistOnTheBack(CurrentPlaylist);
     }
 
     public static void GoToScene (string path, bool saveScenePath = false)

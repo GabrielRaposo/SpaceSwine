@@ -11,8 +11,9 @@ public class NavigationSceneManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI autoPilotText;
-    [SerializeField] private TextMeshProUGUI landedText;
-    [SerializeField] private CanvasGroup landedSignObject;
+    [SerializeField] private CanvasGroup landingSignObject;
+    [SerializeField] private TextMeshProUGUI planetLandingText;
+    [SerializeField] private TextMeshProUGUI portalLandingText;
 
     public Color uiColor;
 
@@ -88,28 +89,32 @@ public class NavigationSceneManager : MonoBehaviour
 
     public void StopBlinkAutoPilot()
     {
-        if(autopilotBlinkSequence == null) return;
+        if (autopilotBlinkSequence == null) return;
         
         autopilotBlinkSequence.Kill();
 
         autoPilotText.color = AutoPilotStartingColor;
     }
 
-    public void DisplayLandingSign()
+    public void DisplayLandingSign (bool landingOnPlanet)
     {
-        landedSignObject.DOFade(1f, 0.6f);
+        landingSignObject.DOFade(1f, 0.6f);
+
+        TextMeshProUGUI textDisplay = landingOnPlanet ? planetLandingText : portalLandingText;
+        planetLandingText.enabled = landingOnPlanet;
+        portalLandingText.enabled = !landingOnPlanet;
 
         var s = DOTween.Sequence();
 
-        s.Append(landedText.DOFade(0.5f, 0.75f));
-        s.Append(landedText.DOFade(0.85f, 0.75f));
+        s.Append(textDisplay.DOFade(0.5f, 0.75f));
+        s.Append(textDisplay.DOFade(0.85f, 0.75f));
 
         s.SetLoops(-1);
     }
     
     public void HideLandingSign()
     {
-        landedSignObject.DOFade(0f, 0.1f);
+        landingSignObject.DOFade(0f, 0.1f);
     }
 
     public void ConectToConsole(NavigationConsole nc)
@@ -145,7 +150,7 @@ public class NavigationSceneManager : MonoBehaviour
             return;
 
         SaveManager.ShuttleExitLocationPath = scenePath;
-        DebugDisplay.Call("ShuttleExitLocationPath set as " + scenePath);
+        DebugDisplay.Log("ShuttleExitLocationPath set as " + scenePath);
     }
     
 }

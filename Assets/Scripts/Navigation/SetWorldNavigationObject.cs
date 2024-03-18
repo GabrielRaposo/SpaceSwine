@@ -25,6 +25,9 @@ public class SetWorldNavigationObject : NavigationObject
 
         interactAction += CallShipAnimation;
 
+        if (selector != null)
+            selector.enabled = false;
+
         if (exclamationIcon != null)
             exclamationIcon.gameObject.SetActive(false);
 
@@ -32,10 +35,6 @@ public class SetWorldNavigationObject : NavigationObject
         SetParticleColor();
     }
 
-    protected override void OnDisable()
-    {
-        //interactAction -= CallShipAnimation;
-    }
     private void SetParticleColor()
     {
         if (idlePS == null)
@@ -64,7 +63,7 @@ public class SetWorldNavigationObject : NavigationObject
             //sprite.color = Color.white;
         }
 
-        landAnimation.Call( this, selector.transform, SetWorld );
+        landAnimation.Call( this, selector.transform, SetWorld, landingOnPlanet: false );
     }
 
     protected virtual void SetWorld()

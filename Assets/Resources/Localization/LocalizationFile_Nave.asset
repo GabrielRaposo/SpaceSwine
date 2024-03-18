@@ -17,6 +17,7 @@ MonoBehaviour:
     - navigation_tutorial
     - autopilot
     - orbiting_destination
+    - entering_portal
     - N_PIG_001.01
     - N_PIG_001.02
     - N_PIG_001.03
@@ -29,33 +30,48 @@ MonoBehaviour:
     - N_PIG_002.05
     - N_PIG_002.06
     - N_PIG_002.07
-    - N_PIG_003.01
-    - N_PIG_003.02
-    - N_PIG_003.03
-    - N_PIG_003.04
-    - N_PIG_003.05
-    - N_PIG_003.06
-    - N_PIG_003.07
-    - N_PIG_003.08
-    - N_PIG_003.09
-    - N_PIG_004.01
-    - N_PIG_004.02
-    - N_PIG_004.03
-    - N_PIG_004.04
-    - N_PIG_005.01
-    - N_PIG_005.02
-    - N_PIG_005.03
-    - N_PIG_005.04
-    - N_PIG_006.01
-    - N_PIG_006.02
-    - N_PIG_007.01
-    - N_PIG_007.02
-    - N_PIG_007.03
-    - N_PIG_007.04
-    - N_PIG_007.05
-    - CHAT_PIG_W1_TALK-CREATOR_001.01
-    - CHAT_PIG_W1_TALK-CREATOR_001.02
-    - CHAT_PIG_W1_COMPLETED-SUB-1_001.01
+    - INTRO_001.01
+    - INTRO_001.02
+    - INTRO_001.03
+    - INTRO_001.04
+    - INTRO_001.05
+    - INTRO_001.06
+    - INTRO_001.07
+    - INTRO_001.08
+    - INTRO_001.09
+    - INTRO_002.01
+    - INTRO_002.02
+    - INTRO_002.03
+    - INTRO_003.01
+    - INTRO_003.02
+    - INTRO_003.03
+    - INTRO_003.04
+    - INTRO_003.05
+    - INTRO_004.01
+    - INTRO_004.02
+    - INTRO_004.03
+    - INTRO_005.01
+    - INTRO_005.02
+    - INTRO_005.03
+    - INTRO_005.04
+    - INTRO_006.01
+    - INTRO_006.02
+    - INTRO_006.03
+    - INTRO_006.04
+    - INTRO_007.01
+    - INTRO_007.02
+    - INTRO_007.03
+    - INTRO_007.04
+    - INTRO_008.01
+    - INTRO_008.02
+    - INTRO_010.01
+    - INTRO_010.02
+    - INTRO_011.01
+    - INTRO_011.02
+    - CHAT_W1_TALK-CREATOR_001.01
+    - CHAT_W1_TALK-CREATOR_001.02
+    - CHAT_W1_TALK-CREATOR_001.03
+    - CHAT_W1_TALK-CREATOR_001.04
     m_values:
     - m_keys: 0000000001000000
       m_values:
@@ -77,6 +93,10 @@ MonoBehaviour:
       m_values:
       - ORBITING DESTINATION
       - ORBITANDO DESTINO
+    - m_keys: 0000000001000000
+      m_values:
+      - ENTERING PORTAL
+      - ENTRANDO NO PORTAL
     - m_keys: 0000000001000000
       m_values:
       - Good morning, <color=#FF7B7C>Captain</color>.
@@ -135,28 +155,27 @@ MonoBehaviour:
       - "<color=#E32327>FALHA NO SEI-L\xC1-O-QU\xCA DETECTADA</color>"
     - m_keys: 0000000001000000
       m_values:
-      - Well, look who's here. The one who said it would be fine to shortcut through
+      - Look who showed up. The one who said it would be fine to shortcut through
         the asteroid belt.
-      - "Ora, ora. Olha quem chegou. O que falou que ia dar tudo certo pegando um
-        atalho pelo cintur\xE3o de asteroides."
+      - "Olha s\xF3 quem chegou. O que falou que n\xE3o ia ter problema nenhum pegar
+        um atalho pelo cintur\xE3o de asteroides."
     - m_keys: 0000000001000000
       m_values:
-      - I was starting to think you had hit your head too hard and forgotten all
-        about me...
-      - "Eu estava come\xE7ando a pensar que voc\xEA tinha batido a cabe\xE7a e esquecido
-        de mim..."
+      - I was sad, you know? I was starting to think you had hit your head too hard
+        and forgotten all about me...
+      - "Eu tava triste, sabia? Estava come\xE7ando a pensar que voc\xEA tinha batido
+        a cabe\xE7a com muita for\xE7a e esquecido de mim..."
     - m_keys: 0000000001000000
       m_values:
-      - '... so I wrote a job posting for a new pilot.
-
-        Check it out:'
-      - "... ent\xE3o eu postei um aviso de vaga para um piloto novo.\r\nCheca s\xF3:"
+      - '... so I put up a job posting for a new pilot. Check it out:'
+      - "... ent\xE3o eu postei uma vaga para um novo piloto. D\xE1 uma olhada: "
     - m_keys: 0000000001000000
       m_values:
       - '"Sad and lonely private spaceship in your sector, looking for a smart, healthy
         and competent pilot for uncharted space exploration."'
-      - "\"Nave solit\xE1ria e triste no seu setor, buscando um piloto inteligente,
-        saud\xE1vel e competente para explora\xE7\xE3o de espa\xE7o n\xE3o-mapeado.\""
+      - "\"Nave particular solit\xE1ria e triste no seu setor, buscando um piloto
+        inteligente, saud\xE1vel e competente para explora\xE7\xE3o de espa\xE7o
+        n\xE3o-mapeado.\""
     - m_keys: 0000000001000000
       m_values:
       - '"Salary and benefits not open for discussion. Annual birthday leave (unpaid)."'
@@ -170,50 +189,118 @@ MonoBehaviour:
         site o an\xFAncio apareceu."
     - m_keys: 0000000001000000
       m_values:
-      - And also, as I had nothing else to do after I repaired myself, I fixed that
-        junky game console. I think one of the buttons is stuck, but it should function.
-      - "E tamb\xE9m como eu estava sem nada pra fazer depois dos reparos externos,
-        consertei o seu videogame arrebentado. Acho que um dos bot\xF5es est\xE1
-        travado, mas deve ligar."
+      - So, really, please. Be more careful. I don't want us to part just yet.
+      - "Ent\xE3o, de verdade. Tome mais cuidado. N\xE3o quero que a gente se separe
+        t\xE3o cedo."
     - m_keys: 0000000001000000
       m_values:
-      - "\xA7instant text\xA7 \xA7award sound\xA7 <color=yellow>You got the GGS and
-        one game cartridge! Play it by sitting on your armchair."
-      - "\xA7instant text\xA7 \xA7award sound\xA7 <color=yellow>Voc\xEA adquiriu
-        o GGS e um cartucho de jogo! Se sente na sua poltrona para jogar."
+      - Well, back to business! Whenever you wish to leave this sector, just set
+        our destination through the <color=yellow>navigation panel</color>, captain.
+      - "Bom, de volta ao trabalho! Quando voc\xEA quiser deixar esse setor, s\xF3
+        selecionar o nosso destino pelo <color=yellow>painel de navega\xE7\xE3o</color>,
+        capit\xE3o."
     - m_keys: 0000000001000000
       m_values:
-      - Whenever you want to leave this sector, just set our destination through
-        the <color=yellow>navigation panel.
-      - "Quando voc\xEA quiser deixar esse setor, s\xF3 selecionar nosso destino
-        pelo <color=yellow>painel de navega\xE7\xE3o."
+      - 'And one last thing: my radar and visual sensors are still a bit impaired
+        from the colision, so a few planets might slip through them. But I''m working
+        on it.'
+      - "E uma \xFAltima coisa: meu radar e sensores visuais ainda est\xE3o um pouco
+        danificados da colis\xE3o, ent\xE3o alguns planetas podem n\xE3o ser detectados.
+        Mas estou trabalhando nisso."
     - m_keys: 0000000001000000
       m_values:
-      - You know... not every ship would willingly fly into the Nilmines.
-      - "Sabe... N\xE3o \xE9 toda nave que voluntariamente iria at\xE9 as Nilminas."
+      - 'Hey, Captain! Is that a <color=yellow>GGS cartridge</color> I see?
+
+        What
+        a great find!'
+      - "Capit\xE3o! Isso a\xED \xE9 um <color=yellow>cartucho de GGS</color>?\nQue
+        achado!"
     - m_keys: 0000000001000000
       m_values:
-      - But luckily, I'm not every ship.
-      - "Mas por sorte sua, eu n\xE3o sou toda nave."
+      - Here, let me just... Here you go! One of those days I took some time to fix
+        the old one we had in the storage. It was just collecting dust so I thought
+        - why not?
+      - "Aqui, deixa s\xF3 eu... Pronto! Um dia desses eu tirei um tempo pra consertar
+        aquele GGS velho que a gente tinha no dep\xF3sito. Tava s\xF3 juntando poeira
+        ent\xE3o eu pensei - por que n\xE3o?"
     - m_keys: 0000000001000000
       m_values:
-      - ...
-      - ...
+      - Just insert the cartridge in it and it should start immediately. It seems
+        like a great occasion to start using the <color=yellow>armchair</color>,
+        don't you think?
+      - "S\xF3 inserir o cartucho e ele deve ligar automaticamente. Parece uma \xF3tima
+        ocasi\xE3o pra estrear a <color=yellow>poltrona</color>, n\xE3o acha?"
     - m_keys: 0000000001000000
       m_values:
-      - 'But I must admit I do feel a little <i>tingly</i> in my fuselage. '
-      - "Mas preciso admitir que sinto um <i>comich\xE3o</i> na fuselagem."
+      - Welcome back, Captain. Did you find what you were looking for yet?
+      - "Bem-vindo de volta, Capit\xE3o. Voc\xEA encontrou o que estava procurando?"
     - m_keys: 0000000001000000
       m_values:
-      - Captain, I must say, I did not expect us to find such a huge metropolis in
-        this arm of the galaxy.
-      - "Capit\xE3o, preciso te dizer, n\xE3o imaginei que f\xF4ssemos encontrar
+      - '... I see. Well, as I sat here by myself I had an idea of what could maybe
+        help in finding it:'
+      - "... Entendi. Bom, enquanto eu estava aqui, sozinha com meus bot\xF5es, tive
+        uma ideia do que poderia te ajudar a encontrar:"
+    - m_keys: 0000000001000000
+      m_values:
+      - <i>Telling me what you're looking for.</i>
+      - "<i>Me falar o que voc\xEA est\xE1 procurando."
+    - m_keys: 0000000001000000
+      m_values:
+      - Please! Don't keep me in the dark like that... You know I can't handle the
+        suspense.
+      - "Por favor! N\xE3o me deixa no escuro assim... Voc\xEA sabe que eu n\xE3o
+        lido bem com suspense."
+    - m_keys: 0000000001000000
+      m_values:
+      - ... Fine. Keep your secrets.
+      - "... T\xE1. Guarde seus segredos."
+    - m_keys: 0000000001000000
+      m_values:
+      - Say, Captain - don't you want to stay around for a bit longer? I know your
+        mission is important and all, but think about your ship, all alone, floating
+        up in space...
+      - "Capit\xE3o, rapidinho - voc\xEA n\xE3o quer ficar um tempinho aqui, n\xE3o?
+        Eu sei que a sua miss\xE3o \xE9 importante e tudo mais, mas pense na sua
+        nave, sozinha, flutuando no espa\xE7o..."
+    - m_keys: 0000000001000000
+      m_values:
+      - I know - why don't you <color=yellow>relax for a little while by the window</color>?
+        Or maybe you could make some music for us!
+      - "J\xE1 sei - por que voc\xEA n\xE3o <color=yellow>relaxa um pouco na janela</color>?
+        Ou ent\xE3o voc\xEA pode fazer umas m\xFAsicas pra gente!"
+    - m_keys: 0000000001000000
+      m_values:
+      - What do you call that little contraption? <color=yellow>Make-a-Beat</color>?
+        I really like hearing those lo-fi jams.
+      - "Como voc\xEA chama esse sisteminha? <color=yellow>Make-a-Beat</color>? Eu
+        gosto bastante de ouvir essas musiquinhas lo-fi."
+    - m_keys: 0000000001000000
+      m_values:
+      - BUYK YOU'VE GOTTEN THE THINGAMAJIG FROM WORLD 2 GOOD JOB
+      - "BUYK VOC\xCA CONSEGUIU O THINGAMAJIG DO MUNDO 2 BOM TRABALHO"
+    - m_keys: 0000000001000000
+      m_values:
+      - SECOND DIALOGUE
+      - "SEGUNDO DI\xC1LOGO"
+    - m_keys: 0000000001000000
+      m_values:
+      - THIRD DIALOGUE
+      - "TERCEIRO DI\xC1LOGO"
+    - m_keys: 0000000001000000
+      m_values:
+      - FOURTH DIALOGUE
+      - "QUARTO DI\xC1LOGO"
+    - m_keys: 0000000001000000
+      m_values:
+      - Captain, I must say, I did not expect to find such a huge metropolis in this
+        arm of the galaxy.
+      - "Capit\xE3o, preciso te dizer, n\xE3o imaginei que a gente fosse encontrar
         uma metr\xF3pole t\xE3o grande nesse bra\xE7o da gal\xE1xia."
     - m_keys: 0000000001000000
       m_values:
       - Even this single construction site spans several systems... What could they
         be building?
-      - "At\xE9 esse canteiro de obras ocupa v\xE1rios sitemas... O que eles podem
+      - "At\xE9 esse canteiro de obras ocupa v\xE1rios sistemas... O que eles podem
         estar construindo?"
     - m_keys: 0000000001000000
       m_values:
@@ -221,52 +308,76 @@ MonoBehaviour:
       - "... Voc\xEA acha que pode ser um Port\xE3o?"
     - m_keys: 0000000001000000
       m_values:
-      - Of course not, right?
+      - '... Of course not, right? '
       - "Claro que n\xE3o, n\xE9?"
     - m_keys: 0000000001000000
       m_values:
-      - ... Captain, I seem to be getting some strange readings from a nearby quadrant.
-      - "... Capit\xE3o, estou recebendo umas leituras estranhas de um quadrante
-        pr\xF3ximo."
-    - m_keys: 0000000001000000
-      m_values:
-      - Should we check it out? I'm adding the new coordinates to the <color=yellow>navigation
-        panel</color>.
-      - "Devemos checar? Estou adicionando as novas coordenadas no  <color=yellow>painel
-        de navega\xE7\xE3o</color>."
-    - m_keys: 0000000001000000
-      m_values:
-      - ... Captain, what is this?
-      - "... Capit\xE3o, o que \xE9 isto?"
+      - ... Captain, now that you've collected all the components you were looking
+        for, can you finally tell me what it's all for?
+      - "... Capit\xE3o, agora que voc\xEA conseguiu todos os componentes que estava
+        procurando, posso <i>finalmente</i> saber qual \xE9 o seu plano?"
     - m_keys: 0000000001000000
       m_values:
       - ... You're being strangely reticent. As your ship, I just think we should
         be able to trust each other, that's all.
-      - "... Voc\xEA est\xE1 estranhamente reticente. Como sua nave, s\xF3 acho que
-        n\xF3s dever\xEDamos confiar um no outro, s\xF3 isso."
+      - "... Voc\xEA est\xE1 sendo estranhamente reticente. Como sua nave, s\xF3
+        acho que a gente devia confiar um no outro, s\xF3 isso."
     - m_keys: 0000000001000000
       m_values:
       - ... A "surprise"? Well, now you've only made me more curious.
-      - "... Uma \"surpresa\"? Agora voc\xEA s\xF3 me deixou mais curiosa."
+      - "... Uma \"surpresa\"? Agora voc\xEA s\xF3 me deixou mais curioso."
     - m_keys: 0000000001000000
       m_values:
       - 'But you know I''m with you, come what may. '
       - "Mas voc\xEA sabe que estou com voc\xEA, n\xE3o importa o que aconte\xE7a."
     - m_keys: 0000000001000000
       m_values:
-      - "\xA7instant text\xA7 \xA7award sound\xA7 <color=yellow>You've acquired the
-        </color><b>Shape</b><color=yellow>!"
+      - BUYK YOU'VE GOTTEN THE THINGAMAJIG FROM WORLD 1 GOOD JOB I'VE GOTTEN STRANGE
+        READINGS FROM SOME MINERAL DEPOSITS
+      - "BUYK VOC\xCA CONSEGUIU O THINGAMAJIG DO MUNDO 1 BOM TRABALHO"
+    - m_keys: 0000000001000000
+      m_values:
+      - SECOND DIALOGUE
+      - "SEGUNDO DI\xC1LOGO"
+    - m_keys: 0000000001000000
+      m_values:
+      - ... By the way, as I had nothing else to do after I repaired myself, I finally
+        fixed up that junky game console. One of the buttons is stuck, but it shouldn't
+        be a problem.
+      - "... A prop\xF3sito, como eu estava sem nada pra fazer depois dos reparos
+        externos, finalmente consertei o seu videogame velho. Um dos bot\xF5es est\xE1
+        travado, mas n\xE3o deve atrapalhar."
+    - m_keys: 0000000001000000
+      m_values:
+      - "\xA7instant text\xA7 \xA7award sound\xA7 <color=yellow>You got the GGS and
+        one game cartridge! Play it by sitting on your armchair."
       - "\xA7instant text\xA7 \xA7award sound\xA7 <color=yellow>Voc\xEA adquiriu
-        a </color><b>Forma</b><color=yellow>!"
+        o GGS e um cartucho de jogo! Se sente na poltrona para jogar."
     - m_keys: 0000000001000000
       m_values:
-      - What did you think about that big robot
-      - "Ei o que voc\xEA achou daquele roboz\xE3o?"
+      - BUYK THAT ALIEN IS SCARY RIGHT THANK GOD YOU'RE BACK
+      - "BUYK AQUELE ET\xCA \xC9 ASSUSTADOR N\xC9 GRA\xC7AS A DEUS VOC\xCA T\xC1
+        BEM"
     - m_keys: 0000000001000000
       m_values:
-      - Weird guy...
-      - "Cara estranho n\xE9?"
+      - SECOND DIALOGUE
+      - "SEGUNDO DI\xC1LOGO"
     - m_keys: 0000000001000000
       m_values:
-      - Mensagem placeholder sub 1
-      - Mensagem placeholder sub 1
+      - 'Hey, what''s your impression of that big robot fellow? '
+      - "Ei, qual a sua impress\xE3o sobre aquele rob\xF4 grand\xE3o?"
+    - m_keys: 0000000001000000
+      m_values:
+      - Do you find it strange for a created being to engage in creation themselves?
+      - "Voc\xEA acha estranho um ser que foi criado estar ocupando uma posi\xE7\xE3o
+        de criador?"
+    - m_keys: 0000000001000000
+      m_values:
+      - That being said - we're all creations of some sort. And isn't the organics'
+        great calling to create? To make more of themselves?
+      - "Dito isso - n\xF3s tomos somos cria\xE7\xF5es de alguma forma. E n\xE3o
+        \xE9 o grande destino dos org\xE2nicos - criar? Fazer mais de si pr\xF3prios?"
+    - m_keys: 0000000001000000
+      m_values:
+      - Seems logic that beings created by organics would follow a similar pattern.
+      - "Parece l\xF3gico que seres criados por org\xE2nicos sigam um padr\xE3o parecido."

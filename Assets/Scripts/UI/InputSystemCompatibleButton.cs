@@ -10,7 +10,7 @@ using Image = UnityEngine.UI.Image;
 
 public abstract class InputSystemCompatibleButton : MonoBehaviour
 {
-    [SerializeField] UnityEvent OnClickEvent;
+    public UnityEvent OnClickEvent;
     
     [Header("Audio")]
     [SerializeField] protected AK.Wwise.Event hoverAKEvent;

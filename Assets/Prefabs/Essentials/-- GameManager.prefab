@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8013746456821827347}
   - component: {fileID: 8013746456821827346}
   - component: {fileID: 6925282552501662171}
-  - component: {fileID: 2488952831440158486}
   m_Layer: 0
   m_Name: -- GameManager
   m_TagString: Untagged
@@ -46,54 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 0}
-  resetInputAction:
-    m_Name: Reset Input
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 3a097411-0ec8-4329-87db-4d21dc0e5403
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 982fcf0f-3d2b-4ec5-b661-fb47393304bc
-      m_Path: <Keyboard>/r
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Reset Input
-      m_Flags: 0
-  saveInputAction:
-    m_Name: Save Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: e527fe20-4cd5-40a1-826c-b28646ddc435
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 38851fb5-840a-4309-8147-586a0fe07a0f
-      m_Path: <Keyboard>/t
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Save Input
-      m_Flags: 0
-  resetSaveInputAction:
-    m_Name: Reset Save Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 16d72d50-79a6-4d10-8bb2-f25defe3803b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: fb6b2f23-8816-4230-a82f-29f7962792cf
-      m_Path: <Keyboard>/y
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Reset Save Input
-      m_Flags: 0
 --- !u!114 &6925282552501662171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,16 +58,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dangerSceneMat: {fileID: 2100000, guid: 31af4fe3d48823640bcabd45c5fc97b1, type: 2}
---- !u!114 &2488952831440158486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8013746456821827344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ec709ee4932c24ba2de8fa8d053902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playlist: {fileID: 0}

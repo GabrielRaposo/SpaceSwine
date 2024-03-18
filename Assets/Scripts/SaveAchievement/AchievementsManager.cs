@@ -156,6 +156,7 @@ public static class AchievementsManager
         if(a.achieved == state) return;
         
         a.achieved = state;
+
         Debug.Log($"<color=#45de00>Setting achievement progress for - {a.Achievement.id} -> {state}</color>");
 
         if (Steamworks.SteamUserStats.RequestCurrentStats())
@@ -165,7 +166,7 @@ public static class AchievementsManager
             else
                 Steamworks.SteamUserStats.ClearAchievement(id);
         }
-        
+
         //if(state) achievementAnimation.Invoke(a.Achievement);
     }
 
@@ -193,18 +194,21 @@ public static class AchievementsManager
         a.AddProgress(amount);
         
         Debug.Log($"<color=#45de00>Progress of {a.Achievement.id}: {a.GetProgress()}/{a.GetAmountRequired()}</color>");
-        
+       
         bool steamWorksStatsRequest = Steamworks.SteamUserStats.RequestCurrentStats();
 
         if(steamWorksStatsRequest)
             Steamworks.SteamUserStats.SetStat(id, a.GetProgress());
 
+
         if (a.GetProgress() >= a.GetAmountRequired())
         {
             a.achieved = true;
             //achievementAnimation.Invoke(a.Achievement);
+
             if (steamWorksStatsRequest)
                 Steamworks.SteamUserStats.SetAchievement(id);
+
         }
     }
 
@@ -243,8 +247,10 @@ public static class AchievementsManager
         {
             a.achieved = true;
             //achievementAnimation.Invoke(a.Achievement);
+
             if(steamWorksRequest)
                 Steamworks.SteamUserStats.SetAchievement(id);
+
         }
     }
 

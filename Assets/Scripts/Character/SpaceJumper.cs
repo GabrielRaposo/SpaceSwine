@@ -9,6 +9,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimations))]
 public class SpaceJumper : MonoBehaviour
 {
+    public bool fallIntoGravityIfNothingElse;
     [SerializeField] float speed;
     [SerializeField] float gravitationalPull;
     [SerializeField] LayerMask groundLayer;
@@ -42,44 +43,58 @@ public class SpaceJumper : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        enabled = false;
+    }
+
     private void Update() 
     {
         if (!onLaunch || flightLoopAKEvent == null)
             return;
         
+        Debug.Log($"A: Time.timeScale {Time.timeScale}, flightLoopAKEvent.IsPlaying(gameObject): {flightLoopAKEvent.IsPlaying(gameObject)}");
         if (Time.timeScale != 0 && !flightLoopAKEvent.IsPlaying(gameObject))
+        {
+            Debug.Log("Post");
             flightLoopAKEvent.Post(gameObject);
+        }
 
         if (Time.timeScale == 0)
+        {
+            Debug.Log("Stop");
             flightLoopAKEvent.Stop(gameObject);
+        }
     }
 
-    /**
-    private void FixedUpdate() 
+    
+    private void FixedUpdate()
     {
+        if (!fallIntoGravityIfNothingElse)
+            return;
+
         if (gravitationalPull <= 0 || !onLaunch)
             return;
 
         float groundCastDistance = 2f;
-        var groundCast = Physics2D.Raycast (transform.position, transform.up, groundCastDistance, groundLayer);
+        var groundCast = Physics2D.Raycast(transform.position, transform.up, groundCastDistance, groundLayer);
         if (!groundCast)
         {
             var gravityData = gravityInteraction.GetGravityArea();
             if (gravityData.isValid)
             {
                 Vector2 direction = (gravityData.Area.transform.position - transform.position).normalized;
-                if  (Vector2.Angle(direction, transform.up) > 67.5f )
+                if (Vector2.Angle(direction, transform.up) > 67.5f)
                     return;
 
-                Debug.Log("Is on gravity area: " + gravityData.Area.transform.parent.name);
+                //Debug.Log("Is on gravity area: " + gravityData.Area.transform.parent.name);
 
                 float speed = rb.velocity.magnitude;
-                direction = rb.velocity + (direction * gravitationalPull); 
-                rb.velocity = direction.normalized * speed; 
+                direction = rb.velocity + (direction * gravitationalPull);
+                rb.velocity = direction.normalized * speed;
             }
         }
     }
-    **/
 
     public void JumpInput()
     {
@@ -96,6 +111,7 @@ public class SpaceJumper : MonoBehaviour
 
         if (value) 
         {
+            Debug.Log("SetLaunchState: true");
             flightLoopAKEvent?.Post(gameObject);
             if (playLongJumpSound) longJumpAKEvent?.Post(gameObject);
             playerAnimations.throwing = false;
@@ -110,6 +126,7 @@ public class SpaceJumper : MonoBehaviour
         {
             playerAnimations.SetLandedState();
         }
+        enabled = value;
 
         platformerCharacter.enabled = !value;
         gravityInteraction.enabled = !value;
@@ -256,8 +273,13 @@ public class SpaceJumper : MonoBehaviour
 
     private void KillFlightSound()
     {
+        Debug.Log("KillFlightSound");
+
         if (flightLoopAKEvent != null)
             flightLoopAKEvent.Stop(gameObject);
+
+        if (longJumpAKEvent != null)
+            longJumpAKEvent.Stop(gameObject);
     }
 
     private void OnDisable() 

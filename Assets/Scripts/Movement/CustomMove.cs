@@ -12,11 +12,11 @@ public class CustomMove : MonoBehaviour
     [SerializeField] bool loop;
     [SerializeField] bool easeExtremities;
     [SerializeField] bool invertAutoEase;
-    [SerializeField] CustomEase customEase;
-    [SerializeField] bool moveOnStart;
+    [SerializeField] protected CustomEase customEase;
+    [SerializeField] protected bool moveOnStart;
     [SerializeField] bool stopDuringOutro;
 
-    float startingT = 0; 
+    protected float startingT = 0; 
     int direction = 1;
     int index = 1;
     float t;
@@ -49,6 +49,7 @@ public class CustomMove : MonoBehaviour
             InitList();
             
             startingPosition = transform.position;
+            //Debug.Log("startingPosition: " + startingPosition);
             initiated = true;
         }
 
@@ -58,7 +59,7 @@ public class CustomMove : MonoBehaviour
         positions.Insert(0, transform.position);
     }
 
-    private void Start() 
+    protected virtual void Start() 
     {
         Restart();
 
@@ -126,7 +127,7 @@ public class CustomMove : MonoBehaviour
     //        PauseMovement();
     //}
 
-    private void FixedUpdate() 
+    protected void FixedUpdate() 
     {
         if (!moving)
             return;

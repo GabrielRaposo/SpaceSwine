@@ -213,7 +213,7 @@ public class ShipInitializerSystem : MonoBehaviour
 
             if ( string.IsNullOrEmpty(targetPath) )
             {
-                DebugDisplay.Call("No targetPath assigned.");
+                DebugDisplay.Log("No targetPath assigned.");
                 return string.Empty;
             }
 

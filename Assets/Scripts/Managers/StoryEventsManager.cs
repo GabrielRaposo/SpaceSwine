@@ -9,7 +9,8 @@ public class StoryEventsManager : MonoBehaviour
 {
     [SerializeField] bool loadEventsFromSave;
 
-    [SerializeField] StoryEventScriptableObject shipAcessStoryEvent;
+    [SerializeField] StoryEventScriptableObject newSaveStoryEvent;
+    [SerializeField] StoryEventScriptableObject shipAccessStoryEvent;
     [SerializeField] List<StoryEventScriptableObject> storyEvents;
 
     TextMeshProUGUI listDisplay;
@@ -132,10 +133,44 @@ public class StoryEventsManager : MonoBehaviour
             return;
 
         eventProgress.ChangeProgress(value);
+        
+        StoryEventsAchievementsChecks(key);
 
         UpdatePrintedEventStates();
 
         ParseToSaveFormat();
+    }
+
+    private static void StoryEventsAchievementsChecks(StoryEventScriptableObject storyEvent)
+    {
+        Debug.Log("<color=#45de00>Checking story events achievements for " + storyEvent.name + " id:" + storyEvent.idTag + "</color>");
+        if(!IsComplete(storyEvent)) return;
+        
+        //ACHIEVEMENT CALLS
+
+        switch (storyEvent.idTag)
+        {
+            case "SHIP-ACCESS-REPAIRED":
+                AchievementsManager.SetAchievementState(AchievementEnum.IKnowAShortcut, true);
+                break;
+            
+            case "THINGAMAJIG-1":
+                AchievementsManager.SetAchievementState(AchievementEnum.TheBody, true);
+                break;
+            
+            case "THINGAMAJIG-2":
+                AchievementsManager.SetAchievementState(AchievementEnum.TheSpirit, true);
+                break;
+            
+            case "THINGAMAJIG-3":
+                AchievementsManager.SetAchievementState(AchievementEnum.TheMind, true);
+                break;
+            
+            case "W2-SUB-3":
+                AchievementsManager.SetAchievementState(AchievementEnum.ElectromagneticInterference, true);
+                break;
+        }
+        
     }
 
     public static void ClearProgress (StoryEventScriptableObject key)
@@ -193,10 +228,11 @@ public class StoryEventsManager : MonoBehaviour
 
     public static void UnlockShipAccess()
     {
-        if (Instance == null || Instance.shipAcessStoryEvent == null)
+        if (Instance == null || Instance.newSaveStoryEvent == null || Instance.shipAccessStoryEvent == null)
             return;
 
-        ChangeProgress (Instance.shipAcessStoryEvent, 99);
+        ChangeProgress (Instance.newSaveStoryEvent, 99);
+        ChangeProgress (Instance.shipAccessStoryEvent, 99);
     }
 
     #region Debug Display

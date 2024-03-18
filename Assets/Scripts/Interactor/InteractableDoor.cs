@@ -24,6 +24,10 @@ public class InteractableDoor : Interactable
     [SerializeField] float zoomInSize;
     [SerializeField] float zoomOutSize;
 
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event openAKEvent;
+    [SerializeField] AK.Wwise.Event closeAKEvent;
+
     bool closedSpaceIsActive;
     Sequence zoomSequence;
 
@@ -51,7 +55,6 @@ public class InteractableDoor : Interactable
         SetCameraZoom( !closedSpaceIsActive );
     }
 
-
     private IEnumerator SetState (PlayerInteractor interactor, bool value)
     {
         if (!interactor || !backComponent)
@@ -66,6 +69,9 @@ public class InteractableDoor : Interactable
         // -- Se precisar botar pra depois, então dividir a função em cases de "true" e casos de "false" ocorrendo em tempos diferentes
         if (value)
         {
+            if (openAKEvent != null)
+                openAKEvent.Post(gameObject);
+
             doorAnimator.SetBool("Open", value);
             yield return new WaitForSeconds (doorAnimationDuration);
 
@@ -74,6 +80,9 @@ public class InteractableDoor : Interactable
         }
         else
         {
+            if (closeAKEvent != null)
+                closeAKEvent.Post(gameObject);
+
             backComponent.SetState(value);
             yield return new WaitForSeconds (fadeAnimationDuration);
             

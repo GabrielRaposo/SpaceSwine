@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class CameraLockTriggerRegion : MonoBehaviour
 {
+    [SerializeField] bool useOnTriggerExit;
+
     bool activated;
     CameraFocusController cameraFocusController;
     
@@ -35,15 +37,18 @@ public class CameraLockTriggerRegion : MonoBehaviour
         }
     }
 
-    //private void OnTriggerExit2D (Collider2D collision) 
-    //{
-    //    if (!collision.CompareTag("Player"))
-    //        return;
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!useOnTriggerExit) 
+            return;
 
-    //    if (tutorialTextBox)
-    //    {
-    //        tutorialTextBox.HideText();
-    //        activated = false;
-    //    } 
-    //}
+        if (!collision.CompareTag("Player"))
+            return;
+
+        if (cameraFocusController)
+        {
+            cameraFocusController.SetPlayerFocus();
+            activated = false;
+        }
+    }
 }

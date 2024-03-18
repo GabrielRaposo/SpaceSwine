@@ -33,7 +33,7 @@ public static class InputTagController
 
     public static void ReadKeyboardBindings(string bindingsInfo)
     {
-        //Debug.Log (bindingsInfo);
+        //DebugDisplay.Call(bindingsInfo);
 
         if (bindingsInfo.Contains("Movement:2DVector"))
         {
@@ -55,7 +55,7 @@ public static class InputTagController
         {
             if (int.TryParse( bindingsInfo.Substring(bindingsInfo.Length - 2), out int result))
             {
-                if (result == 0)
+                if (result == 0 || result == 2)
                 {
                     if (CurrentKeyboardScheme != KeyboardScheme.Arrows)
                         SetKeyboardScheme (KeyboardScheme.Arrows);

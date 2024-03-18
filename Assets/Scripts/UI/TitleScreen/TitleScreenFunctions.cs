@@ -8,6 +8,7 @@ public class TitleScreenFunctions : MonoBehaviour
 {
     [SerializeField] SceneReference newFileScene;
     [SerializeField] SceneReference makeABeatScene;
+    [SerializeField] SceneReference creditsScene;
 
     TitleStateManager titleStateManager;
 
@@ -24,13 +25,13 @@ public class TitleScreenFunctions : MonoBehaviour
     public void NewGameInput()
     {
         SaveManager.ResetSave();
-        //DebugDisplay.Call ("New Game: Save Reset.");
+        DebugDisplay.Log ("New Game: Save Reset.");
 
-        //TrailerSceneCaller.AutoStart = true;
-        //PlaylistPlayer.CutsceneMode = true;
+        TrailerSceneCaller.AutoStart = true;
+        PlaylistPlayer.CutsceneMode = true;
 
-        TrailerSceneCaller.AutoStart = false;
-        PlaylistPlayer.CutsceneMode = false;
+        //TrailerSceneCaller.AutoStart = false;
+        //PlaylistPlayer.CutsceneMode = false;
 
         ContinueInput();
     }
@@ -58,6 +59,11 @@ public class TitleScreenFunctions : MonoBehaviour
         SoundtrackManager.OverrideChecksTrigger = true;
 
         GameManager.GoToScene (makeABeatScene.ScenePath);
+    }
+
+    public void CreditsInput()
+    {
+        GameManager.GoToScene(creditsScene.ScenePath);
     }
 
     public void QuitInput()

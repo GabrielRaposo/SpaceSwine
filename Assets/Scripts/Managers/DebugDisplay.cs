@@ -35,16 +35,19 @@ public class DebugDisplay : MonoBehaviour
         textDisplay.text = string.Empty;
     }
 
-    public static void Call (string s)
+    public static void Log (string s)
     {
         if (Instance == null)
             return;
 
-        Instance.LocalCallText(s);
+        Instance.LocalLog(s);
     }
 
-    public void LocalCallText(string s)
+    public void LocalLog (string s)
     {
+        if (!gameObject.activeSelf)
+            return;
+
         if (!textDisplay || !canvasGroup)
             return;
 
@@ -52,7 +55,8 @@ public class DebugDisplay : MonoBehaviour
 
         SetState(true);
         textDisplay.text = s;
-
+        //Debug.Log(s);
+        
         this.WaitSeconds(duration, () => SetState(false));
     }
 }

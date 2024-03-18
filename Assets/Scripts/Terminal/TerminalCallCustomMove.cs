@@ -10,6 +10,9 @@ public class TerminalCallCustomMove : TerminalCustomCaller, ITerminalEvent
 
     int calls;
 
+    PlayerInteractor interactor;
+    List<Interactable> interactableChildren; 
+
     private void Awake()
     {
         customMove = GetComponent<CustomMove>();    
@@ -17,6 +20,9 @@ public class TerminalCallCustomMove : TerminalCustomCaller, ITerminalEvent
 
     void Start()
     {
+        interactableChildren = new List<Interactable>();
+        GetComponentsInChildren(interactableChildren);
+
         customMove.OnStepReached += OnStepReached;
         calls = 0;
 
@@ -26,14 +32,53 @@ public class TerminalCallCustomMove : TerminalCustomCaller, ITerminalEvent
 
     public void Activate (InteractableTerminal terminal, PlayerInteractor interactor) 
     {    
+        this.interactor = interactor;
+        BeforeSequence(interactor);
+
         calls++;
         customMove.ResumeMovement();
 
         SetInteractionAction?.Invoke(false);
     }
 
+    private void BeforeSequence(PlayerInteractor player)
+    {
+        if (interactableChildren != null && interactableChildren.Count > 0)
+        {
+            foreach (Interactable i in interactableChildren)
+                i.SetInteraction(false);
+        }
+
+        if (player)
+        {
+            PlayerInput playerInput = player.GetComponent<PlayerInput>();
+            if (playerInput) playerInput.enabled = false;
+
+            PlatformerCharacter platformer = player.GetComponent<PlatformerCharacter>();
+            if (platformer) platformer.KillInputs();
+        }
+    }
+
+    private void AfterSequence(PlayerInteractor player)
+    {
+        if (interactableChildren != null && interactableChildren.Count > 0)
+        {
+            foreach (Interactable i in interactableChildren)
+                i.SetInteraction(true);
+        }
+
+        if (player)
+        {
+            PlayerInput playerInput = player.GetComponent<PlayerInput>();
+            if (playerInput) playerInput.enabled = true;
+        }
+    }
+
     private void OnStepReached()
     {
+        if (interactor)
+            AfterSequence(interactor);
+
         calls--;
         customMove.PauseMovement();
 
