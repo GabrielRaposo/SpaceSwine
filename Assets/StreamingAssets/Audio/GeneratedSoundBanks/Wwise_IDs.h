@@ -167,7 +167,8 @@ namespace AK
         static const AkUniqueID MAKEABEAT_FITA_TIRAR_FILA = 2316358293U;
         static const AkUniqueID MAKEABEAT_METRONOMO_OFF = 482400517U;
         static const AkUniqueID MAKEABEAT_METRONOMO_ON = 2580933369U;
-        static const AkUniqueID MAKEABEAT_TUNER = 1766946945U;
+        static const AkUniqueID MAKEABEAT_RADIO_OFF = 4149110930U;
+        static const AkUniqueID MAKEABEAT_RADIO_TUNER = 4085795197U;
         static const AkUniqueID NOISE_01 = 2758956373U;
         static const AkUniqueID NOISE_02 = 2758956374U;
         static const AkUniqueID NOISE_03 = 2758956375U;
