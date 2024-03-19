@@ -18,6 +18,7 @@ public enum AchievementEnum
     FruitsOfLabor,
     TheMind,
     Aficionado,
+
     LofiBeats,
     JumperMaster,
     ShooterMaster,
