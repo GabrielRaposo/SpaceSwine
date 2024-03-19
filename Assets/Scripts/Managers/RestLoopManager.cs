@@ -38,8 +38,13 @@ public class RestLoopManager : MonoBehaviour
 
         customTimeCounter.OnTimeReached += (index) =>
         {
-            Debug.Log("Set achievement");
-            //AchievementsManager.GetAchievementState()
+            AchievementEnum achievement = AchievementEnum.LofiBeats;
+            Debug.Log("Set achievement: " + achievement);
+
+            if (AchievementsManager.GetAchievementState(achievement))
+                return;
+
+            AchievementsManager.SetAchievementState(achievement, true);
         };
     }
 

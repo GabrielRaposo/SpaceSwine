@@ -18,6 +18,14 @@ public enum AchievementEnum
     FruitsOfLabor,
     TheMind,
     Aficionado,
+    LofiBeats,
+    JumperMaster,
+    ShooterMaster,
+    LooperMaster,
+    JumperExtra,
+    ShooterExtra,
+    LooperExtra,
+    SundayAfternoon
 }
 
 public static class AchievementsManager
@@ -47,7 +55,15 @@ public static class AchievementsManager
             { AchievementEnum.Cryptogeologist , "$7"},
             { AchievementEnum.FruitsOfLabor , "$8"},
             { AchievementEnum.TheMind , "$9"},
-            { AchievementEnum.Aficionado , "$10"}
+            { AchievementEnum.Aficionado , "$10"},
+            { AchievementEnum.LofiBeats , "$11"},
+            { AchievementEnum.JumperMaster , "$12"},
+            { AchievementEnum.ShooterMaster , "$13"},
+            { AchievementEnum.LooperMaster , "$14"},
+            { AchievementEnum.JumperExtra , "$15"},
+            { AchievementEnum.ShooterExtra , "$16"},
+            { AchievementEnum.LooperExtra , "$17"},
+            { AchievementEnum.SundayAfternoon , "$18"},
         };
     }
     
