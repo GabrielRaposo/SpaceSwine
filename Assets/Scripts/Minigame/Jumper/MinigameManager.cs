@@ -7,6 +7,9 @@ namespace Minigame
 {
     public class MinigameManager : MonoBehaviour
     {
+        public static int MAX_SCORE1 = 100;
+        public static int MAX_SCORE2 = 175;
+
         [SerializeField] GGSMinigame minigame;
 
         static GGSConsole CurrentConsole;
@@ -74,6 +77,29 @@ namespace Minigame
         {
             if (!CurrentConsole)
                 return;
+
+            if (score >= MAX_SCORE1)
+            {
+                switch (minigame)
+                {
+                    case GGSMinigame.Jumper:
+                        if (!AchievementsManager.GetAchievementState(AchievementEnum.JumperMaster))
+                            AchievementsManager.SetAchievementState(AchievementEnum.JumperMaster, true);
+                        break;
+
+                    case GGSMinigame.Shooter:
+                        if (!AchievementsManager.GetAchievementState(AchievementEnum.ShooterMaster))
+                            AchievementsManager.SetAchievementState(AchievementEnum.ShooterMaster, true);
+                        break;
+
+                    case GGSMinigame.Traveler:
+                        if (!AchievementsManager.GetAchievementState(AchievementEnum.LooperMaster))
+                            AchievementsManager.SetAchievementState(AchievementEnum.LooperMaster, true);
+                        break;
+                }
+            }
+            if (score >= MAX_SCORE2 && !AchievementsManager.GetAchievementState(AchievementEnum.SundayAfternoon))
+                AchievementsManager.SetAchievementState(AchievementEnum.SundayAfternoon, true);    
 
             CurrentConsole.SetHighscore(MinigameID, score);
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Minigame;
 
 namespace Jumper
 {
@@ -47,11 +48,6 @@ namespace Jumper
 
             if (MJ_ScoreManager.UseHasScoreTrigger() )
             {
-                if (!AchievementsManager.GetAchievementState(AchievementEnum.JumperMaster))
-                {
-                    
-                }
-
                 newRecordDisplay.gameObject.SetActive (true);
                 newScoreAKEvent?.Post(gameObject);
             }
