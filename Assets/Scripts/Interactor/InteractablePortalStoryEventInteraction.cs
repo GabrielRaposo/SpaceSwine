@@ -16,7 +16,7 @@ public class InteractablePortalStoryEventInteraction : StoryEventDependent
 
         CallDependentAction ( Setup, extraFrames: 3 );
 
-        Debug.Log("TO-FIX: Running on Update!");
+        //Debug.Log("TO-FIX: Running on Update!");
     }
 
     private void Setup()

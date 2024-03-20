@@ -139,6 +139,8 @@ public class SoundtrackManager : MonoBehaviour
 
     public void ChangePlaylistOnTheBack (PlaylistScriptableObject playlist)
     {
+        Debug.Log($"Change Playlist On The Back: {playlist.name}");
+
         if (this.playlist == playlist)
             return;
 
@@ -157,11 +159,14 @@ public class SoundtrackManager : MonoBehaviour
     {
         DebugDisplay.Log($"Change Playlist: {playlist.name}");
 
-        //Debug.Log($"B: {this.playlist.name} == {playlist.name} ");
-        if (this.playlist == playlist)
+        //Debug.Log($"A: {this.playlist.name} == {playlist.name} ? { this.playlist.name == playlist.name }");
+        if (this.playlist == playlist && IsCurrentTrackOnPlaylist)
         {
             if (this.playlist != null)
+            {
+                //Debug.Log($"A.1.1");
                 Resume();
+            }
             return;
         }
 
@@ -170,6 +175,7 @@ public class SoundtrackManager : MonoBehaviour
 
         if (!IsCurrentTrackOnPlaylist)
         {
+            //Debug.Log($"B.1");
             FadeOutAndSkip();
             return;
         }
