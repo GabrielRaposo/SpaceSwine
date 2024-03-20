@@ -63,6 +63,8 @@ namespace AK
         static const AkUniqueID GAMEPLAY_BUYK_VOA = 3132805884U;
         static const AkUniqueID GAMEPLAY_CHAVE_QUEBRA = 1139994008U;
         static const AkUniqueID GAMEPLAY_CRISTAL_TELEPORTA = 2452065229U;
+        static const AkUniqueID GAMEPLAY_ELETRICIDADE_DESLIGA = 2530107955U;
+        static const AkUniqueID GAMEPLAY_ELETRICIDADE_LIGA = 3492736275U;
         static const AkUniqueID GAMEPLAY_FLOR_ENERGIZA = 3179447255U;
         static const AkUniqueID GAMEPLAY_FLOR_TRANSITION = 3272639445U;
         static const AkUniqueID GAMEPLAY_ITEM_GOL = 3605340086U;
