@@ -184,6 +184,7 @@ namespace AK
         static const AkUniqueID TREBLE_05 = 2489791127U;
         static const AkUniqueID TREBLE_06 = 2489791124U;
         static const AkUniqueID UI_ALIENX_FALA = 2185850926U;
+        static const AkUniqueID UI_BOTAO_BACK = 1820834457U;
         static const AkUniqueID UI_BOTAO_CANNOTINTERACT = 576100071U;
         static const AkUniqueID UI_COELHO_FALA = 2890153433U;
         static const AkUniqueID UI_COELHO_FALA_CAPACETE = 2851539928U;
