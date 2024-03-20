@@ -260,7 +260,7 @@ public class GGSMenuManager : StoryEventDependent
         UseNotification();
         ggsConsole.ToggleConsoleState( GetMinigameBy(index) );
 
-        ExitMenu();
+        ExitMenu(silent: true);
     }
 
     private GGSMinigame GetMinigameBy(int index)
@@ -282,9 +282,9 @@ public class GGSMenuManager : StoryEventDependent
         ExitMenu();
     }
 
-    public void ExitMenu()
+    public void ExitMenu(bool silent = false)
     {
-        if (cancelAKEvent != null)
+        if (!silent && cancelAKEvent != null)
             cancelAKEvent.Post(gameObject);
 
         if (!OnFocus)
