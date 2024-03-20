@@ -2876,6 +2876,46 @@
 										<ActiveSource Name="ui_titulo_botao_hover" ID="{2167AC34-E877-4252-B4D4-7E1B63ACD6E6}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<Sound Name="ui_titulo_botao_cannotinteract" ID="{6F3FF571-091F-4EA1-8E6E-56C0CD999EA6}" ShortID="769965694">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>17</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>12</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_titulo_botao_cannotinteract" ID="{6A30584E-2942-4BB0-8C91-47C2064FF251}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.150029952764296"/>
+												<Property Name="LoopBegin" Type="Real64" Value="0"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ui_titulo_botao_cannotinteract.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="977808781"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_titulo_botao_cannotinteract" ID="{6A30584E-2942-4BB0-8C91-47C2064FF251}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Transições" ID="{891A74B5-48FD-4528-A1F4-53FF1F84D40C}" ShortID="508324333">
