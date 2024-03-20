@@ -2572,9 +2572,19 @@
 							<ChildrenList>
 								<Sound Name="ui_titulo_botao_clica" ID="{D5E86FCA-9EBC-42C5-A978-209D9053464A}" ShortID="436099165">
 									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>40</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-500</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>1</Value>
+												<Value>20</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -2587,23 +2597,29 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="ui_titulo_botao_clica" ID="{9D96AB65-45D0-4EBB-A0C8-2756D8615664}">
+										<AudioFileSource Name="ui_titulo_botao_hover" ID="{32941CF5-103A-4A2A-804C-21E52D8C187E}">
 											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="0.0390572857273931"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.322537585361698"/>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.01"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.24163589636774"/>
+												<Property Name="FadeOutShape" Type="int16" Value="0"/>
 												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimEnd" Type="Real64" Value="0.322537585361698"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.265798966015255"/>
 											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+											</ReferenceList>
 											<Language>SFX</Language>
-											<AudioFile>ui_titulo_botao_clica.wav</AudioFile>
+											<AudioFile>ui_titulo_botao_hover.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="941619186"/>
+												<MediaID ID="100338561"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="ui_titulo_botao_clica" ID="{9D96AB65-45D0-4EBB-A0C8-2756D8615664}" Platform="Linked"/>
+										<ActiveSource Name="ui_titulo_botao_hover" ID="{32941CF5-103A-4A2A-804C-21E52D8C187E}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="ui_titulo_ventinho" ID="{5A9C8A50-21DA-43AF-A308-9CAD8301BB58}" ShortID="703941026">
@@ -7871,6 +7887,17 @@
 									<ChildrenList>
 										<RandomSequenceContainer Name="ggs_shooter_tiro_bounce" ID="{6A80C324-6C03-4190-98E9-BB7087213E60}" ShortID="839923346">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>4</Value>
@@ -7937,6 +7964,17 @@
 										</RandomSequenceContainer>
 										<Sound Name="ggs_extratime_coletar" ID="{A36B11BE-19B2-4A14-B238-46A57BCC12F5}" ShortID="693768535">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>4</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>4</Value>
@@ -8138,6 +8176,17 @@
 										</Sound>
 										<Sound Name="ggs_shooter_tiro" ID="{3247962F-C05A-4CE5-806F-7C3B7DBF9E91}" ShortID="812889516">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>8</Value>
@@ -8171,7 +8220,7 @@
 												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 												<Property Name="MaxSoundPerInstance" Type="int16">
 													<ValueList>
-														<Value>3</Value>
+														<Value>1</Value>
 													</ValueList>
 												</Property>
 												<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -8573,7 +8622,7 @@
 												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 												<Property Name="MaxSoundPerInstance" Type="int16">
 													<ValueList>
-														<Value>3</Value>
+														<Value>1</Value>
 													</ValueList>
 												</Property>
 												<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -8611,6 +8660,17 @@
 										</Sound>
 										<Sound Name="ggs_looper_coletavel" ID="{09D07053-6AB1-45DE-80D4-0F263FAE9CD5}" ShortID="725519349">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>10</Value>
@@ -8648,6 +8708,17 @@
 										</Sound>
 										<Sound Name="ggs_looper_coletavel_plus" ID="{E9B745FA-CD87-4857-93EE-8D1C8812AA0D}" ShortID="30604603">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>8</Value>
@@ -8724,6 +8795,17 @@
 										</Sound>
 										<Sound Name="ggs_looper_nave_nasce" ID="{38F9453B-CB7F-4BDB-97DF-A85BDED41A4A}" ShortID="439317035">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>14</Value>
@@ -8757,6 +8839,17 @@
 										</Sound>
 										<Sound Name="ggs_looper_tiro" ID="{7AD36407-FAEC-4062-B92A-D56BBC1989AD}" ShortID="457540667">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>8</Value>
