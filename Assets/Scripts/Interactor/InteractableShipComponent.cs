@@ -37,6 +37,7 @@ public class InteractableShipComponent : Interactable
     [Header("Audio")]
     [SerializeField] AK.Wwise.Event cursorMoveAKEvent;
     [SerializeField] AK.Wwise.Event cursorSelectAKEvent;
+    [SerializeField] AK.Wwise.Event blockedAKEvent;
 
     int index;
     PlayerInputActions inputActions;
@@ -100,6 +101,8 @@ public class InteractableShipComponent : Interactable
         if (!interactable)
         {
             DebugDisplay.Log("Cannot interact.");
+            if (blockedAKEvent != null && !blockedAKEvent.IsPlaying(gameObject))
+                blockedAKEvent.Post(gameObject);
             return;
         }
 
