@@ -17,7 +17,6 @@ namespace Jumper
         [SerializeField] MJ_Player player;
         [SerializeField] AK.Wwise.Event newScoreAKEvent;
 
-        
         void Start()
         {
             if (!mainDisplay || !newRecordDisplay)
@@ -48,6 +47,11 @@ namespace Jumper
 
             if (MJ_ScoreManager.UseHasScoreTrigger() )
             {
+                if (!AchievementsManager.GetAchievementState(AchievementEnum.JumperMaster))
+                {
+                    
+                }
+
                 newRecordDisplay.gameObject.SetActive (true);
                 newScoreAKEvent?.Post(gameObject);
             }
