@@ -19,7 +19,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>9</Value>
+												<Value>12</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -344,7 +344,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>10</Value>
+														<Value>13</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -976,18 +976,6 @@
 					</PropertyList>
 					<ChildrenList>
 						<Sound Name="gameplay_item_gol" ID="{5CA4FC9D-55CE-4717-B2FC-673556BAA15D}" ShortID="702238103">
-							<PropertyList>
-								<Property Name="Lowpass" Type="int16">
-									<ValueList>
-										<Value>20</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>6</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -999,9 +987,10 @@
 							<ChildrenList>
 								<AudioFileSource Name="gameplay_item_gol" ID="{32E6ACF9-04EF-4F24-BBB4-DEA3AD68F743}">
 									<PropertyList>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
 										<Property Name="VolumeOffset" Type="Real64">
 											<ValueList>
-												<Value>5</Value>
+												<Value>13</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -1011,10 +1000,41 @@
 										<MediaID ID="931396405"/>
 									</MediaIDList>
 								</AudioFileSource>
+								<AudioFileSource Name="gameplay_item_gol_02" ID="{E3A3B49D-46D5-473D-BC32-F011FBD6EBA5}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.506724463731852"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.885147848411395"/>
+										<Property Name="VolumeOffset" Type="Real64">
+											<ValueList>
+												<Value>9</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>gameplay_item_gol_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="244352079"/>
+									</MediaIDList>
+								</AudioFileSource>
+								<AudioFileSource Name="gameplay_item_gol_03" ID="{5C730EB9-EC11-4A89-B675-395B37B98F46}">
+									<PropertyList>
+										<Property Name="VolumeOffset" Type="Real64">
+											<ValueList>
+												<Value>13</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>gameplay_item_gol_03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="325004201"/>
+									</MediaIDList>
+								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="gameplay_item_gol" ID="{32E6ACF9-04EF-4F24-BBB4-DEA3AD68F743}" Platform="Linked"/>
+								<ActiveSource Name="gameplay_item_gol_03" ID="{5C730EB9-EC11-4A89-B675-395B37B98F46}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_terminal_gira_planeta" ID="{C1B80B91-DB70-4465-94F6-C9D04ECC724C}" ShortID="759235353">
@@ -1135,12 +1155,12 @@
 												<PointList>
 													<Point>
 														<XPos>0</XPos>
-														<YPos>300</YPos>
+														<YPos>-50</YPos>
 														<Flags>21</Flags>
 													</Point>
 													<Point>
 														<XPos>1</XPos>
-														<YPos>-300</YPos>
+														<YPos>50</YPos>
 														<Flags>53</Flags>
 													</Point>
 												</PointList>
@@ -1150,7 +1170,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>4</Value>
+										<Value>13</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1164,23 +1184,35 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="gameplay_item_gol_espiral" ID="{72613189-BAEC-49A3-9985-72D24F546406}">
-									<PropertyList>
-										<Property Name="VolumeOffset" Type="Real64">
-											<ValueList>
-												<Value>5</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>gameplay_item_gol_espiral.wav</AudioFile>
 									<MediaIDList>
 										<MediaID ID="891933428"/>
 									</MediaIDList>
 								</AudioFileSource>
+								<AudioFileSource Name="gameplay_item_gol_espiral_02" ID="{C70E8EB5-D4D3-41FC-9619-8AE578C31298}">
+									<Language>SFX</Language>
+									<AudioFile>gameplay_item_gol_espiral_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="407899534"/>
+									</MediaIDList>
+								</AudioFileSource>
+								<AudioFileSource Name="gameplay_item_gol_espiral_03" ID="{7FB478F6-7D0C-4B98-A722-41374495ECE5}">
+									<PropertyList>
+										<Property Name="FadeInShape" Type="int16" Value="2"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.167540464461647"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>gameplay_item_gol_espiral_03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="655853993"/>
+									</MediaIDList>
+								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="gameplay_item_gol_espiral" ID="{72613189-BAEC-49A3-9985-72D24F546406}" Platform="Linked"/>
+								<ActiveSource Name="gameplay_item_gol_espiral_03" ID="{7FB478F6-7D0C-4B98-A722-41374495ECE5}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_portal_entra" ID="{72116878-88D7-4571-A327-5BCD751AE007}" ShortID="113087327">
@@ -2885,7 +2917,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>12</Value>
+												<Value>10</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -2900,14 +2932,25 @@
 									<ChildrenList>
 										<AudioFileSource Name="ui_titulo_botao_cannotinteract" ID="{6A30584E-2942-4BB0-8C91-47C2064FF251}">
 											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0189628936579407"/>
 												<Property Name="FadeOutDuration" Type="Real64" Value="0.150029952764296"/>
-												<Property Name="LoopBegin" Type="Real64" Value="0"/>
 												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
 											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>ui_titulo_botao_cannotinteract.wav</AudioFile>
 											<MediaIDList>
 												<MediaID ID="977808781"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="ui_titulo_botao_cannotinteract_02" ID="{E905B32E-C7FE-4C4B-975C-E456BDB3C6D7}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.010098532249576"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ui_titulo_botao_cannotinteract_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="762636319"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
