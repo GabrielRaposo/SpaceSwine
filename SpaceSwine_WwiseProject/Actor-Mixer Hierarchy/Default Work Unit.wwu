@@ -19,7 +19,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>12</Value>
+												<Value>14</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -50,7 +50,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>8</Value>
+												<Value>10</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -85,7 +85,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>8</Value>
+												<Value>11</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -121,7 +121,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>9</Value>
+														<Value>12</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -230,7 +230,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>21</Value>
+														<Value>24</Value>
 													</ValueList>
 													<RTPCList>
 														<RTPC Name="" ID="{080A5734-49FE-41A0-BAEB-A692C752ED2A}" ShortID="148398894">
@@ -544,7 +544,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>2</Value>
+												<Value>3</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -733,7 +733,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>8</Value>
+										<Value>12</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -976,6 +976,13 @@
 					</PropertyList>
 					<ChildrenList>
 						<Sound Name="gameplay_item_gol" ID="{5CA4FC9D-55CE-4717-B2FC-673556BAA15D}" ShortID="702238103">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>1.3</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -1094,7 +1101,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>9</Value>
+										<Value>11</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1170,7 +1177,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>13</Value>
+										<Value>15.5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1219,7 +1226,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>5</Value>
+										<Value>7</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1418,7 +1425,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>12.5</Value>
+										<Value>14</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1713,46 +1720,20 @@
 						</Sound>
 						<Sound Name="gameplay_eletricidade_liga" ID="{DE4085F9-3635-4A5A-A413-A4D95843258F}" ShortID="696154639">
 							<PropertyList>
-								<Property Name="Pitch" Type="int32">
-									<RTPCList>
-										<RTPC Name="" ID="{0D97D6FF-44A1-4653-A5D9-0DC191967543}" ShortID="314977007">
-											<ReferenceList>
-												<Reference Name="ControlInput">
-													<Custom>
-														<ModulatorEnvelope Name="Modulator Envelope (Custom)" ID="{61962CAA-8E70-49CE-990A-791976D90CF5}" ShortID="1070799295">
-															<PropertyList>
-																<Property Name="EnvelopeAttackCurve" Type="Real64" Value="6"/>
-																<Property Name="EnvelopeAttackTime" Type="Real64" Value="0.4"/>
-																<Property Name="EnvelopeDecayTime" Type="Real64" Value="0.516"/>
-																<Property Name="EnvelopeSustainLevel" Type="Real64" Value="62.6"/>
-															</PropertyList>
-														</ModulatorEnvelope>
-													</Custom>
-												</Reference>
-											</ReferenceList>
-											<Curve Name="" ID="{21A9EA78-9E08-48AE-BBD4-15F4EE6987D1}">
-												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="65537"/>
-												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>300</YPos>
-														<Flags>21</Flags>
-													</Point>
-													<Point>
-														<XPos>1</XPos>
-														<YPos>-200</YPos>
-														<Flags>53</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</RTPC>
-									</RTPCList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>15</Value>
+										<Value>13</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1765,61 +1746,35 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="gameplay_chave_quebra" ID="{96933967-8EFE-4043-92F3-03AAEF80DAA8}">
+								<AudioFileSource Name="gameplay_eletricidade_liga_03" ID="{C9A70991-6CDF-49AC-8DB1-F454C30E4B21}">
 									<Language>SFX</Language>
-									<AudioFile>gameplay_chave_quebra.wav</AudioFile>
+									<AudioFile>gameplay_eletricidade_liga_03.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="94958824"/>
+										<MediaID ID="834226099"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="gameplay_chave_quebra" ID="{96933967-8EFE-4043-92F3-03AAEF80DAA8}" Platform="Linked"/>
+								<ActiveSource Name="gameplay_eletricidade_liga_03" ID="{C9A70991-6CDF-49AC-8DB1-F454C30E4B21}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_eletricidade_desliga" ID="{7E91EBAA-DD02-4915-A3EC-57F30FE0D392}" ShortID="613305368">
 							<PropertyList>
-								<Property Name="Pitch" Type="int32">
-									<RTPCList>
-										<RTPC Name="" ID="{D2D106F6-3FE1-4B2E-9695-3539F47A4A91}" ShortID="737315223">
-											<ReferenceList>
-												<Reference Name="ControlInput">
-													<Custom>
-														<ModulatorEnvelope Name="Modulator Envelope (Custom)" ID="{49AFFFEC-7926-4154-8B93-711BD140EAAE}" ShortID="268136525">
-															<PropertyList>
-																<Property Name="EnvelopeAttackCurve" Type="Real64" Value="6"/>
-																<Property Name="EnvelopeAttackTime" Type="Real64" Value="0.4"/>
-																<Property Name="EnvelopeDecayTime" Type="Real64" Value="0.516"/>
-																<Property Name="EnvelopeSustainLevel" Type="Real64" Value="62.6"/>
-															</PropertyList>
-														</ModulatorEnvelope>
-													</Custom>
-												</Reference>
-											</ReferenceList>
-											<Curve Name="" ID="{A924C597-B9A8-4ECB-ABBE-360703C4EC25}">
-												<PropertyList>
-													<Property Name="Flags" Type="int32" Value="65537"/>
-												</PropertyList>
-												<PointList>
-													<Point>
-														<XPos>0</XPos>
-														<YPos>300</YPos>
-														<Flags>21</Flags>
-													</Point>
-													<Point>
-														<XPos>1</XPos>
-														<YPos>-200</YPos>
-														<Flags>53</Flags>
-													</Point>
-												</PointList>
-											</Curve>
-										</RTPC>
-									</RTPCList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>15</Value>
+										<Value>16</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1832,17 +1787,17 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="gameplay_chave_quebra" ID="{8F048177-F23E-454E-9E47-E77E6D4EBF09}">
+								<AudioFileSource Name="gameplay_eletricidade_desliga_03" ID="{CFC864E6-A5D6-4990-BC8C-9CB5D1FC1B31}">
 									<Language>SFX</Language>
-									<AudioFile>gameplay_chave_quebra.wav</AudioFile>
+									<AudioFile>gameplay_eletricidade_desliga_03.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="94958824"/>
+										<MediaID ID="641358222"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="gameplay_chave_quebra" ID="{8F048177-F23E-454E-9E47-E77E6D4EBF09}" Platform="Linked"/>
+								<ActiveSource Name="gameplay_eletricidade_desliga_03" ID="{CFC864E6-A5D6-4990-BC8C-9CB5D1FC1B31}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
@@ -6115,7 +6070,7 @@
 									<PropertyList>
 										<Property Name="Lowpass" Type="int16">
 											<ValueList>
-												<Value>30</Value>
+												<Value>31</Value>
 											</ValueList>
 										</Property>
 										<Property Name="Pitch" Type="int32">
@@ -6178,7 +6133,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>6</Value>
+												<Value>10</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
