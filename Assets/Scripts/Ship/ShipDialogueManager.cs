@@ -294,6 +294,8 @@ public class ShipDialogueManager : StoryEventDependent
         GameManager.OnDialogue = false;
 
         SaveManager.RemoveFromShipTalkIds(idToRemoveFromShipDialog);
+        
+        dialogueBox.ClearAndCloseDialogBox();
 
     }
 

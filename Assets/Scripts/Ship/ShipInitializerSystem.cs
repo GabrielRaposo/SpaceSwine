@@ -78,8 +78,8 @@ public class ShipInitializerSystem : MonoBehaviour
         bool dialogListEmpty = SaveManager.IsShipDialogListEmpty();
         
         dialogShipInteractable.SetInteraction(!dialogListEmpty);
-        if (dialogListEmpty)
-            dialogShipInteractable.DisableInteraction = true;
+        
+        dialogShipInteractable.DisableInteraction = dialogListEmpty;
 
         var dialogManager = dialogShipInteractable.shipDialogueManager;
         if(dialogManager)
