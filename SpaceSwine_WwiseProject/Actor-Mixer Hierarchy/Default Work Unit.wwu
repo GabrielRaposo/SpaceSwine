@@ -17,6 +17,17 @@
 							<ChildrenList>
 								<Sound Name="gameplay_buyk_pega_chave" ID="{C2875326-F527-46FD-B68C-5AA2430E94F6}" ShortID="343726287">
 									<PropertyList>
+										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>1</Value>
+											</ValueList>
+										</Property>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
 												<Value>14</Value>
@@ -121,7 +132,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>12</Value>
+														<Value>11</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -977,9 +988,20 @@
 					<ChildrenList>
 						<Sound Name="gameplay_item_gol" ID="{5CA4FC9D-55CE-4717-B2FC-673556BAA15D}" ShortID="702238103">
 							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>1.3</Value>
+										<Value>1.1</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1071,7 +1093,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>7</Value>
+										<Value>9</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1354,7 +1376,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>9.5</Value>
+										<Value>10.5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1844,7 +1866,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>6</Value>
+												<Value>7</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -3304,7 +3326,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>9</Value>
+												<Value>11</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -3625,7 +3647,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>3</Value>
+												<Value>5</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -3655,7 +3677,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>18</Value>
+												<Value>20</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -3753,7 +3775,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>10</Value>
+												<Value>12</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -3783,7 +3805,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>12</Value>
+												<Value>11</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -4695,7 +4717,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>8.5</Value>
+												<Value>9</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -5415,6 +5437,13 @@
 									</ReferenceList>
 									<ChildrenList>
 										<Sound Name="ui_robozinho_fala01" ID="{DB39F15E-991B-45D6-89E5-B8B4D2500F96}" ShortID="864277344">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>3</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5443,6 +5472,11 @@
 										</Sound>
 										<Sound Name="ui_robozinho_fala02" ID="{84A10B92-7A56-4148-90B5-D67895082956}" ShortID="479224061">
 											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Pitch" Type="int32">
 													<ValueList>
 														<Value>330</Value>
@@ -6979,7 +7013,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>11.5</Value>
+												<Value>14</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -7217,7 +7251,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>10</Value>
+												<Value>11.5</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -7385,7 +7419,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>12</Value>
+												<Value>13</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -7992,7 +8026,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>6</Value>
+										<Value>5.5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -8181,7 +8215,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>5</Value>
+												<Value>7</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -8630,7 +8664,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>7</Value>
+												<Value>10</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -8667,7 +8701,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>7</Value>
+												<Value>10</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -9384,7 +9418,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>10</Value>
+												<Value>12</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
