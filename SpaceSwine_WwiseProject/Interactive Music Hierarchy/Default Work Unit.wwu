@@ -4353,6 +4353,13 @@
 							</ReferenceList>
 							<ChildrenList>
 								<MusicTrack Name="20240314 lofi 46_stage04" ID="{F9A303E4-C528-43CA-876F-D18914084505}" ShortID="96127815">
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="OutputBus">
 											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
@@ -4391,6 +4398,56 @@
 																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																			</PropertyList>
 																			<AudioSourceRef Name="20240314 lofi 46_stage04" ID="{16D104F2-32E2-4432-95D2-4915E69E6CBD}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="20240314 lofi 46_stage04_ajuste strings" ID="{59831675-E576-4FE5-80F1-EFFB70A06A35}" ShortID="693768838">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="20240314 lofi 46_stage04_ajuste strings" ID="{BED48DD4-61F6-40C0-ADC2-FAF4EC1F383F}">
+											<Language>SFX</Language>
+											<AudioFile>20240314 lofi 46_stage04_ajuste strings.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="724004065"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{AFCDE57A-F3D2-49AB-B84B-762A3A5AABA9}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{F833BA66-B23C-4A44-9B31-DB70D0CBD574}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="20240314 lofi 46_stage04_ajuste strings" ID="{15B58A8F-3376-452C-BE11-C4012876C9F8}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="16000"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="20240314 lofi 46_stage04_ajuste strings" ID="{BED48DD4-61F6-40C0-ADC2-FAF4EC1F383F}"/>
 																		</MusicClip>
 																	</Local>
 																</Reference>
