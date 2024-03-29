@@ -170,7 +170,7 @@ public class ElectricMind : MonoBehaviour
         if (value == active)
             return;
 
-        if (active != value && !silent)
+        if (active != value && !silent && !SceneTransition.OnTransition)
         {
             if (value && activationAKEvent != null)
                 activationAKEvent.Post(gameObject);
