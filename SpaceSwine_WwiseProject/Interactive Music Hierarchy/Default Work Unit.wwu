@@ -4494,7 +4494,7 @@
 								<Property Name="EndPosition" Type="Real64" Value="6857.14285714286"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>9</Value>
+										<Value>10.5</Value>
 									</ValueList>
 									<RTPCList>
 										<RTPC Name="" ID="{0AE393DF-B0EE-48E9-ACE4-1EFC7F1FAF46}" ShortID="873366372">
@@ -5536,7 +5536,7 @@
 								<Property Name="EndPosition" Type="Real64" Value="6857.14285714286"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>9</Value>
+										<Value>10</Value>
 									</ValueList>
 									<RTPCList>
 										<RTPC Name="" ID="{D61C0EB7-BF95-4AA5-BE33-0F24B81E5F46}" ShortID="454769565">
@@ -5809,6 +5809,13 @@
 							</ReferenceList>
 							<ChildrenList>
 								<MusicTrack Name="BUMBOCAIXA_02" ID="{F9FE5E55-AFF1-4A47-B588-DB1E16F3B21A}" ShortID="123513864">
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="OutputBus">
 											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
@@ -5847,6 +5854,56 @@
 																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
 																			</PropertyList>
 																			<AudioSourceRef Name="BUMBOCAIXA_02" ID="{B55101D6-8658-4BC3-91DF-5F1A6241A02D}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+								<MusicTrack Name="sem clique_BUMBOCAIXA_02" ID="{ABB6EF50-4A7E-4C0E-B437-6BDC51B3890C}" ShortID="822786171">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="sem clique_BUMBOCAIXA_02" ID="{0FF8F222-690B-4D2C-AF79-ACF02CA4AA0F}">
+											<Language>SFX</Language>
+											<AudioFile>sem clique_BUMBOCAIXA_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="84158390"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{F81FD521-0CDA-4F46-9519-F93C50D426C1}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{EEBC5B43-5395-4F3A-9436-8D9CECCCF560}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="sem clique_BUMBOCAIXA_02" ID="{D21F8792-E377-4E9D-8D1E-BD8AE89A4180}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="6857.14285714286"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="sem clique_BUMBOCAIXA_02" ID="{0FF8F222-690B-4D2C-AF79-ACF02CA4AA0F}"/>
 																		</MusicClip>
 																	</Local>
 																</Reference>
@@ -6575,9 +6632,14 @@
 								<MusicSegment Name="NOISE_02" ID="{F03CCF9A-EFAE-4C49-AD7E-0C4225D04466}" ShortID="1046259064">
 									<PropertyList>
 										<Property Name="EndPosition" Type="Real64" Value="6857.14285714286"/>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>20</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-3</Value>
+												<Value>-5</Value>
 											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{5C925EEA-8C3E-4905-A341-8C2BF34DCA4F}" ShortID="434940417">
@@ -6690,10 +6752,12 @@
 								<MusicSegment Name="NOISE_03" ID="{AF415319-4883-4161-8B4F-F4AD3899C70F}" ShortID="555408345">
 									<PropertyList>
 										<Property Name="EndPosition" Type="Real64" Value="6857.14285714286"/>
-										<Property Name="Volume" Type="Real64">
+										<Property Name="Highpass" Type="int16">
 											<ValueList>
-												<Value>-2</Value>
+												<Value>45</Value>
 											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
 											<RTPCList>
 												<RTPC Name="" ID="{704B30E0-14C5-46B8-8DDB-A5E1B50D539E}" ShortID="697799565">
 													<ReferenceList>
@@ -6732,6 +6796,13 @@
 									</ReferenceList>
 									<ChildrenList>
 										<MusicTrack Name="NOISE_03" ID="{F713E64E-E506-4021-BF42-27F63BCF1371}" ShortID="404965616">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="OutputBus">
 													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
@@ -6781,6 +6852,56 @@
 												</ObjectList>
 											</ObjectLists>
 										</MusicTrack>
+										<MusicTrack Name="NOISE_03_v2" ID="{86D5B54F-ED58-4C11-B32E-531DE26A7044}" ShortID="115898046">
+											<ReferenceList>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="NOISE_03_v2" ID="{553D1027-5E64-4988-B381-8B5EFA22A3BF}">
+													<Language>SFX</Language>
+													<AudioFile>NOISE_03_v2.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="420323595"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<TransitionList>
+												<MusicTransition Name="Root" ID="{230A7903-DA7F-444F-818B-06EAA9A85B1B}">
+													<PropertyList>
+														<Property Name="IsFolder" Type="bool" Value="True"/>
+													</PropertyList>
+													<TransitionInfo/>
+												</MusicTransition>
+											</TransitionList>
+											<ObjectLists>
+												<ObjectList Name="Sequences">
+													<Reference>
+														<Local>
+															<MusicTrackSequence Name="" ID="{2E9AD661-51A2-4CDB-933E-6AC237911C47}">
+																<ObjectLists>
+																	<ObjectList Name="Clips">
+																		<Reference>
+																			<Local>
+																				<MusicClip Name="NOISE_03_v2" ID="{774F8DD5-79D1-4090-ADA8-36E47A058AF2}">
+																					<PropertyList>
+																						<Property Name="EndTrimOffset" Type="Real64" Value="6857.14285714286"/>
+																						<Property Name="FadeInMode" Type="int16" Value="0"/>
+																						<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																					</PropertyList>
+																					<AudioSourceRef Name="NOISE_03_v2" ID="{553D1027-5E64-4988-B381-8B5EFA22A3BF}"/>
+																				</MusicClip>
+																			</Local>
+																		</Reference>
+																	</ObjectList>
+																</ObjectLists>
+															</MusicTrackSequence>
+														</Local>
+													</Reference>
+												</ObjectList>
+											</ObjectLists>
+										</MusicTrack>
 									</ChildrenList>
 									<ObjectLists>
 										<ObjectList Name="Cues">
@@ -6806,6 +6927,9 @@
 									<PropertyList>
 										<Property Name="EndPosition" Type="Real64" Value="6857.14285714286"/>
 										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>4</Value>
+											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{81311272-6644-4EA9-8F6F-C1685EA30192}" ShortID="274944960">
 													<ReferenceList>
@@ -6918,6 +7042,9 @@
 									<PropertyList>
 										<Property Name="EndPosition" Type="Real64" Value="6857.14285714286"/>
 										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-6</Value>
+											</ValueList>
 											<RTPCList>
 												<RTPC Name="" ID="{DBF8AB41-7CF7-4005-B767-33A128CF8A77}" ShortID="209466836">
 													<ReferenceList>
@@ -7770,7 +7897,7 @@
 								<Property Name="EndPosition" Type="Real64" Value="6857.14285714286"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>3</Value>
+										<Value>3.5</Value>
 									</ValueList>
 									<RTPCList>
 										<RTPC Name="" ID="{DE845A1A-F980-46CD-8CCE-804C43D7D820}" ShortID="746215376">

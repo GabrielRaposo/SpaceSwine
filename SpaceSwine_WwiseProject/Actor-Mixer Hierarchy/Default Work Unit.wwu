@@ -10046,7 +10046,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>10</Value>
+										<Value>15</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -10180,7 +10180,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>10</Value>
+										<Value>23</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -11230,11 +11230,21 @@
 							</ChildrenList>
 							<ObjectLists/>
 						</RandomSequenceContainer>
-						<Sound Name="makeabeat_metronomo_on_01" ID="{2826776A-0F50-4675-B191-E98AE60F05AF}" ShortID="757056361">
+						<Sound Name="makeabeat_radio_passa" ID="{2826776A-0F50-4675-B191-E98AE60F05AF}" ShortID="757056361">
 							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>20</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-600</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>10</Value>
+										<Value>17</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -11260,11 +11270,21 @@
 								<ActiveSource Name="makeabeat_metronomo_on" ID="{BFF62BB4-D645-4697-9A4E-850F10F248E1}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="makeabeat_metronomo_off_01" ID="{8EC36431-260F-468E-B24D-FC30496FF9C7}" ShortID="223154196">
+						<Sound Name="makeabeat_radio_off" ID="{8EC36431-260F-468E-B24D-FC30496FF9C7}" ShortID="223154196">
 							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>20</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-600</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>10</Value>
+										<Value>17</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -11278,10 +11298,14 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="makeabeat_metronomo_off" ID="{7128F6A7-254E-4C63-A3DC-B98998844C53}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0507952236771395"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>makeabeat_metronomo_off.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="652548168"/>
+										<MediaID ID="472306141"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
