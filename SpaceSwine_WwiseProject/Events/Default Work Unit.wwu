@@ -411,6 +411,28 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="gameplay_eletricidade_desliga" ID="{76BF9AA6-4471-4BE9-8C79-71E4F00736D5}">
+							<ChildrenList>
+								<Action Name="" ID="{210DAF7D-CA00-4CFB-81C0-1BC13E08108D}" ShortID="284752432">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="gameplay_eletricidade_desliga" ID="{7E91EBAA-DD02-4915-A3EC-57F30FE0D392}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="gameplay_eletricidade_liga" ID="{BFA8A08D-ABBE-45B1-A72D-FE8B297E376B}">
+							<ChildrenList>
+								<Action Name="" ID="{F049E582-C60D-4099-B7D4-44B52E11390C}" ShortID="1019640190">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="gameplay_eletricidade_liga" ID="{DE4085F9-3635-4A5A-A413-A4D95843258F}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{A605F833-337F-4E50-B645-2CF63495EEFF}" ShortID="785344164">
@@ -767,6 +789,28 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="ui_botao_cannotinteract" ID="{BD823B3B-11AA-46A9-8426-486119CCBDF9}">
+							<ChildrenList>
+								<Action Name="" ID="{7CA2DB67-9007-4C72-B992-9C7007887872}" ShortID="443913922">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_botao_cannotinteract" ID="{6F3FF571-091F-4EA1-8E6E-56C0CD999EA6}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="ui_botao_back" ID="{D8DD544D-6200-4A33-846F-B9CB5E642EC6}">
+							<ChildrenList>
+								<Action Name="" ID="{92B62AB6-1F69-496C-AFAB-B0CBA42773FB}" ShortID="759615600">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="ui_botao_back" ID="{D2F28AF9-60D7-4F68-BFE2-697D9EEB2F10}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Música" ID="{B161416B-3C8F-40B2-951B-9CE5F66A24CE}" ShortID="710658385">
@@ -1033,7 +1077,7 @@
 								<Action Name="" ID="{1E1A4DD1-BEFC-4641-B753-6F5DCFD0059F}" ShortID="788191848">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="20230424 lofi 22" ID="{CC357464-1C4B-4B93-B96C-6C6FDF0FFA23}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+											<ObjectRef Name="20230424 lofi 22_mais sabido" ID="{7353087B-6F4A-42D5-A444-60BC536E117C}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -1044,7 +1088,7 @@
 								<Action Name="" ID="{8C5281F4-8AFC-48F2-BFED-CE7056C4D729}" ShortID="113364347">
 									<ReferenceList>
 										<Reference Name="Target">
-											<ObjectRef Name="20230425 lofi 23" ID="{CC652358-F7CD-40BE-AC94-7528586A71F5}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+											<ObjectRef Name="20230425 lofi 23_mais sabido_pos ajustes2" ID="{3858AC01-70CF-405A-9431-F6B53D7EDCA9}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
 										</Reference>
 									</ReferenceList>
 								</Action>
@@ -1270,6 +1314,58 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Folder Name="Cutscene Final" ID="{30BED505-F824-4555-8AB6-29B42CF14790}" ShortID="1029971381">
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="26"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<Event Name="lofi_46_stage01" ID="{E78CFCCD-5762-49E9-B6AC-DD2A4204070E}">
+									<ChildrenList>
+										<Action Name="" ID="{9ADA387B-7938-4C42-B75C-2F2006DFFD49}" ShortID="36385640">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="20240314 lofi 46_stage01" ID="{812CC104-D53E-47C8-88AB-711E29ED6BD7}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="lofi_46_stage02" ID="{78A3F578-6C5C-4335-AAC3-D59185098677}">
+									<ChildrenList>
+										<Action Name="" ID="{92BDEEA4-0ED2-4062-BE97-A1F2BE54E9B4}" ShortID="1072779426">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="20240314 lofi 46_stage02" ID="{EF88E5E9-9B77-40C7-9EC6-90CD40593514}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="lofi_46_stage04" ID="{C747C3FA-0A58-4A80-84B1-37683C7F426C}">
+									<ChildrenList>
+										<Action Name="" ID="{24061F01-AFAC-4756-BF9E-B692A772950D}" ShortID="492730660">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="20240314 lofi 46_stage04" ID="{4048927C-DAEE-4CE1-999D-1E21A2011662}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="lofi_46_stage03" ID="{D9E84B03-15A1-4B20-851E-35D69187C04E}">
+									<ChildrenList>
+										<Action Name="" ID="{D8AAAD47-96A7-4E71-B52E-EF1B954AC5F4}" ShortID="722335828">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="20240314 lofi 46_stage03" ID="{5BF2052B-4014-4097-8149-CE6D1F663B90}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Personagens" ID="{0ADBD128-F7D6-4009-9C13-50E993C7A7B9}" ShortID="485793408">
@@ -1322,10 +1418,10 @@
 								</Event>
 								<Event Name="ui_nave_fala" ID="{AF4D5EE6-ADA2-4583-A72B-0C77A9F1EFF7}">
 									<ChildrenList>
-										<Action Name="" ID="{9C3866D0-EAA8-4E9C-AF12-163B5CD4C414}" ShortID="532763341">
+										<Action Name="" ID="{A2086536-A313-42F1-B991-691F59A9D7F1}" ShortID="685451478">
 											<ReferenceList>
 												<Reference Name="Target">
-													<ObjectRef Name="ui_nave_fala" ID="{4C15F122-1426-4EF2-B940-7D758AEB61B5}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+													<ObjectRef Name="ui_nave_fala_v3" ID="{7D33F62E-3DD7-460A-952F-6D899B19B406}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>
@@ -1560,6 +1656,91 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Folder Name="Cutscene Final" ID="{22237B7C-1692-422D-809B-83DF436D1262}" ShortID="679478197">
+									<ChildrenList>
+										<Event Name="fade_CutsceneMusic_Troca_02" ID="{1B7AD651-4B2F-4F21-AA4B-0C4C1C95BECF}">
+											<ChildrenList>
+												<Action Name="" ID="{242D9951-563B-4C7C-8487-E13EE5708AF2}" ShortID="357555909">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="38"/>
+														<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="CutsceneMusic_Volume_Stage_02" ID="{6942CEE4-8B6A-4CAD-9582-EA93BF0F0E33}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{C608A8CE-1853-4184-A099-C1B40B7EA28D}" ShortID="863346621">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="38"/>
+														<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+														<Property Name="GameParameterValue" Type="Real64" Value="100"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="CutsceneMusic_Volume_Stage_03" ID="{D17A092B-4463-4948-BE9B-5F9493199FDC}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="fade_CutsceneMusic_Troca_03" ID="{05510E30-32FA-42D1-BEA0-F75108B57451}">
+											<ChildrenList>
+												<Action Name="" ID="{D9E52663-0FB6-48B1-9FE0-27A6CB8D1B99}" ShortID="285433579">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="38"/>
+														<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="CutsceneMusic_Volume_Stage_03" ID="{D17A092B-4463-4948-BE9B-5F9493199FDC}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{3197C969-0B4D-4E87-B18F-2BD019745D6F}" ShortID="759028466">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="38"/>
+														<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+														<Property Name="GameParameterValue" Type="Real64" Value="100"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="CutsceneMusic_Volume_Stage_04" ID="{FAED70A6-D7C1-4399-B9B2-2267067C7530}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="fade_CutsceneMusic_Troca_01" ID="{982CF734-87DB-42F7-B6F8-A3C4E9FA9F63}">
+											<ChildrenList>
+												<Action Name="" ID="{3942B147-6CF5-4CCB-83B5-A14C37D48CBE}" ShortID="576782428">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="38"/>
+														<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="CutsceneMusic_Volume_Stage_01" ID="{F1FE5557-9B65-47F7-91E1-623D579F366E}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+												<Action Name="" ID="{F135CEEB-E0B2-4D91-AB39-1D265BB4255F}" ShortID="602447417">
+													<PropertyList>
+														<Property Name="ActionType" Type="int16" Value="38"/>
+														<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+														<Property Name="GameParameterValue" Type="Real64" Value="100"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="CutsceneMusic_Volume_Stage_02" ID="{6942CEE4-8B6A-4CAD-9582-EA93BF0F0E33}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Nave" ID="{3B3FBE93-D3AE-408F-8B4C-EF75ACEC82C8}" ShortID="682738784">
@@ -2231,6 +2412,164 @@
 										</Action>
 									</ChildrenList>
 								</Event>
+								<Folder Name="Ruído" ID="{5FB0E24B-8AD7-40E4-8B1D-1258DA95172D}" ShortID="529304131">
+									<ChildrenList>
+										<Event Name="NOISE_01" ID="{5E66112C-0E7C-43BA-AF8C-99032B63669B}">
+											<ChildrenList>
+												<Action Name="" ID="{C7966261-13DD-4E10-AC66-56503A4122AA}" ShortID="293598960">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="NOISE_01" ID="{0CC70404-B395-4AA1-9301-759132110293}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="NOISE_03" ID="{540A67BC-004C-4F75-9DB1-9155B6F1018D}">
+											<ChildrenList>
+												<Action Name="" ID="{6AF4B0EB-F767-45D1-A3D7-BC404BEED031}" ShortID="90186226">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="NOISE_03" ID="{AF415319-4883-4161-8B4F-F4AD3899C70F}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="NOISE_04" ID="{3F11611D-43C4-4D64-89EF-14433DB9F50D}">
+											<ChildrenList>
+												<Action Name="" ID="{9D6DC575-FCEE-4D06-B6B1-E683E3E3DA61}" ShortID="410733831">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="NOISE_04" ID="{6E99030E-E58E-4461-BA60-2EE8DD1F51FD}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="NOISE_02" ID="{58BB5782-D160-41C6-AB28-95D1A6227E61}">
+											<ChildrenList>
+												<Action Name="" ID="{2C8FEA6F-8130-4B60-B171-D9ED49A7F204}" ShortID="696378329">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="NOISE_02" ID="{F03CCF9A-EFAE-4C49-AD7E-0C4225D04466}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="NOISE_05" ID="{419A6BE9-F9FF-49BD-A9CC-F70197108DCD}">
+											<ChildrenList>
+												<Action Name="" ID="{DE5D48D5-E7FF-4790-92FE-BF44224D5037}" ShortID="270337948">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="NOISE_05" ID="{16E3B302-6313-4900-B470-D05821B68E3C}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+									</ChildrenList>
+								</Folder>
+								<Event Name="TREBLE_05" ID="{6A112525-5A4B-4BB9-BD55-F7A8D8491405}">
+									<ChildrenList>
+										<Action Name="" ID="{66AC6141-2112-46F6-BDC1-54A4961073DA}" ShortID="781331232">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="TREBLE_05" ID="{BF93DFD5-CF0E-4C8F-8F62-3FD3E514CCF9}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="TREBLE_06" ID="{C825238D-657D-4368-AFB3-C1B7D7535213}">
+									<ChildrenList>
+										<Action Name="" ID="{13FB50A4-990B-4501-BF84-F1B72FD4FC7E}" ShortID="727707238">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="TREBLE_06" ID="{0EBA510F-ABE6-45DD-884F-3C96D69D85C1}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ASMR_03_placeholder" ID="{BE116093-0D43-419D-A00F-E5D8A748D2EA}">
+									<ChildrenList>
+										<Action Name="" ID="{1846DAD9-ED8B-4562-ADB2-66FDA4A2D92D}" ShortID="239927552">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ASMR_03_placeholder" ID="{846429FB-E0C6-409F-980F-82384F377812}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="ASMR_02_placeholder" ID="{5ECA4592-D810-4B66-9D2C-F3683521010F}">
+									<ChildrenList>
+										<Action Name="" ID="{1BB5BB07-23CE-4203-B2C7-8FCF091E579F}" ShortID="250011478">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="ASMR_02_placeholder" ID="{18AA2C83-C11F-407F-99CA-6D42059733FD}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="BASS_03" ID="{AF6EA80B-45DB-48D6-9BF4-11CF7F9F4AF9}">
+									<ChildrenList>
+										<Action Name="" ID="{9A82D0C3-9934-436C-80A3-46506BFD7499}" ShortID="857649995">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BASS_03" ID="{4250E2CA-2C56-4914-80B0-85EB3D0CF11D}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="BUMBOCAIXA_03" ID="{A3E2E8C3-F61F-4E50-BE73-97434E1CEEAC}">
+									<ChildrenList>
+										<Action Name="" ID="{FD72C783-6E48-420A-B11C-CEC91F4FC407}" ShortID="418735052">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="BUMBOCAIXA_03" ID="{E22B7F14-5CB6-4DD7-9F9D-B1FDE1C48C77}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="CHORDS_03" ID="{352A752D-B70E-4252-B71C-637E87072109}">
+									<ChildrenList>
+										<Action Name="" ID="{FC568D64-53FE-4933-92CD-9F8479E4413C}" ShortID="426898931">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="CHORDS_03" ID="{C0CF021E-D6AB-4951-A13D-198C65B09069}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="HIHAT_03" ID="{9C74FB7B-36C1-4EB0-B38A-C6F94E1EDA4B}">
+									<ChildrenList>
+										<Action Name="" ID="{9A688B04-A799-42F7-8FF1-51CEF3A87451}" ShortID="834173054">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="HIHAT_03" ID="{DC3299B5-DBC5-4E05-81FE-BD52E1242509}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="AMBIENCE_03" ID="{B282C997-C66D-4225-9349-83C4C9CE57FB}">
+									<ChildrenList>
+										<Action Name="" ID="{0A97D350-6854-4EC2-8086-C17731E22B91}" ShortID="693569112">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="AMBIENCE_03" ID="{E50B77A0-C285-4D04-81B2-2981BBFEF684}" WorkUnitID="{9E7AC0F2-887F-4A43-BD3B-2B496F6003F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="SFX Make a Beat" ID="{60E2DB56-CA7D-43C6-ACD5-F53E4FD0FD5E}" ShortID="122733472">
@@ -2355,6 +2694,28 @@
 											<ReferenceList>
 												<Reference Name="Target">
 													<ObjectRef Name="makeabeat_aparelhos_selecao" ID="{15C36785-EE85-41FB-9146-F21ECA1A2F77}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="makeabeat_radio_tuner" ID="{6F19450C-3B99-4862-B591-1AD441FCF742}">
+									<ChildrenList>
+										<Action Name="" ID="{08BAFBA1-8F21-474C-8112-7C91C440798D}" ShortID="419021385">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="makeabeat_radio_passa" ID="{2826776A-0F50-4675-B191-E98AE60F05AF}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="makeabeat_radio_off" ID="{FEB0F949-9B9D-4408-A4DC-BA442064C0BE}">
+									<ChildrenList>
+										<Action Name="" ID="{2BA332DF-40C0-4CF4-89A6-9AE8ED9B01BC}" ShortID="775272184">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="makeabeat_radio_off" ID="{8EC36431-260F-468E-B24D-FC30496FF9C7}" WorkUnitID="{031EA2F2-364C-4CD2-91BD-9EE19A8753F2}"/>
 												</Reference>
 											</ReferenceList>
 										</Action>

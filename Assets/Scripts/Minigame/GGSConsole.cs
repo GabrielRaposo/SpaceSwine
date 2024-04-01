@@ -51,6 +51,7 @@ namespace Minigame
 
         //public static bool TurnedOn { get; private set; }
         public static GGSConsole Instance;
+        public StoryEventScriptableObject playedGGSEvent;
 
         private void Awake() 
         {
@@ -140,6 +141,9 @@ namespace Minigame
                     );
                 }
             );
+            
+            StoryEventsManager.ChangeProgress(playedGGSEvent, 99);
+            
         }
 
         public void TurnConsoleOff()

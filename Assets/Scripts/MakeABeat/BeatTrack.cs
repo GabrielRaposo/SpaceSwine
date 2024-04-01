@@ -142,6 +142,8 @@ namespace MakeABeat
 
             if (sequence != null)
                 sequence.Kill();
+            
+            transform.localScale = Vector3.one;
 
             sequence = DOTween.Sequence();
             sequence.Append( transform.DOPunchScale(Vector3.one * .05f, duration: .2f, vibrato: 0) );

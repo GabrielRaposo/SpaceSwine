@@ -159,8 +159,8 @@ public class ShipDialogueManager : StoryEventDependent
 
     public void CallDialogueFromAvailableTalks()
     {
-        SetExclamationIcon(false);
-        return;
+        //SetExclamationIcon(false);
+        //return;
 
         var shipTalkIds = SaveManager.GetShipTalkIds();
         
@@ -294,6 +294,8 @@ public class ShipDialogueManager : StoryEventDependent
         GameManager.OnDialogue = false;
 
         SaveManager.RemoveFromShipTalkIds(idToRemoveFromShipDialog);
+        
+        dialogueBox.ClearAndCloseDialogBox();
 
     }
 

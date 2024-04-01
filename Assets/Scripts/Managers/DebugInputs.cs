@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DevLocker.Utils;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,6 +27,10 @@ public class DebugInputs : MonoBehaviour
     [Header("FPS")]
     [SerializeField] InputAction fpsInputAction;
     [SerializeField] FPSCounterDisplay fpsDisplay;
+
+    [Header("Bonus")]
+    [SerializeField] InputAction bonusSceneAction;
+    [SerializeField] SceneReference bonusSceneReference;
 
     static DebugInputs Instance;
     static bool wasSetup;
@@ -58,6 +63,8 @@ public class DebugInputs : MonoBehaviour
         stopMusicTestInput.Enable();
         
         fpsInputAction.Enable();
+
+        bonusSceneAction.Enable();
 
         if (wasSetup)
             return;
@@ -161,6 +168,18 @@ public class DebugInputs : MonoBehaviour
             };
         }
 
+        /* -- Bonus Scene -- */ {
+            bonusSceneAction.performed += (ctx) => 
+            {
+                if (bonusSceneReference == null)
+                    return;
+
+                GameManager.GoToScene(bonusSceneReference.ScenePath);
+            };
+
+        }
+
+
         wasSetup = true;
     }
 
@@ -186,5 +205,7 @@ public class DebugInputs : MonoBehaviour
         stopMusicTestInput.Disable();
 
         fpsInputAction.Disable();    
+
+        bonusSceneAction.Disable();
     }
 }

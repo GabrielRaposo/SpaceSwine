@@ -248,4 +248,11 @@ public class Door : MonoBehaviour
         }
         animator.SetBool("Open", value);
     }
+
+    public void ExternalOpenDoorCall(bool silent)
+    {
+        if (!silent)
+            openAKEvent?.Post(gameObject);
+        SetOpenState (true, instant: false);
+    }
 }

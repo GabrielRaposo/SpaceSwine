@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Minigame;
 
 namespace Jumper
 {
@@ -17,7 +18,6 @@ namespace Jumper
         [SerializeField] MJ_Player player;
         [SerializeField] AK.Wwise.Event newScoreAKEvent;
 
-        
         void Start()
         {
             if (!mainDisplay || !newRecordDisplay)

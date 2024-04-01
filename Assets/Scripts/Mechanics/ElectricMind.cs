@@ -12,6 +12,10 @@ public class ElectricMind : MonoBehaviour
     [SerializeField] Transform linesGroup;
     [SerializeField] ElectricMindEffect lightningEffect;
 
+    [Header("Audio")]
+    [SerializeField] AK.Wwise.Event activationAKEvent;
+    [SerializeField] AK.Wwise.Event deactivationAKEvent;
+
     bool active;
 
     ElectricLock[] electricLocks;
@@ -158,13 +162,22 @@ public class ElectricMind : MonoBehaviour
 
     public void ToggleActivation()
     {
-        SetActivation(!active);
+        SetActivation (!active, silent: false);
     }
 
-    public void SetActivation(bool value)
+    public void SetActivation (bool value, bool silent = true)
     {
         if (value == active)
             return;
+
+        if (active != value && !silent && !SceneTransition.OnTransition)
+        {
+            if (value && activationAKEvent != null)
+                activationAKEvent.Post(gameObject);
+
+            if (!value && deactivationAKEvent != null)
+                deactivationAKEvent.Post(gameObject);
+        }
 
         active = value;
         UpdateActivation();
