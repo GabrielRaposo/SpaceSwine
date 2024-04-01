@@ -1862,95 +1862,6 @@
 								</ObjectList>
 							</ObjectLists>
 						</MusicSegment>
-						<MusicSegment Name="20230424 lofi 22" ID="{CC357464-1C4B-4B93-B96C-6C6FDF0FFA23}" ShortID="1045816407">
-							<PropertyList>
-								<Property Name="EndPosition" Type="Real64" Value="119759.024943311"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-3.7</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<MusicTrack Name="20230424 lofi 22_mais sabido" ID="{FAA82EAD-9E6B-4912-B2B0-433BF34CDB3E}" ShortID="927682525">
-									<ReferenceList>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="20230424 lofi 22_mais sabido" ID="{CF86B5F3-89C5-4E22-849C-791DE3AD630F}">
-											<Language>SFX</Language>
-											<AudioFile>20230424 lofi 22_mais sabido.wav</AudioFile>
-											<MediaIDList>
-												<MediaID ID="419295724"/>
-											</MediaIDList>
-										</AudioFileSource>
-									</ChildrenList>
-									<TransitionList>
-										<MusicTransition Name="Root" ID="{07B219CD-188F-4784-8B6E-4F6EE5C3A403}">
-											<PropertyList>
-												<Property Name="IsFolder" Type="bool" Value="True"/>
-											</PropertyList>
-											<TransitionInfo/>
-										</MusicTransition>
-									</TransitionList>
-									<ObjectLists>
-										<ObjectList Name="Sequences">
-											<Reference>
-												<Local>
-													<MusicTrackSequence Name="" ID="{BCD783E4-FCE4-4850-8563-1213FD887911}">
-														<ObjectLists>
-															<ObjectList Name="Clips">
-																<Reference>
-																	<Local>
-																		<MusicClip Name="20230424 lofi 22_mais sabido" ID="{0128F90B-F385-4636-9EFD-29211038506B}">
-																			<PropertyList>
-																				<Property Name="EndTrimOffset" Type="Real64" Value="108000"/>
-																				<Property Name="FadeInMode" Type="int16" Value="0"/>
-																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
-																			</PropertyList>
-																			<AudioSourceRef Name="20230424 lofi 22_mais sabido" ID="{CF86B5F3-89C5-4E22-849C-791DE3AD630F}"/>
-																		</MusicClip>
-																	</Local>
-																</Reference>
-															</ObjectList>
-														</ObjectLists>
-													</MusicTrackSequence>
-												</Local>
-											</Reference>
-										</ObjectList>
-									</ObjectLists>
-								</MusicTrack>
-							</ChildrenList>
-							<ObjectLists>
-								<ObjectList Name="Cues">
-									<Reference>
-										<Local>
-											<MusicCue Name="Entry Cue" ID="{46BCDDCA-179F-4A87-97F3-3221BB0AA043}"/>
-										</Local>
-									</Reference>
-									<Reference>
-										<Local>
-											<MusicCue Name="Exit Cue" ID="{758B7A15-93BB-4F3A-A08B-40C64B164AB3}">
-												<PropertyList>
-													<Property Name="CueType" Type="int16" Value="1"/>
-													<Property Name="TimeMs" Type="Real64" Value="119759.024943311"/>
-												</PropertyList>
-											</MusicCue>
-										</Local>
-									</Reference>
-								</ObjectList>
-							</ObjectLists>
-						</MusicSegment>
 						<MusicSegment Name="20230425 lofi 23" ID="{CC652358-F7CD-40BE-AC94-7528586A71F5}" ShortID="893383949">
 							<PropertyList>
 								<Property Name="EndPosition" Type="Real64" Value="119759.024943311"/>
@@ -4473,6 +4384,95 @@
 												<PropertyList>
 													<Property Name="CueType" Type="int16" Value="1"/>
 													<Property Name="TimeMs" Type="Real64" Value="16000"/>
+												</PropertyList>
+											</MusicCue>
+										</Local>
+									</Reference>
+								</ObjectList>
+							</ObjectLists>
+						</MusicSegment>
+						<MusicSegment Name="20230424 lofi 22_mais sabido" ID="{7353087B-6F4A-42D5-A444-60BC536E117C}" ShortID="808171261">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="108000"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-3.7</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Music" ID="{92CB1C3C-5D75-471F-9338-E264FAB76613}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<MusicTrack Name="20230424 lofi 22_mais sabido" ID="{9F9CDD05-8737-41A8-9E17-97613383C018}" ShortID="979116078">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="20230424 lofi 22_mais sabido" ID="{63F2E0FA-01BD-4592-92FE-2D2A388F383B}">
+											<Language>SFX</Language>
+											<AudioFile>20230424 lofi 22_mais sabido.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="419295724"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{ACB00F31-213B-4926-B7D9-BD6FEE1D94C3}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<ObjectLists>
+										<ObjectList Name="Sequences">
+											<Reference>
+												<Local>
+													<MusicTrackSequence Name="" ID="{8C445FAF-9FCF-4CC7-B92C-3ACDAFDB46A5}">
+														<ObjectLists>
+															<ObjectList Name="Clips">
+																<Reference>
+																	<Local>
+																		<MusicClip Name="20230424 lofi 22_mais sabido" ID="{FFDF20A9-D41F-471E-9BC1-C0389CCFB2E1}">
+																			<PropertyList>
+																				<Property Name="EndTrimOffset" Type="Real64" Value="108000"/>
+																				<Property Name="FadeInMode" Type="int16" Value="0"/>
+																				<Property Name="FadeOutMode" Type="int16" Value="0"/>
+																			</PropertyList>
+																			<AudioSourceRef Name="20230424 lofi 22_mais sabido" ID="{63F2E0FA-01BD-4592-92FE-2D2A388F383B}"/>
+																		</MusicClip>
+																	</Local>
+																</Reference>
+															</ObjectList>
+														</ObjectLists>
+													</MusicTrackSequence>
+												</Local>
+											</Reference>
+										</ObjectList>
+									</ObjectLists>
+								</MusicTrack>
+							</ChildrenList>
+							<ObjectLists>
+								<ObjectList Name="Cues">
+									<Reference>
+										<Local>
+											<MusicCue Name="Entry Cue" ID="{8831A65F-41F4-42DA-917D-8ABC33E3C1CF}"/>
+										</Local>
+									</Reference>
+									<Reference>
+										<Local>
+											<MusicCue Name="Exit Cue" ID="{1B672E6F-AD48-43D4-8C48-991EAC715ADB}">
+												<PropertyList>
+													<Property Name="CueType" Type="int16" Value="1"/>
+													<Property Name="TimeMs" Type="Real64" Value="108000"/>
 												</PropertyList>
 											</MusicCue>
 										</Local>
