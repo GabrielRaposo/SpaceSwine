@@ -1,51 +1,69 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
 public class EndingSoundtrackSystem : MonoBehaviour
 {
-    const float FADE_OUT = 2f;
-    const float FADE_IN = 2f;
+    //[SerializeField] AK.Wwise.Event soundtrackEvent1;
+    //[SerializeField] AK.Wwise.Event soundtrackEvent2;
+    //[SerializeField] AK.Wwise.Event soundtrackEvent3;
+    [SerializeField] float playlistStartFadeOut;
+    [SerializeField] float startUpDelay;
+    [SerializeField] float endFadeOut;
+    [SerializeField] List<float> fadeDuration;
 
-    [SerializeField] AK.Wwise.Event soundtrackEvent1;
-    [SerializeField] AK.Wwise.Event soundtrackEvent2;
-    [SerializeField] AK.Wwise.Event soundtrackEvent3;
-    
+    [Header("References")]
+    [SerializeField] List<AK.Wwise.Event> soundtrackEvents;
+    [SerializeField] List<AK.Wwise.RTPC> volumeParameters;
+
     SoundtrackManager soundtrackManager;
 
-    int focus;
+    Sequence sequence;
+
+    bool setup;
 
     private void Start()
     {
         soundtrackManager = SoundtrackManager.Instance;
-        soundtrackManager.FadeOutAndPause(FADE_OUT);
+        soundtrackManager.FadeOutAndPause(playlistStartFadeOut);
 
-        //this.WaitSeconds (FADE_IN, SetupSoundtrack);
-        this.WaitSeconds (FADE_IN, () => ChangeFocus(1));
+        InitParameters();
+
+        this.WaitSeconds (playlistStartFadeOut + startUpDelay, SetupSoundtrack);
+        //this.WaitSeconds (FADE_IN, () => ChangeFocus(1));
     }
+
+    private void InitParameters()
+    {
+        foreach (var volume in volumeParameters)
+        {
+            volume.SetGlobalValue(0);
+        }
+    }
+
     private void SetupSoundtrack()
     {
-        if (soundtrackEvent1 != null)
-            soundtrackEvent1.Post(gameObject);
+        foreach (var soundtrack in soundtrackEvents) 
+        {
+            soundtrack.Post(gameObject);
+        }
 
-        if (soundtrackEvent2 != null)
-            soundtrackEvent2.Post(gameObject);
+        ChangeFocus(0);
 
-        if (soundtrackEvent3 != null)
-            soundtrackEvent3.Post(gameObject);
+        setup = true;
     }
 
     private void Update()
     {
-        if (focus == 1)
-            RepeatSoundtrack (soundtrackEvent1);
+        if (!setup)
+            return;
 
-        if (focus == 2)
-            RepeatSoundtrack (soundtrackEvent2);
-
-        if (focus == 3)
-            RepeatSoundtrack (soundtrackEvent3);
+        for (int i = 0; i < soundtrackEvents.Count; i++)
+        {
+            RepeatSoundtrack (soundtrackEvents[i]);
+        }
     }
 
     private void RepeatSoundtrack (AK.Wwise.Event soundtrackEvent)
@@ -53,41 +71,52 @@ public class EndingSoundtrackSystem : MonoBehaviour
         if (soundtrackEvent == null || soundtrackEvent.IsPlaying(gameObject))
             return;
 
+        Debug.Log("Post2");
         soundtrackEvent.Post(gameObject);
     }
 
 
     public void ChangeFocus (int focus)
     {
-        this.focus = focus;
-
-        SetSoundtrackFocus(soundtrackEvent1, focus == 1);
-        SetSoundtrackFocus(soundtrackEvent2, focus == 2);
-        SetSoundtrackFocus(soundtrackEvent3, focus == 3);
-    }
-
-    private void SetSoundtrackFocus(AK.Wwise.Event soundtrackEvent, bool state)
-    {
-        if (soundtrackEvent == null)
+        if (focus < 0)
             return;
-        
-        if (state)
-            soundtrackEvent.Post(gameObject);
-        else
-            soundtrackEvent.FadeOut(gameObject, FADE_OUT);
+
+        float fade = fadeDuration[focus % fadeDuration.Count];
+
+        sequence = DOTween.Sequence();
+        sequence.AppendInterval (fade);
+
+        for (int i = 0; i < volumeParameters.Count; i++)
+        {
+            var parameter = volumeParameters[i];
+            float targetValue = (i == focus) ? 100 : 0;
+            if (targetValue == parameter.GetGlobalValue())
+                continue;
+
+            int local_i = i;
+            sequence.Join
+            ( 
+                DOVirtual.Float
+                (
+                    from:     parameter.GetGlobalValue(), 
+                    to:       targetValue,
+                    duration: fade,
+                    (f) => { /*Debug.Log($"i: {local_i}, f: {f}");*/ parameter.SetGlobalValue(f); }
+                )/*.SetEase(Ease.Linear)*/
+            );
+        }
     }
 
     public void TurnOffAll()
     {
-        TurnOff(soundtrackEvent1);
-        TurnOff(soundtrackEvent2);
-        TurnOff(soundtrackEvent3);
+        foreach (var soundtrack in soundtrackEvents)
+            TurnOff(soundtrack);
     }
 
     private void TurnOff (AK.Wwise.Event soundtrackEvent)
     {
         if (soundtrackEvent != null && soundtrackEvent.IsPlaying(gameObject))
-            soundtrackEvent.FadeOut(gameObject, 1f);
+            soundtrackEvent.FadeOut(gameObject, endFadeOut);
     }
 
     private void OnDisable()

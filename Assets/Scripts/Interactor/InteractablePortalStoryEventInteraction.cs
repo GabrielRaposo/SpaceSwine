@@ -5,10 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(InteractablePortal))]
 public class InteractablePortalStoryEventInteraction : StoryEventDependent
 {
+    const float SILENCE_THRESHOLD = 1.0f;
+
     [SerializeField] StoryEventScriptableObject storyEventData;
     [SerializeField] Door door;
 
     InteractablePortal interactablePortal;
+
+    float t;
 
     void Start()
     {
@@ -16,7 +20,7 @@ public class InteractablePortalStoryEventInteraction : StoryEventDependent
 
         CallDependentAction ( Setup, extraFrames: 3 );
 
-        Debug.Log("TO-FIX: Running on Update!");
+        //Debug.Log("TO-FIX: Running on Update!");
     }
 
     private void Setup()
@@ -48,10 +52,13 @@ public class InteractablePortalStoryEventInteraction : StoryEventDependent
 
         bool IsComplete = StoryEventsManager.IsComplete(storyEventData);
 
+        if (t < SILENCE_THRESHOLD)
+            t += Time.deltaTime;
+
         if (IsComplete)
         {
             interactablePortal.SetInteraction(IsComplete);
-            door.SetOpenState(IsComplete, instant: false);
+            door.ExternalOpenDoorCall(silent: t < SILENCE_THRESHOLD);
 
             enabled = false;
         }

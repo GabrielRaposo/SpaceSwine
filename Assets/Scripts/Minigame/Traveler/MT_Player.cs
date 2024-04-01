@@ -23,6 +23,7 @@ namespace Traveler
         [SerializeField] Transform aimAnchor;
         [SerializeField] MT_Barrier barrier;
         [SerializeField] MinigameManager gameManager;
+        [SerializeField] CustomTimeCounter enduranceTimeCounter;
 
         [Header("Audio")]
         [SerializeField] AK.Wwise.Event shootAKEvent;
@@ -84,6 +85,15 @@ namespace Traveler
             UpdateAimDisplay();
 
             signaler.enabled = false;
+
+            if (enduranceTimeCounter)
+            {
+                enduranceTimeCounter.OnTimeReached += (i) => 
+                {
+                    if (!AchievementsManager.GetAchievementState(AchievementEnum.LooperExtra))
+                        AchievementsManager.SetAchievementState(AchievementEnum.LooperExtra, true);
+                };
+            }
         }
 
         void UpdateAimDisplay()
@@ -112,6 +122,9 @@ namespace Traveler
             {
                 OnFirstMove?.Invoke();
                 HasMoved = true;
+
+                if (enduranceTimeCounter)
+                    enduranceTimeCounter.Restart();
 
                 inputLocked = true;
                 this.WaitSeconds(.5f, () => inputLocked = false);
@@ -180,6 +193,9 @@ namespace Traveler
                 collectable.OnCollect();
                 barrier.Setup(transform);
 
+                if (enduranceTimeCounter)
+                    enduranceTimeCounter.Stop();
+
                 invincible = true;
                 this.WaitSeconds(1.5f, () => invincible = false);
 
@@ -203,6 +219,9 @@ namespace Traveler
 
         private void Die()
         {
+            if (enduranceTimeCounter)
+                enduranceTimeCounter.Stop();
+
             enabled = false;
             HasLost = true;
 

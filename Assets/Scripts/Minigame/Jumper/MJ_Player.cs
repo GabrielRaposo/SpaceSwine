@@ -16,6 +16,7 @@ namespace Jumper
         [SerializeField] ParticleSystem trailEffect;
         [SerializeField] ParticleSystem launchEffect;
         [SerializeField] ParticleSystem landingEffect;
+        [SerializeField] CustomTimeCounter airborneTimeCounter;
 
         [Header("Audio")]
         [SerializeField] AK.Wwise.Event jumpAKEvent;
@@ -52,6 +53,15 @@ namespace Jumper
         {
             difficultyIndex = 1;
             MJ_Planet.ResetDifficulty();    
+
+            if (airborneTimeCounter)
+            {
+                airborneTimeCounter.OnTimeReached += (i) =>
+                {
+                    if (!AchievementsManager.GetAchievementState(AchievementEnum.JumperExtra))
+                        AchievementsManager.SetAchievementState(AchievementEnum.JumperExtra, true);
+                };
+            }
         }
 
         private void Update() 
@@ -97,6 +107,9 @@ namespace Jumper
 
             previous = landedOn;
             landedOn = null;
+
+            if (airborneTimeCounter)
+                airborneTimeCounter.Restart();
         }
 
         public float HighestYPosition()
@@ -139,6 +152,9 @@ namespace Jumper
 
                     planet.Attach (transform);
                     landedOn = planet;
+
+                    if (airborneTimeCounter)
+                        airborneTimeCounter.Stop();
                 }
             }
 
@@ -159,6 +175,9 @@ namespace Jumper
 
         private void Die()
         {
+            if (airborneTimeCounter)
+                airborneTimeCounter.Stop();
+
             if (longFlightAKEvent != null)
             {
                 longFlightAKEvent.Stop(gameObject);

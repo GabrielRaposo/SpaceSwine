@@ -49,7 +49,7 @@ public class Health : MonoBehaviour
 
     private void TakeDamage(int damage, Vector2 damagePosition)
     {
-        Debug.Log($"<color=#dd0000><b>Player Take damage</b></color>");
+        //Debug.Log($"<color=#dd0000><b>Player Take damage</b></color>");
         if (damageFX)
         {
             damageFX.transform.position = damagePosition;

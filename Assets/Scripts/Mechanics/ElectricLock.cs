@@ -71,7 +71,7 @@ public class ElectricLock : Lock
         //SetState (false);
 
         if (mind)
-            mind.SetActivation(false);
+            mind.SetActivation(false, silent: false);
     }
 
     public Transform GetConnectionPoint()

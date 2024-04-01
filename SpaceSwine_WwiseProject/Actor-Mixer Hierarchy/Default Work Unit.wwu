@@ -17,9 +17,20 @@
 							<ChildrenList>
 								<Sound Name="gameplay_buyk_pega_chave" ID="{C2875326-F527-46FD-B68C-5AA2430E94F6}" ShortID="343726287">
 									<PropertyList>
+										<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+										<Property Name="MaxSoundPerInstance" Type="int16">
+											<ValueList>
+												<Value>1</Value>
+											</ValueList>
+										</Property>
+										<Property Name="UseMaxSoundPerInstance" Type="bool">
+											<ValueList>
+												<Value>True</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>9</Value>
+												<Value>14</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -46,10 +57,11 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="gameplay_buyk_pega_item" ID="{4F22D2C7-E44D-44FC-960A-A0DC463DABD9}" ShortID="741970045">
+									<Comment>Na verdade, barulho da chave pousando no chão</Comment>
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>5</Value>
+												<Value>10</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -84,7 +96,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>8</Value>
+												<Value>11</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -120,7 +132,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>9</Value>
+														<Value>13</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -229,7 +241,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>21</Value>
+														<Value>24</Value>
 													</ValueList>
 													<RTPCList>
 														<RTPC Name="" ID="{080A5734-49FE-41A0-BAEB-A692C752ED2A}" ShortID="148398894">
@@ -343,7 +355,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>10</Value>
+														<Value>13</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -543,7 +555,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>2</Value>
+												<Value>3</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -732,7 +744,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>8</Value>
+										<Value>13.5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -976,14 +988,20 @@
 					<ChildrenList>
 						<Sound Name="gameplay_item_gol" ID="{5CA4FC9D-55CE-4717-B2FC-673556BAA15D}" ShortID="702238103">
 							<PropertyList>
-								<Property Name="Lowpass" Type="int16">
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
 									<ValueList>
-										<Value>20</Value>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
 									</ValueList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>6</Value>
+										<Value>1.1</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -998,9 +1016,10 @@
 							<ChildrenList>
 								<AudioFileSource Name="gameplay_item_gol" ID="{32E6ACF9-04EF-4F24-BBB4-DEA3AD68F743}">
 									<PropertyList>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
 										<Property Name="VolumeOffset" Type="Real64">
 											<ValueList>
-												<Value>5</Value>
+												<Value>13</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -1010,10 +1029,41 @@
 										<MediaID ID="931396405"/>
 									</MediaIDList>
 								</AudioFileSource>
+								<AudioFileSource Name="gameplay_item_gol_02" ID="{E3A3B49D-46D5-473D-BC32-F011FBD6EBA5}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.506724463731852"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.885147848411395"/>
+										<Property Name="VolumeOffset" Type="Real64">
+											<ValueList>
+												<Value>9</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>gameplay_item_gol_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="244352079"/>
+									</MediaIDList>
+								</AudioFileSource>
+								<AudioFileSource Name="gameplay_item_gol_03" ID="{5C730EB9-EC11-4A89-B675-395B37B98F46}">
+									<PropertyList>
+										<Property Name="VolumeOffset" Type="Real64">
+											<ValueList>
+												<Value>13</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>gameplay_item_gol_03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="325004201"/>
+									</MediaIDList>
+								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="gameplay_item_gol" ID="{32E6ACF9-04EF-4F24-BBB4-DEA3AD68F743}" Platform="Linked"/>
+								<ActiveSource Name="gameplay_item_gol_03" ID="{5C730EB9-EC11-4A89-B675-395B37B98F46}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_terminal_gira_planeta" ID="{C1B80B91-DB70-4465-94F6-C9D04ECC724C}" ShortID="759235353">
@@ -1043,7 +1093,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>7</Value>
+										<Value>9</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1073,7 +1123,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>9</Value>
+										<Value>11</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1134,12 +1184,12 @@
 												<PointList>
 													<Point>
 														<XPos>0</XPos>
-														<YPos>300</YPos>
+														<YPos>-50</YPos>
 														<Flags>21</Flags>
 													</Point>
 													<Point>
 														<XPos>1</XPos>
-														<YPos>-300</YPos>
+														<YPos>50</YPos>
 														<Flags>53</Flags>
 													</Point>
 												</PointList>
@@ -1149,7 +1199,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>4</Value>
+										<Value>15.5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1163,30 +1213,42 @@
 							</ReferenceList>
 							<ChildrenList>
 								<AudioFileSource Name="gameplay_item_gol_espiral" ID="{72613189-BAEC-49A3-9985-72D24F546406}">
-									<PropertyList>
-										<Property Name="VolumeOffset" Type="Real64">
-											<ValueList>
-												<Value>5</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>gameplay_item_gol_espiral.wav</AudioFile>
 									<MediaIDList>
 										<MediaID ID="891933428"/>
 									</MediaIDList>
 								</AudioFileSource>
+								<AudioFileSource Name="gameplay_item_gol_espiral_02" ID="{C70E8EB5-D4D3-41FC-9619-8AE578C31298}">
+									<Language>SFX</Language>
+									<AudioFile>gameplay_item_gol_espiral_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="407899534"/>
+									</MediaIDList>
+								</AudioFileSource>
+								<AudioFileSource Name="gameplay_item_gol_espiral_03" ID="{7FB478F6-7D0C-4B98-A722-41374495ECE5}">
+									<PropertyList>
+										<Property Name="FadeInShape" Type="int16" Value="2"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.167540464461647"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>gameplay_item_gol_espiral_03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="655853993"/>
+									</MediaIDList>
+								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="gameplay_item_gol_espiral" ID="{72613189-BAEC-49A3-9985-72D24F546406}" Platform="Linked"/>
+								<ActiveSource Name="gameplay_item_gol_espiral_03" ID="{7FB478F6-7D0C-4B98-A722-41374495ECE5}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="gameplay_portal_entra" ID="{72116878-88D7-4571-A327-5BCD751AE007}" ShortID="113087327">
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>5</Value>
+										<Value>7</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1223,7 +1285,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>10</Value>
+										<Value>12.5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1267,9 +1329,14 @@
 						</Sound>
 						<Sound Name="gameplay_portal_abre" ID="{BBA93292-8D52-408B-9EA8-02148996D7AF}" ShortID="475472768">
 							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>25</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>3</Value>
+										<Value>6</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1309,7 +1376,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>9.5</Value>
+										<Value>12</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1346,7 +1413,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>16</Value>
+										<Value>18</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1380,7 +1447,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>12.5</Value>
+										<Value>14</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1611,7 +1678,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>15</Value>
+										<Value>17</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1641,7 +1708,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>10</Value>
+										<Value>7</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1673,6 +1740,98 @@
 								<ActiveSource Name="gameplay_cristal_teleporta" ID="{AE28E7CE-035D-46EA-B752-30892060EC23}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="gameplay_eletricidade_liga" ID="{DE4085F9-3635-4A5A-A413-A4D95843258F}" ShortID="696154639">
+							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>28</Value>
+									</ValueList>
+								</Property>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>15.5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="gameplay_eletricidade_liga_03" ID="{C9A70991-6CDF-49AC-8DB1-F454C30E4B21}">
+									<Language>SFX</Language>
+									<AudioFile>gameplay_eletricidade_liga_03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="834226099"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="gameplay_eletricidade_liga_03" ID="{C9A70991-6CDF-49AC-8DB1-F454C30E4B21}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="gameplay_eletricidade_desliga" ID="{7E91EBAA-DD02-4915-A3EC-57F30FE0D392}" ShortID="613305368">
+							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>23</Value>
+									</ValueList>
+								</Property>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>17</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="gameplay_eletricidade_desliga_03" ID="{CFC864E6-A5D6-4990-BC8C-9CB5D1FC1B31}">
+									<Language>SFX</Language>
+									<AudioFile>gameplay_eletricidade_desliga_03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="641358222"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="gameplay_eletricidade_desliga_03" ID="{CFC864E6-A5D6-4990-BC8C-9CB5D1FC1B31}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="UI" ID="{9B1ED146-6719-4B81-AE3D-F5B877AC7C1A}" ShortID="507530770">
@@ -1685,7 +1844,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>9</Value>
+										<Value>12</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -1717,7 +1876,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>6</Value>
+												<Value>7</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -2437,9 +2596,19 @@
 							<ChildrenList>
 								<Sound Name="ui_titulo_botao_clica" ID="{D5E86FCA-9EBC-42C5-A978-209D9053464A}" ShortID="436099165">
 									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>40</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-500</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>1</Value>
+												<Value>20</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -2452,23 +2621,29 @@
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="ui_titulo_botao_clica" ID="{9D96AB65-45D0-4EBB-A0C8-2756D8615664}">
+										<AudioFileSource Name="ui_titulo_botao_hover" ID="{32941CF5-103A-4A2A-804C-21E52D8C187E}">
 											<PropertyList>
-												<Property Name="FadeInDuration" Type="Real64" Value="0.0390572857273931"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.322537585361698"/>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.01"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.24163589636774"/>
+												<Property Name="FadeOutShape" Type="int16" Value="0"/>
 												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-												<Property Name="TrimEnd" Type="Real64" Value="0.322537585361698"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.265798966015255"/>
 											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+											</ReferenceList>
 											<Language>SFX</Language>
-											<AudioFile>ui_titulo_botao_clica.wav</AudioFile>
+											<AudioFile>ui_titulo_botao_hover.wav</AudioFile>
 											<MediaIDList>
-												<MediaID ID="941619186"/>
+												<MediaID ID="100338561"/>
 											</MediaIDList>
 										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="ui_titulo_botao_clica" ID="{9D96AB65-45D0-4EBB-A0C8-2756D8615664}" Platform="Linked"/>
+										<ActiveSource Name="ui_titulo_botao_hover" ID="{32941CF5-103A-4A2A-804C-21E52D8C187E}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="ui_titulo_ventinho" ID="{5A9C8A50-21DA-43AF-A308-9CAD8301BB58}" ShortID="703941026">
@@ -2723,6 +2898,103 @@
 									<ObjectLists/>
 									<ActiveSourceList>
 										<ActiveSource Name="ui_titulo_botao_hover" ID="{2167AC34-E877-4252-B4D4-7E1B63ACD6E6}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ui_botao_cannotinteract" ID="{6F3FF571-091F-4EA1-8E6E-56C0CD999EA6}" ShortID="769965694">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>17</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>11.5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_titulo_botao_cannotinteract" ID="{6A30584E-2942-4BB0-8C91-47C2064FF251}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0189628936579407"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.150029952764296"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ui_titulo_botao_cannotinteract.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="977808781"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="ui_titulo_botao_cannotinteract_02" ID="{E905B32E-C7FE-4C4B-975C-E456BDB3C6D7}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.010098532249576"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ui_titulo_botao_cannotinteract_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="762636319"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_titulo_botao_cannotinteract" ID="{6A30584E-2942-4BB0-8C91-47C2064FF251}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="ui_botao_back" ID="{D2F28AF9-60D7-4F68-BFE2-697D9EEB2F10}" ShortID="984073545">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>40</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>15</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="ui_botao_back" ID="{5C7A4438-2F1D-4CD3-A55A-2BEA63512746}">
+											<PropertyList>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.0340011955116335"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>ui_botao_back.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="164790585"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="ui_botao_back_02" ID="{B3FFB4B1-09DE-4BCE-887E-CDF58E722CCF}">
+											<Language>SFX</Language>
+											<AudioFile>ui_botao_back_02.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="308746972"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ObjectLists/>
+									<ActiveSourceList>
+										<ActiveSource Name="ui_botao_back_02" ID="{B3FFB4B1-09DE-4BCE-887E-CDF58E722CCF}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -3064,7 +3336,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>9</Value>
+												<Value>11</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -3385,7 +3657,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>3</Value>
+												<Value>5</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -3415,7 +3687,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>18</Value>
+												<Value>20</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -3513,7 +3785,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>10</Value>
+												<Value>12</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -3543,7 +3815,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>12</Value>
+												<Value>11</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -3756,6 +4028,7 @@
 															<Custom>
 																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{B32D4060-2817-4D87-81C9-9C28D395A35F}" ShortID="757844118">
 																	<PropertyList>
+																		<Property Name="LfoDepth" Type="Real64" Value="0"/>
 																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
 																	</PropertyList>
 																</ModulatorLfo>
@@ -3769,12 +4042,12 @@
 														<PointList>
 															<Point>
 																<XPos>0</XPos>
-																<YPos>-550</YPos>
+																<YPos>0</YPos>
 																<Flags>21</Flags>
 															</Point>
 															<Point>
 																<XPos>1</XPos>
-																<YPos>0</YPos>
+																<YPos>-550</YPos>
 																<Flags>53</Flags>
 															</Point>
 														</PointList>
@@ -3789,7 +4062,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>12</Value>
+												<Value>14</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -3815,10 +4088,44 @@
 												<MediaID ID="432320192"/>
 											</MediaIDList>
 										</AudioFileSource>
+										<AudioFileSource Name="gameplay_buyk_pousa_curto" ID="{BDEACA2A-508C-4CE9-8B13-4851A7C403F2}">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0119408071513769"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.110331689504837"/>
+												<Property Name="VolumeOffset" Type="Real64">
+													<ValueList>
+														<Value>5</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>gameplay_buyk_pousa_curto.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="53682489"/>
+											</MediaIDList>
+										</AudioFileSource>
+										<AudioFileSource Name="gameplay_buyk_pula_curto" ID="{22D445FC-3189-49D2-9FA4-1546D2A38F92}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.113363935832212"/>
+												<Property Name="VolumeOffset" Type="Real64">
+													<ValueList>
+														<Value>-5</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>gameplay_buyk_pula_curto.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="934399167"/>
+											</MediaIDList>
+										</AudioFileSource>
 									</ChildrenList>
 									<ObjectLists/>
 									<ActiveSourceList>
-										<ActiveSource Name="gameplay_buyk_pousa_longo" ID="{AD414589-45F0-4B52-9DEC-CD034C54DB25}" Platform="Linked"/>
+										<ActiveSource Name="gameplay_buyk_pula_curto" ID="{22D445FC-3189-49D2-9FA4-1546D2A38F92}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="leg extra sound 1" ID="{CAADCED8-15E9-4832-9198-C77880CBBCDD}" ShortID="716161545">
@@ -3937,7 +4244,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>7</Value>
+												<Value>6</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -4091,7 +4398,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>7</Value>
+												<Value>7.5</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -4261,7 +4568,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>11</Value>
+												<Value>13</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -4420,7 +4727,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>6</Value>
+												<Value>9</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -4741,7 +5048,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>15</Value>
+												<Value>14.5</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -5082,6 +5389,11 @@
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="ui_robozinho_fala_leg" ID="{C498FEC6-F6DF-4FE6-8F39-5527BC75842C}" ShortID="122404076">
 									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>30</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>1200</Value>
@@ -5121,7 +5433,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>3</Value>
+												<Value>5</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -5135,6 +5447,13 @@
 									</ReferenceList>
 									<ChildrenList>
 										<Sound Name="ui_robozinho_fala01" ID="{DB39F15E-991B-45D6-89E5-B8B4D2500F96}" ShortID="864277344">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>3</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5163,6 +5482,11 @@
 										</Sound>
 										<Sound Name="ui_robozinho_fala02" ID="{84A10B92-7A56-4148-90B5-D67895082956}" ShortID="479224061">
 											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Pitch" Type="int32">
 													<ValueList>
 														<Value>330</Value>
@@ -5274,6 +5598,742 @@
 										<ActiveSource Name="cenario_nave_bip_tv" ID="{1E0A8072-F07A-43D2-8A1D-7890166D3DA0}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
+								<RandomSequenceContainer Name="ui_nave_fala_v2" ID="{7EAC9323-3B62-4ED3-91CD-BD692C19BE7C}" ShortID="1008015814">
+									<PropertyList>
+										<Property Name="Highpass" Type="int16">
+											<RTPCList>
+												<RTPC Name="" ID="{4D69FB7B-AA6C-42F7-81CE-6B072BADC1F3}" ShortID="729156758">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{E8851F51-4666-4153-9A0B-6FF1E51692BE}" ShortID="299614961">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{46312C67-2020-4409-978C-2E51F6C23654}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>30</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>40</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-200</Value>
+											</ValueList>
+											<RTPCList>
+												<RTPC Name="" ID="{161F8A3D-73DF-4942-AA6A-C420CA72BE6A}" ShortID="664028664">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{4B083B49-82B1-4FBF-BCDD-4B704DC6F095}" ShortID="823520555">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{9F94E496-E2B4-4285-993C-F812C28D2A52}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>-300</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+												<RTPC Name="" ID="{996D04BC-96AC-4607-A589-5BAEB8A46443}" ShortID="312353938">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{F1A8485E-CB7B-4337-8D17-32F5219A0267}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>300</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>10</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="ui_nave_fala_v2_01" ID="{38ED1725-57B2-405C-A207-62139B30D414}" ShortID="285213208">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v2_01" ID="{4C0BFE3F-7C95-4F01-8FD7-EA50E6E2281C}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.00784072249589491"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0300993490921549"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.00566274402481299"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v2_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="671619146"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v2_01" ID="{4C0BFE3F-7C95-4F01-8FD7-EA50E6E2281C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v2_02" ID="{AE6B115D-FDCA-42AB-846D-797159480C8D}" ShortID="945861439">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v2_02" ID="{F9DED763-D1AD-4B18-8D2B-D3926B2533B5}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0800656814449918"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0243865822190945"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v2_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="205113427"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v2_02" ID="{F9DED763-D1AD-4B18-8D2B-D3926B2533B5}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v2_03" ID="{185D9E36-A9FE-4E34-BBC4-C8F7074C32B8}" ShortID="621259204">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v2_03" ID="{A6DCD667-664A-4A98-89DA-72C362473F15}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0108045977011494"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.024916725310814"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v2_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="108814181"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v2_03" ID="{A6DCD667-664A-4A98-89DA-72C362473F15}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v2_04" ID="{F767E0E8-AEFB-40FD-BB10-A99BE4969E8C}" ShortID="664448519">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v2_04" ID="{3F853D67-8C99-404D-AEEA-11FFB29D8A3D}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0296776852503453"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0400148565173196"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v2_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="848125912"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v2_04" ID="{3F853D67-8C99-404D-AEEA-11FFB29D8A3D}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v2_05" ID="{B6B3D6EC-3A52-416C-9AD8-CF1E442B01F7}" ShortID="253981073">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v2_05" ID="{7FF62EA3-0C60-4372-BC98-DD289C819CBA}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0230797299762817"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0392655146349728"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v2_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="718940982"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v2_05" ID="{7FF62EA3-0C60-4372-BC98-DD289C819CBA}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v2_06" ID="{5F809EDC-2152-4595-810C-E0E98D53B720}" ShortID="631001674">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v2_06" ID="{DC49520C-2908-4CD7-B0ED-FB679127F5F6}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0250725134178372"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0117222140654823"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v2_06.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="47850713"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v2_06" ID="{DC49520C-2908-4CD7-B0ED-FB679127F5F6}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v2_07" ID="{2A8F7CE7-33CF-460E-8D04-5BEE3535323F}" ShortID="474404028">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v2_07" ID="{A778D4CE-C9B3-4038-9234-CDF91831D014}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0131152547349875"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0128723796473026"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.149611054013932"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v2_07.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="783242021"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v2_07" ID="{A778D4CE-C9B3-4038-9234-CDF91831D014}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v2_08" ID="{BD7AE93D-108F-4F1D-B3A0-AB936A550B25}" ShortID="278735111">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v2_08" ID="{A1FD36D6-CDE7-4B67-B266-BE521DE4E1C9}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0292805755395684"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0370488914990457"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.14939069152841"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v2_08.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="628305304"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v2_08" ID="{A1FD36D6-CDE7-4B67-B266-BE521DE4E1C9}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v2_09" ID="{3AD29FF6-BDEA-44FD-9345-96DD533690F8}" ShortID="752025874">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v2_09" ID="{FB14A7CC-7954-455A-87EB-A5DAC61CAC7F}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0154485391278814"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0147619373888644"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.150365780844712"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v2_09.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="649514450"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v2_09" ID="{FB14A7CC-7954-455A-87EB-A5DAC61CAC7F}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v2_10" ID="{90CEA072-D23D-4477-8147-07095F241FDD}" ShortID="929538958">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v2_10" ID="{03830BC5-220C-4726-9BE0-CE28E7748924}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0188064405618363"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.013604659129839"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.149651250428229"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v2_10.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="250799840"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v2_10" ID="{03830BC5-220C-4726-9BE0-CE28E7748924}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v2_11" ID="{E9EBB96E-B961-4AE4-AFCE-0AC1E2AE04A5}" ShortID="1061944082">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v2_11" ID="{B3F19070-4DD0-402F-93B4-0E548EA38DD8}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0258847289515326"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0157407135516077"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.150061469191993"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v2_11.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="904654276"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v2_11" ID="{B3F19070-4DD0-402F-93B4-0E548EA38DD8}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v2_12" ID="{BCB76C71-9E3B-4CCB-A09F-38E063E742DE}" ShortID="964796331">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v2_12" ID="{A84EECCB-6DF9-49E2-AC74-DD67C474ED35}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0204798120687124"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0178250216153608"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.151323055841041"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v2_12.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="649254726"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v2_12" ID="{A84EECCB-6DF9-49E2-AC74-DD67C474ED35}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="ui_nave_fala_v3" ID="{7D33F62E-3DD7-460A-952F-6D899B19B406}" ShortID="624233805">
+									<PropertyList>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>31</Value>
+											</ValueList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<RTPCList>
+												<RTPC Name="" ID="{845ED909-5DDA-4292-BA3A-796E0873B482}" ShortID="281170385">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{4259A6A3-91A5-4594-9F33-4550FA568C85}" ShortID="621016529">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{4E6EDF1C-02A4-4062-BC89-068F10173F17}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>100</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>-100</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+												<RTPC Name="" ID="{69FB37E3-A13F-4BF2-84F6-47608BE5C4C2}" ShortID="796017649">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="Cutscene_inicio" ID="{D648785A-BB6B-4507-A197-7967B8059D23}" WorkUnitID="{14B50572-788C-483C-8FD8-44426CB580B8}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{4223734F-073B-46FB-A722-9BD627F86983}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>0</YPos>
+																<Flags>5</Flags>
+															</Point>
+															<Point>
+																<XPos>100</XPos>
+																<YPos>300</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>10</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="ui_nave_fala_v3_01" ID="{2DE5FA55-0761-4305-919E-A86A48345F12}" ShortID="471171606">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v3_01" ID="{24205FBD-B884-42CC-A5A9-A2284F769143}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.00756423432682426"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.00540302451916017"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v3_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="61107388"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v3_01" ID="{24205FBD-B884-42CC-A5A9-A2284F769143}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v3_02" ID="{3FFF83CA-88D8-4615-9061-ECCC496F27EC}" ShortID="399022028">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v3_02" ID="{75AAED20-E20C-47B2-9F29-A99BC0653A13}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0060513874614594"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.00648362942299222"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v3_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="138784912"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v3_02" ID="{75AAED20-E20C-47B2-9F29-A99BC0653A13}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v3_03" ID="{C553D3C3-3143-4F6F-9CEB-9B48E0557037}" ShortID="854027005">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v3_03" ID="{2253BBDC-ED1D-4AB4-93CB-A11CEC3950F2}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.00541503124031387"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.00713799572586826"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v3_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="758940237"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v3_03" ID="{2253BBDC-ED1D-4AB4-93CB-A11CEC3950F2}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v3_04" ID="{F378D893-75A7-4D4B-8640-B57DDF392854}" ShortID="145603885">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v3_04" ID="{8BD96BF4-4ECF-4A72-94F2-980F6B095A88}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.00626750844222581"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.00605138746145942"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v3_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="132825198"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v3_04" ID="{8BD96BF4-4ECF-4A72-94F2-980F6B095A88}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_nave_fala_v3_05" ID="{6CEA2F49-D652-45C2-A178-C6EEC48A09F7}" ShortID="533035341">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_nave_fala_v3_05" ID="{5FCE6487-5C35-43FD-8BAD-C62C2B5B751B}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.00540302451916018"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.00799647628835706"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.00410629863456174"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_nave_fala_v3_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="248346910"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_nave_fala_v3_05" ID="{5FCE6487-5C35-43FD-8BAD-C62C2B5B751B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</RandomSequenceContainer>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Mundo 2" ID="{0CE6533B-6A8A-473B-84CA-802E317FFCF6}" ShortID="813636405">
@@ -5335,6 +6395,13 @@
 									</ReferenceList>
 									<ChildrenList>
 										<Sound Name="ui_alienx_fala_01" ID="{66F7CD3E-E847-48CB-BFD5-AC8C3D719ADA}" ShortID="28759325">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5364,6 +6431,13 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="ui_alienx_fala_02" ID="{67B3F660-E1F4-4278-A903-67F3DEC9A68D}" ShortID="716421145">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5393,6 +6467,13 @@
 											</ActiveSourceList>
 										</Sound>
 										<Sound Name="ui_alienx_fala_03" ID="{30749294-E53C-4BE9-BFEB-4D172EE3167A}" ShortID="1054254925">
+											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -5423,6 +6504,11 @@
 										</Sound>
 										<Sound Name="ui_alienx_fala_04" ID="{8798794C-89BD-4716-B51C-DE67389CD6DE}" ShortID="148485395">
 											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Pitch" Type="int32">
 													<ValueList>
 														<Value>100</Value>
@@ -5459,6 +6545,11 @@
 										</Sound>
 										<Sound Name="ui_alienx_fala_05" ID="{523AEBBD-4106-45B3-8103-1BE008C28673}" ShortID="760812151">
 											<PropertyList>
+												<Property Name="Inclusion" Type="bool">
+													<ValueList>
+														<Value>False</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Pitch" Type="int32">
 													<ValueList>
 														<Value>-200</Value>
@@ -5491,6 +6582,151 @@
 											<ObjectLists/>
 											<ActiveSourceList>
 												<ActiveSource Name="ui_alienx_fala_05" ID="{05F8AAC0-FEEA-4967-A5EB-1F4EC9683368}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_alienx_fala_v2_01" ID="{E913B99A-6D13-4F2E-B8AE-F62787C16316}" ShortID="688502115">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_alienx_fala_v2_01" ID="{95E62B59-82BB-4EC2-9622-D12CF8C52BBD}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0380328635752295"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.109872716995108"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.26094770286338"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_alienx_fala_v2_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="448095219"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_alienx_fala_v2_01" ID="{95E62B59-82BB-4EC2-9622-D12CF8C52BBD}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_alienx_fala_v2_02" ID="{C9571BA8-8C89-46D6-B739-2A4A8B39B090}" ShortID="572852368">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_alienx_fala_v2_02" ID="{80693304-1D15-4F6E-86D0-400E4DCAA62B}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0496670110259959"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0931256456737423"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.25081840568128"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_alienx_fala_v2_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="649096137"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_alienx_fala_v2_02" ID="{80693304-1D15-4F6E-86D0-400E4DCAA62B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_alienx_fala_v2_03" ID="{B074F120-27CA-4D3C-A3FB-E865F55673CF}" ShortID="202807007">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_alienx_fala_v2_03" ID="{991F65A4-DA58-4237-B9BC-A1E762652F60}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0522074732471785"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0939734518449213"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.250595871586457"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_alienx_fala_v2_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="53321614"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_alienx_fala_v2_03" ID="{991F65A4-DA58-4237-B9BC-A1E762652F60}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_alienx_fala_v2_04" ID="{CDE15A5F-9A15-43F1-8270-7DCA7217EAE7}" ShortID="631515312">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_alienx_fala_v2_04" ID="{B6183693-96F1-4638-BA36-A2393CD8222C}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0502906587658941"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.101807918965103"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.251453293829471"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_alienx_fala_v2_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="551016181"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_alienx_fala_v2_04" ID="{B6183693-96F1-4638-BA36-A2393CD8222C}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_alienx_fala_v2_05" ID="{2FF4AEB3-1753-4E61-A767-C163BB696CED}" ShortID="64898630">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_alienx_fala_v2_05" ID="{317F135E-409A-471D-BC9E-089ACA8CBC24}">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="0.0512076291834786"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0971631938353183"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.254725129784484"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_alienx_fala_v2_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="262060925"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_alienx_fala_v2_05" ID="{317F135E-409A-471D-BC9E-089ACA8CBC24}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -5787,7 +7023,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>11.5</Value>
+												<Value>14</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -6025,7 +7261,7 @@
 										</Property>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>10</Value>
+												<Value>12.5</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -6193,7 +7429,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>12</Value>
+												<Value>13</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -6800,7 +8036,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>6</Value>
+										<Value>5.5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -6989,7 +8225,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>5</Value>
+												<Value>7</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -7264,6 +8500,13 @@
 									<ObjectLists/>
 								</RandomSequenceContainer>
 								<Sound Name="cenario_telarobozao_liga" ID="{3D655E45-902D-4F39-B0F4-24912FBDDA07}" ShortID="253921712">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>4</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -7295,7 +8538,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>5</Value>
+												<Value>7</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -7360,7 +8603,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>5</Value>
+												<Value>7</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -7431,7 +8674,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>7</Value>
+												<Value>10</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -7468,7 +8711,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>7</Value>
+												<Value>10</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -7513,6 +8756,17 @@
 									<ChildrenList>
 										<RandomSequenceContainer Name="ggs_shooter_tiro_bounce" ID="{6A80C324-6C03-4190-98E9-BB7087213E60}" ShortID="839923346">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>4</Value>
@@ -7579,6 +8833,17 @@
 										</RandomSequenceContainer>
 										<Sound Name="ggs_extratime_coletar" ID="{A36B11BE-19B2-4A14-B238-46A57BCC12F5}" ShortID="693768535">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>4</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>4</Value>
@@ -7609,6 +8874,17 @@
 										</Sound>
 										<Sound Name="ggs_lobo_dano" ID="{538D65E0-9179-4975-9CB6-FFBDF55B4699}" ShortID="652750122">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>13</Value>
@@ -7639,6 +8915,17 @@
 										</Sound>
 										<Sound Name="ggs_lobo_morre" ID="{8D7E331F-7EA6-4E00-87D0-8F22AC49A68E}" ShortID="207768196">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>12</Value>
@@ -7758,6 +9045,17 @@
 										</Sound>
 										<Sound Name="ggs_shooter_tiro" ID="{3247962F-C05A-4CE5-806F-7C3B7DBF9E91}" ShortID="812889516">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>8</Value>
@@ -7791,7 +9089,7 @@
 												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 												<Property Name="MaxSoundPerInstance" Type="int16">
 													<ValueList>
-														<Value>3</Value>
+														<Value>1</Value>
 													</ValueList>
 												</Property>
 												<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -7824,6 +9122,17 @@
 										</Sound>
 										<Sound Name="ggs_sol_dano" ID="{F277F22E-6C28-4A24-8179-F086A82BB294}" ShortID="592517276">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>13</Value>
@@ -7854,6 +9163,17 @@
 										</Sound>
 										<Sound Name="ggs_sol_morre" ID="{12E1E1BA-7C21-4352-95F5-9E7EA459BB42}" ShortID="87902764">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>12</Value>
@@ -7890,7 +9210,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>7</Value>
+														<Value>13</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7920,7 +9240,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>7</Value>
+														<Value>11</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7950,7 +9270,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>7</Value>
+														<Value>11</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7980,7 +9300,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>6</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -8010,7 +9330,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>13</Value>
+														<Value>15</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -8076,7 +9396,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>4</Value>
+														<Value>6.5</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -8108,7 +9428,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>10</Value>
+												<Value>12</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -8138,7 +9458,7 @@
 									<PropertyList>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>10</Value>
+												<Value>12</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -8171,7 +9491,7 @@
 												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
 												<Property Name="MaxSoundPerInstance" Type="int16">
 													<ValueList>
-														<Value>3</Value>
+														<Value>1</Value>
 													</ValueList>
 												</Property>
 												<Property Name="UseMaxSoundPerInstance" Type="bool">
@@ -8209,6 +9529,17 @@
 										</Sound>
 										<Sound Name="ggs_looper_coletavel" ID="{09D07053-6AB1-45DE-80D4-0F263FAE9CD5}" ShortID="725519349">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>10</Value>
@@ -8246,6 +9577,17 @@
 										</Sound>
 										<Sound Name="ggs_looper_coletavel_plus" ID="{E9B745FA-CD87-4857-93EE-8D1C8812AA0D}" ShortID="30604603">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>8</Value>
@@ -8322,6 +9664,17 @@
 										</Sound>
 										<Sound Name="ggs_looper_nave_nasce" ID="{38F9453B-CB7F-4BDB-97DF-A85BDED41A4A}" ShortID="439317035">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>14</Value>
@@ -8355,6 +9708,17 @@
 										</Sound>
 										<Sound Name="ggs_looper_tiro" ID="{7AD36407-FAEC-4062-B92A-D56BBC1989AD}" ShortID="457540667">
 											<PropertyList>
+												<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+												<Property Name="MaxSoundPerInstance" Type="int16">
+													<ValueList>
+														<Value>1</Value>
+													</ValueList>
+												</Property>
+												<Property Name="UseMaxSoundPerInstance" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
 														<Value>8</Value>
@@ -8478,7 +9842,7 @@
 						</Folder>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="z_depois" ID="{FABFE171-3A83-4BBD-AFD0-4AAA8D23CEF6}" ShortID="797183350">
+				<Folder Name="não utilizados" ID="{FABFE171-3A83-4BBD-AFD0-4AAA8D23CEF6}" ShortID="797183350">
 					<ChildrenList>
 						<Sound Name="gameplay_buyk_senta_cama" ID="{FA7547E3-2988-4CD8-9B47-96CEFBA60A69}" ShortID="655479129">
 							<ReferenceList>
@@ -8561,6 +9925,95 @@
 								<ActiveSource Name="cenario_nave_bip_tv" ID="{97E520F9-583A-4892-8347-ECE1CF732507}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<Sound Name="makeabeat_brinquedo_conducao" ID="{7B6AE55E-BC26-4F6D-8CC5-762C3B926DD3}" ShortID="745121964">
+							<Comment>AUMENTAR VOLUME</Comment>
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MakeABeat_Toy" ID="{3145308B-0DB6-4B0A-9DED-0E9AFFA06162}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Placeholder_03" ID="{C0BFAC69-0C70-446B-895D-051E5CD65B5B}">
+									<Language>SFX</Language>
+									<AudioFile>Placeholder_03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="818614210"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Placeholder_03" ID="{C0BFAC69-0C70-446B-895D-051E5CD65B5B}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_brinquedo_tchum" ID="{6CC71830-6B0F-4600-A8EC-3795E5867DBB}" ShortID="76681899">
+							<Comment>AUMENTAR VOLUME</Comment>
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MakeABeat_Toy" ID="{3145308B-0DB6-4B0A-9DED-0E9AFFA06162}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="makeabeat_brinquedo_tchum" ID="{4388797F-5297-45D3-AF1C-421868CA573E}">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.082512315270936"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.348522167487685"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>makeabeat_brinquedo_tchum.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="371311758"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="makeabeat_brinquedo_tchum" ID="{4388797F-5297-45D3-AF1C-421868CA573E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="makeabeat_brinquedo_tcha" ID="{50B6B194-3780-4F3A-A9B0-3E32DE5A70EC}" ShortID="233431479">
+							<Comment>AUMENTAR VOLUME</Comment>
+							<PropertyList>
+								<Property Name="Color" Type="int16" Value="25"/>
+								<Property Name="OverrideColor" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="MakeABeat_Toy" ID="{3145308B-0DB6-4B0A-9DED-0E9AFFA06162}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Placeholder_02" ID="{3D0DAF23-A924-4ED8-9F6A-815A97F50CF9}">
+									<Language>SFX</Language>
+									<AudioFile>Placeholder_02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="845561883"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ObjectLists/>
+							<ActiveSourceList>
+								<ActiveSource Name="Placeholder_02" ID="{3D0DAF23-A924-4ED8-9F6A-815A97F50CF9}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="Make-a-Beat" ID="{0165BCC6-9375-4165-B0EE-F584DF2D45FA}" ShortID="820645988">
@@ -8573,7 +10026,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-5</Value>
+										<Value>-3</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -8603,7 +10056,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>10</Value>
+										<Value>15</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -8633,7 +10086,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>5</Value>
+										<Value>7</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -8664,7 +10117,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>7</Value>
+										<Value>10</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -8700,7 +10153,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>7</Value>
+										<Value>10</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -8737,7 +10190,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>10</Value>
+										<Value>23</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -8801,7 +10254,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>5</Value>
+										<Value>7</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -8825,6 +10278,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="makeabeat_fita_desinstalar_01" ID="{8EA5E331-7E6C-46D4-818C-18C26E5198C3}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.132550037355983"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.089057056348551"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>makeabeat_fita_desinstalar_01.wav</AudioFile>
 											<MediaIDList>
@@ -8848,6 +10306,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="makeabeat_fita_desinstalar_02" ID="{6332D032-8BA0-4A06-B196-98CC21442682}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.0312421847351657"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.0112819000432543"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>makeabeat_fita_desinstalar_02.wav</AudioFile>
 											<MediaIDList>
@@ -8871,6 +10334,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="makeabeat_fita_desinstalar_03" ID="{45DA5409-E1DA-4350-9F55-F9FF455F722E}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.105018284770556"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.105018284770556"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>makeabeat_fita_desinstalar_03.wav</AudioFile>
 											<MediaIDList>
@@ -8894,6 +10362,10 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="makeabeat_fita_desinstalar_04" ID="{49266728-A858-4AE4-B3C2-13C706383787}">
+											<PropertyList>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.0625308023016528"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>makeabeat_fita_desinstalar_04.wav</AudioFile>
 											<MediaIDList>
@@ -8917,6 +10389,11 @@
 									</ReferenceList>
 									<ChildrenList>
 										<AudioFileSource Name="makeabeat_fita_desinstalar_05" ID="{07980A24-21D6-4B77-B19B-7059276B594F}">
+											<PropertyList>
+												<Property Name="LoopBegin" Type="Real64" Value="0.0664020290197003"/>
+												<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.0664020290197003"/>
+											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>makeabeat_fita_desinstalar_05.wav</AudioFile>
 											<MediaIDList>
@@ -8970,7 +10447,7 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>5</Value>
+										<Value>6</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -9172,9 +10649,6 @@
 									</RTPCList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-2</Value>
-									</ValueList>
 									<RTPCList>
 										<RTPC Name="" ID="{42A4FA09-9382-4024-B0ED-AE5454B5BF4F}" ShortID="135003119">
 											<ReferenceList>
@@ -9495,7 +10969,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>5</Value>
+										<Value>15</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -9509,6 +10983,13 @@
 							</ReferenceList>
 							<ChildrenList>
 								<Sound Name="makeabeat_caixa_mostra_01" ID="{8DFD1E99-3AA0-4A3A-AF91-A855EC8BC49B}" ShortID="630662696">
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -9561,6 +11042,13 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="makeabeat_caixa_mostra_03" ID="{184CAC24-A666-474C-897E-04A231F8CF08}" ShortID="189410859">
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -9618,7 +11106,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>5</Value>
+										<Value>15</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -9660,6 +11148,13 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="makeabeat_caixa_esconde_02" ID="{7312EEDE-41BA-4B61-83AC-9A1952C4858F}" ShortID="562413115">
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -9683,6 +11178,13 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="makeabeat_caixa_esconde_03" ID="{70EAFC77-F7B8-4213-9637-CDCBC08FD957}" ShortID="735569804">
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -9706,6 +11208,13 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="makeabeat_caixa_esconde_04" ID="{16940C7A-720D-41F7-8A79-4BA648DD5216}" ShortID="894898721">
+									<PropertyList>
+										<Property Name="Inclusion" Type="bool">
+											<ValueList>
+												<Value>False</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
@@ -9731,93 +11240,88 @@
 							</ChildrenList>
 							<ObjectLists/>
 						</RandomSequenceContainer>
-						<Sound Name="makeabeat_brinquedo_conducao" ID="{7B6AE55E-BC26-4F6D-8CC5-762C3B926DD3}" ShortID="745121964">
-							<Comment>AUMENTAR VOLUME</Comment>
+						<Sound Name="makeabeat_radio_passa" ID="{2826776A-0F50-4675-B191-E98AE60F05AF}" ShortID="757056361">
 							<PropertyList>
-								<Property Name="Color" Type="int16" Value="25"/>
-								<Property Name="OverrideColor" Type="bool" Value="True"/>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>20</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-600</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>19</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="MakeABeat_Toy" ID="{3145308B-0DB6-4B0A-9DED-0E9AFFA06162}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="Placeholder_03" ID="{C0BFAC69-0C70-446B-895D-051E5CD65B5B}">
+								<AudioFileSource Name="makeabeat_metronomo_on" ID="{BFF62BB4-D645-4697-9A4E-850F10F248E1}">
 									<Language>SFX</Language>
-									<AudioFile>Placeholder_03.wav</AudioFile>
+									<AudioFile>makeabeat_metronomo_on.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="818614210"/>
+										<MediaID ID="991159299"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="Placeholder_03" ID="{C0BFAC69-0C70-446B-895D-051E5CD65B5B}" Platform="Linked"/>
+								<ActiveSource Name="makeabeat_metronomo_on" ID="{BFF62BB4-D645-4697-9A4E-850F10F248E1}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="makeabeat_brinquedo_tchum" ID="{6CC71830-6B0F-4600-A8EC-3795E5867DBB}" ShortID="76681899">
-							<Comment>AUMENTAR VOLUME</Comment>
+						<Sound Name="makeabeat_radio_off" ID="{8EC36431-260F-468E-B24D-FC30496FF9C7}" ShortID="223154196">
 							<PropertyList>
-								<Property Name="Color" Type="int16" Value="25"/>
-								<Property Name="OverrideColor" Type="bool" Value="True"/>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>20</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-600</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>19</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
 								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="MakeABeat_Toy" ID="{3145308B-0DB6-4B0A-9DED-0E9AFFA06162}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+									<ObjectRef Name="SFX_MakeABeat" ID="{1B9CB7F1-BF22-4952-8630-130418D92A65}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="makeabeat_brinquedo_tchum" ID="{4388797F-5297-45D3-AF1C-421868CA573E}">
+								<AudioFileSource Name="makeabeat_metronomo_off" ID="{7128F6A7-254E-4C63-A3DC-B98998844C53}">
 									<PropertyList>
-										<Property Name="FadeOutDuration" Type="Real64" Value="0.082512315270936"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.0507952236771395"/>
 										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
-										<Property Name="TrimEnd" Type="Real64" Value="0.348522167487685"/>
 									</PropertyList>
 									<Language>SFX</Language>
-									<AudioFile>makeabeat_brinquedo_tchum.wav</AudioFile>
+									<AudioFile>makeabeat_metronomo_off.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="371311758"/>
+										<MediaID ID="472306141"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ObjectLists/>
 							<ActiveSourceList>
-								<ActiveSource Name="makeabeat_brinquedo_tchum" ID="{4388797F-5297-45D3-AF1C-421868CA573E}" Platform="Linked"/>
-							</ActiveSourceList>
-						</Sound>
-						<Sound Name="makeabeat_brinquedo_tcha" ID="{50B6B194-3780-4F3A-A9B0-3E32DE5A70EC}" ShortID="233431479">
-							<Comment>AUMENTAR VOLUME</Comment>
-							<PropertyList>
-								<Property Name="Color" Type="int16" Value="25"/>
-								<Property Name="OverrideColor" Type="bool" Value="True"/>
-							</PropertyList>
-							<ReferenceList>
-								<Reference Name="Conversion">
-									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
-								</Reference>
-								<Reference Name="OutputBus">
-									<ObjectRef Name="MakeABeat_Toy" ID="{3145308B-0DB6-4B0A-9DED-0E9AFFA06162}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
-								</Reference>
-							</ReferenceList>
-							<ChildrenList>
-								<AudioFileSource Name="Placeholder_02" ID="{3D0DAF23-A924-4ED8-9F6A-815A97F50CF9}">
-									<Language>SFX</Language>
-									<AudioFile>Placeholder_02.wav</AudioFile>
-									<MediaIDList>
-										<MediaID ID="845561883"/>
-									</MediaIDList>
-								</AudioFileSource>
-							</ChildrenList>
-							<ObjectLists/>
-							<ActiveSourceList>
-								<ActiveSource Name="Placeholder_02" ID="{3D0DAF23-A924-4ED8-9F6A-815A97F50CF9}" Platform="Linked"/>
+								<ActiveSource Name="makeabeat_metronomo_off" ID="{7128F6A7-254E-4C63-A3DC-B98998844C53}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>

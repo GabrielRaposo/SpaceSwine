@@ -85,6 +85,12 @@ namespace Shooter
             if (completion > 0)
                 return;
 
+            if (specialSession)
+            {
+                if (!AchievementsManager.GetAchievementState(AchievementEnum.ShooterExtra))
+                    AchievementsManager.SetAchievementState(AchievementEnum.ShooterExtra, true);
+            }
+
             CallOnVanish();
 
             //MS_ScoreManager.Instance.ChangeScore (scoreReward);

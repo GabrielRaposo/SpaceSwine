@@ -8,6 +8,7 @@ public class RestLoopManager : MonoBehaviour
     [SerializeField] GameObject restLoopAnimation;
     [SerializeField] PlayerCharacter playerCharacter;
     [SerializeField] PlaylistPlayer playlistPlayer;
+    [SerializeField] CustomTimeCounter customTimeCounter;
     
     [Header("Custom Camera")]
     [SerializeField] float zoomSize;
@@ -34,6 +35,17 @@ public class RestLoopManager : MonoBehaviour
 
         if (horizontalLetterboxes)
             horizontalLetterboxes.alpha = 0;
+
+        customTimeCounter.OnTimeReached += (index) =>
+        {
+            AchievementEnum achievement = AchievementEnum.LofiBeats;
+            Debug.Log("Set achievement: " + achievement);
+
+            if (AchievementsManager.GetAchievementState(achievement))
+                return;
+
+            AchievementsManager.SetAchievementState(achievement, true);
+        };
     }
 
     public void TurnOn() 
@@ -54,6 +66,8 @@ public class RestLoopManager : MonoBehaviour
                 {
                     playlistPlayer.SetPlayerState(true);
                     this.Wait(1, () => { playlistPlayer.OnFocus = true; });
+
+                    customTimeCounter.Restart();
                 }
             }
         );
@@ -76,6 +90,8 @@ public class RestLoopManager : MonoBehaviour
                 restLoopAnimation.SetActive(false);
                 playerCharacter.SetHiddenState(false);
                 SetCameraState(false);
+
+                customTimeCounter.Stop();
             },
             afterFadeAction: () => 
             {
@@ -148,5 +164,6 @@ public class RestLoopManager : MonoBehaviour
     {
         playerCharacter.SetHiddenState(false);
         TurnControlsOff();
+        customTimeCounter.Stop();
     }
 }

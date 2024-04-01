@@ -131,10 +131,11 @@ public class EndingCutsceneCaller : MonoBehaviour
     IEnumerator EndCutscene()
     {
         yield return new WaitForSeconds(1f);
-        DebugDisplay.Log("Cutscene ended");
+        //DebugDisplay.Log("Cutscene ended");
 
         s = DOTween.Sequence();
         s.Append( imageCanvasGroup.DOFade(0f, duration: 3f) );
+        s.AppendCallback( () => { endingSoundtrack.enabled = false; } );
         s.AppendInterval(2f);
 
         s.OnComplete( () => SceneTransition.LoadScene(creditsSceneReference.ScenePath, SceneTransition.TransitionType.BlackFade) );

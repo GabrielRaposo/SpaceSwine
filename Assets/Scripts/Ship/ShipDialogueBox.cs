@@ -442,4 +442,10 @@ public class ShipDialogueBox : MonoBehaviour
     }
 
     #endregion
+
+    public void ClearAndCloseDialogBox()
+    {
+        textDisplay.text = string.Empty;
+        VerticalTransition(VerticalState.Closed, .3f);
+    }
 }
