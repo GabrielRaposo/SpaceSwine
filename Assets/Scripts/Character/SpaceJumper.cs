@@ -45,7 +45,7 @@ public class SpaceJumper : MonoBehaviour
 
     private void Start()
     {
-        enabled = false;
+        //enabled = false;
     }
 
     private void Update() 

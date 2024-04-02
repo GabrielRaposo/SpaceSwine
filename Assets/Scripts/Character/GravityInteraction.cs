@@ -220,28 +220,23 @@ public class GravityInteraction : MonoBehaviour
 
     private void OnTriggerEnter2D (Collider2D collision) 
     {
-        Debug.Log("A: " + collision.transform.parent.name);
+        //Debug.Log("Trigger Enter 2D: " + collision.transform.parent.name);
 
         GravityArea gravityArea = collision.GetComponent<GravityArea>();
         if (!gravityArea)
             return;
 
-        Debug.Log("B");
-
         if (this.gravityArea == null)
         {
-            Debug.Log("B1");
             this.gravityArea = gravityArea;
             OnChangeGravityAnchor?.Invoke(gravityArea.transform);
         }
         else
         {
-            Debug.Log("B2.1");
             if (overlappingGravities.Contains(gravityArea))
                 return;
 
             overlappingGravities.Add(gravityArea);
-            Debug.Log("B2.2");
         }
     }
 

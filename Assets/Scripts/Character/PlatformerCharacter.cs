@@ -91,16 +91,11 @@ public class PlatformerCharacter : SidewaysCharacter
 
         gravityInteraction.OnChangeGravityAnchor += (t) => 
         {   
-            Debug.Log("1");
             if (spaceJumper && spaceJumper.OnLaunch())
                 return;
 
-            Debug.Log("2");
-
             if (t == null)
                 return;
-
-            Debug.Log("3");
 
             verticalSpeed = horizontalSpeed = 0;
             transform.eulerAngles = Vector3.forward * gravityInteraction.AlignWithPlanet();
