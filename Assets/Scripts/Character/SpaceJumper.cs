@@ -56,13 +56,13 @@ public class SpaceJumper : MonoBehaviour
         //Debug.Log($"A: Time.timeScale {Time.timeScale}, flightLoopAKEvent.IsPlaying(gameObject): {flightLoopAKEvent.IsPlaying(gameObject)}");
         if (Time.timeScale != 0 && !flightLoopAKEvent.IsPlaying(gameObject))
         {
-            Debug.Log("Post");
+            //Debug.Log("Post");
             flightLoopAKEvent.Post(gameObject);
         }
 
         if (Time.timeScale == 0)
         {
-            Debug.Log("Stop");
+            //Debug.Log("Stop");
             flightLoopAKEvent.Stop(gameObject);
         }
     }
