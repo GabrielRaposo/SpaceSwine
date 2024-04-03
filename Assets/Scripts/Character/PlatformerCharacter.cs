@@ -62,7 +62,8 @@ public class PlatformerCharacter : SidewaysCharacter
 
     Rigidbody2D rb;
 
-    public static GroundControlType OnGroundControlType = GroundControlType.Dynamic_1; 
+    public static GroundControlType OnGroundControlType = GroundControlType.Dynamic_1;
+    public static string CONTROLTYPE_KEY = "controlTypeKey";
 
     void Awake()
     {
@@ -87,6 +88,8 @@ public class PlatformerCharacter : SidewaysCharacter
 
     private void Start() 
     {
+        InitControlType();
+
         SetFacingRight(true);
 
         gravityInteraction.OnChangeGravityAnchor += (t) => 
@@ -100,6 +103,19 @@ public class PlatformerCharacter : SidewaysCharacter
             verticalSpeed = horizontalSpeed = 0;
             transform.eulerAngles = Vector3.forward * gravityInteraction.AlignWithPlanet();
         };
+    }
+
+    private void InitControlType()
+    {
+        GroundControlType controlType = GroundControlType.Dynamic_1;
+        
+        if (PlayerPrefs.HasKey(CONTROLTYPE_KEY))
+        {
+            controlType = (GroundControlType) PlayerPrefs.GetInt(CONTROLTYPE_KEY);        
+        }
+
+        PlayerPrefs.SetInt(CONTROLTYPE_KEY, (int) controlType);
+        OnGroundControlType = controlType;
     }
 
     protected override void SetFacingRight(bool value) 

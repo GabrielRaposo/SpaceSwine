@@ -220,6 +220,8 @@ public class GravityInteraction : MonoBehaviour
 
     private void OnTriggerEnter2D (Collider2D collision) 
     {
+        //Debug.Log("Trigger Enter 2D: " + collision.transform.parent.name);
+
         GravityArea gravityArea = collision.GetComponent<GravityArea>();
         if (!gravityArea)
             return;

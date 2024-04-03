@@ -75,10 +75,10 @@ public class CustomTimeCounter : MonoBehaviour
             milestonesReached[i] = true;
             OnTimeReached.Invoke(i);
 
-            if (feedbackAKEvent != null && Application.isEditor)
-                feedbackAKEvent.Post(gameObject);
+            //if (feedbackAKEvent != null && Application.isEditor)
+            //    feedbackAKEvent.Post(gameObject);
 
-            Debug.Log($"Milestone [{i}] reached.");
+            //Debug.Log($"Milestone [{i}] reached.");
         }
     }
 }
