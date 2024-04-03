@@ -6334,6 +6334,205 @@
 									</ChildrenList>
 									<ObjectLists/>
 								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="ui_abelha_fala" ID="{11353FAA-DE8B-4E92-A58A-10232FB90A95}" ShortID="948802108">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<RTPCList>
+												<RTPC Name="" ID="{17272F94-8C55-49AC-8F85-42CD79B5B2C0}" ShortID="264822313">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<Custom>
+																<ModulatorLfo Name="Modulator LFO (Custom)" ID="{03F27F27-3423-4B39-9999-F384C90E9FF9}" ShortID="798450827">
+																	<PropertyList>
+																		<Property Name="LfoWaveform" Type="int32" Value="5"/>
+																	</PropertyList>
+																</ModulatorLfo>
+															</Custom>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{99650711-8DB0-4C11-AF81-52FC2F2180C8}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>400</YPos>
+																<Flags>21</Flags>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>53</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>10</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="SFX" ID="{96F1F401-A65C-47D8-A0DA-13D7A6DAA805}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="ui_abelha_fala_01" ID="{98715495-962F-4ADE-9BC9-86E1D7C3CB0A}" ShortID="797459">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_abelha_fala_01" ID="{8505EE5D-6167-4173-BA9A-0F73F7A8946E}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.059918341132214"/>
+														<Property Name="FadeOutShape" Type="int16" Value="1"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.175475141887198"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_abelha_fala_01.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="596558950"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_abelha_fala_01" ID="{8505EE5D-6167-4173-BA9A-0F73F7A8946E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_abelha_fala_02" ID="{B752185D-16C7-4E99-8B01-266813A6E282}" ShortID="623788670">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_abelha_fala_02" ID="{90A91367-7848-4D30-B52D-1E249DBD284E}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0576736725518724"/>
+														<Property Name="FadeOutShape" Type="int16" Value="1"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.173862969079732"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_abelha_fala_02.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="727648522"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_abelha_fala_02" ID="{90A91367-7848-4D30-B52D-1E249DBD284E}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_abelha_fala_03" ID="{6476EFAF-43F8-418A-8E46-E2FA3C3D93AE}" ShortID="252861959">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_abelha_fala_03" ID="{F5F0FE24-55D8-4A45-B9D7-59EC8EE38952}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0579021666470056"/>
+														<Property Name="FadeOutShape" Type="int16" Value="1"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.172063885284364"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_abelha_fala_03.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="34646263"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_abelha_fala_03" ID="{F5F0FE24-55D8-4A45-B9D7-59EC8EE38952}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_abelha_fala_04" ID="{928F5758-C773-44FD-B8D3-BA1916AF2A7B}" ShortID="752547626">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_abelha_fala_04" ID="{C5A621AD-5A43-4FA1-817A-E4B87127567B}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0568103233586306"/>
+														<Property Name="FadeOutShape" Type="int16" Value="1"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.17212680062391"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_abelha_fala_04.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="546936111"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_abelha_fala_04" ID="{C5A621AD-5A43-4FA1-817A-E4B87127567B}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="ui_abelha_fala_05" ID="{03C15D83-49E4-453A-A65D-68A3132789B3}" ShortID="366052645">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6F72CF41-62B8-4B8F-936F-C1F94EC13909}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C11FE0D5-7CBF-4200-9F0D-EC6FFA083A2D}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="ui_abelha_fala_05" ID="{44AF6374-CC67-4243-AF78-A0A26B84A4C9}">
+													<PropertyList>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.0589086154693091"/>
+														<Property Name="FadeOutShape" Type="int16" Value="1"/>
+														<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.174896386300185"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>ui_abelha_fala_05.wav</AudioFile>
+													<MediaIDList>
+														<MediaID ID="295610031"/>
+													</MediaIDList>
+												</AudioFileSource>
+											</ChildrenList>
+											<ObjectLists/>
+											<ActiveSourceList>
+												<ActiveSource Name="ui_abelha_fala_05" ID="{44AF6374-CC67-4243-AF78-A0A26B84A4C9}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+									<ObjectLists/>
+								</RandomSequenceContainer>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="Mundo 2" ID="{0CE6533B-6A8A-473B-84CA-802E317FFCF6}" ShortID="813636405">

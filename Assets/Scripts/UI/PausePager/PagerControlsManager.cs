@@ -19,6 +19,11 @@ public class PagerControlsManager : MonoBehaviour
         int startingIndex = 0;
 
         GroundControlType groundControlType = PlatformerCharacter.OnGroundControlType;
+        if (PlayerPrefs.HasKey(PlatformerCharacter.CONTROLTYPE_KEY))
+        {
+            groundControlType = (GroundControlType) PlayerPrefs.GetInt(PlatformerCharacter.CONTROLTYPE_KEY);
+        }
+
         if (controlTypes.Contains( groundControlType ))
             startingIndex = controlTypes.FindIndex( (c) => c == groundControlType );
 
@@ -32,5 +37,6 @@ public class PagerControlsManager : MonoBehaviour
 
         GroundControlType controlType = controlTypes[index % controlTypes.Count];
         PlatformerCharacter.OnGroundControlType = controlType;
+        PlayerPrefs.SetInt(PlatformerCharacter.CONTROLTYPE_KEY, (int) controlType);
     }
 }
