@@ -7,6 +7,10 @@ using DG.Tweening;
 
 public class SoundtrackManager : MonoBehaviour
 {
+    public static string MASTER_KEY = "MASTER_VOLUME";
+    public static string MUSIC_KEY  = "MUSIC_VOLUME";
+    public static string SFX_KEY    = "SFX_VOLUME";
+
     [SerializeField] PlaylistScriptableObject fullPlaylist;
 
     [Header("Parameters")]
@@ -44,6 +48,8 @@ public class SoundtrackManager : MonoBehaviour
             return;
         }
 
+        InitVolumeParameters();
+
         if (playlist == null)
         {
             playlist = fullPlaylist; 
@@ -56,6 +62,27 @@ public class SoundtrackManager : MonoBehaviour
             {
                 placeholderParameter.SetGlobalValue(0);
             }
+        }
+    }
+
+    private void InitVolumeParameters()
+    {
+        if (masterParameter != null && PlayerPrefs.HasKey(MASTER_KEY))
+        {
+            float volume = PlayerPrefs.GetFloat(MASTER_KEY);
+            masterParameter.SetGlobalValue(volume);
+        }
+
+        if (musicParameter != null && PlayerPrefs.HasKey(MUSIC_KEY))
+        {
+            float volume = PlayerPrefs.GetFloat(MUSIC_KEY);
+            musicParameter.SetGlobalValue(volume);
+        }
+
+        if (sfxParameter != null && PlayerPrefs.HasKey(SFX_KEY))
+        {
+            float volume = PlayerPrefs.GetFloat(SFX_KEY);
+            sfxParameter.SetGlobalValue(volume);
         }
     }
 
