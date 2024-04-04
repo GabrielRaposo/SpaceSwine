@@ -295,6 +295,8 @@ public class SpaceJumper : MonoBehaviour
 
         onLaunch = false;
         KillFlightSound();
+
+        gameObject.StopAllEvents();
     }
 
     private void OnDrawGizmos() 
