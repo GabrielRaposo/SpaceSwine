@@ -15,6 +15,7 @@ public class PersistentGroup : MonoBehaviour
         }
 
         Application.targetFrameRate = 60;
+        Cursor.visible = false;
 
         DontDestroyOnLoad (gameObject);
         Instance = this;
