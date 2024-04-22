@@ -16,15 +16,15 @@ public class AttachToPlanet : MonoBehaviour
         Attach();
     }
 
-    protected virtual void Update() 
-    {
-        #if UNITY_EDITOR
-        if (Application.isPlaying)
-            return;
+#if UNITY_EDITOR
+    //protected virtual void Update() 
+    //{
+    //    if (Application.isPlaying)
+    //        return;
 
-        Attach();
-        #endif
-    }
+    //    Attach();
+    //}
+#endif
 
     public void Attach()
     {

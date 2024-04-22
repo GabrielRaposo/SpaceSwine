@@ -71,7 +71,7 @@ public class EndingSoundtrackSystem : MonoBehaviour
         if (soundtrackEvent == null || soundtrackEvent.IsPlaying(gameObject))
             return;
 
-        Debug.Log("Post2");
+        //Debug.Log("Post2");
         soundtrackEvent.Post(gameObject);
     }
 
