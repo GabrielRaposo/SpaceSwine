@@ -136,7 +136,7 @@ public class EndingCutsceneCaller : MonoBehaviour
         s = DOTween.Sequence();
         s.Append( imageCanvasGroup.DOFade(0f, duration: 3f) );
         s.AppendCallback( () => { endingSoundtrack.enabled = false; } );
-        s.AppendInterval(2f);
+        s.AppendInterval(1.1f);
 
         s.OnComplete( () => SceneTransition.LoadScene(creditsSceneReference.ScenePath, SceneTransition.TransitionType.BlackFade) );
     }

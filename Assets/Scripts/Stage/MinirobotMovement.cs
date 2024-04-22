@@ -91,7 +91,8 @@ public class MinirobotMovement : AttachToPlanet
         this.DOKill();
     }
 
-    protected override void Update()
+    /*protected override */
+    void Update()
     {
         Attach();
     }
