@@ -185,7 +185,11 @@ public class PlaylistPlayer : MonoBehaviour
 
     private void SetupOnTrackEvent(string fileName, int index)
     {
+        if (fileName == null || string.IsNullOrEmpty(fileName))
+            return;
+
         //string text = index.ToString() + " - " + fileName;
+
         string text = fileName;
         screenLabel.text = text;
 
@@ -290,6 +294,9 @@ public class PlaylistPlayer : MonoBehaviour
 
     public void SlideIn(float extraTime = 0)
     {
+        //if (soundtrackManager)
+        //    soundtrackManager.CallOnTrackPlayedEvent();
+
         timerCount = autoHideTimer + extraTime;
 
         if (visible)
@@ -306,6 +313,8 @@ public class PlaylistPlayer : MonoBehaviour
                 .SetEase(Ease.OutCirc)
         );
         //s.OnComplete( () => timerCount = autoHideTimer );
+
+        
     }
 
     public void SlideOut()
