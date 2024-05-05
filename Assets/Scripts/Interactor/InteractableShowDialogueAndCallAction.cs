@@ -8,6 +8,7 @@ public class InteractableShowDialogueAndCallAction : Interactable
     [SerializeField] List<string> dialogueIDs;
     [SerializeField] DialogueBoxStyle dialogueBoxStyle;
     [SerializeField] AK.Wwise.Event chatSoundAKEvent;
+    [SerializeField] bool progressStageEvent;
 
     [Space(10)]
     [SerializeField] UnityEvent onInteractionEvent;
@@ -87,6 +88,20 @@ public class InteractableShowDialogueAndCallAction : Interactable
     {
         onInteractionEvent.Invoke();
         RestorePlayerInteractions(interactor);
+
+        if (!progressStageEvent)
+            return;
+
+        RoundsManager roundsManager = GetComponentInParent<RoundsManager>();
+        if (!roundsManager || roundsManager.completionStoryEvent == null) 
+            return;
+
+        StoryEventScriptableObject afterTextStoryEvent = roundsManager.completionStoryEvent;
+        if (afterTextStoryEvent != null)
+        {
+            StoryEventsManager.ChangeProgress(afterTextStoryEvent, 99);
+            SaveManager.Save();
+        }
     }
 
     private void RestorePlayerInteractions(PlayerInteractor interactor)

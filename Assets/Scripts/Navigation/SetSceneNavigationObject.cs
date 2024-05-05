@@ -79,7 +79,7 @@ public class SetSceneNavigationObject : NavigationObject
             if (worldGroup)
                 sr.color = (i == 0) ? worldGroup.SelectedColor : worldGroup.BackgroundColor; 
             
-            sr.gameObject.SetActive(false);
+            sr.gameObject.SetActive(true);
         }
     }
 
@@ -100,9 +100,6 @@ public class SetSceneNavigationObject : NavigationObject
     {
         base.OnSelect();
 
-        foreach (SpriteRenderer sr in completionDisplays)
-            sr.gameObject.SetActive(true);
-
         selector.enabled = true;
 
         if (OnSelectAction != null)
@@ -112,9 +109,6 @@ public class SetSceneNavigationObject : NavigationObject
     public override void OnDeselect()
     {
         base.OnDeselect();
-
-        foreach (SpriteRenderer sr in completionDisplays)
-            sr.gameObject.SetActive(false);
 
         selector.enabled = false;
 

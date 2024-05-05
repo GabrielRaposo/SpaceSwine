@@ -441,22 +441,24 @@ public class PagerInteractionManager : StoryEventDependent
             return;
         }
 
-        if (axis.y != 0)
+        float threshold = .5f;
+        if (Mathf.Abs(axis.y) > threshold)
         {
-            if (axis.y > .5f)
+            Debug.Log("axis.y: " + axis.y);
+            if (axis.y > 0)
             {
                 CurrentScreen.ChangeIndex(-1);
+                screenDelay = maxScreenDelay;
             }
-            else if (axis.y < .5f)
+            else if (axis.y < 0)
             {
                 CurrentScreen.ChangeIndex(+1);
+                screenDelay = maxScreenDelay;
             }
-
-            screenDelay = maxScreenDelay;
             return;
         }
             
-        if (axis.x != 0)
+        if (Mathf.Abs(axis.x) > threshold)
         {
             if (CurrentScreen.HorizontalInput (axis.x))
             {
@@ -464,12 +466,12 @@ public class PagerInteractionManager : StoryEventDependent
             }
             else 
             {
-                if (axis.x < .75f) // -- Custom back input
+                if (axis.x < 0) // -- Custom back input
                 {
                     BackInput();
                     screenDelay = maxScreenDelay;
                 }
-                else if (axis.x > .75f) // -- Custom forward input
+                else if (axis.x > 0) // -- Custom forward input
                 {
                     CurrentScreen.ClickInput();
                     screenDelay = maxScreenDelay;
