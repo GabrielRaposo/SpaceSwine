@@ -23,6 +23,7 @@ public class SoundtrackManager : MonoBehaviour
     List<int> playOrder;
 
     static AK.Wwise.Event soundtrackEvent;
+    static string currentEventName; 
 
     public static SoundtrackManager Instance;
     
@@ -164,6 +165,11 @@ public class SoundtrackManager : MonoBehaviour
         DisplayData();
     }
 
+    public void CallOnTrackPlayedEvent()
+    {
+        OnTrackPlayedEvent?.Invoke(currentEventName, currentIndex);
+    }
+
     public void ChangePlaylistOnTheBack (PlaylistScriptableObject playlist)
     {
         Debug.Log($"Change Playlist On The Back: {playlist.name}");
@@ -173,6 +179,7 @@ public class SoundtrackManager : MonoBehaviour
 
         this.playlist = playlist;
         MakePlaylistPlayOrder();
+        CallOnTrackPlayedEvent();
 
         if (soundtrackEvent == null && !IsPlaying)
         {
@@ -199,6 +206,7 @@ public class SoundtrackManager : MonoBehaviour
 
         this.playlist = playlist;
         MakePlaylistPlayOrder();
+        CallOnTrackPlayedEvent();
 
         if (!IsCurrentTrackOnPlaylist)
         {
@@ -249,11 +257,12 @@ public class SoundtrackManager : MonoBehaviour
 
         MusicDataScriptableObject musicData = playlist[orderedIndex];
         soundtrackEvent = musicData.akEvent;
+        currentEventName = musicData.fileName;
 
         if (soundtrackEvent != null)
             soundtrackEvent.Post(gameObject);
 
-        OnTrackPlayedEvent?.Invoke(musicData.fileName, currentIndex);
+        CallOnTrackPlayedEvent();
         IsPlaying = true;
 
         StopAllCoroutines();
@@ -306,6 +315,7 @@ public class SoundtrackManager : MonoBehaviour
             soundtrackEvent.Stop(gameObject);
 
         soundtrackEvent = null;
+        currentEventName = string.Empty;
 
         IsPlaying = false;
     }

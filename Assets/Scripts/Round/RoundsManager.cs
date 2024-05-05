@@ -12,7 +12,7 @@ public class RoundsManager : MonoBehaviour
     [SerializeField] SceneReference exitScene;
     [SerializeField] int localAbandonSpawnIndex;
     [SerializeField] int localOutroSpawnIndex;
-    [SerializeField] StoryEventScriptableObject completionStoryEvent;
+    [SerializeField] public StoryEventScriptableObject completionStoryEvent;
 
     public static int AbandonSpawnIndex;
     public static int OutroSpawnIndex;
