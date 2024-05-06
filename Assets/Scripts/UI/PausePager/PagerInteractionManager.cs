@@ -444,7 +444,7 @@ public class PagerInteractionManager : StoryEventDependent
         float threshold = .5f;
         if (Mathf.Abs(axis.y) > threshold)
         {
-            Debug.Log("axis.y: " + axis.y);
+            //Debug.Log("axis.y: " + axis.y);
             if (axis.y > 0)
             {
                 CurrentScreen.ChangeIndex(-1);

@@ -2,11 +2,13 @@
 using Minigame;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GGSMenuManager : StoryEventDependent
 {
+    [SerializeField] float inputCooldown;
     [SerializeField] Transform verticalLayout;
     [SerializeField] List<StoryEventScriptableObject> minigameUnlockEvents;
 
@@ -18,6 +20,7 @@ public class GGSMenuManager : StoryEventDependent
     [SerializeField] AK.Wwise.Event navigationAKEvent;
     [SerializeField] AK.Wwise.Event cancelAKEvent;
 
+    float inputCount;
     bool OnFocus;
     int index = -1;
     List<GGSMenuTab> menuTabs;
@@ -37,6 +40,8 @@ public class GGSMenuManager : StoryEventDependent
     {
         canvasGroup = GetComponent<CanvasGroup>();
         canvasGroup.alpha = 0f;
+
+        inputCount = 0;
     }
 
     void Start()
@@ -62,6 +67,31 @@ public class GGSMenuManager : StoryEventDependent
 
         index = 0;
         UpdateTabsHighlight();
+    }
+
+    private void Update() 
+    {
+        if (!OnFocus || PauseSystem.OnPause)
+            return;
+
+        Vector2 axis = navigationInput.ReadValue<Vector2>();
+        if (Mathf.Abs (axis.y) < .5f)
+        {
+            inputCount = 0;
+            return;
+        }
+
+        inputCount -= Time.deltaTime;
+
+        if (inputCount > 0)
+            return;
+
+        inputCount = inputCooldown;
+
+        if (navigationAKEvent != null)
+            navigationAKEvent.Post(gameObject);
+
+        MoveCursor (axis.y > 0 ? -1 : 1);
     }
 
     private void SetupNotifications()
@@ -116,6 +146,8 @@ public class GGSMenuManager : StoryEventDependent
         UINotificationManager.Use (notification);
     }
 
+    InputAction navigationInput;
+
     public void ActivateInputs (PlayerInteractor interactor) 
     {
         this.interactor = interactor;    
@@ -125,8 +157,8 @@ public class GGSMenuManager : StoryEventDependent
 
         inputActions = new PlayerInputActions();
 
-        inputActions.UI.Navigation.performed += NavigationInput;
-        inputActions.UI.Navigation.Enable();
+        navigationInput = inputActions.UI.Navigation;
+        navigationInput.Enable();
 
         inputActions.UI.Confirm.performed += ConfirmInput;
         inputActions.UI.Confirm.Enable();
@@ -220,15 +252,25 @@ public class GGSMenuManager : StoryEventDependent
 
     private void NavigationInput (InputAction.CallbackContext ctx)
     {
-        if (navigationAKEvent != null)
-            navigationAKEvent.Post(gameObject);
-
         if (!OnFocus || PauseSystem.OnPause)
             return;
 
         Vector2 axis = ctx.ReadValue<Vector2>();
-        if (axis.y == 0)
+        if (Mathf.Abs (axis.y) < .5f)
+        {
+            inputCount = 0;
             return;
+        }
+
+        Debug.Log("axis.y: " + axis.y);
+
+        if (inputCount > 0)
+            return;
+
+        inputCount = inputCooldown;
+
+        if (navigationAKEvent != null)
+            navigationAKEvent.Post(gameObject);
 
         MoveCursor (axis.y > 0 ? -1 : 1);
     }
